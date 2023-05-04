@@ -27,13 +27,14 @@ body {
 
 .light {
 	background-color: #fff;
-	transition: 0.3s ease-in-out;
+	transition: 1s ease-in-out;
 	color: black;
+	color: transparent;
 }
 
 .dark {
 	background-color: #111;
-	transition: 0.3s ease-in-out;
+	transition: 1s ease-in-out;
 	color: white;
 }
 

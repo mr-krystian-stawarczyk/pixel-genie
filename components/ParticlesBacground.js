@@ -3,66 +3,22 @@ import { Card, Container, Button } from "react-bootstrap";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { useTheme } from "next-themes";
-const ParticlesBackground = (toggleTheme) => {
-	const { theme } = useTheme();
-	const [particlesOptions, setParticlesOptions] = useState({
-		background: {
-			color: {
-				value: "#ffffff",
-			},
-		},
-		// rest of the options
-	});
-	const [particleBackgroundColor, setParticleBackgroundColor] =
-		useState("#ffffff");
-
-	const handleParticleBackgroundColorChange = useCallback(() => {
-		const newBackgroundColor =
-			particleBackgroundColor === "#ffffff" ? "#000000" : "#ffffff";
-		setParticleBackgroundColor(newBackgroundColor);
-	}, [particleBackgroundColor]);
+const ParticlesBackground = ({ toggleTheme }) => {
+	const { theme, setTheme } = useTheme();
 
 	const particlesInit = useCallback(async (engine) => {
 		await loadFull(engine);
 	}, []);
-
-	const particlesLoaded = useCallback(
-		async (container) => {
-			// update particles options when loaded
-			setParticlesOptions((prevOptions) => ({
-				...prevOptions,
-				background: {
-					...prevOptions.background,
-					color: {
-						value: theme === "light" ? "#ffffff" : "#000000",
-					},
-				},
-			}));
-		},
-		[theme]
-	);
-	useEffect(() => {
-		setParticlesOptions((prevOptions) => ({
-			...prevOptions,
-			background: {
-				...prevOptions.background,
-				color: {
-					value: particleBackgroundColor,
-				},
-			},
-		}));
-	}, [particleBackgroundColor]);
 
 	return (
 		<Container fluid id="container">
 			<Particles
 				id="tsparticles"
 				init={particlesInit}
-				loaded={particlesLoaded}
 				options={{
 					background: {
 						color: {
-							value: "#000000",
+							value: "transparent",
 						},
 					},
 					fullScreen: {
@@ -94,7 +50,7 @@ const ParticlesBackground = (toggleTheme) => {
 
 					particles: {
 						color: {
-							value: "#fff",
+							value: "#0047ab",
 						},
 
 						collisions: {
@@ -112,7 +68,7 @@ const ParticlesBackground = (toggleTheme) => {
 							bounce: false,
 						},
 						number: {
-							value: 160,
+							value: 60,
 							density: {
 								enable: true,
 								value_area: 800,
@@ -133,20 +89,12 @@ const ParticlesBackground = (toggleTheme) => {
 					detectRetina: true,
 				}}
 			/>{" "}
-			<Card id="your-div">
-				<Card.Img variant="top" src="holder.js/100px180" />
+			<Card id="your-div" className="border-0 shadow-lg p-5">
 				<Card.Body>
-					<Card.Title>Card Title</Card.Title>
-					<Card.Text>
-						Some quick example text to build on the card title and make up the
-						bulk of the card's content.
+					<h1 className="text-dark">Pixel Webagentur</h1>
+					<Card.Text className="text-dark">
+						Pomagamy rozwijac maly biznes
 					</Card.Text>
-					<Button
-						variant="primary"
-						onClick={handleParticleBackgroundColorChange}
-					>
-						Change Theme
-					</Button>
 				</Card.Body>
 			</Card>
 		</Container>

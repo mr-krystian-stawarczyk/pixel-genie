@@ -7,7 +7,7 @@ import { Link } from "react-scroll";
 
 function Header1() {
 	return (
-		<Container fluid className=" bg-blue  vh-100">
+		<Container fluid className="  vh-100">
 			<Row
 				className=""
 				style={{

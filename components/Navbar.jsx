@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 
 const NavbarComp = () => {
 	const [scrolled, setScrolled] = useState(false);
@@ -76,6 +77,13 @@ const NavbarComp = () => {
 					/>
 					<span style={{ fontSize: "2rem" }}> Pixel Genie</span>
 				</Navbar.Brand>{" "}
+				<Button onClick={toggleTheme}>
+					{currentTheme === "light" ? (
+						<BsFillMoonFill style={{ color: "grey" }} />
+					) : (
+						<BsFillSunFill style={{ color: "yellow" }} />
+					)}
+				</Button>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav " />
 				<Navbar.Collapse
 					id="basic-navbar-nav"
@@ -83,8 +91,39 @@ const NavbarComp = () => {
 					style={{}}
 				>
 					<Nav className="navbar-collapse justify-content-end text-center rounded">
-						{" "}
-						<Button onClick={toggleTheme}>Dark Mode</Button>
+						<NavDropdown
+							title="Lang"
+							id="basic-nav-dropdown"
+							className="btn-nav-drop rounded mx-1 text-center justify-content-center align-items-center"
+						>
+							{" "}
+							<NavDropdown.Item className="text-center">
+								<Image
+									src="/assets/de.png"
+									width={60}
+									height={40}
+									className="mx-auto "
+								/>{" "}
+							</NavDropdown.Item>
+							<NavDropdown.Divider />
+							<NavDropdown.Item className="text-center">
+								<Image
+									src="/assets/eng.png"
+									width={60}
+									height={40}
+									className="mx-auto "
+								/>{" "}
+							</NavDropdown.Item>
+							<NavDropdown.Divider />
+							<NavDropdown.Item className="text-center">
+								<Image
+									src="/assets/pl.png"
+									width={60}
+									height={40}
+									className="mx-auto "
+								/>{" "}
+							</NavDropdown.Item>
+						</NavDropdown>
 						<NavDropdown
 							title="Services"
 							id="basic-nav-dropdown"
@@ -97,7 +136,6 @@ const NavbarComp = () => {
 						>
 							<NavDropdown.Item as={Link} href="web" className="">
 								<Button className="w-100 border-0 btn-nav shadow-sm ">
-									{" "}
 									Websites
 								</Button>
 							</NavDropdown.Item>
