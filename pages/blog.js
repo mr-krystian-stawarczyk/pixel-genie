@@ -1,11 +1,14 @@
+import Blog1 from "@/components/Blog1";
+import Blog2 from "@/components/Blog2";
 import React from "react";
 
-function error() {
+function blog() {
 	return (
 		<div className="mt-5 pt-5">
-			<h1>Blog subpage</h1>
+			<Blog1 />
+			<Blog2 />
 		</div>
 	);
 }
 
-export default error;
+export default blog;

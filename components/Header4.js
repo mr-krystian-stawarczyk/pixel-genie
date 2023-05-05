@@ -5,9 +5,9 @@ import SplitTextJS from "split-text-js";
 import gsap from "gsap";
 import { Link } from "react-scroll";
 
-function Header2() {
+function Header4() {
 	return (
-		<Container fluid className=" mt-5 pt-5 vh-100">
+		<Container fluid className="  vh-100">
 			<Row
 				className=""
 				style={{
@@ -16,7 +16,7 @@ function Header2() {
 				}}
 			>
 				<Col lg={6}>
-					<h1>Header 2</h1>
+					<h1>Header4</h1>
 				</Col>
 				<Col lg={6}></Col>
 			</Row>
@@ -24,4 +24,4 @@ function Header2() {
 	);
 }
 
-export default Header2;
+export default Header4;

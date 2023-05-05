@@ -7,7 +7,7 @@ import { Link } from "react-scroll";
 
 function Header3() {
 	return (
-		<Container fluid className=" bg-magenta mt-5 pt-5 vh-100">
+		<Container fluid className="  mt-5 pt-5 vh-100">
 			<Row
 				className=""
 				style={{
@@ -16,7 +16,7 @@ function Header3() {
 				}}
 			>
 				<Col lg={6}>
-					<h1>Tutaj Text</h1>
+					<h1>Header3</h1>
 				</Col>
 				<Col lg={6}></Col>
 			</Row>

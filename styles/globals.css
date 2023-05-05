@@ -12,13 +12,14 @@ body {
 #tsparticles {
 	height: 100vh !important;
 	width: 100% !important;
-	z-index: 7 !important;
+	z-index: 0 !important;
 }
 
 #your-div {
 	position: absolute;
 	top: 40%;
 	left: 20%;
+	z-index: 999;
 }
 
 #container {
@@ -29,13 +30,16 @@ body {
 	background-color: #fff;
 	transition: 1s ease-in-out;
 	color: black;
-	color: transparent;
 }
 
 .dark {
 	background-color: #111;
 	transition: 1s ease-in-out;
 	color: white;
+}
+
+a {
+	text-decoration: none;
 }
 
 ::-webkit-scrollbar {

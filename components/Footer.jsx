@@ -61,37 +61,49 @@ function Footer() {
 	});
 	return (
 		<Container
-			className="overflow-hidden shadow-md bg-secondary"
+			fluid
+			className="overflow-hidden shadow-md "
 			ref={sectionRef}
 			id="contact"
 		>
 			<Row className="justify-content-center align-items-center text-center">
 				{" "}
-				<Col lg={5} sm={12} className="p-4">
+				<Col lg={6} sm={12} className="p-4">
 					<animated.div style={animationProps}>
 						{" "}
 						<Row className="text-start">
-							<Col className="text-dark">
+							<Col className="">
 								<Card className="border-0 bg-transparent">
 									<Card.Body className="pt-0 mt-0">
-										<Card.Text>
-											AM Greenergy Jan de Withof 106 5709 AL Helmond
-										</Card.Text>
-										<Card.Text>KVK: 78380758</Card.Text>
+										<h1>Pixel-Genie 41334 Nettetal</h1>
 										<Card.Title className="my-4 bold">Mail</Card.Title>
 										<Card.Text>
 											<a
-												href="mailto:info@izzifast.nl"
+												href="mailto:info@pixel-genie.de"
 												style={{ textDecoration: "none", color: "black" }}
 											>
 												{" "}
-												info@izzifast.nl
+												info@pixel-genie.de
 											</a>
 										</Card.Text>
 										<Card.Title className="my-4 bold">Policy</Card.Title>
 										<Nav.Link as={Link} href="/policy" className="m-1 hover">
 											<h6>Cookies & Imprint</h6>
 										</Nav.Link>{" "}
+									</Card.Body>
+								</Card>
+							</Col>
+							<Col lg={6}>
+								{" "}
+								<Card style={{ width: "18rem" }}>
+									<Card.Img variant="top" src="holder.js/100px180" />
+									<Card.Body>
+										<Card.Title>Card Title</Card.Title>
+										<Card.Text>
+											Some quick example text to build on the card title and
+											make up the bulk of the card's content.
+										</Card.Text>
+										<Button variant="primary">Go somewhere</Button>
 									</Card.Body>
 								</Card>
 							</Col>
