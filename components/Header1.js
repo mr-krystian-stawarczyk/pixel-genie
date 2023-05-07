@@ -53,7 +53,7 @@ const Header1 = ({ toggleTheme }) => {
 
 					particles: {
 						color: {
-							value: "#0047ab",
+							value: "#003681",
 						},
 
 						collisions: {
@@ -100,13 +100,20 @@ const Header1 = ({ toggleTheme }) => {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 2.5 }}
 				>
-					<Card className="border-0 shadow-lg p-5">
+					<Card className="border-0 shadow-lg p-5 m-3">
 						<Card.Body>
-							<h1 className="text-dark">Pixel Webagentur</h1>
-							<Card.Text className="text-dark">
+							<h1 className="text-dark text-bold">Pixel Webagentur</h1>
+							<h5 className="text-dark text-bold">
 								Pomagamy rozwijac maly biznes
-							</Card.Text>
+							</h5>
 						</Card.Body>
+						<Button
+							variant="primary "
+							href="#section2"
+							className="w-50 text-center"
+						>
+							Discover More
+						</Button>
 					</Card>
 				</motion.div>
 			</>

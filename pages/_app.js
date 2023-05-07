@@ -8,35 +8,45 @@ import { CSSTransition } from "react-transition-group";
 import { SSRProvider } from "react-bootstrap";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
-
+import ReactGA from "react-ga";
+import Script from "next/script";
 function App(props) {
 	const { Component, pageProps, router } = props;
+	ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
 
+	useEffect(() => {
+		const handleRouteChange = (url) => {
+			ga.pageview(url);
+		};
+
+		router.events.on("routeChangeComplete", handleRouteChange);
+		return () => {
+			router.events.off("routeChangeComplete", handleRouteChange);
+		};
+	}, [router.events]);
 	return (
 		<SSRProvider>
 			<ThemeProvider>
+				{" "}
+				<Script
+					src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
+					strategy="afterInteractive"
+				/>
+				<Script id="google-analytics-script" strategy="afterInteractive">
+					{`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}');`}{" "}
+				</Script>
 				<Layout>
 					<Head>
 						<title>Pixel-Genie</title>
-						<meta
-							name="Helmond"
-							content="AM Greenergy is uw partner voor duurzame energieoplossingen in Helmond. Ontdek ons aanbod aan zonnepanelen, airconditioning, pompen, batterijen, en warmtepompen en vraag een gratis offerte aan!"
-						/>
+						<meta name="Pixel Genie Nettetal" content="Pixel Genie Nettetal" />
 					</Head>
-					<PageTransition
-						timeout={300}
-						classNames="page-transition"
-						loadingComponent={<div>Loading...</div>}
-						loadingDelay={500}
-						loadingClassNames="loading"
-						loadingTimeout={{
-							enter: 400,
-							exit: 0,
-						}}
-						skipInitialTransition={false}
-					>
-						<Component {...pageProps} key={router.route} />
-					</PageTransition>
+
+					<Component {...pageProps} key={router.route} />
 				</Layout>{" "}
 			</ThemeProvider>
 		</SSRProvider>

@@ -7,7 +7,7 @@ import { Link } from "react-scroll";
 
 function Header2() {
 	return (
-		<Container fluid className=" mt-5 pt-5 vh-100">
+		<Container fluid className=" mt-5 pt-5 vh-100" id="section2">
 			<Row
 				className=""
 				style={{

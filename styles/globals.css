@@ -47,11 +47,18 @@ a {
 }
 
 .bg-blue {
-	background-color: #0047ab;
+	background-color: #003681;
+}
+.text-bold {
+	font-weight: 700;
+}
+
+.text-md {
+	font-weight: 500;
 }
 
 .text-blue {
-	color: #0047ab;
+	color: #003681;
 }
 
 .bg-magenta {
@@ -62,22 +69,28 @@ a {
 	color: #ab0056;
 }
 
+@media (max-width: 991.98px) {
+	.navbar-toggler {
+		background-color: #fff !important;
+	}
+}
+
 .btn-nav {
-	background-color: #0047ab !important;
+	background-color: #003681 !important;
 }
 
 .btn-nav:hover {
-	background-color: #ab0056 !important;
+	background-color: #0047ab !important;
 	transform: scale(1.1);
 	transition: 0.4s ease-in-out;
 }
 
 .btn-nav-drop {
-	background-color: #0047ab !important;
+	background-color: #003681 !important;
 }
 
 .btn-nav-drop:hover {
-	background-color: #ab0056 !important;
+	background-color: #0047ab !important;
 }
 
 #basic-nav-dropdown {

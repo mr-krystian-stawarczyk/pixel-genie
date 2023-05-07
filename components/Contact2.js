@@ -3,8 +3,8 @@ import { Container } from "react-bootstrap";
 
 function Contact2() {
 	return (
-		<Container className="vh-100">
-			<h1>Contact2</h1>
+		<Container className="my-5">
+			<h1>Sprawdz rowniez nasze social media :</h1>
 		</Container>
 	);
 }
