@@ -1,10 +1,10 @@
 import React from "react";
 import Head from "next/head";
-import Navigation from "./Navigation";
-import NavbarComp from "./Navbar";
+
+import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { useState, useEffect } from "react";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
@@ -13,6 +13,32 @@ const poppins = Poppins({
 });
 
 const Layout = ({ children, pageProps }) => {
+	const [currentTheme, setCurrentTheme] = useState("light");
+
+	useEffect(() => {
+		const savedTheme = localStorage.getItem("theme");
+		if (savedTheme) {
+			setCurrentTheme(savedTheme);
+			document.body.classList.add(savedTheme);
+		} else {
+			setCurrentTheme("light");
+			document.body.classList.add("light");
+		}
+	}, []);
+
+	const toggleTheme = () => {
+		if (currentTheme === "light") {
+			setCurrentTheme("dark");
+			localStorage.setItem("theme", "dark");
+			document.body.classList.add("dark");
+			document.body.classList.remove("light");
+		} else {
+			setCurrentTheme("light");
+			localStorage.setItem("theme", "light");
+			document.body.classList.add("light");
+			document.body.classList.remove("dark");
+		}
+	};
 	return (
 		<div className="layout">
 			<div className={poppins.className}>
@@ -20,7 +46,7 @@ const Layout = ({ children, pageProps }) => {
 					<title>Pixel-Genie</title>
 				</Head>
 				<header>
-					<NavbarComp {...pageProps} />
+					<Navbar {...pageProps} toggleTheme={toggleTheme} />
 				</header>
 				<main className="main-container">{children}</main>
 				<footer>

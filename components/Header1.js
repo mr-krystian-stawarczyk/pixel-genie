@@ -6,6 +6,8 @@ import { useTheme } from "next-themes";
 import { useSpring, animated } from "react-spring";
 import { motion } from "framer-motion";
 import "bootstrap/dist/css/bootstrap.css";
+
+import { Link } from "react-scroll";
 const Header1 = ({ toggleTheme }) => {
 	const { theme, setTheme } = useTheme();
 
@@ -107,13 +109,12 @@ const Header1 = ({ toggleTheme }) => {
 								Pomagamy rozwijac maly biznes
 							</h5>
 						</Card.Body>
-						<Button
-							variant="primary "
-							href="#section2"
-							className="w-50 text-center"
-						>
-							Discover More
-						</Button>
+						<Link to="my-id" smooth={true} duration={500}>
+							<Button variant="primary" className="w-50 text-center">
+								{" "}
+								Discover More{" "}
+							</Button>
+						</Link>
 					</Card>
 				</motion.div>
 			</>

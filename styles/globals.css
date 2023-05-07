@@ -2,6 +2,12 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+	--bg-color: $ {
+		theme=== 'light' ? '#fff' : "#111";
+	}
+	--text-color: $ {
+		theme=== 'light' ? '#333' : "#eee";
+	}
 }
 
 body {
@@ -27,15 +33,15 @@ body {
 }
 
 .light {
-	background-color: #fff;
+	background-color: #fff !important;
 	transition: 1s ease-in-out;
-	color: black;
+	color: black !important;
 }
 
 .dark {
-	background-color: #111;
+	background-color: #111 !important;
 	transition: 1s ease-in-out;
-	color: white;
+	color: white !important;
 }
 
 a {

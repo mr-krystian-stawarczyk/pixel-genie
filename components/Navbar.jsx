@@ -8,45 +8,31 @@ import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import ReactGA from "react-ga";
-import flag1 from "../public/assets/de-flag.png";
-import flag2 from "../public/assets/eng-flag.png";
-import flag3 from "../public/assets/pl-flag.png";
-const NavbarComp = () => {
+
+const NavbarComp = ({ toggleTheme }) => {
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
 	const [currentTheme, setCurrentTheme] = useState("");
-	const [selectedFlag, setSelectedFlag] = useState(flag1);
+	const [selectedFlag, setSelectedFlag] = useState("/assets/de-flag.png");
 	const { theme, setTheme } = useTheme();
 	const handleDropdownSelect = (eventKey, event) => {
 		switch (eventKey) {
 			case "flag1":
-				setSelectedFlag(flag1);
+				setSelectedFlag("/assets/de-flag.png");
 				break;
 			case "flag2":
-				setSelectedFlag(flag2);
+				setSelectedFlag("/assets/eng-flag.png");
 				break;
 			case "flag3":
-				setSelectedFlag(flag3);
+				setSelectedFlag("/assets/pl-flag.png");
 				break;
 			default:
-				setSelectedFlag(flag1);
+				setSelectedFlag("/assets/de-flag.png");
 		}
 	};
 	useEffect(() => {
 		setCurrentTheme(theme);
 	}, [theme]);
-
-	const toggleTheme = () => {
-		if (currentTheme === "light") {
-			setTheme("dark");
-			document.body.classList.add("dark");
-			document.body.classList.remove("light");
-		} else {
-			setTheme("light");
-			document.body.classList.add("light");
-			document.body.classList.remove("dark");
-		}
-	};
 
 	useEffect(() => {
 		ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
@@ -129,15 +115,30 @@ const NavbarComp = () => {
 						</Dropdown.Toggle>
 						<Dropdown.Menu className="text-center jusitfy-content-center">
 							<Dropdown.Item eventKey="flag1">
-								<Image src={flag1} alt="Flag 1" width="40" height="40" />
+								<Image
+									src="/assets/de-flag.png"
+									alt="Flag 1"
+									width="40"
+									height="40"
+								/>
 							</Dropdown.Item>
 							<NavDropdown.Divider />
-							<Dropdown.Item eventKey="flag2 w-100">
-								<Image src={flag2} alt="Flag 2" width="40" height="40" />
+							<Dropdown.Item eventKey="flag2">
+								<Image
+									src="/assets/eng-flag.png"
+									alt="Flag 2"
+									width="40"
+									height="40"
+								/>
 							</Dropdown.Item>{" "}
 							<NavDropdown.Divider />
 							<Dropdown.Item eventKey="flag3">
-								<Image src={flag3} alt="Flag 3" width="40" height="40" />
+								<Image
+									src="/assets/pl-flag.png"
+									alt="Flag 3"
+									width="40"
+									height="40"
+								/>
 							</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>

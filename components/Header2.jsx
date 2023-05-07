@@ -7,7 +7,7 @@ import { Link } from "react-scroll";
 
 function Header2() {
 	return (
-		<Container fluid className=" mt-5 pt-5 vh-100" id="section2">
+		<Container fluid className=" mt-5 pt-5 vh-100" name="my-id">
 			<Row
 				className=""
 				style={{
@@ -17,7 +17,6 @@ function Header2() {
 			>
 				<Col lg={6}>
 					<Card style={{ width: "18rem" }}>
-						<Card.Img variant="top" src="holder.js/100px180" />
 						<Card.Body>
 							<Card.Title>Card Title</Card.Title>
 							<Card.Text>
@@ -31,7 +30,6 @@ function Header2() {
 				<Col lg={6}>
 					{" "}
 					<Card style={{ width: "18rem" }}>
-						<Card.Img variant="top" src="holder.js/100px180" />
 						<Card.Body>
 							<Card.Title>Card Title</Card.Title>
 							<Card.Text>

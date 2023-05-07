@@ -21,8 +21,7 @@ function App(props) {
 						<title>Pixel-Genie</title>
 						<meta name="Pixel Genie Nettetal" content="Pixel Genie Nettetal" />
 					</Head>
-
-					<Component {...pageProps} key={router.route} />
+					<Component {...pageProps} key={router.route} />{" "}
 				</Layout>{" "}
 			</ThemeProvider>
 		</SSRProvider>
