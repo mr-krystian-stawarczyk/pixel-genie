@@ -61,21 +61,51 @@ function Footer() {
 	});
 	return (
 		<Container
-			fluid
 			className="overflow-hidden shadow-md "
 			ref={sectionRef}
 			id="contact"
 		>
 			<Row className="justify-content-center align-items-center text-center">
 				{" "}
-				<Col lg={6} sm={12} className="p-4">
+				<Col sm={12} className="p-4">
 					<animated.div style={animationProps}>
 						{" "}
-						<Row className="text-start">
-							<Col className="">
-								<Card className="border-0 bg-transparent">
-									<Card.Body className="pt-0 mt-0">
-										<h1>Pixel-Genie 41334 Nettetal</h1>
+						<Row className="text-start justify-content-center align-items-center text-center">
+							<Col lg={3}>
+								{" "}
+								<Card
+									style={{ width: "18rem", height: "18rem" }}
+									className="bg-transparent border-blue"
+								>
+									<Card.Body className="">
+										<h4 className="my-3">Odnosniki</h4>
+										<h4 className="my-3">Strony</h4>
+										<h4 className="my-3">Pozycjonowanie</h4>
+										<h4>Social Media</h4>
+									</Card.Body>
+								</Card>
+							</Col>
+							<Col lg={3}>
+								{" "}
+								<Card
+									style={{ width: "18rem", height: "18rem" }}
+									className="bg-transparent border-blue"
+								>
+									<Card.Body>
+										<h4 className="my-3">More</h4>
+										<h4 className="my-3">O nas</h4>
+										<h4 className="my-3">Faq</h4>
+										<h4>Contact</h4>
+									</Card.Body>
+								</Card>
+							</Col>{" "}
+							<Col lg={3} className="">
+								<Card
+									className="border-sm bg-transparent border-blue"
+									style={{ width: "18rem", height: "18rem" }}
+								>
+									<Card.Body className="pt-0 mt-0 ">
+										<h4>Pixel-Genie 41334 Nettetal</h4>
 										<Card.Title className="my-4 bold">Mail</Card.Title>
 										<Card.Text>
 											<a
@@ -93,19 +123,9 @@ function Footer() {
 									</Card.Body>
 								</Card>
 							</Col>
-							<Col lg={6}>
+							<Col lg={3} className="">
 								{" "}
-								<Card style={{ width: "18rem" }}>
-									<Card.Img variant="top" src="holder.js/100px180" />
-									<Card.Body>
-										<Card.Title>Card Title</Card.Title>
-										<Card.Text>
-											Some quick example text to build on the card title and
-											make up the bulk of the card's content.
-										</Card.Text>
-										<Button variant="primary">Go somewhere</Button>
-									</Card.Body>
-								</Card>
+								<Image src="/assets/adress.png" width="285" height="285" />
 							</Col>
 						</Row>{" "}
 					</animated.div>

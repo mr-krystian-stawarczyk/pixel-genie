@@ -3,10 +3,10 @@
 	padding: 0;
 	margin: 0;
 	--bg-color: $ {
-		theme=== 'light' ? '#fff' : "#111";
+		theme==='light'?'#fff': "#111";
 	}
 	--text-color: $ {
-		theme=== 'light' ? '#333' : "#eee";
+		theme==='light'?'#333': "#eee";
 	}
 }
 
@@ -31,7 +31,9 @@ body {
 #container {
 	position: relative;
 }
-
+.border-blue {
+	border: 1px solid #0047ab !important;
+}
 .light {
 	background-color: #fff !important;
 	transition: 1s ease-in-out;

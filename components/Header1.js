@@ -16,7 +16,7 @@ const Header1 = ({ toggleTheme }) => {
 	}, []);
 
 	return (
-		<Container fluid id="container">
+		<Container fluid>
 			<Particles
 				id="tsparticles"
 				init={particlesInit}
@@ -109,12 +109,15 @@ const Header1 = ({ toggleTheme }) => {
 								Pomagamy rozwijac maly biznes
 							</h5>
 						</Card.Body>
-						<Link to="my-id" smooth={true} duration={500}>
-							<Button variant="primary" className="w-50 text-center">
-								{" "}
-								Discover More{" "}
-							</Button>
-						</Link>
+
+						<Button
+							variant="primary"
+							className="w-50 text-center"
+							href="#header2"
+						>
+							{" "}
+							Discover More{" "}
+						</Button>
 					</Card>
 				</motion.div>
 			</>

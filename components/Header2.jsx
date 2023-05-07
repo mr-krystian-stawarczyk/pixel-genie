@@ -4,21 +4,16 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import SplitTextJS from "split-text-js";
 import gsap from "gsap";
 import { Link } from "react-scroll";
+import Image from "next/image";
 
 function Header2() {
 	return (
-		<Container fluid className=" mt-5 pt-5 vh-100" name="my-id">
-			<Row
-				className=""
-				style={{
-					alignItems: "center",
-					justifyContent: "center",
-				}}
-			>
-				<Col lg={6}>
-					<Card style={{ width: "18rem" }}>
+		<Container className=" mt-5 pt-5 " id="header2">
+			<Row className="justify-content-center text-center align-items-center">
+				<Col lg={5}>
+					<Card className="border-0">
 						<Card.Body>
-							<Card.Title>Card Title</Card.Title>
+							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
 							<Card.Text>
 								Some quick example text to build on the card title and make up
 								the bulk of the card's content.
@@ -27,18 +22,9 @@ function Header2() {
 						</Card.Body>
 					</Card>
 				</Col>
-				<Col lg={6}>
+				<Col lg={5}>
 					{" "}
-					<Card style={{ width: "18rem" }}>
-						<Card.Body>
-							<Card.Title>Card Title</Card.Title>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+					<Image src="/assets/header2.png" width={500} height={500} />
 				</Col>
 			</Row>
 		</Container>
