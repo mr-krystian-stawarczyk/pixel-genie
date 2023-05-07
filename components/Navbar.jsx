@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import ReactGA from "react-ga";
 import flag1 from "../public/assets/de-flag.png";
 import flag2 from "../public/assets/eng-flag.png";
 import flag3 from "../public/assets/pl-flag.png";
@@ -46,6 +47,11 @@ const NavbarComp = () => {
 			document.body.classList.remove("dark");
 		}
 	};
+
+	useEffect(() => {
+		ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
+		ReactGA.pageview(window.location.pathname + window.location.search);
+	}, []);
 
 	useEffect(() => {
 		const handleScroll = () => {
