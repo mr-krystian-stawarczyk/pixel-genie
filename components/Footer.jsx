@@ -65,72 +65,62 @@ function Footer() {
 			ref={sectionRef}
 			id="contact"
 		>
-			<Row className="justify-content-center align-items-center text-center">
+			<animated.div style={animationProps}>
 				{" "}
-				<Col sm={12} className="p-4">
-					<animated.div style={animationProps}>
+				<Row className=" justify-content-center align-items-center text-center my-5">
+					<Col lg={3} className="mx-auto">
 						{" "}
-						<Row className="text-start justify-content-center align-items-center text-center">
-							<Col lg={3}>
-								{" "}
-								<Card
-									style={{ width: "18rem", height: "18rem" }}
-									className="bg-transparent border-blue"
-								>
-									<Card.Body className="">
-										<h4 className="my-3">Odnosniki</h4>
-										<h4 className="my-3">Strony</h4>
-										<h4 className="my-3">Pozycjonowanie</h4>
-										<h4>Social Media</h4>
-									</Card.Body>
-								</Card>
-							</Col>
-							<Col lg={3}>
-								{" "}
-								<Card
-									style={{ width: "18rem", height: "18rem" }}
-									className="bg-transparent border-blue"
-								>
-									<Card.Body>
-										<h4 className="my-3">More</h4>
-										<h4 className="my-3">O nas</h4>
-										<h4 className="my-3">Faq</h4>
-										<h4>Contact</h4>
-									</Card.Body>
-								</Card>
-							</Col>{" "}
-							<Col lg={3} className="">
-								<Card
-									className="border-sm bg-transparent border-blue"
-									style={{ width: "18rem", height: "18rem" }}
-								>
-									<Card.Body className="pt-0 mt-0 ">
-										<h4>Pixel-Genie 41334 Nettetal</h4>
-										<Card.Title className="my-4 bold">Mail</Card.Title>
-										<Card.Text>
-											<a
-												href="mailto:info@pixel-genie.de"
-												style={{ textDecoration: "none", color: "black" }}
-											>
-												{" "}
-												info@pixel-genie.de
-											</a>
-										</Card.Text>
-										<Card.Title className="my-4 bold">Policy</Card.Title>
-										<Nav.Link as={Link} href="/policy" className="m-1 hover">
-											<h6>Cookies & Imprint</h6>
-										</Nav.Link>{" "}
-									</Card.Body>
-								</Card>
-							</Col>
-							<Col lg={3} className="">
-								{" "}
-								<Image src="/assets/adress.png" width="285" height="285" />
-							</Col>
-						</Row>{" "}
-					</animated.div>
-				</Col>
-			</Row>
+						<Card
+							style={{ width: "18rem" }}
+							className="bg-transparent border-0 shadow-lg "
+						>
+							<Card.Body className="">
+								<h4 className="my-3">Odnosniki</h4>
+								<h4 className="my-3">Strony</h4>
+								<h4 className="my-3">Pozycjonowanie</h4>
+								<h4>Social Media</h4>
+							</Card.Body>
+						</Card>
+					</Col>
+					<Col lg={3} className=" mx-auto">
+						{" "}
+						<Card
+							style={{ width: "18rem" }}
+							className="bg-transparent border-0 shadow-lg"
+						>
+							<Card.Body>
+								<h4 className="my-3">More</h4>
+								<h4 className="my-3">O nas</h4>
+								<h4 className="my-3">Faq</h4>
+								<h4>Contact</h4>
+							</Card.Body>
+						</Card>
+					</Col>{" "}
+					<Col lg={3} className=" mx-auto">
+						<Card
+							className=" bg-transparent border-0 text-center shadow-lg"
+							style={{ width: "18rem" }}
+						>
+							<Card.Body>
+								<h4 className=" bold my-3">Mail</h4>
+								<h4>
+									<a
+										href="mailto:info@pixel-genie.de"
+										style={{ textDecoration: "none", color: "black" }}
+									>
+										{" "}
+										info@pixel-genie.de
+									</a>
+								</h4>
+								<h4 className="bold my-3">Policy</h4>
+								<Nav.Link as={Link} href="/policy" className="m-1 hover">
+									<h4>Cookies & Imprint</h4>
+								</Nav.Link>{" "}
+							</Card.Body>
+						</Card>
+					</Col>
+				</Row>{" "}
+			</animated.div>
 		</Container>
 	);
 }

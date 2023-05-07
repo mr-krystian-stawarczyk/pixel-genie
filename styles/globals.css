@@ -31,6 +31,21 @@ body {
 #container {
 	position: relative;
 }
+
+@media (max-width: 768px) {
+	.responsive-image {
+		width: 80%;
+		height: 50%;
+	}
+	#your-div {
+		position: absolute;
+		height: 300px;
+		width: 320px;
+		z-index: 999;
+		left: 1%;
+		top: 30%;
+	}
+}
 .border-blue {
 	border: 1px solid #0047ab !important;
 }

@@ -51,28 +51,31 @@ function Faq2() {
 			);
 	};
 	return (
-		<Container className="my-5">
-			<Row className="my-5">
-				<h1>Masz Inne pytania ? </h1>
-			</Row>
+		<Container className="my-5 py-5">
 			<Row className="justify-content-center">
-				<Col lg={5}>
+				<Col lg={5} className="mx-auto">
 					{" "}
-					<Image src="/assets/faq2.png" alt="Flag 3" width="500" height="500" />
+					<Image
+						src="/assets/contact.png"
+						alt="faq-section2-image"
+						width="500"
+						height="450"
+						className="responsive-image"
+					/>
 				</Col>
-				<Col lg={5}>
+				<Col lg={5} className="mx-auto">
 					{!isFormSubmitted ? (
 						<Form
-							className="app__footer-form app__flex"
+							className="app__footer-form app__flex mt-5"
 							onSubmit={handleSubmit}
 						>
 							<Row>
-								<h1>Wyslij bezposrednie zapytanie</h1>
+								<h3 className="mt-5">Wyslij bezposrednie zapytanie</h3>
 								<Col>
 									{" "}
 									<Form.Group className="mb-3" controlId="formBasicEmail">
 										<Form.Control
-											className="p-text"
+											className="p-text my-3"
 											type="text"
 											placeholder="Name"
 											value={name}
@@ -85,7 +88,7 @@ function Faq2() {
 								<Col>
 									<Form.Group className="mb-3" controlId="formBasicEmail">
 										<Form.Control
-											className="p-text"
+											className="p-text my-3"
 											type="text"
 											placeholder="Telefon"
 											value={phone}
@@ -98,7 +101,7 @@ function Faq2() {
 								<Col>
 									<Form.Group className="mb-3" controlId="formBasicEmail">
 										<Form.Control
-											className="p-text"
+											className="p-text my-3"
 											type="email"
 											placeholder="E-mail"
 											value={email}
@@ -111,10 +114,10 @@ function Faq2() {
 							</Row>
 							<Row>
 								<Col>
-									<Form.Group className="mb-3" controlId="formBasicEmail">
+									<Form.Group className="my-3" controlId="formBasicEmail">
 										<Form.Label>Description</Form.Label>
 										<Form.Control
-											className="p-text"
+											className="p-text my-3"
 											as="textarea"
 											placeholder="Description"
 											value={description}
@@ -127,8 +130,8 @@ function Faq2() {
 								</Col>
 							</Row>
 
-							<Row className="justify-content-center align-items-center">
-								<Col>
+							<Row className="justify-content-center align-items-center text-center">
+								<Col className="mx-auto">
 									<Button
 										type="submit"
 										className="p-text m-2 nav-blue-bg btn-lg border-0"

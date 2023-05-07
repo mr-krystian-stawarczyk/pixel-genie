@@ -8,14 +8,20 @@ import Image from "next/image";
 
 function Header3() {
 	return (
-		<Container className=" mt-5 pt-5 " id="header2">
+		<Container className=" my-5 py-5 ">
 			<Row className="justify-content-center text-center align-items-center">
-				<Col lg={5}>
+				<Col lg={5} className="mx-auto">
 					{" "}
-					<Image src="/assets/header3.png" width={500} height={500} />
+					<Image
+						src="/assets/header3.png"
+						width={500}
+						height={500}
+						className="responsive-image"
+						alt="header3-image"
+					/>
 				</Col>
-				<Col lg={5}>
-					<Card className="border-0">
+				<Col lg={5} className="mx-auto">
+					<Card className="border-0 text-dark">
 						<Card.Body>
 							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
 							<Card.Text>

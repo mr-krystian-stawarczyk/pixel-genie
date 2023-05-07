@@ -5,12 +5,11 @@ import emailjs from "@emailjs/browser";
 function Faq1() {
 	return (
 		<Container className="my-5">
-			<Row className="my-5">
-				<h1>Sprawdz najczesciej zadawane pytania </h1>
-			</Row>
 			<Row className="justify-content-center">
 				<Col lg={5}>
-					{" "}
+					<Row>
+						<h3 className="my-3">Czesto zadawane pytania</h3>
+					</Row>
 					<Accordion>
 						<Accordion.Item eventKey="0">
 							<Accordion.Header>
@@ -108,7 +107,12 @@ function Faq1() {
 				</Col>
 				<Col lg={5}>
 					{" "}
-					<Image src="/assets/faq1.png" alt="Flag 3" width="500" height="500" />
+					<Image
+						src="/assets/faq3.png"
+						width="500"
+						height="500"
+						alt="faq-section1-image"
+					/>
 				</Col>
 			</Row>
 		</Container>

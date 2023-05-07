@@ -97,27 +97,25 @@ const Header1 = ({ toggleTheme }) => {
 			<>
 				{" "}
 				<motion.div
-					id="your-div"
 					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 2.5 }}
+					transition={{ duration: 1.5 }}
 				>
-					<Card className="border-0 shadow-lg p-5 m-3">
+					<Card className="border-0 shadow-lg p-5 m-3" id="your-div">
 						<Card.Body>
 							<h1 className="text-dark text-bold">Pixel Webagentur</h1>
 							<h5 className="text-dark text-bold">
 								Pomagamy rozwijac maly biznes
-							</h5>
+							</h5>{" "}
+							<Button
+								variant="primary"
+								className=" text-center"
+								href="#header2"
+							>
+								{" "}
+								Discover More{" "}
+							</Button>
 						</Card.Body>
-
-						<Button
-							variant="primary"
-							className="w-50 text-center"
-							href="#header2"
-						>
-							{" "}
-							Discover More{" "}
-						</Button>
 					</Card>
 				</motion.div>
 			</>

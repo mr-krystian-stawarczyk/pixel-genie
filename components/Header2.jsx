@@ -8,10 +8,10 @@ import Image from "next/image";
 
 function Header2() {
 	return (
-		<Container className=" mt-5 pt-5 " id="header2">
+		<Container className="mt-5 pt-5" id="header2">
 			<Row className="justify-content-center text-center align-items-center">
-				<Col lg={5}>
-					<Card className="border-0">
+				<Col lg={5} className="mx-auto">
+					<Card className="border-0 text-dark ">
 						<Card.Body>
 							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
 							<Card.Text>
@@ -22,9 +22,15 @@ function Header2() {
 						</Card.Body>
 					</Card>
 				</Col>
-				<Col lg={5}>
+				<Col lg={5} className="mx-auto">
 					{" "}
-					<Image src="/assets/header2.png" width={500} height={500} />
+					<Image
+						src="/assets/header2.png"
+						width={500}
+						height={500}
+						className="responsive-image"
+						alt="header2-image"
+					/>
 				</Col>
 			</Row>
 		</Container>
