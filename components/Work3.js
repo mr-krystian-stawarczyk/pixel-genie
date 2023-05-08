@@ -1,12 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import TechBar from "./TechBar";
 
 function Work3() {
-	return (
-		<Container className="vh-100">
-			<h1> Work 3</h1>
-		</Container>
-	);
+	return <TechBar />;
 }
 
 export default Work3;

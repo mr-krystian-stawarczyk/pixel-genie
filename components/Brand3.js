@@ -6,14 +6,14 @@ import gsap from "gsap";
 import { Link } from "react-scroll";
 import Image from "next/image";
 
-function Prices1() {
+function Brand3() {
 	return (
-		<Container className="my-5 py-5">
+		<Container className="mt-5 pt-5">
 			<Row className="justify-content-center text-center align-items-center">
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Ponizej znajdziesz pakiety dostosowane do twoich potrzeb</h1>
+							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
 							<Card.Text>
 								Some quick example text to build on the card title and make up
 								the bulk of the card's content.
@@ -21,7 +21,7 @@ function Prices1() {
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>
 					</Card>
-				</Col>{" "}
+				</Col>
 				<Col lg={5} className="mx-auto">
 					{" "}
 					<Image
@@ -31,10 +31,10 @@ function Prices1() {
 						className="responsive-image"
 						alt="header2-image"
 					/>
-				</Col>{" "}
+				</Col>
 			</Row>
 		</Container>
 	);
 }
 
-export default Prices1;
+export default Brand3;

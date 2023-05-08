@@ -7,7 +7,7 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 function About2() {
 	return (
-		<Container className="vh-100">
+		<Container className="my-5 py-5">
 			<Row>
 				<h1>Sprawdz nasza podroz</h1>
 			</Row>

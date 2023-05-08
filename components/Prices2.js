@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 function Prices2() {
 	return (
-		<Container className="vh-100">
+		<Container className="my-5 py-5">
 			<Row
 				className="text-dark"
 				style={{
