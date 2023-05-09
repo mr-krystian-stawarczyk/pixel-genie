@@ -1,7 +1,7 @@
 import Faq1 from "@/components/Faq1";
 import Faq2 from "@/components/Faq2";
 import React from "react";
-
+import Head from "next/head";
 function faq() {
 	return (
 		<div className="mt-5 pt-5">
