@@ -1,9 +1,16 @@
 import React from "react";
-
+import Head from "next/head";
 function policy() {
 	return (
 		<div>
-			<h1>Policy</h1>
+			<Head>
+				<title>Pixel Genie Nettetal Policy</title>
+				<meta
+					name="description"
+					content="Erfahren Sie mehr über unsere Datenschutzrichtlinien und Geschäftsbedingungen bei Pixel-Genie. Wir legen Wert auf Transparenz und Kundenfreundlichkeit."
+				/>
+			</Head>
+			<h1>Policy & Imprint</h1>
 		</div>
 	);
 }

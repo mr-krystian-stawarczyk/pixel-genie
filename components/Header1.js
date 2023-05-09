@@ -5,8 +5,8 @@ import { loadFull } from "tsparticles";
 import { useTheme } from "next-themes";
 import { useSpring, animated } from "react-spring";
 import { motion } from "framer-motion";
-import "bootstrap/dist/css/bootstrap.css";
 
+import { useTranslation } from "react-i18next";
 import { Link } from "react-scroll";
 const Header1 = ({ toggleTheme }) => {
 	const { theme, setTheme } = useTheme();
@@ -14,7 +14,7 @@ const Header1 = ({ toggleTheme }) => {
 	const particlesInit = useCallback(async (engine) => {
 		await loadFull(engine);
 	}, []);
-
+	const { t } = useTranslation();
 	return (
 		<Container fluid>
 			<Particles
@@ -97,23 +97,20 @@ const Header1 = ({ toggleTheme }) => {
 			<>
 				{" "}
 				<motion.div
-					initial={{ opacity: 0, y: 50 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1.5 }}
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 4 }}
 				>
-					<Card className="border-0 shadow-lg p-5 m-3" id="your-div">
+					<Card className="border-0 shadow-lg p-3 m-3" id="your-div">
 						<Card.Body>
-							<h1 className="text-dark text-bold">Pixel Webagentur</h1>
-							<h5 className="text-dark text-bold">
-								Pomagamy rozwijac maly biznes
-							</h5>{" "}
+							<h1 className="text-dark text-bold">Pixel Genie Webagentur</h1>
+							<h5 className="text-dark text-bold my-3">{t("h2")}</h5>{" "}
 							<Button
 								variant="primary"
-								className=" text-center"
+								className=" text-center my-2"
 								href="#header2"
 							>
-								{" "}
-								Discover More{" "}
+								{t("h3")}
 							</Button>
 						</Card.Body>
 					</Card>

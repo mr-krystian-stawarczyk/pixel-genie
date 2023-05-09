@@ -10,9 +10,14 @@ import {
 	Form,
 } from "react-bootstrap";
 import { useSpring, animated } from "react-spring";
-import { AiOutlineCheckCircle } from "react-icons/ai";
+
 import { useTranslation } from "react-i18next";
-import Nav from "react-bootstrap/Nav";
+
+import {
+	AiOutlineFacebook,
+	AiOutlineLinkedin,
+	AiOutlineInstagram,
+} from "react-icons/ai";
 
 import Image from "next/image";
 function Footer() {
@@ -61,13 +66,14 @@ function Footer() {
 	});
 	return (
 		<Container
-			className="overflow-hidden shadow-md "
+			fluid
+			className="overflow-hidden shadow-md bg-black text-white"
 			ref={sectionRef}
 			id="contact"
 		>
 			<animated.div style={animationProps}>
 				{" "}
-				<Row className=" justify-content-center align-items-center text-center my-5">
+				<Row className=" justify-content-center align-items-center  mt-2 border-bottom">
 					<Col lg={3} className="mx-auto">
 						{" "}
 						<Card
@@ -75,51 +81,56 @@ function Footer() {
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
-								<h4 className="my-3">Odnosniki</h4>
-								<h4 className="my-3">Strony</h4>
-								<h4 className="my-3">Pozycjonowanie</h4>
-								<h4>Social Media</h4>
+								<Card.Title className="my-3">Produkty</Card.Title>
+								<Card.Text>Strony</Card.Text>{" "}
+								<Card.Text>Pozycjonowanie</Card.Text>{" "}
+								<Card.Text>Branding</Card.Text> <Card.Text>Media</Card.Text>{" "}
+								<Card.Text>Social Media</Card.Text>{" "}
 							</Card.Body>
 						</Card>
 					</Col>
 					<Col lg={3} className=" mx-auto">
-						{" "}
 						<Card
 							style={{ width: "18rem" }}
-							className="bg-transparent border-0 shadow-lg"
+							className="bg-transparent border-0 shadow-lg "
 						>
-							<Card.Body>
-								<h4 className="my-3">More</h4>
-								<h4 className="my-3">O nas</h4>
-								<h4 className="my-3">Faq</h4>
-								<h4>Contact</h4>
+							<Card.Body className="">
+								<Card.Title className="my-3">Firma</Card.Title>
+								<Card.Text>O nas</Card.Text> <Card.Text>Kontakt</Card.Text>{" "}
+								<Card.Text>Porady</Card.Text> <Card.Text>Projekty</Card.Text>{" "}
+								<Card.Text>Pytania</Card.Text>{" "}
 							</Card.Body>
 						</Card>
 					</Col>{" "}
 					<Col lg={3} className=" mx-auto">
 						<Card
-							className=" bg-transparent border-0 text-center shadow-lg"
 							style={{ width: "18rem" }}
+							className="bg-transparent border-0 shadow-lg text-center"
 						>
-							<Card.Body>
-								<h4 className=" bold my-3">Mail</h4>
-								<h4>
-									<a
-										href="mailto:info@pixel-genie.de"
-										style={{ textDecoration: "none", color: "black" }}
-									>
-										{" "}
-										info@pixel-genie.de
-									</a>
-								</h4>
-								<h4 className="bold my-3">Policy</h4>
-								<Nav.Link as={Link} href="/policy" className="m-1 hover">
-									<h4>Cookies & Imprint</h4>
-								</Nav.Link>{" "}
+							<Card.Body className="">
+								<Card.Title className="my-3">Social Media</Card.Title>
+								<Card.Text>
+									<AiOutlineFacebook style={{ fontSize: "3rem" }} />
+								</Card.Text>
+								<Card.Text>
+									<AiOutlineLinkedin style={{ fontSize: "3rem" }} />
+								</Card.Text>
+								<Card.Text>
+									<AiOutlineInstagram style={{ fontSize: "3rem" }} />
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
 				</Row>{" "}
+				<Row className="text-center my-2">
+					<Col>
+						<h6>2023 PixelGenie All Rights Reserved</h6>
+					</Col>{" "}
+					<Col>
+						{" "}
+						<h6>Cookies & Imprint</h6>
+					</Col>
+				</Row>
 			</animated.div>
 		</Container>
 	);

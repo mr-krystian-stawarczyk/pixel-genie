@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import ReactGA from "react-ga";
+import i18n from "../i18n.js";
 
 const NavbarComp = ({ toggleTheme }) => {
 	const [scrolled, setScrolled] = useState(false);
@@ -61,7 +62,7 @@ const NavbarComp = ({ toggleTheme }) => {
 		document.body.style.backgroundColor = bgColor;
 	}, [currentTheme]);
 
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
 
 	return (
 		<Navbar
@@ -120,6 +121,7 @@ const NavbarComp = ({ toggleTheme }) => {
 									alt="Flag 1"
 									width="40"
 									height="40"
+									onClick={() => i18n.changeLanguage("de")}
 								/>
 							</Dropdown.Item>
 							<NavDropdown.Divider />
@@ -129,6 +131,7 @@ const NavbarComp = ({ toggleTheme }) => {
 									alt="Flag 2"
 									width="40"
 									height="40"
+									onClick={() => i18n.changeLanguage("eng")}
 								/>
 							</Dropdown.Item>{" "}
 							<NavDropdown.Divider />
@@ -138,13 +141,14 @@ const NavbarComp = ({ toggleTheme }) => {
 									alt="Flag 3"
 									width="40"
 									height="40"
+									onClick={() => i18n.changeLanguage("pl")}
 								/>
 							</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>
 					<Nav className="navbar-collapse justify-content-end text-center rounded">
 						<NavDropdown
-							title="Services"
+							title={t("nav1")}
 							id="basic-nav-dropdown"
 							className="btn-md shadow-md btn-nav-drop rounded  m-1"
 							style={{
@@ -155,7 +159,7 @@ const NavbarComp = ({ toggleTheme }) => {
 						>
 							<NavDropdown.Item as={Link} href="web" className="">
 								<Button className="w-100 border-0 btn-nav shadow-sm ">
-									Websites
+									{t("nav8")}
 								</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Item as={Link} href="seo" className="">
@@ -179,33 +183,33 @@ const NavbarComp = ({ toggleTheme }) => {
 						</NavDropdown>
 						<Nav.Link as={Link} href="work" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								Work
+								{t("nav2")}
 							</Button>
 						</Nav.Link>
 						<Nav.Link as={Link} href="blog">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								Blog
+								{t("nav3")}
 							</Button>
 						</Nav.Link>
 						<Nav.Link as={Link} href="prices" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								Prices
+								{t("nav4")}
 							</Button>
 						</Nav.Link>{" "}
 						<Nav.Link as={Link} href="about" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								About
+								{t("nav5")}
 							</Button>
 						</Nav.Link>{" "}
 						<Nav.Link as={Link} href="contact" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{" "}
-								Contact
+								{t("nav6")}
 							</Button>
 						</Nav.Link>
 						<Nav.Link as={Link} href="faq" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								FAQ
+								{t("nav7")}
 							</Button>
 						</Nav.Link>{" "}
 					</Nav>

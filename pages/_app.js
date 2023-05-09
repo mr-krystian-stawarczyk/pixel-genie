@@ -8,8 +8,9 @@ import { CSSTransition } from "react-transition-group";
 import { SSRProvider } from "react-bootstrap";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
-
+import { appWithTranslation } from "next-i18next";
 import Script from "next/script";
+import i18n from "i18next";
 function App(props) {
 	const { Component, pageProps, router } = props;
 
@@ -28,4 +29,4 @@ function App(props) {
 	);
 }
 
-export default App;
+export default appWithTranslation(App);
