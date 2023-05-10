@@ -7,6 +7,7 @@ import Header2 from "@/components/Header2";
 import Header3 from "@/components/Header3";
 import Header4 from "@/components/Header4";
 import Header5 from "@/components/Header5";
+import SanityRealizacje from "@/components/SanityRealizacje";
 
 export default function Home() {
 	const { theme } = useTheme();
@@ -20,6 +21,7 @@ export default function Home() {
 				/>
 			</Head>
 			<Header1 />
+
 			<Header2 />
 			<Header3 />
 			<Header4 />

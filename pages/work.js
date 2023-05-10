@@ -5,6 +5,7 @@ import Work4 from "@/components/Work4";
 import Work5 from "@/components/Work5";
 import React from "react";
 import Head from "next/head";
+import SanityRealizacje from "@/components/SanityRealizacje";
 function work() {
 	return (
 		<div className="mt-5 pt-5">
@@ -16,6 +17,7 @@ function work() {
 				/>
 			</Head>
 			<Work1 />
+			<SanityRealizacje />
 			<Work2 />
 			<Work3 />
 			<Work4 />

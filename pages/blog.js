@@ -2,6 +2,7 @@ import Blog1 from "@/components/Blog1";
 import Blog2 from "@/components/Blog2";
 import React from "react";
 import Head from "next/head";
+
 function blog() {
 	return (
 		<div className="mt-5 pt-5">

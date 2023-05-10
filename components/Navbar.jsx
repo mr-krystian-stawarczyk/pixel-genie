@@ -146,7 +146,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>
-					<Nav className="navbar-collapse justify-content-end text-center rounded">
+					<Nav className="navbar-collapse justify-content-end text-center rounded ">
 						<NavDropdown
 							title={t("nav1")}
 							id="basic-nav-dropdown"

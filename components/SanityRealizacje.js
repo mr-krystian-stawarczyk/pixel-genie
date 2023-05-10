@@ -13,10 +13,10 @@ import sanityClient from "@sanity/client";
 import { useSpring, animated } from "react-spring";
 import { useTranslation } from "react-i18next";
 
-function Blog2() {
+function SanityRealizacje() {
 	const { t } = useTranslation();
 
-	const [blog, setBlog] = useState([]);
+	const [realizacje, setRealizacje] = useState([]);
 	const client = sanityClient({
 		projectId: process.env.NEXT_PUBLIC_PROJECTID,
 		dataset: "production",
@@ -29,8 +29,8 @@ function Blog2() {
 	const [animateImg, setAnimateImg] = useState(false);
 
 	const fetchData = async () => {
-		const result = await client.fetch(`*[_type == "blog"]`);
-		setBlog(result);
+		const result = await client.fetch(`*[_type == "realizacje"]`);
+		setRealizacje(result);
 	};
 
 	useEffect(() => {
@@ -51,14 +51,18 @@ function Blog2() {
 	}, []);
 
 	return (
-		<Container className=" py-3 " ref={sectionRef}>
-			<Row className="justify-content-center align-items-center text-center mt-5 ">
-				<h1 className="my-5  bold">Przedstawiamy Nasze ostatnie realizacje</h1>
+		<Container className=" py-3 bg-primary " ref={sectionRef}>
+			<Row className="justify-content-center align-items-center text-center mt-5 text-dark">
+				<Col>
+					<h1 className="my-5 text-start bold">
+						Przedstawiamy Nasze ostatnie realizacje
+					</h1>
+				</Col>
 			</Row>
 			<Row className="justify-content-center align-items-center text-center">
 				<Col lg={10}>
 					<Carousel>
-						{blog.map((item) => (
+						{realizacje.map((item) => (
 							<Carousel.Item key={item._id}>
 								<img
 									className="d-block w-100 "
@@ -78,4 +82,4 @@ function Blog2() {
 	);
 }
 
-export default Blog2;
+export default SanityRealizacje;
