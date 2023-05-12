@@ -4,6 +4,7 @@ import Brand3 from "@/components/Brand3";
 import Brand4 from "@/components/Brand4";
 import React from "react";
 import Head from "next/head";
+import Brand5 from "@/components/Brand5";
 function branding() {
 	return (
 		<div className="mt-5 pt-5">
@@ -18,6 +19,7 @@ function branding() {
 			<Brand2 />
 			<Brand3 />
 			<Brand4 />
+			<Brand5 />
 		</div>
 	);
 }

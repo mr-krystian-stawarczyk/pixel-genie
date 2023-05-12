@@ -4,6 +4,7 @@ import Social3 from "@/components/Social3";
 import Social4 from "@/components/Social4";
 import React from "react";
 import Head from "next/head";
+import Social5 from "@/components/Social5";
 function socialmedia() {
 	return (
 		<div className="mt-5 pt-5">
@@ -19,6 +20,7 @@ function socialmedia() {
 			<Social2 />
 			<Social3 />
 			<Social4 />
+			<Social5 />
 		</div>
 	);
 }

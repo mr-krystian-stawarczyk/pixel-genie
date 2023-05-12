@@ -23,10 +23,14 @@ function Seo2() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Zoptymalizowany kod dla zasiegow</h1>
+							<h1>Audyt SEO dla lepszej optymalizacji strony</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Pixel-Genie Nettetal oferuje usługi audytu SEO, które pomogą Ci
+								zidentyfikować mocne i słabe strony Twojej strony internetowej
+								pod kątem optymalizacji SEO. Nasz zespół specjalistów
+								przeprowadzi kompleksową analizę i zaproponuje konkretną
+								strategię poprawy, abyś mógł maksymalnie wykorzystać potencjał
+								swojej strony w wyszukiwarkach.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

@@ -1,9 +1,88 @@
 import React from "react";
+import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useAnimation } from "framer-motion";
+import { useTranslation } from "react-i18next";
 function Prices2() {
+	const { t } = useTranslation();
+	const [ref1, inView1] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+
+	const [ref2, inView2] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+	const [ref3, inView3] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+
+	const animateIn = {
+		opacity: 1,
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
+	};
+
+	const animateOut = {
+		opacity: 0,
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
+	};
+
+	const controls1 = useAnimation();
+	const controls2 = useAnimation();
+	const controls3 = useAnimation();
+
+	useEffect(() => {
+		if (inView1) {
+			controls1.start(animateIn);
+		} else {
+			controls1.start(animateOut);
+		}
+	}, [inView1, controls1, animateIn, animateOut]);
+
+	useEffect(() => {
+		let timeout;
+		if (inView2) {
+			timeout = setTimeout(() => {
+				controls2.start(animateIn);
+			}, 1000); // Delay of 1 second (1000 milliseconds)
+		} else {
+			controls2.start(animateOut);
+		}
+
+		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+	}, [inView2, controls2, animateIn, animateOut]);
+
+	useEffect(() => {
+		let timeout;
+		if (inView3) {
+			timeout = setTimeout(() => {
+				controls3.start(animateIn);
+			}, 2000); // Delay of 2 seconds (2000 milliseconds)
+		} else {
+			controls3.start(animateOut);
+		}
+
+		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+	}, [inView3, controls3, animateIn, animateOut]);
+
 	return (
-		<Container className="my-5 py-5">
+		<Container className="my-5 py-5" id="web-design-pricing">
+			{" "}
+			<Row className="justify-content-center align-items-center text-center mt-5 ">
+				<Col>
+					<h1 className="my-5 text-center bold"> {t("web23")}</h1>
+				</Col>
+			</Row>
 			<Row
 				className="text-dark"
 				style={{
@@ -11,46 +90,121 @@ function Prices2() {
 					justifyContent: "center",
 				}}
 			>
-				<Col lg={4}>
-					<Card style={{ width: "18rem" }}>
-						<Card.Img variant="top" src="holder.js/100px180" />
-						<Card.Body>
-							<Card.Title>Bronze</Card.Title>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+				<Col lg={4} className="mx-auto ">
+					<motion.div
+						ref={ref1}
+						animate={controls1}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card style={{ width: "25rem" }} className="shadow-lg border-0">
+							{" "}
+							<Card.Body>
+								<h1>{t("web24")}</h1>
+								<Card.Text>{t("web25")}</Card.Text>
+							</Card.Body>
+							<Card.Body>
+								<Card.Title>{t("web26")}</Card.Title>
+								<Card.Text>{t("web27")}</Card.Text>
+								<Card.Text>{t("web28")}</Card.Text>
+								<Card.Text>{t("web29")}</Card.Text>
+								<Card.Text>{t("web30")}</Card.Text>
+								<Card.Text>{t("web31")}</Card.Text>
+								<Card.Text>{t("web32")}</Card.Text>
+								<Card.Text>{t("web33")}</Card.Text>
+								<Card.Text>{t("web34")}</Card.Text>
+								<Card.Text>{t("web35")}</Card.Text>
+								<Card.Text>{t("web36")}</Card.Text>
+							</Card.Body>{" "}
+							<Card.Body>
+								<h3>{t("web37")}</h3>
+								<Card.Text>{t("web38")}</Card.Text>
+								<Card.Text>{t("web39")}</Card.Text>
+								<Card.Text> {t("web40")}</Card.Text>
+							</Card.Body>
+						</Card>{" "}
+					</motion.div>
 				</Col>
-				<Col lg={4}>
-					{" "}
-					<Card style={{ width: "18rem" }}>
-						<Card.Img variant="top" src="holder.js/100px180" />
-						<Card.Body>
-							<Card.Title>Silver</Card.Title>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+				<Col lg={4} className="mx-auto">
+					<motion.div
+						ref={ref2}
+						animate={controls2}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card style={{ width: "25rem" }} className="shadow-lg border-0">
+							<Card.Body>
+								<h1>{t("web41")}</h1>
+								<Card.Text>{t("web42")}</Card.Text>
+							</Card.Body>
+							<Card.Body>
+								<Card.Title>{t("web43")}</Card.Title>
+								<Card.Text>{t("web44")}</Card.Text>
+								<Card.Text>{t("web45")}</Card.Text>
+								<Card.Text>{t("web46")}</Card.Text>
+								<Card.Text>{t("web47")}</Card.Text>
+								<Card.Text>{t("web48")}</Card.Text>
+								<Card.Text>{t("web49")}</Card.Text>
+								<Card.Text>{t("web50")}</Card.Text>
+								<Card.Text>{t("web51")}</Card.Text>
+								<Card.Text>{t("web52")}</Card.Text>
+								<Card.Text>{t("web53")}</Card.Text>
+								<Card.Text>{t("web54")}</Card.Text>
+								<Card.Text>{t("web55")}</Card.Text>
+								<Card.Text>{t("web56")}</Card.Text>
+								<Card.Text>{t("web57")}</Card.Text>
+							</Card.Body>{" "}
+							<Card.Body>
+								<h3>{t("web58")}</h3>
+								<Card.Text>{t("web59")}</Card.Text>
+								<Card.Text>{t("web60")}</Card.Text>
+								<Card.Text> {t("web61")}</Card.Text>
+							</Card.Body>
+						</Card>{" "}
+					</motion.div>
 				</Col>
-				<Col lg={4}>
-					{" "}
-					<Card style={{ width: "18rem" }}>
-						<Card.Img variant="top" src="holder.js/100px180" />
-						<Card.Body>
-							<Card.Title>Gold</Card.Title>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+				<Col lg={4} className="mx-auto">
+					<motion.div
+						ref={ref3}
+						animate={controls3}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card style={{ width: "25rem" }} className="shadow-lg border-0">
+							<Card.Body>
+								<h1>{t("web62")}</h1>
+								<Card.Text>{t("web63")}</Card.Text>
+							</Card.Body>
+							<Card.Body>
+								<Card.Title>{t("web64")}</Card.Title>
+								<Card.Text>{t("web65")}</Card.Text>
+								<Card.Text>{t("web66")}</Card.Text>
+								<Card.Text>{t("web67")}</Card.Text>
+								<Card.Text>{t("web68")}</Card.Text>
+								<Card.Text>{t("web69")}</Card.Text>
+								<Card.Text>{t("web70")}</Card.Text>
+								<Card.Text>{t("web71")}</Card.Text>
+								<Card.Text>{t("web72")}</Card.Text>
+								<Card.Text>{t("web73")}</Card.Text>
+								<Card.Text>{t("web74")}</Card.Text>
+								<Card.Text>{t("web75")}</Card.Text>
+								<Card.Text>{t("web76")}</Card.Text>
+								<Card.Text>{t("web77")}</Card.Text>
+								<Card.Text>{t("web78")}</Card.Text>
+								<Card.Text>{t("web79")}</Card.Text>
+								<Card.Text>{t("web80")}</Card.Text>
+							</Card.Body>{" "}
+							<Card.Body>
+								<h3>{t("web81")}</h3>
+								<Card.Text>{t("web82")}</Card.Text>
+								<Card.Text>{t("web83")}</Card.Text>
+								<Card.Text>{t("web84")}</Card.Text>
+							</Card.Body>
+						</Card>{" "}
+					</motion.div>
 				</Col>
 			</Row>
 		</Container>

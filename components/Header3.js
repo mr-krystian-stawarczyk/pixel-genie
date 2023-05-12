@@ -1,14 +1,15 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
-import { Link } from "react-scroll";
+
+import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
+import { useTranslation } from "react-i18next";
 function Header3() {
+	const { t } = useTranslation();
 	const [ref, inView] = useInView({
 		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
 		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
@@ -45,38 +46,30 @@ function Header3() {
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className=" my-5 py-5 ">
-				<Row className="justify-content-center text-center align-items-center">
-					<Col lg={5} className="mx-auto">
+				<Row className="justify-content-center  align-items-center">
+					<Col lg={5} className="mx-auto my-5">
 						{" "}
 						<Image
 							src="/assets/seo1.png"
-							width={500}
-							height={500}
+							width={400}
+							height={400}
 							className="responsive-image"
 							alt="seo-image"
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto">
-						<Card className="border-0 text-dark">
+						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h3>Zwiekszymy twoja widocznosc w sieci</h3>
-								<Card.Text>
-									- Oferujemy usługi pozycjonowania SEO, aby Twoja strona
-									internetowa była lepiej widoczna w wynikach wyszukiwania
-									Google.
-								</Card.Text>
-								<Card.Text>
-									- Dzięki naszemu doświadczeniu w SEO, możemy pomóc Ci
-									zwiększyć ruch na stronie i przyciągnąć więcej klientów.
-								</Card.Text>
-								<Card.Text>
-									- Korzystamy z najlepszych praktyk SEO, aby zapewnić, że Twoja
-									strona będzie wyświetlać się na pierwszej stronie wyników
-									wyszukiwania.
-								</Card.Text>
-								<Button variant="primary" className="px-4">
-									SEO
-								</Button>
+								<h2>{t("header6")}</h2>
+								<Card.Text>{t("header7")}</Card.Text>
+								<Card.Text>{t("header8")}</Card.Text>
+								<Card.Text>{t("header9")}</Card.Text>
+
+								<div className="text-center">
+									<Link href="seo" className="m-1">
+										<Button className="btn-nav px-4">{t("header10")}</Button>
+									</Link>
+								</div>
 							</Card.Body>
 						</Card>
 					</Col>

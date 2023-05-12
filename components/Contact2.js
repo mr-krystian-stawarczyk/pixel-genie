@@ -10,18 +10,17 @@ import {
 	AiOutlineLinkedin,
 	AiOutlineInstagram,
 } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
 function Contact2() {
+	const { t } = useTranslation();
 	return (
-		<Container className="mt-5 pt-5">
+		<Container className="my-5 py-5">
 			<Row className="justify-content-center text-center align-items-center">
 				<Col lg={5} className="mx-auto">
-					<Card className="border-0 text-dark " style={{ width: "25rem" }}>
+					<Card className="border-0 bg-transparent" style={{ width: "25rem" }}>
 						<Card.Body>
-							<h1>Sprawdz rowniez nasze social media</h1>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
+							<h2>{t("kontakt7")}</h2>
+							<Card.Text>{t("kontakt8")}</Card.Text>
 						</Card.Body>
 					</Card>
 				</Col>{" "}

@@ -49,30 +49,32 @@ function Blog2() {
 		observer.observe(sectionRef.current);
 		return () => observer.disconnect();
 	}, []);
-
+	const { i18n } = useTranslation();
 	return (
 		<Container className=" py-3 " ref={sectionRef}>
-			<Row className="justify-content-center align-items-center text-center mt-5 ">
-				<h1 className="my-5  bold">Przedstawiamy Nasze ostatnie realizacje</h1>
+			<Row
+				className="justify-content-center align-items-center text-center mt-5 "
+				id="tips"
+			>
+				<h1 className="my-5  bold">{t("blog3")}</h1>
 			</Row>
 			<Row className="justify-content-center align-items-center text-center">
-				<Col lg={10}>
-					<Carousel>
-						{blog.map((item) => (
-							<Carousel.Item key={item._id}>
-								<img
-									className="d-block w-100 "
-									src={urlFor(item.image && item.image[0])}
-									alt={item.name}
-								/>
-								<Carousel.Caption>
-									<h3>{item.name}</h3>
-									<p>{item.details}</p>
-								</Carousel.Caption>
-							</Carousel.Item>
-						))}
-					</Carousel>{" "}
-				</Col>
+				{blog.map((item) => (
+					<Col lg={10} className="my-3 ">
+						<Card key={item._id} className="bg-transparent m-2 py-3">
+							<Card.Img
+								src={urlFor(item.image && item.image[0])}
+								alt={item.name}
+								style={{ height: "200px", width: "200px" }}
+								className="mx-auto"
+							/>
+							<Card.Title>{item.name[i18n.language]}</Card.Title>
+							<Card.Text>{item.details.details1[i18n.language]}</Card.Text>
+							<Card.Text>{item.details.details2[i18n.language]}</Card.Text>
+							<Card.Text>{item.details.details3[i18n.language]}</Card.Text>
+						</Card>{" "}
+					</Col>
+				))}
 			</Row>
 		</Container>
 	);

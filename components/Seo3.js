@@ -13,17 +13,22 @@ function Seo3() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>
+								Słowa kluczowe i strategie treści dla skuteczniejszego SEO
+							</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Nasz zespół ekspertów od SEO z Pixel-Genie Nettetal pomoże Ci w
+								doborze odpowiednich słów kluczowych i opracowaniu strategii
+								treści, które przyczynią się do poprawy widoczności Twojej
+								strony internetowej w wynikach wyszukiwania. Wykorzystaj
+								potencjał organicznego ruchu i dotrzyj do swojej docelowej grupy
+								odbiorców.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>
 					</Card>
 				</Col>
 				<Col lg={5} className="mx-auto">
-					{" "}
 					<Image
 						src="/assets/seo3.png"
 						width={500}

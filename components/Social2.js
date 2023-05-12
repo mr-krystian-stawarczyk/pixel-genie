@@ -13,10 +13,16 @@ function Social2() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>Twórz Wrażenie z Profesjonalnym Profilem na Social Media</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Profesjonalny wizerunek w mediach społecznościowych to klucz do
+								sukcesu online. Nasz zespół w Pixel-Genie Nettetal pomoże Ci
+								stworzyć atrakcyjny i spójny profil na platformach
+								społecznościowych. Zaprojektujemy wyjątkowe grafiki, napiszemy
+								zwięzłe i angażujące opisy oraz dostosujemy tagi i słowa
+								kluczowe pod kątem optymalizacji SEO. Dzięki temu Twój profil
+								będzie bardziej widoczny w wyszukiwarkach i przyciągnie uwagę
+								potencjalnych klientów.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

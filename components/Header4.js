@@ -1,13 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
+import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
-
+import { useTranslation } from "react-i18next";
 function Header4() {
+	const { t } = useTranslation();
 	const [ref, inView] = useInView({
 		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
 		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
@@ -44,29 +45,24 @@ function Header4() {
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className=" my-5 py-5 ">
-				<Row className="justify-content-center text-center align-items-center">
+				<Row className="justify-content-center  align-items-center">
 					<Col lg={5} className="mx-auto">
-						<Card className="border-0 text-dark">
+						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h3>Zaistniej w Social Media</h3>
-								<Card.Text>
-									- Oferujemy usługi zarządzania social media, aby pomóc Ci w
-									zwiększeniu świadomości marki i zaangażowaniu klientów.
-								</Card.Text>
-								<Card.Text>
-									- Nasz zespół specjalistów ds. social media pomoże Ci wybrać
-									najlepszą strategię dla Twojego biznesu.
-								</Card.Text>
-								<Card.Text>
-									- Pomagamy w zarządzaniu Twoimi profilami na Facebooku,
-									Instagramie, Twitterze i innych, aby zwiększyć widoczność
-									Twojej marki w mediach społecznościowych.
-								</Card.Text>
-								<Button variant="primary">Social Media</Button>
+								<h2>{t("header11")}</h2>
+								<Card.Text>{t("header12")}</Card.Text>
+								<Card.Text>{t("header13")}</Card.Text>
+								<Card.Text>{t("header14")}</Card.Text>
+
+								<div className="text-center">
+									<Link href="socialmedia" className="m-1">
+										<Button className="btn-nav px-4">{t("header15")}</Button>
+									</Link>
+								</div>
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col lg={5} className="mx-auto">
+					<Col lg={5} className="mx-auto my-5">
 						{" "}
 						<Image
 							src="/assets/socialmedia1.png"

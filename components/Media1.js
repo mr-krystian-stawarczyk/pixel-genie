@@ -23,10 +23,15 @@ function Media1() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>Profesjonalna Obróbka Zdjęć i Wideo dla Twojego Biznesu</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Oferujemy profesjonalne usługi obrobki zdjęć i wideo, które
+								pomogą Ci w wyróżnieniu Twojego biznesu. Nasz zespół ekspertów z
+								Pixel-Genie Nettetal zajmie się edycją i retuszowaniem zdjęć
+								oraz montażem i obróbką wideo, aby Twoje materiały prezentowały
+								się profesjonalnie i przyciągały uwagę klientów. Dzięki
+								optymalizacji SEO, Twoje usługi obrobki zdjęć i wideo będą
+								bardziej widoczne w wynikach wyszukiwania.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

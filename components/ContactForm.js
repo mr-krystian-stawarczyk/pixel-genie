@@ -4,43 +4,47 @@ import emailjs from "emailjs-com";
 import { useSpring, animated } from "react-spring";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useAnimation } from "framer-motion";
+import { useTranslation } from "react-i18next";
 export const ContactForm = () => {
 	const router = useRouter();
+	const { t } = useTranslation();
 	const { id } = router.query;
+	const [ref, inView] = useInView({
+		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
+		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
+	});
 
-	const sectionRef = useRef(null);
-	const [animate, setAnimate] = useState(false);
-	const [animateImg, setAnimateImg] = useState(false);
+	const animateIn = {
+		opacity: 1,
 
-	const handleIntersection = (entries) => {
-		if (entries[0].isIntersecting) {
-			setAnimate(true);
-			setAnimateImg(true);
-		}
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
 	};
 
-	useEffect(() => {
-		const observer = new IntersectionObserver(handleIntersection);
-		observer.observe(sectionRef.current);
-		return () => observer.disconnect();
-	}, []);
+	const animateOut = {
+		opacity: 0,
 
-	const animationProps = useSpring({
-		from: { opacity: 0, transform: "translateY(-100px)" },
-		to: {
-			opacity: animate ? 1 : 0,
-			transform: animate ? "translateY(0)" : "translateY(-100px)",
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
 		},
-		config: { duration: 1000 },
-		delay: 1000,
-	});
+	};
 
-	const imgAnimationProps = useSpring({
-		from: { opacity: 0 },
-		to: { opacity: animateImg ? 1 : 0 },
-		config: { duration: 1000 },
-		delay: 1000,
-	});
+	const controls = useAnimation();
+	useEffect(() => {
+		if (inView) {
+			// komponent jest widoczny, więc można uruchomić animację
+			controls.start(animateIn);
+		} else {
+			// komponent jest niewidoczny, więc można uruchomić animację wyjścia
+			controls.start(animateOut);
+		}
+	}, [inView, controls, animateIn, animateOut]);
 
 	const [formData, setFormData] = useState({
 		name: "",
@@ -83,104 +87,109 @@ export const ContactForm = () => {
 	};
 
 	return (
-		<Container className="my-5 py-5" ref={sectionRef}>
-			<Row className="justify-content-center">
-				<Col lg={5} className="mx-auto">
+		<motion.div ref={ref} animate={controls}>
+			<Container className="my-5 py-5">
+				<Row className="text-center">
 					{" "}
-					<Image
-						src="/assets/contact.png"
-						alt="faq-section2-image"
-						width="500"
-						height="450"
-						className="responsive-image"
-					/>
-				</Col>
-				<Col lg={5} className="mx-auto">
-					{!isFormSubmitted ? (
-						<Form
-							className="app__footer-form app__flex mt-5"
-							onSubmit={handleSubmit}
-						>
-							<Row>
-								<h3 className="mt-5">Wyslij bezposrednie zapytanie</h3>
-								<Col>
-									{" "}
-									<Form.Group className="mb-3" controlId="formBasicEmail">
-										<Form.Control
-											className="p-text my-3"
-											type="text"
-											placeholder="Name"
-											value={name}
-											name="name"
-											onChange={handleChangeInput}
-											required
-										/>
-									</Form.Group>
-								</Col>
-								<Col>
-									<Form.Group className="mb-3" controlId="formBasicEmail">
-										<Form.Control
-											className="p-text my-3"
-											type="text"
-											placeholder="Telefon"
-											value={phone}
-											name="phone"
-											onChange={handleChangeInput}
-											required
-										/>
-									</Form.Group>
-								</Col>
-								<Col>
-									<Form.Group className="mb-3" controlId="formBasicEmail">
-										<Form.Control
-											className="p-text my-3"
-											type="email"
-											placeholder="E-mail"
-											value={email}
-											name="email"
-											onChange={handleChangeInput}
-											required
-										/>
-									</Form.Group>
-								</Col>
-							</Row>
-							<Row>
-								<Col>
-									<Form.Group className="my-3" controlId="formBasicEmail">
-										<Form.Label>Description</Form.Label>
-										<Form.Control
-											className="p-text my-3"
-											as="textarea"
-											placeholder="Description"
-											value={description}
-											name="description"
-											onChange={handleChangeInput}
-											rows={3}
-											required
-										/>
-									</Form.Group>
-								</Col>
-							</Row>
+					<h1 className="my-5">{t("header21")}</h1>
+				</Row>
+				<Row className="justify-content-center align-items-center">
+					<Col lg={5} className="mx-auto">
+						{" "}
+						<Image
+							src="/assets/contact.png"
+							alt="faq-section2-image"
+							width={400}
+							height={400}
+							className="responsive-image"
+						/>
+					</Col>
+					<Col lg={5} className="mx-auto">
+						{!isFormSubmitted ? (
+							<Form
+								className="app__footer-form app__flex mt-5"
+								onSubmit={handleSubmit}
+							>
+								<Row className="justify-content-center align-items-center">
+									<Col>
+										{" "}
+										<Form.Group className="mb-3" controlId="formBasicEmail">
+											<Form.Control
+												className="p-text my-3"
+												type="text"
+												placeholder="Name"
+												value={name}
+												name="name"
+												onChange={handleChangeInput}
+												required
+											/>
+										</Form.Group>
+									</Col>
+									<Col>
+										<Form.Group className="mb-3" controlId="formBasicEmail">
+											<Form.Control
+												className="p-text my-3"
+												type="text"
+												placeholder="Telefon"
+												value={phone}
+												name="phone"
+												onChange={handleChangeInput}
+												required
+											/>
+										</Form.Group>
+									</Col>
+									<Col>
+										<Form.Group className="mb-3" controlId="formBasicEmail">
+											<Form.Control
+												className="p-text my-3"
+												type="email"
+												placeholder="E-mail"
+												value={email}
+												name="email"
+												onChange={handleChangeInput}
+												required
+											/>
+										</Form.Group>
+									</Col>
+								</Row>
+								<Row>
+									<Col>
+										<Form.Group className="my-3" controlId="formBasicEmail">
+											<Form.Label>Description</Form.Label>
+											<Form.Control
+												className="p-text my-3"
+												as="textarea"
+												placeholder="Description"
+												value={description}
+												name="description"
+												onChange={handleChangeInput}
+												rows={3}
+												required
+											/>
+										</Form.Group>
+									</Col>
+								</Row>
 
-							<Row className="justify-content-center align-items-center text-center">
-								<Col className="mx-auto">
-									<Button
-										type="submit"
-										className="p-text m-2 nav-blue-bg btn-lg border-0"
-									>
-										{loading ? "Sending..." : "Stuur"}
-									</Button>
-								</Col>
-							</Row>
-						</Form>
-					) : (
-						<div>
-							<h3 className="head-text"> Thank You For Contact!</h3>
-						</div>
-					)}{" "}
-				</Col>
-			</Row>
-		</Container>
+								<Row className="justify-content-center align-items-center text-center">
+									<Col className="mx-auto">
+										<Button
+											type="submit"
+											className="p-text m-2 btn-nav border-0"
+										>
+											{loading ? "Sending..." : "Schicken"}
+										</Button>
+									</Col>
+								</Row>
+							</Form>
+						) : (
+							<div>
+								<h3 className="head-text"> Thank You For Contact!</h3>
+							</div>
+						)}{" "}
+					</Col>
+				</Row>
+			</Container>
+		</motion.div>
 	);
 };
 

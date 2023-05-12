@@ -3,12 +3,15 @@ import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import SplitTextJS from "split-text-js";
 import gsap from "gsap";
-import { Link } from "react-scroll";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import Link from "next/link";
 function Header2() {
+	const { t } = useTranslation();
 	const [ref, inView] = useInView({
 		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
 		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
@@ -44,35 +47,30 @@ function Header2() {
 	}, [inView, controls, animateIn, animateOut]);
 
 	return (
-		<motion.div ref={ref} animate={controls}>
+		<motion.div ref={ref} animate={controls} id="header2">
 			<Container className="mt-5 pt-5">
-				<Row className="justify-content-center text-center align-items-center">
+				<Row className="justify-content-center  align-items-center">
 					<Col lg={5} className="mx-auto">
-						<Card className="border-0 text-dark ">
+						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h3>Wiemy jakie potrzeby ma twoj biznes</h3>
-								<Card.Text>
-									- Oferujemy kompleksowe usługi związane z tworzeniem stron
-									internetowych dla Twojego biznesu.
-								</Card.Text>
-								<Card.Text>
-									- Nasze strony są szybkie, responsywne i funkcjonalne, aby
-									pomóc Ci zwiększyć ruch na stronie i konwersje.
-								</Card.Text>
-								<Card.Text>
-									- Przeprowadzimy Cię przez cały proces tworzenia strony
-									internetowej, aby zapewnić, że spełni ona Twoje wymagania.
-								</Card.Text>
-								<Button variant="primary">Strony</Button>
+								<h2> {t("header1")}</h2>
+								<Card.Text>{t("header2")}</Card.Text>
+								<Card.Text>{t("header3")}</Card.Text>
+								<Card.Text>{t("header4")}</Card.Text>
+								<div className="text-center">
+									<Link href="web" className="m-1">
+										<Button className="btn-nav">{t("header5")}</Button>{" "}
+									</Link>
+								</div>
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col lg={5} className="mx-auto">
+					<Col lg={5} className="mx-auto my-5">
 						{" "}
 						<Image
 							src="/assets/header2.png"
-							width={500}
-							height={500}
+							width={400}
+							height={400}
 							className="responsive-image"
 							alt="header2-image"
 						/>

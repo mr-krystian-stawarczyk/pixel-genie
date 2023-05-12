@@ -2,6 +2,8 @@ import About1 from "@/components/About1";
 import About2 from "@/components/About2";
 import React from "react";
 import Head from "next/head";
+import About3 from "@/components/About3";
+import About4 from "@/components/About4";
 function about() {
 	return (
 		<div className="mt-5 pt-5">
@@ -13,7 +15,9 @@ function about() {
 				/>
 			</Head>
 			<About1 />
+			<About4 />
 			<About2 />
+			<About3 />
 		</div>
 	);
 }

@@ -12,9 +12,10 @@ import { urlFor } from "../lib/client";
 import sanityClient from "@sanity/client";
 import { useSpring, animated } from "react-spring";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 function SanityRealizacje() {
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
 
 	const [realizacje, setRealizacje] = useState([]);
 	const client = sanityClient({
@@ -51,32 +52,35 @@ function SanityRealizacje() {
 	}, []);
 
 	return (
-		<Container className=" py-3 bg-primary " ref={sectionRef}>
-			<Row className="justify-content-center align-items-center text-center mt-5 text-dark">
+		<Container
+			className=" py-5 my-5"
+			ref={sectionRef}
+			id="web-design-portfolio"
+		>
+			<Row className="justify-content-center align-items-center text-center mt-5 ">
 				<Col>
-					<h1 className="my-5 text-start bold">
-						Przedstawiamy Nasze ostatnie realizacje 111
-					</h1>
+					<h1 className="my-5 text-center bold">{t("web22")}</h1>
 				</Col>
 			</Row>
 			<Row className="justify-content-center align-items-center text-center">
-				<Col lg={10}>
-					<Carousel>
-						{realizacje.map((item) => (
-							<Carousel.Item key={item._id}>
-								<img
-									className="d-block w-100 "
-									src={urlFor(item.image && item.image[0])}
-									alt={item.name}
-								/>
-								<Carousel.Caption>
-									<h3>{item.name}</h3>
-									<p>{item.details}</p>
-								</Carousel.Caption>
-							</Carousel.Item>
-						))}
-					</Carousel>{" "}
-				</Col>
+				{realizacje.map((item) => (
+					<Col lg={6} className="mx-auto my-2">
+						<Card key={item._id} className="bg-transparent border-0 shadow-lg">
+							<Card.Img
+								className="d-block w-100 "
+								src={urlFor(item.image && item.image[0])}
+								alt={item.name}
+							/>
+							<Card.Body>
+								<h3>{item.name[i18n.language]}</h3>
+								<p>{item.details[i18n.language]}</p>
+								<Button href={item.link} className="btn-nav px-4">
+									Link
+								</Button>
+							</Card.Body>
+						</Card>{" "}
+					</Col>
+				))}
 			</Row>
 		</Container>
 	);

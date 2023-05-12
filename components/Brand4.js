@@ -9,51 +9,29 @@ import Image from "next/image";
 function Brand4() {
 	return (
 		<Container className="mt-5 pt-5">
-			<Row> Tutaj w 4 krokach opisany proces projektu</Row>
 			<Row className="justify-content-center text-center align-items-center">
-				<Col lg={3} className="mx-auto">
+				<Col lg={5} className="mx-auto">
+					{" "}
+					<Image
+						src="/assets/seo3.png"
+						width={500}
+						height={500}
+						className="responsive-image"
+						alt="header2-image"
+					/>
+				</Col>{" "}
+				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>Skuteczna Strategia Komunikacji Marki dla Twojego Sukcesu</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
-				</Col>
-				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark ">
-						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
-				</Col>
-				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark ">
-						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
-				</Col>
-				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark ">
-						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Wprowadzenie skutecznej strategii komunikacji marki może
+								znacznie wpłynąć na sukces Twojego biznesu. Nasz zespół
+								specjalistów ds. brandingu pomoże Ci opracować spersonalizowaną
+								strategię komunikacji, która uwzględnia unikalne cechy Twojej
+								marki oraz optymalizację pod kątem SEO. Zbuduj zaangażowanie
+								klientów i zwiększ swoją widoczność online dzięki naszym usługom
+								brandingowym.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

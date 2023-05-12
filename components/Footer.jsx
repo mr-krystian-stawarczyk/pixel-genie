@@ -1,16 +1,7 @@
 import Link from "next/link";
 import React, { useRef, useState, useEffect } from "react";
-import {
-	Container,
-	Row,
-	Col,
-	Button,
-	Card,
-	ListGroup,
-	Form,
-} from "react-bootstrap";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useSpring, animated } from "react-spring";
-
 import { useTranslation } from "react-i18next";
 
 import {
@@ -19,8 +10,8 @@ import {
 	AiOutlineInstagram,
 } from "react-icons/ai";
 
-import Image from "next/image";
 function Footer() {
+	const { t } = useTranslation();
 	const sectionRef = useRef(null);
 	const [animate, setAnimate] = useState(false);
 	const [animateImg, setAnimateImg] = useState(false);
@@ -73,7 +64,7 @@ function Footer() {
 		>
 			<animated.div style={animationProps}>
 				{" "}
-				<Row className=" justify-content-center align-items-center  mt-2 border-bottom">
+				<Row className=" justify-content-center align-items-center  mt-2  border-bottom">
 					<Col lg={3} className="mx-auto">
 						{" "}
 						<Card
@@ -81,11 +72,12 @@ function Footer() {
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
-								<Card.Title className="my-3">Produkty</Card.Title>
-								<Card.Text>Strony</Card.Text>{" "}
-								<Card.Text>Pozycjonowanie</Card.Text>{" "}
-								<Card.Text>Branding</Card.Text> <Card.Text>Media</Card.Text>{" "}
-								<Card.Text>Social Media</Card.Text>{" "}
+								<Card.Title className="my-3">{t("footer1")}</Card.Title>
+								<Card.Text>{t("footer2")}</Card.Text>{" "}
+								<Card.Text>{t("footer3")}</Card.Text>{" "}
+								<Card.Text>{t("footer4")}</Card.Text>{" "}
+								<Card.Text>{t("footer5")}</Card.Text>{" "}
+								<Card.Text>{t("footer6")}</Card.Text>{" "}
 							</Card.Body>
 						</Card>
 					</Col>
@@ -95,20 +87,22 @@ function Footer() {
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
-								<Card.Title className="my-3">Firma</Card.Title>
-								<Card.Text>O nas</Card.Text> <Card.Text>Kontakt</Card.Text>{" "}
-								<Card.Text>Porady</Card.Text> <Card.Text>Projekty</Card.Text>{" "}
-								<Card.Text>Pytania</Card.Text>{" "}
+								<Card.Title className="my-3">{t("footer7")}</Card.Title>
+								<Card.Text> {t("footer8")}</Card.Text>{" "}
+								<Card.Text>{t("footer9")}</Card.Text>{" "}
+								<Card.Text>{t("footer10")}</Card.Text>{" "}
+								<Card.Text>{t("footer11")}</Card.Text>{" "}
+								<Card.Text>{t("footer12")}</Card.Text>{" "}
 							</Card.Body>
 						</Card>
 					</Col>{" "}
 					<Col lg={3} className=" mx-auto">
 						<Card
 							style={{ width: "18rem" }}
-							className="bg-transparent border-0 shadow-lg text-center"
+							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
-								<Card.Title className="my-3">Social Media</Card.Title>
+								<Card.Title className="my-3">{t("footer13")}</Card.Title>
 								<Card.Text>
 									<AiOutlineFacebook style={{ fontSize: "3rem" }} />
 								</Card.Text>
@@ -121,14 +115,24 @@ function Footer() {
 							</Card.Body>
 						</Card>
 					</Col>
+					<Col lg={3} className=" mx-auto">
+						<Card className="bg-transparent border-0 shadow-lg ">
+							<Card.Body className="">
+								<Card.Title className="my-3">{t("footer14")}</Card.Title>
+								<Card.Text>info@pixel-genie.de</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>{" "}
 				</Row>{" "}
 				<Row className="text-center my-2">
 					<Col>
 						<h6>2023 PixelGenie All Rights Reserved</h6>
 					</Col>{" "}
 					<Col>
-						{" "}
-						<h6>Cookies & Imprint</h6>
+						<Link href="/policy">
+							{" "}
+							<h6>Cookies & Imprint</h6>
+						</Link>
 					</Col>
 				</Row>
 			</animated.div>

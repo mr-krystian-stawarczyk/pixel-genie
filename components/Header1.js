@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container, Button, Row, Col } from "react-bootstrap";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { useTheme } from "next-themes";
@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 
 import { useTranslation } from "react-i18next";
 import { Link } from "react-scroll";
+import Image from "next/image";
 const Header1 = ({ toggleTheme }) => {
 	const { theme, setTheme } = useTheme();
 
@@ -101,18 +102,28 @@ const Header1 = ({ toggleTheme }) => {
 					animate={{ opacity: 1 }}
 					transition={{ duration: 4 }}
 				>
-					<Card className="border-0 shadow-lg p-3 m-3" id="your-div">
-						<Card.Body>
-							<h1 className="text-dark text-bold">Pixel Genie Webagentur</h1>
-							<h5 className="text-dark text-bold my-3">{t("h2")}</h5>{" "}
-							<Button
-								variant="primary"
-								className=" text-center my-2"
-								href="#header2"
+					<Card
+						className="border-0 shadow-lg py-3  bg-transparent"
+						id="your-div"
+					>
+						{" "}
+						<Row className="justify-content-center align-items-center">
+							<Col lg={7} className="d-flex">
+								<Card.Body className="text-start">
+									<h1 className="text-bold">Pixel Genie Webagentur </h1>
+									<h5 className="text-bold">{t("h2")}</h5>
+									<Button className="text-center my-2 btn-nav" href="#header2">
+										Web Design Nettetal
+									</Button>
+								</Card.Body>
+							</Col>
+							<Col
+								lg={2}
+								className="d-flex justify-content-center align-items-center"
 							>
-								{t("h3")}
-							</Button>
-						</Card.Body>
+								<Image src="/assets/ja.png" width={200} height={200} />
+							</Col>
+						</Row>
 					</Card>
 				</motion.div>
 			</>

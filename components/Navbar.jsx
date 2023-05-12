@@ -95,66 +95,19 @@ const NavbarComp = ({ toggleTheme }) => {
 					id="basic-navbar-nav"
 					className=" rounded justify-content-end text-center  m-1 navbar-toggler border-0"
 				>
-					<Button
-						onClick={toggleTheme}
-						className="btn-nav border-0  btn-md py-2 m-1"
-					>
-						{currentTheme === "light" ? (
-							<BsFillMoonFill style={{ color: "grey" }} />
-						) : (
-							<BsFillSunFill style={{ color: "yellow" }} />
-						)}
-					</Button>
-					<Dropdown onSelect={handleDropdownSelect} className="m-1 border-0">
-						<Dropdown.Toggle className="btn-nav border-0 py-2">
-							<Image
-								src={selectedFlag}
-								alt="Selected Flag"
-								width="25"
-								height="25"
-							/>
-						</Dropdown.Toggle>
-						<Dropdown.Menu className="text-center jusitfy-content-center">
-							<Dropdown.Item eventKey="flag1">
-								<Image
-									src="/assets/de-flag.png"
-									alt="Flag 1"
-									width="40"
-									height="40"
-									onClick={() => i18n.changeLanguage("de")}
-								/>
-							</Dropdown.Item>
-							<NavDropdown.Divider />
-							<Dropdown.Item eventKey="flag2">
-								<Image
-									src="/assets/eng-flag.png"
-									alt="Flag 2"
-									width="40"
-									height="40"
-									onClick={() => i18n.changeLanguage("eng")}
-								/>
-							</Dropdown.Item>{" "}
-							<NavDropdown.Divider />
-							<Dropdown.Item eventKey="flag3">
-								<Image
-									src="/assets/pl-flag.png"
-									alt="Flag 3"
-									width="40"
-									height="40"
-									onClick={() => i18n.changeLanguage("pl")}
-								/>
-							</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
 					<Nav className="navbar-collapse justify-content-end text-center rounded ">
+						{" "}
+						<Nav.Link as={Link} href="about" className="m-1">
+							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
+								{t("nav5")}
+							</Button>
+						</Nav.Link>{" "}
 						<NavDropdown
 							title={t("nav1")}
 							id="basic-nav-dropdown"
-							className="btn-md shadow-md btn-nav-drop rounded  m-1"
+							className="btn-md shadow-md btn-nav-drop rounded  m-1 p-1"
 							style={{
-								color: "#000000",
-								fontSize: "1.3rem",
-								border: "0",
+								fontSize: "1rem",
 							}}
 						>
 							<NavDropdown.Item as={Link} href="web" className="">
@@ -181,37 +134,71 @@ const NavbarComp = ({ toggleTheme }) => {
 								</Button>{" "}
 							</NavDropdown.Item>
 						</NavDropdown>
-						<Nav.Link as={Link} href="work" className="m-1">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								{t("nav2")}
-							</Button>
-						</Nav.Link>
 						<Nav.Link as={Link} href="blog">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav3")}
 							</Button>
 						</Nav.Link>
-						<Nav.Link as={Link} href="prices" className="m-1">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								{t("nav4")}
-							</Button>
-						</Nav.Link>{" "}
-						<Nav.Link as={Link} href="about" className="m-1">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								{t("nav5")}
-							</Button>
-						</Nav.Link>{" "}
 						<Nav.Link as={Link} href="contact" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{" "}
 								{t("nav6")}
 							</Button>
-						</Nav.Link>
-						<Nav.Link as={Link} href="faq" className="m-1">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								{t("nav7")}
-							</Button>
 						</Nav.Link>{" "}
+						<Button
+							onClick={toggleTheme}
+							className="btn-nav border-0  btn-md py-2 mx-1"
+						>
+							{currentTheme === "light" ? (
+								<BsFillMoonFill style={{ color: "grey" }} />
+							) : (
+								<BsFillSunFill style={{ color: "yellow" }} />
+							)}
+						</Button>
+						<Dropdown
+							onSelect={handleDropdownSelect}
+							className="m-1 border-0 mx-2"
+						>
+							<Dropdown.Toggle className="btn-nav border-0 py-2">
+								<Image
+									src={selectedFlag}
+									alt="Selected Flag"
+									width="25"
+									height="25"
+								/>
+							</Dropdown.Toggle>
+							<Dropdown.Menu className="text-center jusitfy-content-center">
+								<Dropdown.Item eventKey="flag1">
+									<Image
+										src="/assets/de-flag.png"
+										alt="Flag 1"
+										width="40"
+										height="40"
+										onClick={() => i18n.changeLanguage("de")}
+									/>
+								</Dropdown.Item>
+								<NavDropdown.Divider />
+								<Dropdown.Item eventKey="flag2">
+									<Image
+										src="/assets/eng-flag.png"
+										alt="Flag 2"
+										width="40"
+										height="40"
+										onClick={() => i18n.changeLanguage("eng")}
+									/>
+								</Dropdown.Item>{" "}
+								<NavDropdown.Divider />
+								<Dropdown.Item eventKey="flag3">
+									<Image
+										src="/assets/pl-flag.png"
+										alt="Flag 3"
+										width="40"
+										height="40"
+										onClick={() => i18n.changeLanguage("pl")}
+									/>
+								</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

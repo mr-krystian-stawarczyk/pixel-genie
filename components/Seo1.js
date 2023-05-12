@@ -13,10 +13,15 @@ function Seo1() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>
+								Optymalizacja SEO dla wyższej pozycji w wynikach wyszukiwania
+							</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Zespół Pixel-Genie z Nettetal oferuje kompleksowe usługi
+								optymalizacji SEO, które pomogą Twojej stronie internetowej
+								osiągnąć wyższą pozycję w wynikach wyszukiwania. Wykorzystaj
+								naszą wiedzę i doświadczenie, aby zwiększyć swoją widoczność
+								online i przyciągnąć więcej organicznego ruchu na stronie.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

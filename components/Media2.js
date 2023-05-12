@@ -13,10 +13,17 @@ function Media2() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>
+								Kreowanie Efektownych Bannerów Reklamowych dla Twojej Kampanii
+							</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Potrzebujesz atrakcyjnych i efektownych banerów reklamowych dla
+								Twojej kampanii? Jesteśmy tutaj, aby pomóc! Nasz zespół grafików
+								stworzy spersonalizowane i zgodne z Twoją marką banery
+								reklamowe. Dzięki zaawansowanej wiedzy w dziedzinie
+								optymalizacji pod kątem SEO, Twoje banery będą lepiej widoczne w
+								wyszukiwarkach i przyciągną większą uwagę potencjalnych
+								klientów.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

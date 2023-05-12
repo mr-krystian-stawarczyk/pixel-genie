@@ -13,10 +13,14 @@ function Brand3() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>Budowanie Spójnego Wizerunku Marki Online</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Spójność wizerunku marki online jest kluczowa dla budowania
+								zaufania i rozpoznawalności. Nasza agencja brandingowa pomoże Ci
+								w budowaniu spójnego wizerunku marki na różnych platformach
+								internetowych. Dzięki zharmonizowanym elementom wizualnym,
+								stylowi komunikacji i optymalizacji SEO, Twoja marka będzie
+								wyróżniać się na tle konkurencji.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

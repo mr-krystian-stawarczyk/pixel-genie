@@ -9,55 +9,34 @@ import Image from "next/image";
 function Media4() {
 	return (
 		<Container className="mt-5 pt-5">
-			<Row> Tutaj w 4 krokach opisany proces projektu</Row>
 			<Row className="justify-content-center text-center align-items-center">
-				<Col lg={3} className="mx-auto">
+				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>Retuszowanie i Poprawa Jakości Zdjęć</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Czy Twoje zdjęcia wymagają retuszu i poprawy jakości? Nasz
+								zespół specjalistów ds. obróbki zdjęć pomoże Ci w poprawie
+								jakości, usunięciu niedoskonałości i dostosowaniu kolorystyki
+								Twoich fotografii. Oferujemy usługi retuszu dla różnych celów,
+								od fotografii produktowych po portrety i krajobrazy. Dzięki
+								optymalizacji SEO, Twoje usługi retuszu zdjęć będą lepiej
+								widoczne w wyszukiwarkach, przyciągając klientów
+								zainteresowanych poprawą jakości ich zdjęć.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>
 					</Card>
 				</Col>
-				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark ">
-						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
-				</Col>
-				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark ">
-						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
-				</Col>
-				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark ">
-						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
-							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+				<Col lg={5} className="mx-auto">
+					{" "}
+					<Image
+						src="/assets/seo3.png"
+						width={500}
+						height={500}
+						className="responsive-image"
+						alt="header2-image"
+					/>
 				</Col>
 			</Row>
 		</Container>

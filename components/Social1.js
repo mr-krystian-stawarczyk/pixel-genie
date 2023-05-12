@@ -23,10 +23,18 @@ function Social1() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>
+								Zwiększ Zasięg i Zaangażowanie Twojej Marki na Social Media
+							</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Nasza agencja Pixel-Genie Nettetal oferuje usługi zarządzania
+								social media, które pomogą Ci zwiększyć zasięg i zaangażowanie
+								Twojej marki. Tworzymy strategie dostosowane do Twoich potrzeb,
+								publikujemy atrakcyjne treści i interaktywne posty, które
+								przyciągają uwagę Twojej grupy docelowej. Dzięki optymalizacji
+								SEO, Twoja obecność na platformach społecznościowych będzie
+								bardziej widoczna, przyciągając większą liczbę potencjalnych
+								klientów.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

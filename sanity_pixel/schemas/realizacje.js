@@ -15,13 +15,46 @@ export default {
     {
       name: 'name',
       title: 'Name',
-      type: 'string',
+      type: 'object',
+      fields: [
+        {
+          name: 'eng',
+          title: 'English',
+          type: 'string',
+        },
+        {
+          name: 'pl',
+          title: 'Polish',
+          type: 'string',
+        },
+        {
+          name: 'de',
+          title: 'German',
+          type: 'string',
+        },
+      ],
     },
-
     {
       name: 'details',
       title: 'Details',
-      type: 'string',
+      type: 'object',
+      fields: [
+        {
+          name: 'eng',
+          title: 'English',
+          type: 'string',
+        },
+        {
+          name: 'pl',
+          title: 'Polish',
+          type: 'string',
+        },
+        {
+          name: 'de',
+          title: 'German',
+          type: 'string',
+        },
+      ],
     },
     {
       name: 'link',

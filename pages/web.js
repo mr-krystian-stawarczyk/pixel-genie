@@ -4,6 +4,12 @@ import Web3 from "@/components/Web3";
 import Web4 from "@/components/Web4";
 import React from "react";
 import Head from "next/head";
+import Web5 from "@/components/Web5";
+import SanityRealizacje from "@/components/SanityRealizacje";
+import Prices2 from "@/components/Prices2";
+
+import Faq1 from "@/components/Faq1";
+import Faq2 from "@/components/Faq2";
 function web() {
 	return (
 		<div className="mt-5 pt-5">
@@ -18,6 +24,11 @@ function web() {
 			<Web2 />
 			<Web3 />
 			<Web4 />
+			<Web5 />
+			<SanityRealizacje />
+			<Prices2 />
+			<Faq1 />
+			<Faq2 />
 		</div>
 	);
 }

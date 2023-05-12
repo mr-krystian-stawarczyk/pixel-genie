@@ -15,13 +15,97 @@ export default {
     {
       name: 'name',
       title: 'Name',
-      type: 'string',
+      type: 'object',
+      fields: [
+        {
+          name: 'eng',
+          title: 'English',
+          type: 'string',
+        },
+        {
+          name: 'de',
+          title: 'Deutsch',
+          type: 'string',
+        },
+        {
+          name: 'pl',
+          title: 'Polish',
+          type: 'string',
+        },
+      ],
     },
-
     {
       name: 'details',
       title: 'Details',
-      type: 'string',
+      type: 'object',
+      fields: [
+        {
+          name: 'details1',
+          title: 'Details 1',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details2',
+          title: 'Details 2',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details3',
+          title: 'Details 3',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+      ],
     },
   ],
 }

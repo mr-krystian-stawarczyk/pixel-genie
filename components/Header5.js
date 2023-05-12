@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import Image from "next/image";
-
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
 function Header5() {
+	const { t } = useTranslation();
 	const [ref, inView] = useInView({
 		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
 		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
@@ -43,38 +45,29 @@ function Header5() {
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className=" my-5 py-5 ">
-				<Row className="justify-content-center text-center align-items-center">
-					<Col lg={5} className="mx-auto">
+				<Row className="justify-content-center  align-items-center">
+					<Col lg={5} className="mx-auto my-5">
 						{" "}
 						<Image
 							src="/assets/header5.png"
-							width={500}
-							height={500}
+							width={400}
+							height={400}
 							className="responsive-image"
 							alt="blog-image"
 						/>
 					</Col>{" "}
 					<Col lg={5} className="mx-auto">
-						<Card className="border-0 text-dark">
+						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h3>Skorzystaj z naszych porad</h3>
-								<Card.Text>
-									- Osiągnij większy sukces online dzięki naszym poradom dla
-									małych biznesów. Dowiedz się, jak możesz zwiększyć swoją
-									widoczność w sieci i przyciągnąć nowych klientów.
-								</Card.Text>
-								<Card.Text>
-									- Czy wiesz, jakie narzędzia są niezbędne do osiągnięcia
-									sukcesu w sieci? Nasze porady pomogą Ci wybrać odpowiednie
-									rozwiązania i zbudować skuteczną strategię marketingową dla
-									Twojej firmy.
-								</Card.Text>
-								<Card.Text>
-									- Czy wiesz, jak korzystać z darmowych narzędzi online, aby
-									zwiększyć widoczność swojej firmy w sieci? Nasz blog pomoże Ci
-									poznać najlepsze darmowe narzędzia dla małych biznesów..
-								</Card.Text>
-								<Button variant="primary px-4">Blog</Button>
+								<h2>{t("header16")}</h2>
+								<Card.Text>{t("header17")}</Card.Text>
+								<Card.Text>{t("header18")}</Card.Text>
+								<Card.Text>{t("header19")}</Card.Text>{" "}
+								<div className="text-center">
+									<Link href="blog" className="m-1">
+										<Button className="btn-nav px-4 ">{t("header20")}</Button>
+									</Link>
+								</div>
 							</Card.Body>
 						</Card>
 					</Col>

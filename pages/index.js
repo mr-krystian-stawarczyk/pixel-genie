@@ -8,6 +8,8 @@ import Header3 from "@/components/Header3";
 import Header4 from "@/components/Header4";
 import Header5 from "@/components/Header5";
 import SanityRealizacje from "@/components/SanityRealizacje";
+import TechBar from "@/components/TechBar";
+import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
 	const { theme } = useTheme();
@@ -21,11 +23,12 @@ export default function Home() {
 				/>
 			</Head>
 			<Header1 />
-
+			<TechBar />
 			<Header2 />
 			<Header3 />
 			<Header4 />
 			<Header5 />
+			<ContactForm />
 		</>
 	);
 }

@@ -23,10 +23,16 @@ function Social3() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>Skuteczne Kampanie Reklamowe na Social Media</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Wykorzystaj potencjał platform społecznościowych do prowadzenia
+								skutecznych kampanii reklamowych. Nasza agencja Pixel-Genie
+								Nettetal oferuje profesjonalne usługi reklamowe w mediach
+								społecznościowych. Tworzymy spersonalizowane kampanie, które
+								trafiają do Twojej grupy docelowej, wykorzystując zaawansowane
+								narzędzia targetowania. Dzięki optymalizacji SEO, Twoje kampanie
+								będą bardziej widoczne i osiągną większą skuteczność w
+								generowaniu ruchu i konwersji.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

@@ -23,10 +23,13 @@ function Brand2() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>Tworzenie Unikalnego Logo, które Przyciąga Uwagę</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Logo jest kluczowym elementem w budowaniu rozpoznawalności
+								marki. Nasz zespół specjalistów ds. brandingu pomoże Ci stworzyć
+								unikalne logo, które wyróżni Twoją firmę. Dzięki optymalizacji
+								pod kątem SEO, Twoje logo będzie widoczne dla szerokiej grupy
+								odbiorców i przyczyni się do budowania świadomości marki.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

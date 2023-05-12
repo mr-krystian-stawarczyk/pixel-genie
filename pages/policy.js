@@ -11,6 +11,7 @@ function policy() {
 				/>
 			</Head>
 			<h1>Policy & Imprint</h1>
+			<h1>Page Under Construction</h1>
 		</div>
 	);
 }

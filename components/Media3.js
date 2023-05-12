@@ -23,10 +23,16 @@ function Media3() {
 				<Col lg={5} className="mx-auto">
 					<Card className="border-0 text-dark ">
 						<Card.Body>
-							<h1>Wiemy jakie potrzeby ma twoj biznes</h1>
+							<h1>Montaż i Edycja Wideo na Najwyższym Poziomi</h1>
 							<Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content.
+								Potrzebujesz profesjonalnego montażu i edycji wideo dla Twojego
+								projektu? Nasz zespół w Pixel-Genie Nettetal oferuje usługi
+								montażu wideo na najwyższym poziomie. Odpowiemy na Twoje
+								potrzeby, dopasujemy efekty wizualne i dźwiękowe oraz zapewnimy,
+								że Twoje wideo będzie prezentować się dynamicznie i
+								profesjonalnie. Dzięki optymalizacji SEO, Twoje usługi montażu
+								wideo będą bardziej widoczne dla osób poszukujących tych usług w
+								wyszukiwarkach.
 							</Card.Text>
 							<Button variant="primary">Go somewhere</Button>
 						</Card.Body>

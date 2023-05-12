@@ -1,16 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { useTranslation } from "react-i18next";
-function Web4() {
-	const { t } = useTranslation();
+function About4() {
 	const [ref, inView] = useInView({
 		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
 		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
@@ -44,30 +39,39 @@ function Web4() {
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
+	const { t } = useTranslation();
 	return (
 		<motion.div ref={ref} animate={controls}>
-			<Container className="mt-5 pt-5">
+			<Container className="my-5 py-5">
+				<Row className="text-center my-5">
+					<h1>{t("about3")}</h1>
+					<h3>{t("about4")}</h3>
+				</Row>
 				<Row className="justify-content-center text-center align-items-center">
-					<Col lg={5} className="mx-auto">
-						{" "}
-						<Image
-							src="/assets/seo1.png"
-							width={400}
-							height={400}
-							className="responsive-image"
-							alt="header2-image"
-						/>
-					</Col>{" "}
-					<Col lg={5} className="mx-auto">
-						<Card className="border-0  bg-transparent ">
+					<Col lg={3} className="mx-auto">
+						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1 className="">{t("web10")}</h1>
-								<Card.Text>{t("web11")}</Card.Text>
-								<Link href="seo" className="m-1">
-									<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-										{t("web12")}
-									</Button>
-								</Link>
+								<h1>1</h1>
+								<Card.Text>{t("about5")}</Card.Text>
+								<Card.Text>{t("about6")}</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>
+					<Col lg={3} className="mx-auto">
+						<Card className="border-0 bg-transparent ">
+							<Card.Body>
+								<h1>2</h1>
+								<Card.Text>{t("about7")}</Card.Text>
+								<Card.Text>{t("about8")}</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>{" "}
+					<Col lg={3} className="mx-auto">
+						<Card className="border-0 bg-transparent ">
+							<Card.Body>
+								<h1>3</h1>
+								<Card.Text>{t("about9")}</Card.Text>
+								<Card.Text>{t("about10")}</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
@@ -77,4 +81,4 @@ function Web4() {
 	);
 }
 
-export default Web4;
+export default About4;
