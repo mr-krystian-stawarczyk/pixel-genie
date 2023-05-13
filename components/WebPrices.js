@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
-function Prices2() {
+function WebPrices() {
 	const { t } = useTranslation();
 	const [ref1, inView1] = useInView({
 		threshold: 0.5,
@@ -29,14 +29,6 @@ function Prices2() {
 		},
 	};
 
-	const animateOut = {
-		opacity: 0,
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls1 = useAnimation();
 	const controls2 = useAnimation();
 	const controls3 = useAnimation();
@@ -44,10 +36,8 @@ function Prices2() {
 	useEffect(() => {
 		if (inView1) {
 			controls1.start(animateIn);
-		} else {
-			controls1.start(animateOut);
 		}
-	}, [inView1, controls1, animateIn, animateOut]);
+	}, [inView1, controls1, animateIn]);
 
 	useEffect(() => {
 		let timeout;
@@ -55,12 +45,10 @@ function Prices2() {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
 			}, 1000); // Delay of 1 second (1000 milliseconds)
-		} else {
-			controls2.start(animateOut);
 		}
 
 		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
-	}, [inView2, controls2, animateIn, animateOut]);
+	}, [inView2, controls2, animateIn]);
 
 	useEffect(() => {
 		let timeout;
@@ -68,29 +56,33 @@ function Prices2() {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
 			}, 2000); // Delay of 2 seconds (2000 milliseconds)
-		} else {
-			controls3.start(animateOut);
 		}
 
 		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
-	}, [inView3, controls3, animateIn, animateOut]);
+	}, [inView3, controls3, animateIn]);
 
 	return (
-		<Container className="my-5 py-5" id="web-design-pricing">
+		<Container className="my-5 py-5 " id="web-design-pricing">
 			{" "}
-			<Row className="justify-content-center align-items-center text-center mt-5 ">
-				<Col>
-					<h1 className="my-5 text-center bold"> {t("web23")}</h1>
+			<Row className="justify-content-center align-items-center">
+				<Col lg={4} md={6} xs={12} className="py-5 text-center">
+					<Image
+						src="/assets/price.png"
+						width={300}
+						height={300}
+						alt="faq-section1-image"
+					/>
+					<h4>{t("web23")}</h4>
 				</Col>
 			</Row>
 			<Row
-				className="text-dark"
+				className="text-dark justify-content-center align-items-center"
 				style={{
 					alignItems: "center",
 					justifyContent: "center",
 				}}
 			>
-				<Col lg={4} className="mx-auto ">
+				<Col lg={4} className="mx-auto my-2">
 					<motion.div
 						ref={ref1}
 						animate={controls1}
@@ -98,7 +90,7 @@ function Prices2() {
 						transition={{ delay: 1 }}
 					>
 						{" "}
-						<Card style={{ width: "25rem" }} className="shadow-lg border-0">
+						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							{" "}
 							<Card.Body>
 								<h1>{t("web24")}</h1>
@@ -118,7 +110,7 @@ function Prices2() {
 								<Card.Text>{t("web36")}</Card.Text>
 							</Card.Body>{" "}
 							<Card.Body>
-								<h3>{t("web37")}</h3>
+								<h4>{t("web37")}</h4>
 								<Card.Text>{t("web38")}</Card.Text>
 								<Card.Text>{t("web39")}</Card.Text>
 								<Card.Text> {t("web40")}</Card.Text>
@@ -126,7 +118,7 @@ function Prices2() {
 						</Card>{" "}
 					</motion.div>
 				</Col>
-				<Col lg={4} className="mx-auto">
+				<Col lg={4} className="mx-auto my-2">
 					<motion.div
 						ref={ref2}
 						animate={controls2}
@@ -134,7 +126,7 @@ function Prices2() {
 						transition={{ delay: 1 }}
 					>
 						{" "}
-						<Card style={{ width: "25rem" }} className="shadow-lg border-0">
+						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("web41")}</h1>
 								<Card.Text>{t("web42")}</Card.Text>
@@ -165,7 +157,7 @@ function Prices2() {
 						</Card>{" "}
 					</motion.div>
 				</Col>
-				<Col lg={4} className="mx-auto">
+				<Col lg={4} className="mx-auto my-2">
 					<motion.div
 						ref={ref3}
 						animate={controls3}
@@ -173,7 +165,7 @@ function Prices2() {
 						transition={{ delay: 1 }}
 					>
 						{" "}
-						<Card style={{ width: "25rem" }} className="shadow-lg border-0">
+						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("web62")}</h1>
 								<Card.Text>{t("web63")}</Card.Text>
@@ -211,4 +203,4 @@ function Prices2() {
 	);
 }
 
-export default Prices2;
+export default WebPrices;

@@ -10,6 +10,7 @@ import Header5 from "@/components/Header5";
 import SanityRealizacje from "@/components/SanityRealizacje";
 import TechBar from "@/components/TechBar";
 import ContactForm from "@/components/ContactForm";
+import Faq1 from "@/components/Faq1";
 
 export default function Home() {
 	const { theme } = useTheme();
@@ -29,6 +30,7 @@ export default function Home() {
 			<Header4 />
 			<Header5 />
 			<ContactForm />
+			<Faq1 />
 		</>
 	);
 }

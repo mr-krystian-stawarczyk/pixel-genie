@@ -60,7 +60,7 @@ function Web5() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 1000); // Delay of 1 second (1000 milliseconds)
+			}, 700); // Delay of 1 second (1000 milliseconds)
 		} else {
 			controls2.start(animateOut);
 		}
@@ -73,7 +73,7 @@ function Web5() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 2000); // Delay of 2 seconds (2000 milliseconds)
+			}, 1300); // Delay of 2 seconds (2000 milliseconds)
 		} else {
 			controls3.start(animateOut);
 		}
@@ -86,7 +86,7 @@ function Web5() {
 		if (inView4) {
 			timeout = setTimeout(() => {
 				controls4.start(animateIn);
-			}, 3000); // Delay of 3 seconds (3000 milliseconds)
+			}, 1900); // Delay of 3 seconds (3000 milliseconds)
 		} else {
 			controls4.start(animateOut);
 		}
@@ -126,7 +126,7 @@ function Web5() {
 						ref={ref2}
 						animate={controls2}
 						initial={{ opacity: 0 }}
-						transition={{ delay: 2 }}
+						transition={{ delay: 1 }}
 					>
 						<Card
 							className="border-0 bg-transparent shadow-lg"

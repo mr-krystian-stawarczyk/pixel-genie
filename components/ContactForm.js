@@ -88,7 +88,7 @@ export const ContactForm = () => {
 
 	return (
 		<motion.div ref={ref} animate={controls}>
-			<Container className="my-5 py-5">
+			<Container className="my-5 py-5" id="contact">
 				<Row className="text-center">
 					{" "}
 					<h1 className="my-5">{t("header21")}</h1>

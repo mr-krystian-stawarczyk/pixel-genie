@@ -5,6 +5,9 @@ import Seo4 from "@/components/Seo4";
 import React from "react";
 import Head from "next/head";
 import Seo5 from "@/components/Seo5";
+import Seo6 from "@/components/Seo6";
+import Seo7 from "@/components/Seo7";
+import ContactForm from "@/components/ContactForm";
 function seo() {
 	return (
 		<div className="mt-5 pt-5">
@@ -20,6 +23,9 @@ function seo() {
 			<Seo3 />
 			<Seo4 />
 			<Seo5 />
+			<Seo6 />
+			<Seo7 />
+			<ContactForm />
 		</div>
 	);
 }

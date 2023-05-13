@@ -60,7 +60,7 @@ function Header3() {
 					<Col lg={5} className="mx-auto">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h2>{t("header6")}</h2>
+								<h1>{t("header6")}</h1>
 								<Card.Text>{t("header7")}</Card.Text>
 								<Card.Text>{t("header8")}</Card.Text>
 								<Card.Text>{t("header9")}</Card.Text>

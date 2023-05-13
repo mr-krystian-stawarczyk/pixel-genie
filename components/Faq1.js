@@ -6,14 +6,21 @@ import { useTranslation } from "react-i18next";
 function Faq1() {
 	const { t } = useTranslation();
 	return (
-		<Container className="my-5 py-5" id="web-design-faq">
-			{" "}
-			<Row className="text-center my-3">
-				<h1 className="my-5">{t("web117")}</h1>
+		<Container className=" mb-5 pb-5" id="web-design-faq">
+			<Row className="justify-content-center align-items-center">
+				<Col lg={4} md={6} xs={12} className="py-5 text-center">
+					<Image
+						src="/assets/faq3.png"
+						width={300}
+						height={300}
+						alt="faq-section1-image"
+					/>
+					<h4>{t("web117")}</h4>
+				</Col>
 			</Row>
 			<Row className="justify-content-center align-items-center">
 				<Col lg={9} className="mx-auto">
-					<Accordion>
+					<Accordion className="shadow-lg">
 						<Accordion.Item eventKey="0">
 							<Accordion.Header>{t("web85")}</Accordion.Header>
 							<Accordion.Body>{t("web86")}</Accordion.Body>
@@ -78,16 +85,11 @@ function Faq1() {
 							<Accordion.Header>{t("web115")}</Accordion.Header>
 							<Accordion.Body>{t("web116")}</Accordion.Body>
 						</Accordion.Item>
+						<Accordion.Item eventKey="16">
+							<Accordion.Header>{t("web118")}</Accordion.Header>
+							<Accordion.Body>{t("web119")}</Accordion.Body>
+						</Accordion.Item>
 					</Accordion>
-				</Col>{" "}
-				<Col lg={2}>
-					{" "}
-					<Image
-						src="/assets/faq3.png"
-						width={300}
-						height={400}
-						alt="faq-section1-image"
-					/>
 				</Col>{" "}
 			</Row>
 		</Container>
