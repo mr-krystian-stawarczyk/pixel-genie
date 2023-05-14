@@ -12,11 +12,12 @@ import { urlFor } from "../lib/client";
 import sanityClient from "@sanity/client";
 import { useSpring, animated } from "react-spring";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
-function Blog2() {
-	const { t } = useTranslation();
+function Social8() {
+	const { t, i18n } = useTranslation();
 
-	const [blog, setBlog] = useState([]);
+	const [realizacje, setRealizacje] = useState([]);
 	const client = sanityClient({
 		projectId: process.env.NEXT_PUBLIC_PROJECTID,
 		dataset: "production",
@@ -29,8 +30,8 @@ function Blog2() {
 	const [animateImg, setAnimateImg] = useState(false);
 
 	const fetchData = async () => {
-		const result = await client.fetch(`*[_type == "blog"]`);
-		setBlog(result);
+		const result = await client.fetch(`*[_type == "realizacje"]`);
+		setRealizacje(result);
 	};
 
 	useEffect(() => {
@@ -49,31 +50,34 @@ function Blog2() {
 		observer.observe(sectionRef.current);
 		return () => observer.disconnect();
 	}, []);
-	const { i18n } = useTranslation();
+
 	return (
-		<Container className=" py-3 " ref={sectionRef}>
-			<Row
-				className="justify-content-center align-items-center text-center mt-5 "
-				id="tips"
-			>
-				<h1 className="my-5  bold">{t("blog3")}</h1>
+		<Container
+			className=" py-5 my-5"
+			ref={sectionRef}
+			id="social-media-nettetal-portfolio"
+		>
+			<Row className="justify-content-center align-items-center text-center mt-5 ">
+				<Col>
+					<h1 className="my-5 text-center bold">{t("web22")}</h1>
+				</Col>
 			</Row>
 			<Row className="justify-content-center align-items-center text-center">
-				{blog.map((item) => (
-					<Col lg={10} className="my-3 " key={item._id}>
-						<Card className="bg-transparent m-2 p-3 shadow-lg">
+				{realizacje.map((item) => (
+					<Col lg={6} key={item._id} className="mx-auto my-2">
+						<Card className="bg-transparent border-0 shadow-lg">
 							<Card.Img
+								className="d-block w-100 "
 								src={urlFor(item.image && item.image[0])}
 								alt={item.name}
-								style={{ height: "200px", width: "200px" }}
-								className="mx-auto"
 							/>
-							<Card.Title className="py-2">
-								{item.name[i18n.language]}
-							</Card.Title>
-							<Card.Text>{item.details.details1[i18n.language]}</Card.Text>
-							<Card.Text>{item.details.details2[i18n.language]}</Card.Text>
-							<Card.Text>{item.details.details3[i18n.language]}</Card.Text>
+							<Card.Body>
+								<h3>{item.name[i18n.language]}</h3>
+								<p>{item.details[i18n.language]}</p>
+								<Button href={item.link} className="btn-nav px-4">
+									Link
+								</Button>
+							</Card.Body>
 						</Card>{" "}
 					</Col>
 				))}
@@ -82,4 +86,4 @@ function Blog2() {
 	);
 }
 
-export default Blog2;
+export default Social8;

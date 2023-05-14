@@ -1,3 +1,4 @@
 import realizacje from './realizacje'
 import blog from './blog'
-export const schemaTypes = [realizacje, blog]
+import branding from './branding'
+export const schemaTypes = [realizacje, blog, branding]

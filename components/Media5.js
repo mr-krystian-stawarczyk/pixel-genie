@@ -1,89 +1,181 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
-import { Link } from "react-scroll";
-import Image from "next/image";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useAnimation } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 function Media5() {
+	const { t } = useTranslation();
+	const [ref1, inView1] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+
+	const [ref2, inView2] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+	const [ref3, inView3] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+
+	const [ref4, inView4] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+
+	const animateIn = {
+		opacity: 1,
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
+	};
+
+	const animateOut = {
+		opacity: 0,
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
+	};
+
+	const controls1 = useAnimation();
+	const controls2 = useAnimation();
+	const controls3 = useAnimation();
+	const controls4 = useAnimation();
+
+	useEffect(() => {
+		if (inView1) {
+			controls1.start(animateIn);
+		} else {
+			controls1.start(animateOut);
+		}
+	}, [inView1, controls1, animateIn, animateOut]);
+
+	useEffect(() => {
+		let timeout;
+		if (inView2) {
+			timeout = setTimeout(() => {
+				controls2.start(animateIn);
+			}, 700); // Delay of 1 second (1000 milliseconds)
+		} else {
+			controls2.start(animateOut);
+		}
+
+		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+	}, [inView2, controls2, animateIn, animateOut]);
+
+	useEffect(() => {
+		let timeout;
+		if (inView3) {
+			timeout = setTimeout(() => {
+				controls3.start(animateIn);
+			}, 1300); // Delay of 2 seconds (2000 milliseconds)
+		} else {
+			controls3.start(animateOut);
+		}
+
+		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+	}, [inView3, controls3, animateIn, animateOut]);
+
+	useEffect(() => {
+		let timeout;
+		if (inView4) {
+			timeout = setTimeout(() => {
+				controls4.start(animateIn);
+			}, 1900); // Delay of 3 seconds (3000 milliseconds)
+		} else {
+			controls4.start(animateOut);
+		}
+
+		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+	}, [inView4, controls4, animateIn, animateOut]);
 	return (
 		<Container className="my-5 py-5">
 			<Row className="justify-content-center text-center align-items-center">
 				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark " style={{ height: "44rem" }}>
-						<Card.Body>
-							<h1>1</h1>
-							<h2>Konsultacja i analiza wymagań klienta</h2>
-							<Card.Text>
-								Pierwszym krokiem w procesie obróbki mediów jest przeprowadzenie
-								konsultacji z klientem i analiza jego wymagań. Dowiemy się,
-								jakie są Twoje cele i oczekiwania dotyczące obrobki zdjęć, wideo
-								i banerów reklamowych. Zapoznamy się z Twoją marką, stylami
-								wizualnymi i preferencjami, aby dopasować nasze usługi do Twoich
-								potrzeb. Wszystko to jest optymalizowane pod kątem SEO, aby
-								Twoje media były lepiej widoczne w wynikach wyszukiwania.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+					<motion.div
+						ref={ref1}
+						animate={controls1}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card
+							className="border-0 bg-transparent shadow-lg "
+							style={{ height: "44rem" }}
+						>
+							<Card.Body>
+								<h1>1</h1>
+								<h2> {t("design13")}</h2>
+								<Card.Text>{t("design14")}</Card.Text>
+							</Card.Body>
+						</Card>{" "}
+					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark " style={{ height: "44rem" }}>
-						<Card.Body>
-							<h1>2</h1>
-							<h2>Projektowanie i kreatywna oprawa</h2>
-							<Card.Text>
-								Po zrozumieniu wymagań klienta przechodzimy do etapu
-								projektowania i kreatywnej oprawy. Nasz zespół grafików i
-								projektantów stworzy spersonalizowane projekty, które będą
-								odzwierciedlać Twoją markę i przyciągać uwagę odbiorców.
-								Tworzymy oryginalne projekty graficzne, dostosowane do Twoich
-								potrzeb, optymalizując je pod kątem SEO, aby Twoje media były
-								lepiej widoczne dla potencjalnych klientów.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+					<motion.div
+						ref={ref2}
+						animate={controls2}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card
+							className="border-0 bg-transparent shadow-lg "
+							style={{ height: "44rem" }}
+						>
+							<Card.Body>
+								<h1>2</h1>
+								<h2> {t("design15")}</h2>
+								<Card.Text>{t("design16")}</Card.Text>
+							</Card.Body>
+						</Card>{" "}
+					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark " style={{ height: "44rem" }}>
-						<Card.Body>
-							<h1>3</h1> <h2>Obróbka i montaż mediów</h2>
-							<Card.Text>
-								W kolejnym kroku przystępujemy do obróbki i montażu mediów. Nasz
-								zespół specjalistów ds. obróbki zdjęć i wideo użyje
-								zaawansowanych narzędzi i technik, aby poprawić jakość, usunąć
-								niedoskonałości, dopasować kolory i dodać efekty specjalne,
-								zgodnie z Twoimi oczekiwaniami. W przypadku banerów reklamowych
-								zapewnimy, że są one atrakcyjne, czytelne i skuteczne w
-								przyciąganiu uwagi odbiorców. Cały proces jest optymalizowany
-								pod kątem SEO, aby Twoje media były lepiej widoczne w wynikach
-								wyszukiwania.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+					<motion.div
+						ref={ref3}
+						animate={controls3}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card
+							className="border-0 bg-transparent shadow-lg "
+							style={{ height: "44rem" }}
+						>
+							<Card.Body>
+								<h1>3</h1> <h2> {t("design17")}</h2>
+								<Card.Text>{t("design18")}</Card.Text>
+							</Card.Body>
+						</Card>{" "}
+					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark " style={{ height: "44rem" }}>
-						<Card.Body>
-							{" "}
-							<h1>4</h1>
-							<h2>Dostawa i optymalizacja SEO</h2>
-							<Card.Text>
-								Ostatni krok to dostawa gotowych mediów oraz optymalizacja SEO.
-								Dostarczymy Ci gotowe pliki w odpowiednich formatach i
-								rozmiarach, które będą gotowe do użycia na Twojej stronie
-								internetowej lub w kampaniach reklamowych. Dodatkowo,
-								przeprowadzimy optymalizację pod kątem SEO, uwzględniając
-								odpowiednie słowa kluczowe i tagi, aby Twoje media były lepiej
-								widoczne w wynikach wyszukiwania i przyciągały większą liczbę
-								użytkowników.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+					<motion.div
+						ref={ref4}
+						animate={controls4}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card
+							className="border-0 bg-transparent shadow-lg "
+							style={{ height: "44rem" }}
+						>
+							<Card.Body>
+								{" "}
+								<h1>4</h1>
+								<h2> {t("design19")}</h2>
+								<Card.Text>{t("design20")}</Card.Text>
+							</Card.Body>
+						</Card>{" "}
+					</motion.div>
 				</Col>
 			</Row>
 		</Container>

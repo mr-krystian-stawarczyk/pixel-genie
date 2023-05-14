@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
-function WebPrices() {
+function Social6() {
 	const { t } = useTranslation();
 	const [ref1, inView1] = useInView({
 		threshold: 0.5,
@@ -63,15 +63,17 @@ function WebPrices() {
 	}, [inView3, controls3, animateIn]);
 
 	return (
-		<Container className="my-5 py-5 " id="web-design-pricing">
+		<Container className="my-5 py-5 " id="social-media-preis">
 			{" "}
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
+					{" "}
 					<Image
 						src="/assets/price.png"
 						width={300}
 						height={300}
-						alt="faq-section1-image"
+						className="responsive-image"
+						alt="header2-image"
 					/>
 					<h4>{t("web23")}</h4>
 				</Col>
@@ -94,27 +96,26 @@ function WebPrices() {
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							{" "}
 							<Card.Body>
-								<h1>{t("web24")}</h1>
-								<Card.Text>{t("web25")}</Card.Text>
+								<h1>{t("socialmedia1")}</h1>
+								<Card.Text>{t("socialmedia2")}</Card.Text>
 							</Card.Body>
 							<Card.Body>
-								<Card.Title>{t("web26")}</Card.Title>
-								<Card.Text>{t("web27")}</Card.Text>
-								<Card.Text>{t("web28")}</Card.Text>
-								<Card.Text>{t("web29")}</Card.Text>
-								<Card.Text>{t("web30")}</Card.Text>
-								<Card.Text>{t("web31")}</Card.Text>
-								<Card.Text>{t("web32")}</Card.Text>
-								<Card.Text>{t("web33")}</Card.Text>
-								<Card.Text>{t("web34")}</Card.Text>
-								<Card.Text>{t("web35")}</Card.Text>
-								<Card.Text>{t("web36")}</Card.Text>
+								<Card.Title>{t("socialmedia3")}</Card.Title>
+								<Card.Text>{t("socialmedia4")}</Card.Text>
+								<Card.Text>{t("socialmedia5")}</Card.Text>
+								<Card.Text>{t("socialmedia6")}</Card.Text>
+								<Card.Text>{t("socialmedia7")}</Card.Text>
 							</Card.Body>{" "}
 							<Card.Body>
-								<h4>{t("web37")}</h4>
-								<Card.Text>{t("web38")}</Card.Text>
-								<Card.Text>{t("web39")}</Card.Text>
-								<Card.Text> {t("web40")}</Card.Text>
+								{" "}
+								<Image
+									src="/assets/bestseller.png"
+									width={100}
+									height={100}
+									className="responsive-image"
+									alt="header2-image"
+								/>
+								<h3>{t("socialmedia8")}</h3>
 							</Card.Body>
 						</Card>{" "}
 					</motion.div>
@@ -129,37 +130,19 @@ function WebPrices() {
 						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
-								<h1>{t("web41")}</h1>
-								<Card.Text>{t("web42")}</Card.Text>
+								<h1>{t("socialmedia9")}</h1>
+								<Card.Text>{t("socialmedia10")}</Card.Text>
 							</Card.Body>
 							<Card.Body>
-								<Card.Title>{t("web43")}</Card.Title>
-								<Card.Text>{t("web44")}</Card.Text>
-								<Card.Text>{t("web45")}</Card.Text>
-								<Card.Text>{t("web46")}</Card.Text>
-								<Card.Text>{t("web47")}</Card.Text>
-								<Card.Text>{t("web48")}</Card.Text>
-								<Card.Text>{t("web49")}</Card.Text>
-								<Card.Text>{t("web50")}</Card.Text>
-								<Card.Text>{t("web51")}</Card.Text>
-								<Card.Text>{t("web52")}</Card.Text>
-								<Card.Text>{t("web53")}</Card.Text>
-								<Card.Text>{t("web54")}</Card.Text>
-								<Card.Text>{t("web55")}</Card.Text>
-								<Card.Text>{t("web56")}</Card.Text>
-								<Card.Text>{t("web57")}</Card.Text>
+								<Card.Title>{t("socialmedia11")}</Card.Title>
+								<Card.Text>{t("socialmedia12")}</Card.Text>
+								<Card.Text>{t("socialmedia13")}</Card.Text>
+								<Card.Text>{t("socialmedia14")}</Card.Text>
+								<Card.Text>{t("socialmedia15")}</Card.Text>
+								<Card.Text>{t("socialmedia16")}</Card.Text>
 							</Card.Body>{" "}
 							<Card.Body>
-								<Image
-									src="/assets/bestseller.png"
-									width={100}
-									height={100}
-									alt="faq-section1-image"
-								/>
-								<h3> {t("web58")}</h3>
-								<Card.Text>{t("web59")}</Card.Text>
-								<Card.Text>{t("web60")}</Card.Text>
-								<Card.Text> {t("web61")}</Card.Text>
+								<h3>{t("socialmedia17")}</h3>
 							</Card.Body>
 						</Card>{" "}
 					</motion.div>
@@ -174,33 +157,20 @@ function WebPrices() {
 						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
-								<h1>{t("web62")}</h1>
-								<Card.Text>{t("web63")}</Card.Text>
+								<h1>{t("socialmedia18")}</h1>
+								<Card.Text>{t("socialmedia19")}</Card.Text>
 							</Card.Body>
 							<Card.Body>
-								<Card.Title>{t("web64")}</Card.Title>
-								<Card.Text>{t("web65")}</Card.Text>
-								<Card.Text>{t("web66")}</Card.Text>
-								<Card.Text>{t("web67")}</Card.Text>
-								<Card.Text>{t("web68")}</Card.Text>
-								<Card.Text>{t("web69")}</Card.Text>
-								<Card.Text>{t("web70")}</Card.Text>
-								<Card.Text>{t("web71")}</Card.Text>
-								<Card.Text>{t("web72")}</Card.Text>
-								<Card.Text>{t("web73")}</Card.Text>
-								<Card.Text>{t("web74")}</Card.Text>
-								<Card.Text>{t("web75")}</Card.Text>
-								<Card.Text>{t("web76")}</Card.Text>
-								<Card.Text>{t("web77")}</Card.Text>
-								<Card.Text>{t("web78")}</Card.Text>
-								<Card.Text>{t("web79")}</Card.Text>
-								<Card.Text>{t("web80")}</Card.Text>
+								<Card.Title>{t("socialmedia20")}</Card.Title>
+								<Card.Text>{t("socialmedia21")}</Card.Text>
+								<Card.Text>{t("socialmedia22")}</Card.Text>
+								<Card.Text>{t("socialmedia23")}</Card.Text>
+								<Card.Text>{t("socialmedia24")}</Card.Text>
+								<Card.Text>{t("socialmedia25")}</Card.Text>
+								<Card.Text>{t("socialmedia26")}</Card.Text>
 							</Card.Body>{" "}
 							<Card.Body>
-								<h3>{t("web81")}</h3>
-								<Card.Text>{t("web82")}</Card.Text>
-								<Card.Text>{t("web83")}</Card.Text>
-								<Card.Text>{t("web84")}</Card.Text>
+								<h3>{t("socialmedia27")}</h3>
 							</Card.Body>
 						</Card>{" "}
 					</motion.div>
@@ -210,4 +180,4 @@ function WebPrices() {
 	);
 }
 
-export default WebPrices;
+export default Social6;

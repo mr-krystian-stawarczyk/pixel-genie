@@ -24,12 +24,18 @@ body {
 #your-div {
 	position: absolute;
 	top: 40%;
-	left: 20%;
+	left: 15%;
 	z-index: 999;
 }
 
 #container {
 	position: relative;
+}
+
+@media (max-width: 1366px) {
+	#your-div {
+		left: 5%;
+	}
 }
 
 @media (max-width: 768px) {
@@ -113,9 +119,9 @@ a {
 	}
 	#your-div {
 		position: absolute;
-		top: 30%;
+		top: 19%;
 		left: 10%;
-		width: 700px !important;
+		width: 800px !important;
 		z-index: 999;
 	}
 }
@@ -132,6 +138,11 @@ a {
 		z-index: 999;
 	}
 }
+@media (max-height: 400.98px) {
+	#ja {
+		display: none;
+	}
+}
 
 @media (max-width: 400.98px) {
 	.navbar-toggler {
@@ -139,9 +150,9 @@ a {
 	}
 	#your-div {
 		position: absolute;
-		top: 30%;
-		left: 10%;
-		width: 300px !important;
+		top: 2%;
+		left: 1%;
+		width: 360px !important;
 		z-index: 999;
 	}
 }

@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
 import { Poppins } from "next/font/google";
+import CookieConsent from "./CookieConsent";
 
 const poppins = Poppins({
 	weight: ["400", "700"],
@@ -47,6 +48,7 @@ const Layout = ({ children, pageProps }) => {
 				</Head>
 				<header>
 					<Navbar {...pageProps} toggleTheme={toggleTheme} />
+					<CookieConsent />
 				</header>
 				<main className="main-container">{children}</main>
 				<footer>

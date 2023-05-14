@@ -67,11 +67,13 @@ function Seo6() {
 			{" "}
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
+					{" "}
 					<Image
 						src="/assets/price.png"
 						width={300}
 						height={300}
-						alt="faq-section1-image"
+						className="responsive-image"
+						alt="header2-image"
 					/>
 					<h4>{t("web23")}</h4>
 				</Col>
@@ -140,6 +142,13 @@ function Seo6() {
 								<Card.Text>{t("seo44")}</Card.Text>
 							</Card.Body>{" "}
 							<Card.Body>
+								<Image
+									src="/assets/bestseller.png"
+									width={100}
+									height={100}
+									className="responsive-image"
+									alt="header2-image"
+								/>
 								<h3>{t("seo45")}</h3>
 								<Card.Text>{t("seo46")}</Card.Text>
 								<Card.Text>{t("seo47")}</Card.Text>

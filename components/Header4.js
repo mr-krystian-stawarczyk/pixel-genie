@@ -66,8 +66,8 @@ function Header4() {
 						{" "}
 						<Image
 							src="/assets/socialmedia1.png"
-							width={500}
-							height={500}
+							width={400}
+							height={400}
 							className="responsive-image"
 							alt="socialmedia-image"
 						/>

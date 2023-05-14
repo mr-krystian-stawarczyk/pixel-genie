@@ -11,6 +11,7 @@ import SanityRealizacje from "@/components/SanityRealizacje";
 import TechBar from "@/components/TechBar";
 import ContactForm from "@/components/ContactForm";
 import Faq1 from "@/components/Faq1";
+import Header6 from "@/components/Header6";
 
 export default function Home() {
 	const { theme } = useTheme();
@@ -29,8 +30,9 @@ export default function Home() {
 			<Header3 />
 			<Header4 />
 			<Header5 />
+
+			<Header6 />
 			<ContactForm />
-			<Faq1 />
 		</>
 	);
 }

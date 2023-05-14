@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { NavDropdown, Container, Button, Row, Dropdown } from "react-bootstrap";
+import {
+	NavDropdown,
+	Container,
+	Button,
+	Row,
+	Dropdown,
+	ButtonGroup,
+} from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Link from "next/link";
 import Navbar from "react-bootstrap/Navbar";
@@ -116,7 +123,7 @@ const NavbarComp = ({ toggleTheme }) => {
 								</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Item as={Link} href="seo" className="">
-								<Button className="w-100 border-0 btn-nav shadow-sm ">
+								<Button className=" border-0 btn-nav shadow-sm w-100">
 									SEO
 								</Button>
 							</NavDropdown.Item>
@@ -125,7 +132,7 @@ const NavbarComp = ({ toggleTheme }) => {
 								<Button className="w-100 border-0 btn-nav ">Branding</Button>{" "}
 							</NavDropdown.Item>
 							<NavDropdown.Item as={Link} href="media">
-								<Button className="w-100 border-0 btn-nav ">Media</Button>{" "}
+								<Button className="w-100 border-0 btn-nav ">Design</Button>{" "}
 							</NavDropdown.Item>
 
 							<NavDropdown.Item as={Link} href="socialmedia">

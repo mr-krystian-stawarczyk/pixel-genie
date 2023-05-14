@@ -5,6 +5,10 @@ import Media4 from "@/components/Media4";
 import React from "react";
 import Head from "next/head";
 import Media5 from "@/components/Media5";
+import Media6 from "@/components/Media6";
+import Media7 from "@/components/Media7";
+import Media8 from "@/components/Media8";
+import ContactForm from "@/components/ContactForm";
 function media() {
 	return (
 		<div className="mt-5 pt-5">
@@ -20,6 +24,10 @@ function media() {
 			<Media3 />
 			<Media4 />
 			<Media5 />
+			<Media6 />
+			<Media7 />
+			<Media8 />
+			<ContactForm />
 		</div>
 	);
 }

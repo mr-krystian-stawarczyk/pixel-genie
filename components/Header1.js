@@ -7,7 +7,7 @@ import { useSpring, animated } from "react-spring";
 import { motion } from "framer-motion";
 
 import { useTranslation } from "react-i18next";
-import { Link } from "react-scroll";
+import Link from "next/link";
 import Image from "next/image";
 const Header1 = ({ toggleTheme }) => {
 	const { theme, setTheme } = useTheme();
@@ -102,29 +102,45 @@ const Header1 = ({ toggleTheme }) => {
 					animate={{ opacity: 1 }}
 					transition={{ duration: 4 }}
 				>
-					<Card
-						className="border-0 shadow-lg py-3  bg-transparent"
-						id="your-div"
-					>
-						{" "}
-						<Row className="justify-content-center align-items-center">
-							<Col lg={7} className="d-flex">
-								<Card.Body className="text-start">
-									<h1 className="text-bold">Pixel Genie Webagentur </h1>
-									<h5 className="text-bold">{t("h2")}</h5>
-									<Button className="text-center my-2 btn-nav" href="#header2">
-										Web Design Nettetal
-									</Button>
-								</Card.Body>
-							</Col>
-							<Col
-								lg={2}
-								className="d-flex justify-content-center align-items-center"
-							>
-								<Image src="/assets/ja.png" width={200} height={200} />
-							</Col>
-						</Row>
-					</Card>
+					{" "}
+					<Container id="your-div">
+						<Card className="border-0 shadow-lg py-3  bg-transparent">
+							{" "}
+							<Row className="justify-content-center align-items-center">
+								<Col
+									lg={3}
+									className="d-flex justify-content-center align-items-center"
+								>
+									<Image
+										src="/assets/ja.png"
+										id="ja"
+										width={200}
+										height={200}
+										alt="ja"
+									/>
+								</Col>{" "}
+								<Col lg={9} className="d-flex border-lg ">
+									<Card.Body className="text-start ">
+										<h1 className="text-bold">{t("h1")}</h1>
+										<h5 className="text-bold">{t("h2")}</h5>
+										<Button as={Link} href="web" className="m-2 btn-lg btn-nav">
+											{t("h3")}
+										</Button>{" "}
+										<Button as={Link} href="seo" className="m-2 btn-lg btn-nav">
+											{t("h4")}
+										</Button>{" "}
+										<Button
+											as={Link}
+											href="socialmedia"
+											className="m-2 btn-lg btn-nav"
+										>
+											{t("h5")}
+										</Button>
+									</Card.Body>
+								</Col>
+							</Row>
+						</Card>{" "}
+					</Container>
 				</motion.div>
 			</>
 		</Container>

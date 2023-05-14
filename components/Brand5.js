@@ -1,92 +1,164 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
-import { Link } from "react-scroll";
-import Image from "next/image";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useAnimation } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 function Brand5() {
+	const { t } = useTranslation();
+	const [ref1, inView1] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+
+	const [ref2, inView2] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+	const [ref3, inView3] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+
+	const [ref4, inView4] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
+	});
+
+	const animateIn = {
+		opacity: 1,
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
+	};
+
+	const controls1 = useAnimation();
+	const controls2 = useAnimation();
+	const controls3 = useAnimation();
+	const controls4 = useAnimation();
+
+	useEffect(() => {
+		if (inView1) {
+			controls1.start(animateIn);
+		}
+	}, [inView1, controls1, animateIn]);
+
+	useEffect(() => {
+		let timeout;
+		if (inView2) {
+			timeout = setTimeout(() => {
+				controls2.start(animateIn);
+			}, 700); // Delay of 1 second (1000 milliseconds)
+		}
+
+		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+	}, [inView2, controls2, animateIn]);
+
+	useEffect(() => {
+		let timeout;
+		if (inView3) {
+			timeout = setTimeout(() => {
+				controls3.start(animateIn);
+			}, 1300); // Delay of 2 seconds (2000 milliseconds)
+		}
+
+		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+	}, [inView3, controls3, animateIn]);
+
+	useEffect(() => {
+		let timeout;
+		if (inView4) {
+			timeout = setTimeout(() => {
+				controls4.start(animateIn);
+			}, 1900); // Delay of 3 seconds (3000 milliseconds)
+		}
+
+		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+	}, [inView4, controls4, animateIn]);
 	return (
 		<Container className="my-5 py-5">
 			<Row className="justify-content-center text-center align-items-center">
 				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark " style={{ height: "48rem" }}>
-						<Card.Body>
-							<h1>1</h1>
-							<h2>Analiza i badanie rynku</h2>
-							<Card.Text>
-								Pierwszym krokiem w procesie tworzenia marki dla Twojej strony
-								Pixel-Genie Nettetal SEO jest przeprowadzenie analizy i badania
-								rynku. Zapoznamy się z Twoją branżą, konkurencją oraz
-								preferencjami i oczekiwaniami Twojej grupy docelowej. Badanie to
-								pozwoli nam zrozumieć unikalne cechy Twojej firmy oraz znaleźć
-								obszary, w których możemy wyróżnić Twoją markę i stworzyć
-								strategię, która przyciągnie uwagę i wyróżni się na tle
-								konkurencji.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+					<motion.div
+						ref={ref1}
+						animate={controls1}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card
+							className="border-0 bg-transparent shadow-lg"
+							style={{ height: "48rem" }}
+						>
+							<Card.Body>
+								<h1>1</h1>
+								<h2>{t("bran14")}</h2>
+								<Card.Text>{t("bran15")}</Card.Text>
+							</Card.Body>
+						</Card>
+					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark " style={{ height: "48rem" }}>
-						<Card.Body>
-							<h1>2</h1>
-							<h2>Tworzenie wizerunku marki</h2>
-							<Card.Text>
-								W oparciu o wyniki analizy i badania rynku rozpoczynamy proces
-								tworzenia wizerunku marki. Skupiamy się na elementach takich jak
-								logo, kolorystyka, czcionki i style wizualne, które będą
-								odzwierciedlać tożsamość Twojej marki i przyciągać uwagę
-								użytkowników. Projektujemy unikalne logo, które będzie
-								reprezentować Twoją firmę i zapadnie w pamięć klientów. Tworzymy
-								również zestaw zasad dotyczących używania logo i innych
-								elementów wizualnych, aby zapewnić spójność i konsekwencję w
-								komunikacji marki.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+					<motion.div
+						ref={ref2}
+						animate={controls2}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						<Card
+							className="border-0 bg-transparent shadow-lg"
+							style={{ height: "48rem" }}
+						>
+							<Card.Body>
+								<h1>2</h1>
+								<h2>{t("bran16")}</h2>
+								<Card.Text>{t("bran17")}</Card.Text>
+							</Card.Body>
+						</Card>
+					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark " style={{ height: "48rem" }}>
-						<Card.Body>
-							<h1>3</h1>
-							<h2>Budowanie strategii komunikacji</h2>
-							<Card.Text>
-								W tym etapie tworzymy strategię komunikacji, która będzie
-								promować Twoją markę i budować jej świadomość. Opracowujemy
-								wytyczne dotyczące tonu, stylu i sposobu komunikacji, aby
-								zapewnić spójność i jednolitość w przekazach marki. Kreujemy
-								treści, które są optymalizowane pod kątem SEO, aby Twoja strona
-								Pixel-Genie Nettetal SEO była lepiej widoczna w wynikach
-								wyszukiwania. Działamy na różnych kanałach, takich jak strona
-								internetowa, media społecznościowe, blogi itp., aby dotrzeć do
-								Twojej grupy docelowej i budować zaangażowanie wokół Twojej
-								marki.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+					<motion.div
+						ref={ref3}
+						animate={controls3}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card
+							className="border-0 bg-transparent shadow-lg"
+							style={{ height: "48rem" }}
+						>
+							<Card.Body>
+								<h1>3</h1>
+								<h2>{t("bran18")}</h2>
+								<Card.Text>{t("bran19")}</Card.Text>
+							</Card.Body>
+						</Card>{" "}
+					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto">
-					<Card className="border-0 text-dark " style={{ height: "48rem" }}>
-						<Card.Body>
-							<h1>4</h1>
-							<h2>Budowanie relacji i monitorowanie wyników</h2>
-							<Card.Text>
-								Ostatni krok to budowanie relacji z klientami i monitorowanie
-								wyników naszych działań. Staramy się tworzyć wartościowe treści
-								i angażować użytkowników, aby budować lojalność wobec Twojej
-								marki. Monitorujemy wyniki naszych działań, analizujemy dane
-								dotyczące ruchu na stronie, interakcji użytkowników, konwersji
-								itp., aby ocenić skuteczność strategii i wprowadzać niezbędne
-								zmiany i dostosowania.
-							</Card.Text>
-							<Button variant="primary">Go somewhere</Button>
-						</Card.Body>
-					</Card>
+					<motion.div
+						ref={ref4}
+						animate={controls4}
+						initial={{ opacity: 0 }}
+						transition={{ delay: 1 }}
+					>
+						{" "}
+						<Card
+							className="border-0 bg-transparent shadow-lg"
+							style={{ height: "48rem" }}
+						>
+							<Card.Body>
+								<h1>4</h1>
+								<h2>{t("bran20")}</h2>
+								<Card.Text>{t("bran21")}</Card.Text>
+							</Card.Body>
+						</Card>
+					</motion.div>
 				</Col>
 			</Row>
 		</Container>
