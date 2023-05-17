@@ -65,9 +65,8 @@ function Brand8() {
 				</Row>
 				<Row className="justify-content-center align-items-center text-center">
 					{branding.map((item) => (
-						<Col lg={4} className="mx-auto my-2">
+						<Col lg={4} className="mx-auto my-2" key={item._id}>
 							<Card
-								key={item._id}
 								className="bg-transparent border-0 shadow-lg rounded-0"
 								style={{ height: "550px" }}
 							>

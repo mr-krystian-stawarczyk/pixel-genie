@@ -46,7 +46,7 @@ function Header4() {
 		<motion.div ref={ref} animate={controls}>
 			<Container className=" my-5 py-5 ">
 				<Row className="justify-content-center  align-items-center">
-					<Col lg={5} className="mx-auto">
+					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
 								<h1>{t("header11")}</h1>
@@ -62,7 +62,7 @@ function Header4() {
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col lg={5} className="mx-auto my-5">
+					<Col lg={5} className="mx-auto my-2 text-center">
 						{" "}
 						<Image
 							src="/assets/socialmedia1.png"

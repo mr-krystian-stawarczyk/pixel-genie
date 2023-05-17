@@ -150,10 +150,13 @@ a {
 	}
 	#your-div {
 		position: absolute;
-		top: 2%;
+		top: 10%;
 		left: 1%;
 		width: 360px !important;
 		z-index: 999;
+	}
+	#ja {
+		display: none;
 	}
 }
 

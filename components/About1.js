@@ -47,9 +47,9 @@ function About1() {
 
 	return (
 		<motion.div ref={ref} animate={controls}>
-			<Container className="mt-5 pt-5">
+			<Container className=" ">
 				<Row className="justify-content-center align-items-center">
-					<Col lg={5} className="mx-auto">
+					<Col lg={5} className="mx-auto my-2 text-center">
 						{" "}
 						<Image
 							src="/assets/about6.png"
@@ -59,7 +59,7 @@ function About1() {
 							alt="header2-image"
 						/>
 					</Col>{" "}
-					<Col lg={5} className="mx-auto">
+					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
 								<h1>{t("about1")} </h1>

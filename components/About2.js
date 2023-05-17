@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 function About2() {
 	const { t } = useTranslation();
 	return (
-		<Container className="my-5 py-5">
+		<Container className="">
 			<Row>
 				<h1>{t("about11")} </h1>
 			</Row>

@@ -94,7 +94,7 @@ export const ContactForm = () => {
 					<h1 className="my-5">{t("header21")}</h1>
 				</Row>
 				<Row className="justify-content-center align-items-center">
-					<Col lg={5} className="mx-auto">
+					<Col lg={5} className="mx-auto my-2 text-center">
 						{" "}
 						<Image
 							src="/assets/contact.png"
@@ -104,7 +104,7 @@ export const ContactForm = () => {
 							className="responsive-image"
 						/>
 					</Col>
-					<Col lg={5} className="mx-auto">
+					<Col lg={5} className="mx-auto my-2">
 						{!isFormSubmitted ? (
 							<Form
 								className="app__footer-form app__flex mt-5"

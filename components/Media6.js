@@ -64,8 +64,8 @@ function Media6() {
 			</Row>
 			<Row className="justify-content-center align-items-center text-center">
 				{realizacje.map((item) => (
-					<Col lg={6} className="mx-auto my-2">
-						<Card key={item._id} className="bg-transparent border-0 shadow-lg">
+					<Col lg={6} className="mx-auto my-2" key={item._id}>
+						<Card className="bg-transparent border-0 shadow-lg">
 							<Card.Img
 								className="d-block w-100 "
 								src={urlFor(item.image && item.image[0])}
