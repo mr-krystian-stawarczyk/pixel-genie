@@ -16,7 +16,7 @@ function App(props) {
 
 	return (
 		<SSRProvider>
-			<ThemeProvider>
+			<ThemeProvider defaultTheme="dark">
 				<Layout>
 					<Head>
 						<title>Pixel-Genie</title>

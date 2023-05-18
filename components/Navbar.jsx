@@ -17,6 +17,7 @@ import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import ReactGA from "react-ga";
 import i18n from "../i18n.js";
 import { BsFillXCircleFill } from "react-icons/bs";
+
 const NavbarComp = ({ toggleTheme }) => {
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
@@ -24,6 +25,8 @@ const NavbarComp = ({ toggleTheme }) => {
 	const [selectedFlag, setSelectedFlag] = useState("/assets/de-flag.png");
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const { theme, setTheme } = useTheme();
+	const { t, i18n } = useTranslation();
+
 	const handleDropdownSelect = (eventKey, event) => {
 		setDropdownOpen(false);
 		switch (eventKey) {
@@ -40,6 +43,7 @@ const NavbarComp = ({ toggleTheme }) => {
 				setSelectedFlag("/assets/de-flag.png");
 		}
 	};
+
 	useEffect(() => {
 		setCurrentTheme(theme);
 	}, [theme]);
@@ -72,7 +76,17 @@ const NavbarComp = ({ toggleTheme }) => {
 		document.body.style.backgroundColor = bgColor;
 	}, [currentTheme]);
 
-	const { t, i18n } = useTranslation();
+	// Dodajemy obsługę zmiany motywu przy pierwszym renderowaniu
+	useEffect(() => {
+		// Sprawdź, czy preferowany motyw przeglądarki jest ciemny
+		const prefersDarkTheme =
+			window.matchMedia &&
+			window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+		if (prefersDarkTheme) {
+			setTheme("dark"); // Ustawienie ciemnego motywu jako domyślnego, jeśli preferowany motyw przeglądarki jest ciemny
+		}
+	}, []);
 
 	return (
 		<Navbar
@@ -90,28 +104,30 @@ const NavbarComp = ({ toggleTheme }) => {
 				<Navbar.Brand as={Link} href="/" className=" rounded  py-0 ">
 					<Image
 						alt=""
-						src="/assets/logo3.png"
+						src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
 						width="50"
 						height="50"
-						className="d-inline-block align-top "
+						className="mb-2"
 					/>
-					<span style={{ fontSize: "2rem" }} className="">
+					<span
+						style={{ fontSize: "2rem" }}
+						className={scrolled ? "logo" : "logo1"}
+					>
 						{" "}
 						Pixel Genie
 					</span>
-				</Navbar.Brand>{" "}
+				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse
 					id="basic-navbar-nav"
 					className=" rounded justify-content-end text-center  m-1 navbar-toggler border-0"
 				>
 					<Nav className="navbar-collapse justify-content-end text-center rounded ">
-						{" "}
 						<Nav.Link as={Link} href="about" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav5")}
 							</Button>
-						</Nav.Link>{" "}
+						</Nav.Link>
 						<NavDropdown
 							title={t("nav1")}
 							id="basic-nav-dropdown"

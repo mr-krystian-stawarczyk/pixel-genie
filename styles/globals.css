@@ -9,7 +9,12 @@
 		theme==='light'?'#333': "#eee";
 	}
 }
-
+.logo {
+	color: black; /* Set the text color to white */
+}
+.logo1 {
+	color: white; /* Set the text color to white */
+}
 body {
 	scrollbar-width: none; /* Firefox */
 	-ms-overflow-style: none; /* IE and Edge */
