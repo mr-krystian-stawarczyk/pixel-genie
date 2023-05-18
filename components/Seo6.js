@@ -73,7 +73,7 @@ function Seo6() {
 						width={300}
 						height={300}
 						className="responsive-image"
-						alt="header2-image"
+						alt="SEO-webentwicklung-nettetal-preis1"
 					/>
 					<h4>{t("web23")}</h4>
 				</Col>

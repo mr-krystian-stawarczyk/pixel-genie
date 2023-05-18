@@ -63,8 +63,8 @@ function Media1() {
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1>{t("design1")}</h1>
-								<Card.Text>{t("design2")}</Card.Text>
+								<h1 className="text-start">{t("design1")}</h1>
+								<Card.Text className="text-start">{t("design2")}</Card.Text>
 								<Button className="btn-nav" href="#media-design-portfolio">
 									{t("design3")}
 								</Button>

@@ -63,8 +63,8 @@ function Social1() {
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1>{t("design81")}</h1>
-								<Card.Text>{t("design82")}</Card.Text>
+								<h1 className="text-start">{t("design81")}</h1>
+								<Card.Text className="text-start">{t("design82")}</Card.Text>
 								<Button className="btn-nav" href="#social-media-preis">
 									{t("design83")}
 								</Button>

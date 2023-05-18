@@ -13,7 +13,7 @@ function Faq1() {
 						src="/assets/faq3.png"
 						width={300}
 						height={300}
-						alt="faq-section1-image"
+						alt="webentwicklung-nettetal-webseiten-fragen1"
 					/>
 					<h4>{t("web117")}</h4>
 				</Col>

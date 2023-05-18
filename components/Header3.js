@@ -50,11 +50,11 @@ function Header3() {
 					<Col lg={5} className="mx-auto my-2 text-center">
 						{" "}
 						<Image
-							src="/assets/seo1.png"
+							src="/assets/webentwicklung-nettetal-seo3.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="seo-image"
+							alt="webentwicklung-nettetal-seo3"
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">

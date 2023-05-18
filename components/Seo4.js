@@ -48,18 +48,18 @@ function Seo4() {
 					<Col lg={5} className="mx-auto my-2">
 						{" "}
 						<Image
-							src="/assets/seo4.png"
+							src="/assets/SEO-webentwicklung-nettetal-4.png"
 							width={500}
 							height={500}
 							className="responsive-image"
-							alt="header2-image"
+							alt="SEO-webentwicklung-nettetal-4"
 						/>
 					</Col>{" "}
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1> {t("seo10")} </h1>
-								<Card.Text>{t("seo11")}</Card.Text>
+								<h1 className="text-start"> {t("seo10")} </h1>
+								<Card.Text className="text-start">{t("seo11")}</Card.Text>
 								<Button className="btn-nav" href="#contact">
 									{t("seo12")}
 								</Button>

@@ -97,8 +97,8 @@ export const ContactForm = () => {
 					<Col lg={5} className="mx-auto my-2 text-center">
 						{" "}
 						<Image
-							src="/assets/contact.png"
-							alt="faq-section2-image"
+							src="/assets/webentwicklung-nettetal-kontakt-form.png"
+							alt="webentwicklung-nettetal-kontakt-form"
 							width={400}
 							height={400}
 							className="responsive-image"

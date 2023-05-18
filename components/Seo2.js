@@ -48,18 +48,18 @@ function Seo2() {
 					<Col lg={5} className="mx-auto my-2">
 						{" "}
 						<Image
-							src="/assets/seo2.png"
+							src="/assets/SEO-webentwicklung-nettetal-2.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="SEO-webentwicklung-nettetal-2"
 						/>
 					</Col>{" "}
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1> {t("seo4")}</h1>
-								<Card.Text>{t("seo5")}</Card.Text>
+								<h1 className="text-start"> {t("seo4")}</h1>
+								<Card.Text className="text-start">{t("seo5")}</Card.Text>
 								<Button className="btn-nav" href="#seofaq">
 									{t("seo6")}
 								</Button>

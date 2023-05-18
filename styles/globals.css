@@ -15,6 +15,14 @@ body {
 	-ms-overflow-style: none; /* IE and Edge */
 }
 
+a {
+	text-decoration: none;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
 #tsparticles {
 	height: 100vh !important;
 	width: 100% !important;
@@ -32,9 +40,29 @@ body {
 	position: relative;
 }
 
+.border-blue {
+	border: 1px solid #0047ab !important;
+}
+.light {
+	background-color: #fff !important;
+	transition: 1s ease-in-out;
+	color: black !important;
+}
+
+.dark {
+	background-color: #111 !important;
+	transition: 1s ease-in-out;
+	color: white !important;
+}
+
+#your-div {
+	width: 1300px;
+}
+
 @media (max-width: 1366px) {
 	#your-div {
 		left: 5%;
+		width: 1100px;
 	}
 }
 
@@ -51,66 +79,6 @@ body {
 		left: 1%;
 		top: 30%;
 	}
-}
-.border-blue {
-	border: 1px solid #0047ab !important;
-}
-.light {
-	background-color: #fff !important;
-	transition: 1s ease-in-out;
-	color: black !important;
-}
-
-.dark {
-	background-color: #111 !important;
-	transition: 1s ease-in-out;
-	color: white !important;
-}
-
-a {
-	text-decoration: none;
-}
-
-::-webkit-scrollbar {
-	display: none;
-}
-
-.bg-blue {
-	background-color: #003681;
-}
-.text-bold {
-	font-weight: 700;
-}
-
-.text-md {
-	font-weight: 500;
-}
-
-.text-blue {
-	color: #003681;
-}
-
-.bg-magenta {
-	background-color: #ab0056;
-}
-
-.text-magenta {
-	color: #ab0056;
-}
-
-.page-transition-enter {
-	opacity: 0;
-}
-.page-transition-enter-active {
-	opacity: 1;
-	transition: opacity 300ms;
-}
-.page-transition-exit {
-	opacity: 1;
-}
-.page-transition-exit-active {
-	opacity: 0;
-	transition: opacity 300ms;
 }
 
 @media (max-width: 991.98px) {
@@ -158,6 +126,60 @@ a {
 	#ja {
 		display: none;
 	}
+}
+
+.footer-links {
+	text-decoration: none;
+	color: white;
+}
+.footer-links:hover {
+	color: #003681;
+}
+
+.contact-links {
+	text-decoration: none;
+	color: inherit;
+}
+.contact-links:hover {
+	color: #003681;
+}
+
+.bg-blue {
+	background-color: #003681;
+}
+.text-bold {
+	font-weight: 700;
+}
+
+.text-md {
+	font-weight: 500;
+}
+
+.text-blue {
+	color: #003681;
+}
+
+.bg-magenta {
+	background-color: #ab0056;
+}
+
+.text-magenta {
+	color: #ab0056;
+}
+
+.page-transition-enter {
+	opacity: 0;
+}
+.page-transition-enter-active {
+	opacity: 1;
+	transition: opacity 300ms;
+}
+.page-transition-exit {
+	opacity: 1;
+}
+.page-transition-exit-active {
+	opacity: 0;
+	transition: opacity 300ms;
 }
 
 .btn-nav {

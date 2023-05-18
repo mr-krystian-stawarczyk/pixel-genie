@@ -51,8 +51,8 @@ function Web1() {
 					<Col lg={5} className="mx-auto">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1>{t("web1")}</h1>
-								<Card.Text>{t("web2")}</Card.Text>
+								<h1 className="text-start">{t("web1")}</h1>
+								<Card.Text className="text-start">{t("web2")}</Card.Text>
 								<Button className="btn-nav" href="#web-design-portfolio">
 									{t("web3")}
 								</Button>
@@ -62,11 +62,11 @@ function Web1() {
 					<Col lg={5} className="mx-auto">
 						{" "}
 						<Image
-							src="/assets/web1.png"
+							src="/assets/webentwicklung-nettetal-webseiten1.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webentwicklung-nettetal-webseiten1"
 						/>
 					</Col>
 				</Row>

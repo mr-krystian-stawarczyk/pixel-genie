@@ -8,7 +8,7 @@ function about() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Pixel Genie Nettetal Über uns</title>
+				<title>Über uns in 41334 Nettetal | Pixel Genie Webagentur</title>
 				<meta
 					name="description"
 					content="Pixel-Genie: Erfahren Sie mehr über unser Team und unsere Erfahrung in Webdesign und Online-Marketing in Nettetal. Erfahren Sie mehr über unsere Philosophie und unsere Arbeitsweise."

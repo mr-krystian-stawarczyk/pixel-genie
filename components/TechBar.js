@@ -45,7 +45,7 @@ const TechBar = () => {
 						{" "}
 						<Image
 							src="/assets/bootstrap.png"
-							alt="Apple"
+							alt="webentwicklung-nettetal-tech-brands1"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -54,7 +54,7 @@ const TechBar = () => {
 					<div className="text-center">
 						<Image
 							src="/assets/canva.png"
-							alt="Apple"
+							alt="webentwicklung-nettetal-tech-brands2"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -63,7 +63,7 @@ const TechBar = () => {
 					<div className="text-center">
 						<Image
 							src="/assets/git.png"
-							alt="Apple"
+							alt="webentwicklung-nettetal-tech-brands3"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -72,7 +72,7 @@ const TechBar = () => {
 					<div className="text-center">
 						<Image
 							src="/assets/googleanalytics.png"
-							alt="Apple"
+							alt="webentwicklung-nettetal-tech-brands4"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -81,7 +81,7 @@ const TechBar = () => {
 					<div className="text-center">
 						<Image
 							src="/assets/netlify.png"
-							alt="Apple"
+							alt="webentwicklung-nettetal-tech-brands5"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -90,7 +90,7 @@ const TechBar = () => {
 					<div className="text-center">
 						<Image
 							src="/assets/next.png"
-							alt="Apple"
+							alt="webentwicklung-nettetal-tech-brands6"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -99,7 +99,7 @@ const TechBar = () => {
 					<div className="text-center">
 						<Image
 							src="/assets/react.png"
-							alt="Apple"
+							alt="webentwicklung-nettetal-tech-brands7"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"

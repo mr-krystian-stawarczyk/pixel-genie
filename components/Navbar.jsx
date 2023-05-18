@@ -16,14 +16,16 @@ import { useTranslation } from "react-i18next";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import ReactGA from "react-ga";
 import i18n from "../i18n.js";
-
+import { BsFillXCircleFill } from "react-icons/bs";
 const NavbarComp = ({ toggleTheme }) => {
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
 	const [currentTheme, setCurrentTheme] = useState("");
 	const [selectedFlag, setSelectedFlag] = useState("/assets/de-flag.png");
+	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const { theme, setTheme } = useTheme();
 	const handleDropdownSelect = (eventKey, event) => {
+		setDropdownOpen(false);
 		switch (eventKey) {
 			case "flag1":
 				setSelectedFlag("/assets/de-flag.png");
@@ -64,8 +66,9 @@ const NavbarComp = ({ toggleTheme }) => {
 			window.removeEventListener("scroll", handleScroll);
 		};
 	}, []);
+
 	useEffect(() => {
-		const bgColor = currentTheme === "dark" ? "#111" : "#fff";
+		const bgColor = currentTheme === "light" ? "#fff" : "#111";
 		document.body.style.backgroundColor = bgColor;
 	}, [currentTheme]);
 
@@ -116,6 +119,8 @@ const NavbarComp = ({ toggleTheme }) => {
 							style={{
 								fontSize: "1rem",
 							}}
+							show={dropdownOpen} // Add show prop to control visibility
+							onToggle={setDropdownOpen}
 						>
 							<NavDropdown.Item as={Link} href="web" className="">
 								<Button className="w-100 border-0 btn-nav shadow-sm ">
@@ -134,7 +139,6 @@ const NavbarComp = ({ toggleTheme }) => {
 							<NavDropdown.Item as={Link} href="media">
 								<Button className="w-100 border-0 btn-nav ">Design</Button>{" "}
 							</NavDropdown.Item>
-
 							<NavDropdown.Item as={Link} href="socialmedia">
 								<Button className="w-100 border-0 btn-nav ">
 									Social Media

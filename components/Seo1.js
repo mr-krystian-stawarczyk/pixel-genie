@@ -49,8 +49,8 @@ function Seo1() {
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1>{t("seo1")}</h1>
-								<Card.Text>{t("seo2")}</Card.Text>
+								<h1 className="text-start">{t("seo1")}</h1>
+								<Card.Text className="text-start">{t("seo2")}</Card.Text>
 								<Button className="btn-nav" href="#process">
 									{t("seo3")}
 								</Button>
@@ -60,11 +60,11 @@ function Seo1() {
 					<Col lg={5} className="mx-auto my-2">
 						{" "}
 						<Image
-							src="/assets/seo1.png"
+							src="/assets/webentwicklung-nettetal-seo3.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="SEO-webentwicklung-nettetal-1"
 						/>
 					</Col>
 				</Row>

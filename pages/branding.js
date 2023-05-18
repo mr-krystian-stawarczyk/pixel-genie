@@ -13,10 +13,10 @@ function branding() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Pixel Genie Nettetal Branding</title>
+				<title>Branding in 41334 Nettetal | Pixel Genie Webagentur</title>
 				<meta
 					name="description"
-					content="Mit unserem Corporate Design und Content-Marketing helfen wir Ihnen, Ihre Marke zu stärken und Ihre Zielgruppe zu erreichen. Wir bieten Ihnen maßgeschneiderte Lösungen für ein einzigartiges und professionelles Branding, das sich von der Konkurrenz abhebt. Entdecken Sie jetzt unsere Expertise im Bereich Branding und Marketing."
+					content="Unser Corporate Design und Content-Marketing stärken Ihre Marke und erreichen Ihre Zielgruppe. Maßgeschneiderte Lösungen für ein einzigartiges Branding. Entdecken Sie unsere Expertise im Branding und Marketing."
 				/>
 			</Head>
 			<Brand1 />

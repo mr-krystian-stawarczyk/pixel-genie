@@ -51,18 +51,18 @@ function Web4() {
 					<Col lg={5} className="mx-auto">
 						{" "}
 						<Image
-							src="/assets/seo1.png"
+							src="/assets/webentwicklung-nettetal-seo3.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webentwicklung-nettetal-webseiten4"
 						/>
 					</Col>{" "}
 					<Col lg={5} className="mx-auto">
 						<Card className="border-0  bg-transparent ">
 							<Card.Body>
-								<h1 className="">{t("web10")}</h1>
-								<Card.Text>{t("web11")}</Card.Text>
+								<h1 className="text-start">{t("web10")}</h1>
+								<Card.Text className="text-start">{t("web11")}</Card.Text>
 								<Link href="seo" className="m-1">
 									<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 										{t("web12")}

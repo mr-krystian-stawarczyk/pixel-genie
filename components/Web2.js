@@ -52,18 +52,18 @@ function Web2() {
 					<Col lg={5} className="mx-auto">
 						{" "}
 						<Image
-							src="/assets/web2.png"
+							src="/assets/webentwicklung-nettetal-webseiten2.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webentwicklung-nettetal-webseiten2"
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1>{t("web4")}</h1>
-								<Card.Text>{t("web5")}</Card.Text>
+								<h1 className="text-start">{t("web4")}</h1>
+								<Card.Text className="text-start">{t("web5")}</Card.Text>
 								<Button className="btn-nav" href="#web-design-pricing">
 									{t("web6")}
 								</Button>

@@ -68,11 +68,11 @@ function Header2() {
 					<Col lg={5} className="mx-auto my-2 text-center">
 						{" "}
 						<Image
-							src="/assets/header2.png"
+							src="/assets/webentwicklung-nettetal-seo2.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webentwicklung-nettetal-seo2"
 						/>
 					</Col>
 				</Row>

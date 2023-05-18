@@ -49,11 +49,11 @@ function Header5() {
 					<Col lg={5} className="mx-auto my-2 text-center">
 						{" "}
 						<Image
-							src="/assets/header5.png"
+							src="/assets/webentwicklung-nettetal-seo5.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="blog-image"
+							alt="webentwicklung-nettetal-seo5"
 						/>
 					</Col>{" "}
 					<Col lg={5} className="mx-auto my-2">

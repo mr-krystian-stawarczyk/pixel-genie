@@ -10,7 +10,7 @@ import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
 import Script from "next/script";
 import i18n from "i18next";
-
+import { AnimatePresence, motion } from "framer-motion";
 function App(props) {
 	const { Component, pageProps, router } = props;
 

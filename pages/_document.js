@@ -21,6 +21,7 @@ export default function Document() {
             `,
 					}}
 				/>
+				<title>Document in 41334 Nettetal | Pixel Genie Webagentur</title>
 				<meta
 					name="description"
 					content="Pixel-Genie: Experten für Webdesign & SEO in Nettetal. Professionelle Webentwicklung & umfassende Dienstleistungen. Gestalten Sie Ihre Online-Präsenz mit uns. Wir bieten Responsive Design, Mobile Optimierung & Online-Marketing-Strategien. Maßgeschneiderte E-Commerce-Lösungen & Apps. Stärken Sie Ihre Marke mit unserem Corporate Design & Content-Marketing. Partner für Social-Media-Marketing & Grafikdesign. Pixel-Genie: Agentur für erfolgreiche Online-Strategien & Webprojekte. Professionelle Lösungen für Online-Shops & Landingpages. Umfassende Lösungen für Webentwicklung & Programmierung."

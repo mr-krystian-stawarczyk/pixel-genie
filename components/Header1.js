@@ -112,11 +112,11 @@ const Header1 = ({ toggleTheme }) => {
 									className="d-flex justify-content-center align-items-center"
 								>
 									<Image
-										src="/assets/ja.png"
+										src="/assets/webentwicklung-nettetal-seo1.png"
 										id="ja"
 										width={200}
 										height={200}
-										alt="ja"
+										alt="webentwicklung-nettetal-seo1"
 									/>
 								</Col>{" "}
 								<Col lg={9} className="d-flex border-lg ">

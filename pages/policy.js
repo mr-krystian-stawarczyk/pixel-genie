@@ -7,7 +7,7 @@ function policy() {
 	return (
 		<Container className=" my-5 py-5">
 			<Head>
-				<title>Pixel Genie Nettetal Policy</title>
+				<title>Policy in 41334 Nettetal | Pixel Genie Webagentur</title>
 				<meta
 					name="description"
 					content="Erfahren Sie mehr über unsere Datenschutzrichtlinien und Geschäftsbedingungen bei Pixel-Genie. Wir legen Wert auf Transparenz und Kundenfreundlichkeit."

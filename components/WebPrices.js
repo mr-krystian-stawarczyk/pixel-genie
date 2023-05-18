@@ -71,7 +71,7 @@ function WebPrices() {
 						src="/assets/price.png"
 						width={300}
 						height={300}
-						alt="faq-section1-image"
+						alt="webentwicklung-nettetal-webseiten5-preis"
 					/>
 					<h4>{t("web23")}</h4>
 				</Col>

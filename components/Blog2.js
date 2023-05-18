@@ -29,13 +29,13 @@ function Blog2() {
 	const [animateImg, setAnimateImg] = useState(false);
 
 	const fetchData = async () => {
-		const result = await client.fetch(`*[_type == "blog"]`);
+		const result = await client.fetch(`*[_type == "blog"] | order(date desc)`);
 		setBlog(result);
 	};
 
 	useEffect(() => {
 		fetchData();
-	});
+	}, []);
 
 	const handleIntersection = (entries) => {
 		if (entries[0].isIntersecting) {
@@ -49,6 +49,7 @@ function Blog2() {
 		observer.observe(sectionRef.current);
 		return () => observer.disconnect();
 	}, []);
+
 	const { i18n } = useTranslation();
 	return (
 		<Container className=" py-3 " ref={sectionRef}>
@@ -71,6 +72,7 @@ function Blog2() {
 							<Card.Title className="py-2">
 								{item.name[i18n.language]}
 							</Card.Title>
+							<Card.Text>{item.date}</Card.Text>
 							<Card.Text>{item.details.details1[i18n.language]}</Card.Text>
 							<Card.Text>{item.details.details2[i18n.language]}</Card.Text>
 							<Card.Text>{item.details.details3[i18n.language]}</Card.Text>

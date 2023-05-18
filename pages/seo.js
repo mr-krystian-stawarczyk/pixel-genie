@@ -12,10 +12,10 @@ function seo() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Pixel Genie Nettetal SEO</title>
+				<title>SEO in 41334 Nettetal | Pixel Genie Webagentur</title>
 				<meta
 					name="description"
-					content="Als Spezialisten für SEO helfen wir Ihnen dabei, Ihre Website auf die vorderen Plätze der Suchergebnisse zu bringen. Mit unserem tiefen Verständnis von Suchmaschinenoptimierung und Online-Marketing-Strategien unterstützen wir Sie dabei, Ihre Online-Sichtbarkeit zu verbessern und mehr Traffic auf Ihre Website zu bringen. Entdecken Sie jetzt unsere maßgeschneiderten SEO-Lösungen."
+					content="Maximieren Sie Ihr SEO-Ergebnis mit unseren professionellen SEO-Services. Erzielen Sie eine höhere Position in den Suchergebnissen mit unseren effektiven Strategien und Tools. Kontaktieren Sie uns noch heute!"
 				/>
 			</Head>
 			<Seo1 />

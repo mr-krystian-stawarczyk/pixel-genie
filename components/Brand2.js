@@ -63,8 +63,8 @@ function Brand2() {
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1>{t("bran4")}</h1>
-								<Card.Text>{t("bran5")}</Card.Text>
+								<h1 className="text-start">{t("bran4")}</h1>
+								<Card.Text className="text-start">{t("bran5")}</Card.Text>
 								<Button className="btn-nav" href="#branding-nettetal-preis">
 									{t("bran6")}
 								</Button>

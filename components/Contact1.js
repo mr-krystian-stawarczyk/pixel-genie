@@ -6,39 +6,66 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { useTranslation } from "react-i18next";
 function Contact1() {
 	const { t } = useTranslation();
+
+	function handleCall() {
+		window.location.href = "tel:+49173534346";
+	}
+
+	const handleEmailClick = () => {
+		window.location.href = "mailto:info@pixel-genie.de";
+	};
+
 	return (
-		<Container>
+		<Container className=" ">
 			<Row className="my-5 py-5 justify-content-center text-center align-items-center">
-				<Col lg={4} className="m-3">
+				<Col lg={4} className="mx-auto my-3">
 					{" "}
-					<Card style={{ width: "18rem" }} className="bg-transparent">
+					<Card
+						style={{ minWidth: "18rem" }}
+						className="bg-transparent border-0 shadow-lg"
+					>
 						<Card.Body>
 							<AiOutlinePhone style={{ fontSize: "4rem" }} />
 							<Card.Title>{t("kontakt1")}</Card.Title>
-							<Card.Text>173534346</Card.Text>
-							<Button className="btn-nav">{t("kontakt2")}</Button>
+							<Card.Text>+49 173534346</Card.Text>
+							<Button className="btn-nav" onClick={handleCall}>
+								{t("kontakt2")}
+							</Button>
 						</Card.Body>
 					</Card>
 				</Col>
-				<Col lg={4} className="m-3">
+				<Col lg={4} className="my-3 mx-auto">
 					{" "}
-					<Card style={{ width: "18rem" }} className="bg-transparent">
+					<Card
+						style={{ minWidth: "18rem" }}
+						className="bg-transparent border-0 shadow-lg"
+					>
 						<Card.Body>
 							<AiOutlineMail style={{ fontSize: "4rem" }} />
 							<Card.Title>{t("kontakt3")}</Card.Title>
 							<Card.Text>info@pixel-genie.de</Card.Text>
-							<Button className="btn-nav">{t("kontakt4")}</Button>
+							<Button className="btn-nav" onClick={handleEmailClick}>
+								{t("kontakt4")}
+							</Button>
 						</Card.Body>
 					</Card>
 				</Col>
-				<Col lg={4} className="m-3">
-					<Card style={{ width: "18rem" }} className="bg-transparent">
+				<Col lg={4} className="my-3 mx-auto">
+					<Card
+						style={{ minWidth: "18rem" }}
+						className="bg-transparent border-0 shadow-lg"
+					>
 						<Card.Body>
 							{" "}
 							<HiOutlineLocationMarker style={{ fontSize: "4rem" }} />
 							<Card.Title>{t("kontakt5")}</Card.Title>
 							<Card.Text>Fasanenstr 41134 Nettetal</Card.Text>
-							<Button className="btn-nav">{t("kontakt6")}</Button>
+							<Button
+								className="btn-nav"
+								href="https://www.google.com/maps/place/Pixel-Genie/@51.2989446,6.2737063,15z/data=!4m6!3m5!1s0x47c75783bf077a0f:0x9e16ae7c216c0cb7!8m2!3d51.2989446!4d6.2737063!16s%2Fg%2F11kk7451mc"
+							>
+								{t("kontakt6")}
+							</Button>
 						</Card.Body>
 					</Card>
 				</Col>

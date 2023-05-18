@@ -10,14 +10,15 @@ import SanityRealizacje from "@/components/SanityRealizacje";
 import Faq1 from "@/components/Faq1";
 import Faq2 from "@/components/Faq2";
 import WebPrices from "@/components/WebPrices";
+import ContactForm from "@/components/ContactForm";
 function web() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Pixel Genie Nettetal Webentwicklung</title>
+				<title>Webentwicklung in 41334 Nettetal | Pixel Genie Webagentur</title>
 				<meta
 					name="description"
-					content="Wir sind Ihre Experten für professionelle Websites. Mit unserem breiten Spektrum an Dienstleistungen - von Webdesign über Webentwicklung bis hin zu SEO - unterstützen wir Sie bei der Gestaltung und Optimierung Ihrer Online-Präsenz. Wir bieten Ihnen maßgeschneiderte Lösungen, die auf Ihre individuellen Bedürfnisse zugeschnitten sind und Ihre Marke stärken."
+					content="Professionelle Webentwicklung in Nettetal. Maßgeschneiderte Lösungen für Ihre Online-Präsenz. Von Webdesign über Webentwicklung bis hin zu SEO. Stärken Sie Ihre Marke mit unseren Experten. Kontaktieren Sie uns!"
 				/>
 			</Head>
 			<Web1 />
@@ -28,7 +29,7 @@ function web() {
 			<SanityRealizacje />
 			<WebPrices />
 			<Faq1 />
-			<Faq2 />
+			<ContactForm />
 		</div>
 	);
 }

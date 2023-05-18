@@ -2,11 +2,12 @@ import Image from "next/image";
 import React from "react";
 import { Col, Row, Container, Button } from "react-bootstrap";
 import Head from "next/head";
+import Link from "next/link";
 function error() {
 	return (
 		<Container className="mt-5 pt-5">
 			<Head>
-				<title>Pixel Genie Nettetal 404</title>
+				<title>404 Error in 41334 Nettetal | Pixel Genie Webagentur</title>
 				<meta
 					name="description"
 					content="Leider scheint die von Ihnen angeforderte Seite nicht vorhanden zu sein. Kontaktieren Sie uns, um Hilfe zu erhalten, oder besuchen Sie unsere Startseite, um unsere Dienstleistungen zu sehen."
@@ -14,7 +15,10 @@ function error() {
 			</Head>
 			<Row className="text-center align-items-center justify-content-center">
 				<Col lg={6}>
-					<h1>Something Went Wrong</h1> <Button>Home</Button>
+					<h1>Error</h1>{" "}
+					<Link href="/">
+						<Button className="btn-nav">Home</Button>
+					</Link>
 				</Col>
 				<Col lg={6}>
 					<Image

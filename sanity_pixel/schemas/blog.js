@@ -13,6 +13,11 @@ export default {
       },
     },
     {
+      name: 'date',
+      title: 'Date',
+      type: 'string',
+    },
+    {
       name: 'name',
       title: 'Name',
       type: 'object',

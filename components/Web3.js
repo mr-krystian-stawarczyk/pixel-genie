@@ -51,8 +51,8 @@ function Web3() {
 					<Col lg={5} className="mx-auto">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1>{t("web7")}</h1>
-								<Card.Text>{t("web8")}</Card.Text>
+								<h1 className="text-start">{t("web7")}</h1>
+								<Card.Text className="text-start">{t("web8")}</Card.Text>
 								<Button className="btn-nav" href="#web-design-faq">
 									{t("web9")}
 								</Button>
@@ -62,11 +62,11 @@ function Web3() {
 					<Col lg={5} className="mx-auto">
 						{" "}
 						<Image
-							src="/assets/web3.png"
+							src="/assets/webentwicklung-nettetal-webseiten3.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webentwicklung-nettetal-webseiten3"
 						/>
 					</Col>
 				</Row>
