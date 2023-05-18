@@ -10,7 +10,7 @@ function Brand7() {
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
 					<Image
-						src="/assets/faq3.png"
+						src="/assets/webentwicklung-nettetal-fragen1.png"
 						width={300}
 						height={300}
 						alt="faq-section1-image"

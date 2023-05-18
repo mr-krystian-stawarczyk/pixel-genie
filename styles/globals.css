@@ -59,6 +59,9 @@ a {
 	transition: 1s ease-in-out;
 	color: white !important;
 }
+.vertical-timeline-element-date {
+	color: rgb(133, 133, 133);
+}
 
 #your-div {
 	width: 1300px;

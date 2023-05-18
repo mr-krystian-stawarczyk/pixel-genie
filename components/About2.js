@@ -27,6 +27,7 @@ function About2() {
 					className="vertical-timeline-element--work"
 					date="2016"
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
+					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
 					<h5> {t("about13")} </h5>
 				</VerticalTimelineElement>
@@ -34,6 +35,7 @@ function About2() {
 					className="vertical-timeline-element--work"
 					date="2018"
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
+					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
 					<h5>{t("about14")} </h5>
 				</VerticalTimelineElement>
@@ -41,6 +43,7 @@ function About2() {
 					className="vertical-timeline-element--work"
 					date="2020"
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
+					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
 					<h5>{t("about15")} </h5>
 				</VerticalTimelineElement>
@@ -48,6 +51,7 @@ function About2() {
 					className="vertical-timeline-element--education"
 					date="2021"
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
+					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
 					<h5> {t("about16")} </h5>
 				</VerticalTimelineElement>
@@ -55,6 +59,7 @@ function About2() {
 					className="vertical-timeline-element--education"
 					date="2022"
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
+					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
 					<h5>{t("about17")} </h5>
 				</VerticalTimelineElement>
@@ -62,6 +67,7 @@ function About2() {
 					className="vertical-timeline-element--education"
 					date="2023"
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
+					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
 					<h5> {t("about18")} </h5>
 				</VerticalTimelineElement>

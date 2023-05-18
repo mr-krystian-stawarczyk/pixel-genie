@@ -43,11 +43,18 @@ function About3() {
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="my-5 py-5" id="web-design-faq">
-				{" "}
-				<Row className="text-center my-3">
-					<h1 className="my-5">{t("about19")} </h1>
-					<h3>{t("about20")}</h3>
+				<Row className="justify-content-center align-items-center">
+					<Col lg={4} md={6} xs={12} className="py-5 text-center">
+						<Image
+							src="/assets/webentwicklung-nettetal-fragen1.png"
+							width={300}
+							height={300}
+							alt="webentwicklung-nettetal-fragen1"
+						/>
+						<h4>{t("about20")}</h4>
+					</Col>
 				</Row>
+
 				<Row className="justify-content-center align-items-center">
 					<Col lg={9} className="mx-auto">
 						<Accordion>
