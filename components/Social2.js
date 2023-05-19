@@ -67,11 +67,11 @@ function Social2() {
 					<Col lg={5} className="mx-auto my-2">
 						{" "}
 						<Image
-							src="/assets/socialmedia2.png"
+							src="/assets/webentwicklung-nettetal-socialmedia-webagentur2.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webentwicklung-nettetal-socialmedia-webagentur2"
 						/>
 					</Col>{" "}
 				</Row>

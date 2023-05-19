@@ -4,6 +4,7 @@ import React from "react";
 import Head from "next/head";
 import About3 from "@/components/About3";
 import About4 from "@/components/About4";
+import ContactForm from "@/components/ContactForm";
 function about() {
 	return (
 		<div className="mt-5 pt-5">
@@ -18,6 +19,7 @@ function about() {
 			<About4 />
 			<About2 />
 			<About3 />
+			<ContactForm />
 		</div>
 	);
 }

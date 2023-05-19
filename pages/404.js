@@ -22,11 +22,11 @@ function error() {
 				</Col>
 				<Col lg={6}>
 					<Image
-						src="/assets/404.png"
+						src="/assets/webagentur-nettetal-pixel-genie-404.png"
 						width={500}
 						height={500}
 						className="responsive-image py-3"
-						alt="404-error-image"
+						alt="webagentur-nettetal-pixel-genie-404"
 					/>
 				</Col>
 			</Row>

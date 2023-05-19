@@ -37,10 +37,10 @@ const CookieConsent = (props) => {
 
 	return (
 		<div style={overlayStyle}>
-			<Row className="justify-content-center text-center sticky mt-5 pt-5">
-				<Col className="bg-dark rounded">
+			<Row className="justify-content-center text-center sticky mt-3 pt-3">
+				<Col className="bg-black rounded">
 					<Col className="fixed inset-0 bg-slate-700 bg-opacity-70">
-						<Col className="fixed bottom-0 left-0 right-0 my-2 flex items-center justify-between px-4 py-8 bg-gray-100">
+						<Col className="fixed bottom-0 left-0 right-0 my-1 flex items-center justify-between px-4 py-2 bg-gray-100">
 							<Row>
 								<span className="text-light text-base my-1">
 									{t("policy28")}

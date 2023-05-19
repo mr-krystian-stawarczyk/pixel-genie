@@ -64,11 +64,11 @@ function Brand3() {
 					<Col lg={5} className="mx-auto my-2">
 						{" "}
 						<Image
-							src="/assets/branding3.png"
+							src="/assets/webagentur-nettetal-branding-seo3.png"
 							width={500}
 							height={500}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webagentur-nettetal-branding-seo3"
 						/>
 					</Col>
 				</Row>

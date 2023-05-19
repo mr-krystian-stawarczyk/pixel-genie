@@ -64,11 +64,11 @@ function Social4() {
 					<Col lg={5} className="mx-auto my-2">
 						{" "}
 						<Image
-							src="/assets/socialmedia4.png"
+							src="/assets/webentwicklung-nettetal-socialmedia-webagentur4.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webentwicklung-nettetal-socialmedia-webagentur4"
 						/>
 					</Col>{" "}
 				</Row>

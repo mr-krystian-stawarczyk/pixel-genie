@@ -1,20 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-	Container,
-	Row,
-	Col,
-	Card,
-	Carousel,
-	Button,
-	CardGroup,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Button, CardGroup } from "react-bootstrap";
 import { urlFor } from "../lib/client";
 import sanityClient from "@sanity/client";
 import { useSpring, animated } from "react-spring";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+import Image from "next/image";
 
-function SanityRealizacje() {
+function Web6() {
 	const { t, i18n } = useTranslation();
 
 	const [realizacje, setRealizacje] = useState([]);
@@ -66,11 +59,21 @@ function SanityRealizacje() {
 				{realizacje.map((item) => (
 					<Col lg={6} className="mx-auto my-2" key={item._id}>
 						<Card className="bg-transparent border-0 shadow-lg">
-							<Card.Img
-								className="d-block w-100 "
-								src={urlFor(item.image && item.image[0])}
-								alt={item.name}
-							/>
+							<div
+								style={{
+									position: "relative",
+									width: "100%",
+									height: "0",
+									paddingBottom: "56.25%",
+								}}
+							>
+								<Image
+									src={urlFor(item.image && item.image[0])}
+									alt={item.name.toString()}
+									layout="fill"
+									objectFit="cover"
+								/>
+							</div>
 							<Card.Body>
 								<h3>{item.name[i18n.language]}</h3>
 								<p>{item.details[i18n.language]}</p>
@@ -86,4 +89,4 @@ function SanityRealizacje() {
 	);
 }
 
-export default SanityRealizacje;
+export default Web6;

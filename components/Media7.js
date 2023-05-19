@@ -68,10 +68,10 @@ function Media7() {
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
 					<Image
-						src="/assets/price.png"
+						src="/assets/webentwicklung-webagentur-nettetal-price.png"
 						width={300}
 						height={300}
-						alt="faq-section1-image"
+						alt="webentwicklung-webagentur-nettetal-price"
 					/>
 					<h4>{t("web23")} </h4>
 				</Col>
@@ -137,10 +137,10 @@ function Media7() {
 							</Card.Body>{" "}
 							<Card.Body>
 								<Image
-									src="/assets/bestseller.png"
+									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
 									width={100}
 									height={100}
-									alt="faq-section1-image"
+									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
 								/>
 								<h3>{t("design41")}</h3>
 							</Card.Body>

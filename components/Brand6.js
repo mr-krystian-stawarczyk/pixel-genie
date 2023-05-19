@@ -69,11 +69,11 @@ function Brand6() {
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
 					{" "}
 					<Image
-						src="/assets/price.png"
+						src="/assets/webentwicklung-webagentur-nettetal-price.png"
 						width={300}
 						height={300}
 						className="responsive-image"
-						alt="header2-image"
+						alt="webentwicklung-webagentur-nettetal-price"
 					/>
 					<h4>{t("web23")}</h4>
 				</Col>
@@ -109,11 +109,11 @@ function Brand6() {
 							</Card.Body>{" "}
 							<Card.Body>
 								<Image
-									src="/assets/bestseller.png"
+									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
 									width={100}
 									height={100}
 									className="responsive-image"
-									alt="header2-image"
+									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
 								/>{" "}
 								<h3>{t("bran30")}</h3>
 							</Card.Body>

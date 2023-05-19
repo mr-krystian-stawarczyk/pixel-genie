@@ -52,11 +52,11 @@ function Media3() {
 					<Col lg={5} className="mx-auto my-2">
 						{" "}
 						<Image
-							src="/assets/design3.png"
+							src="/assets/webentwicklung-nettetal-design-seo3.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webentwicklung-nettetal-design-seo3"
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">

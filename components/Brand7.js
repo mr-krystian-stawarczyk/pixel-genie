@@ -13,7 +13,7 @@ function Brand7() {
 						src="/assets/webentwicklung-nettetal-fragen1.png"
 						width={300}
 						height={300}
-						alt="faq-section1-image"
+						alt="webentwicklung-nettetal-fragen1"
 					/>
 					<h4>{t("web117")}</h4>
 				</Col>

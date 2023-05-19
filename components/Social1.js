@@ -53,11 +53,11 @@ function Social1() {
 					<Col lg={5} className="mx-auto my-2">
 						{" "}
 						<Image
-							src="/assets/socialmedia11.png"
+							src="/assets/webentwicklung-nettetal-socialmedia-webagentur1.png"
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="header2-image"
+							alt="webentwicklung-nettetal-socialmedia-webagentur1"
 						/>
 					</Col>{" "}
 					<Col lg={5} className="mx-auto my-2">

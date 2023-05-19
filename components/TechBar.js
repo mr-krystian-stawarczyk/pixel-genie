@@ -44,8 +44,8 @@ const TechBar = () => {
 					<div className="text-center">
 						{" "}
 						<Image
-							src="/assets/bootstrap.png"
-							alt="webentwicklung-nettetal-tech-brands1"
+							src="/assets/webagentur-nettetal-bootstrap-seo.png"
+							alt="webagentur-nettetal-bootstrap-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -53,8 +53,8 @@ const TechBar = () => {
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/canva.png"
-							alt="webentwicklung-nettetal-tech-brands2"
+							src="/assets/webagentur-nettetal-canva-design.png"
+							alt="webagentur-nettetal-canva-design"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -62,8 +62,8 @@ const TechBar = () => {
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/git.png"
-							alt="webentwicklung-nettetal-tech-brands3"
+							src="/assets/webagentur-nettetal-git-entwicklung.png"
+							alt="webagentur-nettetal-git-webentwicklung.png"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -71,8 +71,8 @@ const TechBar = () => {
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/googleanalytics.png"
-							alt="webentwicklung-nettetal-tech-brands4"
+							src="/assets/webagentur-nettetal-google-analytics-seo.png"
+							alt="webagentur-nettetal-google-analytics-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -80,8 +80,8 @@ const TechBar = () => {
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/netlify.png"
-							alt="webentwicklung-nettetal-tech-brands5"
+							src="/assets/webagentur-nettetal-netlify-webentwicklung-seo.png"
+							alt="webagentur-nettetal-netlify-webentwicklung-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -89,8 +89,8 @@ const TechBar = () => {
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/next.png"
-							alt="webentwicklung-nettetal-tech-brands6"
+							src="/assets/webagentur-nettetal-nextjs-webentwicklung-seo.png"
+							alt="webagentur-nettetal-nextjs-webentwicklung-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
@@ -98,8 +98,8 @@ const TechBar = () => {
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/react.png"
-							alt="webentwicklung-nettetal-tech-brands7"
+							src="/assets/webagentur-nettetal-reactjs-webentwicklung-seo.png"
+							alt="webagentur-nettetal-reactjs-webentwicklung-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"

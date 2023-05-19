@@ -22,7 +22,9 @@ const NavbarComp = ({ toggleTheme }) => {
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
 	const [currentTheme, setCurrentTheme] = useState("");
-	const [selectedFlag, setSelectedFlag] = useState("/assets/de-flag.png");
+	const [selectedFlag, setSelectedFlag] = useState(
+		"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
+	);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const { theme, setTheme } = useTheme();
 	const { t, i18n } = useTranslation();
@@ -31,16 +33,24 @@ const NavbarComp = ({ toggleTheme }) => {
 		setDropdownOpen(false);
 		switch (eventKey) {
 			case "flag1":
-				setSelectedFlag("/assets/de-flag.png");
+				setSelectedFlag(
+					"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
+				);
 				break;
 			case "flag2":
-				setSelectedFlag("/assets/eng-flag.png");
+				setSelectedFlag(
+					"/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
+				);
 				break;
 			case "flag3":
-				setSelectedFlag("/assets/pl-flag.png");
+				setSelectedFlag(
+					"/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
+				);
 				break;
 			default:
-				setSelectedFlag("/assets/de-flag.png");
+				setSelectedFlag(
+					"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
+				);
 		}
 	};
 
@@ -197,8 +207,8 @@ const NavbarComp = ({ toggleTheme }) => {
 							<Dropdown.Menu className="text-center jusitfy-content-center">
 								<Dropdown.Item eventKey="flag1">
 									<Image
-										src="/assets/de-flag.png"
-										alt="Flag 1"
+										src="/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
+										alt="webagentur-webentwicklung-nettetal-seo-flagde"
 										width="40"
 										height="40"
 										onClick={() => i18n.changeLanguage("de")}
@@ -207,8 +217,8 @@ const NavbarComp = ({ toggleTheme }) => {
 								<NavDropdown.Divider />
 								<Dropdown.Item eventKey="flag2">
 									<Image
-										src="/assets/eng-flag.png"
-										alt="Flag 2"
+										src="/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
+										alt="webagentur-webentwicklung-nettetal-seo-flageng"
 										width="40"
 										height="40"
 										onClick={() => i18n.changeLanguage("eng")}
@@ -217,8 +227,8 @@ const NavbarComp = ({ toggleTheme }) => {
 								<NavDropdown.Divider />
 								<Dropdown.Item eventKey="flag3">
 									<Image
-										src="/assets/pl-flag.png"
-										alt="Flag 3"
+										src="/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
+										alt="webagentur-webentwicklung-nettetal-seo-flagpl"
 										width="40"
 										height="40"
 										onClick={() => i18n.changeLanguage("pl")}

@@ -5,12 +5,12 @@ import Web4 from "@/components/Web4";
 import React from "react";
 import Head from "next/head";
 import Web5 from "@/components/Web5";
-import SanityRealizacje from "@/components/SanityRealizacje";
 
 import Faq1 from "@/components/Faq1";
 import Faq2 from "@/components/Faq2";
 import WebPrices from "@/components/WebPrices";
 import ContactForm from "@/components/ContactForm";
+import Web6 from "@/components/Web6";
 function web() {
 	return (
 		<div className="mt-5 pt-5">
@@ -26,7 +26,7 @@ function web() {
 			<Web3 />
 			<Web4 />
 			<Web5 />
-			<SanityRealizacje />
+			<Web6 />
 			<WebPrices />
 			<Faq1 />
 			<ContactForm />
