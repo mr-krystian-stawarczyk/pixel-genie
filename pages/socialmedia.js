@@ -17,7 +17,8 @@ function socialmedia() {
 				<meta
 					name="description"
 					content="Pixel-Genie bietet umfassende Social-Media-Marketing-Lösungen, um Ihre Präsenz auf Plattformen wie Facebook, Instagram und Twitter zu maximieren. Kontaktieren Sie uns, um loszulegen."
-				/>
+				/>{" "}
+				<meta name="robots" content="index, follow" />
 			</Head>
 
 			<Social1 />

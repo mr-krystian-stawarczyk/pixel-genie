@@ -8,6 +8,7 @@ import Seo5 from "@/components/Seo5";
 import Seo6 from "@/components/Seo6";
 import Seo7 from "@/components/Seo7";
 import ContactForm from "@/components/ContactForm";
+import Seo8 from "@/components/Seo8";
 function seo() {
 	return (
 		<div className="mt-5 pt-5">
@@ -16,7 +17,8 @@ function seo() {
 				<meta
 					name="description"
 					content="Maximieren Sie Ihr SEO-Ergebnis mit unseren professionellen SEO-Services. Erzielen Sie eine höhere Position in den Suchergebnissen mit unseren effektiven Strategien und Tools. Kontaktieren Sie uns noch heute!"
-				/>
+				/>{" "}
+				<meta name="robots" content="index, follow" />
 			</Head>
 			<Seo1 />
 			<Seo2 />
@@ -24,6 +26,7 @@ function seo() {
 			<Seo4 />
 			<Seo5 />
 			<Seo6 />
+			<Seo8 />
 			<Seo7 />
 			<ContactForm />
 		</div>

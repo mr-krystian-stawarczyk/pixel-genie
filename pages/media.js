@@ -17,7 +17,8 @@ function media() {
 				<meta
 					name="description"
 					content="Pixel-Genie bietet erstklassiges Media-Creating, einschließlich Grafikdesign, Videoproduktion und Fotobearbeitung. Kontaktieren Sie uns, um Ihre Ideen zum Leben zu erwecken."
-				/>
+				/>{" "}
+				<meta name="robots" content="index, follow" />
 			</Head>
 			<Media1 />
 			<Media2 />

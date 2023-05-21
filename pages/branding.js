@@ -18,6 +18,7 @@ function branding() {
 					name="description"
 					content="Unser Corporate Design und Content-Marketing stärken Ihre Marke und erreichen Ihre Zielgruppe. Maßgeschneiderte Lösungen für ein einzigartiges Branding. Entdecken Sie unsere Expertise im Branding und Marketing."
 				/>
+				<meta name="robots" content="index, follow" />
 			</Head>
 			<Brand1 />
 			<Brand2 />

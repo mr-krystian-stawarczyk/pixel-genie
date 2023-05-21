@@ -61,7 +61,7 @@ function Seo5() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 700); // Delay of 1 second (1000 milliseconds)
+			}, 500); // Delay of 1 second (1000 milliseconds)
 		} else {
 			controls2.start(animateOut);
 		}
@@ -74,7 +74,7 @@ function Seo5() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 1300); // Delay of 2 seconds (2000 milliseconds)
+			}, 700); // Delay of 2 seconds (2000 milliseconds)
 		} else {
 			controls3.start(animateOut);
 		}
@@ -87,7 +87,7 @@ function Seo5() {
 		if (inView4) {
 			timeout = setTimeout(() => {
 				controls4.start(animateIn);
-			}, 1900); // Delay of 3 seconds (3000 milliseconds)
+			}, 1000); // Delay of 3 seconds (3000 milliseconds)
 		} else {
 			controls4.start(animateOut);
 		}

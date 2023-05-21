@@ -7,11 +7,14 @@ function blog() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Tipps in 41334 Nettetal | Pixel Genie Webagentur</title>
+				<title>
+					Tipps, Blog, Webseite Erstellen in Nettetal | Pixel Genie Webagentur
+				</title>
 				<meta
 					name="description"
-					content="Pixel-Genie: Unser Blog für Webdesign, Online-Marketing und mehr. Lesen Sie unsere neuesten Artikel und erfahren Sie mehr über die neuesten Trends und Entwicklungen in der Online-Welt."
+					content="Pixel-Genie: Unser Blog für Webdesign, Webseite Erstellen, Webentwicklung, Online-Marketing und mehr. Lesen Sie unsere neuesten Artikel und erfahren Sie mehr über die neuesten Trends und Entwicklungen in der Online-Welt."
 				/>
+				<meta name="robots" content="index, follow" />
 			</Head>
 			<Blog1 />
 			<Blog2 />

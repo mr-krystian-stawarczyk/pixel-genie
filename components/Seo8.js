@@ -7,10 +7,10 @@ import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import Image from "next/image";
 
-function Web6() {
+function Seo8() {
 	const { t, i18n } = useTranslation();
 
-	const [realizacje, setRealizacje] = useState([]);
+	const [seo, setSeo] = useState([]);
 	const client = sanityClient({
 		projectId: process.env.NEXT_PUBLIC_PROJECTID,
 		dataset: "production",
@@ -23,8 +23,8 @@ function Web6() {
 	const [animateImg, setAnimateImg] = useState(false);
 
 	const fetchData = async () => {
-		const result = await client.fetch(`*[_type == "realizacje"]`);
-		setRealizacje(result);
+		const result = await client.fetch(`*[_type == "seo"]`);
+		setSeo(result);
 	};
 
 	useEffect(() => {
@@ -56,7 +56,7 @@ function Web6() {
 				</Col>
 			</Row>
 			<Row className="justify-content-center align-items-center text-center">
-				{realizacje.map((item) => (
+				{seo.map((item) => (
 					<Col lg={6} className="mx-auto my-2" key={item._id}>
 						<Card className="bg-transparent border-0 shadow-lg">
 							<Card.Img
@@ -69,9 +69,6 @@ function Web6() {
 							<Card.Body>
 								<h3>{item.name[i18n.language]}</h3>
 								<p>{item.details[i18n.language]}</p>
-								<Button href={item.link} className="btn-nav px-4">
-									Link
-								</Button>
 							</Card.Body>
 						</Card>{" "}
 					</Col>
@@ -81,4 +78,4 @@ function Web6() {
 	);
 }
 
-export default Web6;
+export default Seo8;

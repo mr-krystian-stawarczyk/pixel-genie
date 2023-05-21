@@ -60,7 +60,7 @@ function About4() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 700); // Delay of 1 second (1000 milliseconds)
+			}, 500); // Delay of 1 second (1000 milliseconds)
 		} else {
 			controls2.start(animateOut);
 		}
@@ -73,7 +73,7 @@ function About4() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 1300); // Delay of 2 seconds (2000 milliseconds)
+			}, 1000); // Delay of 2 seconds (2000 milliseconds)
 		} else {
 			controls3.start(animateOut);
 		}

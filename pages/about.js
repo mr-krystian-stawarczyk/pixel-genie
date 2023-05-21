@@ -14,6 +14,7 @@ function about() {
 					name="description"
 					content="Pixel-Genie: Erfahren Sie mehr über unser Team und unsere Erfahrung in Webdesign und Online-Marketing in Nettetal. Erfahren Sie mehr über unsere Philosophie und unsere Arbeitsweise."
 				/>
+				<meta name="robots" content="index, follow" />
 			</Head>
 			<About1 />
 			<About4 />

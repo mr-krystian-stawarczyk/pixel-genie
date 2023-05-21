@@ -45,7 +45,7 @@ function Brand6() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 1000); // Delay of 1 second (1000 milliseconds)
+			}, 500); // Delay of 1 second (1000 milliseconds)
 		}
 
 		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
@@ -56,7 +56,7 @@ function Brand6() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 2000); // Delay of 2 seconds (2000 milliseconds)
+			}, 1000); // Delay of 2 seconds (2000 milliseconds)
 		}
 
 		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again

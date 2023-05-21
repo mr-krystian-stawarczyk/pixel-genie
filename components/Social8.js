@@ -17,7 +17,7 @@ import Link from "next/link";
 function Social8() {
 	const { t, i18n } = useTranslation();
 
-	const [realizacje, setRealizacje] = useState([]);
+	const [socialmedia, setSocialmedia] = useState([]);
 	const client = sanityClient({
 		projectId: process.env.NEXT_PUBLIC_PROJECTID,
 		dataset: "production",
@@ -30,8 +30,8 @@ function Social8() {
 	const [animateImg, setAnimateImg] = useState(false);
 
 	const fetchData = async () => {
-		const result = await client.fetch(`*[_type == "realizacje"]`);
-		setRealizacje(result);
+		const result = await client.fetch(`*[_type == "socialmedia"]`);
+		setSocialmedia(result);
 	};
 
 	useEffect(() => {
@@ -63,7 +63,7 @@ function Social8() {
 				</Col>
 			</Row>
 			<Row className="justify-content-center align-items-center text-center">
-				{realizacje.map((item) => (
+				{socialmedia.map((item) => (
 					<Col lg={6} key={item._id} className="mx-auto my-2">
 						<Card className="bg-transparent border-0 shadow-lg">
 							<Card.Img
