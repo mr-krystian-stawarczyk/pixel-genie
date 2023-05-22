@@ -1,17 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { Card, Container, Button, Row, Col } from "react-bootstrap";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
-import { useTheme } from "next-themes";
-import { useSpring, animated } from "react-spring";
 import { motion } from "framer-motion";
-
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import Image from "next/image";
-const Header1 = ({ toggleTheme }) => {
-	const { theme, setTheme } = useTheme();
 
+const Header1 = () => {
 	const particlesInit = useCallback(async (engine) => {
 		await loadFull(engine);
 	}, []);
@@ -28,7 +24,7 @@ const Header1 = ({ toggleTheme }) => {
 						},
 					},
 					fullScreen: {
-						enable: false, // this is the line to change
+						enable: false,
 					},
 					fpsLimit: 60,
 					interactivity: {
@@ -94,18 +90,15 @@ const Header1 = ({ toggleTheme }) => {
 					},
 					detectRetina: true,
 				}}
-			/>{" "}
+			/>
 			<>
-				{" "}
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 4 }}
 				>
-					{" "}
 					<Container id="your-div">
 						<Card className="border-0 shadow-lg py-3  bg-transparent">
-							{" "}
 							<Row className="justify-content-center align-items-center">
 								<Col
 									lg={3}
@@ -118,17 +111,17 @@ const Header1 = ({ toggleTheme }) => {
 										height={200}
 										alt="webentwicklung-nettetal-seo1"
 									/>
-								</Col>{" "}
+								</Col>
 								<Col lg={9} className="d-flex border-lg ">
 									<Card.Body className="text-start ">
 										<h1 className="text-bold">{t("h1")}</h1>
 										<h5 className="text-bold">{t("h2")}</h5>
 										<Button as={Link} href="web" className="m-2 btn-lg btn-nav">
 											{t("h3")}
-										</Button>{" "}
+										</Button>
 										<Button as={Link} href="seo" className="m-2 btn-lg btn-nav">
 											{t("h4")}
-										</Button>{" "}
+										</Button>
 										<Button
 											as={Link}
 											href="socialmedia"
@@ -139,7 +132,7 @@ const Header1 = ({ toggleTheme }) => {
 									</Card.Body>
 								</Col>
 							</Row>
-						</Card>{" "}
+						</Card>
 					</Container>
 				</motion.div>
 			</>

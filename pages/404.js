@@ -15,7 +15,7 @@ function error() {
 			</Head>
 			<Row className="text-center align-items-center justify-content-center">
 				<Col lg={6}>
-					<h1>Error</h1>{" "}
+					<h1>Error</h1>
 					<Link href="/">
 						<Button className="btn-nav">Home</Button>
 					</Link>

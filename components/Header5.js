@@ -10,8 +10,8 @@ import { useTranslation } from "react-i18next";
 function Header5() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({
-		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
-		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
+		threshold: 0.5,
+		triggerOnce: false,
 	});
 
 	const animateIn = {
@@ -35,10 +35,8 @@ function Header5() {
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
-			// komponent jest widoczny, więc można uruchomić animację
 			controls.start(animateIn);
 		} else {
-			// komponent jest niewidoczny, więc można uruchomić animację wyjścia
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
@@ -47,7 +45,6 @@ function Header5() {
 			<Container className=" my-5 py-5 ">
 				<Row className="justify-content-center  align-items-center">
 					<Col lg={5} className="mx-auto my-2 text-center">
-						{" "}
 						<Image
 							src="/assets/webentwicklung-nettetal-seo5.png"
 							width={400}
@@ -55,14 +52,14 @@ function Header5() {
 							className="responsive-image"
 							alt="webentwicklung-nettetal-seo5"
 						/>
-					</Col>{" "}
+					</Col>
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
 								<h1>{t("header16")}</h1>
 								<Card.Text>{t("header17")}</Card.Text>
 								<Card.Text>{t("header18")}</Card.Text>
-								<Card.Text>{t("header19")}</Card.Text>{" "}
+								<Card.Text>{t("header19")}</Card.Text>
 								<div className="text-center">
 									<Link href="blog" className="m-1">
 										<Button className="btn-nav px-4 ">{t("header20")}</Button>

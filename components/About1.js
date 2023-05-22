@@ -1,19 +1,17 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
-import { Link } from "react-scroll";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
+
 function About1() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({
-		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
-		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
+		threshold: 0.5,
+		triggerOnce: false,
 	});
 
 	const animateIn = {
@@ -37,20 +35,17 @@ function About1() {
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
-			// komponent jest widoczny, więc można uruchomić animację
 			controls.start(animateIn);
 		} else {
-			// komponent jest niewidoczny, więc można uruchomić animację wyjścia
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
 
 	return (
 		<motion.div ref={ref} animate={controls}>
-			<Container className=" ">
+			<Container>
 				<Row className="justify-content-center align-items-center">
 					<Col lg={5} className="mx-auto my-2 text-center">
-						{" "}
 						<Image
 							src="/assets/webagentur-nettetal-webentwicklung-about1.png"
 							width={400}
@@ -58,7 +53,7 @@ function About1() {
 							className="responsive-image"
 							alt="webagentur-nettetal-webentwicklung-about1"
 						/>
-					</Col>{" "}
+					</Col>
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
@@ -66,7 +61,7 @@ function About1() {
 								<Card.Text>{t("about2")}</Card.Text>
 							</Card.Body>
 						</Card>
-					</Col>{" "}
+					</Col>
 				</Row>
 			</Container>
 		</motion.div>

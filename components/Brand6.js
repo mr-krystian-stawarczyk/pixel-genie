@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
@@ -45,10 +45,10 @@ function Brand6() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 500); // Delay of 1 second (1000 milliseconds)
+			}, 500);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView2, controls2, animateIn]);
 
 	useEffect(() => {
@@ -56,18 +56,16 @@ function Brand6() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 1000); // Delay of 2 seconds (2000 milliseconds)
+			}, 1000);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView3, controls3, animateIn]);
 
 	return (
 		<Container className="my-5 py-5 " id="branding-nettetal-preis">
-			{" "}
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
-					{" "}
 					<Image
 						src="/assets/webentwicklung-webagentur-nettetal-price.png"
 						width={300}
@@ -92,9 +90,7 @@ function Brand6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
-							{" "}
 							<Card.Body>
 								<h1>{t("bran22")}</h1>
 								<Card.Text>{t("bran23")}</Card.Text>
@@ -106,7 +102,7 @@ function Brand6() {
 								<Card.Text>{t("bran27")}</Card.Text>
 								<Card.Text>{t("bran28")}</Card.Text>
 								<Card.Text>{t("bran29")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<Image
 									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
@@ -114,10 +110,10 @@ function Brand6() {
 									height={100}
 									className="responsive-image"
 									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
-								/>{" "}
+								/>
 								<h3>{t("bran30")}</h3>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -127,7 +123,6 @@ function Brand6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("bran31")}</h1>
@@ -141,11 +136,11 @@ function Brand6() {
 								<Card.Text>{t("bran37")}</Card.Text>
 								<Card.Text>{t("bran38")}</Card.Text>
 								<Card.Text>{t("bran39")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h3>{t("bran40")}</h3>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -155,7 +150,6 @@ function Brand6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("bran41")}</h1>
@@ -169,11 +163,11 @@ function Brand6() {
 								<Card.Text>{t("bran47")}</Card.Text>
 								<Card.Text>{t("bran48")}</Card.Text>
 								<Card.Text>{t("bran49")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h3>{t("bran50")}</h3>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 			</Row>

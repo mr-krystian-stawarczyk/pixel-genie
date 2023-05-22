@@ -1,12 +1,11 @@
 import React from "react";
-import Head from "next/head";
-
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
 import { Poppins } from "next/font/google";
 import CookieConsent from "./CookieConsent";
+import ContactForm from "./ContactForm";
 
 const poppins = Poppins({
 	weight: ["400", "700"],
@@ -43,15 +42,13 @@ const Layout = ({ children, pageProps }) => {
 	return (
 		<div className="layout">
 			<div className={poppins.className}>
-				<Head>
-					<title>Pixel-Genie</title>
-				</Head>
 				<header>
 					<Navbar {...pageProps} toggleTheme={toggleTheme} />
 					<CookieConsent />
 				</header>
 				<main className="main-container">{children}</main>
 				<footer>
+					<ContactForm {...pageProps} />
 					<Footer />
 				</footer>
 			</div>

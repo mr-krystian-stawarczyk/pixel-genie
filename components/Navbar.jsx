@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-	NavDropdown,
-	Container,
-	Button,
-	Row,
-	Dropdown,
-	ButtonGroup,
-} from "react-bootstrap";
+import { NavDropdown, Container, Button, Dropdown } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Link from "next/link";
 import Navbar from "react-bootstrap/Navbar";
@@ -16,9 +9,9 @@ import { useTranslation } from "react-i18next";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import ReactGA from "react-ga";
 import i18n from "../i18n.js";
-import { BsFillXCircleFill } from "react-icons/bs";
 
 const NavbarComp = ({ toggleTheme }) => {
+	const { t, i18n } = useTranslation();
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
 	const [currentTheme, setCurrentTheme] = useState("");
@@ -27,7 +20,6 @@ const NavbarComp = ({ toggleTheme }) => {
 	);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const { theme, setTheme } = useTheme();
-	const { t, i18n } = useTranslation();
 
 	const handleDropdownSelect = (eventKey, event) => {
 		setDropdownOpen(false);

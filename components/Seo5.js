@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
@@ -61,12 +61,12 @@ function Seo5() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 500); // Delay of 1 second (1000 milliseconds)
+			}, 500);
 		} else {
 			controls2.start(animateOut);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView2, controls2, animateIn, animateOut]);
 
 	useEffect(() => {
@@ -74,12 +74,12 @@ function Seo5() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 700); // Delay of 2 seconds (2000 milliseconds)
+			}, 700);
 		} else {
 			controls3.start(animateOut);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView3, controls3, animateIn, animateOut]);
 
 	useEffect(() => {
@@ -87,18 +87,17 @@ function Seo5() {
 		if (inView4) {
 			timeout = setTimeout(() => {
 				controls4.start(animateIn);
-			}, 1000); // Delay of 3 seconds (3000 milliseconds)
+			}, 1000);
 		} else {
 			controls4.start(animateOut);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView4, controls4, animateIn, animateOut]);
 	return (
 		<Container className="my-5 py-5" id="process">
 			<Row className="justify-content-center text-center align-items-center">
 				<Col lg={3} className="mx-auto my-2">
-					{" "}
 					<motion.div
 						ref={ref1}
 						animate={controls1}
@@ -114,11 +113,10 @@ function Seo5() {
 								<h2>{t("seo13")}</h2>
 								<Card.Text>{t("seo14")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto my-2">
-					{" "}
 					<motion.div
 						ref={ref2}
 						animate={controls2}
@@ -134,11 +132,10 @@ function Seo5() {
 								<h2>{t("seo15")}</h2>
 								<Card.Text>{t("seo16")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto my-2">
-					{" "}
 					<motion.div
 						ref={ref3}
 						animate={controls3}
@@ -154,11 +151,10 @@ function Seo5() {
 								<h2>{t("seo17")}</h2>
 								<Card.Text>{t("seo18")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto my-2">
-					{" "}
 					<motion.div
 						ref={ref4}
 						animate={controls4}
@@ -174,7 +170,7 @@ function Seo5() {
 								<h2>{t("seo19")}</h2>
 								<Card.Text>{t("seo20")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 			</Row>

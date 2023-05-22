@@ -1,21 +1,18 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import Link from "next/link";
 
 function Brand2() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({
-		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
-		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
+		threshold: 0.5,
+		triggerOnce: false,
 	});
 
 	const animateIn = {
@@ -39,10 +36,8 @@ function Brand2() {
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
-			// komponent jest widoczny, więc można uruchomić animację
 			controls.start(animateIn);
 		} else {
-			// komponent jest niewidoczny, więc można uruchomić animację wyjścia
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
@@ -51,7 +46,6 @@ function Brand2() {
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center text-center align-items-center">
 					<Col lg={5} className="mx-auto my-2">
-						{" "}
 						<Image
 							src="/assets/webagentur-nettetal-branding-seo2.png"
 							width={400}

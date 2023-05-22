@@ -1,9 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
-import { Link } from "react-scroll";
+
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -11,8 +9,8 @@ import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 function Blog1() {
 	const [ref, inView] = useInView({
-		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
-		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
+		threshold: 0.5,
+		triggerOnce: false,
 	});
 
 	const animateIn = {
@@ -36,10 +34,8 @@ function Blog1() {
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
-			// komponent jest widoczny, więc można uruchomić animację
 			controls.start(animateIn);
 		} else {
-			// komponent jest niewidoczny, więc można uruchomić animację wyjścia
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
@@ -60,9 +56,8 @@ function Blog1() {
 								</div>
 							</Card.Body>
 						</Card>
-					</Col>{" "}
+					</Col>
 					<Col lg={5} className="mx-auto my-2  text-center">
-						{" "}
 						<Image
 							src="/assets/webentwicklung-webagentur-nettetal-price.png"
 							width={500}
@@ -70,7 +65,7 @@ function Blog1() {
 							className="responsive-image"
 							alt="webentwicklung-webagentur-nettetal-price"
 						/>
-					</Col>{" "}
+					</Col>
 				</Row>
 			</Container>
 		</motion.div>

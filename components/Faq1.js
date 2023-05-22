@@ -1,6 +1,6 @@
 import Image from "next/image";
-import React, { useRef, useState, useEffect } from "react";
-import { Container, Accordion, Row, Col, Card } from "react-bootstrap";
+import React from "react";
+import { Container, Accordion, Row, Col } from "react-bootstrap";
 
 import { useTranslation } from "react-i18next";
 function Faq1() {
@@ -90,7 +90,7 @@ function Faq1() {
 							<Accordion.Body>{t("web119")}</Accordion.Body>
 						</Accordion.Item>
 					</Accordion>
-				</Col>{" "}
+				</Col>
 			</Row>
 		</Container>
 	);

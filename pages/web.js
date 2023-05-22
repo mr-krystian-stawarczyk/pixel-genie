@@ -7,9 +7,9 @@ import Head from "next/head";
 import Web5 from "@/components/Web5";
 
 import Faq1 from "@/components/Faq1";
-import Faq2 from "@/components/Faq2";
+
 import WebPrices from "@/components/WebPrices";
-import ContactForm from "@/components/ContactForm";
+
 import Web6 from "@/components/Web6";
 function web() {
 	return (
@@ -22,7 +22,7 @@ function web() {
 				<meta
 					name="description"
 					content="Professionelle Webseiten erstellen, Webentwicklung in Nettetal. Maßgeschneiderte Lösungen für Ihre Online-Präsenz. Von Webdesign über Webentwicklung bis hin zu SEO. Stärken Sie Ihre Marke mit unseren Experten. Kontaktieren Sie uns!"
-				/>{" "}
+				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
 			<Web1 />
@@ -33,7 +33,6 @@ function web() {
 			<Web6 />
 			<WebPrices />
 			<Faq1 />
-			<ContactForm />
 		</div>
 	);
 }

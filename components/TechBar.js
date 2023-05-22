@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -42,14 +42,13 @@ const TechBar = () => {
 			<Row className="justify-content-center align-items-center text-center bg-blue my-3 py-3">
 				<Slider {...settings}>
 					<div className="text-center">
-						{" "}
 						<Image
 							src="/assets/webagentur-nettetal-bootstrap-seo.png"
 							alt="webagentur-nettetal-bootstrap-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-						/>{" "}
+						/>
 					</div>
 					<div className="text-center">
 						<Image
@@ -67,7 +66,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-						/>{" "}
+						/>
 					</div>
 					<div className="text-center">
 						<Image
@@ -76,7 +75,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-						/>{" "}
+						/>
 					</div>
 					<div className="text-center">
 						<Image
@@ -85,7 +84,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-						/>{" "}
+						/>
 					</div>
 					<div className="text-center">
 						<Image
@@ -94,7 +93,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-						/>{" "}
+						/>
 					</div>
 					<div className="text-center">
 						<Image
@@ -103,7 +102,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-						/>{" "}
+						/>
 					</div>
 				</Slider>
 			</Row>

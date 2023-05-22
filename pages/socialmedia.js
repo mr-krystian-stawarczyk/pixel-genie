@@ -6,7 +6,7 @@ import React from "react";
 import Head from "next/head";
 import Social5 from "@/components/Social5";
 import Social7 from "@/components/Social7";
-import ContactForm from "@/components/ContactForm";
+
 import Social6 from "@/components/Social6";
 import Social8 from "@/components/Social8";
 function socialmedia() {
@@ -17,7 +17,7 @@ function socialmedia() {
 				<meta
 					name="description"
 					content="Pixel-Genie bietet umfassende Social-Media-Marketing-Lösungen, um Ihre Präsenz auf Plattformen wie Facebook, Instagram und Twitter zu maximieren. Kontaktieren Sie uns, um loszulegen."
-				/>{" "}
+				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
 
@@ -29,7 +29,6 @@ function socialmedia() {
 			<Social8 />
 			<Social6 />
 			<Social7 />
-			<ContactForm />
 		</div>
 	);
 }

@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import emailjs from "emailjs-com";
-import { useSpring, animated } from "react-spring";
+
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -13,8 +13,8 @@ export const ContactForm = () => {
 	const { t } = useTranslation();
 	const { id } = router.query;
 	const [ref, inView] = useInView({
-		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
-		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
+		threshold: 0.5,
+		triggerOnce: false,
 	});
 
 	const animateIn = {
@@ -38,10 +38,8 @@ export const ContactForm = () => {
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
-			// komponent jest widoczny, więc można uruchomić animację
 			controls.start(animateIn);
 		} else {
-			// komponent jest niewidoczny, więc można uruchomić animację wyjścia
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
@@ -49,7 +47,8 @@ export const ContactForm = () => {
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
-		message: "",
+		description: "",
+		phone: "",
 	});
 
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -90,12 +89,10 @@ export const ContactForm = () => {
 		<motion.div ref={ref} animate={controls}>
 			<Container className="my-5 py-5" id="contact">
 				<Row className="text-center">
-					{" "}
 					<h1 className="my-5">{t("header21")}</h1>
 				</Row>
 				<Row className="justify-content-center align-items-center">
 					<Col lg={5} className="mx-auto my-2 text-center">
-						{" "}
 						<Image
 							src="/assets/webentwicklung-nettetal-kontakt-form.png"
 							alt="webentwicklung-nettetal-kontakt-form"
@@ -112,7 +109,6 @@ export const ContactForm = () => {
 							>
 								<Row className="justify-content-center align-items-center">
 									<Col>
-										{" "}
 										<Form.Group className="mb-3" controlId="formBasicEmail">
 											<Form.Control
 												className="p-text my-3"
@@ -185,7 +181,7 @@ export const ContactForm = () => {
 							<div>
 								<h3 className="head-text"> Thank You For Contact!</h3>
 							</div>
-						)}{" "}
+						)}
 					</Col>
 				</Row>
 			</Container>

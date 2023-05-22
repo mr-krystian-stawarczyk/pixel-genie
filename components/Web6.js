@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Container, Row, Col, Card, Button, CardGroup } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { urlFor } from "../lib/client";
 import sanityClient from "@sanity/client";
-import { useSpring, animated } from "react-spring";
+
 import { useTranslation } from "react-i18next";
-import Link from "next/link";
-import Image from "next/image";
 
 function Web6() {
 	const { t, i18n } = useTranslation();
@@ -63,7 +61,6 @@ function Web6() {
 								src={urlFor(item.image && item.image[0])}
 								alt={item.name.toString()}
 								layout="fill"
-								objectFit="cover"
 							/>
 
 							<Card.Body>
@@ -73,7 +70,7 @@ function Web6() {
 									Link
 								</Button>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</Col>
 				))}
 			</Row>

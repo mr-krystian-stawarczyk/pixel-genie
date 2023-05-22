@@ -1,16 +1,13 @@
 import React from "react";
-import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import Link from "next/link";
-import Image from "next/image";
 import {
 	AiOutlineFacebook,
 	AiFillGithub,
 	AiOutlineLinkedin,
 } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
+
 function Contact2() {
 	const { t } = useTranslation();
 	return (
@@ -53,7 +50,7 @@ function Contact2() {
 						<AiFillGithub
 							style={{ fontSize: "8rem" }}
 							className="contact-icons"
-						/>{" "}
+						/>
 					</Link>
 				</Col>
 			</Row>

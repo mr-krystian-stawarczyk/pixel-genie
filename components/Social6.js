@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
@@ -45,10 +45,10 @@ function Social6() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 500); // Delay of 1 second (1000 milliseconds)
+			}, 500);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView2, controls2, animateIn]);
 
 	useEffect(() => {
@@ -56,18 +56,16 @@ function Social6() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 1000); // Delay of 2 seconds (2000 milliseconds)
+			}, 1000);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView3, controls3, animateIn]);
 
 	return (
 		<Container className="my-5 py-5 " id="social-media-preis">
-			{" "}
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
-					{" "}
 					<Image
 						src="/assets/webentwicklung-webagentur-nettetal-price.png"
 						width={300}
@@ -92,9 +90,7 @@ function Social6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
-							{" "}
 							<Card.Body>
 								<h1>{t("socialmedia1")}</h1>
 								<Card.Text>{t("socialmedia2")}</Card.Text>
@@ -105,9 +101,8 @@ function Social6() {
 								<Card.Text>{t("socialmedia5")}</Card.Text>
 								<Card.Text>{t("socialmedia6")}</Card.Text>
 								<Card.Text>{t("socialmedia7")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
-								{" "}
 								<Image
 									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
 									width={100}
@@ -117,7 +112,7 @@ function Social6() {
 								/>
 								<h3>{t("socialmedia8")}</h3>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -127,7 +122,6 @@ function Social6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("socialmedia9")}</h1>
@@ -140,11 +134,11 @@ function Social6() {
 								<Card.Text>{t("socialmedia14")}</Card.Text>
 								<Card.Text>{t("socialmedia15")}</Card.Text>
 								<Card.Text>{t("socialmedia16")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h3>{t("socialmedia17")}</h3>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -154,7 +148,6 @@ function Social6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("socialmedia18")}</h1>
@@ -168,11 +161,11 @@ function Social6() {
 								<Card.Text>{t("socialmedia24")}</Card.Text>
 								<Card.Text>{t("socialmedia25")}</Card.Text>
 								<Card.Text>{t("socialmedia26")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h3>{t("socialmedia27")}</h3>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 			</Row>

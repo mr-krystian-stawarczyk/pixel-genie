@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -13,8 +11,8 @@ import Link from "next/link";
 function Header2() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({
-		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
-		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
+		threshold: 0.5,
+		triggerOnce: false,
 	});
 
 	const animateIn = {
@@ -38,10 +36,8 @@ function Header2() {
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
-			// komponent jest widoczny, więc można uruchomić animację
 			controls.start(animateIn);
 		} else {
-			// komponent jest niewidoczny, więc można uruchomić animację wyjścia
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
@@ -59,14 +55,13 @@ function Header2() {
 								<Card.Text>{t("header4")}</Card.Text>
 								<div className="text-center">
 									<Link href="web" className="m-1">
-										<Button className="btn-nav">{t("header5")}</Button>{" "}
+										<Button className="btn-nav">{t("header5")}</Button>
 									</Link>
 								</div>
 							</Card.Body>
 						</Card>
 					</Col>
 					<Col lg={5} className="mx-auto my-2 text-center">
-						{" "}
 						<Image
 							src="/assets/webentwicklung-nettetal-seo2.png"
 							width={400}
@@ -76,7 +71,7 @@ function Header2() {
 						/>
 					</Col>
 				</Row>
-			</Container>{" "}
+			</Container>
 		</motion.div>
 	);
 }

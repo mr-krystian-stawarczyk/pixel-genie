@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
@@ -51,10 +51,10 @@ function Brand5() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 500); // Delay of 1 second (1000 milliseconds)
+			}, 500);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView2, controls2, animateIn]);
 
 	useEffect(() => {
@@ -62,10 +62,10 @@ function Brand5() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 700); // Delay of 2 seconds (2000 milliseconds)
+			}, 700);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView3, controls3, animateIn]);
 
 	useEffect(() => {
@@ -73,10 +73,10 @@ function Brand5() {
 		if (inView4) {
 			timeout = setTimeout(() => {
 				controls4.start(animateIn);
-			}, 1000); // Delay of 3 seconds (3000 milliseconds)
+			}, 1000);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView4, controls4, animateIn]);
 	return (
 		<Container className="my-5 py-5">
@@ -88,7 +88,6 @@ function Brand5() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card
 							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "48rem" }}
@@ -127,7 +126,6 @@ function Brand5() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card
 							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "48rem" }}
@@ -137,7 +135,7 @@ function Brand5() {
 								<h2>{t("bran18")}</h2>
 								<Card.Text>{t("bran19")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto">
@@ -147,7 +145,6 @@ function Brand5() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card
 							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "48rem" }}

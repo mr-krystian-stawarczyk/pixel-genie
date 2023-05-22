@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import { AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
@@ -19,7 +18,6 @@ function Contact1() {
 		<Container className=" ">
 			<Row className="my-5 py-5 justify-content-center text-center align-items-center">
 				<Col lg={4} className="mx-auto my-3">
-					{" "}
 					<Card
 						style={{ minWidth: "18rem" }}
 						className="bg-transparent border-0 shadow-lg"
@@ -35,7 +33,6 @@ function Contact1() {
 					</Card>
 				</Col>
 				<Col lg={4} className="my-3 mx-auto">
-					{" "}
 					<Card
 						style={{ minWidth: "18rem" }}
 						className="bg-transparent border-0 shadow-lg"
@@ -56,7 +53,6 @@ function Contact1() {
 						className="bg-transparent border-0 shadow-lg"
 					>
 						<Card.Body>
-							{" "}
 							<HiOutlineLocationMarker style={{ fontSize: "4rem" }} />
 							<Card.Title>{t("kontakt5")}</Card.Title>
 							<Card.Text>Fasanenstr 41134 Nettetal</Card.Text>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
@@ -45,10 +45,10 @@ function Media7() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 500); // Delay of 1 second (1000 milliseconds)
+			}, 500);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView2, controls2, animateIn]);
 
 	useEffect(() => {
@@ -56,15 +56,14 @@ function Media7() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 1000); // Delay of 2 seconds (2000 milliseconds)
+			}, 1000);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView3, controls3, animateIn]);
 
 	return (
 		<Container className="my-5 py-5 " id="design-nettetal-preis">
-			{" "}
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
 					<Image
@@ -90,9 +89,7 @@ function Media7() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
-							{" "}
 							<Card.Body>
 								<h1>{t("design21")}</h1>
 								<Card.Text>{t("design22")}</Card.Text>
@@ -105,11 +102,11 @@ function Media7() {
 								<Card.Text>{t("design27")}</Card.Text>
 								<Card.Text>{t("design28")}</Card.Text>
 								<Card.Text>{t("design29")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h4>{t("design30")}</h4>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -119,7 +116,6 @@ function Media7() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("design31")}</h1>
@@ -134,7 +130,7 @@ function Media7() {
 								<Card.Text>{t("design38")}</Card.Text>
 								<Card.Text>{t("design39")}</Card.Text>
 								<Card.Text>{t("design40")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<Image
 									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
@@ -144,7 +140,7 @@ function Media7() {
 								/>
 								<h3>{t("design41")}</h3>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -154,7 +150,6 @@ function Media7() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("design42")}</h1>
@@ -169,11 +164,11 @@ function Media7() {
 								<Card.Text>{t("design49")}</Card.Text>
 								<Card.Text>{t("design50")}</Card.Text>
 								<Card.Text>{t("design51")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h3>{t("design52")}</h3>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 			</Row>

@@ -7,7 +7,7 @@ import Head from "next/head";
 import Seo5 from "@/components/Seo5";
 import Seo6 from "@/components/Seo6";
 import Seo7 from "@/components/Seo7";
-import ContactForm from "@/components/ContactForm";
+
 import Seo8 from "@/components/Seo8";
 function seo() {
 	return (
@@ -28,7 +28,6 @@ function seo() {
 			<Seo6 />
 			<Seo8 />
 			<Seo7 />
-			<ContactForm />
 		</div>
 	);
 }

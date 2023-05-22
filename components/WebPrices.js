@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
@@ -45,10 +45,10 @@ function WebPrices() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 500); // Delay of 1 second (1000 milliseconds)
+			}, 500);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView2, controls2, animateIn]);
 
 	useEffect(() => {
@@ -56,15 +56,14 @@ function WebPrices() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 1000); // Delay of 2 seconds (2000 milliseconds)
+			}, 1000);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView3, controls3, animateIn]);
 
 	return (
 		<Container className="my-5 py-5 " id="web-design-pricing">
-			{" "}
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
 					<Image
@@ -90,9 +89,7 @@ function WebPrices() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
-							{" "}
 							<Card.Body>
 								<h1>{t("web24")}</h1>
 								<Card.Text>{t("web25")}</Card.Text>
@@ -109,14 +106,14 @@ function WebPrices() {
 								<Card.Text>{t("web34")}</Card.Text>
 								<Card.Text>{t("web35")}</Card.Text>
 								<Card.Text>{t("web36")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h4>{t("web37")}</h4>
 								<Card.Text>{t("web38")}</Card.Text>
 								<Card.Text>{t("web39")}</Card.Text>
 								<Card.Text> {t("web40")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -126,7 +123,6 @@ function WebPrices() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("web41")}</h1>
@@ -148,7 +144,7 @@ function WebPrices() {
 								<Card.Text>{t("web55")}</Card.Text>
 								<Card.Text>{t("web56")}</Card.Text>
 								<Card.Text>{t("web57")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<Image
 									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
@@ -161,7 +157,7 @@ function WebPrices() {
 								<Card.Text>{t("web60")}</Card.Text>
 								<Card.Text> {t("web61")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -171,7 +167,6 @@ function WebPrices() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("web62")}</h1>
@@ -195,14 +190,14 @@ function WebPrices() {
 								<Card.Text>{t("web78")}</Card.Text>
 								<Card.Text>{t("web79")}</Card.Text>
 								<Card.Text>{t("web80")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h3>{t("web81")}</h3>
 								<Card.Text>{t("web82")}</Card.Text>
 								<Card.Text>{t("web83")}</Card.Text>
 								<Card.Text>{t("web84")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 			</Row>

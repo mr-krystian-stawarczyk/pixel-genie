@@ -8,7 +8,7 @@ import Media5 from "@/components/Media5";
 import Media6 from "@/components/Media6";
 import Media7 from "@/components/Media7";
 import Media8 from "@/components/Media8";
-import ContactForm from "@/components/ContactForm";
+
 function media() {
 	return (
 		<div className="mt-5 pt-5">
@@ -17,7 +17,7 @@ function media() {
 				<meta
 					name="description"
 					content="Pixel-Genie bietet erstklassiges Media-Creating, einschließlich Grafikdesign, Videoproduktion und Fotobearbeitung. Kontaktieren Sie uns, um Ihre Ideen zum Leben zu erwecken."
-				/>{" "}
+				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
 			<Media1 />
@@ -28,7 +28,6 @@ function media() {
 			<Media6 />
 			<Media7 />
 			<Media8 />
-			<ContactForm />
 		</div>
 	);
 }

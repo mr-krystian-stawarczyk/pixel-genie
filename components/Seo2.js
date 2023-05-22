@@ -9,8 +9,8 @@ import { useTranslation } from "react-i18next";
 function Seo2() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({
-		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
-		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
+		threshold: 0.5,
+		triggerOnce: false,
 	});
 
 	const animateIn = {
@@ -34,10 +34,8 @@ function Seo2() {
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
-			// komponent jest widoczny, więc można uruchomić animację
 			controls.start(animateIn);
 		} else {
-			// komponent jest niewidoczny, więc można uruchomić animację wyjścia
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
@@ -46,7 +44,6 @@ function Seo2() {
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center text-center align-items-center">
 					<Col lg={5} className="mx-auto my-2">
-						{" "}
 						<Image
 							src="/assets/SEO-webentwicklung-nettetal-2.png"
 							width={400}
@@ -54,7 +51,7 @@ function Seo2() {
 							className="responsive-image"
 							alt="SEO-webentwicklung-nettetal-2"
 						/>
-					</Col>{" "}
+					</Col>
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>

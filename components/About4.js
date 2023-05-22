@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -60,12 +60,12 @@ function About4() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 500); // Delay of 1 second (1000 milliseconds)
+			}, 500);
 		} else {
 			controls2.start(animateOut);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView2, controls2, animateIn, animateOut]);
 
 	useEffect(() => {
@@ -73,12 +73,12 @@ function About4() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 1000); // Delay of 2 seconds (2000 milliseconds)
+			}, 1000);
 		} else {
 			controls3.start(animateOut);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView3, controls3, animateIn, animateOut]);
 
 	useEffect(() => {
@@ -86,12 +86,12 @@ function About4() {
 		if (inView4) {
 			timeout = setTimeout(() => {
 				controls4.start(animateIn);
-			}, 1900); // Delay of 3 seconds (3000 milliseconds)
+			}, 1900);
 		} else {
 			controls4.start(animateOut);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView4, controls4, animateIn, animateOut]);
 	return (
 		<Container className="my-5 py-5">

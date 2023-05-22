@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
@@ -45,10 +45,10 @@ function Seo6() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 500); // Delay of 1 second (1000 milliseconds)
+			}, 500);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView2, controls2, animateIn]);
 
 	useEffect(() => {
@@ -56,18 +56,16 @@ function Seo6() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 1000); // Delay of 2 seconds (2000 milliseconds)
+			}, 1000);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView3, controls3, animateIn]);
 
 	return (
 		<Container className="my-5 py-5 " id="web-design-pricing">
-			{" "}
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
-					{" "}
 					<Image
 						src="/assets/webentwicklung-webagentur-nettetal-price.png"
 						width={300}
@@ -92,9 +90,7 @@ function Seo6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
-							{" "}
 							<Card.Body>
 								<h1>{t("seo21")}</h1>
 								<Card.Text>{t("seo22")}</Card.Text>
@@ -108,14 +104,14 @@ function Seo6() {
 								<Card.Text>{t("seo28")}</Card.Text>
 								<Card.Text>{t("seo29")}</Card.Text>
 								<Card.Text>{t("seo30")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h4>{t("seo31")}</h4>
 								<Card.Text>{t("seo32")}</Card.Text>
 								<Card.Text>{t("seo33")}</Card.Text>
 								<Card.Text> {t("seo34")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -125,7 +121,6 @@ function Seo6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("seo35")}</h1>
@@ -140,7 +135,7 @@ function Seo6() {
 								<Card.Text>{t("seo42")}</Card.Text>
 								<Card.Text>{t("seo43")}</Card.Text>
 								<Card.Text>{t("seo44")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<Image
 									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
@@ -154,7 +149,7 @@ function Seo6() {
 								<Card.Text>{t("seo47")}</Card.Text>
 								<Card.Text>{t("seo48")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={4} className="mx-auto my-2">
@@ -164,7 +159,6 @@ function Seo6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>{t("seo49")}</h1>
@@ -179,14 +173,14 @@ function Seo6() {
 								<Card.Text>{t("seo56")}</Card.Text>
 								<Card.Text>{t("seo57")}</Card.Text>
 								<Card.Text>{t("seo58")}</Card.Text>
-							</Card.Body>{" "}
+							</Card.Body>
 							<Card.Body>
 								<h3>{t("seo59")}</h3>
 								<Card.Text>{t("seo60")}</Card.Text>
 								<Card.Text>{t("seo61")}</Card.Text>
 								<Card.Text>{t("seo62")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 			</Row>

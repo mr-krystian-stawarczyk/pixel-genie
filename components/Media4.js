@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import SplitTextJS from "split-text-js";
-import gsap from "gsap";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -13,8 +11,8 @@ import { useTranslation } from "react-i18next";
 function Media4() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({
-		threshold: 0.5, // określa część komponentu, która musi być widoczna, aby został uznany za widoczny
-		triggerOnce: false, // określa, czy zdarzenie wchodzenia w widok ma być wywołane tylko raz
+		threshold: 0.5,
+		triggerOnce: false,
 	});
 
 	const animateIn = {
@@ -38,10 +36,8 @@ function Media4() {
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
-			// komponent jest widoczny, więc można uruchomić animację
 			controls.start(animateIn);
 		} else {
-			// komponent jest niewidoczny, więc można uruchomić animację wyjścia
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
@@ -61,7 +57,6 @@ function Media4() {
 						</Card>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">
-						{" "}
 						<Image
 							src="/assets/webentwicklung-nettetal-design-seo4.png"
 							width={400}

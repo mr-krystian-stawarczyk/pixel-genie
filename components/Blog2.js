@@ -1,16 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-	Container,
-	Row,
-	Col,
-	Card,
-	Carousel,
-	Button,
-	CardGroup,
-} from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { urlFor } from "../lib/client";
 import sanityClient from "@sanity/client";
-import { useSpring, animated } from "react-spring";
+
 import { useTranslation } from "react-i18next";
 
 function Blog2() {

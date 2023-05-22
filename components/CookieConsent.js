@@ -2,7 +2,6 @@ import React from "react";
 import { hasCookie, setCookie } from "cookies-next";
 import { Button, Col, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import Link from "next/link";
 
 const CookieConsent = (props) => {
 	const [showConsent, setShowConsent] = React.useState(true);
@@ -32,7 +31,7 @@ const CookieConsent = (props) => {
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
-		backdropFilter: "blur(8px)", // Dodaje efekt rozmycia
+		backdropFilter: "blur(8px)",
 	};
 
 	return (

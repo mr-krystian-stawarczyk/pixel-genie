@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Container, Row, Col, Card, Button, CardGroup } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { urlFor } from "../lib/client";
 import sanityClient from "@sanity/client";
-import { useSpring, animated } from "react-spring";
+
 import { useTranslation } from "react-i18next";
-import Link from "next/link";
-import Image from "next/image";
 
 function Seo8() {
 	const { t, i18n } = useTranslation();
@@ -63,14 +61,13 @@ function Seo8() {
 								src={urlFor(item.image && item.image[0])}
 								alt={item.name.toString()}
 								layout="fill"
-								objectFit="cover"
 							/>
 
 							<Card.Body>
 								<h3>{item.name[i18n.language]}</h3>
 								<p>{item.details[i18n.language]}</p>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</Col>
 				))}
 			</Row>

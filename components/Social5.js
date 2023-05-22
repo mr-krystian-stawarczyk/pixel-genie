@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
@@ -61,12 +61,12 @@ function Social5() {
 		if (inView2) {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
-			}, 500); // Delay of 1 second (1000 milliseconds)
+			}, 500);
 		} else {
 			controls2.start(animateOut);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView2, controls2, animateIn, animateOut]);
 
 	useEffect(() => {
@@ -74,12 +74,12 @@ function Social5() {
 		if (inView3) {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
-			}, 700); // Delay of 2 seconds (2000 milliseconds)
+			}, 700);
 		} else {
 			controls3.start(animateOut);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView3, controls3, animateIn, animateOut]);
 
 	useEffect(() => {
@@ -87,12 +87,12 @@ function Social5() {
 		if (inView4) {
 			timeout = setTimeout(() => {
 				controls4.start(animateIn);
-			}, 1000); // Delay of 3 seconds (3000 milliseconds)
+			}, 1000);
 		} else {
 			controls4.start(animateOut);
 		}
 
-		return () => clearTimeout(timeout); // Clear the timeout when the component unmounts or when the effect runs again
+		return () => clearTimeout(timeout);
 	}, [inView4, controls4, animateIn, animateOut]);
 	return (
 		<Container className="my-5 py-5" id="social-media-nettetal-process">
@@ -113,7 +113,7 @@ function Social5() {
 								<h2>{t("design93")}</h2>
 								<Card.Text>{t("design94")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto my-2">
@@ -123,7 +123,6 @@ function Social5() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card
 							className="border-0  bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
@@ -133,7 +132,7 @@ function Social5() {
 								<h2>{t("design95")}</h2>
 								<Card.Text>{t("design96")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto my-2">
@@ -143,7 +142,6 @@ function Social5() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						{" "}
 						<Card
 							className="border-0  bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
@@ -153,7 +151,7 @@ function Social5() {
 								<h2>{t("design97")}</h2>
 								<Card.Text>{t("design98")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 				<Col lg={3} className="mx-auto my-2">
@@ -172,7 +170,7 @@ function Social5() {
 								<h2>{t("design99")}</h2>
 								<Card.Text>{t("design100")}</Card.Text>
 							</Card.Body>
-						</Card>{" "}
+						</Card>
 					</motion.div>
 				</Col>
 			</Row>

@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 function policy() {
 	const { t } = useTranslation();

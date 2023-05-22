@@ -7,7 +7,7 @@ import Head from "next/head";
 import Brand5 from "@/components/Brand5";
 import Brand6 from "@/components/Brand6";
 import Brand7 from "@/components/Brand7";
-import ContactForm from "@/components/ContactForm";
+
 import Brand8 from "@/components/Brand8";
 function branding() {
 	return (
@@ -28,7 +28,6 @@ function branding() {
 			<Brand5 />
 			<Brand6 />
 			<Brand7 />
-			<ContactForm />
 		</div>
 	);
 }
