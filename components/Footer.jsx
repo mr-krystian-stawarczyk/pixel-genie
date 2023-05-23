@@ -1,7 +1,9 @@
 import Link from "next/link";
 import React, { useRef, useState, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { useSpring, animated } from "react-spring";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -13,42 +15,42 @@ import {
 function Footer() {
 	const { t } = useTranslation();
 	const sectionRef = useRef(null);
-	const [animate, setAnimate] = useState(false);
-	const [animateImg, setAnimateImg] = useState(false);
+
 	const handleEmailClick = () => {
 		window.location.href = "mailto:info@pixel-genie.de";
 	};
 
-	const handleIntersection = (entries) => {
-		if (entries[0].isIntersecting) {
-			setAnimate(true);
-			setAnimateImg(true);
-
-			let count = 300;
-			const interval = setInterval(() => {
-				if (count === 0) {
-					clearInterval(interval);
-				}
-			}, 10);
-		}
-	};
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(handleIntersection);
-		observer.observe(sectionRef.current);
-		return () => observer.disconnect();
-	}, []);
-
-	const animationProps = useSpring({
-		from: { opacity: 0, transform: "translateX(-50%)" },
-		to: {
-			opacity: animate ? 1 : 0,
-			transform: animate ? "translateX(0)" : "translateX(-50%)",
-		},
-		config: { duration: 1000 },
-		delay: 1000,
+	const [ref, inView] = useInView({
+		threshold: 0.5,
+		triggerOnce: false,
 	});
 
+	const animateIn = {
+		opacity: 1,
+
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
+	};
+
+	const animateOut = {
+		opacity: 0,
+
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
+	};
+
+	const controls = useAnimation();
+	useEffect(() => {
+		if (inView) {
+			controls.start(animateIn);
+		} else {
+			controls.start(animateOut);
+		}
+	}, [inView, controls, animateIn, animateOut]);
 	return (
 		<Container
 			fluid
@@ -56,7 +58,7 @@ function Footer() {
 			ref={sectionRef}
 			id="contact"
 		>
-			<animated.div style={animationProps}>
+			<motion.div ref={ref} animate={controls}>
 				<Row className=" justify-content-center align-items-top text-center  mt-2  border-bottom">
 					<Col lg={3} sm={6} className="mx-auto">
 						<Card
@@ -170,7 +172,7 @@ function Footer() {
 						</Link>
 					</Col>
 				</Row>
-			</animated.div>
+			</motion.div>
 		</Container>
 	);
 }

@@ -59,6 +59,7 @@ a {
 	transition: 1s ease-in-out;
 	color: white !important;
 }
+
 .vertical-timeline-element-date {
 	color: rgb(133, 133, 133);
 }
@@ -163,6 +164,11 @@ a {
 		z-index: 999;
 		left: 1%;
 		top: 30%;
+	}
+
+	#basic-navbar-nav {
+		backdrop-filter: blur(10px);
+		background: transparent !important;
 	}
 }
 

@@ -115,14 +115,13 @@ const NavbarComp = ({ toggleTheme }) => {
 						style={{ fontSize: "2rem" }}
 						className={scrolled ? "logo" : "logo1"}
 					>
-						{" "}
 						Pixel Genie
 					</span>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse
 					id="basic-navbar-nav"
-					className=" rounded justify-content-end text-center  m-1 navbar-toggler border-0"
+					className=" rounded justify-content-end text-center  m-1  navbar-toggler border-0"
 				>
 					<Nav className="navbar-collapse justify-content-end text-center rounded ">
 						<Nav.Link as={Link} href="about" className="m-1">
@@ -137,7 +136,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							style={{
 								fontSize: "1rem",
 							}}
-							show={dropdownOpen} // Add show prop to control visibility
+							show={dropdownOpen}
 							onToggle={setDropdownOpen}
 						>
 							<NavDropdown.Item as={Link} href="web" className="">
@@ -152,15 +151,15 @@ const NavbarComp = ({ toggleTheme }) => {
 							</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item as={Link} href="branding">
-								<Button className="w-100 border-0 btn-nav ">Branding</Button>{" "}
+								<Button className="w-100 border-0 btn-nav ">Branding</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Item as={Link} href="media">
-								<Button className="w-100 border-0 btn-nav ">Design</Button>{" "}
+								<Button className="w-100 border-0 btn-nav ">Design</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Item as={Link} href="socialmedia">
 								<Button className="w-100 border-0 btn-nav ">
 									Social Media
-								</Button>{" "}
+								</Button>
 							</NavDropdown.Item>
 						</NavDropdown>
 						<Nav.Link as={Link} href="blog">
@@ -170,10 +169,9 @@ const NavbarComp = ({ toggleTheme }) => {
 						</Nav.Link>
 						<Nav.Link as={Link} href="contact" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								{" "}
 								{t("nav6")}
 							</Button>
-						</Nav.Link>{" "}
+						</Nav.Link>
 						<Button
 							onClick={toggleTheme}
 							className="btn-nav border-0  btn-md py-2 mx-1"
@@ -215,7 +213,7 @@ const NavbarComp = ({ toggleTheme }) => {
 										height="40"
 										onClick={() => i18n.changeLanguage("eng")}
 									/>
-								</Dropdown.Item>{" "}
+								</Dropdown.Item>
 								<NavDropdown.Divider />
 								<Dropdown.Item eventKey="flag3">
 									<Image
