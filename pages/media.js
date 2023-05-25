@@ -8,6 +8,7 @@ import Media5 from "@/components/Media5";
 import Media6 from "@/components/Media6";
 import Media7 from "@/components/Media7";
 import Media8 from "@/components/Media8";
+import Media9 from "@/components/Media9";
 
 function media() {
 	return (
@@ -20,6 +21,7 @@ function media() {
 				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
+			<Media9 />
 			<Media1 />
 			<Media2 />
 			<Media3 />

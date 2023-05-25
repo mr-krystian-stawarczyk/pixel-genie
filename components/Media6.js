@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 function Media6() {
 	const { t, i18n } = useTranslation();
 
-	const [realizacje, setRealizacje] = useState([]);
+	const [media, setMedia] = useState([]);
 	const client = sanityClient({
 		projectId: process.env.NEXT_PUBLIC_PROJECTID,
 		dataset: "production",
@@ -21,8 +21,8 @@ function Media6() {
 	const [animateImg, setAnimateImg] = useState(false);
 
 	const fetchData = async () => {
-		const result = await client.fetch(`*[_type == "realizacje"]`);
-		setRealizacje(result);
+		const result = await client.fetch(`*[_type == "media"]`);
+		setMedia(result);
 	};
 
 	useEffect(() => {
@@ -54,20 +54,17 @@ function Media6() {
 				</Col>
 			</Row>
 			<Row className="justify-content-center align-items-center text-center">
-				{realizacje.map((item) => (
-					<Col lg={6} className="mx-auto my-2" key={item._id}>
+				{media.map((item) => (
+					<Col lg={3} className="mx-auto my-2" key={item._id}>
 						<Card className="bg-transparent border-0 shadow-lg">
 							<Card.Img
 								className="d-block w-100 "
 								src={urlFor(item.image && item.image[0])}
-								alt={item.name}
+								alt={item.image && item.image[0].alt}
 							/>
 							<Card.Body>
 								<h3>{item.name[i18n.language]}</h3>
 								<p>{item.details[i18n.language]}</p>
-								<Button href={item.link} className="btn-nav px-4">
-									Link
-								</Button>
 							</Card.Body>
 						</Card>
 					</Col>

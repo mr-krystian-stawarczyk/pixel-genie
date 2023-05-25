@@ -59,7 +59,7 @@ function Web6() {
 						<Card className="bg-transparent border-0 shadow-lg">
 							<Card.Img
 								src={urlFor(item.image && item.image[0])}
-								alt={item.name.toString()}
+								alt={item.image && item.image[0].alt}
 								layout="fill"
 							/>
 

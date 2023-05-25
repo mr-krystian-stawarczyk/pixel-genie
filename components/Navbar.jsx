@@ -105,17 +105,17 @@ const NavbarComp = ({ toggleTheme }) => {
 			<Container>
 				<Navbar.Brand as={Link} href="/" className=" rounded  py-0 ">
 					<Image
-						alt=""
+						alt="pixel-genie-nettetal-webentwicklung-logo"
 						src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
 						width="50"
 						height="50"
-						className="mb-2"
+						className="pb-2 mb-1"
 					/>
 					<span
 						style={{ fontSize: "2rem" }}
 						className={scrolled ? "logo" : "logo1"}
 					>
-						Pixel Genie
+						<span className="mx-2">Pixel Genie</span>
 					</span>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />

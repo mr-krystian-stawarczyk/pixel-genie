@@ -7,10 +7,24 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'array',
-      of: [{type: 'image'}],
-      options: {
-        hotspot: true,
-      },
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+              options: {
+                isHighlighted: true,
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'date',

@@ -60,7 +60,7 @@ function Social8() {
 							<Card.Img
 								className="d-block w-100 "
 								src={urlFor(item.image && item.image[0])}
-								alt={item.name}
+								alt={item.image && item.image[0].alt}
 							/>
 							<Card.Body>
 								<h3>{item.name[i18n.language]}</h3>

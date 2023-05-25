@@ -65,7 +65,7 @@ function Brand8() {
 									className="d-block w-100 rounded-0"
 									style={{ width: "300px" }}
 									src={urlFor(item.image && item.image[0])}
-									alt={item.name}
+									alt={item.image && item.image[0].alt}
 								/>
 								<Card.Body>
 									<h3>{item.name[i18n.language]}</h3>

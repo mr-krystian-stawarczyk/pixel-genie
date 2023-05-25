@@ -57,7 +57,7 @@ function Blog2() {
 						<Card className="bg-transparent m-2 p-3 shadow-lg">
 							<Card.Img
 								src={urlFor(item.image && item.image[0])}
-								alt={item.name.toString()}
+								alt={item.image && item.image[0].alt}
 								style={{ height: "200px", width: "200px" }}
 								className="mx-auto"
 							/>

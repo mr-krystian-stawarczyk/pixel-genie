@@ -1,6 +1,6 @@
 export default {
-  name: 'branding',
-  title: 'Branding',
+  name: 'media',
+  title: 'Media',
   type: 'document',
   fields: [
     {
