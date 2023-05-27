@@ -7,8 +7,9 @@ import Head from "next/head";
 import Seo5 from "@/components/Seo5";
 import Seo6 from "@/components/Seo6";
 import Seo7 from "@/components/Seo7";
-
+import { Partytown } from "@builder.io/partytown/react";
 import Seo8 from "@/components/Seo8";
+
 function seo() {
 	return (
 		<div className="mt-5 pt-5">
@@ -17,8 +18,9 @@ function seo() {
 				<meta
 					name="description"
 					content="Maximieren Sie Ihr SEO-Ergebnis mit unseren professionellen SEO-Services. Erzielen Sie eine höhere Position in den Suchergebnissen mit unseren effektiven Strategien und Tools. Kontaktieren Sie uns noch heute!"
-				/>{" "}
+				/>
 				<meta name="robots" content="index, follow" />
+				<Partytown debug={true} forward={["dataLayer.push"]} />
 			</Head>
 			<Seo1 />
 			<Seo2 />

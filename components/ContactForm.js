@@ -99,6 +99,7 @@ export const ContactForm = () => {
 							width={400}
 							height={400}
 							className="responsive-image"
+							loading="lazy"
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">
@@ -109,7 +110,7 @@ export const ContactForm = () => {
 							>
 								<Row className="justify-content-center align-items-center">
 									<Col>
-										<Form.Group className="mb-3" controlId="formBasicEmail">
+										<Form.Group className="mb-3">
 											<Form.Control
 												className="p-text my-3"
 												type="text"
@@ -118,11 +119,13 @@ export const ContactForm = () => {
 												name="name"
 												onChange={handleChangeInput}
 												required
+												autoComplete="true"
+												id="nameInput"
 											/>
 										</Form.Group>
 									</Col>
 									<Col>
-										<Form.Group className="mb-3" controlId="formBasicEmail">
+										<Form.Group className="mb-3">
 											<Form.Control
 												className="p-text my-3"
 												type="text"
@@ -131,11 +134,13 @@ export const ContactForm = () => {
 												name="phone"
 												onChange={handleChangeInput}
 												required
+												autoComplete="true"
+												id="phoneInput"
 											/>
 										</Form.Group>
 									</Col>
 									<Col>
-										<Form.Group className="mb-3" controlId="formBasicEmail">
+										<Form.Group className="mb-3">
 											<Form.Control
 												className="p-text my-3"
 												type="email"
@@ -144,14 +149,15 @@ export const ContactForm = () => {
 												name="email"
 												onChange={handleChangeInput}
 												required
+												autoComplete="true"
+												id="emailInput"
 											/>
 										</Form.Group>
 									</Col>
 								</Row>
 								<Row>
 									<Col>
-										<Form.Group className="my-3" controlId="formBasicEmail">
-											<Form.Label>Description</Form.Label>
+										<Form.Group className="my-3">
 											<Form.Control
 												className="p-text my-3"
 												as="textarea"
@@ -161,6 +167,7 @@ export const ContactForm = () => {
 												onChange={handleChangeInput}
 												rows={3}
 												required
+												id="descriptionInput"
 											/>
 										</Form.Group>
 									</Col>

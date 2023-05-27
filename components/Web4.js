@@ -52,6 +52,7 @@ function Web4() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-webseiten4"
+							loading="lazy"
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto">

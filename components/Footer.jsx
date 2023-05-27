@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
-
+import Image from "next/image";
 import {
 	AiOutlineFacebook,
 	AiFillGithub,
@@ -62,7 +62,7 @@ function Footer() {
 				<Row className=" justify-content-center align-items-top text-center  mt-2  border-bottom">
 					<Col lg={3} sm={6} className="mx-auto">
 						<Card
-							style={{ width: "18rem" }}
+							style={{ width: "20rem" }}
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
@@ -87,7 +87,7 @@ function Footer() {
 					</Col>
 					<Col lg={3} sm={6} className=" mx-auto">
 						<Card
-							style={{ width: "18rem" }}
+							style={{ width: "20rem" }}
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
@@ -109,7 +109,7 @@ function Footer() {
 					</Col>
 					<Col lg={3} sm={6} className=" mx-auto">
 						<Card
-							style={{ width: "18rem" }}
+							style={{ width: "20rem" }}
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
@@ -153,12 +153,12 @@ function Footer() {
 					<Col lg={3} sm={6} className=" mx-auto">
 						<Card
 							className="bg-transparent border-0 shadow-lg pt-3 "
-							style={{ width: "18rem" }}
+							style={{ width: "20rem" }}
 						>
 							<Card.Title className="my-3">{t("footer14")}</Card.Title>
-							<h3 className="py-5" onClick={handleEmailClick}>
+							<h4 className="py-5" onClick={handleEmailClick}>
 								info@pixel-genie.de
-							</h3>
+							</h4>
 						</Card>
 					</Col>
 				</Row>

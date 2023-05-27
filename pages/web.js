@@ -7,7 +7,7 @@ import Head from "next/head";
 import Web5 from "@/components/Web5";
 
 import Faq1 from "@/components/Faq1";
-
+import { Partytown } from "@builder.io/partytown/react";
 import WebPrices from "@/components/WebPrices";
 
 import Web6 from "@/components/Web6";
@@ -24,6 +24,7 @@ function web() {
 					content="Professionelle Webseiten erstellen, Webentwicklung in Nettetal. Maßgeschneiderte Lösungen für Ihre Online-Präsenz. Von Webdesign über Webentwicklung bis hin zu SEO. Stärken Sie Ihre Marke mit unseren Experten. Kontaktieren Sie uns!"
 				/>
 				<meta name="robots" content="index, follow" />
+				<Partytown debug={true} forward={["dataLayer.push"]} />
 			</Head>
 			<Web1 />
 			<Web2 />

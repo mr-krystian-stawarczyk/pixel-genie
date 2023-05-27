@@ -105,10 +105,10 @@ const NavbarComp = ({ toggleTheme }) => {
 			<Container>
 				<Navbar.Brand as={Link} href="/" className=" rounded  py-0 ">
 					<Image
-						alt="pixel-genie-nettetal-webentwicklung-logo"
 						src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
-						width="50"
-						height="50"
+						alt="pixel-genie-nettetal-webentwicklung-logo"
+						width={50}
+						height={50}
 						className="pb-2 mb-1"
 					/>
 					<span
@@ -118,7 +118,10 @@ const NavbarComp = ({ toggleTheme }) => {
 						<span className="mx-2">Pixel Genie</span>
 					</span>
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+				<Navbar.Toggle
+					aria-controls="responsive-navbar-nav"
+					aria-label="Toggle navigation"
+				/>
 				<Navbar.Collapse
 					id="basic-navbar-nav"
 					className=" rounded justify-content-end text-center  m-1  navbar-toggler border-0"
@@ -132,19 +135,20 @@ const NavbarComp = ({ toggleTheme }) => {
 						<NavDropdown
 							title={t("nav1")}
 							id="basic-nav-dropdown"
-							className="btn-md shadow-md btn-nav-drop rounded  m-1 p-1"
+							className="btn-md shadow-md btn-nav-drop rounded  m-1 p-1 "
+							menuVariant="dark"
 							style={{
 								fontSize: "1rem",
 							}}
 							show={dropdownOpen}
 							onToggle={setDropdownOpen}
 						>
-							<NavDropdown.Item as={Link} href="web" className="">
+							<NavDropdown.Item as={Link} href="web">
 								<Button className="w-100 border-0 btn-nav shadow-sm ">
 									{t("nav8")}
 								</Button>
 							</NavDropdown.Item>
-							<NavDropdown.Item as={Link} href="seo" className="">
+							<NavDropdown.Item as={Link} href="seo">
 								<Button className=" border-0 btn-nav shadow-sm w-100">
 									SEO
 								</Button>
@@ -194,7 +198,7 @@ const NavbarComp = ({ toggleTheme }) => {
 									height="25"
 								/>
 							</Dropdown.Toggle>
-							<Dropdown.Menu className="text-center jusitfy-content-center">
+							<Dropdown.Menu className="text-center jusitfy-content-center  my-dropdown">
 								<Dropdown.Item eventKey="flag1">
 									<Image
 										src="/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"

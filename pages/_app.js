@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { PageTransition } from "next-page-transitions";
 import "../styles/globals.css";
@@ -8,7 +8,7 @@ import { SSRProvider } from "react-bootstrap";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
-
+import { Partytown } from "@builder.io/partytown/react";
 function App(props) {
 	const { Component, pageProps, router } = props;
 
@@ -19,6 +19,7 @@ function App(props) {
 					<Head>
 						<title>Pixel-Genie</title>
 						<meta name="Pixel Genie Nettetal" content="Pixel Genie Nettetal" />
+						<Partytown debug={true} forward={["dataLayer.push"]} />
 					</Head>
 					<PageTransition
 						timeout={300}

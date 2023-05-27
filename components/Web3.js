@@ -63,6 +63,7 @@ function Web3() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-webseiten3"
+							loading="lazy"
 						/>
 					</Col>
 				</Row>

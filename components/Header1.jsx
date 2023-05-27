@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Card, Container, Button, Row, Col } from "react-bootstrap";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
@@ -12,9 +12,11 @@ const Header1 = () => {
 		await loadFull(engine);
 	}, []);
 	const { t } = useTranslation();
+
 	return (
 		<Container fluid>
 			<Particles
+				style={{ zIndex: "-10" }}
 				id="tsparticles"
 				init={particlesInit}
 				options={{
@@ -23,9 +25,7 @@ const Header1 = () => {
 							value: "transparent",
 						},
 					},
-					fullScreen: {
-						enable: false,
-					},
+
 					fpsLimit: 60,
 					interactivity: {
 						events: {
@@ -41,10 +41,10 @@ const Header1 = () => {
 						},
 						modes: {
 							push: {
-								quantity: 4,
+								quantity: 10,
 							},
 							repulse: {
-								distance: 200,
+								distance: 300,
 								duration: 0.4,
 							},
 						},
@@ -70,7 +70,7 @@ const Header1 = () => {
 							bounce: false,
 						},
 						number: {
-							value: 60,
+							value: 30,
 							density: {
 								enable: true,
 								value_area: 800,
@@ -81,10 +81,10 @@ const Header1 = () => {
 							random: true,
 						},
 						shape: {
-							type: "circle",
+							type: "square",
 						},
 						size: {
-							value: 3,
+							value: 4,
 							random: true,
 						},
 					},
@@ -100,19 +100,7 @@ const Header1 = () => {
 					<Container id="your-div">
 						<Card className="border-0 shadow-lg py-3  bg-transparent">
 							<Row className="justify-content-center align-items-center">
-								<Col
-									lg={3}
-									className="d-flex justify-content-center align-items-center"
-								>
-									<Image
-										src="/assets/webentwicklung-nettetal-seo1.png"
-										id="ja"
-										width={200}
-										height={200}
-										alt="webentwicklung-nettetal-seo1"
-									/>
-								</Col>
-								<Col lg={9} className="d-flex border-lg ">
+								<Col lg={9} xl={9} md={12} className="d-flex border-lg ">
 									<Card.Body className="text-start ">
 										<h1 className="text-bold">{t("h1")}</h1>
 										<h5 className="text-bold">{t("h2")}</h5>
@@ -130,6 +118,22 @@ const Header1 = () => {
 											{t("h5")}
 										</Button>
 									</Card.Body>
+								</Col>
+								<Col
+									sm={6}
+									md={6}
+									lg={3}
+									xl={3}
+									className="d-flex justify-content-center align-items-center"
+								>
+									<Image
+										src="/assets/webentwicklung-nettetal-seo6.png"
+										alt="webentwicklung-nettetal-seo1"
+										width={300}
+										height={300}
+										id="ja"
+										priority
+									/>
 								</Col>
 							</Row>
 						</Card>

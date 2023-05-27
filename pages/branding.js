@@ -7,7 +7,7 @@ import Head from "next/head";
 import Brand5 from "@/components/Brand5";
 import Brand6 from "@/components/Brand6";
 import Brand7 from "@/components/Brand7";
-
+import { Partytown } from "@builder.io/partytown/react";
 import Brand8 from "@/components/Brand8";
 function branding() {
 	return (
@@ -19,6 +19,7 @@ function branding() {
 					content="Unser Corporate Design und Content-Marketing stärken Ihre Marke und erreichen Ihre Zielgruppe. Maßgeschneiderte Lösungen für ein einzigartiges Branding. Entdecken Sie unsere Expertise im Branding und Marketing."
 				/>
 				<meta name="robots" content="index, follow" />
+				<Partytown debug={true} forward={["dataLayer.push"]} />
 			</Head>
 			<Brand1 />
 			<Brand2 />

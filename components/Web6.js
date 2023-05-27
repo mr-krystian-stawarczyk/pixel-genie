@@ -61,6 +61,7 @@ function Web6() {
 								src={urlFor(item.image && item.image[0])}
 								alt={item.image && item.image[0].alt}
 								layout="fill"
+								loading="lazy"
 							/>
 
 							<Card.Body>

@@ -48,6 +48,7 @@ function About3() {
 							width={300}
 							height={300}
 							alt="webentwicklung-nettetal-fragen1"
+							loading="lazy"
 						/>
 						<h4>{t("about20")}</h4>
 					</Col>

@@ -4,13 +4,15 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "next build",
+		"build": "npm run partytown && next build",
+		"partytown": "partytown copylib public/~partytown",
 		"start": "next start",
 		"postbuild": "next-sitemap --config next-sitemap.config.js",
 		"sitemap": "next-sitemap"
 	},
 	"dependencies": {
 		"@babel/preset-env": "^7.21.5",
+		"@builder.io/partytown": "^0.8.0",
 		"@emailjs/browser": "^3.11.0",
 		"@sanity/cli": "^3.11.1",
 		"@sanity/client": "^3.4.1",
@@ -36,6 +38,7 @@
 		"next-themes": "^0.2.1",
 		"react": "18.2.0",
 		"react-bootstrap": "^2.7.2",
+		"react-cookie": "^4.1.1",
 		"react-cookie-consent": "^8.0.1",
 		"react-countup": "^6.4.2",
 		"react-dom": "18.2.0",
@@ -46,6 +49,7 @@
 		"react-player": "^2.12.0",
 		"react-scroll": "^1.8.9",
 		"react-slick": "^0.29.0",
+		"react-tsparticles": "^2.9.3",
 		"react-vertical-timeline-component": "^3.6.0",
 		"sanity": "^3.10.1",
 		"slick-carousel": "^1.8.1",

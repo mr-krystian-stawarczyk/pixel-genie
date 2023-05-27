@@ -50,6 +50,7 @@ function Seo4() {
 							height={500}
 							className="responsive-image"
 							alt="SEO-webentwicklung-nettetal-4"
+							loading="lazy"
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">

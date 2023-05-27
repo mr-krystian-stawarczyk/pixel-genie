@@ -14,6 +14,7 @@ function Seo7() {
 						width={300}
 						height={300}
 						alt="SEO-webentwicklung-nettetal-fragen1"
+						loading="lazy"
 					/>
 					<h4>{t("web117")}</h4>
 				</Col>

@@ -45,16 +45,17 @@ function Header3() {
 		<motion.div ref={ref} animate={controls}>
 			<Container className=" my-5 py-5 ">
 				<Row className="justify-content-center  align-items-center">
-					<Col lg={5} className="mx-auto my-2 text-center">
+					<Col lg={5} className="mx-auto my-2 text-center ">
 						<Image
 							src="/assets/webentwicklung-nettetal-seo3.png"
 							width={400}
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-seo3"
+							loading="lazy"
 						/>
 					</Col>
-					<Col lg={5} className="mx-auto my-2">
+					<Col lg={5} className="mx-auto my-2 ">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
 								<h1>{t("header6")}</h1>

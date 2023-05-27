@@ -46,7 +46,7 @@ function Header2() {
 		<motion.div ref={ref} animate={controls} id="header2">
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center  align-items-center">
-					<Col lg={5} className="mx-auto my-2">
+					<Col lg={5} className="mx-auto my-2 ">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
 								<h1> {t("header1")}</h1>
@@ -61,13 +61,14 @@ function Header2() {
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col lg={5} className="mx-auto my-2 text-center">
+					<Col lg={5} className="mx-auto my-2 text-center ">
 						<Image
 							src="/assets/webentwicklung-nettetal-seo2.png"
 							width={400}
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-seo2"
+							loading="lazy"
 						/>
 					</Col>
 				</Row>

@@ -62,6 +62,7 @@ function Web1() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-webseiten1"
+							priority
 						/>
 					</Col>
 				</Row>

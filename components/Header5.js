@@ -51,6 +51,7 @@ function Header5() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-seo5"
+							loading="lazy"
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">
