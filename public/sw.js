@@ -11,36 +11,3 @@ self.addEventListener("install", (event) => {
 		})
 	);
 });
-
-self.addEventListener("fetch", (event) => {
-	event.respondWith(
-		caches.open(cacheName).then((cache) => {
-			return cache.match(event.request).then((response) => {
-				return (
-					response ||
-					fetch(event.request).then((fetchResponse) => {
-						if (fetchResponse && fetchResponse.ok) {
-							cache.put(event.request, fetchResponse.clone());
-							// Limit cache size
-							limitCacheSize(cacheName, maxCacheSize);
-						}
-						return fetchResponse;
-					})
-				);
-			});
-		})
-	);
-});
-
-// Function to limit cache size
-function limitCacheSize(cacheName, maxSize) {
-	caches.open(cacheName).then((cache) => {
-		cache.keys().then((keys) => {
-			if (keys.length > 0) {
-				cache.delete(keys[0]).then(() => {
-					limitCacheSize(cacheName, maxSize);
-				});
-			}
-		});
-	});
-}
