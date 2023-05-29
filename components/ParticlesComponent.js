@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { Container } from "react-bootstrap";
+
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
-import "../styles/globals.css";
+
 function ParticlesComponent() {
 	const particlesInit = useCallback(async (engine) => {
 		await loadFull(engine);
