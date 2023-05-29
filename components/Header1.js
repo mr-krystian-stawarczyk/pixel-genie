@@ -1,10 +1,9 @@
 import { Card, Container, Button, Row, Col } from "react-bootstrap";
 
-import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import Image from "next/image";
-import ParticlesComponent from "./ParticlesComponent";
+import ParticlesComponent from "@/components/ParticlesComponent";
 
 const Header1 = () => {
 	const { t } = useTranslation();

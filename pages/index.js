@@ -6,6 +6,7 @@ import { Partytown } from "@builder.io/partytown/react";
 
 import Header1 from "@/components/Header1";
 import TechBar from "@/components/TechBar";
+
 const Header2 = lazy(() => import("@/components/Header2"));
 const Header3 = lazy(() => import("@/components/Header3"));
 const Header4 = lazy(() => import("@/components/Header4"));
