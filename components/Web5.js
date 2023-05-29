@@ -34,14 +34,6 @@ function Web5() {
 		},
 	};
 
-	const animateOut = {
-		opacity: 0,
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls1 = useAnimation();
 	const controls2 = useAnimation();
 	const controls3 = useAnimation();
@@ -50,10 +42,8 @@ function Web5() {
 	useEffect(() => {
 		if (inView1) {
 			controls1.start(animateIn);
-		} else {
-			controls1.start(animateOut);
 		}
-	}, [inView1, controls1, animateIn, animateOut]);
+	}, [inView1, controls1, animateIn]);
 
 	useEffect(() => {
 		let timeout;
@@ -61,12 +51,10 @@ function Web5() {
 			timeout = setTimeout(() => {
 				controls2.start(animateIn);
 			}, 500);
-		} else {
-			controls2.start(animateOut);
 		}
 
 		return () => clearTimeout(timeout);
-	}, [inView2, controls2, animateIn, animateOut]);
+	}, [inView2, controls2, animateIn]);
 
 	useEffect(() => {
 		let timeout;
@@ -74,12 +62,10 @@ function Web5() {
 			timeout = setTimeout(() => {
 				controls3.start(animateIn);
 			}, 700);
-		} else {
-			controls3.start(animateOut);
 		}
 
 		return () => clearTimeout(timeout);
-	}, [inView3, controls3, animateIn, animateOut]);
+	}, [inView3, controls3, animateIn]);
 
 	useEffect(() => {
 		let timeout;
@@ -87,12 +73,10 @@ function Web5() {
 			timeout = setTimeout(() => {
 				controls4.start(animateIn);
 			}, 1000);
-		} else {
-			controls4.start(animateOut);
 		}
 
 		return () => clearTimeout(timeout);
-	}, [inView4, controls4, animateIn, animateOut]);
+	}, [inView4, controls4, animateIn]);
 	return (
 		<Container className="my-5 py-5">
 			<Row className="text-center my-5">

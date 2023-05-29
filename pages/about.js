@@ -1,10 +1,11 @@
-import About1 from "@/components/About1";
-import About2 from "@/components/About2";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import Head from "next/head";
-import About3 from "@/components/About3";
-import About4 from "@/components/About4";
+import About1 from "@/components/About1";
 import { Partytown } from "@builder.io/partytown/react";
+
+const About2 = lazy(() => import("@/components/About2"));
+const About3 = lazy(() => import("@/components/About3"));
+const About4 = lazy(() => import("@/components/About4"));
 function about() {
 	return (
 		<div className="mt-5 pt-5">
@@ -15,6 +16,7 @@ function about() {
 					content="Pixel-Genie: Erfahren Sie mehr über unser Team und unsere Erfahrung in Webdesign und Online-Marketing in Nettetal. Erfahren Sie mehr über unsere Philosophie und unsere Arbeitsweise."
 				/>
 				<meta name="robots" content="index, follow" />
+
 				<Partytown debug={true} forward={["dataLayer.push"]} />
 			</Head>
 			<About1 />

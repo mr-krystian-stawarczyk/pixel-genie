@@ -43,32 +43,35 @@ function Media1() {
 	}, [inView, controls, animateIn, animateOut]);
 
 	return (
-		<motion.div ref={ref} animate={controls}>
-			<Container className="mt-5 pt-5">
-				<Row className="justify-content-center text-center align-items-center">
-					<Col lg={5} className="mx-auto my-2">
-						<Image
-							src="/assets/webentwicklung-nettetal-design-seo1.png"
-							width={400}
-							height={400}
-							className="responsive-image"
-							alt="webentwicklung-nettetal-design-seo1"
-						/>
-					</Col>
-					<Col lg={5} className="mx-auto my-2">
-						<Card className="border-0 bg-transparent ">
-							<Card.Body>
-								<h1 className="text-start">{t("design1")}</h1>
-								<Card.Text className="text-start">{t("design2")}</Card.Text>
-								<Button className="btn-nav" href="#media-design-portfolio">
-									{t("design3")}
-								</Button>
-							</Card.Body>
-						</Card>
-					</Col>
-				</Row>
-			</Container>
-		</motion.div>
+		<>
+			<motion.div ref={ref} animate={controls}>
+				<Container className="pt-5">
+					<Row className="justify-content-center text-center align-items-center">
+						<Col lg={5} className="mx-auto my-2">
+							<Image
+								src="/assets/webentwicklung-nettetal-design-seo1.png"
+								width={400}
+								height={400}
+								className="responsive-image"
+								alt="webentwicklung-nettetal-design-seo1"
+								priority
+							/>
+						</Col>
+						<Col lg={5} className="mx-auto my-2">
+							<Card className="border-0 bg-transparent ">
+								<Card.Body>
+									<h1 className="text-start">{t("design1")}</h1>
+									<Card.Text className="text-start">{t("design2")}</Card.Text>
+									<Button className="btn-nav" href="#media-design-portfolio">
+										{t("design3")}
+									</Button>
+								</Card.Body>
+							</Card>
+						</Col>
+					</Row>
+				</Container>
+			</motion.div>
+		</>
 	);
 }
 

@@ -66,6 +66,7 @@ function Social2() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-socialmedia-webagentur2"
+							priority
 						/>
 					</Col>
 				</Row>

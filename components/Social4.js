@@ -63,6 +63,7 @@ function Social4() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-socialmedia-webagentur4"
+							priority
 						/>
 					</Col>
 				</Row>

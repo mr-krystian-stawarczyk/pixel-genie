@@ -1,0 +1,21 @@
+{
+	"name": "Pixel Genie",
+	"short_name": "Pixel Genie Webentwicklung",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#000000",
+	"icons": [
+		{
+			"src": "assets/pixel-genie-nettetal-webentwicklung-logo.png",
+			"sizes": "50x50",
+			"type": "image/png"
+		},
+		{
+			"src": "assets/webseiten-seo-webdesign-logo.png",
+			"sizes": "144x144",
+			"type": "image/png",
+			"purpose": "maskable any"
+		}
+	]
+}

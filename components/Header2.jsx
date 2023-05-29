@@ -1,13 +1,12 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+
+import Image from "next/image";
+
 function Header2() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({
@@ -17,7 +16,6 @@ function Header2() {
 
 	const animateIn = {
 		opacity: 1,
-
 		transition: {
 			duration: 1,
 			ease: "easeInOut",
@@ -26,7 +24,6 @@ function Header2() {
 
 	const animateOut = {
 		opacity: 0,
-
 		transition: {
 			duration: 1,
 			ease: "easeInOut",
@@ -34,6 +31,7 @@ function Header2() {
 	};
 
 	const controls = useAnimation();
+
 	useEffect(() => {
 		if (inView) {
 			controls.start(animateIn);
@@ -68,7 +66,7 @@ function Header2() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-seo2"
-							loading="lazy"
+							priority
 						/>
 					</Col>
 				</Row>

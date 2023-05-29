@@ -9,8 +9,10 @@ import { useTranslation } from "react-i18next";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import ReactGA from "react-ga";
 import i18n from "../i18n.js";
+import { useRouter } from "next/router";
 
 const NavbarComp = ({ toggleTheme }) => {
+	const router = useRouter();
 	const { t, i18n } = useTranslation();
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
@@ -20,6 +22,15 @@ const NavbarComp = ({ toggleTheme }) => {
 	);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const { theme, setTheme } = useTheme();
+
+	ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
+	const handleRouteChange = (url) => {
+		ReactGA.pageview(url);
+	};
+
+	useEffect(() => {
+		setCurrentTheme(theme);
+	}, [theme]);
 
 	const handleDropdownSelect = (eventKey, event) => {
 		setDropdownOpen(false);
@@ -45,15 +56,6 @@ const NavbarComp = ({ toggleTheme }) => {
 				);
 		}
 	};
-
-	useEffect(() => {
-		setCurrentTheme(theme);
-	}, [theme]);
-
-	useEffect(() => {
-		ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
-		ReactGA.pageview(window.location.pathname + window.location.search);
-	}, []);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -110,6 +112,8 @@ const NavbarComp = ({ toggleTheme }) => {
 						width={50}
 						height={50}
 						className="pb-2 mb-1"
+						style={{ width: "auto", height: "auto" }}
+						priority
 					/>
 					<span
 						style={{ fontSize: "2rem" }}
@@ -196,6 +200,7 @@ const NavbarComp = ({ toggleTheme }) => {
 									alt="Selected Flag"
 									width="25"
 									height="25"
+									priority
 								/>
 							</Dropdown.Toggle>
 							<Dropdown.Menu className="text-center jusitfy-content-center  my-dropdown">
@@ -206,6 +211,7 @@ const NavbarComp = ({ toggleTheme }) => {
 										width="40"
 										height="40"
 										onClick={() => i18n.changeLanguage("de")}
+										priority
 									/>
 								</Dropdown.Item>
 								<NavDropdown.Divider />
@@ -216,6 +222,7 @@ const NavbarComp = ({ toggleTheme }) => {
 										width="40"
 										height="40"
 										onClick={() => i18n.changeLanguage("eng")}
+										priority
 									/>
 								</Dropdown.Item>
 								<NavDropdown.Divider />
@@ -226,6 +233,7 @@ const NavbarComp = ({ toggleTheme }) => {
 										width="40"
 										height="40"
 										onClick={() => i18n.changeLanguage("pl")}
+										priority
 									/>
 								</Dropdown.Item>
 							</Dropdown.Menu>

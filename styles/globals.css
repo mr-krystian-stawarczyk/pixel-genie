@@ -24,33 +24,49 @@ a {
 	text-decoration: none;
 }
 
+.header-container {
+	position: relative;
+}
+
+.particles-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -3;
+}
+
 ::-webkit-scrollbar {
 	display: none;
 }
-
 #tsparticles {
-	height: 100vh !important;
-	width: 100% !important;
-	z-index: 0 !important;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	left: 0;
+	z-index: -1 !important;
 }
+
+#particles-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1 !important;
+}
+
+.design-img {
+	width: 400px;
+	height: 400px;
+}
+
 .blur {
 	backdrop-filter: blur(3px); /* Ustawienie efektu blur dla tła */
-	z-index: 1 !important;
-}
-
-.text {
-	z-index: 800 !important;
-}
-
-#your-div {
-	position: absolute;
-	top: 40%;
-	left: 15%;
-	z-index: 999;
-}
-
-#container {
-	position: relative;
+	z-index: 0 !important;
 }
 
 .border-blue {
@@ -74,10 +90,6 @@ a {
 
 .my-dropdown {
 	background-color: #343a40 !important; /* Zmień na dowolny kolor */
-}
-
-#your-div {
-	width: 1300px;
 }
 
 .footer-links {
@@ -117,6 +129,7 @@ a {
 .page-transition-exit {
 	opacity: 1;
 }
+
 .page-transition-exit-active {
 	opacity: 0;
 	transition: opacity 300ms;
@@ -146,24 +159,12 @@ a {
 }
 
 @media (max-width: 1366px) {
-	#your-div {
-		left: 5%;
-		width: 1100px;
-	}
 }
 
 @media (max-width: 768px) {
 	.responsive-image {
 		width: 80%;
 		height: 50%;
-	}
-	#your-div {
-		position: absolute;
-		height: 300px;
-		width: 320px;
-		z-index: 999;
-		left: 1%;
-		top: 30%;
 	}
 
 	#basic-navbar-nav {
@@ -176,47 +177,19 @@ a {
 	.navbar-toggler {
 		background-color: #fff !important;
 	}
-	#your-div {
-		position: absolute;
-		top: 19%;
-		left: 10%;
-		width: 800px !important;
-		z-index: 999;
-	}
 }
 
 @media (max-width: 768.98px) {
 	.navbar-toggler {
 		background-color: #fff !important;
 	}
-	#your-div {
-		position: absolute;
-		top: 10%;
-		left: 10%;
-		width: 700px !important;
-		z-index: 999;
-	}
 }
 @media (max-height: 400.98px) {
-	#ja {
-		display: none;
-	}
 }
 
 @media (max-width: 400.98px) {
 	.navbar-toggler {
 		background-color: #fff !important;
-	}
-	#your-div {
-		position: absolute;
-		top: 10%;
-		left: 1%;
-		width: 360px !important;
-		z-index: 999;
-	}
-	#ja {
-		width: 170px !important;
-		height: 200px !important;
 	}
 }
 

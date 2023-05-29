@@ -1,14 +1,16 @@
 import Seo1 from "@/components/Seo1";
-import Seo2 from "@/components/Seo2";
-import Seo3 from "@/components/Seo3";
-import Seo4 from "@/components/Seo4";
-import React from "react";
+
+import React, { lazy, Suspense } from "react";
 import Head from "next/head";
-import Seo5 from "@/components/Seo5";
-import Seo6 from "@/components/Seo6";
-import Seo7 from "@/components/Seo7";
+
 import { Partytown } from "@builder.io/partytown/react";
-import Seo8 from "@/components/Seo8";
+
+const Seo2 = lazy(() => import("@/components/Seo2"));
+const Seo3 = lazy(() => import("@/components/Seo3"));
+const Seo4 = lazy(() => import("@/components/Seo4"));
+const Seo5 = lazy(() => import("@/components/Seo5"));
+const Seo6 = lazy(() => import("@/components/Seo6"));
+const Seo7 = lazy(() => import("@/components/Seo7"));
 
 function seo() {
 	return (
@@ -28,7 +30,7 @@ function seo() {
 			<Seo4 />
 			<Seo5 />
 			<Seo6 />
-			<Seo8 />
+
 			<Seo7 />
 		</div>
 	);

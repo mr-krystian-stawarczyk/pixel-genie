@@ -20,23 +20,12 @@ function About3() {
 		},
 	};
 
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
 			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
 		}
-	}, [inView, controls, animateIn, animateOut]);
+	}, [inView, controls, animateIn]);
 	const { t } = useTranslation();
 	return (
 		<motion.div ref={ref} animate={controls}>
@@ -48,7 +37,7 @@ function About3() {
 							width={300}
 							height={300}
 							alt="webentwicklung-nettetal-fragen1"
-							loading="lazy"
+							priority
 						/>
 						<h4>{t("about20")}</h4>
 					</Col>

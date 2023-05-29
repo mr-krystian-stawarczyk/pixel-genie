@@ -72,6 +72,7 @@ function Social6() {
 						height={300}
 						className="responsive-image"
 						alt="webentwicklung-webagentur-nettetal-price"
+						priority
 					/>
 					<h4>{t("web23")}</h4>
 				</Col>
@@ -109,6 +110,7 @@ function Social6() {
 									height={100}
 									className="responsive-image"
 									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
+									priority
 								/>
 								<h3>{t("socialmedia8")}</h3>
 							</Card.Body>

@@ -99,7 +99,7 @@ export const ContactForm = () => {
 							width={400}
 							height={400}
 							className="responsive-image"
-							loading="lazy"
+							priority
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">

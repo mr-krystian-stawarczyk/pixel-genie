@@ -3,11 +3,14 @@ import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 import Link from "next/link";
-import Image from "next/image";
+
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
+
+import Image from "next/image";
+
 function Header3() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({
@@ -41,6 +44,7 @@ function Header3() {
 			controls.start(animateOut);
 		}
 	}, [inView, controls, animateIn, animateOut]);
+
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className=" my-5 py-5 ">
@@ -52,7 +56,7 @@ function Header3() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-seo3"
-							loading="lazy"
+							priority
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2 ">

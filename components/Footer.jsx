@@ -1,11 +1,11 @@
 import Link from "next/link";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import Image from "next/image";
+
 import {
 	AiOutlineFacebook,
 	AiFillGithub,
@@ -34,23 +34,12 @@ function Footer() {
 		},
 	};
 
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
 			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
 		}
-	}, [inView, controls, animateIn, animateOut]);
+	}, [inView, controls, animateIn]);
 	return (
 		<Container
 			fluid

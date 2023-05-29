@@ -65,13 +65,14 @@ function Brand6() {
 	return (
 		<Container className="my-5 py-5 " id="branding-nettetal-preis">
 			<Row className="justify-content-center align-items-center">
-				<Col lg={4} md={6} xs={12} className="py-5 text-center">
+				<Col lg={4} md={6} xs={12} className="py-1 text-center">
 					<Image
 						src="/assets/webentwicklung-webagentur-nettetal-price.png"
 						width={300}
 						height={300}
 						className="responsive-image"
 						alt="webentwicklung-webagentur-nettetal-price"
+						priority
 					/>
 					<h4>{t("web23")}</h4>
 				</Col>
@@ -110,6 +111,7 @@ function Brand6() {
 									height={100}
 									className="responsive-image"
 									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
+									priority
 								/>
 								<h3>{t("bran30")}</h3>
 							</Card.Body>

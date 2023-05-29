@@ -63,6 +63,7 @@ function Brand3() {
 							height={500}
 							className="responsive-image"
 							alt="webagentur-nettetal-branding-seo3"
+							priority
 						/>
 					</Col>
 				</Row>

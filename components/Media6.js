@@ -55,15 +55,15 @@ function Media6() {
 			</Row>
 			<Row className="justify-content-center align-items-center text-center">
 				{media.map((item) => (
-					<Col lg={3} className="mx-auto my-2" key={item._id}>
+					<Col lg={5} className="mx-auto my-2" key={item._id}>
 						<Card className="bg-transparent border-0 shadow-lg">
 							<Card.Img
-								className="d-block w-100 "
+								className="d-block w-100 design-img"
 								src={urlFor(item.image && item.image[0])}
 								alt={item.image && item.image[0].alt}
 							/>
 							<Card.Body>
-								<h3>{item.name[i18n.language]}</h3>
+								<h4>{item.name[i18n.language]}</h4>
 								<p>{item.details[i18n.language]}</p>
 							</Card.Body>
 						</Card>

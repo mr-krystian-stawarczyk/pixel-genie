@@ -12,13 +12,35 @@ import { Partytown } from "@builder.io/partytown/react";
 function App(props) {
 	const { Component, pageProps, router } = props;
 
+	useEffect(() => {
+		if ("serviceWorker" in navigator) {
+			window.addEventListener("load", function () {
+				navigator.serviceWorker.register("/sw.js").then(
+					function (registration) {
+						console.log(
+							"ServiceWorker registration successful with scope: ",
+							registration.scope
+						);
+					},
+					function (err) {
+						console.log("ServiceWorker registration failed: ", err);
+					}
+				);
+			});
+		}
+	}, []);
+
 	return (
 		<SSRProvider>
 			<ThemeProvider defaultTheme="dark">
 				<Layout>
 					<Head>
-						<title>Pixel-Genie</title>
-						<meta name="Pixel Genie Nettetal" content="Pixel Genie Nettetal" />
+						<title>Pixel-Genie WEBSEITEN SEO BRANDING MARKETING </title>
+						<meta
+							name="Pixel Genie Nettetal WEBSEITEN SEO BRANDING MARKETING MEDIA SOCIAL MEDIA"
+							content="Pixel Genie Nettetal WEBSEITEN SEO BRANDING MARKETING MEDIA SOCIAL MEDIA die beste !"
+						/>
+						<link rel="manifest" href="/manifest.json" />
 						<Partytown debug={true} forward={["dataLayer.push"]} />
 					</Head>
 					<PageTransition

@@ -1,8 +1,11 @@
 import Blog1 from "@/components/Blog1";
-import Blog2 from "@/components/Blog2";
-import React from "react";
+
+import React, { lazy, Suspense } from "react";
 import Head from "next/head";
 import { Partytown } from "@builder.io/partytown/react";
+
+const Blog2 = lazy(() => import("@/components/Blog2"));
+
 function blog() {
 	return (
 		<div className="mt-5 pt-5">

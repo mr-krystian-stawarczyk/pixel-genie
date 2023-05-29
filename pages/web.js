@@ -1,16 +1,17 @@
-import Web1 from "@/components/Web1";
-import Web2 from "@/components/Web2";
-import Web3 from "@/components/Web3";
-import Web4 from "@/components/Web4";
-import React from "react";
 import Head from "next/head";
-import Web5 from "@/components/Web5";
+import React, { lazy, Suspense } from "react";
 
-import Faq1 from "@/components/Faq1";
 import { Partytown } from "@builder.io/partytown/react";
-import WebPrices from "@/components/WebPrices";
+import Web1 from "@/components/Web1";
 
-import Web6 from "@/components/Web6";
+const Web2 = lazy(() => import("@/components/Web2"));
+const Web3 = lazy(() => import("@/components/Web3"));
+const Web4 = lazy(() => import("@/components/Web4"));
+const Web5 = lazy(() => import("@/components/Web5"));
+const Web6 = lazy(() => import("@/components/Web6"));
+const WebPrices = lazy(() => import("@/components/WebPrices"));
+const Faq1 = lazy(() => import("@/components/Faq1"));
+
 function web() {
 	return (
 		<div className="mt-5 pt-5">

@@ -14,6 +14,7 @@ function Media8() {
 						width={300}
 						height={300}
 						alt="webentwicklung-nettetal-webagentur-fragen1"
+						priority
 					/>
 					<h4>{t("web117")}</h4>
 				</Col>

@@ -1,16 +1,16 @@
 import { useTheme } from "next-themes";
 import Head from "next/head";
+import React, { lazy, Suspense } from "react";
 
-import React from "react";
-import Header1 from "@/components/Header1";
-import Header2 from "@/components/Header2";
-import Header3 from "@/components/Header3";
-import Header4 from "@/components/Header4";
-import Header5 from "@/components/Header5";
 import { Partytown } from "@builder.io/partytown/react";
-import TechBar from "@/components/TechBar";
 
-import Header6 from "@/components/Header6";
+import Header1 from "@/components/Header1";
+import TechBar from "@/components/TechBar";
+const Header2 = lazy(() => import("@/components/Header2"));
+const Header3 = lazy(() => import("@/components/Header3"));
+const Header4 = lazy(() => import("@/components/Header4"));
+const Header5 = lazy(() => import("@/components/Header5"));
+const Header6 = lazy(() => import("@/components/Header6"));
 
 export default function Home() {
 	const { theme } = useTheme();
@@ -29,13 +29,11 @@ export default function Home() {
 				<Partytown debug={true} forward={["dataLayer.push"]} />
 			</Head>
 			<Header1 />
-
 			<TechBar />
 			<Header2 />
 			<Header3 />
 			<Header4 />
 			<Header5 />
-
 			<Header6 />
 		</>
 	);

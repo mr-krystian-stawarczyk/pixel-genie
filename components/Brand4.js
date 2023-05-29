@@ -52,6 +52,7 @@ function Brand4() {
 							height={400}
 							className="responsive-image"
 							alt="webagentur-nettetal-branding-seo4"
+							priority
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">

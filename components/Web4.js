@@ -24,23 +24,12 @@ function Web4() {
 		},
 	};
 
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
 			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
 		}
-	}, [inView, controls, animateIn, animateOut]);
+	}, [inView, controls, animateIn]);
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5">
@@ -52,7 +41,7 @@ function Web4() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-webseiten4"
-							loading="lazy"
+							priority
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto">

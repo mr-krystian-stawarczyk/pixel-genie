@@ -14,6 +14,7 @@ function Social7() {
 						width={300}
 						height={300}
 						alt="webentwicklung-nettetal-fragen"
+						priority
 					/>
 					<h4>{t("web117")} </h4>
 				</Col>

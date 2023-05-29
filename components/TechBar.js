@@ -48,6 +48,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
+							priority
 						/>
 					</div>
 					<div className="text-center">
@@ -57,6 +58,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
+							priority
 						/>
 					</div>
 					<div className="text-center">
@@ -66,6 +68,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
+							priority
 						/>
 					</div>
 					<div className="text-center">
@@ -75,6 +78,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
+							priority
 						/>
 					</div>
 					<div className="text-center">
@@ -84,6 +88,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
+							priority
 						/>
 					</div>
 					<div className="text-center">
@@ -93,6 +98,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
+							priority
 						/>
 					</div>
 					<div className="text-center">
@@ -102,6 +108,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
+							priority
 						/>
 					</div>
 				</Slider>

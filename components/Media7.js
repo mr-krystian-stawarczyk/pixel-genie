@@ -71,6 +71,7 @@ function Media7() {
 						width={300}
 						height={300}
 						alt="webentwicklung-webagentur-nettetal-price"
+						priority
 					/>
 					<h4>{t("web23")} </h4>
 				</Col>
@@ -137,6 +138,7 @@ function Media7() {
 									width={100}
 									height={100}
 									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
+									priority
 								/>
 								<h3>{t("design41")}</h3>
 							</Card.Body>

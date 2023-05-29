@@ -1,14 +1,17 @@
-import Brand1 from "@/components/Brand1";
-import Brand2 from "@/components/Brand2";
-import Brand3 from "@/components/Brand3";
-import Brand4 from "@/components/Brand4";
-import React from "react";
 import Head from "next/head";
-import Brand5 from "@/components/Brand5";
-import Brand6 from "@/components/Brand6";
-import Brand7 from "@/components/Brand7";
+import React, { lazy, Suspense } from "react";
+
 import { Partytown } from "@builder.io/partytown/react";
-import Brand8 from "@/components/Brand8";
+import Brand1 from "@/components/Brand1";
+
+const Brand2 = lazy(() => import("@/components/Brand2"));
+const Brand3 = lazy(() => import("@/components/Brand3"));
+const Brand4 = lazy(() => import("@/components/Brand4"));
+const Brand5 = lazy(() => import("@/components/Brand5"));
+const Brand6 = lazy(() => import("@/components/Brand6"));
+const Brand7 = lazy(() => import("@/components/Brand7"));
+const Brand8 = lazy(() => import("@/components/Brand8"));
+
 function branding() {
 	return (
 		<div className="mt-5 pt-5">

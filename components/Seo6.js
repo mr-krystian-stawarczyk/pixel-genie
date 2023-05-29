@@ -72,6 +72,7 @@ function Seo6() {
 						height={300}
 						className="responsive-image"
 						alt="SEO-webentwicklung-nettetal-preis1"
+						priority
 					/>
 					<h4>{t("web23")}</h4>
 				</Col>
@@ -143,6 +144,7 @@ function Seo6() {
 									height={100}
 									className="responsive-image"
 									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
+									priority
 								/>
 								<h3>{t("seo45")}</h3>
 								<Card.Text>{t("seo46")}</Card.Text>

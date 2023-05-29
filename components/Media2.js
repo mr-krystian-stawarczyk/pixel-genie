@@ -65,6 +65,7 @@ function Media2() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-design-seo2"
+							priority
 						/>
 					</Col>
 				</Row>

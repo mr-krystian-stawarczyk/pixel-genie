@@ -8,7 +8,7 @@ import Social5 from "@/components/Social5";
 import Social7 from "@/components/Social7";
 import { Partytown } from "@builder.io/partytown/react";
 import Social6 from "@/components/Social6";
-import Social8 from "@/components/Social8";
+
 function socialmedia() {
 	return (
 		<div className="mt-5 pt-5">
@@ -27,7 +27,7 @@ function socialmedia() {
 			<Social3 />
 			<Social4 />
 			<Social5 />
-			<Social8 />
+
 			<Social6 />
 			<Social7 />
 		</div>

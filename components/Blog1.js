@@ -22,23 +22,12 @@ function Blog1() {
 		},
 	};
 
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
 			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
 		}
-	}, [inView, controls, animateIn, animateOut]);
+	}, [inView, controls, animateIn]);
 	const { t } = useTranslation();
 	return (
 		<motion.div ref={ref} animate={controls}>
@@ -64,6 +53,7 @@ function Blog1() {
 							height={500}
 							className="responsive-image"
 							alt="webentwicklung-webagentur-nettetal-price"
+							priority
 						/>
 					</Col>
 				</Row>

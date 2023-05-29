@@ -71,6 +71,7 @@ function WebPrices() {
 						width={300}
 						height={300}
 						alt="webentwicklung-nettetal-webseiten5-preis"
+						priority
 					/>
 					<h4>{t("web23")}</h4>
 				</Col>
@@ -151,6 +152,7 @@ function WebPrices() {
 									width={100}
 									height={100}
 									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
+									priority
 								/>
 								<h3> {t("web58")}</h3>
 								<Card.Text>{t("web59")}</Card.Text>

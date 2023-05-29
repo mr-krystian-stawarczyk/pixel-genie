@@ -27,6 +27,7 @@ function error() {
 						height={500}
 						className="responsive-image py-3"
 						alt="webagentur-nettetal-pixel-genie-404"
+						priority
 					/>
 				</Col>
 			</Row>

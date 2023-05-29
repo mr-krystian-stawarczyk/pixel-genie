@@ -52,6 +52,7 @@ function Social3() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-socialmedia-webagentur3"
+							priority
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">
