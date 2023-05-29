@@ -7,9 +7,6 @@ self.addEventListener("install", (event) => {
 			return cache.addAll([
 				"/_next/server/pages/_app.js",
 				"/_next/static/chunks/main.js",
-				"/_next/static/chunks/components_Footer_jsx.js",
-				"/_next/static/chunks/components_ContactForm_js.js",
-				"/_next/static/chunks/pages/about.js",
 			]);
 		})
 	);

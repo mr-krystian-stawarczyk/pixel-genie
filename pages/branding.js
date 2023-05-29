@@ -3,8 +3,8 @@ import React, { lazy, Suspense } from "react";
 
 import { Partytown } from "@builder.io/partytown/react";
 import Brand1 from "@/components/Brand1";
+import Brand2 from "@/components/Brand2";
 
-const Brand2 = lazy(() => import("@/components/Brand2"));
 const Brand3 = lazy(() => import("@/components/Brand3"));
 const Brand4 = lazy(() => import("@/components/Brand4"));
 const Brand5 = lazy(() => import("@/components/Brand5"));

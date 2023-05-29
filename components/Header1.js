@@ -3,7 +3,7 @@ import { Card, Container, Button, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import Image from "next/image";
-import ParticlesComponent from "@/components/ParticlesComponent";
+import ParticlesComponent from "./ParticlesComponent";
 
 const Header1 = () => {
 	const { t } = useTranslation();
