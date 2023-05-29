@@ -10,7 +10,6 @@ self.addEventListener("install", (event) => {
 				"/_next/static/chunks/components_Footer_jsx.js",
 				"/_next/static/chunks/components_ContactForm_js.js",
 				"/_next/static/chunks/pages/about.js",
-				"/public/~partytown/partytown.js",
 			]);
 		})
 	);
