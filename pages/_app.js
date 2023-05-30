@@ -14,7 +14,7 @@ function App(props) {
 	useEffect(() => {
 		if ("serviceWorker" in navigator) {
 			navigator.serviceWorker
-				.register("/public/sw.js")
+				.register("/sw.js")
 				.then((registration) => console.log("scope is: ", registration.scope));
 		}
 	}, []);
