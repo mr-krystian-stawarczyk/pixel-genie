@@ -1,13 +1,12 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import Navbar from "./Navbar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
 import { Poppins } from "next/font/google";
 import CookieConsent from "./CookieConsent";
-
-const ContactForm = lazy(() => import("./ContactForm"));
-const Footer = lazy(() => import("./Footer"));
+import ContactForm from "./ContactForm";
+import Footer from "./Footer";
 
 const poppins = Poppins({
 	weight: ["400", "700"],

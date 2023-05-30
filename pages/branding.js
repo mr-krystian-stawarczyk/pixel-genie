@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React, { lazy, Suspense } from "react";
 
-import { Partytown } from "@builder.io/partytown/react";
 import Brand1 from "@/components/Brand1";
 import Brand2 from "@/components/Brand2";
 
@@ -22,7 +21,6 @@ function branding() {
 					content="Unser Corporate Design und Content-Marketing stärken Ihre Marke und erreichen Ihre Zielgruppe. Maßgeschneiderte Lösungen für ein einzigartiges Branding. Entdecken Sie unsere Expertise im Branding und Marketing."
 				/>
 				<meta name="robots" content="index, follow" />
-				<Partytown debug={true} forward={["dataLayer.push"]} />
 			</Head>
 			<Brand1 />
 			<Brand2 />
