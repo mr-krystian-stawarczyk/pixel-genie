@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { PageTransition } from "next-page-transitions";
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,16 +10,14 @@ import { appWithTranslation } from "next-i18next";
 import ReactGA from "react-ga";
 import Script from "next/script";
 import { useRouter } from "next/router";
+
 function App(props) {
 	const { Component, pageProps, router } = props;
+	const reactRouter = useRouter();
 
-	ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
 	useEffect(() => {
-		if ("serviceWorker" in navigator) {
-			navigator.serviceWorker
-				.register("/sw.js")
-				.then((registration) => console.log("scope is: ", registration.scope));
-		}
+		ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
+		ReactGA.pageview(window.location.pathname + window.location.search);
 	}, []);
 
 	useEffect(() => {
@@ -28,11 +25,11 @@ function App(props) {
 			ReactGA.pageview(url);
 		};
 
-		router.events.on("routeChangeComplete", handleRouteChange);
+		reactRouter.events.on("routeChangeComplete", handleRouteChange);
 		return () => {
-			router.events.off("routeChangeComplete", handleRouteChange);
+			reactRouter.events.off("routeChangeComplete", handleRouteChange);
 		};
-	}, [router.events]);
+	}, [reactRouter.events]);
 
 	return (
 		<SSRProvider>
