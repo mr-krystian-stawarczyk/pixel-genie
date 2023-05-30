@@ -10,6 +10,7 @@ import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
 import ReactGA from "react-ga";
 import Script from "next/script";
+import { useRouter } from "next/router";
 function App(props) {
 	const { Component, pageProps, router } = props;
 
@@ -24,7 +25,7 @@ function App(props) {
 
 	useEffect(() => {
 		const handleRouteChange = (url) => {
-			ga.pageview(url);
+			ReactGA.pageview(url);
 		};
 
 		router.events.on("routeChangeComplete", handleRouteChange);
