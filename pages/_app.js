@@ -11,7 +11,13 @@ import { appWithTranslation } from "next-i18next";
 
 function App(props) {
 	const { Component, pageProps, router } = props;
-
+	useEffect(() => {
+		if ("serviceWorker" in navigator) {
+			navigator.serviceWorker
+				.register("/public/sw.js")
+				.then((registration) => console.log("scope is: ", registration.scope));
+		}
+	}, []);
 	return (
 		<SSRProvider>
 			<ThemeProvider defaultTheme="dark">
