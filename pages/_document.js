@@ -13,6 +13,7 @@ export default function Document() {
 					name="keywords"
 					content="Webdesign,SEO,Online-Marketing,Responsive Design,Programmierung,Social-Media-Marketing,Corporate Design,E-Commerce,Mobile-Optimierung,Content-Marketing,User Experience,Suchmaschinen-Optimierung,Grafikdesign,Webentwicklung,Branding,Online-Shop,Conversion-Optimierung,App-Entwicklung,Webanalyse,Marketingstrategie"
 				/>
+				<meta name="theme-color" content="#000000" />
 				<link
 					rel="icon"
 					href="/assets/pixel-genie-nettetal-webentwicklung-logo.png"

@@ -16,6 +16,12 @@
 			"sizes": "144x144",
 			"type": "image/png",
 			"purpose": "maskable any"
+		},
+		{
+			"src": "assets/pixel-genie-webseiten-seo-nettetal-logo.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "maskable any"
 		}
 	]
 }
