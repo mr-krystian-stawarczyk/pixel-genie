@@ -1,16 +1,13 @@
 import Seo1 from "@/components/Seo1";
 
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import Head from "next/head";
-
-import { Partytown } from "@builder.io/partytown/react";
-
-const Seo2 = lazy(() => import("@/components/Seo2"));
-const Seo3 = lazy(() => import("@/components/Seo3"));
-const Seo4 = lazy(() => import("@/components/Seo4"));
-const Seo5 = lazy(() => import("@/components/Seo5"));
-const Seo6 = lazy(() => import("@/components/Seo6"));
-const Seo7 = lazy(() => import("@/components/Seo7"));
+import Seo2 from "@/components/Seo2";
+import Seo3 from "@/components/Seo3";
+import Seo4 from "@/components/Seo4";
+import Seo5 from "@/components/Seo5";
+import Seo6 from "@/components/Seo6";
+import Seo7 from "@/components/Seo7";
 
 function seo() {
 	return (
@@ -22,7 +19,6 @@ function seo() {
 					content="Maximieren Sie Ihr SEO-Ergebnis mit unseren professionellen SEO-Services. Erzielen Sie eine höhere Position in den Suchergebnissen mit unseren effektiven Strategien und Tools. Kontaktieren Sie uns noch heute!"
 				/>
 				<meta name="robots" content="index, follow" />
-				<Partytown debug={true} forward={["dataLayer.push"]} />
 			</Head>
 			<Seo1 />
 			<Seo2 />

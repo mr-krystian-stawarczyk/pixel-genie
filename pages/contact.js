@@ -1,9 +1,9 @@
 import Contact1 from "@/components/Contact1";
 
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import Head from "next/head";
+import Contact2 from "@/components/Contact2";
 
-const Contact2 = lazy(() => import("@/components/Contact2"));
 function contact() {
 	return (
 		<div className="mt-5 pt-5">

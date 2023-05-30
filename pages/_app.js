@@ -8,7 +8,7 @@ import { SSRProvider } from "react-bootstrap";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
-import { Partytown } from "@builder.io/partytown/react";
+
 function App(props) {
 	const { Component, pageProps, router } = props;
 
@@ -23,7 +23,6 @@ function App(props) {
 							content="Pixel Genie Nettetal WEBSEITEN SEO BRANDING MARKETING MEDIA SOCIAL MEDIA die beste !"
 						/>
 						<link rel="manifest" href="/manifest.json" />
-						<Partytown debug={true} forward={["dataLayer.push"]} />
 					</Head>
 					<PageTransition
 						timeout={300}

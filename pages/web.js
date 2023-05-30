@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { lazy, Suspense } from "react";
+import React from "react";
 
 import Web1 from "@/components/Web1";
 

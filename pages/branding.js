@@ -1,15 +1,14 @@
 import Head from "next/head";
-import React, { lazy, Suspense } from "react";
+import React from "react";
 
 import Brand1 from "@/components/Brand1";
 import Brand2 from "@/components/Brand2";
-
-const Brand3 = lazy(() => import("@/components/Brand3"));
-const Brand4 = lazy(() => import("@/components/Brand4"));
-const Brand5 = lazy(() => import("@/components/Brand5"));
-const Brand6 = lazy(() => import("@/components/Brand6"));
-const Brand7 = lazy(() => import("@/components/Brand7"));
-const Brand8 = lazy(() => import("@/components/Brand8"));
+import Brand3 from "@/components/Brand3";
+import Brand4 from "@/components/Brand4";
+import Brand5 from "@/components/Brand5";
+import Brand6 from "@/components/Brand6";
+import Brand7 from "@/components/Brand7";
+import Brand8 from "@/components/Brand8";
 
 function branding() {
 	return (

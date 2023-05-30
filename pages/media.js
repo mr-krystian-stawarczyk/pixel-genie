@@ -1,16 +1,16 @@
 import Media1 from "@/components/Media1";
 
-import React, { lazy, Suspense } from "react";
+import React from "react";
 
 import Head from "next/head";
 
-const Media2 = lazy(() => import("@/components/Media2"));
-const Media3 = lazy(() => import("@/components/Media3"));
-const Media4 = lazy(() => import("@/components/Media4"));
-const Media5 = lazy(() => import("@/components/Media5"));
-const Media6 = lazy(() => import("@/components/Media6"));
-const Media7 = lazy(() => import("@/components/Media7"));
-const Media8 = lazy(() => import("@/components/Media8"));
+import Media2 from "@/components/Media2";
+import Media3 from "@/components/Media3";
+import Media4 from "@/components/Media4";
+import Media5 from "@/components/Media5";
+import Media6 from "@/components/Media6";
+import Media7 from "@/components/Media7";
+import Media8 from "@/components/Media8";
 
 function media() {
 	return (
