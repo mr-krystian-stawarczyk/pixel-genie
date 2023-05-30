@@ -4,15 +4,13 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "npm run partytown && next build",
-		"partytown": "partytown copylib public/~partytown",
+		"build": "next build",
 		"start": "next start",
 		"postbuild": "next-sitemap --config next-sitemap.config.js",
 		"sitemap": "next-sitemap"
 	},
 	"dependencies": {
 		"@babel/preset-env": "^7.21.5",
-		"@builder.io/partytown": "^0.8.0",
 		"@emailjs/browser": "^3.11.0",
 		"@sanity/cli": "^3.11.1",
 		"@sanity/client": "^3.4.1",
