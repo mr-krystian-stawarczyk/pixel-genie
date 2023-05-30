@@ -8,9 +8,12 @@ import { SSRProvider } from "react-bootstrap";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
-
+import ReactGA from "react-ga";
+import Script from "next/script";
 function App(props) {
 	const { Component, pageProps, router } = props;
+
+	ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
 	useEffect(() => {
 		if ("serviceWorker" in navigator) {
 			navigator.serviceWorker
@@ -18,8 +21,31 @@ function App(props) {
 				.then((registration) => console.log("scope is: ", registration.scope));
 		}
 	}, []);
+
+	useEffect(() => {
+		const handleRouteChange = (url) => {
+			ga.pageview(url);
+		};
+
+		router.events.on("routeChangeComplete", handleRouteChange);
+		return () => {
+			router.events.off("routeChangeComplete", handleRouteChange);
+		};
+	}, [router.events]);
+
 	return (
 		<SSRProvider>
+			<Script
+				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
+				strategy="afterInteractive"
+			/>
+			<Script id="google-analytics-script" strategy="afterInteractive">
+				{`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}');`}
+			</Script>
 			<ThemeProvider defaultTheme="dark">
 				<Layout>
 					<Head>

@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import ReactGA from "react-ga";
+
 import i18n from "../i18n.js";
 import { useRouter } from "next/router";
 
@@ -22,11 +22,6 @@ const NavbarComp = ({ toggleTheme }) => {
 	);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const { theme, setTheme } = useTheme();
-
-	ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
-	const handleRouteChange = (url) => {
-		ReactGA.pageview(url);
-	};
 
 	useEffect(() => {
 		setCurrentTheme(theme);
