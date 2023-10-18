@@ -43,33 +43,36 @@ const TechBar = () => {
 				<Slider {...settings}>
 					<div className="text-center">
 						<Image
-							src="/assets/webagentur-nettetal-bootstrap-seo.png"
+							src="/assets/webseiten-nettetal-google-business-seo.png"
 							alt="webagentur-nettetal-bootstrap-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
 							priority
 						/>
+						<h6>Google Business</h6>
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/webagentur-nettetal-canva-design.png"
+							src="/assets/webseiten-nettetal-facebookads-seo-pixelgenie.png"
 							alt="webagentur-nettetal-canva-design"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
 							priority
 						/>
+						<h6>Facebook Ads</h6>
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/webagentur-nettetal-git-entwicklung.png"
+							src="/assets/pixelgenie-nettetal-webseiten-wentwicklung-seo-optimierung.png"
 							alt="webagentur-nettetal-git-webentwicklung.png"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
 							priority
 						/>
+						<h6>SEO Optimierung</h6>
 					</div>
 					<div className="text-center">
 						<Image
@@ -80,36 +83,40 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							priority
 						/>
+						<h6>Google Analytics</h6>
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/webagentur-nettetal-netlify-webentwicklung-seo.png"
+							src="/assets/webagentur-nettetal-webseiten-webentwicklung-design-photoshop.png"
 							alt="webagentur-nettetal-netlify-webentwicklung-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
 							priority
 						/>
+						<h6>Photoshop Design</h6>
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/webagentur-nettetal-nextjs-webentwicklung-seo.png"
+							src="/assets/webagentur-nettetal-webseiten-webentwicklung-ecommerce.png"
 							alt="webagentur-nettetal-nextjs-webentwicklung-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
 							priority
 						/>
+						<h6>Stripe Online Bezahlung</h6>
 					</div>
 					<div className="text-center">
 						<Image
-							src="/assets/webagentur-nettetal-reactjs-webentwicklung-seo.png"
+							src="/assets/webagentur-nettetal-webseiten-webentwicklung-seo.png"
 							alt="webagentur-nettetal-reactjs-webentwicklung-seo"
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
 							priority
 						/>
+						<h6>React Programmierung</h6>
 					</div>
 				</Slider>
 			</Row>

@@ -78,7 +78,7 @@ function ParticlesComponent() {
 							type: "circle",
 						},
 						size: {
-							value: 4,
+							value: 6,
 							random: true,
 						},
 					},

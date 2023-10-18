@@ -26,8 +26,16 @@ a {
 
 .header-container {
 	position: relative;
+	height: 100vh; /* Set the container height to the full viewport height */
 }
 
+.header-content {
+	text-align: center; /* Center the text within the container */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%; /* Ensure the content takes up the full height of the container */
+}
 .particles-container {
 	position: absolute;
 	top: 0;
@@ -65,7 +73,7 @@ a {
 }
 
 .blur {
-	backdrop-filter: blur(3px); /* Ustawienie efektu blur dla tła */
+	backdrop-filter: blur(7px); /* Ustawienie efektu blur dla tła */
 	z-index: 0 !important;
 }
 
@@ -98,6 +106,11 @@ a {
 }
 .footer-links:hover {
 	color: #003681;
+}
+
+.hover:hover {
+	transform: scale(1.2);
+	transition: 0.3s ease-in-out;
 }
 
 .contact-links {

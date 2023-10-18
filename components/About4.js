@@ -94,7 +94,7 @@ function About4() {
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
 								<h1>1</h1>
-								<Card.Text>{t("about5")}</Card.Text>
+								<Card.Text className="text-bold">{t("about5")}</Card.Text>
 								<Card.Text>{t("about6")}</Card.Text>
 							</Card.Body>
 						</Card>

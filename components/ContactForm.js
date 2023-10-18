@@ -186,7 +186,11 @@ export const ContactForm = () => {
 							</Form>
 						) : (
 							<div>
-								<h3 className="head-text"> Thank You For Contact!</h3>
+								<h3 className="head-text">
+									{" "}
+									Vielen Dank, dass Sie mit uns Kontakt aufgenommen haben. Wir
+									werden uns bald bei Ihnen melden!
+								</h3>
 							</div>
 						)}
 					</Col>

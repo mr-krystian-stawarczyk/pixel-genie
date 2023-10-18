@@ -56,7 +56,7 @@ function Footer() {
 						>
 							<Card.Body className="">
 								<Card.Title className="my-3">{t("footer1")}</Card.Title>
-								<Link href="web" className="footer-links">
+								<Link href="webseiten" className="footer-links">
 									<Card.Text className="py-2">{t("footer2")}</Card.Text>
 								</Link>
 								<Link href="seo" className="footer-links">
@@ -104,7 +104,7 @@ function Footer() {
 							<Card.Body className="">
 								<Card.Title className="my-3">{t("footer13")}</Card.Title>
 								<Link
-									href="https://www.facebook.com/pixelgeniewebagentur"
+									href="https://www.facebook.com/profile.php?id=100090817536941"
 									target="_blank"
 								>
 									<Card.Text className="footer-links">
@@ -114,28 +114,17 @@ function Footer() {
 										/>
 									</Card.Text>
 								</Link>
-								<Link
-									href="https://www.linkedin.com/in/krystian-stawarczyk-240476212/"
-									target="_blank"
-								>
-									<Card.Text className="footer-links">
-										<AiOutlineLinkedin
-											style={{ fontSize: "3rem" }}
-											className="my-2"
-										/>
-									</Card.Text>
-								</Link>
-								<Link
-									href="https://github.com/mr-krystian-stawarczyk"
-									target="_blank"
-								>
-									<Card.Text className="footer-links">
-										<AiFillGithub
-											style={{ fontSize: "3rem" }}
-											className="my-2"
-										/>
-									</Card.Text>
-								</Link>
+
+								<Card.Text className="footer-links">
+									<AiOutlineLinkedin
+										style={{ fontSize: "3rem" }}
+										className="my-2"
+									/>
+								</Card.Text>
+
+								<Card.Text className="footer-links">
+									<AiFillGithub style={{ fontSize: "3rem" }} className="" />
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
@@ -145,7 +134,11 @@ function Footer() {
 							style={{ width: "20rem" }}
 						>
 							<Card.Title className="my-3">{t("footer14")}</Card.Title>
-							<h4 className="py-5" onClick={handleEmailClick}>
+							<h4
+								className="py-5 hover"
+								onClick={handleEmailClick}
+								style={{ cursor: "pointer" }}
+							>
 								info@pixel-genie.de
 							</h4>
 						</Card>
@@ -153,7 +146,7 @@ function Footer() {
 				</Row>
 				<Row className="text-center my-2">
 					<Col>
-						<h6>2023 Pixel Genie All Rights Reserved</h6>
+						<h6>2023 Pixel Genie Alle Rechte vorbehalten</h6>
 					</Col>
 					<Col>
 						<Link href="/policy" className="footer-links">

@@ -35,16 +35,6 @@ function About1() {
 			<motion.div ref={ref} animate={controls}>
 				<Container className="py-5">
 					<Row className="justify-content-center align-items-center">
-						<Col lg={5} className="mx-auto my-2 text-center blur">
-							<Image
-								src="/assets/webagentur-nettetal-webentwicklung-about1.jpg"
-								width={380}
-								height={400}
-								className="responsive-image shadow-lg rounded"
-								alt="webagentur-nettetal-webentwicklung-about1"
-								priority
-							/>
-						</Col>
 						<Col lg={5} className="mx-auto my-2 blur">
 							<Card className="border-0 bg-transparent ">
 								<Card.Body>
@@ -52,6 +42,16 @@ function About1() {
 									<Card.Text>{t("about2")}</Card.Text>
 								</Card.Body>
 							</Card>
+						</Col>{" "}
+						<Col lg={5} className="mx-auto my-2 text-center blur">
+							<Image
+								src="/assets/webentwicklung-nettetal-seo1.png"
+								width={380}
+								height={400}
+								className="responsive-image shadow-lg rounded"
+								alt="webagentur-nettetal-webentwicklung-about1"
+								priority
+							/>
 						</Col>
 					</Row>
 				</Container>

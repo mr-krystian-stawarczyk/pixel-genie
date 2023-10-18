@@ -29,7 +29,10 @@ export default {
     {
       name: 'date',
       title: 'Date',
-      type: 'string',
+      type: 'date', // Change this to 'date' type
+      options: {
+        dateFormat: 'DD-MM-YYYY', // Specify your desired date format
+      },
     },
     {
       name: 'name',

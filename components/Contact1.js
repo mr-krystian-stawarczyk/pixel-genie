@@ -57,6 +57,8 @@ function Contact1() {
 							<Card.Title>{t("kontakt5")}</Card.Title>
 							<Card.Text>Fasanenstr 41134 Nettetal</Card.Text>
 							<Button
+								target="_blank"
+								rel="noopener noreferrer"
 								className="btn-nav"
 								href="https://www.google.com/maps/place/Pixel-Genie/@51.2989446,6.2737063,15z/data=!4m6!3m5!1s0x47c75783bf077a0f:0x9e16ae7c216c0cb7!8m2!3d51.2989446!4d6.2737063!16s%2Fg%2F11kk7451mc"
 							>

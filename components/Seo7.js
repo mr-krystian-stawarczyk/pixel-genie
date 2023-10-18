@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 function Seo7() {
 	const { t } = useTranslation();
 	return (
-		<Container className=" mb-5 pb-5" id="web-design-faq">
+		<Container className=" mb-5 pb-5" id="seofaq">
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
 					<Image

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import ReactGA from "react-ga";
 
 import i18n from "../i18n.js";
 import { useRouter } from "next/router";
@@ -22,6 +23,14 @@ const NavbarComp = ({ toggleTheme }) => {
 	);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const { theme, setTheme } = useTheme();
+	const handleLinkClick = (url) => {
+		ReactGA.pageview(url);
+	};
+
+	useEffect(() => {
+		ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
+		ReactGA.pageview(window.location.pathname + window.location.search);
+	}, []);
 
 	useEffect(() => {
 		setCurrentTheme(theme);
@@ -126,7 +135,12 @@ const NavbarComp = ({ toggleTheme }) => {
 					className=" rounded justify-content-end text-center  m-1  navbar-toggler border-0"
 				>
 					<Nav className="navbar-collapse justify-content-end text-center rounded ">
-						<Nav.Link as={Link} href="about" className="m-1">
+						<Nav.Link
+							as={Link}
+							href="about"
+							className="m-1"
+							onClick={() => handleLinkClick("/about")}
+						>
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav5")}
 							</Button>
@@ -142,35 +156,65 @@ const NavbarComp = ({ toggleTheme }) => {
 							show={dropdownOpen}
 							onToggle={setDropdownOpen}
 						>
-							<NavDropdown.Item as={Link} href="web">
+							<NavDropdown.Item
+								as={Link}
+								href="webseiten"
+								onClick={() => handleLinkClick("/web")}
+							>
 								<Button className="w-100 border-0 btn-nav shadow-sm ">
 									{t("nav8")}
 								</Button>
 							</NavDropdown.Item>
-							<NavDropdown.Item as={Link} href="seo">
+							<NavDropdown.Item
+								as={Link}
+								href="seo"
+								onClick={() => handleLinkClick("/seo")}
+							>
 								<Button className=" border-0 btn-nav shadow-sm w-100">
 									SEO
 								</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Divider />
-							<NavDropdown.Item as={Link} href="branding">
+							<NavDropdown.Item
+								as={Link}
+								href="branding"
+								onClick={() => handleLinkClick("/branding")}
+							>
 								<Button className="w-100 border-0 btn-nav ">Branding</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Item as={Link} href="media">
-								<Button className="w-100 border-0 btn-nav ">Design</Button>
+								<Button
+									className="w-100 border-0 btn-nav "
+									onClick={() => handleLinkClick("/media")}
+								>
+									Design
+								</Button>
 							</NavDropdown.Item>
-							<NavDropdown.Item as={Link} href="socialmedia">
+							<NavDropdown.Item
+								as={Link}
+								href="socialmedia"
+								onClick={() => handleLinkClick("/socialmedia")}
+							>
 								<Button className="w-100 border-0 btn-nav ">
 									Social Media
 								</Button>
 							</NavDropdown.Item>
 						</NavDropdown>
-						<Nav.Link as={Link} href="blog">
+						<Nav.Link
+							as={Link}
+							href="blog"
+							onClick={() => handleLinkClick("/blog")}
+						>
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav3")}
 							</Button>
 						</Nav.Link>
-						<Nav.Link as={Link} href="contact" className="m-1">
+						<Nav.Link
+							as={Link}
+							href="contact"
+							className="m-1"
+							onClick={() => handleLinkClick("/contact")}
+						>
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav6")}
 							</Button>

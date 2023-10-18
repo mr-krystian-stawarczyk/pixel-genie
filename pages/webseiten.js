@@ -10,8 +10,9 @@ import Web5 from "@/components/Web5";
 import Web6 from "@/components/Web6";
 import WebPrices from "@/components/WebPrices";
 import Faq1 from "@/components/Faq1";
+import HeaderCounted from "@/components/HeaderCounted";
 
-function web() {
+function webseiten() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -25,6 +26,7 @@ function web() {
 				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
+			<HeaderCounted />
 			<Web1 />
 			<Web2 />
 			<Web3 />
@@ -37,4 +39,4 @@ function web() {
 	);
 }
 
-export default web;
+export default webseiten;

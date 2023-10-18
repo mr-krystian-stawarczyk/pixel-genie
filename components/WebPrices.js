@@ -110,9 +110,6 @@ function WebPrices() {
 							</Card.Body>
 							<Card.Body>
 								<h4>{t("web37")}</h4>
-								<Card.Text>{t("web38")}</Card.Text>
-								<Card.Text>{t("web39")}</Card.Text>
-								<Card.Text> {t("web40")}</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>
@@ -126,7 +123,17 @@ function WebPrices() {
 					>
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
-								<h1>{t("web41")}</h1>
+								<h1>
+									{" "}
+									<Image
+										src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
+										width={100}
+										height={100}
+										alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
+										priority
+									/>
+									{t("web41")}{" "}
+								</h1>
 								<Card.Text>{t("web42")}</Card.Text>
 							</Card.Body>
 							<Card.Body>
@@ -147,17 +154,7 @@ function WebPrices() {
 								<Card.Text>{t("web57")}</Card.Text>
 							</Card.Body>
 							<Card.Body>
-								<Image
-									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
-									width={100}
-									height={100}
-									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
-									priority
-								/>
-								<h3> {t("web58")}</h3>
-								<Card.Text>{t("web59")}</Card.Text>
-								<Card.Text>{t("web60")}</Card.Text>
-								<Card.Text> {t("web61")}</Card.Text>
+								<h3> {t("web58")}</h3>{" "}
 							</Card.Body>
 						</Card>
 					</motion.div>
@@ -195,9 +192,6 @@ function WebPrices() {
 							</Card.Body>
 							<Card.Body>
 								<h3>{t("web81")}</h3>
-								<Card.Text>{t("web82")}</Card.Text>
-								<Card.Text>{t("web83")}</Card.Text>
-								<Card.Text>{t("web84")}</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>

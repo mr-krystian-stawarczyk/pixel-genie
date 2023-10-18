@@ -63,7 +63,7 @@ function Seo6() {
 	}, [inView3, controls3, animateIn]);
 
 	return (
-		<Container className="my-5 py-5 " id="web-design-pricing">
+		<Container className="my-5 py-5 " id="seoprices">
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
 					<Image
