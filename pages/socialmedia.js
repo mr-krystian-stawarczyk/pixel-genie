@@ -13,7 +13,7 @@ function socialmedia() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Social Media </title>
+				<title>Social Media und Werbagentur im Nettetal Webdesign </title>
 				<meta
 					name="description"
 					content="Pixel-Genie bietet umfassende Social-Media-Marketing-Lösungen, um Ihre Präsenz auf Plattformen wie Facebook, Instagram und Twitter zu maximieren. Kontaktieren Sie uns, um loszulegen."

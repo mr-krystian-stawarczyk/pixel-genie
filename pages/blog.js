@@ -8,7 +8,7 @@ function blog() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Tipps fur deine Geschaft</title>
+				<title>Tipps fur deine Geschaft - Webentwicklung und Webdesign </title>
 				<meta
 					name="description"
 					content="Pixel-Genie: Unser Blog für Webdesign, Webseite Erstellen, Webentwicklung, Online-Marketing und mehr. Lesen Sie unsere neuesten Artikel und erfahren Sie mehr über die neuesten Trends und Entwicklungen in der Online-Welt."

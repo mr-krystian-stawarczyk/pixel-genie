@@ -9,7 +9,7 @@ function contact() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Kontakt in 41334 Nettetal</title>
+				<title>Kontakt - Nettetal Webdesign und Webentwicklung</title>
 				<meta
 					name="description"
 					content="Pixel-Genie: Kontaktieren Sie uns für professionelles Webdesign und Online-Marketing-Dienstleistungen in Nettetal. Füllen Sie unser Kontaktformular aus oder rufen Sie uns an, um mehr zu erfahren."
