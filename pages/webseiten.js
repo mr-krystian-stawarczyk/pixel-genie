@@ -16,10 +16,7 @@ function webseiten() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>
-					Webseiten Erstellen, Webentwicklung in Nettetal | Pixel Genie
-					Webagentur
-				</title>
+				<title>Webdesign, Webentwicklung </title>
 				<meta
 					name="description"
 					content="Professionelle Webseiten erstellen, Webentwicklung in Nettetal. Maßgeschneiderte Lösungen für Ihre Online-Präsenz. Von Webdesign über Webentwicklung bis hin zu SEO. Stärken Sie Ihre Marke mit unseren Experten. Kontaktieren Sie uns!"

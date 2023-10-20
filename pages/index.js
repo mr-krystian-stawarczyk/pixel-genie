@@ -16,8 +16,7 @@ export default function Home() {
 		<>
 			<Head>
 				<title>
-					Webentwicklung, Webseiten, Marketing, SEO, Branding, Logos in 41334
-					Nettetal | Pixel Genie Webagentur
+					Webentwicklung, Webdesign, Werbenagentur, Marketing Nettetal
 				</title>
 				<meta
 					name="description"

@@ -84,7 +84,7 @@ function Footer() {
 								<Link href="about" className="footer-links">
 									<Card.Text className="py-2"> {t("footer8")}</Card.Text>
 								</Link>
-								<Link href="contact" className="footer-links">
+								<Link href="kontakt" className="footer-links">
 									<Card.Text className="py-2">{t("footer9")}</Card.Text>
 								</Link>
 								<Link href="blog" className="footer-links">

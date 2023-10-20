@@ -7,7 +7,7 @@ function Contact1() {
 	const { t } = useTranslation();
 
 	function handleCall() {
-		window.location.href = "tel:+49173534346";
+		window.location.href = "tel:+491756216441";
 	}
 
 	const handleEmailClick = () => {
@@ -25,7 +25,7 @@ function Contact1() {
 						<Card.Body>
 							<AiOutlinePhone style={{ fontSize: "4rem" }} />
 							<Card.Title>{t("kontakt1")}</Card.Title>
-							<Card.Text>+49 173534346</Card.Text>
+							<Card.Text>0175 621 6441</Card.Text>
 							<Button className="btn-nav" onClick={handleCall}>
 								{t("kontakt2")}
 							</Button>

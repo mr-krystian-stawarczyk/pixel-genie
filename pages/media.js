@@ -16,7 +16,7 @@ function media() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Design in 41334 Nettetal | Pixel Genie Webagentur</title>
+				<title>Design Webdesign</title>
 				<meta
 					name="description"
 					content="Pixel-Genie bietet erstklassiges Media-Creating, einschließlich Grafikdesign, Videoproduktion und Fotobearbeitung. Kontaktieren Sie uns, um Ihre Ideen zum Leben zu erwecken."

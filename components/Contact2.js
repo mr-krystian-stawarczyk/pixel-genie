@@ -23,7 +23,7 @@ function Contact2() {
 				</Col>
 				<Col lg={5} className="mx-auto">
 					<Link
-						href="https://www.facebook.com/pixelgeniewebagentur"
+						href="https://www.facebook.com/profile.php?id=100090817536941"
 						className="contact-links"
 						target="_blank"
 					>
@@ -32,21 +32,13 @@ function Contact2() {
 							className="contact-icons"
 						/>
 					</Link>
-					<Link
-						href="https://www.linkedin.com/in/krystian-stawarczyk-240476212/"
-						className="contact-links"
-						target="_blank"
-					>
+					<Link href="kontakt" className="contact-links">
 						<AiOutlineLinkedin
 							style={{ fontSize: "8rem" }}
 							className="contact-icons"
 						/>
 					</Link>
-					<Link
-						href="https://github.com/mr-krystian-stawarczyk"
-						className="contact-links"
-						target="_blank"
-					>
+					<Link href="kontakt" className="contact-links">
 						<AiFillGithub
 							style={{ fontSize: "8rem" }}
 							className="contact-icons"

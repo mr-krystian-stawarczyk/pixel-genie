@@ -211,9 +211,9 @@ const NavbarComp = ({ toggleTheme }) => {
 						</Nav.Link>
 						<Nav.Link
 							as={Link}
-							href="contact"
+							href="kontakt"
 							className="m-1"
-							onClick={() => handleLinkClick("/contact")}
+							onClick={() => handleLinkClick("/kontakt")}
 						>
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav6")}
