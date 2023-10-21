@@ -17,7 +17,7 @@ function webseiten() {
 		<div className="mt-5 pt-5">
 			<Head>
 				<title>
-					Webdesign, Webentwicklung, Mediengestalter, Webseite erstellung{" "}
+					Webdesign, Webentwicklung, Mediengestalter, Webseite erstellung
 				</title>
 				<meta
 					name="description"

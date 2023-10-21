@@ -68,7 +68,7 @@ function Blog2() {
 							<Card.Text>{item.details.details1[i18n.language]}</Card.Text>
 							<Card.Text>{item.details.details2[i18n.language]}</Card.Text>
 							<Card.Text>{item.details.details3[i18n.language]}</Card.Text>
-						</Card>{" "}
+						</Card>
 					</Col>
 				))}
 			</Row>

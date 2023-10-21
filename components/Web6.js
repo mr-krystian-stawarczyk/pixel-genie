@@ -67,7 +67,11 @@ function Web6() {
 							<Card.Body>
 								<h3>{item.name[i18n.language]}</h3>
 								<p>{item.details[i18n.language]}</p>
-								<Button href={item.link} className="btn-nav px-4">
+								<Button
+									href={item.link}
+									target="_blank"
+									className="btn-nav px-4"
+								>
 									Link
 								</Button>
 							</Card.Body>

@@ -56,7 +56,7 @@ function Header6() {
 						</Accordion.Item>
 						<Accordion.Item eventKey="8">
 							<Accordion.Header>{t("hfaq17")}</Accordion.Header>
-							<Accordion.Body>{t("hfaq118")}</Accordion.Body>
+							<Accordion.Body>{t("hfaq18")}</Accordion.Body>
 						</Accordion.Item>
 						<Accordion.Item eventKey="9">
 							<Accordion.Header>{t("hfaq19")}</Accordion.Header>

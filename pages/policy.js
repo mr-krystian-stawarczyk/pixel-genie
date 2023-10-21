@@ -23,9 +23,8 @@ function policy() {
 							<Card.Title>Angaben gemäß §5 TMG</Card.Title>
 							<Card.Text>Pixel Genie Inh.: Krystian Stawarczyk</Card.Text>
 							<Card.Text>Fasanenstr. 10 41334 Nettetal</Card.Text>
-							<Card.Text>
-								Telefon: +49 (0) 173-534-346 E-Mail: info@pixel-genie.de
-							</Card.Text>
+							<Card.Text>Telefon: +49 (0) 175 621 6441</Card.Text>
+							<Card.Text>E-Mail: info@pixel-genie.de</Card.Text>
 						</Card.Body>
 					</Card>
 				</Col>
@@ -61,7 +60,6 @@ function policy() {
 				<h5>{t("policy9")}</h5>
 			</Row>
 			<Row>
-				{" "}
 				<h4 className="my-2">{t("policy10")}</h4>
 				<h5>{t("policy11")}</h5>
 			</Row>
@@ -70,7 +68,6 @@ function policy() {
 				<h5>{t("policy13")}</h5>
 			</Row>
 			<Row>
-				{" "}
 				<h4 className="my-2"> {t("policy14")}</h4>
 				<h5>{t("policy15")}</h5>
 			</Row>

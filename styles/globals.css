@@ -92,6 +92,18 @@ a {
 	color: white !important;
 }
 
+@media (max-width: 768px) {
+	/* Ustal rozmiar dla h1 na urządzeniach mobilnych */
+	.header-content h1 {
+		font-size: 24px; /* Zaktualizuj rozmiar według potrzeb */
+	}
+
+	/* Ustal rozmiar dla h4 na urządzeniach mobilnych */
+	.header-content h4 {
+		font-size: 18px; /* Zaktualizuj rozmiar według potrzeb */
+	}
+}
+
 .vertical-timeline-element-date {
 	color: rgb(133, 133, 133);
 }

@@ -27,12 +27,9 @@ export default function Home() {
 			<Header1 />
 			<TechBar />
 			<Header2 />
-
 			<Header3 />
 			<Header4 />
-
 			<Header5 />
-
 			<Header6 />
 		</>
 	);

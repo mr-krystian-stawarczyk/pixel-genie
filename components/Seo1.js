@@ -56,7 +56,6 @@ function Seo1() {
 						</Card>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">
-						{" "}
 						<Image
 							src="/assets/webentwicklung-nettetal-seo3.png"
 							width={400}

@@ -72,14 +72,15 @@ function HeaderCounted() {
 	});
 
 	return (
-		<Container className=" border-0 " ref={sectionRef}>
+		<Container className=" border-0 ">
 			<Row className="text-center justify-content-center justify-content-sm-center align-items-center  ">
 				<Row className=" ">
-					<animated.div style={animationPropsMiddle}>
-						<h1 className="py-3">{t("webseiten1")}</h1>
-					</animated.div>
+					<h1 className="py-3">{t("webseiten1")}</h1>
 				</Row>
-				<Row className="text-center align-items-center justify-content-center">
+				<Row
+					className="text-center align-items-center justify-content-center"
+					ref={sectionRef}
+				>
 					<Col lg={5} className="mx-auto my-2 ">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
@@ -113,7 +114,7 @@ function HeaderCounted() {
 							</animated.div>
 						</Col>
 						<Col lg={10}>
-							<animated.div style={animationProps}>
+							<animated.div style={animationPropsMiddle}>
 								<Card className=" border-primary bg-light p-1 m-1">
 									<Card.Body>
 										<Card.Title>{t("webseiten5")}</Card.Title>
@@ -140,7 +141,7 @@ function HeaderCounted() {
 							</animated.div>
 						</Col>
 						<Col lg={10}>
-							<animated.div style={animationProps}>
+							<animated.div style={imgAnimationProps}>
 								<Card className=" border-primary bg-light p-1 m-1">
 									<Card.Body>
 										<Card.Title>{t("webseiten6")}</Card.Title>

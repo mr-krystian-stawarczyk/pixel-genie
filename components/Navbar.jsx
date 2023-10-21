@@ -22,6 +22,7 @@ const NavbarComp = ({ toggleTheme }) => {
 		"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
 	);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const { theme, setTheme } = useTheme();
 	const handleLinkClick = (url) => {
 		ReactGA.pageview(url);
@@ -129,6 +130,7 @@ const NavbarComp = ({ toggleTheme }) => {
 				<Navbar.Toggle
 					aria-controls="responsive-navbar-nav"
 					aria-label="Toggle navigation"
+					onClick={() => setMobileMenuOpen(!mobileMenuOpen)} // Toggle mobile menu state
 				/>
 				<Navbar.Collapse
 					id="basic-navbar-nav"
@@ -153,7 +155,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							style={{
 								fontSize: "1rem",
 							}}
-							show={dropdownOpen}
+							show={dropdownOpen} // Close dropdown when mobile menu is open
 							onToggle={setDropdownOpen}
 						>
 							<NavDropdown.Item
@@ -220,7 +222,10 @@ const NavbarComp = ({ toggleTheme }) => {
 							</Button>
 						</Nav.Link>
 						<Button
-							onClick={toggleTheme}
+							onClick={() => {
+								toggleTheme();
+								// Close the dropdown
+							}}
 							className="btn-nav border-0  btn-md py-2 mx-1"
 						>
 							{currentTheme === "light" ? (

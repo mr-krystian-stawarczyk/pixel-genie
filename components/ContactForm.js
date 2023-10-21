@@ -187,7 +187,6 @@ export const ContactForm = () => {
 						) : (
 							<div>
 								<h3 className="head-text">
-									{" "}
 									Vielen Dank, dass Sie mit uns Kontakt aufgenommen haben. Wir
 									werden uns bald bei Ihnen melden!
 								</h3>

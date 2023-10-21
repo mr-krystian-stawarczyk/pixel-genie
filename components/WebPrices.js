@@ -124,7 +124,6 @@ function WebPrices() {
 						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
 							<Card.Body>
 								<h1>
-									{" "}
 									<Image
 										src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
 										width={100}
@@ -132,7 +131,7 @@ function WebPrices() {
 										alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
 										priority
 									/>
-									{t("web41")}{" "}
+									{t("web41")}
 								</h1>
 								<Card.Text>{t("web42")}</Card.Text>
 							</Card.Body>
@@ -154,7 +153,7 @@ function WebPrices() {
 								<Card.Text>{t("web57")}</Card.Text>
 							</Card.Body>
 							<Card.Body>
-								<h3> {t("web58")}</h3>{" "}
+								<h3> {t("web58")}</h3>
 							</Card.Body>
 						</Card>
 					</motion.div>

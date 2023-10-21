@@ -56,9 +56,8 @@ function Media2() {
 								</Button>
 							</Card.Body>
 						</Card>
-					</Col>{" "}
+					</Col>
 					<Col lg={5} className="mx-auto my-2">
-						{" "}
 						<Image
 							src="/assets/webentwicklung-nettetal-design-seo2.png"
 							width={400}
