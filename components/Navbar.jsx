@@ -139,7 +139,7 @@ const NavbarComp = ({ toggleTheme }) => {
 					<Nav className="navbar-collapse justify-content-end text-center rounded ">
 						<Nav.Link
 							as={Link}
-							href="about"
+							href="/about"
 							className="m-1"
 							onClick={() => handleLinkClick("/about")}
 						>
@@ -160,7 +160,7 @@ const NavbarComp = ({ toggleTheme }) => {
 						>
 							<NavDropdown.Item
 								as={Link}
-								href="webseiten"
+								href="/webseiten"
 								onClick={() => handleLinkClick("/web")}
 							>
 								<Button className="w-100 border-0 btn-nav shadow-sm ">
@@ -169,7 +169,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							</NavDropdown.Item>
 							<NavDropdown.Item
 								as={Link}
-								href="seo"
+								href="/seo"
 								onClick={() => handleLinkClick("/seo")}
 							>
 								<Button className=" border-0 btn-nav shadow-sm w-100">
@@ -179,12 +179,12 @@ const NavbarComp = ({ toggleTheme }) => {
 							<NavDropdown.Divider />
 							<NavDropdown.Item
 								as={Link}
-								href="branding"
+								href="/branding"
 								onClick={() => handleLinkClick("/branding")}
 							>
 								<Button className="w-100 border-0 btn-nav ">Branding</Button>
 							</NavDropdown.Item>
-							<NavDropdown.Item as={Link} href="media">
+							<NavDropdown.Item as={Link} href="/media">
 								<Button
 									className="w-100 border-0 btn-nav "
 									onClick={() => handleLinkClick("/media")}
@@ -194,7 +194,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							</NavDropdown.Item>
 							<NavDropdown.Item
 								as={Link}
-								href="socialmedia"
+								href="/socialmedia"
 								onClick={() => handleLinkClick("/socialmedia")}
 							>
 								<Button className="w-100 border-0 btn-nav ">
@@ -204,7 +204,7 @@ const NavbarComp = ({ toggleTheme }) => {
 						</NavDropdown>
 						<Nav.Link
 							as={Link}
-							href="blog"
+							href="/blog"
 							onClick={() => handleLinkClick("/blog")}
 						>
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
@@ -213,7 +213,7 @@ const NavbarComp = ({ toggleTheme }) => {
 						</Nav.Link>
 						<Nav.Link
 							as={Link}
-							href="kontakt"
+							href="/kontakt"
 							className="m-1"
 							onClick={() => handleLinkClick("/kontakt")}
 						>

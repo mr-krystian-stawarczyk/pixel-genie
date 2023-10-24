@@ -160,6 +160,11 @@ a {
 	transition: opacity 300ms;
 }
 
+.arrow-nav {
+	color: #003681;
+	font-size: 1.7rem;
+}
+
 .btn-nav {
 	background-color: #003681 !important;
 	border: none !important;

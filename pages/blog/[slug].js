@@ -1,0 +1,78 @@
+import { useRouter } from "next/router";
+import { Container, Card, Row, Col } from "react-bootstrap";
+import { urlFor } from "../../lib/client";
+import { useTranslation } from "react-i18next";
+import { client } from "../../lib/client";
+import Image from "next/image";
+import Link from "next/link";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+
+function BlogPost({ post }) {
+	const { t, i18n } = useTranslation();
+	const router = useRouter();
+
+	if (router.isFallback) {
+		return <div>Loading...</div>;
+	}
+
+	return (
+		<Container fluid className="pt-5">
+			<Row className="align-items-center justify-content-center">
+				<Col lg={10}>
+					<Card className="bg-transparent m-2 p-3 shadow-lg">
+						<Card.Img
+							src={urlFor(post.image && post.image[0])}
+							alt={post.image && post.image[0].alt}
+							style={{ height: "200px", width: "200px" }}
+							className="mx-auto"
+						/>
+						<Link href="/blog">
+							<BsFillArrowLeftCircleFill className="arrow-nav" />
+						</Link>
+						<h1 className="py-2">{post.name[i18n.language]}</h1>
+						<Card.Text>{post.date}</Card.Text>
+						<Card.Text>{post.details?.details1?.[i18n.language]}</Card.Text>
+						<Card.Text>{post.details?.details2?.[i18n.language]}</Card.Text>
+						<Card.Text>{post.details?.details3?.[i18n.language]}</Card.Text>
+						<Card.Text>{post.details?.details4?.[i18n.language]}</Card.Text>
+						<Card.Text>{post.details?.details5?.[i18n.language]}</Card.Text>
+						<Card.Text>{post.details?.details6?.[i18n.language]}</Card.Text>
+						<Card.Text>{post.details?.details7?.[i18n.language]}</Card.Text>
+						<Card.Text>{post.details?.details8?.[i18n.language]}</Card.Text>
+						<Card.Text>{post.details?.details9?.[i18n.language]}</Card.Text>
+						<Link href="/blog">
+							<BsFillArrowLeftCircleFill className="arrow-nav" />
+						</Link>
+					</Card>
+				</Col>
+			</Row>
+		</Container>
+	);
+}
+
+export default BlogPost;
+
+export async function getStaticPaths() {
+	const result = await client.fetch('*[_type == "blog"]');
+	const paths = result.map((post) => ({
+		params: { slug: post.slug.current }, // Use "slug" as the parameter
+	}));
+
+	return { paths, fallback: true };
+}
+
+export async function getStaticProps({ params }) {
+	const { slug } = params;
+	const post = await client.fetch(
+		'*[_type == "blog" && slug.current == $slug][0]',
+		{
+			slug,
+		}
+	);
+
+	return {
+		props: {
+			post,
+		},
+	};
+}

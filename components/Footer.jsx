@@ -56,19 +56,19 @@ function Footer() {
 						>
 							<Card.Body className="">
 								<Card.Title className="my-3">{t("footer1")}</Card.Title>
-								<Link href="webseiten" className="footer-links">
+								<Link href="/webseiten" className="footer-links">
 									<Card.Text className="py-2">{t("footer2")}</Card.Text>
 								</Link>
-								<Link href="seo" className="footer-links">
+								<Link href="/seo" className="footer-links">
 									<Card.Text className="py-2">{t("footer3")}</Card.Text>
 								</Link>
-								<Link href="branding" className="footer-links">
+								<Link href="/branding" className="footer-links">
 									<Card.Text className="py-2">{t("footer4")}</Card.Text>
 								</Link>
-								<Link href="media" className="footer-links">
+								<Link href="/media" className="footer-links">
 									<Card.Text className="py-2">{t("footer5")}</Card.Text>
 								</Link>
-								<Link href="socialmedia" className="footer-links">
+								<Link href="/socialmedia" className="footer-links">
 									<Card.Text className="py-2">{t("footer6")}</Card.Text>
 								</Link>
 							</Card.Body>
@@ -81,13 +81,13 @@ function Footer() {
 						>
 							<Card.Body className="">
 								<Card.Title className="my-3">{t("footer7")}</Card.Title>
-								<Link href="about" className="footer-links">
+								<Link href="/about" className="footer-links">
 									<Card.Text className="py-2"> {t("footer8")}</Card.Text>
 								</Link>
-								<Link href="kontakt" className="footer-links">
+								<Link href="/kontakt" className="footer-links">
 									<Card.Text className="py-2">{t("footer9")}</Card.Text>
 								</Link>
-								<Link href="blog" className="footer-links">
+								<Link href="/blog" className="footer-links">
 									<Card.Text className="py-2">{t("footer10")}</Card.Text>
 								</Link>
 								<Link href="#contact" className="footer-links">
@@ -146,11 +146,11 @@ function Footer() {
 				</Row>
 				<Row className="text-center my-2">
 					<Col>
-						<h6>2023 Pixel Genie Alle Rechte vorbehalten</h6>
+						<h4>2023 Pixel Genie Alle Rechte vorbehalten</h4>
 					</Col>
 					<Col>
 						<Link href="/policy" className="footer-links">
-							<h6>Cookies & Imprint</h6>
+							<h4>Cookies & Impressium</h4>
 						</Link>
 					</Col>
 				</Row>

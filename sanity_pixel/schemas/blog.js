@@ -26,6 +26,7 @@ export default {
         },
       ],
     },
+
     {
       name: 'date',
       title: 'Date',
@@ -56,6 +57,16 @@ export default {
         },
       ],
     },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'name.de', // Use the 'name' field in English as the source for the slug
+        maxLength: 200, // Adjust the maximum length as needed
+      },
+    },
+
     {
       name: 'details',
       title: 'Details',
@@ -108,6 +119,138 @@ export default {
         {
           name: 'details3',
           title: 'Details 3',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details4',
+          title: 'Details 4',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details5',
+          title: 'Details 5',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details6',
+          title: 'Details 6',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details7',
+          title: 'Details 7',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details8',
+          title: 'Details 8',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details9',
+          title: 'Details 9',
           type: 'object',
           fields: [
             {
