@@ -52,7 +52,7 @@ function Header2() {
 								<Card.Text>{t("header3")}</Card.Text>
 								<Card.Text>{t("header4")}</Card.Text>
 								<div className="text-center">
-									<Link href="webseiten" className="m-1">
+									<Link href="webseitenerstellen" className="m-1">
 										<Button className="btn-nav">{t("header5")}</Button>
 									</Link>
 								</div>

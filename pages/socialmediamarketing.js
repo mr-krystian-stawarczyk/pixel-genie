@@ -9,7 +9,7 @@ import Social7 from "@/components/Social7";
 
 import Social6 from "@/components/Social6";
 
-function socialmedia() {
+function socialmediamarketing() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -33,4 +33,4 @@ function socialmedia() {
 	);
 }
 
-export default socialmedia;
+export default socialmediamarketing;

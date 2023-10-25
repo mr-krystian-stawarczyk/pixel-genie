@@ -23,7 +23,7 @@ function BlogPost({ post }) {
 			</Head>
 			<Container fluid className="pt-5">
 				<Row className="align-items-center justify-content-center">
-					<Col lg={10}>
+					<Col lg={11}>
 						<Card className="bg-transparent border-0 m-2 p-3 shadow-lg">
 							<Card.Img
 								src={urlFor(post.image && post.image[0])}
@@ -31,63 +31,63 @@ function BlogPost({ post }) {
 								style={{ height: "200px", width: "200px" }}
 								className="mx-auto"
 							/>
-							<Link href="/blog">
+							<Link href="/webdesignblog">
 								<BsFillArrowLeftCircleFill className="arrow-nav" />
 							</Link>
 
-							<h1 className="py-2">{post.name[i18n.language]}</h1>
+							<h1 className="py-2 text-center">{post.name[i18n.language]}</h1>
 
-							<h3>{post.details?.details1?.[i18n.language]}</h3>
-							<h3 className="py-2">
+							<h4>{post.details?.details1?.[i18n.language]}</h4>
+							<h3 className="py-2 text-bold">
 								{post.details?.details2?.[i18n.language]}
 							</h3>
 							<Card.Text id="p-wrap">
 								{post.details?.details3?.[i18n.language]}
 							</Card.Text>
-							<h3 className="py-2">
+							<h3 className="py-2 text-bold">
 								{post.details?.details4?.[i18n.language]}
 							</h3>
 							<Card.Text id="p-wrap">
 								{post.details?.details5?.[i18n.language]}
 							</Card.Text>
-							<h3 className="py-2">
+							<h3 className="py-2 text-bold">
 								{post.details?.details6?.[i18n.language]}
 							</h3>
 							<Card.Text id="p-wrap">
 								{post.details?.details7?.[i18n.language]}
 							</Card.Text>
-							<h3 className="py-2">
+							<h3 className="py-2 text-bold">
 								{post.details?.details8?.[i18n.language]}
 							</h3>
 							<Card.Text id="p-wrap">
 								{post.details?.details9?.[i18n.language]}
 							</Card.Text>
-							<h3 className="py-2">
+							<h3 className="py-2 text-bold">
 								{post.details?.details10?.[i18n.language]}
 							</h3>
 							<Card.Text id="p-wrap">
 								{post.details?.details11?.[i18n.language]}
 							</Card.Text>
-							<h3 className="py-2">
+							<h3 className="py-2 text-bold">
 								{post.details?.details12?.[i18n.language]}
 							</h3>
 							<Card.Text id="p-wrap">
 								{post.details?.details13?.[i18n.language]}
 							</Card.Text>
-							<h3 className="py-2">
+							<h3 className="py-2 text-bold">
 								{post.details?.details14?.[i18n.language]}
 							</h3>
 							<Card.Text id="p-wrap">
 								{post.details?.details15?.[i18n.language]}
 							</Card.Text>
-							<h3 className="py-2">
+							<h3 className="py-2 text-bold">
 								{post.details?.details16?.[i18n.language]}
 							</h3>
 							<Card.Text id="p-wrap">
 								{post.details?.details17?.[i18n.language]}
 							</Card.Text>
 							<Card.Text>{post.date}</Card.Text>
-							<Link href="/blog">
+							<Link href="/webdesignblog">
 								<BsFillArrowLeftCircleFill className="arrow-nav" />
 							</Link>
 						</Card>

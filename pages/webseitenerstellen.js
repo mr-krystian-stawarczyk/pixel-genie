@@ -12,7 +12,7 @@ import WebPrices from "@/components/WebPrices";
 import Faq1 from "@/components/Faq1";
 import HeaderCounted from "@/components/HeaderCounted";
 
-function webseiten() {
+function webseitenerstellen() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -38,4 +38,4 @@ function webseiten() {
 	);
 }
 
-export default webseiten;
+export default webseitenerstellen;

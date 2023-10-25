@@ -9,7 +9,7 @@ import Seo5 from "@/components/Seo5";
 import Seo6 from "@/components/Seo6";
 import Seo7 from "@/components/Seo7";
 
-function seo() {
+function suchmaschinenoptimierung() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -32,4 +32,4 @@ function seo() {
 	);
 }
 
-export default seo;
+export default suchmaschinenoptimierung;

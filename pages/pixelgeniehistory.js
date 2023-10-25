@@ -5,11 +5,11 @@ import About2 from "@/components/About2";
 import About3 from "@/components/About3";
 import About4 from "@/components/About4";
 
-function about() {
+function pixelgeniehistory() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Über Uns - Webdesign und Webentwicklung Nettetal </title>
+				<title>Über Uns Webdesign Pixel Genie Nettetal </title>
 				<meta
 					name="description"
 					content="Pixel-Genie: Erfahren Sie mehr über unser Team und unsere Erfahrung in Webdesign und Online-Marketing in Nettetal. Erfahren Sie mehr über unsere Philosophie und unsere Arbeitsweise."
@@ -24,4 +24,4 @@ function about() {
 	);
 }
 
-export default about;
+export default pixelgeniehistory;

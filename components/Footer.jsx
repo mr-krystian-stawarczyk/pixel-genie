@@ -55,20 +55,22 @@ function Footer() {
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
-								<Card.Title className="my-3">{t("footer1")}</Card.Title>
-								<Link href="/webseiten" className="footer-links">
+								<Card.Title className="my-3 text-uppercase">
+									{t("footer1")}
+								</Card.Title>
+								<Link href="/webseitenerstellen" className="footer-links">
 									<Card.Text className="py-2">{t("footer2")}</Card.Text>
 								</Link>
-								<Link href="/seo" className="footer-links">
+								<Link href="/suchmaschinenoptimierung" className="footer-links">
 									<Card.Text className="py-2">{t("footer3")}</Card.Text>
 								</Link>
 								<Link href="/branding" className="footer-links">
 									<Card.Text className="py-2">{t("footer4")}</Card.Text>
 								</Link>
-								<Link href="/media" className="footer-links">
+								<Link href="/webdesign" className="footer-links">
 									<Card.Text className="py-2">{t("footer5")}</Card.Text>
 								</Link>
-								<Link href="/socialmedia" className="footer-links">
+								<Link href="/socialmediamarketing" className="footer-links">
 									<Card.Text className="py-2">{t("footer6")}</Card.Text>
 								</Link>
 							</Card.Body>
@@ -80,14 +82,16 @@ function Footer() {
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
-								<Card.Title className="my-3">{t("footer7")}</Card.Title>
-								<Link href="/about" className="footer-links">
+								<Card.Title className="my-3 text-uppercase">
+									{t("footer7")}
+								</Card.Title>
+								<Link href="/pixelgeniehistory" className="footer-links">
 									<Card.Text className="py-2"> {t("footer8")}</Card.Text>
 								</Link>
 								<Link href="/kontakt" className="footer-links">
 									<Card.Text className="py-2">{t("footer9")}</Card.Text>
 								</Link>
-								<Link href="/blog" className="footer-links">
+								<Link href="/webdesignblog" className="footer-links">
 									<Card.Text className="py-2">{t("footer10")}</Card.Text>
 								</Link>
 								<Link href="#contact" className="footer-links">
@@ -102,7 +106,9 @@ function Footer() {
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
-								<Card.Title className="my-3">{t("footer13")}</Card.Title>
+								<Card.Title className="my-3 text-uppercase">
+									{t("footer13")}
+								</Card.Title>
 								<Link
 									href="https://www.facebook.com/profile.php?id=100090817536941"
 									target="_blank"
@@ -133,7 +139,9 @@ function Footer() {
 							className="bg-transparent border-0 shadow-lg pt-3 "
 							style={{ width: "20rem" }}
 						>
-							<Card.Title className="my-3">{t("footer14")}</Card.Title>
+							<Card.Title className="my-3 text-uppercase">
+								{t("footer14")}
+							</Card.Title>
 							<h4
 								className="py-5 hover"
 								onClick={handleEmailClick}
@@ -149,7 +157,7 @@ function Footer() {
 						<h4>2023 Pixel Genie Alle Rechte vorbehalten</h4>
 					</Col>
 					<Col>
-						<Link href="/policy" className="footer-links">
+						<Link href="/impressium" className="footer-links">
 							<h4>Cookies & Impressium</h4>
 						</Link>
 					</Col>

@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-function policy() {
+function impressium() {
 	const { t } = useTranslation();
 	return (
 		<Container className=" my-5 py-5">
@@ -102,4 +102,4 @@ function policy() {
 	);
 }
 
-export default policy;
+export default impressium;

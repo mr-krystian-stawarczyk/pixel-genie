@@ -50,7 +50,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							priority
 						/>
-						<h6>Google Business</h6>
+						<h6 className="text-bold text-uppercase text-light">
+							Google Business
+						</h6>
 					</div>
 					<div className="text-center">
 						<Image
@@ -61,7 +63,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							priority
 						/>
-						<h6>Facebook Ads</h6>
+						<h6 className="text-bold text-uppercase text-light">
+							Facebook Ads
+						</h6>
 					</div>
 					<div className="text-center">
 						<Image
@@ -72,7 +76,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							priority
 						/>
-						<h6>SEO Optimierung</h6>
+						<h6 className="text-bold text-uppercase text-light">
+							SEO Optimierung
+						</h6>
 					</div>
 					<div className="text-center">
 						<Image
@@ -83,7 +89,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							priority
 						/>
-						<h6>Google Analytics</h6>
+						<h6 className="text-bold text-uppercase text-light">
+							Google Analytics
+						</h6>
 					</div>
 					<div className="text-center">
 						<Image
@@ -94,7 +102,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							priority
 						/>
-						<h6>Photoshop Design</h6>
+						<h6 className="text-bold text-uppercase text-light">Webdesign</h6>
 					</div>
 					<div className="text-center">
 						<Image
@@ -105,7 +113,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							priority
 						/>
-						<h6>Stripe Online Bezahlung</h6>
+						<h6 className="text-bold text-uppercase text-light">
+							Stripe Online Bezahlung
+						</h6>
 					</div>
 					<div className="text-center">
 						<Image
@@ -116,7 +126,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							priority
 						/>
-						<h6>React Programmierung</h6>
+						<h6 className="text-bold text-uppercase text-light">
+							React Programmierung
+						</h6>
 					</div>
 				</Slider>
 			</Row>

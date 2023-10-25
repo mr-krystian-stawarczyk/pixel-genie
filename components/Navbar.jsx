@@ -137,12 +137,7 @@ const NavbarComp = ({ toggleTheme }) => {
 					className=" rounded justify-content-end text-center  m-1  navbar-toggler border-0"
 				>
 					<Nav className="navbar-collapse justify-content-end text-center rounded ">
-						<Nav.Link
-							as={Link}
-							href="/about"
-							className="m-1"
-							onClick={() => handleLinkClick("/about")}
-						>
+						<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav5")}
 							</Button>
@@ -158,65 +153,35 @@ const NavbarComp = ({ toggleTheme }) => {
 							show={dropdownOpen} // Close dropdown when mobile menu is open
 							onToggle={setDropdownOpen}
 						>
-							<NavDropdown.Item
-								as={Link}
-								href="/webseiten"
-								onClick={() => handleLinkClick("/web")}
-							>
+							<NavDropdown.Item as={Link} href="/webseitenerstellen">
 								<Button className="w-100 border-0 btn-nav shadow-sm ">
 									{t("nav8")}
 								</Button>
 							</NavDropdown.Item>
-							<NavDropdown.Item
-								as={Link}
-								href="/seo"
-								onClick={() => handleLinkClick("/seo")}
-							>
+							<NavDropdown.Item as={Link} href="/suchmaschinenoptimierung">
 								<Button className=" border-0 btn-nav shadow-sm w-100">
 									SEO
 								</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Divider />
-							<NavDropdown.Item
-								as={Link}
-								href="/branding"
-								onClick={() => handleLinkClick("/branding")}
-							>
+							<NavDropdown.Item as={Link} href="/branding">
 								<Button className="w-100 border-0 btn-nav ">Branding</Button>
 							</NavDropdown.Item>
-							<NavDropdown.Item as={Link} href="/media">
-								<Button
-									className="w-100 border-0 btn-nav "
-									onClick={() => handleLinkClick("/media")}
-								>
-									Design
-								</Button>
+							<NavDropdown.Item as={Link} href="/webdesign">
+								<Button className="w-100 border-0 btn-nav ">Webdesign</Button>
 							</NavDropdown.Item>
-							<NavDropdown.Item
-								as={Link}
-								href="/socialmedia"
-								onClick={() => handleLinkClick("/socialmedia")}
-							>
+							<NavDropdown.Item as={Link} href="/socialmediamarketing">
 								<Button className="w-100 border-0 btn-nav ">
 									Social Media
 								</Button>
 							</NavDropdown.Item>
 						</NavDropdown>
-						<Nav.Link
-							as={Link}
-							href="/blog"
-							onClick={() => handleLinkClick("/blog")}
-						>
+						<Nav.Link as={Link} href="/webdesignblog">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav3")}
 							</Button>
 						</Nav.Link>
-						<Nav.Link
-							as={Link}
-							href="/kontakt"
-							className="m-1"
-							onClick={() => handleLinkClick("/kontakt")}
-						>
+						<Nav.Link as={Link} href="/kontakt" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav6")}
 							</Button>

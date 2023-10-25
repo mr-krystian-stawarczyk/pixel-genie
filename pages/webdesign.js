@@ -12,7 +12,7 @@ import Media6 from "@/components/Media6";
 import Media7 from "@/components/Media7";
 import Media8 from "@/components/Media8";
 
-function media() {
+function webdesign() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -36,4 +36,4 @@ function media() {
 	);
 }
 
-export default media;
+export default webdesign;

@@ -49,7 +49,7 @@ function Web4() {
 							<Card.Body>
 								<h1 className="text-start">{t("web10")}</h1>
 								<Card.Text className="text-start">{t("web11")}</Card.Text>
-								<Link href="seo" className="m-1">
+								<Link href="suchmaschinenoptimierung" className="m-1">
 									<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 										{t("web12")}
 									</Button>

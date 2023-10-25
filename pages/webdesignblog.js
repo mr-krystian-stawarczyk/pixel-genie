@@ -4,7 +4,7 @@ import React from "react";
 import Head from "next/head";
 import Faq1 from "@/components/Faq1";
 
-function blog() {
+function webdesignblog() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -22,4 +22,4 @@ function blog() {
 	);
 }
 
-export default blog;
+export default webdesignblog;

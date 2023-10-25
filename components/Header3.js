@@ -68,7 +68,7 @@ function Header3() {
 								<Card.Text>{t("header9")}</Card.Text>
 
 								<div className="text-center">
-									<Link href="seo" className="m-1">
+									<Link href="suchmaschinenoptimierung" className="m-1">
 										<Button className="btn-nav px-4">{t("header10")}</Button>
 									</Link>
 								</div>

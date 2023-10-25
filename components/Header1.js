@@ -18,17 +18,21 @@ const Header1 = () => {
 								<h4 className="text-bold">{t("h2")}</h4>
 								<Button
 									as={Link}
-									href="webseiten"
+									href="webseitenerstellen"
 									className="m-2 btn-lg btn-nav"
 								>
 									{t("h3")}
 								</Button>
-								<Button as={Link} href="seo" className="m-2 btn-lg btn-nav">
+								<Button
+									as={Link}
+									href="suchmaschinenoptimierung"
+									className="m-2 btn-lg btn-nav"
+								>
 									{t("h4")}
 								</Button>
 								<Button
 									as={Link}
-									href="socialmedia"
+									href="socialmediamarketing"
 									className="m-2 btn-lg btn-nav"
 								>
 									{t("h5")}

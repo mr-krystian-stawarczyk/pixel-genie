@@ -90,7 +90,10 @@ function WebPrices() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg hover border-0"
+						>
 							<Card.Body>
 								<h1>{t("web24")}</h1>
 								<Card.Text>{t("web25")}</Card.Text>
@@ -121,7 +124,10 @@ function WebPrices() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg hover border-0"
+						>
 							<Card.Body>
 								<h1>
 									<Image
@@ -165,7 +171,10 @@ function WebPrices() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg hover border-0"
+						>
 							<Card.Body>
 								<h1>{t("web62")}</h1>
 								<Card.Text>{t("web63")}</Card.Text>
