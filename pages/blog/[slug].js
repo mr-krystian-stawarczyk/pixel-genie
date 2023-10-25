@@ -29,17 +29,43 @@ function BlogPost({ post }) {
 						<Link href="/blog">
 							<BsFillArrowLeftCircleFill className="arrow-nav" />
 						</Link>
+
 						<h1 className="py-2">{post.name[i18n.language]}</h1>
+
+						<h3>{post.details?.details1?.[i18n.language]}</h3>
+						<h3 className="py-2">{post.details?.details2?.[i18n.language]}</h3>
+						<Card.Text id="p-wrap">
+							{post.details?.details3?.[i18n.language]}
+						</Card.Text>
+						<h3 className="py-2">{post.details?.details4?.[i18n.language]}</h3>
+						<Card.Text id="p-wrap">
+							{post.details?.details5?.[i18n.language]}
+						</Card.Text>
+						<h3 className="py-2">{post.details?.details6?.[i18n.language]}</h3>
+						<Card.Text id="p-wrap">
+							{post.details?.details7?.[i18n.language]}
+						</Card.Text>
+						<h3 className="py-2">{post.details?.details8?.[i18n.language]}</h3>
+						<Card.Text id="p-wrap">
+							{post.details?.details9?.[i18n.language]}
+						</Card.Text>
+						<h3 className="py-2">{post.details?.details10?.[i18n.language]}</h3>
+						<Card.Text id="p-wrap">
+							{post.details?.details11?.[i18n.language]}
+						</Card.Text>
+						<h3 className="py-2">{post.details?.details12?.[i18n.language]}</h3>
+						<Card.Text id="p-wrap">
+							{post.details?.details13?.[i18n.language]}
+						</Card.Text>
+						<h3 className="py-2">{post.details?.details14?.[i18n.language]}</h3>
+						<Card.Text id="p-wrap">
+							{post.details?.details15?.[i18n.language]}
+						</Card.Text>
+						<h3 className="py-2">{post.details?.details16?.[i18n.language]}</h3>
+						<Card.Text id="p-wrap">
+							{post.details?.details17?.[i18n.language]}
+						</Card.Text>
 						<Card.Text>{post.date}</Card.Text>
-						<Card.Text>{post.details?.details1?.[i18n.language]}</Card.Text>
-						<Card.Text>{post.details?.details2?.[i18n.language]}</Card.Text>
-						<Card.Text>{post.details?.details3?.[i18n.language]}</Card.Text>
-						<Card.Text>{post.details?.details4?.[i18n.language]}</Card.Text>
-						<Card.Text>{post.details?.details5?.[i18n.language]}</Card.Text>
-						<Card.Text>{post.details?.details6?.[i18n.language]}</Card.Text>
-						<Card.Text>{post.details?.details7?.[i18n.language]}</Card.Text>
-						<Card.Text>{post.details?.details8?.[i18n.language]}</Card.Text>
-						<Card.Text>{post.details?.details9?.[i18n.language]}</Card.Text>
 						<Link href="/blog">
 							<BsFillArrowLeftCircleFill className="arrow-nav" />
 						</Link>

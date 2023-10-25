@@ -74,7 +74,7 @@ export default {
       fields: [
         {
           name: 'details1',
-          title: 'Details 1',
+          title: 'Wstep ',
           type: 'object',
           fields: [
             {
@@ -251,6 +251,182 @@ export default {
         {
           name: 'details9',
           title: 'Details 9',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details10',
+          title: 'Details 10',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details11',
+          title: 'Details 11',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details12',
+          title: 'Details 12',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details13',
+          title: 'Details 13',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details14',
+          title: 'Details 14',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details15',
+          title: 'Details 15',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details16',
+          title: 'Podsumowanie 1',
+          type: 'object',
+          fields: [
+            {
+              name: 'eng',
+              title: 'English',
+              type: 'text',
+            },
+            {
+              name: 'de',
+              title: 'Deutsch',
+              type: 'text',
+            },
+            {
+              name: 'pl',
+              title: 'Polish',
+              type: 'text',
+            },
+          ],
+        },
+        {
+          name: 'details17',
+          title: 'Podsumowanie 2',
           type: 'object',
           fields: [
             {
