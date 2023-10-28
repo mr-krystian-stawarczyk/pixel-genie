@@ -48,7 +48,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-							priority
+							loading="lazy"
 						/>
 						<h6 className="text-bold text-uppercase text-light">
 							Google Business
@@ -61,7 +61,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-							priority
+							loading="lazy"
 						/>
 						<h6 className="text-bold text-uppercase text-light">
 							Facebook Ads
@@ -74,7 +74,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-							priority
+							loading="lazy"
 						/>
 						<h6 className="text-bold text-uppercase text-light">
 							SEO Optimierung
@@ -87,7 +87,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-							priority
+							loading="lazy"
 						/>
 						<h6 className="text-bold text-uppercase text-light">
 							Google Analytics
@@ -100,7 +100,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-							priority
+							loading="lazy"
 						/>
 						<h6 className="text-bold text-uppercase text-light">Webdesign</h6>
 					</div>
@@ -111,7 +111,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-							priority
+							loading="lazy"
 						/>
 						<h6 className="text-bold text-uppercase text-light">
 							Stripe Online Bezahlung
@@ -124,7 +124,7 @@ const TechBar = () => {
 							width={100}
 							height={100}
 							className="img-fluid mx-auto"
-							priority
+							loading="lazy"
 						/>
 						<h6 className="text-bold text-uppercase text-light">
 							React Programmierung

@@ -174,6 +174,39 @@ a {
 	border: none !important;
 }
 
+.fade-enter {
+	opacity: 0;
+	transform: translateX(-50px);
+	transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-enter-active {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.fade-enter-done {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Klasy dla wyjścia (zniknięcia) elementu */
+.fade-exit {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-exit-active {
+	opacity: 0;
+	transform: translateX(-50px);
+}
+
+.fade-exit-done {
+	opacity: 0;
+	transform: translateX(-50px);
+}
+
 .btn-nav:hover {
 	background-color: #0047ab !important;
 	transform: scale(1.1);

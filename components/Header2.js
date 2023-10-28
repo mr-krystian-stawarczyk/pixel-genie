@@ -66,7 +66,7 @@ function Header2() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-seo2"
-							priority
+							loading="lazy"
 						/>
 					</Col>
 				</Row>

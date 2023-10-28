@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useEffect } from "react";
 import { PageTransition } from "next-page-transitions";
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -33,10 +34,6 @@ function App(props) {
 
 	return (
 		<SSRProvider>
-			<Script
-				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
-				strategy="afterInteractive"
-			/>
 			<Script id="google-analytics-script" strategy="afterInteractive">
 				{`
 window.dataLayer = window.dataLayer || [];

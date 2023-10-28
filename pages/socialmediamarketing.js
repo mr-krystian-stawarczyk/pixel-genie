@@ -13,10 +13,10 @@ function socialmediamarketing() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Social Media und Werbagentur im Nettetal Webdesign </title>
+				<title>Social Media Marketing Social Media Agentur fur Marketing</title>
 				<meta
 					name="description"
-					content="Pixel-Genie bietet umfassende Social-Media-Marketing-Lösungen, um Ihre Präsenz auf Plattformen wie Facebook, Instagram und Twitter zu maximieren. Kontaktieren Sie uns, um loszulegen."
+					content="Pixel-Genie bietet umfassende Social Media Marketing Lösungen, um Ihre Präsenz auf Plattformen wie Facebook, Instagram und Twitter zu maximieren. Kontaktieren Sie uns, um loszulegen."
 				/>
 				<meta name="robots" content="index, follow" />
 			</Head>

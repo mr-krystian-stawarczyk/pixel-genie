@@ -1,8 +1,18 @@
-import { Card, Container, Button, Row, Col } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import { Card } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import Image from "next/image";
-import ParticlesComponent from "./ParticlesComponent";
+
+import dynamic from "next/dynamic";
+
+const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
+	loading: () => <p>Loading...</p>,
+});
 
 const Header1 = () => {
 	const { t } = useTranslation();

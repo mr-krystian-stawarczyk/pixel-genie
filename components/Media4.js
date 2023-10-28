@@ -63,7 +63,7 @@ function Media4() {
 							height={400}
 							className="responsive-image"
 							alt="webentwicklung-nettetal-design-seo4"
-							priority
+							loading="lazy"
 						/>
 					</Col>
 				</Row>
