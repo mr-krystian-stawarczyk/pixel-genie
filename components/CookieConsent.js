@@ -34,7 +34,7 @@ const CookieConsent = (props) => {
 		}
 
 		// Set the "localConsent" cookie to indicate acceptance of essential cookies
-		setCookie("localConsent", "false", { sameSite: "none", secure: true });
+		setCookie("localConsent", "true", { sameSite: "none", secure: true });
 
 		setShowConsent(true);
 
