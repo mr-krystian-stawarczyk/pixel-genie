@@ -17,25 +17,18 @@ function App(props) {
 	const [cookies] = useCookies(["localConsent"]);
 	const reactRouter = useRouter();
 
-	useEffect(() => {
-		if (cookies.localConsent === "true") {
+	const loadGoogleAnalytics = () => {
+		if (typeof window !== "undefined") {
 			ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
 			ReactGA.pageview(window.location.pathname + window.location.search);
 		}
-	}, [cookies]);
+	};
 
 	useEffect(() => {
-		const handleRouteChange = (url) => {
-			if (cookies.localConsent === "true") {
-				ReactGA.pageview(url);
-			}
-		};
-
-		reactRouter.events.on("routeChangeComplete", handleRouteChange);
-		return () => {
-			reactRouter.events.off("routeChangeComplete", handleRouteChange);
-		};
-	}, [cookies, reactRouter.events]);
+		if (cookies.localConsent === "true") {
+			loadGoogleAnalytics();
+		}
+	}, [cookies]);
 
 	return (
 		<SSRProvider>
@@ -48,6 +41,12 @@ function App(props) {
 							content="Pixel Genie Nettetal WEBSEITEN SEO BRANDING MARKETING MEDIA SOCIAL MEDIA die beste !"
 						/>
 						<link rel="manifest" href="/manifest.json" />
+						{cookies.localConsent === "true" && (
+							<Script
+								strategy="afterInteractive"
+								src={`https://www.google-analytics.com/analytics.js`}
+							/>
+						)}
 					</Head>
 					<PageTransition
 						timeout={300}
