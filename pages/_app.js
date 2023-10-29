@@ -1,46 +1,44 @@
-import React from "react";
-import { useEffect } from "react";
-import { PageTransition } from "next-page-transitions";
-import "../styles/globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+import { CookiesProvider, useCookies } from "react-cookie";
+import { appWithTranslation } from "next-i18next";
+import ReactGA from "react-ga";
+import Script from "next/script";
 import Layout from "@/components/Layout";
 import { SSRProvider } from "react-bootstrap";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
-import { appWithTranslation } from "next-i18next";
-import ReactGA from "react-ga";
-import Script from "next/script";
-import { useRouter } from "next/router";
+import { PageTransition } from "next-page-transitions";
+import "../styles/globals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App(props) {
 	const { Component, pageProps, router } = props;
+	const [cookies] = useCookies(["localConsent"]);
 	const reactRouter = useRouter();
 
 	useEffect(() => {
-		ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
-		ReactGA.pageview(window.location.pathname + window.location.search);
-	}, []);
+		if (cookies.localConsent === "true") {
+			ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
+			ReactGA.pageview(window.location.pathname + window.location.search);
+		}
+	}, [cookies]);
 
 	useEffect(() => {
 		const handleRouteChange = (url) => {
-			ReactGA.pageview(url);
+			if (cookies.localConsent === "true") {
+				ReactGA.pageview(url);
+			}
 		};
 
 		reactRouter.events.on("routeChangeComplete", handleRouteChange);
 		return () => {
 			reactRouter.events.off("routeChangeComplete", handleRouteChange);
 		};
-	}, [reactRouter.events]);
+	}, [cookies, reactRouter.events]);
 
 	return (
 		<SSRProvider>
-			<Script id="google-analytics-script" strategy="afterInteractive">
-				{`
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}');`}
-			</Script>
 			<ThemeProvider defaultTheme="dark">
 				<Layout>
 					<Head>

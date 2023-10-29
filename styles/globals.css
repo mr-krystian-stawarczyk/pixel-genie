@@ -160,10 +160,6 @@ a {
 	transition: opacity 300ms;
 }
 
-#p-wrap {
-	white-space: pre-line;
-}
-
 .arrow-nav {
 	color: #003681;
 	font-size: 1.7rem;

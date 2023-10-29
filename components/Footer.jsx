@@ -157,8 +157,8 @@ function Footer() {
 						<h4>2023 Pixel Genie Alle Rechte vorbehalten</h4>
 					</Col>
 					<Col>
-						<Link href="/impressium" className="footer-links">
-							<h4>Cookies & Impressium</h4>
+						<Link href="/impressium" className="footer-links ">
+							<h4 className="hover"> {t("footer15")}</h4>
 						</Link>
 					</Col>
 				</Row>

@@ -98,6 +98,35 @@ function impressium() {
 				<h4 className="my-2">{t("policy26")} </h4>
 				<h5>{t("policy27")}</h5>
 			</Row>
+			<Row className="text-center my-2">
+				<h2>{t("policy32")}</h2>
+			</Row>
+			<Row>
+				<h4 className="my-2">{t("policy33")}</h4>
+				<h5>{t("policy34")}</h5>
+			</Row>
+			<Row>
+				<h4 className="my-2">{t("policy34-1")}</h4>
+				<h5>{t("policy35")}</h5>
+				<h5>{t("policy36")}</h5>
+			</Row>
+			<Row>
+				<h4 className="my-2">{t("policy37")}</h4>
+				<h5>{t("policy38")}</h5>
+			</Row>
+			<Row>
+				<h4 className="my-2">{t("policy39")}</h4>
+				<h5>{t("policy40")}</h5>
+				<h5>{t("policy40-1")}</h5>
+			</Row>
+			<Row>
+				<h4 className="my-2">{t("policy41")}</h4>
+				<h5>{t("policy42")}</h5>
+			</Row>
+			<Row>
+				<h4 className="my-2">{t("policy43")}</h4>
+				<h5>{t("policy44")}</h5>
+			</Row>
 		</Container>
 	);
 }

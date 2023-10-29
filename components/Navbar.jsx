@@ -24,11 +24,12 @@ const NavbarComp = ({ toggleTheme }) => {
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
 	const [currentTheme, setCurrentTheme] = useState("");
+	const [isLightIcon, setIsLightIcon] = useState(true);
 	const [selectedFlag, setSelectedFlag] = useState(
 		"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
 	);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
-	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
 	const { theme, setTheme } = useTheme();
 	const handleLinkClick = (url) => {
 		ReactGA.pageview(url);
@@ -122,25 +123,73 @@ const NavbarComp = ({ toggleTheme }) => {
 						alt="pixel-genie-nettetal-webentwicklung-logo"
 						width={50}
 						height={50}
-						className="pb-2 mb-1"
+						className="pb-1 mb-1"
 						style={{ width: "auto", height: "auto" }}
 						priority
 					/>
 					<span
-						style={{ fontSize: "2rem" }}
+						style={{ fontSize: "1.5rem" }}
 						className={scrolled ? "logo" : "logo1"}
 					>
 						<span className="mx-2">Pixel Genie</span>
 					</span>
 				</Navbar.Brand>
+				<Dropdown onSelect={handleDropdownSelect} className=" border-0 ">
+					<Dropdown.Toggle
+						className="btn-nav border-0 "
+						style={{ zIndex: 999 }}
+					>
+						<Image
+							src={selectedFlag}
+							alt="Selected Flag"
+							width="25"
+							height="25"
+							priority
+						/>
+					</Dropdown.Toggle>
+					<Dropdown.Menu className="text-center jusitfy-content-center  my-dropdown">
+						<Dropdown.Item eventKey="flag1">
+							<Image
+								src="/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
+								alt="webagentur-webentwicklung-nettetal-seo-flagde"
+								width="40"
+								height="40"
+								onClick={() => i18n.changeLanguage("de")}
+								priority
+							/>
+						</Dropdown.Item>
+						<NavDropdown.Divider />
+						<Dropdown.Item eventKey="flag2">
+							<Image
+								src="/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
+								alt="webagentur-webentwicklung-nettetal-seo-flageng"
+								width="40"
+								height="40"
+								onClick={() => i18n.changeLanguage("eng")}
+								priority
+							/>
+						</Dropdown.Item>
+						<NavDropdown.Divider />
+						<Dropdown.Item eventKey="flag3">
+							<Image
+								src="/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
+								alt="webagentur-webentwicklung-nettetal-seo-flagpl"
+								width="40"
+								height="40"
+								onClick={() => i18n.changeLanguage("pl")}
+								priority
+							/>
+						</Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
 				<Navbar.Toggle
 					aria-controls="responsive-navbar-nav"
 					aria-label="Toggle navigation"
-					onClick={() => setMobileMenuOpen(!mobileMenuOpen)} // Toggle mobile menu state
+					className="btn-lg"
 				/>
 				<Navbar.Collapse
 					id="basic-navbar-nav"
-					className=" rounded justify-content-end text-center  m-1  navbar-toggler border-0"
+					className=" rounded justify-content-end text-center  p-3  navbar-toggler border-0"
 				>
 					<Nav className="navbar-collapse justify-content-end text-center rounded ">
 						<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
@@ -195,64 +244,17 @@ const NavbarComp = ({ toggleTheme }) => {
 						<Button
 							onClick={() => {
 								toggleTheme();
+								setIsLightIcon((prevIsLightIcon) => !prevIsLightIcon);
 								// Close the dropdown
 							}}
-							className="btn-nav border-0  btn-md py-2 mx-1"
+							className="btn-nav border-0 btn-md py-2 mx-1"
 						>
-							{currentTheme === "light" ? (
-								<BsFillMoonFill style={{ color: "grey" }} />
-							) : (
+							{isLightIcon ? (
 								<BsFillSunFill style={{ color: "yellow" }} />
+							) : (
+								<BsFillMoonFill style={{ color: "grey" }} />
 							)}
 						</Button>
-						<Dropdown
-							onSelect={handleDropdownSelect}
-							className="m-1 border-0 mx-2"
-						>
-							<Dropdown.Toggle className="btn-nav border-0 py-2">
-								<Image
-									src={selectedFlag}
-									alt="Selected Flag"
-									width="25"
-									height="25"
-									priority
-								/>
-							</Dropdown.Toggle>
-							<Dropdown.Menu className="text-center jusitfy-content-center  my-dropdown">
-								<Dropdown.Item eventKey="flag1">
-									<Image
-										src="/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
-										alt="webagentur-webentwicklung-nettetal-seo-flagde"
-										width="40"
-										height="40"
-										onClick={() => i18n.changeLanguage("de")}
-										priority
-									/>
-								</Dropdown.Item>
-								<NavDropdown.Divider />
-								<Dropdown.Item eventKey="flag2">
-									<Image
-										src="/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
-										alt="webagentur-webentwicklung-nettetal-seo-flageng"
-										width="40"
-										height="40"
-										onClick={() => i18n.changeLanguage("eng")}
-										priority
-									/>
-								</Dropdown.Item>
-								<NavDropdown.Divider />
-								<Dropdown.Item eventKey="flag3">
-									<Image
-										src="/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
-										alt="webagentur-webentwicklung-nettetal-seo-flagpl"
-										width="40"
-										height="40"
-										onClick={() => i18n.changeLanguage("pl")}
-										priority
-									/>
-								</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
