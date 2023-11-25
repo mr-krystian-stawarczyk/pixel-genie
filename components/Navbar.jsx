@@ -135,10 +135,7 @@ const NavbarComp = ({ toggleTheme }) => {
 					</span>
 				</Navbar.Brand>
 				<Dropdown onSelect={handleDropdownSelect} className=" border-0 ">
-					<Dropdown.Toggle
-						className="btn-nav border-0 "
-						style={{ zIndex: 999 }}
-					>
+					<Dropdown.Toggle className="btn-nav border-0 ">
 						<Image
 							src={selectedFlag}
 							alt="Selected Flag"
@@ -185,7 +182,7 @@ const NavbarComp = ({ toggleTheme }) => {
 				<Navbar.Toggle
 					aria-controls="responsive-navbar-nav"
 					aria-label="Toggle navigation"
-					className="btn-lg"
+					className="btn-sm"
 				/>
 				<Navbar.Collapse
 					id="basic-navbar-nav"
