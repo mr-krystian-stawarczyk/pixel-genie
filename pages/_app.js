@@ -53,8 +53,9 @@ gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}');`}
 				/>
 				<link rel="manifest" href="/manifest.json" />
 			</Head>
-
-			<Component {...pageProps} key={router.route} />
+			<Layout>
+				<Component {...pageProps} key={router.route} />
+			</Layout>
 		</SSRProvider>
 	);
 }
