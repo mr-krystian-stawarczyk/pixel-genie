@@ -21,9 +21,11 @@ function impressium() {
 					<Card style={{ width: "18rem" }} className="bg-transparent mx-auto">
 						<Card.Body>
 							<Card.Title>Angaben gemäß §5 TMG</Card.Title>
-							<Card.Text>Pixel Genie Inh.: Krystian Stawarczyk</Card.Text>
-							<Card.Text>Fasanenstr. 10 41334 Nettetal</Card.Text>
-							<Card.Text>Telefon: +49 (0) 175 621 6441</Card.Text>
+							<Card.Text>Pixel Genie Inh.: </Card.Text>
+							<Card.Text>Krystian Stawarczyk</Card.Text>
+
+							<Card.Text>Steuernummer: 115/5187/3619</Card.Text>
+							<Card.Text>Telefon: (+48) 726 897 493</Card.Text>
 							<Card.Text>E-Mail: info@pixel-genie.de</Card.Text>
 						</Card.Body>
 					</Card>
@@ -33,7 +35,8 @@ function impressium() {
 					<Card style={{ width: "18rem" }} className="bg-transparent mx-auto">
 						<Card.Body>
 							<Card.Title>Verantwortlich für den Inhalt</Card.Title>
-							<Card.Text>gemäß §55 Abs. 2 RStV Krystian Stawarczyk</Card.Text>
+							<Card.Text>gemäß §55 Abs. 2 RStV</Card.Text>
+							<Card.Text>Krystian Stawarczyk</Card.Text>
 							<Card.Text>Fasanenstr. 10 41334 Nettetal</Card.Text>
 						</Card.Body>
 					</Card>

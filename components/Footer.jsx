@@ -45,7 +45,7 @@ function Footer() {
 			fluid
 			className="overflow-hidden shadow-md bg-black text-white"
 			ref={sectionRef}
-			id="contact"
+			id="kontakt"
 		>
 			<motion.div ref={ref} animate={controls}>
 				<Row className=" justify-content-center align-items-top text-center  mt-2  border-bottom">
@@ -59,19 +59,19 @@ function Footer() {
 									{t("footer1")}
 								</Card.Title>
 								<Link href="/webseitenerstellen" className="footer-links">
-									<Card.Text className="py-2">{t("footer2")}</Card.Text>
+									<Card.Text className="hover py-2">{t("footer2")}</Card.Text>
 								</Link>
 								<Link href="/suchmaschinenoptimierung" className="footer-links">
-									<Card.Text className="py-2">{t("footer3")}</Card.Text>
+									<Card.Text className="hover py-2">{t("footer3")}</Card.Text>
 								</Link>
 								<Link href="/branding" className="footer-links">
-									<Card.Text className="py-2">{t("footer4")}</Card.Text>
+									<Card.Text className="hover py-2">{t("footer4")}</Card.Text>
 								</Link>
 								<Link href="/webdesign" className="footer-links">
-									<Card.Text className="py-2">{t("footer5")}</Card.Text>
+									<Card.Text className="hover py-2">{t("footer5")}</Card.Text>
 								</Link>
 								<Link href="/socialmediamarketing" className="footer-links">
-									<Card.Text className="py-2">{t("footer6")}</Card.Text>
+									<Card.Text className="hover py-2">{t("footer6")}</Card.Text>
 								</Link>
 							</Card.Body>
 						</Card>
@@ -86,16 +86,20 @@ function Footer() {
 									{t("footer7")}
 								</Card.Title>
 								<Link href="/pixelgeniehistory" className="footer-links">
-									<Card.Text className="py-2"> {t("footer8")}</Card.Text>
+									<Card.Text className="hover py-2"> {t("footer8")}</Card.Text>
 								</Link>
-								<Link href="/kontakt" className="footer-links">
-									<Card.Text className="py-2">{t("footer9")}</Card.Text>
-								</Link>
+
 								<Link href="/webdesignblog" className="footer-links">
-									<Card.Text className="py-2">{t("footer10")}</Card.Text>
+									<Card.Text className="hover py-2">{t("footer10")}</Card.Text>
 								</Link>
-								<Link href="#contact" className="footer-links">
-									<Card.Text className="py-2">{t("footer12")}</Card.Text>
+								<Link href="/impressium" className="footer-links ">
+									<Card.Text className="hover py-2">Cookies</Card.Text>
+								</Link>
+								<Link href="/impressium" className="footer-links ">
+									<Card.Text className="hover py-2">Impressum</Card.Text>
+								</Link>
+								<Link href="/impressium" className="footer-links ">
+									<Card.Text className="hover py-2">Data Protection</Card.Text>
 								</Link>
 							</Card.Body>
 						</Card>
@@ -154,12 +158,7 @@ function Footer() {
 				</Row>
 				<Row className="text-center my-2">
 					<Col>
-						<h4>2023 Pixel Genie Alle Rechte vorbehalten</h4>
-					</Col>
-					<Col>
-						<Link href="/impressium" className="footer-links ">
-							<h4 className="hover"> {t("footer15")}</h4>
-						</Link>
+						<h4>2024 Pixel Genie Alle Rechte vorbehalten</h4>
 					</Col>
 				</Row>
 			</motion.div>

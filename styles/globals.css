@@ -9,6 +9,53 @@
 		theme==='light'?'#333': "#eee";
 	}
 }
+
+/*Animacja Glownej strony - animacje przy zdjeciach (gif) */
+
+.logo-container {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.image-container {
+	position: relative;
+	text-align: center;
+}
+
+.arrow-animation2 {
+	position: absolute;
+
+	left: 25%;
+	top: 65%; /* Center horizontally */
+	transform: translateX(-50%); /* Center horizontally */
+}
+
+.arrow-animation3 {
+	position: absolute;
+
+	left: 15%;
+	top: 20%; /* Center horizontally */
+	transform: translateX(-50%); /* Center horizontally */
+}
+
+.arrow-animation4 {
+	position: absolute;
+
+	left: 20%;
+	top: 5%; /* Center horizontally */
+	transform: translateX(-50%); /* Center horizontally */
+}
+
+.arrow-animation5 {
+	position: absolute;
+
+	left: 50%;
+	top: 30%; /* Center horizontally */
+	transform: translateX(-50%); /* Center horizontally */
+}
+
+/* Do sortowania css */
+
 .logo {
 	color: #000000; /* Set the text color to white */
 }

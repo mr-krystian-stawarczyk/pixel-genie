@@ -23,16 +23,37 @@ function Web3() {
 		},
 	};
 
+	const animateOut = {
+		opacity: 0,
+
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
+	};
+
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
 			controls.start(animateIn);
+		} else {
+			controls.start(animateOut);
 		}
-	}, [inView, controls, animateIn]);
+	}, [inView, controls, animateIn, animateOut]);
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center text-center align-items-center">
+					<Col lg={5} className="mx-auto">
+						<Image
+							src="/assets/webentwicklung-nettetal-webseiten3.png"
+							width={400}
+							height={400}
+							className="responsive-image"
+							alt="webentwicklung-nettetal-webseiten3"
+							priority
+						/>
+					</Col>
 					<Col lg={5} className="mx-auto">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
@@ -43,16 +64,6 @@ function Web3() {
 								</Button>
 							</Card.Body>
 						</Card>
-					</Col>
-					<Col lg={5} className="mx-auto">
-						<Image
-							src="/assets/webentwicklung-nettetal-webseiten3.png"
-							width={400}
-							height={400}
-							className="responsive-image"
-							alt="webentwicklung-nettetal-webseiten3"
-							priority
-						/>
 					</Col>
 				</Row>
 			</Container>

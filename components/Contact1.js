@@ -17,21 +17,6 @@ function Contact1() {
 	return (
 		<Container className=" ">
 			<Row className="my-5 py-5 justify-content-center text-center align-items-center">
-				<Col lg={4} className="mx-auto my-3">
-					<Card
-						style={{ minWidth: "18rem" }}
-						className="bg-transparent border-0 shadow-lg"
-					>
-						<Card.Body>
-							<AiOutlinePhone style={{ fontSize: "4rem" }} />
-							<Card.Title>{t("kontakt1")}</Card.Title>
-							<Card.Text>0175 621 6441</Card.Text>
-							<Button className="btn-nav" onClick={handleCall}>
-								{t("kontakt2")}
-							</Button>
-						</Card.Body>
-					</Card>
-				</Col>
 				<Col lg={4} className="my-3 mx-auto">
 					<Card
 						style={{ minWidth: "18rem" }}

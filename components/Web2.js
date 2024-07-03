@@ -45,16 +45,6 @@ function Web2() {
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center text-center align-items-center">
 					<Col lg={5} className="mx-auto">
-						<Image
-							src="/assets/webentwicklung-nettetal-webseiten2.png"
-							width={400}
-							height={400}
-							className="responsive-image"
-							alt="webentwicklung-nettetal-webseiten2"
-							priority
-						/>
-					</Col>
-					<Col lg={5} className="mx-auto">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
 								<h1 className="text-start">{t("web4")}</h1>
@@ -64,6 +54,16 @@ function Web2() {
 								</Button>
 							</Card.Body>
 						</Card>
+					</Col>
+					<Col lg={5} className="mx-auto">
+						<Image
+							src="/assets/webentwicklung-nettetal-webseiten2.png"
+							width={400}
+							height={400}
+							className="responsive-image"
+							alt="webentwicklung-nettetal-webseiten2"
+							priority
+						/>
 					</Col>
 				</Row>
 			</Container>

@@ -65,7 +65,7 @@ function About2() {
 				</VerticalTimelineElement>
 				<VerticalTimelineElement
 					className="vertical-timeline-element--education"
-					date="2023"
+					date="2024"
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
 					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>

@@ -47,7 +47,7 @@ function Header4() {
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1>{t("header11")}</h1>
+								<h1 className="text-bold">{t("header11")}</h1>
 								<Card.Text>{t("header12")}</Card.Text>
 								<Card.Text>{t("header13")}</Card.Text>
 								<Card.Text>{t("header14")}</Card.Text>
@@ -61,14 +61,24 @@ function Header4() {
 						</Card>
 					</Col>
 					<Col lg={5} className="mx-auto my-2 text-center">
-						<Image
-							src="/assets/webentwicklung-nettetal-seo4.png"
-							width={400}
-							height={400}
-							className="responsive-image"
-							alt="webentwicklung-nettetal-seo4"
-							loading="lazy"
-						/>
+						<div className="image-container">
+							<Image
+								src="/assets/webentwicklung-nettetal-seo4.png"
+								width={400}
+								height={400}
+								className="responsive-image"
+								alt="webentwicklung-nettetal-seo2"
+								loading="lazy"
+							/>
+							<div className="arrow-animation4">
+								<Image
+									src="/assets/anim3.gif" // Path to your animated arrow GIF
+									width={80} // Adjust size as needed
+									height={80} // Adjust size as needed
+									alt="Animated Arrow"
+								/>
+							</div>
+						</div>
 					</Col>
 				</Row>
 			</Container>

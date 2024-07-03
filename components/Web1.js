@@ -47,6 +47,16 @@ function Web1() {
 				<Container className="mt-5 py-5">
 					<Row className="justify-content-center text-center align-items-center">
 						<Col lg={5} className="mx-auto blur">
+							<Image
+								src="/assets/webentwicklung-nettetal-webseiten1.png"
+								width={400}
+								height={400}
+								className="responsive-image"
+								alt="webentwicklung-nettetal-webseiten1"
+								priority
+							/>
+						</Col>{" "}
+						<Col lg={5} className="mx-auto blur">
 							<Card className="border-0 bg-transparent ">
 								<Card.Body>
 									<h1 className="text-start">{t("web1")}</h1>
@@ -56,16 +66,6 @@ function Web1() {
 									</Button>
 								</Card.Body>
 							</Card>
-						</Col>
-						<Col lg={5} className="mx-auto blur">
-							<Image
-								src="/assets/webentwicklung-nettetal-webseiten1.png"
-								width={400}
-								height={400}
-								className="responsive-image"
-								alt="webentwicklung-nettetal-webseiten1"
-								priority
-							/>
 						</Col>
 					</Row>
 				</Container>

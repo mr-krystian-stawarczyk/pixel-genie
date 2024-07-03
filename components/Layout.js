@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
-
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState, useEffect } from "react";
-import { Poppins } from "next/font/google";
 import CookieConsent from "./CookieConsent";
-import ContactForm from "./ContactForm";
+
 import Footer from "./Footer";
+import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
 	weight: ["400", "700"],
 	subsets: ["latin"],
+	display: "swap",
 });
 
 const Layout = ({ children, pageProps }) => {
@@ -28,32 +27,25 @@ const Layout = ({ children, pageProps }) => {
 	}, []);
 
 	const toggleTheme = () => {
-		if (currentTheme === "light") {
-			setCurrentTheme("dark");
-			localStorage.setItem("theme", "dark");
-			document.body.classList.add("dark");
-			document.body.classList.remove("light");
-		} else {
-			setCurrentTheme("light");
-			localStorage.setItem("theme", "light");
-			document.body.classList.add("light");
-			document.body.classList.remove("dark");
-		}
+		const newTheme = currentTheme === "light" ? "dark" : "light";
+		setCurrentTheme(newTheme);
+		localStorage.setItem("theme", newTheme);
+		document.body.classList.add(newTheme);
+		document.body.classList.remove(currentTheme);
 	};
+
 	return (
-		<div className="layout">
-			<div className={poppins.className}>
-				<header>
-					<Navbar {...pageProps} toggleTheme={toggleTheme} />
-					<CookieConsent />
-				</header>
-				<main className="main-container">{children}</main>
-				<footer>
-					<ContactForm {...pageProps} />
-					<Footer />
-				</footer>
-			</div>
+		<div className={poppins.className}>
+			<header>
+				<Navbar {...pageProps} toggleTheme={toggleTheme} />
+				<CookieConsent />
+			</header>
+			<main className="main-container">{children}</main>
+			<footer>
+				<Footer />
+			</footer>
 		</div>
 	);
 };
+
 export default Layout;

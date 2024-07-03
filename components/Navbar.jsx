@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { BsFillSunFill } from "react-icons/bs";
 import { BsFillMoonFill } from "react-icons/bs";
 import ReactGA from "react-ga";
+import { IoHomeOutline } from "react-icons/io5";
 
 import i18n from "../i18n.js";
 import { useRouter } from "next/router";
@@ -131,7 +132,7 @@ const NavbarComp = ({ toggleTheme }) => {
 						style={{ fontSize: "1.5rem" }}
 						className={scrolled ? "logo" : "logo1"}
 					>
-						<span className="mx-2">Pixel Genie</span>
+						<span className="mx-2 ">Pixel Genie</span>
 					</span>
 				</Navbar.Brand>
 				<Dropdown onSelect={handleDropdownSelect} className=" border-0 ">
@@ -184,11 +185,17 @@ const NavbarComp = ({ toggleTheme }) => {
 					aria-label="Toggle navigation"
 					className="btn-sm"
 				/>
+
 				<Navbar.Collapse
 					id="basic-navbar-nav"
 					className=" rounded justify-content-end text-center  p-3  navbar-toggler border-0"
 				>
 					<Nav className="navbar-collapse justify-content-end text-center rounded ">
+						<Nav.Link as={Link} href="/" className="m-1">
+							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
+								<IoHomeOutline />
+							</Button>
+						</Nav.Link>{" "}
 						<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav5")}
@@ -233,9 +240,9 @@ const NavbarComp = ({ toggleTheme }) => {
 								{t("nav3")}
 							</Button>
 						</Nav.Link>
-						<Nav.Link as={Link} href="/kontakt" className="m-1">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								{t("nav6")}
+						<Nav.Link as={Link} href="#kontakt" className="m-1">
+							<Button className="btn-md py-2 btn-success border-0 shadow-md">
+								Kontakt
 							</Button>
 						</Nav.Link>
 						<Button

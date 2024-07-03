@@ -50,19 +50,29 @@ function Header3() {
 			<Container className=" my-5 py-5 ">
 				<Row className="justify-content-center  align-items-center">
 					<Col lg={5} className="mx-auto my-2 text-center ">
-						<Image
-							src="/assets/webentwicklung-nettetal-seo3.png"
-							width={400}
-							height={400}
-							className="responsive-image"
-							alt="webentwicklung-nettetal-seo3"
-							loading="lazy"
-						/>
+						<div className="image-container">
+							<Image
+								src="/assets/webentwicklung-nettetal-seo3.png"
+								width={400}
+								height={400}
+								className="responsive-image"
+								alt="webentwicklung-nettetal-seo2"
+								loading="lazy"
+							/>
+							<div className="arrow-animation3">
+								<Image
+									src="/assets/anim8.gif" // Path to your animated arrow GIF
+									width={50} // Adjust size as needed
+									height={50} // Adjust size as needed
+									alt="Animated Arrow"
+								/>
+							</div>
+						</div>
 					</Col>
 					<Col lg={5} className="mx-auto my-2 ">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1>{t("header6")}</h1>
+								<h1 className="text-bold">{t("header6")}</h1>
 								<Card.Text>{t("header7")}</Card.Text>
 								<Card.Text>{t("header8")}</Card.Text>
 								<Card.Text>{t("header9")}</Card.Text>

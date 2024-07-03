@@ -84,7 +84,7 @@ function HeaderCounted() {
 					<Col lg={5} className="mx-auto my-2 ">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1>{t("webseiten2")}</h1>
+								<h1 className="text-bold">{t("webseiten2")}</h1>
 								<Card.Text>{t("webseiten3")}</Card.Text>
 							</Card.Body>
 						</Card>
