@@ -117,22 +117,19 @@ const NavbarComp = ({ toggleTheme }) => {
 			className="nav-transition rounded-bottom"
 			collapseOnSelect
 		>
-			<Container>
-				<Navbar.Brand as={Link} href="/" className=" rounded  py-0 ">
+			<Container className="justify-content-space-between">
+				<Navbar.Brand as={Link} href="/" className=" rounded  py-0 mx-0">
 					<Image
 						src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
 						alt="pixel-genie-nettetal-webentwicklung-logo"
 						width={50}
 						height={50}
-						className="pb-1 mb-1"
 						style={{ width: "auto", height: "auto" }}
 						priority
+						className="mb-1"
 					/>
-					<span
-						style={{ fontSize: "1.5rem" }}
-						className={scrolled ? "logo" : "logo1"}
-					>
-						<span className="mx-2 ">Pixel Genie</span>
+					<span className={scrolled ? "logo" : "logo1"}>
+						<span className="mx-1 text-bold ">Pixel Genie</span>
 					</span>
 				</Navbar.Brand>
 				<Dropdown onSelect={handleDropdownSelect} className=" border-0 ">
