@@ -47,7 +47,6 @@ gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID}', {
 });
 `}
 			</Script>
-
 			<Head>
 				<title>Pixel-Genie WEBSEITEN SEO BRANDING MARKETING </title>
 				<meta
@@ -55,10 +54,12 @@ gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID}', {
 					content="Pixel Genie Nettetal WEBSEITEN SEO BRANDING MARKETING MEDIA SOCIAL MEDIA die beste !"
 				/>
 				<link rel="manifest" href="/manifest.json" />
-			</Head>
-			<Layout>
-				<Component {...pageProps} key={router.route} />
-			</Layout>
+			</Head>{" "}
+			<ThemeProvider>
+				<Layout>
+					<Component {...pageProps} key={router.route} />
+				</Layout>{" "}
+			</ThemeProvider>
 		</SSRProvider>
 	);
 }

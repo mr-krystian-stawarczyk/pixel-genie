@@ -51,7 +51,7 @@ function Footer() {
 				<Row className=" justify-content-center align-items-top text-center  mt-2  border-bottom">
 					<Col lg={3} sm={6} className="mx-auto">
 						<Card
-							style={{ width: "20rem" }}
+							style={{ maxWidth: "25rem" }}
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
@@ -78,7 +78,7 @@ function Footer() {
 					</Col>
 					<Col lg={3} sm={6} className=" mx-auto">
 						<Card
-							style={{ width: "20rem" }}
+							style={{ maxWidth: "25rem" }}
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
@@ -106,42 +106,31 @@ function Footer() {
 					</Col>
 					<Col lg={3} sm={6} className=" mx-auto">
 						<Card
-							style={{ width: "20rem" }}
+							style={{ maxWidth: "25rem" }}
 							className="bg-transparent border-0 shadow-lg "
 						>
 							<Card.Body className="">
 								<Card.Title className="my-3 text-uppercase">
-									{t("footer13")}
+									Facebook
 								</Card.Title>
 								<Link
 									href="https://www.facebook.com/profile.php?id=100090817536941"
 									target="_blank"
 								>
-									<Card.Text className="footer-links">
+									<Card.Text className="footer-links hover">
 										<AiOutlineFacebook
-											style={{ fontSize: "3rem" }}
+											style={{ fontSize: "6rem" }}
 											className="my-2"
 										/>
 									</Card.Text>
 								</Link>
-
-								<Card.Text className="footer-links">
-									<AiOutlineLinkedin
-										style={{ fontSize: "3rem" }}
-										className="my-2"
-									/>
-								</Card.Text>
-
-								<Card.Text className="footer-links">
-									<AiFillGithub style={{ fontSize: "3rem" }} className="" />
-								</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
 					<Col lg={3} sm={6} className=" mx-auto">
 						<Card
 							className="bg-transparent border-0 shadow-lg pt-3 "
-							style={{ width: "20rem" }}
+							style={{ maxWidth: "25rem" }}
 						>
 							<Card.Title className="my-3 text-uppercase">
 								{t("footer14")}

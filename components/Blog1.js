@@ -22,12 +22,23 @@ function Blog1() {
 		},
 	};
 
+	const animateOut = {
+		opacity: 0,
+
+		transition: {
+			duration: 1,
+			ease: "easeInOut",
+		},
+	};
+
 	const controls = useAnimation();
 	useEffect(() => {
 		if (inView) {
 			controls.start(animateIn);
+		} else {
+			controls.start(animateOut);
 		}
-	}, [inView, controls, animateIn]);
+	}, [inView, controls, animateIn, animateOut]);
 	const { t } = useTranslation();
 	return (
 		<motion.div ref={ref} animate={controls}>

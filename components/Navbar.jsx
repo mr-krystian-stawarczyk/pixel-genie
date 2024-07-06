@@ -24,8 +24,8 @@ const NavbarComp = ({ toggleTheme }) => {
 	const { t, i18n } = useTranslation();
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
-	const [currentTheme, setCurrentTheme] = useState("");
-	const [isLightIcon, setIsLightIcon] = useState(true);
+	const [currentTheme, setCurrentTheme] = useState("dark");
+	const [isLightIcon, setIsLightIcon] = useState(false);
 	const [selectedFlag, setSelectedFlag] = useState(
 		"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
 	);
@@ -193,11 +193,6 @@ const NavbarComp = ({ toggleTheme }) => {
 								<IoHomeOutline />
 							</Button>
 						</Nav.Link>{" "}
-						<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								{t("nav5")}
-							</Button>
-						</Nav.Link>
 						<NavDropdown
 							title={t("nav1")}
 							id="basic-nav-dropdown"
@@ -231,10 +226,15 @@ const NavbarComp = ({ toggleTheme }) => {
 									Social Media
 								</Button>
 							</NavDropdown.Item>
-						</NavDropdown>
+						</NavDropdown>{" "}
 						<Nav.Link as={Link} href="/webdesignblog">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav3")}
+							</Button>
+						</Nav.Link>
+						<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
+							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
+								{t("nav5")}
 							</Button>
 						</Nav.Link>
 						<Nav.Link as={Link} href="#kontakt" className="m-1">
@@ -251,9 +251,9 @@ const NavbarComp = ({ toggleTheme }) => {
 							className="btn-nav border-0 btn-md py-2 mx-1"
 						>
 							{isLightIcon ? (
-								<BsFillSunFill style={{ color: "yellow" }} />
-							) : (
 								<BsFillMoonFill style={{ color: "grey" }} />
+							) : (
+								<BsFillSunFill style={{ color: "yellow" }} />
 							)}
 						</Button>
 					</Nav>

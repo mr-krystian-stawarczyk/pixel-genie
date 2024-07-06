@@ -123,6 +123,9 @@ function Web6() {
 									loading="lazy"
 								/>{" "}
 								<Card className="bg-transparent border-0 shadow-lg">
+									<Card.Text className="mt-1">
+										<MdOutlineSwipe />
+									</Card.Text>{" "}
 									<Card.Body>
 										<h3>{realizacje[currentIndex]?.title || ""}</h3>
 										<p>{realizacje[currentIndex]?.description || ""}</p>
@@ -133,9 +136,6 @@ function Web6() {
 										>
 											Link
 										</Button>{" "}
-										<Card.Text className="mt-1">
-											<MdOutlineSwipe />
-										</Card.Text>
 									</Card.Body>
 								</Card>
 							</motion.div>
