@@ -18,7 +18,7 @@ export default function Home() {
 			<Head>
 				<title>
 					Webseiten Erstellen, Webdesign, SEO Optimierung, SOCIAL MEDIA
-					Marketing
+					Marketing Pixel-Genie Nettetal
 				</title>
 				<meta
 					name="description"
