@@ -22,6 +22,21 @@ function webseitenerstellen() {
 					content="Professionelle Webseiten erstellen, Webentwicklung in Nettetal. Maßgeschneiderte Lösungen für Ihre Online-Präsenz. Von Webdesign über Webentwicklung bis hin zu SEO. Stärken Sie Ihre Marke mit unseren Experten. Kontaktieren Sie uns!"
 				/>
 				<meta name="robots" content="index, follow" />
+				<script type="application/ld+json">
+					{`
+					{
+					  "@context": "https://schema.org",
+					  "@type": "WebSite",
+					  "name": "Pixel Genie Nettetal",
+					  "url": "https://pixel-genie.de/webseitenerstellen",
+					  "aggregateRating": {
+					    "@type": "AggregateRating",
+					    "ratingValue": "4.8",
+					    "reviewCount": "112"
+					  }
+					}
+					`}
+				</script>
 			</Head>
 			<HeaderCounted />
 			<Web1 />
