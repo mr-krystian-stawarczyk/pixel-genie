@@ -1,9 +1,10 @@
 import Blog1 from "@/components/Blog1";
-import Blog2 from "@/components/Blog2";
+
 import React from "react";
 import Head from "next/head";
 import Faq1 from "@/components/Faq1";
-
+import dynamic from "next/dynamic";
+const Blog2 = dynamic(() => import("@/components/Blog2"));
 function webdesignblog() {
 	return (
 		<div className="mt-5 pt-5">

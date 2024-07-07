@@ -9,32 +9,28 @@ import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
 import Script from "next/script";
 import { useRouter } from "next/router";
-
+import ReactGA from "react-ga";
 function App(props) {
 	const { Component, pageProps, router } = props;
 	const reactRouter = useRouter();
 
 	useEffect(() => {
+		ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
+		ReactGA.pageview(window.location.pathname + window.location.search);
+	}, []);
+
+	useEffect(() => {
 		const handleRouteChange = (url) => {
-			window.gtag(
-				"config",
-				process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID,
-				{
-					page_path: url,
-				}
-			);
+			ReactGA.pageview(url);
 		};
 
 		reactRouter.events.on("routeChangeComplete", handleRouteChange);
-		return () => {
-			reactRouter.events.off("routeChangeComplete", handleRouteChange);
-		};
-	}, [reactRouter.events]);
+	});
 
 	return (
 		<SSRProvider>
 			<Script
-				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID}`}
+				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
 				strategy="afterInteractive"
 			/>
 			<Script id="google-analytics-script" strategy="afterInteractive">
@@ -42,10 +38,7 @@ function App(props) {
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID}', {
-  page_path: window.location.pathname,
-});
-`}
+gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}');`}
 			</Script>
 			<Head>
 				<title>Pixel-Genie WEBSEITEN SEO BRANDING MARKETING </title>
