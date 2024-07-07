@@ -25,6 +25,59 @@ export default function Home() {
 					content="Pixel-Genie - Ihre zuverlässige Webagentur & Webdesign in Nettetal. Professionelle Dienstleistungen für Webseiten erstellen, Webentwicklung, SEO Optimierung, Social Media Marketing. Spezialisiert auf responsive Design, Online-Marketing und maßgeschneiderte E-Commerce-Lösungen. Steigern Sie Ihre Online-Präsenz mit unserer Expertise. Kontaktieren Sie uns!"
 				/>
 				<meta name="robots" content="index, follow" />
+				<script type="application/ld+json">
+					{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Pixel Genie",
+            "url": "https://pixel-genie.de",
+            "sameAs": [
+              "https://www.facebook.com/profile.php?id=100090817536941",
+     
+            ],
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://pixel-genie.de/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://pixel-genie.de"
+            },
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+          
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Webseiten",
+                  "item": "https://pixel-genie.de/webseitenerstellen"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "SEO",
+                  "item": "https://pixel-genie.de/suchmaschinenoptimierung"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Tipps",
+                  "item": "https://pixel-genie.de/webdesignblog"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "name": "Social Media",
+                  "item": "https://pixel-genie.de/socialmediamarketing"
+                }
+              ]
+            }
+          }
+          `}
+				</script>
 			</Head>
 			<Header1 />
 			<TechBar />
