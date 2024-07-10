@@ -5,9 +5,9 @@ const config = {
 	generateRobotsTxt: true,
 	targetDirectory: "public",
 	transform: async (config, url) => {
-		let priority = 0.5; // default priority
+		let priority = "1.0"; // default priority
 
-		if (url === `${config.siteUrl}/`) {
+		if (url === `${config.siteUrl}` || url === `${config.siteUrl}/`) {
 			priority = 1.0;
 		} else if (url.includes("/webseitenerstellen")) {
 			priority = 0.9;
@@ -19,6 +19,8 @@ const config = {
 			priority = 0.9;
 		} else if (url.includes("/branding")) {
 			priority = 0.8;
+		} else if (url.includes("/socialmediamarketing")) {
+			priority = 0.8;
 		} else if (
 			url.includes("/impressium") ||
 			url.includes("/kontakt") ||
@@ -26,8 +28,6 @@ const config = {
 		) {
 			priority = 0.5;
 		}
-
-		console.log(`Setting priority for ${url} to ${priority}`);
 
 		return {
 			loc: url,
