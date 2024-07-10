@@ -32,7 +32,7 @@ function webseitenerstellen() {
 					  "aggregateRating": {
 					    "@type": "AggregateRating",
 					    "ratingValue": "4.8",
-					    "reviewCount": "112",
+					    "reviewCount": "73",
 					    "itemReviewed": {
 					      "@type": "Organization",
 					      "name": "Pixel Genie Nettetal"
