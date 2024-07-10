@@ -22,7 +22,7 @@ export default function Home() {
 				</title>
 				<meta
 					name="description"
-					content="Pixel-Genie - Ihre zuverlässige Webagentur & Webdesign in Nettetal. Professionelle Dienstleistungen für Webseiten erstellen, Webentwicklung, SEO Optimierung, Social Media Marketing. Spezialisiert auf responsive Design, Online-Marketing und maßgeschneiderte E-Commerce-Lösungen. Steigern Sie Ihre Online-Präsenz mit unserer Expertise. Kontaktieren Sie uns!"
+					content="Pixel-Genie - Ihre zuverlässige Webseiten & Webdesign in Nettetal. Professionelle Dienstleistungen für Webseiten erstellen, Webentwicklung, SEO Optimierung, Social Media Marketing. Spezialisiert auf responsive Design, Online-Marketing und maßgeschneiderte E-Commerce-Lösungen. Steigern Sie Ihre Online-Präsenz mit unserer Expertise. Kontaktieren Sie uns!"
 				/>
 				<meta name="robots" content="index, follow" />
 				<script type="application/ld+json">
@@ -32,9 +32,6 @@ export default function Home() {
   "@type": "Organization",
   "name": "Pixel Genie",
   "url": "https://pixel-genie.de",
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=100090817536941"
-  ],
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://pixel-genie.de/search?q={search_term_string}",
