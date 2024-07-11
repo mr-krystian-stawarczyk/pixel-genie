@@ -16,10 +16,7 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>
-					Webseiten Erstellen, Webdesign, SEO Optimierung, SOCIAL MEDIA
-					Marketing Pixel-Genie Nettetal
-				</title>
+				<title>Webseiten Erstellen, Webdesign, SEO - Pixel-Genie</title>
 				<meta
 					name="description"
 					content="Pixel-Genie - Ihre zuverlässige Webseiten & Webdesign in Nettetal. Professionelle Dienstleistungen für Webseiten erstellen, Webentwicklung, SEO Optimierung, Social Media Marketing. Spezialisiert auf responsive Design, Online-Marketing und maßgeschneiderte E-Commerce-Lösungen. Steigern Sie Ihre Online-Präsenz mit unserer Expertise. Kontaktieren Sie uns!"
@@ -32,11 +29,6 @@ export default function Home() {
   "@type": "Organization",
   "name": "Pixel Genie",
   "url": "https://pixel-genie.de",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://pixel-genie.de/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://pixel-genie.de"
