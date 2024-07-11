@@ -34,9 +34,19 @@ function Blog2() {
 		const updateArticles = () => {
 			const translatedArticles = [
 				{
+					imgSrc: "/assets/artic7.png",
+					title: t("artic38"),
+					date: "11-07-2024",
+					details: t("artic39"),
+					details2: t("artic40"),
+					details3: t("artic41"),
+					details4: t("artic42"),
+					details5: t("artic43"),
+				},
+				{
 					imgSrc: "/assets/artic4.png",
 					title: t("artic32"),
-					date: "2024-06-18",
+					date: "18-06-2024",
 					details: t("artic33"),
 					details2: t("artic34"),
 					details3: t("artic35"),
@@ -46,7 +56,7 @@ function Blog2() {
 				{
 					imgSrc: "/assets/artic6.png",
 					title: t("artic26"),
-					date: "2024-02-20",
+					date: "20-02-2024",
 					details: t("artic27"),
 					details2: t("artic28"),
 					details3: t("artic29"),
@@ -56,7 +66,7 @@ function Blog2() {
 				{
 					imgSrc: "/assets/artic5.png",
 					title: t("artic19"),
-					date: "2023-12-07",
+					date: "07-12-2023",
 					details: t("artic21"),
 					details2: t("artic22"),
 					details3: t("artic23"),
@@ -66,7 +76,7 @@ function Blog2() {
 				{
 					imgSrc: "/assets/artic1.png",
 					title: t("artic13"),
-					date: "2023-09-21",
+					date: "21-09-2023",
 					details: t("artic14"),
 					details2: t("artic15"),
 					details3: t("artic16"),
@@ -76,7 +86,7 @@ function Blog2() {
 				{
 					imgSrc: "/assets/artic2.png",
 					title: t("artic7"),
-					date: "2023-07-10",
+					date: "10-07-2023",
 					details: t("artic8"),
 					details2: t("artic9"),
 					details3: t("artic10"),
@@ -86,7 +96,7 @@ function Blog2() {
 				{
 					imgSrc: "/assets/artic3.png",
 					title: t("artic1"),
-					date: "2023-05-05",
+					date: "05-05-2023",
 					details: t("artic2"),
 					details2: t("artic3"),
 					details3: t("artic4"),
@@ -229,7 +239,7 @@ function Blog2() {
 
 											<Card.Body>
 												{" "}
-												<Card.Text id="p-wrap">
+												<Card.Text id="p-wrap" style={{ height: "150px" }}>
 													<h3 className="py-2">
 														<p>{article.title}</p>
 													</h3>
@@ -237,7 +247,7 @@ function Blog2() {
 												<Accordion>
 													<Accordion.Item eventKey="0">
 														<Accordion.Header>
-															<p>{article.date}</p>
+															<h5 className="text-bold ">{article.date}</h5>
 														</Accordion.Header>
 														<Accordion.Body>
 															<p>{article.details}</p>

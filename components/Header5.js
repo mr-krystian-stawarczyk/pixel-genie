@@ -60,6 +60,7 @@ function Header5() {
 									width={50} // Adjust size as needed
 									height={50} // Adjust size as needed
 									alt="Animated Arrow"
+									unoptimized
 								/>
 							</div>
 						</div>

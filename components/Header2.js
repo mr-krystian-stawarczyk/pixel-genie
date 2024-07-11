@@ -64,6 +64,7 @@ function Header2() {
 									width={100} // Adjust size as needed
 									height={100} // Adjust size as needed
 									alt="Animated Arrow"
+									unoptimized
 								/>
 							</div>
 						</div>
