@@ -34,6 +34,17 @@ function Blog2() {
 		const updateArticles = () => {
 			const translatedArticles = [
 				{
+					imgSrc: "/assets/artic8.png",
+					title: t("artic44"),
+					date: "20-07-2024",
+					details: t("artic45"),
+					details2: t("artic46"),
+					details3: t("artic47"),
+					details4: t("artic48"),
+					details5: t("artic49"),
+				},
+
+				{
 					imgSrc: "/assets/artic7.png",
 					title: t("artic38"),
 					date: "11-07-2024",
@@ -212,8 +223,11 @@ function Blog2() {
 													<p> {articles[currentIndex]?.details3 || ""}</p>
 													<p> {articles[currentIndex]?.details4 || ""}</p>
 													<p>{articles[currentIndex]?.details5 || ""}</p>
-													<p> {articles[currentIndex]?.details6 || ""}</p>
-												</Accordion.Body>
+													<p> {articles[currentIndex]?.details6 || ""}</p>{" "}
+													<Button href="#kontakt" className="my-2 btn-nav">
+														Kontakt
+													</Button>
+												</Accordion.Body>{" "}
 											</Accordion.Item>
 										</Accordion>
 									</Card.Body>
@@ -255,9 +269,12 @@ function Blog2() {
 															<p>{article.details3}</p>
 															<p>{article.details4}</p>
 															<p>{article.details5}</p>
-															<p>{article.details6}</p>
-														</Accordion.Body>
-													</Accordion.Item>
+															<p>{article.details6}</p>{" "}
+															<Button href="#kontakt" className="my-2 btn-nav">
+																Kontakt
+															</Button>
+														</Accordion.Body>{" "}
+													</Accordion.Item>{" "}
 												</Accordion>
 											</Card.Body>
 										</Card>
