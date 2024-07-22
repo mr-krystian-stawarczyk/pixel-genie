@@ -23,8 +23,7 @@ function webseitenerstellen() {
 				/>
 				<meta name="robots" content="index, follow" />
 				<script type="application/ld+json">
-					{`
-					{
+					{`{
 					  "@context": "https://schema.org",
 					  "@type": "WebSite",
 					  "name": "Pixel Genie Nettetal",
@@ -38,8 +37,7 @@ function webseitenerstellen() {
 					      "name": "Pixel Genie Nettetal"
 					    }
 					  }
-					}
-					`}
+					}`}
 				</script>
 			</Head>
 			<HeaderCounted />

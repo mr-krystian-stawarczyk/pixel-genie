@@ -110,7 +110,7 @@ function About4() {
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
 								<h1>2</h1>
-								<Card.Text>{t("about7")}</Card.Text>
+								<Card.Text className="text-bold">{t("about7")}</Card.Text>
 								<Card.Text>{t("about8")}</Card.Text>
 							</Card.Body>
 						</Card>
@@ -126,7 +126,7 @@ function About4() {
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
 								<h1>3</h1>
-								<Card.Text>{t("about9")}</Card.Text>
+								<Card.Text className="text-bold">{t("about9")}</Card.Text>
 								<Card.Text>{t("about10")}</Card.Text>
 							</Card.Body>
 						</Card>

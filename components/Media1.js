@@ -47,20 +47,22 @@ function Media1() {
 			<motion.div ref={ref} animate={controls}>
 				<Container className="pt-5">
 					<Row className="justify-content-center text-center align-items-center">
-						<Col lg={5} className="mx-auto my-2">
+						<Col className="mx-auto my-2">
 							<Image
-								src="/assets/webentwicklung-nettetal-design-seo1.png"
-								width={400}
-								height={400}
-								className="responsive-image"
-								alt="webentwicklung-nettetal-design-seo1"
-								priority
+								src="/assets/webdesign-header-welcome.gif" // Path to your animated arrow GIF
+								width={500} // Adjust size as needed
+								height={200} // Adjust size as needed
+								alt="Animated Arrow"
+								unoptimized
+								className="responsive-image rounded"
 							/>
 						</Col>
-						<Col lg={5} className="mx-auto my-2">
+					</Row>
+					<Row className="justify-content-center text-center align-items-center">
+						<Col className="mx-auto my-2">
 							<Card className="border-0 bg-transparent ">
 								<Card.Body>
-									<h1 className="text-start">{t("design1")}</h1>
+									<h1 className="text-start text-bold">{t("design1")}</h1>
 									<Card.Text className="text-start">{t("design2")}</Card.Text>
 									<Button className="btn-nav" href="#media-design-portfolio">
 										{t("design3")}

@@ -104,13 +104,14 @@ function Media5() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
+						{" "}
+						<h1 className="shadow-lg rounded text-bold">1</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg "
 							style={{ height: "44rem" }}
 						>
 							<Card.Body>
-								<h1>1</h1>
-								<h2> {t("design13")}</h2>
+								<h3> {t("design13")}</h3>
 								<Card.Text>{t("design14")}</Card.Text>
 							</Card.Body>
 						</Card>
@@ -123,13 +124,14 @@ function Media5() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
+						{" "}
+						<h1 className="shadow-lg rounded text-bold">2</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg "
 							style={{ height: "44rem" }}
 						>
 							<Card.Body>
-								<h1>2</h1>
-								<h2> {t("design15")}</h2>
+								<h3> {t("design15")}</h3>
 								<Card.Text>{t("design16")}</Card.Text>
 							</Card.Body>
 						</Card>
@@ -142,12 +144,14 @@ function Media5() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
+						{" "}
+						<h1 className="shadow-lg rounded text-bold">3</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg "
 							style={{ height: "44rem" }}
 						>
 							<Card.Body>
-								<h1>3</h1> <h2> {t("design17")}</h2>
+								<h3> {t("design17")}</h3>
 								<Card.Text>{t("design18")}</Card.Text>
 							</Card.Body>
 						</Card>
@@ -160,13 +164,14 @@ function Media5() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
+						{" "}
+						<h1 className="shadow-lg rounded text-bold">4</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg "
 							style={{ height: "44rem" }}
 						>
 							<Card.Body>
-								<h1>4</h1>
-								<h2> {t("design19")}</h2>
+								<h3> {t("design19")}</h3>
 								<Card.Text>{t("design20")}</Card.Text>
 							</Card.Body>
 						</Card>

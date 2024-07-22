@@ -42,7 +42,7 @@ function About1() {
 						>
 							<Card className="border-0 bg-transparent ">
 								<Card.Body>
-									<h1>{t("about1")} </h1>
+									<h1 className="text-bold">{t("about1")} </h1>
 									<Card.Text>{t("about2")}</Card.Text>
 								</Card.Body>
 							</Card>
@@ -50,16 +50,26 @@ function About1() {
 						<Col
 							xs={{ span: 12, order: 1 }}
 							lg={{ span: 5, order: 2 }}
-							className="mx-auto my-2 text-center blur"
+							className="mx-auto my-5 text-center "
 						>
-							<Image
-								src="/assets/webentwicklung-nettetal-seo1.png"
-								width={380}
-								height={400}
-								className="responsive-image shadow-lg rounded"
-								alt="webagentur-nettetal-webentwicklung-about1"
-								priority
-							/>
+							<div className="image-container">
+								<Image
+									src="/assets/webentwicklung-nettetal-seo1.png"
+									width={380}
+									height={400}
+									className="foreground-image responsive-image  rounded"
+									alt="webagentur-nettetal-webentwicklung-about1"
+									priority
+								/>
+								<Image
+									src="/assets/mypictureframe.gif"
+									width={400}
+									height={515}
+									className="background-image responsive-image shadow-lg rounded"
+									alt="webagentur-nettetal-webentwicklung-about1"
+									priority
+								/>
+							</div>
 						</Col>
 					</Row>
 				</Container>
