@@ -27,6 +27,9 @@ const config = {
 			url.includes("/pixelgeniehistory")
 		) {
 			priority = 0.5;
+		} else if (url.startsWith(`${config.siteUrl}/webentwicklung/`)) {
+			priority = 1.0; // set priority for webentwicklung/[city]
+			changefreq = "daily"; // set change frequency for webentwicklung/[city]
 		}
 
 		return {
