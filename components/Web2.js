@@ -50,7 +50,7 @@ function Web2() {
 								<h1 className="text-start">{t("web4")}</h1>
 								<Card.Text className="text-start">{t("web5")}</Card.Text>
 								<Button className="btn-nav" href="#web-design-pricing">
-									{t("web6")}
+									<span className="text-white"> {t("web6")} </span>
 								</Button>
 							</Card.Body>
 						</Card>

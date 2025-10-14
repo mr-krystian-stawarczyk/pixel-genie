@@ -31,6 +31,17 @@ p,
 span {
 	color: var(--text-color);
 }
+
+.card.text-dark,
+.card.text-dark * {
+	color: #000 !important;
+}
+
+/* Jeśli chcesz, żeby linki w kartach też były czarne */
+.card a {
+	color: #000 !important;
+}
+
 .logo-container {
 	text-align: center;
 	margin-bottom: 20px;
@@ -43,6 +54,7 @@ span {
 	position: relative;
 	z-index: 1;
 }
+
 .background-image {
 	position: absolute;
 	top: 50%;

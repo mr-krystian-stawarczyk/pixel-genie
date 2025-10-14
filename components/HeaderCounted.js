@@ -102,7 +102,7 @@ function HeaderCounted() {
 												<CountUp start={1} end={31} duration={12} delay={0}>
 													{({ countUpRef }) => (
 														<span
-															className="count display-5"
+															className="count display-5 text-dark"
 															ref={countUpRef}
 														/>
 													)}
@@ -119,7 +119,7 @@ function HeaderCounted() {
 									<Card.Body>
 										<Card.Title>{t("webseiten5")}</Card.Title>
 										<Card.Title>
-											<span className="display-6">+</span>
+											<span className="display-6 ">+</span>
 											{isVisible && (
 												<CountUp
 													start={80000}
@@ -129,7 +129,7 @@ function HeaderCounted() {
 												>
 													{({ countUpRef }) => (
 														<span
-															className="count display-5"
+															className="count display-5 text-dark"
 															ref={countUpRef}
 														/>
 													)}
@@ -151,7 +151,7 @@ function HeaderCounted() {
 												<CountUp start={10} end={72} duration={12} delay={0}>
 													{({ countUpRef }) => (
 														<span
-															className="count display-5"
+															className="count display-5 text-dark"
 															ref={countUpRef}
 														/>
 													)}

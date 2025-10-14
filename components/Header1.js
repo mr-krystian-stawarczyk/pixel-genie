@@ -29,21 +29,21 @@ export default function Header1() {
 								href="webseitenerstellen"
 								className="btn-lg btn-nav"
 							>
-								{t("h3")}
+								<span className="text-white"> {t("h3")} </span>
 							</Button>
 							<Button
 								as={Link}
 								href="suchmaschinenoptimierung"
 								className="btn-lg btn-nav"
 							>
-								{t("h4")}
+								<span className="text-white"> {t("h4")} </span>
 							</Button>
 							<Button
 								as={Link}
 								href="socialmediamarketing"
 								className="btn-lg btn-nav"
 							>
-								{t("h5")}
+								<span className="text-white"> {t("h5")} </span>
 							</Button>
 						</div>
 					</Card.Body>

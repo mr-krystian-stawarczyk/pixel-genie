@@ -91,7 +91,10 @@ function Brand6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg border-0 text-dark"
+						>
 							<Card.Body>
 								<h1>{t("bran22")}</h1>
 								<Card.Text>{t("bran23")}</Card.Text>
@@ -125,7 +128,10 @@ function Brand6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg border-0 text-dark"
+						>
 							<Card.Body>
 								<h1>{t("bran31")}</h1>
 								<Card.Text>{t("bran32")}</Card.Text>
@@ -152,7 +158,10 @@ function Brand6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg border-0 text-dark"
+						>
 							<Card.Body>
 								<h1>{t("bran41")}</h1>
 								<Card.Text>{t("bran42")}</Card.Text>

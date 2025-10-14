@@ -50,8 +50,8 @@ function Blog1() {
 								<h1> {t("blog1")}</h1>
 								<Card.Text>{t("blog2")}</Card.Text>
 								<div className="text-center">
-									<Button className="btn-nav " href="#tips">
-										{t("blog4")}
+									<Button className="btn-nav text-white" href="#tips">
+										<span className="text-white"> {t("blog4")} </span>
 									</Button>
 								</div>
 							</Card.Body>

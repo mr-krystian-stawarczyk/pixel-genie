@@ -51,7 +51,7 @@ function Media4() {
 								<h1 className="text-start">{t("design10")}</h1>
 								<Card.Text className="text-start">{t("design11")}</Card.Text>
 								<Button className="btn-nav" href="#contact">
-									{t("design12")}
+									<span className="text-white"> {t("design12")} </span>
 								</Button>
 							</Card.Body>
 						</Card>

@@ -218,7 +218,9 @@ function Blog2() {
 												</Accordion.Header>
 												<Accordion.Body>
 													{" "}
-													<p>{articles[currentIndex]?.details || ""}</p>
+													<p className="text-dark">
+														{articles[currentIndex]?.details || ""}
+													</p>
 													<p> {articles[currentIndex]?.details2 || ""}</p>
 													<p> {articles[currentIndex]?.details3 || ""}</p>
 													<p> {articles[currentIndex]?.details4 || ""}</p>
@@ -261,15 +263,19 @@ function Blog2() {
 												<Accordion>
 													<Accordion.Item eventKey="0">
 														<Accordion.Header>
-															<h5 className="text-bold ">{article.date}</h5>
+															<h5 className="text-bold text-dark">
+																{article.date}
+															</h5>
 														</Accordion.Header>
 														<Accordion.Body>
-															<p>{article.details}</p>
-															<p>{article.details2}</p>
-															<p>{article.details3}</p>
-															<p>{article.details4}</p>
-															<p>{article.details5}</p>
-															<p>{article.details6}</p>{" "}
+															<p className="text-dark">{article.details}</p>
+															<p className="text-dark">{article.details2}</p>
+															<p className="text-dark">{article.details3}</p>
+															<p className="text-dark">{article.details4}</p>
+															<p className="text-dark">{article.details5}</p>
+															<p className="text-dark">
+																{article.details6}
+															</p>{" "}
 															<Button href="#kontakt" className="my-2 btn-nav">
 																Kontakt
 															</Button>

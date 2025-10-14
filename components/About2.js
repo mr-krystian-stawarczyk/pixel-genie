@@ -21,7 +21,7 @@ function About2() {
 					date="2016"
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
 				>
-					<h5>{t("about12")} </h5>
+					<h5 className="text-dark">{t("about12")} </h5>
 				</VerticalTimelineElement>
 				<VerticalTimelineElement
 					className="vertical-timeline-element--work"
@@ -29,7 +29,7 @@ function About2() {
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
 					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
-					<h5> {t("about13")} </h5>
+					<h5 className="text-dark"> {t("about13")} </h5>
 				</VerticalTimelineElement>
 				<VerticalTimelineElement
 					className="vertical-timeline-element--work"
@@ -37,7 +37,7 @@ function About2() {
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
 					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
-					<h5>{t("about14")} </h5>
+					<h5 className="text-dark">{t("about14")} </h5>
 				</VerticalTimelineElement>
 				<VerticalTimelineElement
 					className="vertical-timeline-element--work"
@@ -45,7 +45,7 @@ function About2() {
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
 					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
-					<h5>{t("about15")} </h5>
+					<h5 className="text-dark">{t("about15")} </h5>
 				</VerticalTimelineElement>
 				<VerticalTimelineElement
 					className="vertical-timeline-element--education"
@@ -53,7 +53,7 @@ function About2() {
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
 					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
-					<h5> {t("about16")} </h5>
+					<h5 className="text-dark"> {t("about16")} </h5>
 				</VerticalTimelineElement>
 				<VerticalTimelineElement
 					className="vertical-timeline-element--education"
@@ -61,7 +61,7 @@ function About2() {
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
 					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
-					<h5>{t("about17")} </h5>
+					<h5 className="text-dark">{t("about17")} </h5>
 				</VerticalTimelineElement>
 				<VerticalTimelineElement
 					className="vertical-timeline-element--education"
@@ -69,7 +69,7 @@ function About2() {
 					iconStyle={{ background: "rgb(0, 54, 129)", color: "#fff" }}
 					contentArrowStyle={{ borderRight: "7px solid  rgb(0, 54, 129)" }}
 				>
-					<h5> {t("about18")} </h5>
+					<h5 className="text-dark"> {t("about18")} </h5>
 				</VerticalTimelineElement>
 			</VerticalTimeline>
 		</Container>

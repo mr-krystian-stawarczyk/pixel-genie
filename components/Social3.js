@@ -64,7 +64,7 @@ function Social3() {
 									className="btn-nav"
 									href="#social-media-nettetal-process"
 								>
-									{t("design89")}
+									<span className="text-white"> {t("design89")} </span>
 								</Button>
 							</Card.Body>
 						</Card>

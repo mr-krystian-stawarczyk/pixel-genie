@@ -49,7 +49,7 @@ function Seo3() {
 								<h1 className="text-start">{t("seo7")}</h1>
 								<Card.Text className="text-start">{t("seo8")}</Card.Text>
 								<Button className="btn-nav" href="#seoprices">
-									{t("seo9")}
+									<span className="text-white"> {t("seo9")} </span>
 								</Button>
 							</Card.Body>
 						</Card>

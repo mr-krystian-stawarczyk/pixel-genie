@@ -61,7 +61,7 @@ function Social1() {
 								<h1 className="text-start">{t("design81")}</h1>
 								<Card.Text className="text-start">{t("design82")}</Card.Text>
 								<Button className="btn-nav" href="#social-media-preis">
-									{t("design83")}
+									<span className="text-white"> {t("design83")} </span>
 								</Button>
 							</Card.Body>
 						</Card>

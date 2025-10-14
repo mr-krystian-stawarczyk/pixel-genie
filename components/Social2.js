@@ -54,7 +54,7 @@ function Social2() {
 									className="btn-nav"
 									href="#social-media-nettetal-fragen"
 								>
-									{t("design86")}
+									<span className="text-white"> {t("design86")} </span>
 								</Button>
 							</Card.Body>
 						</Card>

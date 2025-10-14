@@ -90,7 +90,10 @@ function Media7() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg border-0 text-dark"
+						>
 							<Card.Body>
 								<h1>{t("design21")}</h1>
 								<Card.Text>{t("design22")}</Card.Text>
@@ -117,7 +120,10 @@ function Media7() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg border-0 text-dark"
+						>
 							<Card.Body>
 								<h1>{t("design31")}</h1>
 								<Card.Text>{t("design32")}</Card.Text>
@@ -152,7 +158,10 @@ function Media7() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg border-0 text-dark"
+						>
 							<Card.Body>
 								<h1>{t("design42")}</h1>
 								<Card.Text>{t("design43")}</Card.Text>

@@ -65,7 +65,7 @@ function Media1() {
 									<h1 className="text-start text-bold">{t("design1")}</h1>
 									<Card.Text className="text-start">{t("design2")}</Card.Text>
 									<Button className="btn-nav" href="#media-design-portfolio">
-										{t("design3")}
+										<span className="text-white"> {t("design3")} </span>
 									</Button>
 								</Card.Body>
 							</Card>

@@ -59,7 +59,7 @@ function Seo4() {
 								<h1 className="text-start"> {t("seo10")} </h1>
 								<Card.Text className="text-start">{t("seo11")}</Card.Text>
 								<Button className="btn-nav" href="#contact">
-									{t("seo12")}
+									<span className="text-white"> {t("seo12")} </span>
 								</Button>
 							</Card.Body>
 						</Card>

@@ -91,7 +91,10 @@ function Social6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg border-0 text-dark"
+						>
 							<Card.Body>
 								<h1>{t("socialmedia1")}</h1>
 								<Card.Text>{t("socialmedia2")}</Card.Text>
@@ -117,14 +120,17 @@ function Social6() {
 						</Card>
 					</motion.div>
 				</Col>
-				<Col lg={4} className="mx-auto my-2">
+				<Col lg={4} className="mx-auto my-2 ">
 					<motion.div
 						ref={ref2}
 						animate={controls2}
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg border-0 text-dark"
+						>
 							<Card.Body>
 								<h1>{t("socialmedia9")}</h1>
 								<Card.Text>{t("socialmedia10")}</Card.Text>
@@ -150,7 +156,10 @@ function Social6() {
 						initial={{ opacity: 0 }}
 						transition={{ delay: 1 }}
 					>
-						<Card style={{ minWidth: "18rem" }} className="shadow-lg border-0">
+						<Card
+							style={{ minWidth: "18rem" }}
+							className="shadow-lg border-0 text-dark"
+						>
 							<Card.Body>
 								<h1>{t("socialmedia18")}</h1>
 								<Card.Text>{t("socialmedia19")}</Card.Text>

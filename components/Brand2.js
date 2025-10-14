@@ -50,7 +50,7 @@ function Brand2() {
 								<h1 className="text-start">{t("bran4")}</h1>
 								<Card.Text className="text-start">{t("bran5")}</Card.Text>
 								<Button className="btn-nav" href="#branding-nettetal-preis">
-									{t("bran6")}
+									<span className="text-white"> {t("bran6")}</span>
 								</Button>
 							</Card.Body>
 						</Card>
