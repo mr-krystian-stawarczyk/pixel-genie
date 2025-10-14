@@ -1,102 +1,98 @@
-* {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-	--bg-color: $ {
-		theme==='light'?'#fff': "#111";
-	}
-	--text-color: $ {
-		theme==='light'?'#333': "#eee";
-	}
+:root {
+	--bg-color: #fff;
+	--text-color: #111;
 }
 
-/*Animacja Glownej strony - animacje przy zdjeciach (gif) */
+.light {
+	--bg-color: #fff;
+	--text-color: #111;
+}
 
+.dark {
+	--bg-color: #111;
+	--text-color: #eee;
+}
+
+body,
+html {
+	background-color: var(--bg-color);
+	color: var(--text-color);
+}
+
+a,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+	color: var(--text-color);
+}
 .logo-container {
 	text-align: center;
 	margin-bottom: 20px;
 }
-
 .image-container {
 	position: relative;
 	text-align: center;
 }
-
 .foreground-image {
 	position: relative;
 	z-index: 1;
 }
-
 .background-image {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 0;
-}
-
-/* Responsive styles */
+} /* Responsive styles */
 @media (max-width: 768px) {
 	/* Adjust the size of the images and container on smaller screens */
-
 	.foreground-image {
-		max-width: 300px;
-
-		/* Adjust size */
+		max-width: 300px; /* Adjust size */
 	}
-
 	.background-image {
 		max-width: 300px;
-		height: 430px !important;
-		/* Adjust size */
+		height: 430px !important; /* Adjust size */
 	}
 }
-
 @media (max-width: 576px) {
 	/* Further adjustments for very small screens */
 	.foreground-image {
 		max-width: 250px; /* Adjust size */
 	}
-
 	.background-image {
 		max-width: 250px; /* Adjust size */
 	}
 }
-
 .arrow-animation2 {
 	position: absolute;
-
 	left: 25%;
 	top: 65%; /* Center horizontally */
 	transform: translateX(-50%); /* Center horizontally */
 }
-
 .arrow-animation3 {
 	position: absolute;
-
 	left: 15%;
 	top: 20%; /* Center horizontally */
 	transform: translateX(-50%); /* Center horizontally */
 }
-
 .arrow-animation4 {
 	position: absolute;
-
 	left: 20%;
 	top: 5%; /* Center horizontally */
 	transform: translateX(-50%); /* Center horizontally */
 }
-
 .arrow-animation5 {
 	position: absolute;
-
 	left: 50%;
 	top: 30%; /* Center horizontally */
 	transform: translateX(-50%); /* Center horizontally */
-}
-
-/* Do sortowania css */
-
+} /* Do sortowania css */
 .logo {
 	color: #000000; /* Set the text color to white */
 }
@@ -107,32 +103,30 @@ body {
 	scrollbar-width: none; /* Firefox */
 	-ms-overflow-style: none; /* IE and Edge */
 }
-
 a {
 	text-decoration: none;
 }
-
 .header-container {
 	position: relative;
-	height: 100vh; /* Set the container height to the full viewport height */
+	width: 100%;
+	min-height: 70vh;
+	overflow: hidden;
 }
 
-.header-content {
-	text-align: center; /* Center the text within the container */
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: 100%; /* Ensure the content takes up the full height of the container */
+.header-content-container {
+	position: relative;
+	z-index: 1; /* tekst nad particles */
+	padding-top: 5rem;
 }
+
 .particles-container {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: -3;
+	z-index: 0; /* particles pod tekstem */
 }
-
 ::-webkit-scrollbar {
 	display: none;
 }
@@ -145,7 +139,6 @@ a {
 	left: 0;
 	z-index: -1 !important;
 }
-
 #particles-container {
 	position: absolute;
 	top: 0;
@@ -159,12 +152,10 @@ a {
 	width: 400px;
 	height: 400px;
 }
-
 .blur {
 	backdrop-filter: blur(7px); /* Ustawienie efektu blur dla tła */
 	z-index: 0 !important;
 }
-
 .border-blue {
 	border: 1px solid #0047ab !important;
 }
@@ -173,33 +164,26 @@ a {
 	transition: 1s ease-in-out;
 	color: black !important;
 }
-
 .dark {
 	background-color: black !important;
 	transition: 1s ease-in-out;
 	color: white !important;
 }
-
 @media (max-width: 768px) {
 	/* Ustal rozmiar dla h1 na urządzeniach mobilnych */
 	.header-content h1 {
 		font-size: 24px; /* Zaktualizuj rozmiar według potrzeb */
-	}
-
-	/* Ustal rozmiar dla h4 na urządzeniach mobilnych */
+	} /* Ustal rozmiar dla h4 na urządzeniach mobilnych */
 	.header-content h4 {
 		font-size: 18px; /* Zaktualizuj rozmiar według potrzeb */
 	}
 }
-
 .vertical-timeline-element-date {
 	color: rgb(133, 133, 133);
 }
-
 .my-dropdown {
 	background-color: #343a40 !important; /* Zmień na dowolny kolor */
 }
-
 .footer-links {
 	text-decoration: none;
 	color: white;
@@ -207,12 +191,10 @@ a {
 .footer-links:hover {
 	color: #003681;
 }
-
 .hover:hover {
 	transform: scale(1.1);
 	transition: 0.3s ease-in-out;
 }
-
 .contact-links {
 	text-decoration: none;
 	color: inherit;
@@ -220,18 +202,15 @@ a {
 .contact-links:hover {
 	color: #003681;
 }
-
 .bg-blue {
 	background-color: #003681;
 }
 .text-bold {
 	font-weight: 700;
 }
-
 .text-blue {
 	color: #003681;
 }
-
 .page-transition-enter {
 	opacity: 0;
 }
@@ -242,94 +221,79 @@ a {
 .page-transition-exit {
 	opacity: 1;
 }
-
 .page-transition-exit-active {
 	opacity: 0;
 	transition: opacity 300ms;
 }
-
 .arrow-nav {
 	color: #003681;
 	font-size: 1.7rem;
 }
-
 .btn-nav {
 	background-color: #003681 !important;
 	border: none !important;
 }
-
 .fade-enter {
 	opacity: 0;
 	transform: translateX(-50px);
-	transition: opacity 1s ease, transform 1s ease;
+	transition:
+		opacity 1s ease,
+		transform 1s ease;
 }
-
 .fade-enter-active {
 	opacity: 1;
 	transform: translateX(0);
 }
-
 .fade-enter-done {
 	opacity: 1;
 	transform: translateX(0);
-}
-
-/* Klasy dla wyjścia (zniknięcia) elementu */
+} /* Klasy dla wyjścia (zniknięcia) elementu */
 .fade-exit {
 	opacity: 1;
 	transform: translateX(0);
-	transition: opacity 1s ease, transform 1s ease;
+	transition:
+		opacity 1s ease,
+		transform 1s ease;
 }
-
 .fade-exit-active {
 	opacity: 0;
 	transform: translateX(-50px);
 }
-
 .fade-exit-done {
 	opacity: 0;
 	transform: translateX(-50px);
 }
-
 .btn-nav:hover {
 	background-color: #0047ab !important;
 	transform: scale(1.1);
 	transition: 0.4s ease-in-out;
 }
-
 .btn-nav-drop {
 	background-color: #003681 !important;
 }
-
 .btn-nav-drop:hover {
 	background-color: #0047ab !important;
 }
-
 #basic-nav-dropdown {
 	color: white !important;
 }
-
 @media (max-width: 1366px) {
 }
-
 @media (max-width: 768px) {
 	.responsive-image {
 		width: 80%;
 		height: 50%;
 	}
-
 	#basic-navbar-nav {
 		backdrop-filter: blur(10px) !important;
 		background: transparent !important;
 	}
 }
-
 @media (max-width: 991.98px) {
 	.navbar-toggler {
 		background-color: #fff !important;
 	}
 }
-
 @media (max-width: 768.98px) {
 	.navbar-toggler {
 		background-color: #fff !important;
@@ -337,13 +301,11 @@ a {
 }
 @media (max-height: 400.98px) {
 }
-
 @media (max-width: 400.98px) {
 	.navbar-toggler {
 		background-color: #fff !important;
 	}
 }
-
 .navbar-toggler.collapsed {
 	background-color: #003681 !important;
 }

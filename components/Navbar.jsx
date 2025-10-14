@@ -118,7 +118,7 @@ const NavbarComp = ({ toggleTheme }) => {
 			collapseOnSelect
 		>
 			<Container className="justify-content-space-between">
-				<Navbar.Brand as={Link} href="/" className=" rounded  py-0 mx-0">
+				<Navbar.Brand as={Link} href="/" className="rounded py-0 mx-0">
 					<Image
 						src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
 						alt="pixel-genie-nettetal-webentwicklung-logo"
@@ -128,8 +128,18 @@ const NavbarComp = ({ toggleTheme }) => {
 						priority
 						className="mb-1"
 					/>
-					<span className={scrolled ? "logo" : "logo1"}>
-						<span className="mx-1 text-bold ">Pixel Genie</span>
+					<span
+						className="mx-1 text-bold"
+						style={{
+							color: scrolled
+								? "#000000" // zawsze czarny, jeśli scrollujesz w dół
+								: currentTheme === "light"
+									? "#000000" // jasny motyw → czarny
+									: "#ffffff", // ciemny motyw → biały
+							transition: "color 0.5s ease",
+						}}
+					>
+						Pixel Genie
 					</span>
 				</Navbar.Brand>
 				<Dropdown onSelect={handleDropdownSelect} className=" border-0 ">
