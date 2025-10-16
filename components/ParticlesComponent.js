@@ -11,9 +11,9 @@ function ParticlesComponent() {
 		<Particles
 			init={particlesInit}
 			options={{
-				fullScreen: { enable: false }, // używamy div jako kontenera
+				fullScreen: { enable: false },
 				background: { color: { value: "transparent" } },
-				fpsLimit: 60,
+				fpsLimit: 30, // niższe fps dla lepszej wydajności
 				interactivity: {
 					events: {
 						onClick: { enable: true, mode: "push" },
@@ -21,16 +21,16 @@ function ParticlesComponent() {
 						resize: true,
 					},
 					modes: {
-						push: { quantity: 4 },
-						repulse: { distance: 100, duration: 0.3 },
+						push: { quantity: 2 }, // mniej cząstek
+						repulse: { distance: 80, duration: 0.3 },
 					},
 				},
 				particles: {
 					color: { value: "#003681" },
 					collisions: { enable: true },
-					move: { enable: true, speed: 1, outModes: { default: "out" } },
-					number: { value: 60, density: { enable: true, area: 800 } },
-					opacity: { value: 0.8, random: true },
+					move: { enable: true, speed: 0.8, outModes: { default: "out" } },
+					number: { value: 40, density: { enable: true, area: 800 } }, // mniej cząstek
+					opacity: { value: 0.9, random: true },
 					shape: { type: "circle" },
 					size: { value: 6, random: true },
 				},
@@ -42,7 +42,7 @@ function ParticlesComponent() {
 				left: 0,
 				width: "100%",
 				height: "100%",
-				zIndex: -1, // żeby było pod tekstem
+				zIndex: -1,
 			}}
 		/>
 	);

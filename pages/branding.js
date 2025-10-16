@@ -9,8 +9,11 @@ import Brand5 from "@/components/Brand5";
 import Brand6 from "@/components/Brand6";
 import Brand7 from "@/components/Brand7";
 import Brand8 from "@/components/Brand8";
-
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
+import citiesData from "@/data/citiesData";
 function branding() {
+	const cityData = citiesData.find((c) => c.city === "nettetal");
+
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -23,6 +26,8 @@ function branding() {
 				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
+
+			<LocalBusinessJsonLd cityData={cityData} />
 			<Brand1 />
 			<Brand2 />
 			<Brand3 />

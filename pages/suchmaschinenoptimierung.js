@@ -8,8 +8,11 @@ import Seo4 from "@/components/Seo4";
 import Seo5 from "@/components/Seo5";
 import Seo6 from "@/components/Seo6";
 import Seo7 from "@/components/Seo7";
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
+import citiesData from "@/data/citiesData";
 
 function suchmaschinenoptimierung() {
+	const cityData = citiesData.find((c) => c.city === "nettetal");
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -20,6 +23,8 @@ function suchmaschinenoptimierung() {
 				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
+
+			<LocalBusinessJsonLd cityData={cityData} />
 			<Seo1 />
 			<Seo2 />
 			<Seo3 />

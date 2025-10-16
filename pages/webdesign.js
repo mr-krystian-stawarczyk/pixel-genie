@@ -11,8 +11,11 @@ import Media5 from "@/components/Media5";
 import Media6 from "@/components/Media6";
 import Media7 from "@/components/Media7";
 import Media8 from "@/components/Media8";
-
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
+import citiesData from "@/data/citiesData";
 function webdesign() {
+	const cityData = citiesData.find((c) => c.city === "nettetal");
+
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -23,7 +26,7 @@ function webdesign() {
 				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
-
+			<LocalBusinessJsonLd cityData={cityData} />
 			<Media1 />
 			<Media2 />
 			<Media3 />

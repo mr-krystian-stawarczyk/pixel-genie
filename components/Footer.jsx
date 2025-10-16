@@ -31,7 +31,6 @@ function Footer() {
 		<Container
 			fluid
 			ref={sectionRef}
-			id="kontakt"
 			className={`overflow-hidden shadow-md py-5 ${theme}`}
 			style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}
 		>
@@ -119,7 +118,7 @@ function Footer() {
 					</Col>
 
 					{/* Kolumna 4 */}
-					<Col lg={3} sm={6} className="mx-auto">
+					<Col lg={3} sm={6} className="mx-auto" id="kontakt">
 						<Card className="bg-transparent border-0 shadow-lg pt-3">
 							<Card.Title
 								className="my-3 text-uppercase"

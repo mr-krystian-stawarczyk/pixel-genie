@@ -4,7 +4,11 @@ import React from "react";
 import Head from "next/head";
 import Faq1 from "@/components/Faq1";
 import dynamic from "next/dynamic";
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
+import citiesData from "@/data/citiesData";
+
 const Blog2 = dynamic(() => import("@/components/Blog2"));
+const cityData = citiesData.find((c) => c.city === "nettetal");
 function webdesignblog() {
 	return (
 		<div className="mt-5 pt-5">
@@ -16,6 +20,7 @@ function webdesignblog() {
 				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
+			<LocalBusinessJsonLd cityData={cityData} />
 			<Blog1 />
 			<Blog2 />
 			<Faq1 />

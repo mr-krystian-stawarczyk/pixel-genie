@@ -22,49 +22,59 @@ export default function Home() {
 					content="Pixel-Genie - Ihre zuverlässige Webseiten & Webdesign in Nettetal. Professionelle Dienstleistungen für Webseiten erstellen, Webentwicklung, SEO Optimierung, Social Media Marketing. Spezialisiert auf responsive Design, Online-Marketing und maßgeschneiderte E-Commerce-Lösungen. Steigern Sie Ihre Online-Präsenz mit unserer Expertise. Kontaktieren Sie uns!"
 				/>
 				<meta name="robots" content="index, follow" />
-				<script type="application/ld+json">
-					{`
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Pixel Genie",
-  "url": "https://pixel-genie.de",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://pixel-genie.de"
-  },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Webseiten",
-        "item": "https://pixel-genie.de/webseitenerstellen"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "SEO",
-        "item": "https://pixel-genie.de/suchmaschinenoptimierung"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Tipps",
-        "item": "https://pixel-genie.de/webdesignblog"
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "Social Media",
-        "item": "https://pixel-genie.de/socialmediamarketing"
-      }
-    ]
-  }
-}
-`}
-				</script>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							"@context": "https://schema.org",
+							"@type": "LocalBusiness",
+							name: "Pixel Genie",
+							telephone: "+48 726 897 493",
+							email: "mr.krystian.stawarczyk@gmail.com",
+							address: {
+								"@type": "PostalAddress",
+								streetAddress: "Fasanenstr. 10",
+								addressLocality: "Nettetal",
+								postalCode: "41334",
+								addressCountry: "DE",
+							},
+							geo: {
+								"@type": "GeoCoordinates",
+								latitude: 51.292, // Nettetal
+								longitude: 6.34,
+							},
+							areaServed: [
+								"Nettetal",
+								"Viersen",
+								"Venlo",
+								"Mönchengladbach",
+								"Krefeld",
+								"Kempen",
+								"Düsseldorf",
+								"Ratingen",
+								"Willich",
+								"Grefrath",
+								"Tönisvorst",
+								"Lobberich",
+								"Süchteln",
+								"Viersen-Dülken",
+								"Brüggen",
+								"Bracht",
+								"Sittard-Geleen",
+								"Heinsberg",
+								"Aachen",
+								"Cologne",
+								"Düren",
+								"Neuss",
+								"Wegberg",
+								"Erkelenz",
+								"Grevenbroich",
+							],
+							url: "https://pixel-genie.de",
+							sameAs: ["https://www.facebook.com/pixel.genie.de"],
+						}),
+					}}
+				/>
 			</Head>
 			<Header1 />
 			<TechBar />

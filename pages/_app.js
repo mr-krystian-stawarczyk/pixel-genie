@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "next-themes";
 import { CookiesProvider } from "react-cookie";
 import Layout from "@/components/Layout";
@@ -12,8 +12,12 @@ import "../styles/globals.css";
 
 function App({ Component, pageProps, router }) {
 	const reactRouter = useRouter();
+	const [mounted, setMounted] = useState(false); // ⬅️ dodajemy mounted state
 
-	// Google Analytics
+	useEffect(() => {
+		setMounted(true); // strona jest gotowa do renderowania po hydration
+	}, []);
+
 	useEffect(() => {
 		if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID) {
 			ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
@@ -29,9 +33,11 @@ function App({ Component, pageProps, router }) {
 		};
 	}, []);
 
+	if (!mounted) return null; // ⬅️ dopóki motyw nie jest załadowany, nic nie renderujemy
+
 	return (
 		<CookiesProvider>
-			<ThemeProvider attribute="class">
+			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
 				<Layout>
 					<Head>
 						<title>Pixel-Genie WEBSEITEN SEO BRANDING MARKETING</title>
@@ -55,7 +61,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}');
-`}
+                `}
 							</Script>
 						</>
 					)}

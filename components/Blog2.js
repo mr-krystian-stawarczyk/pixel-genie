@@ -34,6 +34,27 @@ function Blog2() {
 		const updateArticles = () => {
 			const translatedArticles = [
 				{
+					imgSrc: "/assets/webentwicklung-nettetal-design-seo4.png",
+					title: t("artic56"),
+					date: "27-08-2025",
+					details: t("artic57"),
+					details2: t("artic58"),
+					details3: t("artic59"),
+					details4: t("artic60"),
+					details5: t("artic61"),
+				},
+				{
+					imgSrc: "/assets/webentwicklung-nettetal-design-seo2.png",
+					title: t("artic50"),
+					date: "10-02-2025",
+					details: t("artic51"),
+					details2: t("artic52"),
+					details3: t("artic53"),
+					details4: t("artic54"),
+					details5: t("artic55"),
+				},
+
+				{
 					imgSrc: "/assets/artic8.png",
 					title: t("artic44"),
 					date: "20-07-2024",
@@ -276,8 +297,11 @@ function Blog2() {
 															<p className="text-dark">
 																{article.details6}
 															</p>{" "}
-															<Button href="#kontakt" className="my-2 btn-nav">
-																Kontakt
+															<Button
+																href="#kontakt"
+																className="my-2 btn-nav text-white"
+															>
+																<span className="text-white">Kontakt</span>
 															</Button>
 														</Accordion.Body>{" "}
 													</Accordion.Item>{" "}

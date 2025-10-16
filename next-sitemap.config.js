@@ -1,11 +1,12 @@
 /** @type {import('next-sitemap').IConfig} */
 
 const config = {
-	siteUrl: "https://pixel-genie.de" || process.env.NEXT_PUBLIC_SITE_URL,
+	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de",
 	generateRobotsTxt: true,
 	targetDirectory: "public",
 	transform: async (config, url) => {
-		let priority = "1.0"; // default priority
+		let priority = "1.0";
+		let changefreq = "daily";
 
 		if (url === `${config.siteUrl}` || url === `${config.siteUrl}/`) {
 			priority = 1.0;
@@ -28,14 +29,14 @@ const config = {
 		) {
 			priority = 0.5;
 		} else if (url.startsWith(`${config.siteUrl}/webentwicklung/`)) {
-			priority = 1.0; // set priority for webentwicklung/[city]
-			changefreq = "weekly"; // set change frequency for webentwicklung/[city]
+			priority = 1.0;
+			changefreq = "weekly";
 		}
 
 		return {
 			loc: url,
-			changefreq: "daily",
-			priority: priority,
+			changefreq,
+			priority,
 			lastmod: new Date().toISOString(),
 		};
 	},

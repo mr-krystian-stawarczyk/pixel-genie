@@ -8,8 +8,11 @@ import Social5 from "@/components/Social5";
 import Social7 from "@/components/Social7";
 
 import Social6 from "@/components/Social6";
-
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
+import citiesData from "@/data/citiesData";
 function socialmediamarketing() {
+	const cityData = citiesData.find((c) => c.city === "nettetal");
+
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -20,7 +23,7 @@ function socialmediamarketing() {
 				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
-
+			<LocalBusinessJsonLd cityData={cityData} />
 			<Social1 />
 			<Social2 />
 			<Social3 />

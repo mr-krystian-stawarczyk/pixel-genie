@@ -4,8 +4,11 @@ import About1 from "@/components/About1";
 import About2 from "@/components/About2";
 import About3 from "@/components/About3";
 import About4 from "@/components/About4";
-
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
+import citiesData from "@/data/citiesData";
 function pixelgeniehistory() {
+	const cityData = citiesData.find((c) => c.city === "nettetal");
+
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -16,6 +19,8 @@ function pixelgeniehistory() {
 				/>
 				<meta name="robots" content="index, follow" />
 			</Head>
+
+			<LocalBusinessJsonLd cityData={cityData} />
 			<About1 />
 			<About4 />
 			<About2 />

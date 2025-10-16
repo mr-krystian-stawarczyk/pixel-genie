@@ -325,3 +325,14 @@ span.navbar-toggler-icon.collapsed {
 	color: white !important;
 	background-color: #003681 !important;
 }
+
+@media (min-width: 992px) {
+	.navbar .text-muted {
+		opacity: 0.75;
+		font-size: 0.8rem;
+	}
+	.navbar .fw-bold {
+		font-size: 1.05rem;
+		letter-spacing: 0.5px;
+	}
+}

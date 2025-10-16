@@ -11,8 +11,11 @@ import Web6 from "@/components/Web6";
 import WebPrices from "@/components/WebPrices";
 import Faq1 from "@/components/Faq1";
 import HeaderCounted from "@/components/HeaderCounted";
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
+import citiesData from "@/data/citiesData";
 
 function webseitenerstellen() {
+	const cityData = citiesData.find((c) => c.city === "nettetal");
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
@@ -22,24 +25,8 @@ function webseitenerstellen() {
 					content="Professionelle Webseiten erstellen, Webentwicklung in Nettetal. Maßgeschneiderte Lösungen für Ihre Online-Präsenz. Von Webdesign über Webentwicklung bis hin zu SEO. Stärken Sie Ihre Marke mit unseren Experten. Kontaktieren Sie uns!"
 				/>
 				<meta name="robots" content="index, follow" />
-				<script type="application/ld+json">
-					{`{
-					  "@context": "https://schema.org",
-					  "@type": "WebSite",
-					  "name": "Pixel Genie Nettetal",
-					  "url": "https://pixel-genie.de/webseitenerstellen",
-					  "aggregateRating": {
-					    "@type": "AggregateRating",
-					    "ratingValue": "4.8",
-					    "reviewCount": "73",
-					    "itemReviewed": {
-					      "@type": "Organization",
-					      "name": "Pixel Genie Nettetal"
-					    }
-					  }
-					}`}
-				</script>
 			</Head>
+			<LocalBusinessJsonLd cityData={cityData} />
 			<HeaderCounted />
 			<Web1 />
 			<Web2 />
