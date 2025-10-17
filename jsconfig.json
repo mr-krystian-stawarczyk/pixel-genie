@@ -1,7 +1,22 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
+	"compilerOptions": {
+		"target": "es2020",
+		"module": "esnext",
+		"baseUrl": ".",
+		"paths": { "@/*": ["./*"] },
+		"jsx": "preserve",
+		"moduleResolution": "node",
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"strict": false,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": ["next-env.d.ts", "**/*.js", "**/*.jsx"],
+	"exclude": ["node_modules"],
+	"typeAcquisition": {
+		"enable": false
+	}
 }

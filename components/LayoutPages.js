@@ -1,29 +1,17 @@
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 const pageVariants = {
-	initial: {
-		opacity: 0,
-		x: "-100vw",
-	},
-	animate: {
-		opacity: 1,
-		x: 0,
-		transition: {
-			duration: 0.5,
-		},
-	},
-	exit: {
-		opacity: 0,
-		x: "100vw",
-		transition: {
-			duration: 0.5,
-		},
-	},
+	initial: { opacity: 0, x: "-10vw" },
+	animate: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+	exit: { opacity: 0, x: "10vw", transition: { duration: 0.4 } },
 };
 
-const LayoutPages = ({ children }) => {
+export default function LayoutPages({ children }) {
+	const router = useRouter();
 	return (
 		<motion.div
+			key={router.asPath}
 			initial="initial"
 			animate="animate"
 			exit="exit"
@@ -32,6 +20,4 @@ const LayoutPages = ({ children }) => {
 			{children}
 		</motion.div>
 	);
-};
-
-export default LayoutPages;
+}

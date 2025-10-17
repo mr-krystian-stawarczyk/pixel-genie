@@ -10,64 +10,68 @@ import ReactGA from "react-ga";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 
-function App({ Component, pageProps, router }) {
-	const reactRouter = useRouter();
-	const [mounted, setMounted] = useState(false); // ⬅️ dodajemy mounted state
+function App({ Component, pageProps }) {
+	const router = useRouter();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => setMounted(true), []);
 
 	useEffect(() => {
-		setMounted(true); // strona jest gotowa do renderowania po hydration
-	}, []);
-
-	useEffect(() => {
-		if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID) {
-			ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
+		const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID;
+		if (GA_ID) {
+			ReactGA.initialize(GA_ID);
 			ReactGA.pageview(window.location.pathname + window.location.search);
+			const handleRouteChange = (url) => ReactGA.pageview(url);
+			router.events.on("routeChangeComplete", handleRouteChange);
+			return () => router.events.off("routeChangeComplete", handleRouteChange);
 		}
-	}, []);
+	}, [router.events]);
 
-	useEffect(() => {
-		const handleRouteChange = (url) => ReactGA.pageview(url);
-		reactRouter.events.on("routeChangeComplete", handleRouteChange);
-		return () => {
-			reactRouter.events.off("routeChangeComplete", handleRouteChange);
-		};
-	}, []);
-
-	if (!mounted) return null; // ⬅️ dopóki motyw nie jest załadowany, nic nie renderujemy
+	if (!mounted) {
+		return (
+			<div className="flex items-center justify-center h-screen bg-gray-100 text-gray-500">
+				Lädt...
+			</div>
+		);
+	}
 
 	return (
 		<CookiesProvider>
 			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
 				<Layout>
 					<Head>
-						<title>Pixel-Genie WEBSEITEN SEO BRANDING MARKETING</title>
+						<title>Pixel-Genie – Webseiten, SEO & Branding</title>
 						<meta
 							name="description"
-							content="Pixel Genie Nettetal WEBSEITEN SEO BRANDING MARKETING MEDIA SOCIAL MEDIA die beste !"
+							content="Pixel-Genie entwickelt moderne Webseiten, SEO-optimierte Lösungen und digitale Markenstrategien für Unternehmen in Deutschland."
+						/>
+						<meta
+							name="viewport"
+							content="width=device-width, initial-scale=1"
 						/>
 						<link rel="manifest" href="/manifest.json" />
 					</Head>
 
-					{/* Google Analytics Script */}
-					{process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID && (
-						<>
-							<Script
-								src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
-								strategy="afterInteractive"
-							/>
-							<Script id="google-analytics-script" strategy="afterInteractive">
-								{`
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}');
-                `}
-							</Script>
-						</>
-					)}
-
-					<Component {...pageProps} key={router.route} />
+					<Component {...pageProps} key={router.asPath} />
 				</Layout>
+
+				{/* ✅ Google Analytics */}
+				{process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID && (
+					<>
+						<Script
+							src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
+							strategy="afterInteractive"
+						/>
+						<Script id="ga-init" strategy="afterInteractive">
+							{`
+								window.dataLayer = window.dataLayer || [];
+								function gtag(){dataLayer.push(arguments);}
+								gtag('js', new Date());
+								gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}');
+							`}
+						</Script>
+					</>
+				)}
 			</ThemeProvider>
 		</CookiesProvider>
 	);

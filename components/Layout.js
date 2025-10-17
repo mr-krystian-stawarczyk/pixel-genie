@@ -30,7 +30,7 @@ const Layout = ({ children, pageProps }) => {
 	};
 
 	return (
-		<div className={`${poppins.className} ${theme}`}>
+		<div className={`${poppins.className} ${theme || "light"}`}>
 			<header>
 				<Navbar {...pageProps} toggleTheme={toggleTheme} />
 				<CookieConsent />
