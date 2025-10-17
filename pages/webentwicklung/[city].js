@@ -254,21 +254,21 @@ export default function CityPage({
 						{" "}
 						<Button
 							as={Link}
-							href="webseitenerstellen"
+							href="/webseitenerstellen"
 							className="btn-lg btn-nav my-2"
 						>
 							<span className="text-white"> Webseiten</span>
 						</Button>
 						<Button
 							as={Link}
-							href="suchmaschinenoptimierung"
+							href="/suchmaschinenoptimierung"
 							className="btn-lg btn-nav my-2"
 						>
 							<span className="text-white"> SEO Positionierung </span>
 						</Button>
 						<Button
 							as={Link}
-							href="socialmediamarketing"
+							href="/socialmediamarketing"
 							className="btn-lg btn-nav my-2"
 						>
 							<span className="text-white"> Social Media</span>

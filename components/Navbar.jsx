@@ -14,8 +14,7 @@ import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import ReactGA from "react-ga";
 import { IoHomeOutline } from "react-icons/io5";
 
-import i18n from "../i18n.js";
-import { useRouter } from "next/router";
+import { loadLanguage } from "../i18n.js";
 
 const NavbarComp = ({ toggleTheme }) => {
 	const CountUp = dynamic(() => import("react-countup"), { ssr: false });
@@ -71,8 +70,8 @@ const NavbarComp = ({ toggleTheme }) => {
 	// Update body background color on theme change
 	useEffect(() => {
 		if (currentTheme) {
-			const bgColor = currentTheme === "light" ? "#fff" : "#111";
-			document.body.style.backgroundColor = bgColor;
+			document.body.style.backgroundColor =
+				currentTheme === "light" ? "#fff" : "#111";
 		}
 	}, [currentTheme]);
 
@@ -88,26 +87,27 @@ const NavbarComp = ({ toggleTheme }) => {
 		return () => observer.disconnect();
 	}, []);
 
-	const handleDropdownSelect = (eventKey) => {
+	// Dropdown language change
+	const handleDropdownSelect = async (eventKey) => {
 		setDropdownOpen(false);
 		switch (eventKey) {
 			case "flag1":
 				setSelectedFlag(
 					"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
 				);
-				i18n.changeLanguage("de");
+				i18n.changeLanguage("de"); // DE już załadowany
 				break;
 			case "flag2":
 				setSelectedFlag(
 					"/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
 				);
-				i18n.changeLanguage("eng");
+				await loadLanguage("eng"); // dynamiczne ładowanie EN
 				break;
 			case "flag3":
 				setSelectedFlag(
 					"/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
 				);
-				i18n.changeLanguage("pl");
+				await loadLanguage("pl"); // dynamiczne ładowanie PL
 				break;
 			default:
 				setSelectedFlag(
@@ -117,15 +117,13 @@ const NavbarComp = ({ toggleTheme }) => {
 	};
 
 	useEffect(() => {
-		if (theme) {
-			setCurrentTheme(theme);
-		}
+		if (theme) setCurrentTheme(theme);
 	}, [theme]);
 
 	const getTextColor = () => {
-		if (scrolled) return "#000"; // scroll → navbar biały → liczby czarne
-		if (currentTheme === "light") return "#000"; // light theme → liczby czarne
-		return "#fff"; // dark theme bez scrolla → białe
+		if (scrolled) return "#000";
+		if (currentTheme === "light") return "#000";
+		return "#fff";
 	};
 
 	return (
@@ -155,18 +153,19 @@ const NavbarComp = ({ toggleTheme }) => {
 						className="mx-1 text-bold"
 						style={{
 							color: scrolled
-								? "#000000" // zawsze czarny, jeśli scrollujesz w dół
+								? "#000"
 								: currentTheme === "light"
-									? "#000000" // jasny motyw → czarny
-									: "#ffffff", // ciemny motyw → biały
+									? "#000"
+									: "#fff",
 							transition: "color 0.5s ease",
 						}}
 					>
 						Pixel Genie
 					</span>
 				</Navbar.Brand>
-				<Dropdown onSelect={handleDropdownSelect} className=" border-0 ">
-					<Dropdown.Toggle className="btn-nav border-0 ">
+
+				<Dropdown onSelect={handleDropdownSelect} className="border-0">
+					<Dropdown.Toggle className="btn-nav border-0">
 						<Image
 							src={selectedFlag}
 							alt="Selected Flag"
@@ -175,14 +174,13 @@ const NavbarComp = ({ toggleTheme }) => {
 							priority
 						/>
 					</Dropdown.Toggle>
-					<Dropdown.Menu className="text-center jusitfy-content-center  my-dropdown">
+					<Dropdown.Menu className="text-center justify-content-center my-dropdown">
 						<Dropdown.Item eventKey="flag1">
 							<Image
 								src="/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
-								alt="webagentur-webentwicklung-nettetal-seo-flagde"
+								alt="DE"
 								width="40"
 								height="40"
-								onClick={() => i18n.changeLanguage("de")}
 								priority
 							/>
 						</Dropdown.Item>
@@ -190,10 +188,9 @@ const NavbarComp = ({ toggleTheme }) => {
 						<Dropdown.Item eventKey="flag2">
 							<Image
 								src="/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
-								alt="webagentur-webentwicklung-nettetal-seo-flageng"
+								alt="EN"
 								width="40"
 								height="40"
-								onClick={() => i18n.changeLanguage("eng")}
 								priority
 							/>
 						</Dropdown.Item>
@@ -201,15 +198,15 @@ const NavbarComp = ({ toggleTheme }) => {
 						<Dropdown.Item eventKey="flag3">
 							<Image
 								src="/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
-								alt="webagentur-webentwicklung-nettetal-seo-flagpl"
+								alt="PL"
 								width="40"
 								height="40"
-								onClick={() => i18n.changeLanguage("pl")}
 								priority
 							/>
 						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
+
 				<Navbar.Toggle
 					aria-controls="responsive-navbar-nav"
 					aria-label="Toggle navigation"
@@ -218,9 +215,9 @@ const NavbarComp = ({ toggleTheme }) => {
 
 				<Navbar.Collapse
 					id="basic-navbar-nav"
-					className=" rounded justify-content-end text-center  p-3  navbar-toggler border-0"
+					className="rounded justify-content-end text-center p-3 navbar-toggler border-0"
 				>
-					<Nav className="navbar-collapse justify-content-end text-center rounded ">
+					<Nav className="navbar-collapse justify-content-end text-center rounded">
 						<div
 							ref={counterRef}
 							className="d-none d-lg-flex flex-column align-items-center justify-content-center mx-auto"
@@ -267,61 +264,62 @@ const NavbarComp = ({ toggleTheme }) => {
 								))}
 							</div>
 						</div>
+
 						<Nav.Link as={Link} href="/" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								<IoHomeOutline />
 							</Button>
-						</Nav.Link>{" "}
+						</Nav.Link>
+
 						<NavDropdown
 							title={t("nav1")}
 							id="basic-nav-dropdown"
-							className="btn-md shadow-md btn-nav-drop rounded  my-2 p-1 "
+							className="btn-md shadow-md btn-nav-drop rounded my-2 p-1"
 							menuVariant="dark"
-							style={{
-								fontSize: "1rem",
-							}}
-							show={dropdownOpen} // Close dropdown when mobile menu is open
+							style={{ fontSize: "1rem" }}
+							show={dropdownOpen}
 							onToggle={setDropdownOpen}
 						>
-							{" "}
 							<NavDropdown.Item as={Link} href="/webseitenerstellen">
-								<Button className="w-100 border-0 btn-nav shadow-sm ">
+								<Button className="w-100 border-0 btn-nav shadow-sm">
 									{t("nav8")}
 								</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Item as={Link} href="/suchmaschinenoptimierung">
-								<Button className=" border-0 btn-nav shadow-sm w-100">
+								<Button className="w-100 border-0 btn-nav shadow-sm">
 									SEO
 								</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Divider />
 							<NavDropdown.Item as={Link} href="/branding">
-								<Button className="w-100 border-0 btn-nav ">Branding</Button>
+								<Button className="w-100 border-0 btn-nav">Branding</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Item as={Link} href="/webdesign">
-								<Button className="w-100 border-0 btn-nav ">Webdesign</Button>
+								<Button className="w-100 border-0 btn-nav">Webdesign</Button>
 							</NavDropdown.Item>
 							<NavDropdown.Item as={Link} href="/socialmediamarketing">
-								<Button className="w-100 border-0 btn-nav ">
-									Social Media
-								</Button>
+								<Button className="w-100 border-0 btn-nav">Social Media</Button>
 							</NavDropdown.Item>
-						</NavDropdown>{" "}
+						</NavDropdown>
+
 						<Nav.Link as={Link} href="/webdesignblog">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav3")}
 							</Button>
 						</Nav.Link>
+
 						<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav5")}
 							</Button>
 						</Nav.Link>
+
 						<Nav.Link as={Link} href="#kontakt" className="m-1">
 							<Button className="btn-md py-2 btn-success border-0 shadow-md">
 								Kontakt
 							</Button>
 						</Nav.Link>
+
 						<Button
 							onClick={() => {
 								toggleTheme();
@@ -335,6 +333,7 @@ const NavbarComp = ({ toggleTheme }) => {
 								<BsFillSunFill style={{ color: "yellow" }} />
 							)}
 						</Button>
+
 						<div className="d-lg-none text-center my-2">
 							<div className="d-flex justify-content-center gap-3">
 								{[

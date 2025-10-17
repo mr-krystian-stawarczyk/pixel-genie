@@ -1,22 +1,24 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import deTranslations from "./public/locales/de.json";
-import plTranslations from "./public/locales/pl.json";
-import engTranslations from "./public/locales/eng.json";
+import deTranslations from "./locales/de.json"; // DE ładowany od razu
+
+// Inicjalizacja i18n z niemieckim jako domyślnym
 i18n.use(initReactI18next).init({
-	lng: "de", // set the default language
-	fallbackLng: "de", // if translation for current language is not available, fallback to this language
+	lng: "de",
+	fallbackLng: "de",
 	resources: {
-		de: {
-			translation: deTranslations, // import the nl translations
-		},
-		pl: {
-			translation: plTranslations, // import the pl translations
-		},
-		eng: {
-			translation: engTranslations, // import the pl translations
-		},
+		de: { translation: deTranslations },
 	},
+	interpolation: { escapeValue: false },
 });
 
 export default i18n;
+
+// Funkcja do dynamicznego ładowania języków
+export const loadLanguage = async (lng) => {
+	if (!i18n.hasResourceBundle(lng, "translation")) {
+		const resources = await import(`./locales/${lng}.json`);
+		i18n.addResourceBundle(lng, "translation", resources.default || resources);
+	}
+	i18n.changeLanguage(lng);
+};
