@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import CookieConsent from "./CookieConsent";
@@ -30,7 +30,9 @@ const Layout = ({ children, pageProps }) => {
 	};
 
 	return (
-		<div className={`${poppins.className} ${theme || "light"}`}>
+		<div
+			className={`${poppins.className} ${theme === "dark" ? "dark" : "light"}`}
+		>
 			<header>
 				<Navbar {...pageProps} toggleTheme={toggleTheme} />
 				<CookieConsent />

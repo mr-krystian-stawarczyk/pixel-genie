@@ -1,21 +1,30 @@
-// next.config.js
-
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	reactStrictMode: false,
+	reactStrictMode: true,
 	images: {
 		formats: ["image/avif", "image/webp"],
 		domains: ["cdn.sanity.io", "pixel-genie.de"],
 	},
+	compress: true,
+	experimental: {
+		optimizeCss: true,
+		optimizePackageImports: ["react-icons", "lucide-react", "react-bootstrap"],
+		scrollRestoration: true,
+	},
 	headers() {
 		return [
 			{
-				source: "/manifest.json",
-				headers: [{ key: "Content-Type", value: "application/manifest+json" }],
+				source: "/(.*)",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+				],
 			},
 		];
 	},
