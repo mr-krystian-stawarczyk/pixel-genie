@@ -1,17 +1,20 @@
 import Head from "next/head";
 import React from "react";
 
-import Web1 from "@/components/Web1";
+import dynamic from "next/dynamic";
 
-import Web2 from "@/components/Web2";
-import Web3 from "@/components/Web3";
-import Web4 from "@/components/Web4";
-import Web5 from "@/components/Web5";
-import Web6 from "@/components/Web6";
-import WebPrices from "@/components/WebPrices";
-import Faq1 from "@/components/Faq1";
-import HeaderCounted from "@/components/HeaderCounted";
-import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
+const Web1 = dynamic(() => import("@/components/Web1"));
+const Web2 = dynamic(() => import("@/components/Web2"));
+const Web3 = dynamic(() => import("@/components/Web3"));
+const Web4 = dynamic(() => import("@/components/Web4"));
+const Web5 = dynamic(() => import("@/components/Web5"));
+const Web6 = dynamic(() => import("@/components/Web6"));
+const WebPrices = dynamic(() => import("@/components/WebPrices"));
+const Faq1 = dynamic(() => import("@/components/Faq1"));
+const HeaderCounted = dynamic(() => import("@/components/HeaderCounted"));
+const LocalBusinessJsonLd = dynamic(
+	() => import("@/components/LocalBusinessJsonLd")
+);
 import citiesData from "@/data/citiesData";
 
 function webseitenerstellen() {

@@ -1,29 +1,40 @@
+// components/CookieConsent.js
 import React, { useEffect, useState } from "react";
-import { hasCookie, setCookie } from "cookies-next";
+import { getCookie, hasCookie, setCookie } from "cookies-next";
 import { Button, ButtonGroup, Col, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { useCookies } from "react-cookie";
 
 const CookieConsent = () => {
 	const [showConsent, setShowConsent] = useState(false);
 	const { t } = useTranslation();
-	const [cookies] = useCookies(["localConsent"]);
 
 	useEffect(() => {
-		setShowConsent(!hasCookie("localConsent"));
+		// Sprawdź, czy zgoda już istnieje
+		const consent = getCookie("localConsent");
+		setShowConsent(!consent);
 	}, []);
 
 	const acceptCookie = () => {
-		setCookie("localConsent", "true", { sameSite: "none", secure: true });
+		setCookie("localConsent", "true", {
+			sameSite: "Lax", // "None" może być nadmiarowe dla zwykłych zastosowań
+			secure: process.env.NODE_ENV === "production", // tylko w prod
+			maxAge: 60 * 60 * 24 * 365, // 1 rok
+		});
 		setShowConsent(false);
 	};
 
 	const acceptEssentialCookies = () => {
+		// Usunięcie niepotrzebnych cookies
 		const nonEssential = ["_gat", "_gid", "_ga"];
-		nonEssential.forEach((name) =>
-			setCookie(name, "", { expires: new Date(0) })
-		);
-		setCookie("localConsent", "true", { sameSite: "none", secure: true });
+		nonEssential.forEach((name) => {
+			setCookie(name, "", { expires: new Date(0) });
+		});
+
+		setCookie("localConsent", "true", {
+			sameSite: "Lax",
+			secure: process.env.NODE_ENV === "production",
+			maxAge: 60 * 60 * 24 * 365,
+		});
 		setShowConsent(false);
 	};
 
