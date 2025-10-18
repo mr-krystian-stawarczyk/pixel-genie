@@ -251,7 +251,7 @@ const NavbarComp = ({ toggleTheme }) => {
 											)}
 											{item.suffix}
 										</h6>
-										<p
+										<span
 											className="mb-0 small"
 											style={{
 												color: getTextColor(),
@@ -259,7 +259,7 @@ const NavbarComp = ({ toggleTheme }) => {
 											}}
 										>
 											{item.label}
-										</p>
+										</span>
 									</div>
 								))}
 							</div>
