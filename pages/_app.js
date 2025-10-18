@@ -60,7 +60,7 @@ function App({ Component, pageProps }) {
 							/>
 							<link rel="manifest" href="/manifest.json" />
 							{/* ✅ Preload czcionki i hero image (LCP boost) */}
-							<link rel="preload" as="image" href="/hero.webp" />
+							{/*	<link rel="preload" as="image" href="/hero.webp" /> */}
 							<link
 								rel="preload"
 								href="/fonts/poppins/Poppins-Regular.ttf"
