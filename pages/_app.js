@@ -6,8 +6,8 @@ import { appWithTranslation } from "next-i18next";
 import Script from "next/script";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css"; // ✅ OK zostawić na razie
+import "../styles/globals.css";
 
 // ✅ Lazy-load Layout (nie ładuje od razu całego layoutu)
 const Layout = dynamic(() => import("@/components/Layout"), { ssr: true });
