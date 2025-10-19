@@ -43,8 +43,6 @@ const nextConfig = withBundleAnalyzer({
 	outputFileTracingRoot: path.join(__dirname),
 
 	experimental: {
-		legacyBrowsers: false,
-		browsersListForSwc: true,
 		optimizeCss: true,
 		optimizePackageImports: [
 			"react-icons",
