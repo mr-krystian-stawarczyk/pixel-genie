@@ -1,19 +1,29 @@
-import { useCallback } from "react";
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
+"use client";
+import { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim"; // możesz zmienić na loadFull jeśli chcesz pełny pakiet efektów
 
 function ParticlesComponent() {
-	const particlesInit = useCallback(async (engine) => {
-		await loadFull(engine);
+	const [init, setInit] = useState(false);
+
+	useEffect(() => {
+		initParticlesEngine(async (engine) => {
+			// tutaj ładujesz pluginy / presety
+			await loadSlim(engine);
+		}).then(() => {
+			setInit(true);
+		});
 	}, []);
+
+	if (!init) return null; // unika błędów przy SSR
 
 	return (
 		<Particles
-			init={particlesInit}
+			id="tsparticles"
 			options={{
 				fullScreen: { enable: false },
 				background: { color: { value: "transparent" } },
-				fpsLimit: 30, // niższe fps dla lepszej wydajności
+				fpsLimit: 30,
 				interactivity: {
 					events: {
 						onClick: { enable: true, mode: "push" },
@@ -21,7 +31,7 @@ function ParticlesComponent() {
 						resize: true,
 					},
 					modes: {
-						push: { quantity: 2 }, // mniej cząstek
+						push: { quantity: 2 },
 						repulse: { distance: 80, duration: 0.3 },
 					},
 				},
@@ -29,7 +39,7 @@ function ParticlesComponent() {
 					color: { value: "#003681" },
 					collisions: { enable: true },
 					move: { enable: true, speed: 0.8, outModes: { default: "out" } },
-					number: { value: 40, density: { enable: true, area: 800 } }, // mniej cząstek
+					number: { value: 40, density: { enable: true, area: 800 } },
 					opacity: { value: 0.9, random: true },
 					shape: { type: "circle" },
 					size: { value: 6, random: true },
