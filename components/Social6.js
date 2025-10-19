@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
-const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
+import { motion } from "framer-motion";
 function Social6() {
 	const { t } = useTranslation();
 	const [ref1, inView1] = useInView({

@@ -4,9 +4,9 @@ import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
 import citiesData from "@/data/citiesData";
 // Dynamiczny import komponentów
 import dynamic from "next/dynamic";
-
+import About1 from "@/components/About1";
 // Dynamiczny import komponentów
-const About1 = dynamic(() => import("@/components/About1"), { ssr: false });
+
 const About2 = dynamic(() => import("@/components/About2"), { ssr: false });
 const About3 = dynamic(() => import("@/components/About3"), { ssr: false });
 const About4 = dynamic(() => import("@/components/About4"), { ssr: false });

@@ -2,9 +2,9 @@ import { useTheme } from "next-themes";
 import Head from "next/head";
 import React from "react";
 import dynamic from "next/dynamic";
-
+import Header1 from "@/components/Header1";
 // Dynamiczny import dla Header1 do Header6
-const Header1 = dynamic(() => import("@/components/Header1"));
+
 const Header2 = dynamic(() => import("@/components/Header2"));
 const Header3 = dynamic(() => import("@/components/Header3"));
 const Header4 = dynamic(() => import("@/components/Header4"));

@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 
-const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
+import { motion } from "framer-motion";
 function About3() {
 	const [ref, inView] = useInView({
 		threshold: 0.5,

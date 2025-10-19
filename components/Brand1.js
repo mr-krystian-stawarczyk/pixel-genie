@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
-const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
+import { motion } from "framer-motion";
 function Brand1() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({

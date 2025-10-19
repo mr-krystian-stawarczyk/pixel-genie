@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
-const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
+import { motion } from "framer-motion";
 function Web4() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({

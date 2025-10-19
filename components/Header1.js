@@ -1,16 +1,15 @@
-// components/Header1.js
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { useState, useRef, useEffect } from "react";
-
+import { useState, useRef } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-
+import Image from "next/image";
 import dynamic from "next/dynamic";
+
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
-	loading: () => <div className="particles‐loading">Laden</div>,
+	loading: () => <div className="particles-loading">Laden...</div>,
 });
 
 export default function Header1() {
@@ -23,7 +22,8 @@ export default function Header1() {
 	};
 
 	return (
-		<div className="header-container">
+		<header className="header-container position-relative" ref={sectionRef}>
+			{/* Background Particles */}
 			<div className="particles-container">
 				<ParticlesComponent />
 			</div>
@@ -32,25 +32,28 @@ export default function Header1() {
 				<Card className="bg-transparent border-0 blur p-md-3 p-md-5 mt-xs-5">
 					<Card.Body>
 						<h1 className="text-bold mb-3">{t("h1")}</h1>
-						<h4 className="text-bold mb-4">{t("h2")}</h4>
+						<h2 className="text-bold mb-4">{t("h2")}</h2>
+
 						<div className="d-flex flex-column flex-md-row justify-content-center gap-3">
 							<Button
 								as={Link}
-								href="webseitenerstellen"
+								href="/webseitenerstellen"
 								className="btn-lg btn-nav"
 							>
 								<span className="text-white">{t("h3")}</span>
 							</Button>
+
 							<Button
 								as={Link}
-								href="suchmaschinenoptimierung"
+								href="/suchmaschinenoptimierung"
 								className="btn-lg btn-nav"
 							>
 								<span className="text-white">{t("h4")}</span>
 							</Button>
+
 							<Button
 								as={Link}
-								href="socialmediamarketing"
+								href="/socialmediamarketing"
 								className="btn-lg btn-nav"
 							>
 								<span className="text-white">{t("h5")}</span>
@@ -62,29 +65,26 @@ export default function Header1() {
 						<div className="d-flex flex-column flex-md-row justify-content-center gap-3">
 							<Button
 								as={Link}
-								href="webseitenerstellen"
+								href="/webseitenerstellen"
 								className="btn-md btn-nav"
 							>
-								<span className="text-white">
-									<p className="mt-4 text-lg text-white">{t("h6")}</p>
-								</span>
+								<span className="text-white text-lg">{t("h6")}</span>
 							</Button>
 
 							<Button
 								className="btn-md btn-success hover"
-								as={Link}
-								href="#kontakt"
+								as="button"
 								onClick={handleEmailClick}
 								style={{ cursor: "pointer" }}
 							>
-								<span className="text-white text-uppercase">
-									<p className="mt-4 text-lg text-white text-bold">{t("h7")}</p>
+								<span className="text-white text-uppercase text-lg text-bold">
+									{t("h7")}
 								</span>
 							</Button>
 						</div>
 					</Card.Body>
 				</Card>
 			</Container>
-		</div>
+		</header>
 	);
 }

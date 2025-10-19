@@ -77,10 +77,7 @@ const nextConfig = {
 			{
 				source: "/:path*",
 				headers: [
-					{
-						key: "Cache-Control",
-						value: "no-store",
-					},
+					{ key: "Cache-Control", value: "max-age=0, must-revalidate" },
 				],
 			},
 		];

@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
+import { motion } from "framer-motion";
 const pageVariants = {
 	initial: { opacity: 0, x: "-10vw" },
 	animate: { opacity: 1, x: 0, transition: { duration: 0.4 } },

@@ -1,6 +1,6 @@
 // pages/_app.js
 import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import Layout from "@/components/Layout";
 import { ThemeProvider } from "next-themes";
 import { CookiesProvider } from "react-cookie";
 import { appWithTranslation } from "next-i18next";
@@ -9,9 +9,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css"; // ✅ zostaw, bez JS Bootstrapa
 import "../styles/globals.css";
-
-// ✅ Lazy-load Layout (z SSR)
-const Layout = dynamic(() => import("@/components/Layout"), { ssr: true });
 
 function App({ Component, pageProps }) {
 	const router = useRouter();
