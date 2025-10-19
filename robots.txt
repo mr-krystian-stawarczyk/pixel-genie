@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# 🔍 Sitemap location (important for Google & Bing)
+Sitemap: https://pixel-genie.de/sitemap.xml
+
+# 🛡️ Blokada zbędnych zasobów (niepotrzebnych do indeksowania)
+Disallow: /_next/
+Disallow: /api/
+Disallow: /assets/*.map
+Disallow: /fonts/*.map
+
+# 🧠 Wskazówki dla Googlebot
+# — nie blokuj CSS, JS, ani obrazów, by Google mógł w pełni renderować stronę
+# — indeksuj tylko główne treści

@@ -4,12 +4,13 @@ import citiesData from "@/data/citiesData"; // Twój plik z danymi miast
 import { useRouter } from "next/router";
 import { Container, Row, Col, ButtonGroup, Button } from "react-bootstrap";
 import Link from "next/link";
+import { generateCitySEO } from "@/lib/generateCitySEO";
 
 export async function getStaticPaths() {
 	const paths = citiesData.map((city) => ({
 		params: { city: city.city },
 	}));
-	return { paths, fallback: "blocking" };
+	return { paths, fallback: false };
 }
 const handleEmailClick = () => {
 	window.location.href = "mailto:mr.krystian.stawarczyk@gmail.com";
@@ -22,28 +23,22 @@ export async function getStaticProps({ params }) {
 	}
 
 	const cityName = capitalize(city.city);
-	const seoTitle = `Webentwicklung ${cityName} – Webdesign, SEO & Online Marketing | Pixel‑Genie`;
-	const seoDescription = `Pixel‑Genie bietet professionelle Webentwicklung, modernes Webdesign und SEO in ${cityName}. Starte deine Onlinepräsenz mit einer leistungsstarken Webseite.`;
-	const keywordsArray = [
-		`Webentwicklung ${cityName}`,
-		`Webdesign ${cityName}`,
-		`SEO ${cityName}`,
-		`Website erstellen ${cityName}`,
-		`Webagentur ${cityName}`,
-		`Online Marketing ${cityName}`,
-		`SEO Agentur ${cityName}`,
-		`Webseite für kleine Unternehmen ${cityName}`,
-		`Responsive Design ${cityName}`,
-		`Mobile Website ${cityName}`,
-		`Digitale Strategie ${cityName}`,
-	];
-	const keywords = keywordsArray.join(", ");
 
-	// dodatkowe dane do JSON‑LD, opinie, rating, etc.
+	// ✅ Nowy SEO generator
+	const {
+		seoTitle,
+		seoDescription,
+		cityDescription,
+		keywords,
+		heading1,
+		heading2,
+	} = generateCitySEO(cityName, city);
+
+	// ✅ JSON-LD dla Google
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "LocalBusiness",
-		name: "Pixel‑Genie Webentwicklung",
+		name: "Pixel-Genie Webentwicklung",
 		image: "https://pixel-genie.de/logo.png",
 		"@id": `https://pixel-genie.de/webentwicklung/${city.city}`,
 		url: `https://pixel-genie.de/webentwicklung/${city.city}`,
@@ -62,7 +57,6 @@ export async function getStaticProps({ params }) {
 		},
 		sameAs: ["https://www.facebook.com/pixel.genie.de"],
 		areaServed: cityName,
-		// Jeśli masz oceny:
 		...(city.rating && {
 			aggregateRating: {
 				"@type": "AggregateRating",
@@ -70,7 +64,6 @@ export async function getStaticProps({ params }) {
 				reviewCount: city.rating.count,
 			},
 		}),
-		// Jeśli masz opinie:
 		...(city.reviews &&
 			city.reviews.length > 0 && {
 				review: city.reviews.map((rev) => ({
@@ -94,8 +87,10 @@ export async function getStaticProps({ params }) {
 			seoDescription,
 			keywords,
 			jsonLd,
+			cityDescription,
+			heading1,
+			heading2,
 		},
-		revalidate: 60 * 60, // odśwież co godzinę (opcjonalnie)
 	};
 }
 
@@ -114,6 +109,9 @@ export default function CityPage({
 	seoDescription,
 	keywords,
 	jsonLd,
+	cityDescription,
+	heading1,
+	heading2,
 }) {
 	const router = useRouter();
 
@@ -153,12 +151,12 @@ export default function CityPage({
 			<Container className="min-h-screen  px-6 md:px-10 py-10 my-5 pt-2">
 				<Row className="mt-5">
 					<h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">
-						Pixel Genie Professionelle Webentwicklung in {cityName}
-					</h1>{" "}
+						{heading1}
+					</h1>
 					<Row className="my-5">
 						<Col md={6} className="text-center">
-							<h2 className="text-2xl font-semibold mt-10 mb-4">
-								Brauchen Sie hilfe in {cityName} ?
+							<h2 className="text-2xl md:text-3xl font-semibold mb-10 text-center text-gray-400">
+								{heading2}
 							</h2>
 							<p className="text-lg mb-6 leading-relaxed">
 								Sie suchen eine Webagentur in <strong>{cityName}</strong>, die
@@ -219,6 +217,16 @@ export default function CityPage({
 						verstehen, was nötig ist, um lokal sichtbar zu werden und Kunden zu
 						gewinnen.
 					</p>
+				</Row>
+				<Row className="my-5">
+					<Col>
+						<h2 className="text-2xl font-semibold mb-4 text-center">
+							Webentwicklung & Digitalisierung in {cityName}
+						</h2>
+						<p className="leading-relaxed whitespace-pre-line">
+							{cityDescription}
+						</p>
+					</Col>
 				</Row>
 				<Row>
 					<Col>

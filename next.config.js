@@ -1,12 +1,12 @@
 const path = require("path");
+const fs = require("fs");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
-const fs = require("fs");
 
 /**
- * Funkcja pomocnicza – tworzy preload dla lokalnych fontów.
- * Next automatycznie zaciągnie <link rel="preload"> dla fontów z /public/fonts.
+ * ✅ Funkcja pomocnicza – preload dla lokalnych fontów.
+ * Tworzy <link rel="preload"> dla fontów z public/fonts/poppins.
  */
 function addFontPreload() {
 	const fontDir = path.join(__dirname, "public/fonts/poppins");
@@ -23,23 +23,24 @@ function addFontPreload() {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withBundleAnalyzer({
+	// ✅ Stabilne podstawy
 	reactStrictMode: true,
 	compress: true,
+	swcMinify: true,
 
-	// ✅ Static export
+	// ✅ Static export dla Netlify
 	output: "export",
 	trailingSlash: true,
 
-	// ✅ Netlify Image CDN loader
+	// ✅ Wyłączony Next Image optimizer (Netlify go nie obsługuje)
 	images: {
+		unoptimized: true,
 		formats: ["image/avif", "image/webp"],
 		domains: ["cdn.sanity.io", "pixel-genie.de"],
-		loader: "custom",
-		loaderFile: "./netlify-image-loader.js",
 	},
 
+	// ✅ Ścieżki & optymalizacja builda
 	outputFileTracingRoot: path.join(__dirname),
-	swcMinify: true,
 
 	experimental: {
 		legacyBrowsers: false,
@@ -55,12 +56,12 @@ const nextConfig = withBundleAnalyzer({
 		scrollRestoration: true,
 	},
 
-	// ✅ Preload lokalnych fontów
+	// ✅ Preload lokalnych fontów (automatycznie)
 	async head() {
 		return { link: addFontPreload() };
 	},
 
-	// ✅ Nagłówki cache’ujące
+	// ✅ Nagłówki cache'ujące dla zasobów statycznych
 	async headers() {
 		if (process.env.NODE_ENV === "development") return [];
 		return [
@@ -74,7 +75,7 @@ const nextConfig = withBundleAnalyzer({
 				],
 			},
 			{
-				source: "/images/:path*",
+				source: "/assets/:path*",
 				headers: [
 					{
 						key: "Cache-Control",
@@ -89,19 +90,28 @@ const nextConfig = withBundleAnalyzer({
 						key: "Cache-Control",
 						value: "public, max-age=31536000, immutable",
 					},
-					{ key: "Access-Control-Allow-Origin", value: "*" },
+					{
+						key: "Access-Control-Allow-Origin",
+						value: "*",
+					},
 				],
 			},
 			{
 				source: "/:path*",
 				headers: [
-					{ key: "Cache-Control", value: "max-age=0, must-revalidate" },
+					{
+						key: "Cache-Control",
+						value: "max-age=0, must-revalidate",
+					},
 				],
 			},
 		];
 	},
 
-	eslint: { ignoreDuringBuilds: true },
+	// ✅ ESLint nie blokuje builda
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
 });
 
 module.exports = nextConfig;
