@@ -59,13 +59,14 @@ function Header2() {
 								loading="lazy"
 							/>
 							<div className="arrow-animation2">
-								<Image
-									src="/assets/anim0.gif" // Path to your animated arrow GIF
-									width={100} // Adjust size as needed
-									height={100} // Adjust size as needed
+								<img
+									src="/assets/anim0.webp"
 									alt="Animated Arrow"
-									priority={true}
-									unoptimized={true}
+									width="50"
+									height="50"
+									loading="lazy"
+									decoding="async"
+									style={{ display: "block", margin: "auto" }}
 								/>
 							</div>
 						</div>

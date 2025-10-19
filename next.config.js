@@ -19,6 +19,12 @@ const nextConfig = {
 
 	// ✅ Ścieżka root, żeby naprawić problem z „workspace root inferred”
 	outputFileTracingRoot: path.join(__dirname),
+	//Next.js domyślnie transpile’uje kod do starszego JS (ES5), mimo że 99% użytkowników ma już ES2020+.
+	swcMinify: true,
+	experimental: {
+		legacyBrowsers: false,
+		browsersListForSwc: true,
+	},
 
 	experimental: {
 		// ✅ Optymalizacja CSS (działa tylko w produkcji)

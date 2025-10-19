@@ -52,20 +52,6 @@ function App({ Component, pageProps }) {
 							<meta property="og:type" content="website" />
 							<link rel="manifest" href="/manifest.json" />
 							{/* ✅ Preload czcionek (LCP boost) */}
-							<link
-								rel="preload"
-								href="/fonts/poppins/Poppins-Regular.ttf"
-								as="font"
-								type="font/ttf"
-								crossOrigin="anonymous"
-							/>
-							<link
-								rel="preload"
-								href="/fonts/poppins/Poppins-Bold.ttf"
-								as="font"
-								type="font/ttf"
-								crossOrigin="anonymous"
-							/>
 						</Head>
 
 						<Layout pageProps={pageProps}>
