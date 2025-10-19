@@ -2,9 +2,11 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import { Container, Accordion, Row, Col, Card } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
+
+const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
 function About3() {
 	const [ref, inView] = useInView({
 		threshold: 0.5,

@@ -1,11 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+
+const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
 function Seo3() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({

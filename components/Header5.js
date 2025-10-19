@@ -1,12 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+
 function Header5() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({

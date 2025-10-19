@@ -267,7 +267,7 @@ const NavbarComp = ({ toggleTheme }) => {
 
 						<Nav.Link as={Link} href="/" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								<IoHomeOutline />
+								<IoHomeOutline aria-label="Haupt seite" />
 							</Button>
 						</Nav.Link>
 
@@ -326,6 +326,7 @@ const NavbarComp = ({ toggleTheme }) => {
 								setIsLightIcon((prev) => !prev);
 							}}
 							className="btn-nav border-0 btn-md py-2 mx-1"
+							aria-label="theme wechseln"
 						>
 							{isLightIcon ? (
 								<BsFillMoonFill style={{ color: "grey" }} />

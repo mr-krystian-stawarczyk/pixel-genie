@@ -4,11 +4,11 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 import Link from "next/link";
 
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
-
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 function Header3() {

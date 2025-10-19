@@ -30,6 +30,7 @@ function Contact2() {
 						<AiOutlineFacebook
 							style={{ fontSize: "8rem" }}
 							className="contact-icons"
+							aria-label="Pixel-Genie Facebook"
 						/>
 					</Link>
 					<Link href="kontakt" className="contact-links">

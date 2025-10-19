@@ -12,6 +12,7 @@ function impressium() {
 					name="description"
 					content="Erfahren Sie mehr über unsere Datenschutzrichtlinien und Geschäftsbedingungen bei Pixel-Genie. Wir legen Wert auf Transparenz und Kundenfreundlichkeit."
 				/>
+				<meta name="robots" content="index, follow" />
 			</Head>
 			<Row className="text-center">
 				<h2>Impressium</h2>

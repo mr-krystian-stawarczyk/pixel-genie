@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
-
+const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
 function Social4() {
 	const { t } = useTranslation();
 	const [ref, inView] = useInView({

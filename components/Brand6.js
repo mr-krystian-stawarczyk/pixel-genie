@@ -1,11 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
+
+const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
 function Brand6() {
 	const { t } = useTranslation();
 	const [ref1, inView1] = useInView({

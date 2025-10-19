@@ -334,3 +334,15 @@ span.navbar-toggler-icon.collapsed {
 		letter-spacing: 0.5px;
 	}
 }
+img,
+.responsive-image {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Widoczny focus dla klawiatury */
+a:focus,
+button:focus {
+	outline: 2px solid #ff9800 !important;
+	outline-offset: 3px;
+}

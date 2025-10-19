@@ -4,9 +4,11 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
+
+const { motion } = dynamic(() => import("framer-motion"), { ssr: false });
 function Blog1() {
 	const [ref, inView] = useInView({
 		threshold: 0.5,

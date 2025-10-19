@@ -111,6 +111,7 @@ function Footer() {
 									<AiOutlineFacebook
 										style={{ fontSize: "6rem", color: "var(--text-color)" }}
 										className="my-2 hover"
+										aria-label="Pixel-Genie Facebook"
 									/>
 								</Link>
 							</Card.Body>

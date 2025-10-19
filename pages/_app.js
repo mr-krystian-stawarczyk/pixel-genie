@@ -41,6 +41,18 @@ function App({ Component, pageProps }) {
 								name="viewport"
 								content="width=device-width, initial-scale=1"
 							/>
+							<meta name="robots" content="index, follow" />
+							<meta property="og:title" content="Pixel Genie Webagentur" />
+							<meta
+								property="og:description"
+								content="Pixel Genie – Webdesign, SEO und Branding in Nettetal. Wir entwickeln maßgeschneiderte digitale Lösungen für Unternehmen."
+							/>
+							<meta
+								property="og:image"
+								content="/assets/pixel-genie-logo.png"
+							/>
+							<meta property="og:url" content="https://pixel-genie.de" />
+							<meta property="og:type" content="website" />
 							<link rel="manifest" href="/manifest.json" />
 							{/* ✅ Preload czcionek (LCP boost) */}
 							<link

@@ -7,11 +7,27 @@ function error() {
 	return (
 		<Container className="mt-5 pt-5">
 			<Head>
-				<title>404 Error in 41334 Nettetal | Pixel Genie Webagentur</title>
+				<title>404 Error – Seite nicht gefunden | Pixel Genie Webagentur</title>
 				<meta
 					name="description"
 					content="Leider scheint die von Ihnen angeforderte Seite nicht vorhanden zu sein. Kontaktieren Sie uns, um Hilfe zu erhalten, oder besuchen Sie unsere Startseite, um unsere Dienstleistungen zu sehen."
 				/>
+				<meta name="robots" content="noindex, nofollow" />{" "}
+				{/* Strona 404 nie powinna być indeksowana */}
+				{/* Link Canonical */}
+				<link rel="canonical" href="https://pixel-genie.de/404" />
+				{/* Meta Open Graph */}
+				<meta property="og:title" content="404 Error – Pixel Genie" />
+				<meta
+					property="og:description"
+					content="Die von Ihnen angeforderte Seite wurde nicht gefunden. Besuchen Sie unsere Startseite, um mehr zu erfahren."
+				/>
+				<meta
+					property="og:image"
+					content="/assets/webagentur-nettetal-pixel-genie-404.png"
+				/>{" "}
+				{/* Można dodać obrazek związaną z błędem */}
+				<meta property="og:type" content="website" />
 			</Head>
 			<Row className="text-center align-items-center justify-content-center">
 				<Col lg={6}>
