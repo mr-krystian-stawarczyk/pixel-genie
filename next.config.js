@@ -2,35 +2,49 @@ const path = require("path");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
+const fs = require("fs");
+
+/**
+ * Funkcja pomocnicza – tworzy preload dla lokalnych fontów.
+ * Next automatycznie zaciągnie <link rel="preload"> dla fontów z /public/fonts.
+ */
+function addFontPreload() {
+	const fontDir = path.join(__dirname, "public/fonts/poppins");
+	if (!fs.existsSync(fontDir)) return [];
+	const fonts = fs.readdirSync(fontDir).filter((f) => f.endsWith(".ttf"));
+	return fonts.map((file) => ({
+		rel: "preload",
+		as: "font",
+		href: `/fonts/poppins/${file}`,
+		type: "font/ttf",
+		crossOrigin: "anonymous",
+	}));
+}
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-	// ✅ Wymusza dobre praktyki Reacta
+const nextConfig = withBundleAnalyzer({
 	reactStrictMode: true,
-
-	// ✅ Kompresja gzip/brotli na poziomie Next
 	compress: true,
 
-	// ✅ Optymalizacja obrazów (AVIF + WebP)
+	// ✅ Static export
+	output: "export",
+	trailingSlash: true,
+
+	// ✅ Netlify Image CDN loader
 	images: {
 		formats: ["image/avif", "image/webp"],
 		domains: ["cdn.sanity.io", "pixel-genie.de"],
+		loader: "custom",
+		loaderFile: "./netlify-image-loader.js",
 	},
 
-	// ✅ Ścieżka root, żeby naprawić problem z „workspace root inferred”
 	outputFileTracingRoot: path.join(__dirname),
-	//Next.js domyślnie transpile’uje kod do starszego JS (ES5), mimo że 99% użytkowników ma już ES2020+.
 	swcMinify: true,
+
 	experimental: {
 		legacyBrowsers: false,
 		browsersListForSwc: true,
-	},
-
-	experimental: {
-		// ✅ Optymalizacja CSS (działa tylko w produkcji)
 		optimizeCss: true,
-
-		// ✅ Tree-shaking i szybsze buildy dla dużych paczek
 		optimizePackageImports: [
 			"react-icons",
 			"lucide-react",
@@ -38,31 +52,20 @@ const nextConfig = {
 			"react-countup",
 			"framer-motion",
 		],
-
-		// ✅ Zachowanie pozycji scrolla między stronami
 		scrollRestoration: true,
 	},
 
-	// ✅ Nagłówki cache’ujące tylko w produkcji
-	async headers() {
-		if (process.env.NODE_ENV === "development") {
-			// W trybie dev — brak cache (unikamy problemów z Hot Reload)
-			return [];
-		}
+	// ✅ Preload lokalnych fontów
+	async head() {
+		return { link: addFontPreload() };
+	},
 
+	// ✅ Nagłówki cache’ujące
+	async headers() {
+		if (process.env.NODE_ENV === "development") return [];
 		return [
-			// Długie cache tylko dla zasobów statycznych
 			{
 				source: "/_next/static/:path*",
-				headers: [
-					{
-						key: "Cache-Control",
-						value: "public, max-age=31536000, immutable",
-					},
-				],
-			},
-			{
-				source: "/_next/image/:path*",
 				headers: [
 					{
 						key: "Cache-Control",
@@ -79,7 +82,16 @@ const nextConfig = {
 					},
 				],
 			},
-			// HTML i dynamiczne strony — bez cache
+			{
+				source: "/fonts/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+					{ key: "Access-Control-Allow-Origin", value: "*" },
+				],
+			},
 			{
 				source: "/:path*",
 				headers: [
@@ -89,10 +101,7 @@ const nextConfig = {
 		];
 	},
 
-	// ✅ Wymusza, by Next nie mylił lokalizacji projektu
-	eslint: {
-		ignoreDuringBuilds: true, // (opcjonalnie – jeśli masz ESLint błędy)
-	},
-};
+	eslint: { ignoreDuringBuilds: true },
+});
 
-module.exports = withBundleAnalyzer(nextConfig);
+module.exports = nextConfig;

@@ -2,7 +2,7 @@
 # ✅ Build settings
 ############################
 [build]
-  command = "npm run build && next export"
+  command = "npm run build"
   publish = "out"
 
   [build.environment]
@@ -20,7 +20,7 @@
   external_node_modules = ["sharp", "react", "next", "next-themes"]
 
 ############################
-# ✅ Redirects — potrzebne przy Next Export
+# ✅ Redirects (potrzebne przy static export)
 ############################
 [[redirects]]
   from = "/*"
@@ -28,7 +28,7 @@
   status = 200
 
 ############################
-# ✅ Nagłówki i bezpieczeństwo
+# ✅ Nagłówki bezpieczeństwa + cache
 ############################
 [[headers]]
   for = "/*"
@@ -39,7 +39,6 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
-    # ❌ NIE dodajemy Content-Encoding! Netlify robi to automatycznie.
 
 ############################
 # ✅ Fonty lokalne – długi cache
