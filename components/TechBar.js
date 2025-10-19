@@ -52,9 +52,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h5 className="text-bold text-uppercase text-light">
-							Google Business
-						</h5>
+						<h3 className="techbar-title">Google Business</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -65,9 +63,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h5 className="text-bold text-uppercase text-light">
-							Facebook Ads
-						</h5>
+						<h3 className="techbar-title">Facebook Ads</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -78,9 +74,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h5 className="text-bold text-uppercase text-light">
-							SEO Optimierung
-						</h5>
+						<h3 className="techbar-title">SEO Optimierung</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -91,9 +85,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h5 className="text-bold text-uppercase text-light">
-							Google Analytics
-						</h5>
+						<h3 className="techbar-title">Google Analytics</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -104,7 +96,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h5 className="text-bold text-uppercase text-light">Webdesign</h5>
+						<h3 className="techbar-title">Webdesign</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -115,9 +107,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h5 className="text-bold text-uppercase text-light">
-							Stripe Online Bezahlung
-						</h5>
+						<h3 className="techbar-title">Stripe Online Bezahlung</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -128,9 +118,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h5 className="text-bold text-uppercase text-light">
-							React Programmierung
-						</h5>
+						<h3 className="techbar-title">React Programmierung</h3>
 					</div>
 				</Slider>
 			</Row>

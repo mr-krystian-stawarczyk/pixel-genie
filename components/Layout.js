@@ -1,3 +1,4 @@
+// components/Layout.js
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -5,7 +6,7 @@ import CookieConsent from "./CookieConsent";
 import localFont from "next/font/local";
 import { useTheme } from "next-themes";
 
-// 🔹 Lokalny font Poppins
+// 🔹 Lokalny font Poppins z display: swap (szybsze renderowanie tekstu)
 const poppins = localFont({
 	src: [
 		{
@@ -31,13 +32,16 @@ const Layout = ({ children, pageProps }) => {
 
 	return (
 		<div
+			suppressHydrationWarning
 			className={`${poppins.className} ${theme === "dark" ? "dark" : "light"}`}
 		>
 			<header>
 				<Navbar {...pageProps} toggleTheme={toggleTheme} />
 				<CookieConsent />
 			</header>
+
 			<main className="main-container">{children}</main>
+
 			<footer>
 				<Footer />
 			</footer>

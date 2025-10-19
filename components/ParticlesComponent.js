@@ -1,21 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim"; // możesz zmienić na loadFull jeśli chcesz pełny pakiet efektów
+import { loadSlim } from "@tsparticles/slim";
 
 function ParticlesComponent() {
 	const [init, setInit] = useState(false);
 
 	useEffect(() => {
 		initParticlesEngine(async (engine) => {
-			// tutaj ładujesz pluginy / presety
 			await loadSlim(engine);
-		}).then(() => {
-			setInit(true);
-		});
+		}).then(() => setInit(true));
 	}, []);
 
-	if (!init) return null; // unika błędów przy SSR
+	if (!init) return null;
 
 	return (
 		<Particles
@@ -37,7 +34,6 @@ function ParticlesComponent() {
 				},
 				particles: {
 					color: { value: "#003681" },
-					collisions: { enable: true },
 					move: { enable: true, speed: 0.8, outModes: { default: "out" } },
 					number: { value: 40, density: { enable: true, area: 800 } },
 					opacity: { value: 0.9, random: true },
@@ -52,7 +48,7 @@ function ParticlesComponent() {
 				left: 0,
 				width: "100%",
 				height: "100%",
-				zIndex: 0, // nie -1 !
+				zIndex: 0,
 			}}
 		/>
 	);

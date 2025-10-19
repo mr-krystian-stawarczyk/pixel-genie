@@ -1,12 +1,14 @@
+"use client";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import dynamic from "next/dynamic";
 
+// 🔹 Particles ładowane dopiero po 1s, aby nie blokować LCP
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
 	loading: () => <div style={{ position: "absolute", inset: 0 }} />,
@@ -14,8 +16,15 @@ const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 
 export default function Header1() {
 	const { t } = useTranslation();
+	const [isVisible, setIsVisible] = useState(false);
 	const { theme } = useTheme();
 	const sectionRef = useRef(null);
+	const [showParticles, setShowParticles] = useState(false);
+
+	useEffect(() => {
+		const timer = setTimeout(() => setShowParticles(true), 1000);
+		return () => clearTimeout(timer);
+	}, []);
 
 	const handleEmailClick = () => {
 		window.location.href = "mailto:mr.krystian.stawarczyk@gmail.com";
@@ -23,7 +32,7 @@ export default function Header1() {
 
 	return (
 		<header className="header-container position-relative" ref={sectionRef}>
-			{/* 🔹 Background */}
+			{/* Background + Particles */}
 			<div
 				className="particles-container"
 				style={{
@@ -36,14 +45,15 @@ export default function Header1() {
 					overflow: "hidden",
 					background:
 						theme === "light"
-							? "#ffffff" // czyste białe tło
+							? "#ffffff" // 🔹 czysto białe tło
 							: "linear-gradient(180deg, #040b1a 0%, #000000 100%)",
 					transition: "background 0.4s ease-in-out",
 				}}
 			>
-				<ParticlesComponent theme={theme} /> {/* ✅ przekazujemy motyw */}
+				{showParticles && <ParticlesComponent />}
 			</div>
 
+			{/* Główna treść */}
 			<Container className="header-content-container d-flex flex-column justify-content-center align-items-center text-center mt-sm-5">
 				<Card className="bg-transparent border-0 blur p-md-3 p-md-5 mt-xs-5">
 					<Card.Body>
@@ -84,6 +94,7 @@ export default function Header1() {
 							>
 								<span className="text-white text-lg">{t("h6")}</span>
 							</Button>
+
 							<Button
 								className="btn-md btn-success hover"
 								as="button"

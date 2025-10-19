@@ -152,9 +152,12 @@ function Footer() {
 
 					<Row className="text-center my-2">
 						<Col>
-							<h4 style={{ color: "var(--text-color)" }}>
-								2025 Pixel Genie Alle Rechte vorbehalten
-							</h4>
+							<p
+								className="text-bold"
+								style={{ color: "var(--text-color)", fontSize: "1.1rem" }}
+							>
+								© 2025 Pixel Genie – Alle Rechte vorbehalten
+							</p>
 						</Col>
 					</Row>
 				</Container>

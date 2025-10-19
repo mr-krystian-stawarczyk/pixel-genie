@@ -4,7 +4,6 @@ import Layout from "@/components/Layout";
 import { ThemeProvider } from "next-themes";
 import { CookiesProvider } from "react-cookie";
 import { appWithTranslation } from "next-i18next";
-import Script from "next/script";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,7 +15,7 @@ function App({ Component, pageProps }) {
 
 	useEffect(() => setMounted(true), []);
 
-	// ✅ Lazy-load Analytics po 3 sekundach – tylko na produkcji
+	// ✅ Lazy-load Google Analytics dopiero po 3 sekundach (nie blokuje LCP)
 	useEffect(() => {
 		if (process.env.NODE_ENV !== "production") return;
 		const timer = setTimeout(() => {
@@ -34,6 +33,7 @@ function App({ Component, pageProps }) {
 				page_path: window.location.pathname,
 			});
 		}, 3000);
+
 		return () => clearTimeout(timer);
 	}, [router.asPath]);
 
@@ -42,7 +42,7 @@ function App({ Component, pageProps }) {
 			<ThemeProvider
 				attribute="class"
 				defaultTheme="dark"
-				enableSystem
+				enableSystem={true}
 				disableTransitionOnChange
 			>
 				{mounted && (
@@ -69,10 +69,26 @@ function App({ Component, pageProps }) {
 							/>
 							<meta property="og:url" content="https://pixel-genie.de" />
 							<meta property="og:type" content="website" />
+
+							{/* ✅ Preload fontów dla LCP boost */}
+							<link
+								rel="preload"
+								href="/fonts/poppins/Poppins-Regular.ttf"
+								as="font"
+								type="font/ttf"
+								crossOrigin="anonymous"
+							/>
+							<link
+								rel="preload"
+								href="/fonts/poppins/Poppins-Bold.ttf"
+								as="font"
+								type="font/ttf"
+								crossOrigin="anonymous"
+							/>
 							<link rel="manifest" href="/manifest.json" />
 						</Head>
 
-						{/* ✅ Layout renderuje stronę */}
+						{/* ✅ Layout opakowuje całą aplikację */}
 						<Layout pageProps={pageProps}>
 							<Component {...pageProps} key={router.asPath} />
 						</Layout>
