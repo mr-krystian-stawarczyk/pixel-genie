@@ -16,7 +16,7 @@ function Contact3() {
 						alt="webentwicklung-nettetal-webseiten-fragen1"
 						priority
 					/>
-					<h4>{t("web117")}</h4>
+					<h2>{t("web117")}</h2>
 				</Col>
 			</Row>
 			<Row className="justify-content-center align-items-center">

@@ -1,20 +1,20 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { useState, useRef } from "react";
+import { useRef } from "react";
+import { useTheme } from "next-themes";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
-	loading: () => <div className="particles-loading">Laden...</div>,
+	loading: () => <div style={{ position: "absolute", inset: 0 }} />,
 });
 
 export default function Header1() {
 	const { t } = useTranslation();
-	const [isVisible, setIsVisible] = useState(false);
+	const { theme } = useTheme();
 	const sectionRef = useRef(null);
 
 	const handleEmailClick = () => {
@@ -23,9 +23,25 @@ export default function Header1() {
 
 	return (
 		<header className="header-container position-relative" ref={sectionRef}>
-			{/* Background Particles */}
-			<div className="particles-container">
-				<ParticlesComponent />
+			{/* 🔹 Background */}
+			<div
+				className="particles-container"
+				style={{
+					position: "absolute",
+					top: 0,
+					left: 0,
+					width: "100%",
+					height: "100vh",
+					zIndex: 0,
+					overflow: "hidden",
+					background:
+						theme === "light"
+							? "#ffffff" // czyste białe tło
+							: "linear-gradient(180deg, #040b1a 0%, #000000 100%)",
+					transition: "background 0.4s ease-in-out",
+				}}
+			>
+				<ParticlesComponent theme={theme} /> {/* ✅ przekazujemy motyw */}
 			</div>
 
 			<Container className="header-content-container d-flex flex-column justify-content-center align-items-center text-center mt-sm-5">
@@ -42,7 +58,6 @@ export default function Header1() {
 							>
 								<span className="text-white">{t("h3")}</span>
 							</Button>
-
 							<Button
 								as={Link}
 								href="/suchmaschinenoptimierung"
@@ -50,7 +65,6 @@ export default function Header1() {
 							>
 								<span className="text-white">{t("h4")}</span>
 							</Button>
-
 							<Button
 								as={Link}
 								href="/socialmediamarketing"
@@ -70,7 +84,6 @@ export default function Header1() {
 							>
 								<span className="text-white text-lg">{t("h6")}</span>
 							</Button>
-
 							<Button
 								className="btn-md btn-success hover"
 								as="button"

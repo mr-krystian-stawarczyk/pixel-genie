@@ -7,23 +7,42 @@ import { appWithTranslation } from "next-i18next";
 import Script from "next/script";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import "bootstrap/dist/css/bootstrap.min.css"; // ✅ zostaw, bez JS Bootstrapa
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 
 function App({ Component, pageProps }) {
 	const router = useRouter();
 	const [mounted, setMounted] = useState(false);
 
+	useEffect(() => setMounted(true), []);
+
+	// ✅ Lazy-load Analytics po 3 sekundach – tylko na produkcji
 	useEffect(() => {
-		setMounted(true);
-	}, []);
+		if (process.env.NODE_ENV !== "production") return;
+		const timer = setTimeout(() => {
+			const script = document.createElement("script");
+			script.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`;
+			script.async = true;
+			document.body.appendChild(script);
+
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID, {
+				page_path: window.location.pathname,
+			});
+		}, 3000);
+		return () => clearTimeout(timer);
+	}, [router.asPath]);
 
 	return (
 		<CookiesProvider>
 			<ThemeProvider
 				attribute="class"
 				defaultTheme="dark"
-				enableSystem={true}
+				enableSystem
 				disableTransitionOnChange
 			>
 				{mounted && (
@@ -51,28 +70,12 @@ function App({ Component, pageProps }) {
 							<meta property="og:url" content="https://pixel-genie.de" />
 							<meta property="og:type" content="website" />
 							<link rel="manifest" href="/manifest.json" />
-							{/* ✅ Preload czcionek (LCP boost) */}
 						</Head>
 
+						{/* ✅ Layout renderuje stronę */}
 						<Layout pageProps={pageProps}>
 							<Component {...pageProps} key={router.asPath} />
 						</Layout>
-
-						{/* ✅ Google Analytics – lazy load po załadowaniu strony */}
-						<Script
-							src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
-							strategy="lazyOnload"
-						/>
-						<Script id="google-analytics" strategy="lazyOnload">
-							{`
-								window.dataLayer = window.dataLayer || [];
-								function gtag(){dataLayer.push(arguments);}
-								gtag('js', new Date());
-								gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}', {
-									page_path: window.location.pathname,
-								});
-							`}
-						</Script>
 					</>
 				)}
 			</ThemeProvider>

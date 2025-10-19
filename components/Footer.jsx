@@ -23,10 +23,6 @@ function Footer() {
 		if (inView) controls.start(animateIn);
 	}, [inView, controls]);
 
-	const handleEmailClick = () => {
-		window.location.href = "mailto:mr.krystian.stawarczyk@gmail.com";
-	};
-
 	return (
 		<footer
 			ref={sectionRef}
@@ -138,13 +134,18 @@ function Footer() {
 								>
 									{t("footer14")}
 								</Card.Title>
-								<h6
-									className="py-5 hover text-bold"
-									onClick={handleEmailClick}
-									style={{ cursor: "pointer", color: "var(--text-color)" }}
+								<a
+									href="mailto:mr.krystian.stawarczyk@gmail.com"
+									className="py-5 hover text-bold contact-links d-block"
+									style={{
+										color: "var(--text-color)",
+										textDecoration: "none",
+										cursor: "pointer",
+									}}
+									aria-label="E-Mail senden an mr.krystian.stawarczyk@gmail.com"
 								>
 									mr.krystian.stawarczyk@gmail.com
-								</h6>
+								</a>
 							</Card>
 						</Col>
 					</Row>

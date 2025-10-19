@@ -6,10 +6,9 @@ import deTranslations from "./locales/de.json"; // DE ładowany od razu
 i18n.use(initReactI18next).init({
 	lng: "de",
 	fallbackLng: "de",
-	resources: {
-		de: { translation: deTranslations },
-	},
+	resources: { de: { translation: deTranslations } },
 	interpolation: { escapeValue: false },
+	initImmediate: false, // 🔥 ładuje synchronicznie — teksty są dostępne od razu
 });
 
 export default i18n;

@@ -208,8 +208,8 @@ const NavbarComp = ({ toggleTheme }) => {
 				</Dropdown>
 
 				<Navbar.Toggle
-					aria-controls="responsive-navbar-nav"
-					aria-label="Toggle navigation"
+					aria-controls="basic-navbar-nav" // ✅ poprawione
+					aria-label="Navigation umschalten"
 					className="btn-sm"
 				/>
 

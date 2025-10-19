@@ -16,7 +16,7 @@ function Header6() {
 						alt="webentwicklung-nettetal-fragen1"
 						priority
 					/>
-					<h4>{t("web117")}</h4>
+					<h2>{t("web117")}</h2>
 				</Col>
 			</Row>
 			<Row className="justify-content-center align-items-center">

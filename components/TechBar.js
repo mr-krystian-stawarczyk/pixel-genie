@@ -40,7 +40,7 @@ const settings = {
 
 const TechBar = () => {
 	return (
-		<Container fluid className="my-5 py-5">
+		<Container fluid>
 			<Row className="justify-content-center align-items-center text-center bg-blue my-3 py-3">
 				<Slider {...settings}>
 					<div className="text-center">
@@ -52,9 +52,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h6 className="text-bold text-uppercase text-light">
+						<h5 className="text-bold text-uppercase text-light">
 							Google Business
-						</h6>
+						</h5>
 					</div>
 					<div className="text-center">
 						<Image
@@ -65,9 +65,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h6 className="text-bold text-uppercase text-light">
+						<h5 className="text-bold text-uppercase text-light">
 							Facebook Ads
-						</h6>
+						</h5>
 					</div>
 					<div className="text-center">
 						<Image
@@ -78,9 +78,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h6 className="text-bold text-uppercase text-light">
+						<h5 className="text-bold text-uppercase text-light">
 							SEO Optimierung
-						</h6>
+						</h5>
 					</div>
 					<div className="text-center">
 						<Image
@@ -91,9 +91,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h6 className="text-bold text-uppercase text-light">
+						<h5 className="text-bold text-uppercase text-light">
 							Google Analytics
-						</h6>
+						</h5>
 					</div>
 					<div className="text-center">
 						<Image
@@ -104,7 +104,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h6 className="text-bold text-uppercase text-light">Webdesign</h6>
+						<h5 className="text-bold text-uppercase text-light">Webdesign</h5>
 					</div>
 					<div className="text-center">
 						<Image
@@ -115,9 +115,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h6 className="text-bold text-uppercase text-light">
+						<h5 className="text-bold text-uppercase text-light">
 							Stripe Online Bezahlung
-						</h6>
+						</h5>
 					</div>
 					<div className="text-center">
 						<Image
@@ -128,9 +128,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h6 className="text-bold text-uppercase text-light">
+						<h5 className="text-bold text-uppercase text-light">
 							React Programmierung
-						</h6>
+						</h5>
 					</div>
 				</Slider>
 			</Row>
