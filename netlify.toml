@@ -1,24 +1,35 @@
+############################
+# ✅ Build settings
+############################
 [build]
-  command = "npm run build"
-  publish = ".next"
-  environment = { NODE_VERSION = "20", NEXT_TELEMETRY_DISABLED = "1", NETLIFY_USE_YARN = "false" }
+  command = "npm run build && next export"
+  publish = "out"
 
-# ✅ Build image: Ubuntu 24.04 (Noble)
-NETLIFY_BUILD_IMAGE = "ubuntu-noble-24.04"
+  [build.environment]
+    NODE_VERSION = "20"
+    NEXT_TELEMETRY_DISABLED = "1"
+    NETLIFY_USE_YARN = "false"
+    NETLIFY_BUILD_IMAGE = "ubuntu-noble-24.04"
 
-# ✅ Next.js edge + ISR cache (Netlify adapter)
+############################
+# ✅ Functions (Next adapter + optymalizacja)
+############################
 [functions]
   included_files = ["public/**"]
   node_bundler = "esbuild"
   external_node_modules = ["sharp", "react", "next", "next-themes"]
 
-# ✅ Redirects i edge functions (obsługa Next.js routing)
+############################
+# ✅ Redirects — potrzebne przy Next Export
+############################
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# ✅ Cache i kompresja — klucz do lepszego PageSpeed
+############################
+# ✅ Nagłówki i bezpieczeństwo
+############################
 [[headers]]
   for = "/*"
   [headers.values]
@@ -28,23 +39,28 @@ NETLIFY_BUILD_IMAGE = "ubuntu-noble-24.04"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
-    Content-Encoding = "br, gzip"
+    # ❌ NIE dodajemy Content-Encoding! Netlify robi to automatycznie.
 
-# ✅ Fonty lokalne – długi cache (bo rzadko się zmieniają)
+############################
+# ✅ Fonty lokalne – długi cache
+############################
 [[headers]]
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
     Content-Type = "font/ttf"
 
-# ✅ Obrazy (Next.js image optimization lub static)
+############################
+# ✅ Obrazy (Next.js static / public)
+############################
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-    Content-Type = "image/webp"
 
-# ✅ HTML / główna strona – krótszy cache, żeby odświeżało przy deployu
+############################
+# ✅ HTML – krótki cache (odświeżanie po deployu)
+############################
 [[headers]]
   for = "/*.html"
   [headers.values]
