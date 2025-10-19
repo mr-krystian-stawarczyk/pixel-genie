@@ -58,7 +58,9 @@ export default function Header1() {
 				<Card className="bg-transparent border-0 blur p-md-3 p-md-5 mt-xs-5">
 					<Card.Body>
 						<h1 className="text-bold mb-3">{t("h1")}</h1>
-						<h2 className="text-bold mb-4">{t("h2")}</h2>
+						<h2 className="text-bold mb-4" aria-hidden="true">
+							{t("h2")}
+						</h2>
 
 						<div className="d-flex flex-column flex-md-row justify-content-center gap-3">
 							<Button
