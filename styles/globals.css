@@ -86,7 +86,7 @@ body {
 		max-width: 300px; /* Adjust size */
 	}
 	.background-image {
-		max-width: 300px;
+		max-width: 301px;
 		height: 430px !important; /* Adjust size */
 	}
 }
