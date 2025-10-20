@@ -5,10 +5,11 @@
 	"scripts": {
 		"dev": "next dev --turbo",
 		"build": "next build",
-		"postbuild": "next-sitemap",
+		"postbuild": "next-sitemap && npm run move-sitemap",
 		"export": "next export",
 		"start": "next start -p 3000",
-		"analyze": "cross-env ANALYZE=true next build"
+		"analyze": "cross-env ANALYZE=true next build",
+		"move-sitemap": "mkdir -p public && cp -f out/sitemap*.xml public/ && cp -f out/robots.txt public/"
 	},
 	"dependencies": {
 		"@sanity/cli": "^3.20.1",
