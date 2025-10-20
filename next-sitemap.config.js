@@ -1,36 +1,85 @@
 /** @type {import('next-sitemap').IConfig} */
 const config = {
+	// 🔹 Dynamiczna obsługa środowisk (produkcyjna / lokalna)
 	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de",
 	generateRobotsTxt: true,
 
-	// 👇 wymuszenie generowania bezpośrednio do /public/
+	// 📁 OUTPUT do /public (zgodnie z konfiguracją Next.js build)
 	outDir: "public",
-	targetDirectory: "public",
-
 	autoLastmod: true,
+
 	changefreq: "weekly",
 	priority: 0.8,
 
+	// 🧠 Automatyczna generacja robots.txt
+	robotsTxtOptions: {
+		policies:
+			process.env.NEXT_PUBLIC_SITE_URL &&
+			process.env.NEXT_PUBLIC_SITE_URL.includes("localhost")
+				? [
+						{
+							userAgent: "*",
+							disallow: "/", // Blokuj lokalne indeksowanie
+						},
+					]
+				: [
+						{
+							userAgent: "*",
+							allow: "/",
+							disallow: [
+								"/_next/",
+								"/api/",
+								"/404",
+								"/500",
+								"/favicon.ico",
+								"/manifest.json",
+							],
+						},
+					],
+		host: process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de",
+		additionalSitemaps: [
+			`${process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de"}/sitemap.xml`,
+			`${process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de"}/sitemap-0.xml`,
+		],
+	},
+
+	// 🔁 Dynamiczna priorytetyzacja tras
 	transform: async (config, url) => {
 		let priority = 0.8;
 		let changefreq = "weekly";
 
+		// 🏠 Strona główna
 		if (url === `${config.siteUrl}` || url === `${config.siteUrl}/`) {
 			priority = 1.0;
 			changefreq = "daily";
-		} else if (url.startsWith(`${config.siteUrl}/webseitenerstellung/`)) {
+		}
+
+		// 💻 Webseitenerstellung (najważniejsze lokalne strony)
+		else if (url.startsWith(`${config.siteUrl}/webseitenerstellung/`)) {
 			priority = 1.0;
 			changefreq = "daily";
-		} else if (url.startsWith(`${config.siteUrl}/webentwicklung/`)) {
+		}
+
+		// ⚙️ Webentwicklung (techniczne projekty)
+		else if (url.startsWith(`${config.siteUrl}/webentwicklung/`)) {
 			priority = 0.9;
 			changefreq = "weekly";
-		} else if (url.startsWith(`${config.siteUrl}/seo/`)) {
+		}
+
+		// 🚀 SEO (wysoka waga)
+		else if (url.startsWith(`${config.siteUrl}/seo/`)) {
 			priority = 0.9;
 			changefreq = "weekly";
-		} else if (url.startsWith(`${config.siteUrl}/webdesign-agentur/`)) {
+		}
+
+		// 🎨 Webdesign-Agentur (również ważne)
+		else if (url.startsWith(`${config.siteUrl}/webdesign-agentur/`)) {
 			priority = 0.9;
 			changefreq = "weekly";
-		} else if (
+		}
+
+		// 📈 Inne usługi o wysokiej wartości
+		else if (
 			url.includes("/webseitenerstellen") ||
 			url.includes("/suchmaschinenoptimierung") ||
 			url.includes("/webdesign") ||
@@ -38,13 +87,19 @@ const config = {
 		) {
 			priority = 0.9;
 			changefreq = "weekly";
-		} else if (
+		}
+
+		// 🧠 Branding i Social Media
+		else if (
 			url.includes("/branding") ||
 			url.includes("/socialmediamarketing")
 		) {
 			priority = 0.8;
 			changefreq = "weekly";
-		} else if (
+		}
+
+		// 📞 Stałe, mało zmienne strony
+		else if (
 			url.includes("/impressum") ||
 			url.includes("/kontakt") ||
 			url.includes("/pixelgeniehistory")
@@ -60,6 +115,9 @@ const config = {
 			lastmod: new Date().toISOString(),
 		};
 	},
+
+	// ✅ Pomaga uniknąć duplikatów i błędów
+	exclude: ["/404", "/500", "/_app", "/_document", "/_error"],
 };
 
 module.exports = config;
