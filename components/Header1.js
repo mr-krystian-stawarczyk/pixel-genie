@@ -41,7 +41,7 @@ export default function Header1() {
 					left: 0,
 					width: "100%",
 					height: "100vh",
-					zIndex: 0,
+					zIndex: -1,
 					overflow: "hidden",
 					background:
 						theme === "light"

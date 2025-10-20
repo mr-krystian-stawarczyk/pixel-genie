@@ -401,6 +401,15 @@ export default function CityPage({
 						</Row>
 					</Col>
 				</Row>
+				<Row>
+					<p>
+						Sie möchten eine{" "}
+						<Link href={`/webseitenerstellung/${city.city}`}>
+							komplett neue Webseite erstellen
+						</Link>
+						? → Sehen Sie unsere Angebote für Webdesign in {cityName}.
+					</p>
+				</Row>
 			</Container>
 		</>
 	);

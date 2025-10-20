@@ -143,6 +143,12 @@ a {
 	overflow: hidden;
 }
 
+@media (max-width: 768px) {
+	.header-container {
+		min-height: 80vh; /* 🔽 skraca obszar LCP */
+	}
+}
+
 .header-content-container {
 	position: relative;
 	z-index: 1; /* tekst nad particles */
@@ -156,6 +162,8 @@ a {
 	width: 100%;
 	height: 100%;
 	z-index: 0; /* particles pod tekstem */
+	contain: layout paint;
+	will-change: opacity;
 }
 ::-webkit-scrollbar {
 	display: none;
@@ -186,6 +194,14 @@ a {
 	backdrop-filter: blur(7px); /* Ustawienie efektu blur dla tła */
 	z-index: 0 !important;
 }
+
+@media (max-width: 768px) {
+	.blur {
+		backdrop-filter: none;
+		background-color: rgba(255, 255, 255, 0.75); /* zamiast blur */
+	}
+}
+
 .border-blue {
 	border: 1px solid #0047ab !important;
 }
@@ -376,4 +392,17 @@ button:focus {
 	text-transform: uppercase;
 	color: #f8f9fa; /* jasny tekst jak w text-light */
 	margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+	h2.text-bold {
+		font-weight: 500;
+	}
+}
+
+@media (max-width: 768px) {
+	.navbar-collapse.show {
+		display: block !important;
+		visibility: visible !important;
+	}
 }
