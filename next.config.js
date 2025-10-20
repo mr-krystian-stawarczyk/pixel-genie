@@ -1,64 +1,115 @@
-/** @type {import('next-sitemap').IConfig} */
+const path = require("path");
+const fs = require("fs");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+	enabled: process.env.ANALYZE === "true",
+});
 
-const config = {
-	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de",
-	generateRobotsTxt: true,
-	targetDirectory: "public",
+/**
+ * ✅ Funkcja pomocnicza – preload dla lokalnych fontów.
+ * Tworzy <link rel="preload"> dla fontów z public/fonts/poppins.
+ */
+function addFontPreload() {
+	const fontDir = path.join(__dirname, "public/fonts/poppins");
+	if (!fs.existsSync(fontDir)) return [];
+	const fonts = fs.readdirSync(fontDir).filter((f) => f.endsWith(".ttf"));
+	return fonts.map((file) => ({
+		rel: "preload",
+		as: "font",
+		href: `/fonts/poppins/${file}`,
+		type: "font/ttf",
+		crossOrigin: "anonymous",
+	}));
+}
 
-	transform: async (config, url) => {
-		let priority = 0.8;
-		let changefreq = "weekly";
+/** @type {import('next').NextConfig} */
+const nextConfig = withBundleAnalyzer({
+	// ✅ Stabilne podstawy
+	reactStrictMode: true,
+	compress: true,
+	swcMinify: true,
 
-		// 🏠 Strona główna
-		if (url === `${config.siteUrl}` || url === `${config.siteUrl}/`) {
-			priority = 1.0;
-			changefreq = "daily";
-		}
-		// 🚀 Nowy klaster — najwyższy priorytet
-		else if (url.startsWith(`${config.siteUrl}/webseitenerstellung/`)) {
-			priority = 1.0;
-			changefreq = "daily";
-		}
-		// 🌐 Webentwicklung (niższy, bo bardziej techniczny)
-		else if (url.startsWith(`${config.siteUrl}/webentwicklung/`)) {
-			priority = 0.8;
-			changefreq = "weekly";
-		}
-		// 📈 SEO, Webdesign, Blog
-		else if (
-			url.includes("/webseitenerstellen") ||
-			url.includes("/suchmaschinenoptimierung") ||
-			url.includes("/webdesign") ||
-			url.includes("/webdesignblog")
-		) {
-			priority = 0.9;
-			changefreq = "weekly";
-		}
-		// 📱 Branding i Social Media
-		else if (
-			url.includes("/branding") ||
-			url.includes("/socialmediamarketing")
-		) {
-			priority = 0.8;
-			changefreq = "weekly";
-		}
-		// 🧾 Strony informacyjne
-		else if (
-			url.includes("/impressum") ||
-			url.includes("/kontakt") ||
-			url.includes("/pixelgeniehistory")
-		) {
-			priority = 0.5;
-			changefreq = "monthly";
-		}
+	// ✅ Static export dla Netlify
+	output: "export",
+	trailingSlash: true,
 
-		return {
-			loc: url,
-			changefreq,
-			priority,
-			lastmod: new Date().toISOString(),
-		};
+	// ✅ Wyłączony Next Image optimizer (Netlify go nie obsługuje)
+	images: {
+		unoptimized: true,
+		formats: ["image/avif", "image/webp"],
+		domains: ["cdn.sanity.io", "pixel-genie.de"],
 	},
-};
 
-module.exports = config;
+	// ✅ Ścieżki & optymalizacja builda
+	outputFileTracingRoot: path.join(__dirname),
+
+	experimental: {
+		optimizeCss: true,
+		optimizePackageImports: [
+			"react-icons",
+			"lucide-react",
+			"react-bootstrap",
+			"react-countup",
+			"framer-motion",
+		],
+		scrollRestoration: true,
+	},
+
+	// ✅ Preload lokalnych fontów (automatycznie)
+	async head() {
+		return { link: addFontPreload() };
+	},
+
+	// ✅ Nagłówki cache'ujące dla zasobów statycznych
+	async headers() {
+		if (process.env.NODE_ENV === "development") return [];
+		return [
+			{
+				source: "/_next/static/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+				],
+			},
+			{
+				source: "/assets/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+				],
+			},
+			{
+				source: "/fonts/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+					{
+						key: "Access-Control-Allow-Origin",
+						value: "*",
+					},
+				],
+			},
+			{
+				source: "/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "max-age=0, must-revalidate",
+					},
+				],
+			},
+		];
+	},
+
+	// ✅ ESLint nie blokuje builda
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
+});
+
+module.exports = nextConfig;
