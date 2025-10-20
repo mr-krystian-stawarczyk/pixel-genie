@@ -1,10 +1,15 @@
 /** @type {import('next-sitemap').IConfig} */
-
 const config = {
 	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de",
 	generateRobotsTxt: true,
-	outDir: "./out", // Next export → sitemap w out/
+
+	// 👇 wymuszenie generowania bezpośrednio do /public/
+	outDir: "public",
+	targetDirectory: "public",
+
 	autoLastmod: true,
+	changefreq: "weekly",
+	priority: 0.8,
 
 	transform: async (config, url) => {
 		let priority = 0.8;
