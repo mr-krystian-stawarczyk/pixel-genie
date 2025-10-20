@@ -13,6 +13,7 @@ export default function SEOStats({ cityData }) {
 		boroughs,
 		economicHighlights,
 		historySnippet,
+		population,
 	} = cityData;
 
 	const cityName = city ? city.charAt(0).toUpperCase() + city.slice(1) : "";
@@ -28,7 +29,9 @@ export default function SEOStats({ cityData }) {
 			aria-label={`Statistische Daten zu ${cityName}`}
 			style={surfaceStyle}
 		>
-			<h2 className="h4 fw-semibold mb-3">📊 Lokale Fakten über {cityName}</h2>
+			<h2 className="h4 fw-semibold mb-3">
+				📊 Lokale Fakten über {cityName} {""} - Einwohner: ({population})
+			</h2>
 
 			{historySnippet && (
 				<p style={muted} className="mb-4">

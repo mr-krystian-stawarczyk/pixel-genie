@@ -34,6 +34,7 @@ export async function getStaticProps({ params }) {
 		keywords,
 		heading1,
 		heading2,
+		population,
 	} = generateCitySEO(cityName, city);
 
 	// ✅ JSON-LD dla Google
@@ -92,6 +93,7 @@ export async function getStaticProps({ params }) {
 			cityDescription,
 			heading1,
 			heading2,
+			population,
 		},
 	};
 }
@@ -114,6 +116,7 @@ export default function CityPage({
 	cityDescription,
 	heading1,
 	heading2,
+	population,
 }) {
 	const router = useRouter();
 
@@ -314,6 +317,7 @@ export default function CityPage({
 					<h2 className="text-2xl font-semibold mb-4 text-center">
 						Über {cityName}
 					</h2>
+					<h3 className="text-center">Einwohner: {population}</h3>
 					{city.historySnippet && (
 						<p className="mb-4 text-center">{city.historySnippet}</p>
 					)}{" "}

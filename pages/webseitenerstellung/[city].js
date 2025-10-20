@@ -30,6 +30,7 @@ export async function getStaticProps({ params }) {
 		cityDescription,
 		heading1,
 		heading2,
+		population,
 	} = generateWebseiteSEO(cityName, city);
 
 	const jsonLd = {
@@ -67,6 +68,7 @@ export async function getStaticProps({ params }) {
 			jsonLd,
 			heading1,
 			heading2,
+			population,
 		},
 	};
 }
@@ -85,6 +87,7 @@ export default function WebseiteErstellungCity({
 	jsonLd,
 	heading1,
 	heading2,
+	population,
 }) {
 	const router = useRouter();
 	if (router.isFallback) return <div>Laden…</div>;
@@ -178,6 +181,7 @@ export default function WebseiteErstellungCity({
 				<Row className="my-5">
 					<Col md={6}>
 						<h3 className="font-semibold mb-2">Regionale Highlights:</h3>
+						<h4>Einwohner:{population}</h4>
 						<ul className="list-disc list-inside">
 							{Object.entries(city.economicHighlights).map(([key, val]) => (
 								<li key={key}>
