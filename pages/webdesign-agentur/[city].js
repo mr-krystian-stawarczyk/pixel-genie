@@ -261,7 +261,7 @@ export default function WebdesignAgenturCityPage({ cityData, seo }) {
 								Was kostet professionelles Webdesign?
 							</h3>
 							<p>
-								Die Preise beginnen ab 700 € für einfache Unternehmensseiten.
+								Die Preise beginnen ab 200 € für einfache Unternehmensseiten.
 								Individuelle Projekte mit CMS, Shop oder Animationen werden
 								maßgeschneidert kalkuliert.
 							</p>
@@ -309,7 +309,7 @@ export default function WebdesignAgenturCityPage({ cityData, seo }) {
 								name: "Was kostet professionelles Webdesign?",
 								acceptedAnswer: {
 									"@type": "Answer",
-									text: "Webdesign-Projekte starten ab 700 €, abhängig von Funktionalität, Designaufwand und CMS-Integration.",
+									text: "Webdesign-Projekte starten ab 200 €, abhängig von Funktionalität, Designaufwand und CMS-Integration.",
 								},
 							},
 							{

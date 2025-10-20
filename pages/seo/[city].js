@@ -288,7 +288,7 @@ export default function SeoCityPage({ cityData, seo }) {
 								name: "Was kostet SEO in " + cityName + "?",
 								acceptedAnswer: {
 									"@type": "Answer",
-									text: "Die Kosten hängen vom Projektumfang ab. Lokale SEO-Pakete bei Pixel-Genie starten ab 450 € monatlich, inklusive technischer und inhaltlicher Optimierung.",
+									text: "Die Kosten hängen vom Projektumfang ab. Lokale SEO-Pakete bei Pixel-Genie starten ab 100 € monatlich, inklusive technischer und inhaltlicher Optimierung.",
 								},
 							},
 							{
