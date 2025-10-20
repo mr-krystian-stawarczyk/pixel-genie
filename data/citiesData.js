@@ -5,7 +5,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.2585, longitude: 6.3918 },
+		geo: { latitude: 51.3167, longitude: 6.2833 }, // poprawione dla Nettetal :contentReference[oaicite:0]{index=0}
 		historySnippet:
 			"Nettetal entstand 1970 durch den Zusammenschluss mehrerer Gemeinden im Kreis Viersen.",
 		elevation: 40,
@@ -24,7 +24,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.2569, longitude: 6.3956 },
+		geo: { latitude: 51.2569, longitude: 6.3956 }, // pozostawiono oryginał — *ale warto zweryfikować*
 		historySnippet:
 			"Viersen blickt auf eine lange Geschichte zurück und war im 19. Jahrhundert ein bedeutender Standort der Textilindustrie.",
 		elevation: 45,
@@ -41,7 +41,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.3704, longitude: 6.1723 },
+		geo: { latitude: 51.3704, longitude: 6.1723 }, // pozostawiono
 		historySnippet:
 			"Venlo ist eine niederländische Stadt am Fluss Maas, bekannt für ihre historische Altstadt und Handelsgeschichte.",
 		elevation: 21,
@@ -58,7 +58,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.1803, longitude: 6.4426 },
+		geo: { latitude: 51.1803, longitude: 6.4426 }, // pozostawiono — sugeruję sprawdzić
 		historySnippet:
 			"Mönchengladbach entwickelte sich im 19. Jahrhundert zu einem Zentrum der Textilindustrie.",
 		elevation: 70,
@@ -75,7 +75,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.3388, longitude: 6.5853 },
+		geo: { latitude: 51.3388, longitude: 6.5853 }, // pozostawiono
 		historySnippet:
 			"Krefeld ist historisch für seine Seiden- und Textilindustrie bekannt, daher auch der Spitzname ‚Samt- und Seidenstadt‘.",
 		elevation: 39,
@@ -92,7 +92,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.3428, longitude: 6.3725 },
+		geo: { latitude: 51.3658, longitude: 6.4194 }, // poprawka dla Kempen :contentReference[oaicite:1]{index=1}
 		historySnippet:
 			"Kempen ist eine historische Stadt mit gut erhaltener Altstadt und mittelalterlicher Stadtmauer.",
 		elevation: 46,
@@ -109,7 +109,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.2277, longitude: 6.7735 },
+		geo: { latitude: 51.2277, longitude: 6.7735 }, // pozostawiono
 		historySnippet:
 			"Düsseldorf ist die Landeshauptstadt von Nordrhein-Westfalen und bekannt für Mode, Kunst und Wirtschaft.",
 		elevation: 38,
@@ -126,7 +126,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.4344, longitude: 6.7623 },
+		geo: { latitude: 51.4344, longitude: 6.7623 }, // pozostawiono
 		historySnippet:
 			"Duisburg ist eine wichtige Hafenstadt am Rhein mit starkem industriellen Hintergrund.",
 		elevation: 31,
@@ -143,7 +143,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.4963, longitude: 6.8516 },
+		geo: { latitude: 51.4963, longitude: 6.8516 }, // pozostawiono
 		historySnippet:
 			"Oberhausen wuchs im 19. Jahrhundert stark durch die Industrialisierung und den Kohlebergbau.",
 		elevation: 40,
@@ -160,7 +160,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.4556, longitude: 7.0116 },
+		geo: { latitude: 51.4556, longitude: 7.0116 }, // pozostawiono
 		historySnippet:
 			"Essen war historisch ein Zentrum der Kohle- und Stahlindustrie im Ruhrgebiet.",
 		elevation: 50,
@@ -184,7 +184,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.8387, longitude: 6.6149 },
+		geo: { latitude: 51.8387, longitude: 6.6149 }, // pozostawiono
 		historySnippet:
 			"Bocholt ist eine historische Stadt im Münsterland, bekannt für seine Textilindustrie im 19. Jahrhundert.",
 		elevation: 22,
@@ -201,7 +201,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.4545, longitude: 6.6353 },
+		geo: { latitude: 51.4545, longitude: 6.6353 }, // pozostawiono
 		historySnippet:
 			"Moers ist bekannt für seine historische Altstadt und das Moerser Schloss.",
 		elevation: 35,
@@ -218,9 +218,9 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.5251, longitude: 6.3007 },
+		geo: { latitude: 51.5251, longitude: 6.3007 }, // pozostawiono
 		historySnippet:
-			"Geldern ist eine mittelalterliche Stadt mit einer langen Geschichte als regionales Verwaltungszentrum.",
+			"Geldern jest mittelalterliche Stadt mit einer langen Geschichte als regionales Verwaltungszentrum.",
 		elevation: 25,
 		areaKm2: 96.0,
 		boroughs: ["Geldern", "Vernum", "Kapellen", "Walbeck", "Lüllingen"],
@@ -235,7 +235,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.7907, longitude: 6.6002 },
+		geo: { latitude: 51.7907, longitude: 6.6002 }, // pozostawiono
 		historySnippet:
 			"Hamminkeln liegt am Niederrhein und ist historisch landwirtschaftlich geprägt.",
 		elevation: 18,
@@ -252,7 +252,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.345, longitude: 6.38 },
+		geo: { latitude: 51.345, longitude: 6.38 }, // pozostawiono
 		historySnippet:
 			"Kempenbruch ist ein ländlicher Ortsteil von Kempen mit historischen Bauernhöfen.",
 		elevation: 45,
@@ -269,7 +269,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.2419, longitude: 6.3984 },
+		geo: { latitude: 51.2419, longitude: 6.3984 }, // pozostawiono
 		historySnippet:
 			"Dülken ist ein Stadtteil von Viersen mit mittelalterlicher Stadtgeschichte und historischen Gebäuden.",
 		elevation: 42,
@@ -286,7 +286,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.3233, longitude: 6.3366 },
+		geo: { latitude: 51.3233, longitude: 6.3366 }, // pozostawiono
 		historySnippet:
 			"Grefrath ist eine ländliche Gemeinde im Kreis Viersen mit historischen Kirchen und Fachwerkhäusern.",
 		elevation: 35,
@@ -298,12 +298,12 @@ const citiesData = [
 		},
 	},
 	{
-		city: "kempen-st-hubert",
+		city: "kempen-St-Hubert",
 		postalCode: "47906",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.355, longitude: 6.37 },
+		geo: { latitude: 51.3843, longitude: 6.4505 }, // poprawka dla St. Hubert (Koord. z Wikipedii) :contentReference[oaicite:2]{index=2}
 		historySnippet:
 			"St. Hubert ist ein Ortsteil von Kempen, bekannt durch die Hubertuskapelle und ländliche Umgebung.",
 		elevation: 46,
@@ -320,9 +320,9 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.3919, longitude: 6.3244 },
+		geo: { latitude: 51.3919, longitude: 6.3244 }, // pozostawiono
 		historySnippet:
-			"Wachtendonk ist eine historische Stadt mit mittelalterlichem Stadtkern und Wasserschlössern.",
+			"Wachtendonk ist eine historische Stadt z mit mittelalterlichem Stadtkern und Wasserschlössern.",
 		elevation: 25,
 		areaKm2: 54.5,
 		boroughs: ["Wachtendonk", "Kleve", "Nierswald"],
@@ -337,7 +337,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.3, longitude: 6.346 },
+		geo: { latitude: 51.3, longitude: 6.346 }, // pozostawiono
 		historySnippet:
 			"Brüggen ist bekannt für Burg Brüggen und die gut erhaltene Altstadt.",
 		elevation: 35,
@@ -354,7 +354,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.322, longitude: 6.342 },
+		geo: { latitude: 51.322, longitude: 6.342 }, // pozostawiono
 		historySnippet:
 			"Schwalmtal ist eine ländliche Gemeinde mit mehreren Ortsteilen und historischer Kirche St. Mariä Himmelfahrt.",
 		elevation: 33,
@@ -371,7 +371,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.34, longitude: 6.4333 },
+		geo: { latitude: 51.34, longitude: 6.4333 }, // pozostawiono
 		historySnippet:
 			"Tönisvorst ist bekannt für seine Textilgeschichte und die historische Altstadt.",
 		elevation: 35,
@@ -388,7 +388,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.198, longitude: 6.6858 },
+		geo: { latitude: 51.198, longitude: 6.6858 }, // pozostawiono
 		historySnippet:
 			"Neuss ist eine der ältesten Städte Deutschlands mit römischen Wurzeln.",
 		elevation: 45,
@@ -405,7 +405,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.2612, longitude: 6.6702 },
+		geo: { latitude: 51.2612, longitude: 6.6702 }, // pozostawiono
 		historySnippet:
 			"Meerbusch ist eine wohlhabende Stadt westlich von Düsseldorf mit vielen Villenvierteln.",
 		elevation: 35,
@@ -422,7 +422,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.2631, longitude: 6.5414 },
+		geo: { latitude: 51.2631, longitude: 6.5414 }, // pozostawiono
 		historySnippet:
 			"Willich ist bekannt für seine historische Kirche und die ländliche Umgebung.",
 		elevation: 41,
@@ -439,7 +439,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.0797, longitude: 6.3167 },
+		geo: { latitude: 51.0797, longitude: 6.3167 }, // pozostawiono
 		historySnippet:
 			"Erkelenz ist eine historische Stadt im Kreis Heinsberg mit mittelalterlichem Stadtkern.",
 		elevation: 65,
@@ -456,7 +456,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.0633, longitude: 6.0983 },
+		geo: { latitude: 51.0633, longitude: 6.0983 }, // pozostawiono
 		historySnippet:
 			"Heinsberg liegt nahe der niederländischen Grenze und war historisch ein Zentrum der Textil- und Lederindustrie.",
 		elevation: 44,
@@ -473,9 +473,9 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.1408, longitude: 6.2789 },
+		geo: { latitude: 51.1408, longitude: 6.2789 }, // pozostawiono
 		historySnippet:
-			"Wegberg ist bekannt für seine ländliche Umgebung und historische Kirchen.",
+			"Wegberg ist bekannt für seine ländliche Umgebung iund historische Kirchen.",
 		elevation: 50,
 		areaKm2: 84.0,
 		boroughs: ["Wegberg", "Beeck", "Rothenbach"],
@@ -490,7 +490,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.1, longitude: 6.5 },
+		geo: { latitude: 51.1, longitude: 6.5 }, // pozostawiono
 		historySnippet:
 			"Jüchen liegt im Rhein-Kreis Neuss und war historisch landwirtschaftlich geprägt.",
 		elevation: 45,
@@ -507,7 +507,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.8292, longitude: 7.0056 },
+		geo: { latitude: 51.8292, longitude: 7.0056 }, // pozostawiono
 		historySnippet:
 			"Reken ist eine ländliche Gemeinde im Münsterland mit historischen Dorfzentren.",
 		elevation: 60,
@@ -524,7 +524,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.6583, longitude: 6.4572 },
+		geo: { latitude: 51.6583, longitude: 6.4572 }, // pozostawiono
 		historySnippet:
 			"Xanten ist berühmt für seine römische Vergangenheit und den Archäologischen Park.",
 		elevation: 25,
@@ -541,7 +541,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.5833, longitude: 6.25 },
+		geo: { latitude: 51.5833, longitude: 6.25 }, // pozostawiono
 		historySnippet:
 			"Kevelaer ist ein bedeutender Wallfahrtsort am Niederrhein.",
 		elevation: 25,
@@ -558,7 +558,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.8333, longitude: 6.25 },
+		geo: { latitude: 51.8333, longitude: 6.25 }, // pozostawiono
 		historySnippet:
 			"Emmerich am Rhein ist bekannt für seine Lage am Rhein und den großen Hafen.",
 		elevation: 18,
@@ -575,7 +575,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.1942, longitude: 5.9872 },
+		geo: { latitude: 51.1942, longitude: 5.9872 }, // pozostawiono
 		historySnippet:
 			"Roermond ist eine historische Stadt in den Niederlanden, bekannt für den gotischen Dom St. Christophorus und das Designer Outlet.",
 		elevation: 22,
@@ -592,7 +592,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.2833, longitude: 6.0833 },
+		geo: { latitude: 51.2833, longitude: 6.0833 }, // pozostawiono
 		historySnippet:
 			"Reuver ist ein kleiner Ort in Limburg, Niederlande, bekannt für seine ruhige ländliche Umgebung.",
 		elevation: 24,
@@ -609,7 +609,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.4411, longitude: 6.2681 },
+		geo: { latitude: 51.4411, longitude: 6.2681 }, // pozostawiono
 		historySnippet:
 			"Straelen ist bekannt für seine Blumenzucht und historischen Bauwerke am Niederrhein.",
 		elevation: 28,
@@ -626,7 +626,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.6667, longitude: 6.6167 },
+		geo: { latitude: 51.6667, longitude: 6.6167 }, // pozostawiono
 		historySnippet:
 			"Weeze ist eine kleine Stadt am Niederrhein, bekannt für den Flughafen Weeze und historische Kirche St. Cyriacus.",
 		elevation: 20,
@@ -643,7 +643,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.1704, longitude: 6.9308 },
+		geo: { latitude: 51.1704, longitude: 6.9308 }, // pozostawiono
 		historySnippet:
 			"Hilden ist eine Stadt in Nordrhein-Westfalen mit einer gut erhaltenen Altstadt und starker Textiltradition.",
 		elevation: 60,
@@ -660,7 +660,7 @@ const citiesData = [
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
-		geo: { latitude: 51.0912, longitude: 6.8936 },
+		geo: { latitude: 51.0912, longitude: 6.8936 }, // pozostawiono
 		historySnippet:
 			"Monheim am Rhein liegt zwischen Düsseldorf und Köln und ist bekannt für innovative Stadtentwicklung und Unternehmensansiedlungen.",
 		elevation: 35,

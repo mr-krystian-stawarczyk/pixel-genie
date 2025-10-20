@@ -20,8 +20,18 @@ export default function Header1() {
 	const { theme } = useTheme();
 	const sectionRef = useRef(null);
 	const [showParticles, setShowParticles] = useState(false);
-
 	useEffect(() => {
+		const prefersReducedMotion = window.matchMedia(
+			"(prefers-reduced-motion: reduce)"
+		).matches;
+		const isDesktop = window.innerWidth > 768;
+
+		// 🔹 uruchom wszystkie efekty (np. IntersectionObserver, liczniki itd.)
+		// tu możesz zostawić np. setIsVisible lub inne eventy
+
+		// 🔹 particles tylko na desktop
+		if (!isDesktop || prefersReducedMotion) return;
+
 		const timer = setTimeout(() => setShowParticles(true), 1000);
 		return () => clearTimeout(timer);
 	}, []);
@@ -41,7 +51,7 @@ export default function Header1() {
 					left: 0,
 					width: "100%",
 					height: "100vh",
-					zIndex: -1,
+
 					overflow: "hidden",
 					background:
 						theme === "light"
@@ -54,7 +64,7 @@ export default function Header1() {
 			</div>
 
 			{/* Główna treść */}
-			<Container className="header-content-container d-flex flex-column justify-content-center align-items-center text-center mt-sm-5">
+			<Container className="header-content-container d-flex flex-column justify-content-center align-items-center text-center mt-5">
 				<Card className="bg-transparent border-0 blur p-md-3 p-md-5 mt-xs-5">
 					<Card.Body>
 						<h1 className="text-bold mb-3">{t("h1")}</h1>

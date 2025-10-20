@@ -24,6 +24,12 @@ const config = {
 		} else if (url.startsWith(`${config.siteUrl}/webentwicklung/`)) {
 			priority = 0.9;
 			changefreq = "weekly";
+		} else if (url.startsWith(`${config.siteUrl}/seo/`)) {
+			priority = 0.9;
+			changefreq = "weekly";
+		} else if (url.startsWith(`${config.siteUrl}/webdesign-agentur/`)) {
+			priority = 0.9;
+			changefreq = "weekly";
 		} else if (
 			url.includes("/webseitenerstellen") ||
 			url.includes("/suchmaschinenoptimierung") ||

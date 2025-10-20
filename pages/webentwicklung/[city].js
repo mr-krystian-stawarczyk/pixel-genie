@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { Container, Row, Col, ButtonGroup, Button } from "react-bootstrap";
 import Link from "next/link";
 import { generateCitySEO } from "@/lib/generateCitySEO";
+import dynamic from "next/dynamic";
+const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 
 export async function getStaticPaths() {
 	const paths = citiesData.map((city) => ({
@@ -284,27 +286,11 @@ export default function CityPage({
 					</Col>
 				</Row>
 				{/* Lokalny dowód zaufania */}
-				<Row className="my-3">
-					{city.testimonials && city.testimonials.length > 0 && (
-						<section className="mb-8">
-							<h2 className="text-2xl font-semibold mb-4">
-								Kundenstimmen aus {cityName}
-							</h2>
-							<div className="space-y-6">
-								{city.testimonials.map((t, idx) => (
-									<blockquote
-										key={idx}
-										className="border-l-4 border-blue-400 pl-4 italic"
-									>
-										<p className="mb-2">“{t.quote}”</p>
-										<footer className="text-sm">
-											— {t.author}, {t.company}
-										</footer>
-									</blockquote>
-								))}
-							</div>
-						</section>
-					)}
+				<Row className="my-5">
+					<h2 className="text-2xl font-semibold mb-4 text-center">
+						Unser Standort in {cityName}
+					</h2>
+					<CityMap key={city.city} cityData={city} height={320} />
 				</Row>
 
 				<Row>
@@ -384,17 +370,37 @@ export default function CityPage({
 						<h3 className="text-xl font-semibold mb-4 text-center">
 							Weitere Standorte in der Nähe von {cityName}
 						</h3>
-						<Row>
+						<Row className="justify-content-center">
 							{citiesData
 								.filter((c) => c.city !== city.city)
-								.slice(0, 24) // więcej, jeśli chcesz
+								.slice(0, 20)
 								.map((c, i) => (
-									<Col key={i} xs={12} sm={6} md={4} lg={3} className="mb-3">
+									<Col
+										key={i}
+										xs={12}
+										sm={6}
+										md={4}
+										lg={3}
+										className="mb-3 d-flex justify-content-center"
+									>
 										<Link
-											href={`/webentwicklung/${c.city}`}
-											className="text-blue-500 hover:underline d-block text-center"
+											href={`/webentwicklung/${c.city.toLowerCase()}`}
+											className="d-flex align-items-center justify-content-center text-decoration-none fw-medium text-center rounded-3"
+											style={{
+												color: "var(--text-color)",
+												backgroundColor: "rgba(255,255,255,0.05)",
+												border: "1px solid rgba(255,255,255,0.1)",
+												minHeight: "56px",
+												maxWidth: "220px",
+												width: "100%",
+												padding: "0.5rem 0.75rem",
+												whiteSpace: "normal",
+												wordBreak: "break-word",
+												transition: "all 0.3s ease",
+											}}
 										>
-											Webdesign & SEO in {capitalize(c.city)}
+											Webentwicklung{" "}
+											{c.city.charAt(0).toUpperCase() + c.city.slice(1)}
 										</Link>
 									</Col>
 								))}
@@ -410,6 +416,58 @@ export default function CityPage({
 						? → Sehen Sie unsere Angebote für Webdesign in {cityName}.
 					</p>
 				</Row>
+				{/* ✅ FAQ JSON-LD – Rich Snippets für Google */}
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							"@context": "https://schema.org",
+							"@type": "FAQPage",
+							mainEntity: [
+								{
+									"@type": "Question",
+									name: `Was macht eine professionelle Webentwicklung in ${cityName} aus?`,
+									acceptedAnswer: {
+										"@type": "Answer",
+										text: `Professionelle Webentwicklung in ${cityName} umfasst maßgeschneiderte Lösungen mit modernem Design, schneller Ladezeit und SEO-Optimierung.`,
+									},
+								},
+								{
+									"@type": "Question",
+									name: `Wie lange dauert die Webentwicklung einer Website in ${cityName}?`,
+									acceptedAnswer: {
+										"@type": "Answer",
+										text: `In ${cityName} dauert die Entwicklung einer Website im Durchschnitt 2–4 Wochen, abhängig von Umfang, Design und technischen Anforderungen.`,
+									},
+								},
+								{
+									"@type": "Question",
+									name: `Was kostet eine Website-Entwicklung in ${cityName}?`,
+									acceptedAnswer: {
+										"@type": "Answer",
+										text: `Die Kosten für Webentwicklung in ${cityName} beginnen bei etwa 499 € für einfache Seiten und können je nach Funktionen bis zu mehreren tausend Euro betragen.`,
+									},
+								},
+								{
+									"@type": "Question",
+									name: `Bieten Sie auch Webpflege oder Support in ${cityName} an?`,
+									acceptedAnswer: {
+										"@type": "Answer",
+										text: `Ja, Pixel-Genie bietet in ${cityName} auch laufende Wartung, Updates und Performance-Monitoring für bestehende Webseiten an.`,
+									},
+								},
+								{
+									"@type": "Question",
+									name: `Warum sollte ich Pixel-Genie für Webentwicklung in ${cityName} wählen?`,
+									acceptedAnswer: {
+										"@type": "Answer",
+										text: `Pixel-Genie vereint Design, Technik und SEO – für Websites, die nicht nur funktionieren, sondern überzeugen und konvertieren.`,
+									},
+								},
+							],
+						}),
+					}}
+				/>
 			</Container>
 		</>
 	);

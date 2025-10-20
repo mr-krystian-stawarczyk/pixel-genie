@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
 import { generateWebseiteSEO } from "@/lib/generateWebseiteSEO";
+import dynamic from "next/dynamic";
+const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 
 const handleEmailClick = () => {
 	window.location.href = "mailto:mr.krystian.stawarczyk@gmail.com";
@@ -228,7 +230,25 @@ export default function WebseiteErstellungCity({
 						verbessern? Pixel-Genie bietet alles aus einer Hand.
 					</p>
 				</Row>
+				<Row className="my-5">
+					<h2 className="text-2xl font-semibold mb-4 text-center">
+						Unser Standort in {cityName}
+					</h2>
+					<CityMap key={city.city} cityData={city} height={320} />
+				</Row>
 
+				<Row className="my-5">
+					<h2 className="text-2xl font-semibold mb-4 text-center">
+						Unser Prozess der Webseitenerstellung in {cityName}
+					</h2>
+					<ol className="list-decimal list-inside space-y-2 text-center">
+						<p>Briefing & Zieldefinition</p>
+						<p>Konzeption & UX-Design</p>
+						<p>Entwicklung mit Next.js oder WordPress</p>
+						<p>SEO & Performance-Optimierung</p>
+						<p>Launch & Betreuung</p>
+					</ol>
+				</Row>
 				{/* FAQ Sekcja */}
 				<Row className="my-5">
 					<h2 className="text-2xl font-semibold mb-4 text-center">
@@ -421,17 +441,37 @@ export default function WebseiteErstellungCity({
 					<h3 className="text-xl font-semibold mb-3 text-center">
 						Weitere Städte, in denen wir Webseiten erstellen:
 					</h3>
-					<Row>
+					<Row className="justify-content-center">
 						{citiesData
 							.filter((c) => c.city !== city.city)
 							.slice(0, 20)
 							.map((c, i) => (
-								<Col key={i} xs={12} sm={6} md={4} lg={3} className="mb-3">
+								<Col
+									key={i}
+									xs={12}
+									sm={6}
+									md={4}
+									lg={3}
+									className="mb-3 d-flex justify-content-center"
+								>
 									<Link
-										href={`/webseitenerstellung/${c.city}`}
-										className="text-blue-500 hover:underline d-block text-center"
+										href={`/webentwicklung/${c.city.toLowerCase()}`}
+										className="d-flex align-items-center justify-content-center text-decoration-none fw-medium text-center rounded-3"
+										style={{
+											color: "var(--text-color)",
+											backgroundColor: "rgba(255,255,255,0.05)",
+											border: "1px solid rgba(255,255,255,0.1)",
+											minHeight: "56px",
+											maxWidth: "220px",
+											width: "100%",
+											padding: "0.5rem 0.75rem",
+											whiteSpace: "normal",
+											wordBreak: "break-word",
+											transition: "all 0.3s ease",
+										}}
 									>
-										Webseite erstellen in {capitalize(c.city)}
+										Webseite Erstellen{" "}
+										{c.city.charAt(0).toUpperCase() + c.city.slice(1)}
 									</Link>
 								</Col>
 							))}

@@ -34,8 +34,8 @@ function ParticlesComponent() {
 				},
 				particles: {
 					color: { value: "#003681" },
-					move: { enable: true, speed: 0.8, outModes: { default: "out" } },
-					number: { value: 40, density: { enable: true, area: 800 } },
+					number: { value: 30, density: { enable: true, area: 900 } },
+					move: { enable: true, speed: 0.5 },
 					opacity: { value: 0.9, random: true },
 					shape: { type: "circle" },
 					size: { value: 6, random: true },
