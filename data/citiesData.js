@@ -6,7 +6,7 @@ const citiesData = [
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
 		population: 41700,
-		geo: { latitude: 51.3167, longitude: 6.2833 }, // poprawione dla Nettetal :contentReference[oaicite:0]{index=0}
+		geo: { latitude: 51.3167, longitude: 6.2833 },
 		historySnippet:
 			"Nettetal entstand 1970 durch den Zusammenschluss mehrerer Gemeinden im Kreis Viersen.",
 		elevation: 40,
@@ -98,7 +98,7 @@ const citiesData = [
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
 		population: 36500,
-		geo: { latitude: 51.3658, longitude: 6.4194 }, // poprawka dla Kempen :contentReference[oaicite:1]{index=1}
+		geo: { latitude: 51.3658, longitude: 6.4194 },
 		historySnippet:
 			"Kempen ist eine historische Stadt mit gut erhaltener Altstadt und mittelalterlicher Stadtmauer.",
 		elevation: 46,
@@ -315,13 +315,13 @@ const citiesData = [
 		},
 	},
 	{
-		city: "kempen-St-Hubert",
+		city: "kempen-st-hubert",
 		postalCode: "47906",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "mr.krystian.stawarczyk@gmail.com",
 		population: 8000,
-		geo: { latitude: 51.3843, longitude: 6.4505 }, // poprawka dla St. Hubert (Koord. z Wikipedii) :contentReference[oaicite:2]{index=2}
+		geo: { latitude: 51.3843, longitude: 6.4505 },
 		historySnippet:
 			"St. Hubert ist ein Ortsteil von Kempen, bekannt durch die Hubertuskapelle und ländliche Umgebung.",
 		elevation: 46,

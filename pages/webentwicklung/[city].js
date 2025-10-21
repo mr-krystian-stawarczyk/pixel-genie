@@ -1,32 +1,35 @@
 // pages/webentwicklung/[city].js
 import Head from "next/head";
-import citiesData from "@/data/citiesData"; // Twój plik z danymi miast
+import citiesData from "@/data/citiesData";
 import { useRouter } from "next/router";
-import { Container, Row, Col, ButtonGroup, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
 import { generateCitySEO } from "@/lib/generateCitySEO";
 import dynamic from "next/dynamic";
+
 const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 
 export async function getStaticPaths() {
 	const paths = citiesData.map((city) => ({
-		params: { city: city.city },
+		params: { city: city.city.toLowerCase() },
 	}));
 	return { paths, fallback: false };
 }
 const handleEmailClick = () => {
-	window.location.href = "mailto:mr.krystian.stawarczyk@gmail.com";
+	if (typeof window !== "undefined") {
+		window.location.href = "mailto:mr.krystian.stawarczyk@gmail.com";
+	}
 };
-
 export async function getStaticProps({ params }) {
-	const city = citiesData.find((c) => c.city === params.city);
+	const city = citiesData.find(
+		(c) => c.city.toLowerCase() === params.city.toLowerCase()
+	);
+
 	if (!city) {
 		return { notFound: true };
 	}
 
 	const cityName = capitalize(city.city);
-
-	// ✅ Nowy SEO generator
 	const {
 		seoTitle,
 		seoDescription,
@@ -37,26 +40,25 @@ export async function getStaticProps({ params }) {
 		population,
 	} = generateCitySEO(cityName, city);
 
-	// ✅ JSON-LD dla Google
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "LocalBusiness",
 		name: "Pixel-Genie Webentwicklung",
 		image: "https://pixel-genie.de/logo.png",
-		"@id": `https://pixel-genie.de/webentwicklung/${city.city}`,
-		url: `https://pixel-genie.de/webentwicklung/${city.city}`,
-		telephone: city.phone,
+		"@id": `https://pixel-genie.de/webentwicklung/${params.city.toLowerCase()}`,
+		url: `https://pixel-genie.de/webentwicklung/${params.city.toLowerCase()}`,
+		telephone: city.phone ?? "",
 		address: {
 			"@type": "PostalAddress",
-			streetAddress: city.address,
-			postalCode: city.postalCode,
+			streetAddress: city.address ?? "",
+			postalCode: city.postalCode ?? "",
 			addressLocality: cityName,
 			addressCountry: "DE",
 		},
 		geo: {
 			"@type": "GeoCoordinates",
-			latitude: city.geo.latitude,
-			longitude: city.geo.longitude,
+			latitude: city.geo?.latitude ?? 0,
+			longitude: city.geo?.longitude ?? 0,
 		},
 		sameAs: ["https://www.facebook.com/pixel.genie.de"],
 		areaServed: cityName,
@@ -67,16 +69,16 @@ export async function getStaticProps({ params }) {
 				reviewCount: city.rating.count,
 			},
 		}),
-		...(city.reviews &&
+		...(Array.isArray(city.reviews) &&
 			city.reviews.length > 0 && {
 				review: city.reviews.map((rev) => ({
 					"@type": "Review",
-					author: rev.author,
-					datePublished: rev.date,
-					reviewBody: rev.body,
+					author: rev.author ?? "",
+					datePublished: rev.date ?? "",
+					reviewBody: rev.body ?? "",
 					reviewRating: {
 						"@type": "Rating",
-						ratingValue: rev.rating,
+						ratingValue: rev.rating ?? 5,
 					},
 				})),
 			}),
@@ -103,7 +105,6 @@ function capitalize(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// Wymuszamy motyw dark dla tej strony
 CityPage.theme = "dark";
 
 export default function CityPage({
@@ -119,11 +120,7 @@ export default function CityPage({
 	population,
 }) {
 	const router = useRouter();
-
-	// Jeśli strona jest w fallback — możesz pokazać loader
-	if (router.isFallback) {
-		return <div>Laden…</div>;
-	}
+	if (router.isFallback) return <div>Laden…</div>;
 
 	return (
 		<>
@@ -136,16 +133,15 @@ export default function CityPage({
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:url"
-					content={`https://pixel-genie.de/webentwicklung/${city.city}`}
+					content={`https://pixel-genie.de/webentwicklung/${city.city.toLowerCase()}`}
 				/>
 				<meta
 					property="og:image"
 					content={city.ogImage ?? "https://pixel-genie.de/og-default.jpg"}
 				/>
-				<meta name="robots" content="index, follow" />
 				<link
 					rel="canonical"
-					href={`https://pixel-genie.de/webentwicklung/${city.city}`}
+					href={`https://pixel-genie.de/webentwicklung/${city.city.toLowerCase()}`}
 				/>
 				<script
 					type="application/ld+json"
@@ -153,13 +149,13 @@ export default function CityPage({
 				/>
 			</Head>
 
-			<Container className="min-h-screen  px-6 md:px-10 py-10 my-5 pt-2">
+			<Container className="min-h-screen px-6 md:px-10 py-10 my-5 pt-2">
 				<Row className="mt-5">
 					<h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">
 						{heading1}
 					</h1>
 					<Row className="my-5">
-						<Col md={6} className="text-center">
+						<Col className="text-center">
 							<h2 className="text-2xl md:text-3xl font-semibold mb-10 text-center text-gray-400">
 								{heading2}
 							</h2>
@@ -171,21 +167,46 @@ export default function CityPage({
 								sichtbar machen.
 							</p>
 						</Col>
-						<Col md={6} className="text-center">
-							<h2 className="text-2xl font-semibold mt-10 mb-4">
-								Unsere Services in {cityName}
-							</h2>
-							<ul className="list-disc list-inside space-y-2 mb-8">
-								<li>Individuelle Webentwicklung & Webdesign in {cityName}</li>
-								<li>SEO (Suchmaschinenoptimierung) speziell für {cityName}</li>
-								<li>Online-Marketing & Branding lokal in {cityName}</li>
-								<li>Performance-Analyse, Content-Optimierung</li>
-								<li>Responsive & mobile-first Websites</li>
-							</ul>
-						</Col>{" "}
 					</Row>
 				</Row>
+				<Row>
+					<Col className="text-center">
+						<h2 className="text-2xl font-semibold mt-5 mb-6">
+							Unsere Services in {cityName}
+						</h2>
 
+						<div className="flex flex-col items-center space-y-4 mb-10">
+							<div className="flex items-center gap-3 text-lg">
+								<span className="text-3xl">💻</span>
+								<span>
+									Individuelle Webentwicklung & Webdesign in {cityName}
+								</span>
+							</div>
+
+							<div className="flex items-center gap-3 text-lg">
+								<span className="text-3xl">🔍</span>
+								<span>
+									SEO (Suchmaschinenoptimierung) speziell für {cityName}
+								</span>
+							</div>
+
+							<div className="flex items-center gap-3 text-lg">
+								<span className="text-3xl">📣</span>
+								<span> Marketing & Branding lokal in {cityName}</span>
+							</div>
+
+							<div className="flex items-center gap-3 text-lg">
+								<span className="text-3xl">📊</span>
+								<span> Performance-Analyse & Content-Optimierung</span>
+							</div>
+
+							<div className="flex items-center gap-3 text-lg">
+								<span className="text-3xl">📱</span>
+								<span> Responsive & mobile-first Websites</span>
+							</div>
+						</div>
+					</Col>
+				</Row>
 				<Row className="my-5">
 					<Col>
 						<h2 className="text-2xl font-semibold my-4 text-center">

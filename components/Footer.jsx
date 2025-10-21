@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { AiOutlineFacebook } from "react-icons/ai";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import FooterLinksSEO from "./FooterLinksSEO";
 
 function Footer() {
 	const { t } = useTranslation();
@@ -147,6 +148,12 @@ function Footer() {
 									mr.krystian.stawarczyk@gmail.com
 								</a>
 							</Card>
+						</Col>
+					</Row>
+
+					<Row>
+						<Col>
+							<FooterLinksSEO />
 						</Col>
 					</Row>
 

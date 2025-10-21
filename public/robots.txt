@@ -13,4 +13,3 @@ Host: https://pixel-genie.de
 
 # Sitemaps
 Sitemap: https://pixel-genie.de/sitemap.xml
-Sitemap: https://pixel-genie.de/sitemap-0.xml

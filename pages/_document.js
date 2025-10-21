@@ -17,8 +17,7 @@ export default function Document() {
 				<link
 					rel="icon"
 					href="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
-				/>{" "}
-				<link rel="canonical" href="https://pixel-genie.de" />
+				/>
 			</Head>
 			<body>
 				<Main />
