@@ -162,7 +162,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									article.details.map((p, i) => (
 										<p
 											key={i}
-											className="text-dark"
 											dangerouslySetInnerHTML={{
 												__html: p
 													.replace(/\n/g, "<br>")
