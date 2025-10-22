@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import blogPosts from "@/data/blogPosts";
-import ShareBar from "@/components/ShareBar";
+import ShareButtons from "@/components/ShareButtons";
 import { gaEvent } from "@/lib/analytics";
 
 const SITE_ORIGIN = "https://pixel-genie.de";
@@ -29,13 +29,14 @@ export async function getStaticProps({ params }) {
 export default function BlogPostPage({ article, next, prev, related }) {
 	if (!article) return null;
 
-	const pageUrl = `${SITE_ORIGIN}/tips/${article.slug}`;
+	const pageUrl = `${SITE_ORIGIN}/tips/${article.slug}/`;
 	const ogImage = `${SITE_ORIGIN}${article.imgSrc}`;
 	const ogTitle = article.title;
 	const ogDescription =
 		article.description ||
 		(Array.isArray(article.details) ? article.details[0] : "");
 
+	// JSON-LD
 	const articleJsonLd = {
 		"@context": "https://schema.org",
 		"@type": "Article",
@@ -83,18 +84,26 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				<meta name="description" content={ogDescription} />
 				<link rel="canonical" href={pageUrl} />
 
+				{/* --- Open Graph --- */}
+				<meta property="og:locale" content="de_DE" />
+				<meta property="og:type" content="article" />
 				<meta property="og:title" content={ogTitle} />
 				<meta property="og:description" content={ogDescription} />
-				<meta property="og:image" content={ogImage} />
 				<meta property="og:url" content={pageUrl} />
-				<meta property="og:type" content="article" />
-				<meta property="og:site_name" content="Pixel-Genie" />
-
+				<meta property="og:site_name" content="Pixel Genie" />
+				<meta property="og:image" content={ogImage} />
+				<meta property="og:image:secure_url" content={ogImage} />
+				<meta property="og:image:width" content="1200" />
+				<meta property="og:image:height" content="630" />
+				<meta property="og:image:type" content="image/jpeg" />
+				<meta property="og:image:type" content="image/jpeg" />
+				{/* --- Twitter --- */}
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content={ogTitle} />
 				<meta name="twitter:description" content={ogDescription} />
 				<meta name="twitter:image" content={ogImage} />
 
+				{/* --- JSON-LD --- */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -102,12 +111,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-				/>
-				<link
-					rel="preload"
-					as="image"
-					href={article.imgSrc}
-					imagesrcset={`${article.imgSrc} 1x`}
 				/>
 			</Head>
 
@@ -136,6 +139,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								{article.description && (
 									<p className="lead">{article.description}</p>
 								)}
+
 								{Array.isArray(article.keypoints) && (
 									<div className="bg-light p-3 rounded mb-3">
 										<h5 className="fw-bold mb-2 text-dark">Key Takeaways</h5>
@@ -146,11 +150,12 @@ export default function BlogPostPage({ article, next, prev, related }) {
 										</ul>
 									</div>
 								)}
+
 								{Array.isArray(article.details) &&
 									article.details.map((p, i) => <p key={i}>{p}</p>)}
 
-								<ShareBar
-									pageUrl={pageUrl}
+								<ShareButtons
+									url={pageUrl}
 									title={article.title}
 									description={ogDescription}
 								/>
@@ -158,23 +163,23 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								<div className="d-flex gap-3 mt-4">
 									<Button
 										href="#kontakt"
-										className="btn-success "
+										className="btn-success"
 										onClick={handleCta}
 									>
 										<span className="text-white">
 											Website-Analyse starten 🚀
 										</span>
 									</Button>
-									<Link href="/webdesignblog" className="btn btn-nav ">
+									<Link href="/webdesignblog" className="btn btn-nav">
 										<span className="text-white">← Zurück zum Blog</span>
 									</Link>
 								</div>
 
 								<hr className="my-4" />
-								<div className="d-flex justify-content-between">
+								<div className="d-flex justify-content-between bg-white rounded p-3">
 									{prev && (
 										<Link
-											href={`/tips/${prev.slug}`}
+											href={`/tips/${prev.slug}/`}
 											className="text-decoration-none"
 										>
 											← {prev.title}
@@ -182,7 +187,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									)}
 									{next && (
 										<Link
-											href={`/tips/${next.slug}`}
+											href={`/tips/${next.slug}/`}
 											className="text-decoration-none"
 										>
 											{next.title} →
@@ -193,40 +198,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 						</Card>
 					</Col>
 				</Row>
-
-				{Array.isArray(related) && related.length > 0 && (
-					<Row className="justify-content-center mt-5">
-						<Col lg={8}>
-							<h2 className="h4 fw-semibold mb-3">Weitere Empfehlungen</h2>
-							<Row>
-								{related.map((r) => (
-									<Col md={6} lg={4} key={r.slug} className="mb-3 hover">
-										<Card className="h-100 bg-transparent border-1">
-											<Link
-												href={`/tips/${r.slug}`}
-												className="text-decoration-none"
-											>
-												<Image
-													src={r.imgSrc}
-													alt={r.title}
-													width={600}
-													height={315}
-													style={{ borderRadius: "12px", objectFit: "cover" }}
-												/>
-												<Card.Body>
-													<h3 className="h6 fw-semibold">{r.title}</h3>
-													<p className="text-muted mb-0">
-														{new Date(r.date).toLocaleDateString("de-DE")}
-													</p>
-												</Card.Body>
-											</Link>
-										</Card>
-									</Col>
-								))}
-							</Row>
-						</Col>
-					</Row>
-				)}
 			</Container>
 		</>
 	);

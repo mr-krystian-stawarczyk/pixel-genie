@@ -20,20 +20,22 @@
   external_node_modules = ["sharp", "react", "next", "next-themes"]
 
 ############################
-# ✅ Redirects (potrzebne przy static export)
+# ✅ Redirects (statyczne strony Next.js)
 ############################
+# ❗ UWAGA: NIE kierujemy wszystkiego do /index.html!
+# To był powód błędnego canonicala i OG meta w LinkedIn/Facebook.
+# Prawidłowa wersja – pozwala Netlify serwować /tips/slug/index.html itp.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/:splat"
   status = 200
 
 ############################
-# ✅ Nagłówki bezpieczeństwa + cache
+# ✅ Nagłówki bezpieczeństwa + cache globalny
 ############################
 [[headers]]
   for = "/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
@@ -41,26 +43,37 @@
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
 
 ############################
-# ✅ Fonty lokalne – długi cache
+# ✅ Statyczne zasoby (JS, CSS, assets)
 ############################
 [[headers]]
-  for = "/fonts/*"
+  for = "/_next/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-    Content-Type = "font/ttf"
 
-############################
-# ✅ Obrazy (Next.js static / public)
-############################
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "font/ttf"
+    Access-Control-Allow-Origin = "*"
+
 ############################
-# ✅ HTML – krótki cache (odświeżanie po deployu)
+# ✅ HTML – krótki cache dla dynamicznych stron
 ############################
 [[headers]]
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=60, must-revalidate"
+
+############################
+# ✅ Blog /tips/ — pełne wyłączenie cache (dla OG tagów)
+############################
+[[headers]]
+  for = "/tips/*"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"

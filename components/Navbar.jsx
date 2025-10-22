@@ -334,26 +334,6 @@ const NavbarComp = ({ toggleTheme }) => {
 								<BsFillSunFill style={{ color: "yellow" }} />
 							)}
 						</Button>
-
-						<div className="d-lg-none text-center my-2">
-							<div className="d-flex justify-content-center gap-3">
-								{[
-									{ end: 31, label: "Kunden", suffix: "+" },
-									{ end: 72, label: "Projekte", suffix: "+" },
-									{ end: 87, label: "Reichweite", suffix: "K+" },
-								].map((item, idx) => (
-									<div key={idx}>
-										<h6 className="fw-bold mb-0">
-											{isVisible && (
-												<CountUp start={0} end={item.end} duration={3} />
-											)}
-											{item.suffix}
-										</h6>
-										<p className="mb-0 small">{item.label}</p>
-									</div>
-								))}
-							</div>
-						</div>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

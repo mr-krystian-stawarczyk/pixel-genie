@@ -226,36 +226,67 @@ function Blog2({ pageUrl = PAGE_URL }) {
 															</ul>
 														</div>
 													)}
-												<Accordion>
-													<Accordion.Item eventKey="0">
-														<Accordion.Header>Mehr lesen</Accordion.Header>
-														<Accordion.Body className="text-start text-dark">
-															{Array.isArray(article.details) &&
-																article.details.map((p, i) => (
-																	<p key={i} className="text-dark">
-																		{p}
-																	</p>
-																))}
-															<div className="mt-3 d-flex gap-2">
+
+												{/* Adaptive accordion / mobile redirect */}
+												{Array.isArray(article.details) &&
+													article.details.length > 0 && (
+														<div className="mt-3">
+															{/* Desktop: klasyczny Accordion */}
+															<div className="d-none d-md-block">
+																<Accordion>
+																	<Accordion.Item eventKey="0">
+																		<Accordion.Header>
+																			Mehr lesen
+																		</Accordion.Header>
+																		<Accordion.Body className="text-start text-dark">
+																			{article.details.map((p, i) => (
+																				<p
+																					key={i}
+																					className="text-dark"
+																					dangerouslySetInnerHTML={{
+																						__html: p.replace(/\n/g, "<br>"),
+																					}}
+																				/>
+																			))}
+																			<div className="mt-3 d-flex flex-wrap gap-2 ">
+																				<Link
+																					href={`/tips/${article.slug}`}
+																					className="btn btn-outline-dark"
+																					onClick={() =>
+																						handleReadMore(article.slug)
+																					}
+																				>
+																					Weiterlesen →
+																				</Link>
+																				<Button
+																					href="#kontakt"
+																					className="btn-nav text-white m-1"
+																				>
+																					<span className="text-white">
+																						Kontakt aufnehmen
+																					</span>
+																				</Button>
+																			</div>
+																		</Accordion.Body>
+																	</Accordion.Item>
+																</Accordion>
+															</div>
+
+															{/* Mobile: po prostu przycisk „Mehr lesen” → slug */}
+															<div className="d-block d-md-none">
 																<Link
 																	href={`/tips/${article.slug}`}
-																	className="btn btn-outline-dark"
+																	className="btn btn-nav w-100 mt-2 "
 																	onClick={() => handleReadMore(article.slug)}
 																>
-																	Weiterlesen →
-																</Link>
-																<Button
-																	href="#kontakt"
-																	className="btn-nav text-white"
-																>
 																	<span className="text-white">
-																		Kontakt aufnehmen
+																		{" "}
+																		Mehr lesen →
 																	</span>
-																</Button>
+																</Link>
 															</div>
-														</Accordion.Body>
-													</Accordion.Item>
-												</Accordion>
+														</div>
+													)}
 											</Card.Body>
 										</Card>
 									</article>
@@ -281,9 +312,9 @@ function Blog2({ pageUrl = PAGE_URL }) {
 					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
 					className="position-fixed bottom-0 end-0 m-3 bg-secondary text-white p-3 rounded-4 shadow-lg"
-					style={{ zIndex: 1000, maxWidth: 150 }}
+					style={{ zIndex: 1000, maxWidth: 200 }}
 				>
-					<p className="mb-2 fw-bold">Kostenlose Website Analyse sichern</p>
+					<p className="mb-2 fw-bold">Kostenlose Analyse sichern</p>
 					<div className="d-flex gap-2">
 						<Button size="sm" href="#kontakt" className="btn-success fw-bold">
 							Starten
