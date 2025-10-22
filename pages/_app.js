@@ -8,6 +8,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
+import { gaPageview } from "@/lib/analytics";
 
 function App({ Component, pageProps }) {
 	const router = useRouter();
@@ -36,6 +37,12 @@ function App({ Component, pageProps }) {
 
 		return () => clearTimeout(timer);
 	}, [router.asPath]);
+
+	useEffect(() => {
+		const handleRouteChange = (url) => gaPageview(url);
+		router.events.on("routeChangeComplete", handleRouteChange);
+		return () => router.events.off("routeChangeComplete", handleRouteChange);
+	}, [router.events]);
 
 	return (
 		<CookiesProvider>

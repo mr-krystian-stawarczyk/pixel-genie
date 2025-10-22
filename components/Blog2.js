@@ -1,323 +1,297 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Container, Row, Col, Card, Button, Accordion } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
+// /components/Blog2.js
+// ✅ Slider + GA + jasne kropki (CSS w globals.css) + link do /tips/[slug] + crawlable lista.
+import React, { useEffect, useMemo, useState } from "react";
+import Head from "next/head";
+import Link from "next/link";
+import {
+	Container,
+	Row,
+	Col,
+	Card,
+	Button,
+	Accordion,
+	ProgressBar,
+} from "react-bootstrap";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { MdOutlineSwipe } from "react-icons/md";
 import dynamic from "next/dynamic";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaCircleNotch } from "react-icons/fa6";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import blogPosts from "@/data/blogPosts";
+import { gaEvent } from "@/lib/analytics";
+import BlogIndexList from "./BlogIndexList";
 
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
-function Blog2() {
-	const { t, i18n } = useTranslation();
-	const sectionRef = useRef(null);
-	const [animate, setAnimate] = useState(false);
-	const [currentIndex, setCurrentIndex] = useState(0);
-	const [isMobile, setIsMobile] = useState(false);
+const SITE_ORIGIN = "https://pixel-genie.de";
+const PAGE_PATH = "/webdesignblog";
+const PAGE_URL = `${SITE_ORIGIN}${PAGE_PATH}`;
+
+const toDeDate = (iso) =>
+	new Date(iso).toLocaleDateString("de-DE", {
+		year: "numeric",
+		month: "2-digit",
+		day: "2-digit",
+	});
+
+function Blog2({ pageUrl = PAGE_URL }) {
 	const [articles, setArticles] = useState([]);
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const [shareMessage, setShareMessage] = useState("");
 
-	useEffect(() => {
-		// Check if the screen width is mobile size
-		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 768); // Adjust this breakpoint as needed
-		};
+	useEffect(() => setArticles(blogPosts), []);
 
-		handleResize(); // Check initial width
-		window.addEventListener("resize", handleResize);
+	const currentArticle = articles[currentIndex];
 
-		// Clean up event listener on unmount
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
+	const ogTitle =
+		currentArticle?.title || "Pixel-Genie Blog – Webdesign & SEO Insights";
+	const ogDescription =
+		currentArticle?.description ||
+		"Webdesign, SEO, Social Media & Conversion-Optimierung – lernen Sie, wie Sie Ihre Website profitabler machen.";
+	const ogImage = currentArticle?.imgSrc
+		? `${SITE_ORIGIN}${currentArticle.imgSrc}`
+		: `${SITE_ORIGIN}/assets/og-default.jpg`;
+	const publishedTime = currentArticle?.date || "2025-01-01";
 
-	useEffect(() => {
-		// Update articles whenever translations (t) change
-		const updateArticles = () => {
-			const translatedArticles = [
-				{
-					imgSrc: "/assets/webentwicklung-nettetal-design-seo4.png",
-					title: t("artic56"),
-					date: "27-08-2025",
-					details: t("artic57"),
-					details2: t("artic58"),
-					details3: t("artic59"),
-					details4: t("artic60"),
-					details5: t("artic61"),
+	const articleJsonLd = useMemo(
+		() => ({
+			"@context": "https://schema.org",
+			"@type": "Article",
+			headline: ogTitle,
+			description: ogDescription,
+			image: [ogImage],
+			author: {
+				"@type": "Organization",
+				name: "Pixel-Genie Webagentur Nettetal",
+				url: SITE_ORIGIN,
+			},
+			publisher: {
+				"@type": "Organization",
+				name: "Pixel-Genie",
+				logo: {
+					"@type": "ImageObject",
+					url: `${SITE_ORIGIN}/assets/pixel-genie-logo.png`,
 				},
-				{
-					imgSrc: "/assets/webentwicklung-nettetal-design-seo2.png",
-					title: t("artic50"),
-					date: "10-02-2025",
-					details: t("artic51"),
-					details2: t("artic52"),
-					details3: t("artic53"),
-					details4: t("artic54"),
-					details5: t("artic55"),
-				},
+			},
+			datePublished: publishedTime,
+			dateModified: publishedTime,
+			mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+		}),
+		[ogTitle, ogDescription, ogImage, pageUrl, publishedTime]
+	);
 
-				{
-					imgSrc: "/assets/artic8.png",
-					title: t("artic44"),
-					date: "20-07-2024",
-					details: t("artic45"),
-					details2: t("artic46"),
-					details3: t("artic47"),
-					details4: t("artic48"),
-					details5: t("artic49"),
-				},
-
-				{
-					imgSrc: "/assets/artic7.png",
-					title: t("artic38"),
-					date: "11-07-2024",
-					details: t("artic39"),
-					details2: t("artic40"),
-					details3: t("artic41"),
-					details4: t("artic42"),
-					details5: t("artic43"),
-				},
-				{
-					imgSrc: "/assets/artic4.png",
-					title: t("artic32"),
-					date: "18-06-2024",
-					details: t("artic33"),
-					details2: t("artic34"),
-					details3: t("artic35"),
-					details4: t("artic36"),
-					details5: t("artic37"),
-				},
-				{
-					imgSrc: "/assets/artic6.png",
-					title: t("artic26"),
-					date: "20-02-2024",
-					details: t("artic27"),
-					details2: t("artic28"),
-					details3: t("artic29"),
-					details4: t("artic30"),
-					details5: t("artic31"),
-				},
-				{
-					imgSrc: "/assets/artic5.png",
-					title: t("artic19"),
-					date: "07-12-2023",
-					details: t("artic21"),
-					details2: t("artic22"),
-					details3: t("artic23"),
-					details4: t("artic24"),
-					details5: t("artic25"),
-				},
-				{
-					imgSrc: "/assets/artic1.png",
-					title: t("artic13"),
-					date: "21-09-2023",
-					details: t("artic14"),
-					details2: t("artic15"),
-					details3: t("artic16"),
-					details4: t("artic17"),
-					details5: t("artic18"),
-				},
-				{
-					imgSrc: "/assets/artic2.png",
-					title: t("artic7"),
-					date: "10-07-2023",
-					details: t("artic8"),
-					details2: t("artic9"),
-					details3: t("artic10"),
-					details4: t("artic11"),
-					details5: t("artic12"),
-				},
-				{
-					imgSrc: "/assets/artic3.png",
-					title: t("artic1"),
-					date: "05-05-2023",
-					details: t("artic2"),
-					details2: t("artic3"),
-					details3: t("artic4"),
-					details4: t("artic5"),
-					details5: t("artic6"),
-				},
-
-				// Add more articles as needed
-			];
-			setArticles(translatedArticles);
-		};
-
-		updateArticles(); // Initial update
-	}, [t]);
-
-	const handleIntersection = (entries) => {
-		if (entries[0].isIntersecting) {
-			setAnimate(true);
-		}
-	};
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(handleIntersection);
-		observer.observe(sectionRef.current);
-		return () => observer.disconnect();
-	}, []);
-
-	const handleSwipe = (direction) => {
-		if (direction === "left") {
-			setCurrentIndex((prevIndex) =>
-				prevIndex === articles.length - 1 ? 0 : prevIndex + 1
-			);
-		} else if (direction === "right") {
-			setCurrentIndex((prevIndex) =>
-				prevIndex === 0 ? articles.length - 1 : prevIndex - 1
-			);
-		}
-	};
+	const blogListLd = useMemo(
+		() => ({
+			"@context": "https://schema.org",
+			"@type": "Blog",
+			name: "Pixel-Genie Blog",
+			url: pageUrl,
+			blogPost: articles.map((a) => ({
+				"@type": "BlogPosting",
+				headline: a.title,
+				image: [`${SITE_ORIGIN}${a.imgSrc}`],
+				datePublished: a.date,
+				dateModified: a.date,
+				url: `${SITE_ORIGIN}/tips/${a.slug}`,
+			})),
+		}),
+		[articles, pageUrl]
+	);
 
 	const settings = {
 		dots: true,
 		infinite: true,
-		speed: 1000,
-
-		slidesToShow: 3,
+		speed: 750,
+		slidesToShow: 1,
 		slidesToScroll: 1,
-		responsive: [
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-				},
-			},
-		],
+		autoplay: true,
+		autoplaySpeed: 9000,
+		arrows: false,
+		pauseOnHover: true,
+		beforeChange: (_curr, next) => setCurrentIndex(next),
 	};
 
+	const progress = useMemo(() => {
+		if (!articles.length) return 0;
+		return Math.round(((currentIndex + 1) / articles.length) * 100);
+	}, [currentIndex, articles.length]);
+
+	const handleReadMore = (slug) => gaEvent("blog_read_more_click", { slug });
+
 	return (
-		<Container fluid className="py-3 my-5" ref={sectionRef}>
-			<Row
-				className="justify-content-center align-items-center text-center mt-5"
-				id="tips"
-			>
-				<h1 className="my-5 bold">{t("blog3")}</h1>
-			</Row>
-			<Row className="justify-content-center align-items-center text-center">
-				{isMobile ? (
-					<Col lg={6} className="mx-auto my-2">
-						<AnimatePresence mode="wait">
-							<motion.div
-								key={currentIndex}
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								exit={{ opacity: 0 }}
-								transition={{ duration: 0.5 }}
-								drag="x"
-								dragConstraints={{ left: 0, right: 0 }}
-								dragElastic={0.8}
-								onDragEnd={(event, info) => {
-									if (info.offset.x > 50) {
-										handleSwipe("left");
-									} else if (info.offset.x < -50) {
-										handleSwipe("right");
-									}
-								}}
-							>
-								<Image
-									src={articles[currentIndex]?.imgSrc || ""}
-									width={400}
-									height={400}
-									className="responsive-image"
-									alt={articles[currentIndex]?.title || ""}
-									loading="lazy"
-								/>
-								<Card.Text className="mt-1">
-									<MdOutlineSwipe />
-								</Card.Text>
-								<Card className="bg-transparent border-0 shadow-lg">
-									<Card.Body>
-										<h1 className="py-2">
-											{articles[currentIndex]?.title || ""}
-										</h1>
+		<>
+			<Head>
+				<title>{ogTitle}</title>
+				<meta name="description" content={ogDescription} />
+				<meta name="robots" content="index, follow" />
+				<link rel="canonical" href={pageUrl} />
+				<meta property="og:title" content={ogTitle} />
+				<meta property="og:description" content={ogDescription} />
+				<meta property="og:image" content={ogImage} />
+				<meta property="og:image:width" content="1200" />
+				<meta property="og:image:height" content="630" />
+				<meta property="og:url" content={pageUrl} />
+				<meta property="og:type" content="website" />
+				<meta property="og:site_name" content="Pixel-Genie" />
+				<meta property="og:locale" content="de_DE" />
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:title" content={ogTitle} />
+				<meta name="twitter:description" content={ogDescription} />
+				<meta name="twitter:image" content={ogImage} />
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+				/>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListLd) }}
+				/>
+				<link
+					rel="preload"
+					as="image"
+					href="/assets/conversion-fehler.jpg"
+					imagesrcset="/assets/conversion-fehler.jpg 1x"
+				/>
+			</Head>
 
-										<Accordion>
-											<Accordion.Item eventKey="0">
-												<Accordion.Header>
-													{articles[currentIndex]?.date || ""}
-												</Accordion.Header>
-												<Accordion.Body>
-													{" "}
-													<p className="text-dark">
-														{articles[currentIndex]?.details || ""}
-													</p>
-													<p> {articles[currentIndex]?.details2 || ""}</p>
-													<p> {articles[currentIndex]?.details3 || ""}</p>
-													<p> {articles[currentIndex]?.details4 || ""}</p>
-													<p>{articles[currentIndex]?.details5 || ""}</p>
-													<p> {articles[currentIndex]?.details6 || ""}</p>{" "}
-													<Button href="#kontakt" className="my-2 btn-nav">
-														Kontakt
-													</Button>
-												</Accordion.Body>{" "}
-											</Accordion.Item>
-										</Accordion>
-									</Card.Body>
-								</Card>
-							</motion.div>
-						</AnimatePresence>
+			<Container as="section" id="tips" fluid className="py-5 my-5">
+				<Row className="justify-content-center text-center mb-4">
+					<Col lg={8}>
+						<h1 className="fw-bold display-5 mb-3">Pixel-Genie Blog</h1>
+						<h2 className=" fs-5">
+							Webdesign, SEO & Growth – praxisnahe Strategien, die Ihre Website
+							messbar profitabler machen.
+						</h2>
+						<div className="d-flex gap-2 justify-content-center">
+							<Button href="#kontakt" className="btn-nav text-white mt-2">
+								Gratis Website-Analyse 🚀
+							</Button>
+						</div>
 					</Col>
-				) : (
-					<Row>
-						<Col lg={12}>
-							<Slider {...settings}>
-								{articles.map((article, index) => (
-									<Col lg={3} key={index} className="my-3">
-										<Card className="bg-transparent border-0 rounded m-2 p-3 shadow-lg">
-											<Image
-												src={article.imgSrc}
-												width={250}
-												height={250}
-												className="responsive-image mx-auto"
-												alt={article.title}
-												priority
-											/>
+				</Row>
 
+				<Row className="justify-content-center text-center mb-5">
+					<Col lg={10}>
+						<Slider {...settings}>
+							{articles.map((article, index) => (
+								<Col key={`${article.slug}-${article.date}`} className="my-3">
+									<article itemScope itemType="https://schema.org/Article">
+										<Card className="bg-transparent border-0 rounded m-2 p-3 shadow-lg">
+											<div
+												className="position-relative w-100 d-flex justify-content-center align-items-center"
+												style={{
+													aspectRatio: "1200 / 630",
+													overflow: "hidden",
+													borderRadius: "16px",
+												}}
+											>
+												<Image
+													src={article.imgSrc}
+													alt={article.title}
+													width={1200}
+													height={630}
+													style={{
+														objectFit: "cover",
+														objectPosition: "center",
+													}}
+													sizes="(max-width: 768px) 100vw, 1200px"
+													priority={index === 0}
+													loading={index === 0 ? "eager" : "lazy"}
+												/>
+											</div>
 											<Card.Body>
-												{" "}
-												<Card.Text id="p-wrap" style={{ height: "150px" }}>
-													<h3 className="py-2">
-														<p>{article.title}</p>
-													</h3>
-												</Card.Text>
+												<h2 className="py-3 h3" itemProp="headline">
+													{article.title}
+												</h2>
+												<p itemProp="datePublished" content={article.date}>
+													{toDeDate(article.date)}
+												</p>
+												{article.description && (
+													<p itemProp="description">{article.description}</p>
+												)}
+												{Array.isArray(article.keypoints) &&
+													article.keypoints.length > 0 && (
+														<div className="text-start bg-light p-3 rounded mb-3">
+															<h5 className="fw-bold mb-2">
+																<FaCircleNotch className="text-success me-2" />
+																<span className="text-dark">Key Takeaways</span>
+															</h5>
+															<ul className="mb-0 text-dark">
+																{article.keypoints.map((p, i) => (
+																	<li key={i}>
+																		<span className="text-dark">{p}</span>
+																	</li>
+																))}
+															</ul>
+														</div>
+													)}
 												<Accordion>
 													<Accordion.Item eventKey="0">
-														<Accordion.Header>
-															<h5 className="text-bold text-dark">
-																{article.date}
-															</h5>
-														</Accordion.Header>
-														<Accordion.Body>
-															<p className="text-dark">{article.details}</p>
-															<p className="text-dark">{article.details2}</p>
-															<p className="text-dark">{article.details3}</p>
-															<p className="text-dark">{article.details4}</p>
-															<p className="text-dark">{article.details5}</p>
-															<p className="text-dark">
-																{article.details6}
-															</p>{" "}
-															<Button
-																href="#kontakt"
-																className="my-2 btn-nav text-white"
-															>
-																<span className="text-white">Kontakt</span>
-															</Button>
-														</Accordion.Body>{" "}
-													</Accordion.Item>{" "}
+														<Accordion.Header>Mehr lesen</Accordion.Header>
+														<Accordion.Body className="text-start text-dark">
+															{Array.isArray(article.details) &&
+																article.details.map((p, i) => (
+																	<p key={i} className="text-dark">
+																		{p}
+																	</p>
+																))}
+															<div className="mt-3 d-flex gap-2">
+																<Link
+																	href={`/tips/${article.slug}`}
+																	className="btn btn-outline-dark"
+																	onClick={() => handleReadMore(article.slug)}
+																>
+																	Weiterlesen →
+																</Link>
+																<Button
+																	href="#kontakt"
+																	className="btn-nav text-white"
+																>
+																	<span className="text-white">
+																		Kontakt aufnehmen
+																	</span>
+																</Button>
+															</div>
+														</Accordion.Body>
+													</Accordion.Item>
 												</Accordion>
 											</Card.Body>
 										</Card>
-									</Col>
-								))}
-							</Slider>
-						</Col>
-					</Row>
-				)}
-			</Row>
-		</Container>
+									</article>
+								</Col>
+							))}
+						</Slider>
+					</Col>
+				</Row>
+				<Row className="justify-content-center mb-2">
+					<Col lg={8}>
+						<ProgressBar
+							now={progress}
+							striped
+							variant="info"
+							style={{ height: 8 }}
+						/>
+					</Col>
+				</Row>
+				{/* Crawlable lista kart (SEO + UX) */}
+				<BlogIndexList posts={articles} />
+
+				<motion.div
+					initial={{ opacity: 0, y: 50 }}
+					animate={{ opacity: 1, y: 0 }}
+					className="position-fixed bottom-0 end-0 m-3 bg-secondary text-white p-3 rounded-4 shadow-lg"
+					style={{ zIndex: 1000, maxWidth: 150 }}
+				>
+					<p className="mb-2 fw-bold">Kostenlose Website Analyse sichern</p>
+					<div className="d-flex gap-2">
+						<Button size="sm" href="#kontakt" className="btn-success fw-bold">
+							Starten
+						</Button>
+					</div>
+				</motion.div>
+			</Container>
+		</>
 	);
 }
 

@@ -1,16 +1,22 @@
 :root {
 	--bg-color: #fff;
 	--text-color: #111;
+	--dot-color: #111;
+	--dot-color-active: #003681;
 }
 
 .light {
 	--bg-color: #fff;
 	--text-color: #111;
+	--dot-color: #111;
+	--dot-color-active: #003681;
 }
 
 .dark {
 	--bg-color: #111;
 	--text-color: #eee;
+	--dot-color: #eee; /* ✅ jasne kropki w dark */
+	--dot-color-active: #fff; /* aktywna biała */
 }
 
 body,
@@ -409,5 +415,21 @@ button:focus {
 }
 
 .leaflet-control-attribution {
+	font-size: 12px;
+}
+
+/* --- slick dots --- */
+.slick-dots li button:before {
+	color: var(--dot-color) !important;
+	opacity: 0.5 !important;
+}
+.slick-dots li.slick-active button:before {
+	color: var(--dot-color-active) !important;
+	opacity: 1 !important;
+}
+.slick-dots li {
+	margin: 0 6px;
+}
+.slick-dots li button:before {
 	font-size: 12px;
 }
