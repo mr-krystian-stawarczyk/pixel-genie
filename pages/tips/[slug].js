@@ -11,7 +11,7 @@ const SITE_ORIGIN = "https://pixel-genie.de";
 
 export async function getStaticPaths() {
 	const paths = blogPosts.map((p) => ({ params: { slug: p.slug } }));
-	return { paths, fallback: false };
+	return { paths, fallback: false }; // ✅ eksportuje wszystkie /tips/slug/
 }
 
 export async function getStaticProps({ params }) {
@@ -36,7 +36,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 		article.description ||
 		(Array.isArray(article.details) ? article.details[0] : "");
 
-	// JSON-LD
 	const articleJsonLd = {
 		"@context": "https://schema.org",
 		"@type": "Article",
@@ -92,11 +91,9 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				<meta property="og:url" content={pageUrl} />
 				<meta property="og:site_name" content="Pixel Genie" />
 				<meta property="og:image" content={ogImage} />
-				<meta property="og:image:secure_url" content={ogImage} />
 				<meta property="og:image:width" content="1200" />
 				<meta property="og:image:height" content="630" />
-				<meta property="og:image:type" content="image/jpeg" />
-				<meta property="og:image:type" content="image/jpeg" />
+
 				{/* --- Twitter --- */}
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content={ogTitle} />
@@ -106,11 +103,15 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				{/* --- JSON-LD --- */}
 				<script
 					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(articleJsonLd),
+					}}
 				/>
 				<script
 					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(breadcrumbLd),
+					}}
 				/>
 			</Head>
 
@@ -124,8 +125,14 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								width={1200}
 								height={630}
 								priority
-								style={{ borderRadius: "16px", objectFit: "cover" }}
+								sizes="(max-width: 768px) 100vw, 1200px"
+								style={{
+									borderRadius: "16px",
+									objectFit: "cover",
+									objectPosition: "center",
+								}}
 							/>
+
 							<Card.Body>
 								<h1 className="fw-bold my-4">{article.title}</h1>
 								<p className="text-muted mb-3">
@@ -152,15 +159,28 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								)}
 
 								{Array.isArray(article.details) &&
-									article.details.map((p, i) => <p key={i}>{p}</p>)}
+									article.details.map((p, i) => (
+										<p
+											key={i}
+											className="text-dark"
+											dangerouslySetInnerHTML={{
+												__html: p
+													.replace(/\n/g, "<br>")
+													.replace(/### (.*)/g, "<h3>$1</h3>")
+													.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
+											}}
+										/>
+									))}
 
+								{/* 🔗 Social share buttons */}
 								<ShareButtons
 									url={pageUrl}
 									title={article.title}
 									description={ogDescription}
 								/>
 
-								<div className="d-flex gap-3 mt-4">
+								{/* CTA */}
+								<div className="d-flex flex-wrap gap-3 mt-4">
 									<Button
 										href="#kontakt"
 										className="btn-success"
@@ -176,11 +196,13 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								</div>
 
 								<hr className="my-4" />
+
+								{/* Prev / Next navigation */}
 								<div className="d-flex justify-content-between bg-white rounded p-3">
 									{prev && (
 										<Link
 											href={`/tips/${prev.slug}/`}
-											className="text-decoration-none"
+											className="text-decoration-none fw-semibold"
 										>
 											← {prev.title}
 										</Link>
@@ -188,7 +210,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									{next && (
 										<Link
 											href={`/tips/${next.slug}/`}
-											className="text-decoration-none"
+											className="text-decoration-none fw-semibold"
 										>
 											{next.title} →
 										</Link>
@@ -196,6 +218,41 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								</div>
 							</Card.Body>
 						</Card>
+
+						{/* Optional: related posts preview */}
+						{Array.isArray(related) && related.length > 0 && (
+							<div className="mt-5">
+								<h3 className="fw-bold mb-4">Verwandte Artikel</h3>
+								<Row>
+									{related.map((r) => (
+										<Col md={4} key={r.slug} className="mb-3">
+											<Link
+												href={`/tips/${r.slug}/`}
+												className="text-decoration-none"
+											>
+												<Card className="border-0 shadow-sm h-100">
+													<Image
+														src={r.imgSrc}
+														alt={r.title}
+														width={400}
+														height={210}
+														style={{
+															borderRadius: "12px",
+															objectFit: "cover",
+														}}
+													/>
+													<Card.Body>
+														<h6 className="fw-semibold text-dark mb-0">
+															{r.title}
+														</h6>
+													</Card.Body>
+												</Card>
+											</Link>
+										</Col>
+									))}
+								</Row>
+							</div>
+						)}
 					</Col>
 				</Row>
 			</Container>
