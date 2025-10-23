@@ -251,26 +251,63 @@ function Blog2({ pageUrl = PAGE_URL }) {
 																					}}
 																				/>
 																			))}
-																			<div className="mt-3 d-flex flex-wrap gap-2">
+																			<div className="mt-4 d-flex flex-wrap justify-content-center gap-3">
+																				{/* 🔹 Przycisk „Weiterlesen” */}
 																				<Link
 																					href={`/tips/${article.slug}`}
-																					className="btn btn-outline-dark dark:btn-outline-light"
+																					className="btn-nav text-white fw-semibold px-4 py-2"
 																					onClick={() =>
 																						handleReadMore(article.slug)
 																					}
+																					style={{
+																						display: "inline-flex",
+																						alignItems: "center",
+																						justifyContent: "center",
+																						borderRadius: "12px",
+																						transition: "all 0.3s ease",
+																						boxShadow:
+																							"0 0 10px rgba(0, 150, 255, 0.4)",
+																					}}
 																				>
-																					<span className="text-primary">
-																						Weiterlesen →
-																					</span>
+																					<span className="me-1">
+																						Weiterlesen
+																					</span>{" "}
+																					→
 																				</Link>
-																				<Button
+
+																				{/* 🔹 Przycisk „Kontakt aufnehmen” */}
+																				<Link
 																					href="#kontakt"
-																					className="btn-primary m-1 hover"
+																					className="btn-premium-footer text-white fw-bold px-4 py-2"
+																					style={{
+																						display: "inline-flex",
+																						alignItems: "center",
+																						justifyContent: "center",
+																						borderRadius: "12px",
+																						background:
+																							"linear-gradient(90deg, rgba(0,123,255,0.9) 0%, rgba(0,212,255,0.9) 100%)",
+																						boxShadow:
+																							"0 0 15px rgba(0,200,255,0.3)",
+																						transition:
+																							"transform 0.25s ease, box-shadow 0.25s ease",
+																					}}
+																					onMouseEnter={(e) => {
+																						e.currentTarget.style.transform =
+																							"scale(1.05)";
+																						e.currentTarget.style.boxShadow =
+																							"0 0 25px rgba(0,212,255,0.6)";
+																					}}
+																					onMouseLeave={(e) => {
+																						e.currentTarget.style.transform =
+																							"scale(1)";
+																						e.currentTarget.style.boxShadow =
+																							"0 0 15px rgba(0,200,255,0.3)";
+																					}}
 																				>
 																					<span className="text-white">
 																						Kontakt aufnehmen
 																					</span>
-																				</Button>
+																				</Link>
 																			</div>
 																		</Accordion.Body>
 																	</Accordion.Item>

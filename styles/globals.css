@@ -806,3 +806,66 @@ button:focus {
 		display: none !important;
 	}
 }
+
+/* === SHAREBAR STYLES === */
+.sharebar-fixed {
+	pointer-events: none; /* nie blokuje scrolla */
+}
+
+.sharebar-fixed .share-section {
+	pointer-events: auto;
+	margin: 0;
+	padding: 0;
+}
+
+.sharebar-fixed .share-section h5 {
+	display: none; /* ukryj tekst "Teile diesen Artikel..." w sticky wersji */
+}
+
+/* Ikony w sticky sharebar — mniejsze, subtelny cień */
+.sharebar-fixed .share-btn {
+	width: 42px !important;
+	height: 42px !important;
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+}
+
+.sharebar-fixed .share-btn button {
+	width: 42px !important;
+	height: 42px !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Hover animacja – efekt jak przy brand logo */
+.sharebar-fixed .share-btn:hover {
+	transform: scale(1.15) rotate(2deg);
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.25),
+		inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile bar — poziomy układ */
+@media (max-width: 991px) {
+	.sharebar-fixed {
+		width: 100%;
+		background: rgba(15, 15, 15, 0.95);
+		border-top-left-radius: 14px;
+		border-top-right-radius: 14px;
+		backdrop-filter: blur(8px);
+	}
+
+	.sharebar-fixed .share-btn {
+		width: 40px !important;
+		height: 40px !important;
+	}
+}
+
+/* Drobne dostosowanie dla ciemnych motywów */
+@media (prefers-color-scheme: dark) {
+	.sharebar-fixed {
+		background: rgba(0, 0, 0, 0.85);
+	}
+}

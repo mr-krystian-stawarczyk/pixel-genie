@@ -1,4 +1,3 @@
-// /components/ShareButtons.jsx
 import React from "react";
 import {
 	FacebookShareButton,
@@ -51,34 +50,47 @@ export default function ShareButtons({ url, title, description }) {
 	];
 
 	return (
-		<div className="share-section my-5 text-center">
-			<motion.h5
-				className="fw-bold mb-4 gradient-text"
-				initial={{ opacity: 0, y: 10 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5 }}
-			>
+		<motion.section
+			className="share-section text-center my-5"
+			initial={{ opacity: 0, y: 30 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true }}
+			transition={{ duration: 0.6, ease: "easeOut" }}
+		>
+			<h5 className="fw-bold mb-4 gradient-text">
 				💬 Teile diesen Artikel, wenn er dir gefällt!
-			</motion.h5>
+			</h5>
 
-			<div className="d-flex justify-content-center flex-wrap gap-4">
+			<div
+				className="d-flex justify-content-center flex-wrap gap-3"
+				style={{ rowGap: "1.5rem" }}
+			>
 				{buttons.map(({ id, Button, Icon, color, label, props }) => (
 					<motion.div
 						key={id}
-						whileHover={{ scale: 1.15 }}
+						whileHover={{
+							scale: 1.1,
+							boxShadow: `0 0 20px ${color}55`,
+						}}
 						whileTap={{ scale: 0.95 }}
-						transition={{ type: "spring", stiffness: 300, damping: 15 }}
-						className="rounded-circle p-2 shadow-sm share-btn"
+						transition={{ type: "spring", stiffness: 260, damping: 14 }}
 						style={{
-							background:
-								"linear-gradient(145deg, rgba(255,255,255,0.9), rgba(240,240,240,0.6))",
+							borderRadius: "50%",
+							padding: "0.35rem",
+							background: "rgba(255,255,255,0.6)", // glass look
+							backdropFilter: "blur(8px)",
 							boxShadow:
-								"0 4px 8px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.6)",
+								"0 4px 10px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.3)",
+							transition: "all 0.25s ease",
 						}}
 					>
-						<Button {...props} aria-label={label} className="rounded-circle">
+						<Button
+							{...props}
+							aria-label={label}
+							className="rounded-circle hover"
+						>
 							<Icon
-								size={48}
+								size={52}
 								round
 								bgStyle={{ fill: color }}
 								iconFillColor="#fff"
@@ -87,6 +99,6 @@ export default function ShareButtons({ url, title, description }) {
 					</motion.div>
 				))}
 			</div>
-		</div>
+		</motion.section>
 	);
 }

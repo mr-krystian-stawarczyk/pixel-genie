@@ -24,7 +24,7 @@ export default function MobileFloatingCTA() {
 			<div className="text-center align-items-center justify-content-center">
 				<Link
 					href="#kontakt"
-					className="btn-premium-footer w-100 text-white fw-bold text-center py-1 "
+					className="btn-premium-footer w-100 text-white fw-bold text-center p-1 "
 					onClick={() =>
 						gaEvent("cta_click", {
 							category: "engagement",
