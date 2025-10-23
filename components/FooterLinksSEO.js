@@ -63,8 +63,11 @@ export default function FooterLinksSEO() {
 				{serviceGroups.map((group, gi) => (
 					<div
 						key={gi}
-						className="d-flex flex-column align-items-start small text-start mx-2"
-						style={{ minWidth: "200px", maxWidth: "260px" }}
+						className="d-flex flex-column align-items-center text-center small mx-2"
+						style={{
+							minWidth: "200px",
+							maxWidth: "260px",
+						}}
 					>
 						<h4
 							className="fw-semibold mb-2"

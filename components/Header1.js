@@ -98,7 +98,7 @@ export default function Header1() {
 					</Card.Body>
 
 					<Card.Body>
-						<div className="d-flex flex-column flex-md-row justify-content-center gap-3">
+						<div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
 							<Button
 								as={Link}
 								href="/webseitenerstellen"
@@ -108,14 +108,12 @@ export default function Header1() {
 							</Button>
 
 							<Button
-								className="btn-md btn-success hover"
 								as="button"
 								onClick={handleEmailClick}
+								className="btn-premium-footer text-white fw-bold"
 								style={{ cursor: "pointer" }}
 							>
-								<span className="text-white text-uppercase text-lg text-bold">
-									{t("h7")}
-								</span>
+								🚀 {t("h7")}
 							</Button>
 						</div>
 					</Card.Body>

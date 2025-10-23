@@ -16,10 +16,13 @@ function App({ Component, pageProps }) {
 
 	useEffect(() => setMounted(true), []);
 
-	// ✅ Lazy-load Google Analytics dopiero po 3 sekundach (nie blokuje LCP)
+	// ✅ Lazy-load Google Analytics po 3s (nie blokuje LCP)
 	useEffect(() => {
 		if (process.env.NODE_ENV !== "production") return;
+
 		const timer = setTimeout(() => {
+			if (window.gtagLoaded) return; // ✅ unikanie duplikacji
+
 			const script = document.createElement("script");
 			script.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`;
 			script.async = true;
@@ -29,6 +32,9 @@ function App({ Component, pageProps }) {
 			function gtag() {
 				dataLayer.push(arguments);
 			}
+			window.gtag = gtag;
+			window.gtagLoaded = true;
+
 			gtag("js", new Date());
 			gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID, {
 				page_path: window.location.pathname,
@@ -38,6 +44,7 @@ function App({ Component, pageProps }) {
 		return () => clearTimeout(timer);
 	}, [router.asPath]);
 
+	// ✅ Śledzenie zmian trasy (page_view)
 	useEffect(() => {
 		const handleRouteChange = (url) => gaPageview(url);
 		router.events.on("routeChangeComplete", handleRouteChange);

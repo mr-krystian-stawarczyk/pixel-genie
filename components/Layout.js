@@ -2,6 +2,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import MobileFloatingCTA from "./MobileFloatingCTA";
 import CookieConsent from "./CookieConsent";
 import localFont from "next/font/local";
 import { useTheme } from "next-themes";
@@ -41,6 +42,7 @@ const Layout = ({ children, pageProps }) => {
 			</header>
 
 			<main className="main-container">{children}</main>
+			<MobileFloatingCTA />
 
 			<footer>
 				<Footer />

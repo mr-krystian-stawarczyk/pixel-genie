@@ -208,7 +208,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							menuVariant="dark"
 							style={{ fontSize: "1rem" }}
 							show={dropdownOpen}
-							onToggle={setDropdownOpen}
+							onToggle={() => setDropdownOpen(!dropdownOpen)} // ✅ poprawione
 						>
 							<NavDropdown.Item as={Link} href="/webseitenerstellen">
 								<Button className="w-100 border-0 btn-nav shadow-sm">
@@ -238,23 +238,9 @@ const NavbarComp = ({ toggleTheme }) => {
 						</Nav.Link>
 						<Nav.Link as={Link} href="/pixelgeniehistory">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md ">
-								{t("nav5")}
+								Geschichte
 							</Button>
-						</Nav.Link>
-						<Button
-							onClick={() => {
-								toggleTheme();
-								setIsLightIcon((prev) => !prev);
-							}}
-							className="btn-nav border-0 btn-md py-2 mx-1"
-							aria-label="theme wechseln"
-						>
-							{isLightIcon ? (
-								<BsFillMoonFill style={{ color: "grey" }} />
-							) : (
-								<BsFillSunFill style={{ color: "yellow" }} />
-							)}
-						</Button>{" "}
+						</Nav.Link>{" "}
 						<Dropdown onSelect={handleDropdownSelect} className="border-0">
 							<Dropdown.Toggle className="btn-nav border-0">
 								<Image
@@ -297,6 +283,20 @@ const NavbarComp = ({ toggleTheme }) => {
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
+						<Button
+							onClick={() => {
+								toggleTheme();
+								setIsLightIcon((prev) => !prev);
+							}}
+							className="btn-nav border-0 btn-md py-2 mx-1 theme-toggle"
+							aria-label="theme wechseln"
+						>
+							{isLightIcon ? (
+								<BsFillMoonFill style={{ color: "grey" }} />
+							) : (
+								<BsFillSunFill style={{ color: "yellow" }} />
+							)}
+						</Button>{" "}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

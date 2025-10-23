@@ -137,7 +137,12 @@ function Footer() {
 						</Col>
 
 						{/* Kolumna 4 – Kontakt */}
-						<Col lg={3} sm={6} className="mx-auto" id="kontakt">
+						<Col
+							lg={3}
+							sm={6}
+							className="justify-content-center text-center align-items-center"
+							id="kontakt"
+						>
 							<Card className="bg-transparent border-0 shadow-lg pt-3 text-center">
 								<Card.Title
 									className="my-3 text-uppercase"
@@ -164,7 +169,7 @@ function Footer() {
 											"_blank"
 										)
 									}
-									className="btn-premium-footer hover"
+									className="btn-premium-footer hover mx-auto d-block"
 								>
 									✨ Jetzt E-Mail senden
 								</button>

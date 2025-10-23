@@ -272,23 +272,6 @@ a {
 	color: #003681;
 	font-size: 1.7rem;
 }
-.btn-nav {
-	background-color: #003681 !important;
-	border: none !important;
-
-	min-width: 10px; /* 🔹 równa minimalna szerokość */
-
-	/* === NAVBAR BUTTON FIX === */
-}
-
-@media (max-width: 992px) {
-	.btn-nav {
-		min-width: auto;
-
-		white-space: normal !important; /* 🔹 pozwól łamać tylko w menu mobilnym */
-		text-align: center;
-	}
-}
 
 .fade-enter {
 	opacity: 0;
@@ -320,30 +303,11 @@ a {
 	opacity: 0;
 	transform: translateX(-50px);
 }
-.btn-nav:hover {
-	background-color: #0047ab !important;
-	transform: scale(1.1);
-	transition: 0.4s ease-in-out;
-}
-.btn-nav-drop {
-	background-color: #003681 !important;
-}
-.btn-nav-drop:hover {
-	background-color: #0047ab !important;
-}
-#basic-nav-dropdown {
-	color: white !important;
-}
-@media (max-width: 1366px) {
-}
+
 @media (max-width: 768px) {
 	.responsive-image {
 		width: 80%;
 		height: 50%;
-	}
-	#basic-navbar-nav {
-		backdrop-filter: blur(10px) !important;
-		background: transparent !important;
 	}
 }
 @media (max-width: 991.98px) {
@@ -626,5 +590,219 @@ button:focus {
 		filter: drop-shadow(0 0 20px rgba(0, 123, 255, 0.6))
 			drop-shadow(0 0 35px rgba(102, 16, 242, 0.4));
 		transform: scale(1.03);
+	}
+}
+/* === LEKKI STYL PREMIUM DLA btn-nav === */
+
+/* 🟦 Styl podstawowy (jasny motyw) */
+.btn-nav {
+	background: linear-gradient(90deg, #003681, #0055c2) !important;
+	color: #fff !important;
+	border: none !important;
+	border-radius: 50px;
+	padding: 0.5rem 1.8rem;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	min-width: 10px;
+	box-shadow: 0 0 12px rgba(0, 86, 179, 0.35);
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease,
+		background 0.3s ease;
+}
+
+.btn-nav:hover {
+	background: linear-gradient(90deg, #0047ab, #007bff) !important;
+	transform: scale(1.06);
+	box-shadow: 0 0 22px rgba(0, 86, 179, 0.55);
+}
+
+/* 🟪 Styl dropdown (np. w menu rozwijanym) */
+.btn-nav-drop,
+#basic-nav-dropdown {
+	background: linear-gradient(90deg, #003681, #0047ab) !important;
+	color: #fff !important;
+	border: none !important;
+	border-radius: 50px;
+	font-weight: 500;
+
+	box-shadow: 0 0 12px rgba(0, 86, 179, 0.35);
+	transition:
+		background 0.3s ease,
+		box-shadow 0.3s ease,
+		transform 0.3s ease;
+}
+
+.btn-nav-drop:hover,
+#basic-nav-dropdown:hover,
+#basic-nav-dropdown.show {
+	background: linear-gradient(90deg, #0047ab, #007bff) !important;
+	transform: scale(1.05);
+	box-shadow: 0 0 20px rgba(0, 86, 179, 0.45);
+}
+
+/* === Dropdown menu === */
+.dropdown-menu {
+	background: rgba(0, 55, 130, 0.95) !important;
+	backdrop-filter: blur(10px);
+	border: none !important;
+	border-radius: 14px;
+	padding: 0.5rem;
+	box-shadow: 0 0 20px rgba(0, 86, 179, 0.4);
+}
+
+.dropdown-item {
+	color: #fff !important;
+	border-radius: 8px;
+	padding: 0.6rem 1rem;
+	font-weight: 500;
+	transition: all 0.25s ease-in-out;
+}
+
+.dropdown-item:hover {
+	background: linear-gradient(90deg, #0047ab, #007bff);
+	transform: scale(1.03);
+	color: #fff !important;
+}
+
+/* === MOBILE STYLING === */
+@media (max-width: 992px) {
+	.btn-nav,
+	.btn-nav-drop,
+	#basic-nav-dropdown {
+		min-width: auto;
+		text-align: center;
+		padding: 1rem 1.6rem !important;
+		margin: 0.4rem 0;
+		width: 90%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 12px;
+		/* subtelny efekt mobilny */
+		animation: mobileGlow 6s ease-in-out infinite;
+	}
+}
+
+/* 💫 efekt pulsacyjnego glow na mobile */
+@keyframes mobileGlow {
+	0%,
+	100% {
+		box-shadow: 0 0 12px rgba(0, 86, 179, 0.35);
+	}
+	50% {
+		box-shadow: 0 0 25px rgba(0, 86, 179, 0.6);
+	}
+}
+
+/* 🌙 === TRYB DARK === */
+.dark .btn-nav,
+.dark .btn-nav-drop,
+.dark #basic-nav-dropdown {
+	background: linear-gradient(90deg, #0047ab, #007bff) !important;
+	color: #fff !important;
+	box-shadow: 0 0 16px rgba(0, 123, 255, 0.4);
+}
+
+.dark .btn-nav:hover,
+.dark .btn-nav-drop:hover,
+.dark #basic-nav-dropdown:hover {
+	background: linear-gradient(90deg, #007bff, #66a3ff) !important;
+	box-shadow: 0 0 25px rgba(0, 123, 255, 0.6);
+	transform: scale(1.06);
+}
+
+/* Dropdown menu w dark */
+.dark .dropdown-menu {
+	background: rgba(15, 15, 30, 0.96) !important;
+	box-shadow: 0 0 25px rgba(0, 123, 255, 0.4);
+}
+
+.dark .dropdown-item {
+	color: #eee !important;
+}
+
+.dark .dropdown-item:hover {
+	background: linear-gradient(90deg, #0047ab, #007bff);
+	color: #fff !important;
+}
+
+/* 🔆 Tryb jasny (opcjonalny dla pewności) */
+.light .btn-nav,
+.light .btn-nav-drop,
+.light #basic-nav-dropdown {
+	background: linear-gradient(90deg, #003681, #0055c2) !important;
+	color: #fff !important;
+	box-shadow: 0 0 12px rgba(0, 86, 179, 0.35);
+}
+
+.light .btn-nav:hover,
+.light .btn-nav-drop:hover,
+.light #basic-nav-dropdown:hover {
+	background: linear-gradient(90deg, #0047ab, #007bff) !important;
+	box-shadow: 0 0 22px rgba(0, 86, 179, 0.55);
+}
+
+/* === FOCUS (dla dostępności) === */
+.btn-nav:focus,
+.btn-nav-drop:focus,
+#basic-nav-dropdown:focus {
+	outline: 2px solid #ff9800 !important;
+	outline-offset: 3px;
+}
+
+/* 📱 NAVBAR tło na mobile */
+@media (max-width: 768px) {
+	#basic-navbar-nav {
+		backdrop-filter: blur(15px) !important;
+		background: rgba(0, 0, 0, 0.45) !important;
+		border-radius: 15px;
+		padding: 1rem;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+		animation: fadeInMenu 0.6s ease-in-out;
+	}
+}
+
+@keyframes fadeInMenu {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* === MOBILE FLOATING CTA === */
+.mobile-floating-cta {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.85);
+	backdrop-filter: blur(10px);
+	padding: 0.8rem 1rem;
+	z-index: 1200;
+	box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.25);
+	animation: slideUpCta 0.6s ease forwards;
+}
+
+/* Animacja pojawienia się */
+@keyframes slideUpCta {
+	from {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+/* 🔒 Upewnij się, że tylko na mobile */
+@media (min-width: 768px) {
+	.mobile-floating-cta {
+		display: none !important;
 	}
 }

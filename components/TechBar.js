@@ -52,7 +52,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white">Google Business</h3>
+						<h3 className="text-white text-bold">Google Business</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -63,7 +63,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white">Facebook Ads</h3>
+						<h3 className="text-white text-bold">Facebook Ads</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -74,9 +74,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white">SEO Optimierung</h3>
+						<h3 className="text-white text-bold">SEO Optimierung</h3>
 					</div>
-					<div className="text-center">
+					<div className="text-center ">
 						<Image
 							src="/assets/webagentur-nettetal-google-analytics-seo.png"
 							alt="webagentur-nettetal-google-analytics-seo"
@@ -85,7 +85,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white">Google Analytics</h3>
+						<h3 className="text-white text-bold">Google Analytics</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -96,7 +96,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white">Webdesign</h3>
+						<h3 className="text-white text-bold">Webdesign</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -107,7 +107,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white">Stripe Online Bezahlung</h3>
+						<h3 className="text-white text-bold">Stripe Online Bezahlung</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -118,7 +118,7 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white">React Programmierung</h3>
+						<h3 className="text-white text-bold">React Programmierung</h3>
 					</div>
 				</Slider>
 			</Row>

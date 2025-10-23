@@ -46,7 +46,7 @@ function Web1() {
 			<motion.div ref={ref} animate={controls}>
 				<Container className="mt-5 py-5">
 					<Row className="justify-content-center text-center align-items-center">
-						<Col lg={5} className="mx-auto blur">
+						<Col lg={5} className="mx-auto ">
 							<Image
 								src="/assets/webentwicklung-nettetal-webseiten1.png"
 								width={400}
@@ -56,7 +56,7 @@ function Web1() {
 								priority
 							/>
 						</Col>{" "}
-						<Col lg={5} className="mx-auto blur">
+						<Col lg={5} className="mx-auto ">
 							<Card className="border-0 bg-transparent ">
 								<Card.Body>
 									<h1 className="text-start">{t("web1")}</h1>
