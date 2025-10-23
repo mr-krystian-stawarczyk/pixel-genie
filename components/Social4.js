@@ -1,57 +1,36 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { useAnimation, motion } from "framer-motion";
+
 function Social4() {
-	const { t } = useTranslation();
-	const [ref, inView] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const animateIn = {
-		opacity: 1,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
+	const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
 	const controls = useAnimation();
+
 	useEffect(() => {
-		if (inView) {
-			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
-		}
-	}, [inView, controls, animateIn, animateOut]);
+		controls.start({
+			opacity: inView ? 1 : 0,
+			transition: { duration: 1, ease: "easeInOut" },
+		});
+	}, [inView, controls]);
+
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center text-center align-items-center">
 					<Col lg={5} className="mx-auto my-2">
-						<Card className="border-0 bg-transparent ">
+						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-start">{t("design90")}</h1>
-								<Card.Text className="text-start">{t("design91")}</Card.Text>
+								<h1 className="text-start">Reporting, Analyse & Wachstum</h1>
+								<Card.Text className="text-start">
+									Wir liefern Ihnen monatliche Auswertungen, Insights und klare
+									Empfehlungen. So behalten Sie Ihre Performance stets im Blick.
+									Dank transparenter KPIs und kontinuierlicher Optimierung
+									wachsen Ihre Social Media Kanäle nachhaltig.
+								</Card.Text>
 								<Button className="btn-nav" href="#contact">
-									<span className="text-white"> {t("design92")} </span>
+									<span className="text-white">Jetzt Kontakt aufnehmen</span>
 								</Button>
 							</Card.Body>
 						</Card>
@@ -62,7 +41,7 @@ function Social4() {
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="webentwicklung-nettetal-socialmedia-webagentur4"
+							alt="Social Media Analyse Agentur Nettetal"
 							priority
 						/>
 					</Col>

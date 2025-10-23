@@ -27,7 +27,7 @@ function impressium() {
 
 							<Card.Text>Steuernummer: 115/5187/3619</Card.Text>
 							<Card.Text>Telefon: (+48) 726 897 493</Card.Text>
-							<Card.Text>E-Mail: mr.krystian.stawarczyk@gmail.com</Card.Text>
+							<Card.Text>E-Mail: pixelgenie.marketing@gmail.com</Card.Text>
 						</Card.Body>
 					</Card>
 				</Col>

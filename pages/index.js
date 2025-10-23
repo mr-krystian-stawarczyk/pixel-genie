@@ -33,7 +33,7 @@ export default function Home() {
 							"@type": "LocalBusiness",
 							name: "Pixel Genie",
 							telephone: "+48 726 897 493",
-							email: "mr.krystian.stawarczyk@gmail.com",
+							email: "pixelgenie.marketing@gmail.com",
 							address: {
 								"@type": "PostalAddress",
 								streetAddress: "Fasanenstr. 10",

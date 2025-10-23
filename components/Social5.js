@@ -1,47 +1,13 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { useAnimation, motion } from "framer-motion";
+
 function Social5() {
-	const { t } = useTranslation();
-	const [ref1, inView1] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const [ref2, inView2] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-	const [ref3, inView3] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const [ref4, inView4] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const animateIn = {
-		opacity: 1,
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
+	const [ref1, inView1] = useInView({ threshold: 0.5, triggerOnce: false });
+	const [ref2, inView2] = useInView({ threshold: 0.5, triggerOnce: false });
+	const [ref3, inView3] = useInView({ threshold: 0.5, triggerOnce: false });
+	const [ref4, inView4] = useInView({ threshold: 0.5, triggerOnce: false });
 
 	const controls1 = useAnimation();
 	const controls2 = useAnimation();
@@ -49,126 +15,103 @@ function Social5() {
 	const controls4 = useAnimation();
 
 	useEffect(() => {
-		if (inView1) {
-			controls1.start(animateIn);
-		} else {
-			controls1.start(animateOut);
-		}
-	}, [inView1, controls1, animateIn, animateOut]);
+		if (inView1) controls1.start({ opacity: 1, transition: { duration: 1 } });
+		else controls1.start({ opacity: 0 });
+	}, [inView1, controls1]);
 
 	useEffect(() => {
-		let timeout;
-		if (inView2) {
-			timeout = setTimeout(() => {
-				controls2.start(animateIn);
-			}, 500);
-		} else {
-			controls2.start(animateOut);
-		}
-
-		return () => clearTimeout(timeout);
-	}, [inView2, controls2, animateIn, animateOut]);
+		if (inView2) controls2.start({ opacity: 1, transition: { duration: 1 } });
+		else controls2.start({ opacity: 0 });
+	}, [inView2, controls2]);
 
 	useEffect(() => {
-		let timeout;
-		if (inView3) {
-			timeout = setTimeout(() => {
-				controls3.start(animateIn);
-			}, 700);
-		} else {
-			controls3.start(animateOut);
-		}
-
-		return () => clearTimeout(timeout);
-	}, [inView3, controls3, animateIn, animateOut]);
+		if (inView3) controls3.start({ opacity: 1, transition: { duration: 1 } });
+		else controls3.start({ opacity: 0 });
+	}, [inView3, controls3]);
 
 	useEffect(() => {
-		let timeout;
-		if (inView4) {
-			timeout = setTimeout(() => {
-				controls4.start(animateIn);
-			}, 1000);
-		} else {
-			controls4.start(animateOut);
-		}
+		if (inView4) controls4.start({ opacity: 1, transition: { duration: 1 } });
+		else controls4.start({ opacity: 0 });
+	}, [inView4, controls4]);
 
-		return () => clearTimeout(timeout);
-	}, [inView4, controls4, animateIn, animateOut]);
 	return (
 		<Container className="my-5 py-5" id="social-media-nettetal-process">
 			<Row className="justify-content-center text-center align-items-center">
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div
-						ref={ref1}
-						animate={controls1}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
+					<motion.div ref={ref1} animate={controls1} initial={{ opacity: 0 }}>
 						<Card
-							className="border-0  bg-transparent shadow-lg"
+							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
 						>
 							<Card.Body>
 								<h1>1</h1>
-								<h2>{t("design93")}</h2>
-								<Card.Text>{t("design94")}</Card.Text>
+								<h2>Analyse & Strategieentwicklung</h2>
+								<Card.Text>
+									Im ersten Schritt analysieren wir Ihre aktuelle Präsenz,
+									Zielgruppe und Mitbewerber. Auf dieser Grundlage entwickeln
+									wir eine individuelle Social-Media-Strategie, die zu Ihrer
+									Marke und Ihren Zielen passt.
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>
 				</Col>
+
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div
-						ref={ref2}
-						animate={controls2}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
+					<motion.div ref={ref2} animate={controls2} initial={{ opacity: 0 }}>
 						<Card
-							className="border-0  bg-transparent shadow-lg"
+							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
 						>
 							<Card.Body>
 								<h1>2</h1>
-								<h2>{t("design95")}</h2>
-								<Card.Text>{t("design96")}</Card.Text>
+								<h2>Content Design & Redaktionsplan</h2>
+								<Card.Text>
+									Wir gestalten hochwertige, markenkonforme Inhalte – Bilder,
+									Videos und Texte – und erstellen einen durchdachten
+									Redaktionsplan. So bleiben Sie mit Ihrer Community regelmäßig
+									im Kontakt.
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>
 				</Col>
+
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div
-						ref={ref3}
-						animate={controls3}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
+					<motion.div ref={ref3} animate={controls3} initial={{ opacity: 0 }}>
 						<Card
-							className="border-0  bg-transparent shadow-lg"
+							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
 						>
 							<Card.Body>
 								<h1>3</h1>
-								<h2>{t("design97")}</h2>
-								<Card.Text>{t("design98")}</Card.Text>
+								<h2>Werbung & Kampagnenmanagement</h2>
+								<Card.Text>
+									Durch gezielte Anzeigenkampagnen auf Facebook, Instagram oder
+									LinkedIn steigern wir Ihre Reichweite und generieren neue
+									Leads. Wir optimieren Ihre Kampagnen laufend für bestmögliche
+									Ergebnisse.
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>
 				</Col>
+
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div
-						ref={ref4}
-						animate={controls4}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
+					<motion.div ref={ref4} animate={controls4} initial={{ opacity: 0 }}>
 						<Card
-							className="border-0  bg-transparent shadow-lg"
+							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
 						>
 							<Card.Body>
 								<h1>4</h1>
-								<h2>{t("design99")}</h2>
-								<Card.Text>{t("design100")}</Card.Text>
+								<h2>Analyse, Reporting & Optimierung</h2>
+								<Card.Text>
+									Wir überwachen Ihre Performance, liefern detaillierte Reports
+									und passen Strategien laufend an. So stellen wir sicher, dass
+									Ihre Social-Media-Aktivitäten messbar zum Unternehmenserfolg
+									beitragen.
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>

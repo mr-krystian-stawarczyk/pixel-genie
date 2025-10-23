@@ -164,49 +164,6 @@ const NavbarComp = ({ toggleTheme }) => {
 					</span>
 				</Navbar.Brand>
 
-				<Dropdown onSelect={handleDropdownSelect} className="border-0">
-					<Dropdown.Toggle className="btn-nav border-0">
-						<Image
-							src={selectedFlag}
-							alt="Selected Flag"
-							width="25"
-							height="25"
-							priority
-						/>
-					</Dropdown.Toggle>
-					<Dropdown.Menu className="text-center justify-content-center my-dropdown">
-						<Dropdown.Item eventKey="flag1">
-							<Image
-								src="/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
-								alt="DE"
-								width="40"
-								height="40"
-								priority
-							/>
-						</Dropdown.Item>
-						<NavDropdown.Divider />
-						<Dropdown.Item eventKey="flag2">
-							<Image
-								src="/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
-								alt="EN"
-								width="40"
-								height="40"
-								priority
-							/>
-						</Dropdown.Item>
-						<NavDropdown.Divider />
-						<Dropdown.Item eventKey="flag3">
-							<Image
-								src="/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
-								alt="PL"
-								width="40"
-								height="40"
-								priority
-							/>
-						</Dropdown.Item>
-					</Dropdown.Menu>
-				</Dropdown>
-
 				<Navbar.Toggle
 					aria-controls="basic-navbar-nav" // ✅ poprawione
 					aria-label="Navigation umschalten"
@@ -218,59 +175,32 @@ const NavbarComp = ({ toggleTheme }) => {
 					className="rounded justify-content-end text-center p-3 navbar-toggler border-0"
 				>
 					<Nav className="navbar-collapse justify-content-end text-center rounded">
-						<div
-							ref={counterRef}
-							className="d-none d-lg-flex flex-column align-items-center justify-content-center mx-auto"
-							style={{
-								minWidth: "260px",
-								textAlign: "center",
-								transform: "translateY(2px)",
-							}}
+						<Nav.Link
+							as={Link}
+							href="#kontakt"
+							className="m-1 d-none d-lg-block"
+							aria-label="Kostenlose Website-Analyse"
 						>
-							<div className="d-flex justify-content-center gap-5">
-								{[
-									{ end: 31, label: "Kunden", suffix: "+" },
-									{ end: 72, label: "Projekte", suffix: "+" },
-									{ end: 87, label: "Reichweite", suffix: "K+" },
-								].map((item, idx) => (
-									<div className="text-center" key={idx}>
-										<h6
-											className="fw-bold mb-0"
-											style={{
-												color: getTextColor(),
-												transition: "color 0.5s ease",
-											}}
-										>
-											{isVisible && (
-												<CountUp
-													start={0}
-													end={item.end}
-													duration={3}
-													style={{ color: getTextColor() }}
-												/>
-											)}
-											{item.suffix}
-										</h6>
-										<span
-											className="mb-0 small"
-											style={{
-												color: getTextColor(),
-												transition: "color 0.5s ease",
-											}}
-										>
-											{item.label}
-										</span>
-									</div>
-								))}
-							</div>
-						</div>
-
+							<button className="btn-premium-footer px-4 py-2">
+								🚀 Kostenlose Analyse
+							</button>
+						</Nav.Link>
+						{/* Wersja mobilna — uproszczona, bez efektu shine */}
+						<Nav.Link
+							as={Link}
+							href="#kontakt"
+							className="d-block d-lg-none m-1"
+							aria-label="Kostenlose Website-Analyse"
+						>
+							<Button className="btn-success w-100 py-2 fw-bold">
+								🚀 Kostenlose Analyse
+							</Button>
+						</Nav.Link>
 						<Nav.Link as={Link} href="/" className="m-1">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								<IoHomeOutline aria-label="Haupt seite" />
 							</Button>
 						</Nav.Link>
-
 						<NavDropdown
 							title={t("nav1")}
 							id="basic-nav-dropdown"
@@ -301,25 +231,16 @@ const NavbarComp = ({ toggleTheme }) => {
 								<Button className="w-100 border-0 btn-nav">Social Media</Button>
 							</NavDropdown.Item>
 						</NavDropdown>
-
 						<Nav.Link as={Link} href="/webdesignblog">
 							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
 								{t("nav3")}
 							</Button>
 						</Nav.Link>
-
-						<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
+						<Nav.Link as={Link} href="/pixelgeniehistory">
+							<Button className="btn-md py-2 btn-nav border-0 shadow-md ">
 								{t("nav5")}
 							</Button>
 						</Nav.Link>
-
-						<Nav.Link as={Link} href="#kontakt" className="m-1">
-							<Button className="btn-md py-2 btn-success border-0 shadow-md">
-								Kontakt
-							</Button>
-						</Nav.Link>
-
 						<Button
 							onClick={() => {
 								toggleTheme();
@@ -333,7 +254,49 @@ const NavbarComp = ({ toggleTheme }) => {
 							) : (
 								<BsFillSunFill style={{ color: "yellow" }} />
 							)}
-						</Button>
+						</Button>{" "}
+						<Dropdown onSelect={handleDropdownSelect} className="border-0">
+							<Dropdown.Toggle className="btn-nav border-0">
+								<Image
+									src={selectedFlag}
+									alt="Selected Flag"
+									width="25"
+									height="25"
+									priority
+								/>
+							</Dropdown.Toggle>
+							<Dropdown.Menu className="text-center justify-content-center my-dropdown">
+								<Dropdown.Item eventKey="flag1">
+									<Image
+										src="/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
+										alt="DE"
+										width="40"
+										height="40"
+										priority
+									/>
+								</Dropdown.Item>
+								<NavDropdown.Divider />
+								<Dropdown.Item eventKey="flag2">
+									<Image
+										src="/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
+										alt="EN"
+										width="40"
+										height="40"
+										priority
+									/>
+								</Dropdown.Item>
+								<NavDropdown.Divider />
+								<Dropdown.Item eventKey="flag3">
+									<Image
+										src="/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
+										alt="PL"
+										width="40"
+										height="40"
+										priority
+									/>
+								</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

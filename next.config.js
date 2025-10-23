@@ -36,7 +36,7 @@ const nextConfig = withBundleAnalyzer({
 	images: {
 		unoptimized: true,
 		formats: ["image/avif", "image/webp"],
-		domains: ["cdn.sanity.io", "pixel-genie.de"],
+		domains: ["pixel-genie.de"],
 	},
 
 	// ✅ Ścieżki & optymalizacja builda

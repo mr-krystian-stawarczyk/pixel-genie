@@ -1,60 +1,42 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { useAnimation, motion } from "framer-motion";
+
 function Social2() {
-	const { t } = useTranslation();
-	const [ref, inView] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const animateIn = {
-		opacity: 1,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
+	const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
 	const controls = useAnimation();
+
 	useEffect(() => {
-		if (inView) {
-			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
-		}
-	}, [inView, controls, animateIn, animateOut]);
+		controls.start({
+			opacity: inView ? 1 : 0,
+			transition: { duration: 1, ease: "easeInOut" },
+		});
+	}, [inView, controls]);
+
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center text-center align-items-center">
 					<Col lg={5} className="mx-auto my-2">
-						<Card className="border-0 bg-transparent ">
+						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-start">{t("design84")}</h1>
-								<Card.Text className="text-start">{t("design85")}</Card.Text>
+								<h1 className="text-start">
+									Social Media Betreuung & Content Creation
+								</h1>
+								<Card.Text className="text-start">
+									Wir übernehmen die vollständige Betreuung Ihrer
+									Social-Media-Kanäle – von der Planung über das Design bis zur
+									regelmäßigen Veröffentlichung von Inhalten. Durch gezieltes
+									Community Management und kreative Kampagnen erhöhen wir Ihre
+									Reichweite und Interaktion.
+								</Card.Text>
 								<Button
 									className="btn-nav"
 									href="#social-media-nettetal-fragen"
 								>
-									<span className="text-white"> {t("design86")} </span>
+									<span className="text-white">Jetzt Beratung anfragen</span>
 								</Button>
 							</Card.Body>
 						</Card>
@@ -65,7 +47,7 @@ function Social2() {
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="webentwicklung-nettetal-socialmedia-webagentur2"
+							alt="Social Media Agentur Nettetal Content Marketing"
 							priority
 						/>
 					</Col>

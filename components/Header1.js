@@ -37,7 +37,7 @@ export default function Header1() {
 	}, []);
 
 	const handleEmailClick = () => {
-		window.location.href = "mailto:mr.krystian.stawarczyk@gmail.com";
+		window.location.href = "mailto:pixelgenie.marketing@gmail.com";
 	};
 
 	return (

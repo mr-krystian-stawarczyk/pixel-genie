@@ -312,19 +312,25 @@ function Blog2({ pageUrl = PAGE_URL }) {
 				</Row>
 				{/* Crawlable lista kart (SEO + UX) */}
 				<BlogIndexList posts={articles} />
-
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
-					className="position-fixed bottom-0 end-0 m-3 bg-secondary text-white p-3 rounded-4 shadow-lg"
-					style={{ zIndex: 1000, maxWidth: 200 }}
+					className="position-fixed bottom-0 end-0 m-3 p-4 rounded-5 shadow-lg bg-dark bg-opacity-75 backdrop-blur-sm d-flex flex-column align-items-center text-center"
+					style={{
+						zIndex: 1100,
+						maxWidth: 260,
+						backdropFilter: "blur(8px)",
+					}}
 				>
-					<p className="mb-2 fw-bold">Kostenlose Analyse sichern</p>
-					<div className="d-flex gap-2">
-						<Button size="sm" href="#kontakt" className="btn-success fw-bold">
-							Starten
-						</Button>
-					</div>
+					<p className="mb-3 fw-semibold text-white">
+						Kostenlose Analyse sichern
+					</p>
+					<Link
+						href="#kontakt"
+						className="btn-premium-footer text-white fw-bold"
+					>
+						🚀 Jetzt starten
+					</Link>
 				</motion.div>
 			</Container>
 		</>

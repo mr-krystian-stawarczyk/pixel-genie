@@ -4,7 +4,7 @@ const citiesData = [
 		postalCode: "41334",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 41700,
 		geo: { latitude: 51.3167, longitude: 6.2833 },
 		historySnippet:
@@ -24,7 +24,7 @@ const citiesData = [
 		postalCode: "41747",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 76700,
 		geo: { latitude: 51.2569, longitude: 6.3956 }, // pozostawiono oryginał — *ale warto zweryfikować*
 		historySnippet:
@@ -42,7 +42,7 @@ const citiesData = [
 		postalCode: "5911",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 103000,
 		geo: { latitude: 51.3704, longitude: 6.1723 }, // pozostawiono
 		historySnippet:
@@ -60,7 +60,7 @@ const citiesData = [
 		postalCode: "41061",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 261000,
 		geo: { latitude: 51.1803, longitude: 6.4426 }, // pozostawiono — sugeruję sprawdzić
 		historySnippet:
@@ -78,7 +78,7 @@ const citiesData = [
 		postalCode: "47798",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 226000,
 		geo: { latitude: 51.3388, longitude: 6.5853 }, // pozostawiono
 		historySnippet:
@@ -96,7 +96,7 @@ const citiesData = [
 		postalCode: "47906",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 36500,
 		geo: { latitude: 51.3658, longitude: 6.4194 },
 		historySnippet:
@@ -114,7 +114,7 @@ const citiesData = [
 		postalCode: "40210",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 644000,
 		geo: { latitude: 51.2277, longitude: 6.7735 }, // pozostawiono
 		historySnippet:
@@ -132,7 +132,7 @@ const citiesData = [
 		postalCode: "47051",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 495000,
 		geo: { latitude: 51.4344, longitude: 6.7623 }, // pozostawiono
 		historySnippet:
@@ -150,7 +150,7 @@ const citiesData = [
 		postalCode: "46045",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 210000,
 		geo: { latitude: 51.4963, longitude: 6.8516 }, // pozostawiono
 		historySnippet:
@@ -168,7 +168,7 @@ const citiesData = [
 		postalCode: "45127",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 582000,
 		geo: { latitude: 51.4556, longitude: 7.0116 }, // pozostawiono
 		historySnippet:
@@ -193,7 +193,7 @@ const citiesData = [
 		postalCode: "46395",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 71500,
 		geo: { latitude: 51.8387, longitude: 6.6149 }, // pozostawiono
 		historySnippet:
@@ -211,7 +211,7 @@ const citiesData = [
 		postalCode: "47441",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 104000,
 		geo: { latitude: 51.4545, longitude: 6.6353 }, // pozostawiono
 		historySnippet:
@@ -229,7 +229,7 @@ const citiesData = [
 		postalCode: "47608",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 33700,
 		geo: { latitude: 51.5251, longitude: 6.3007 }, // pozostawiono
 		historySnippet:
@@ -247,7 +247,7 @@ const citiesData = [
 		postalCode: "46499",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 27700,
 		geo: { latitude: 51.7907, longitude: 6.6002 }, // pozostawiono
 		historySnippet:
@@ -265,7 +265,7 @@ const citiesData = [
 		postalCode: "47906",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 1200,
 		geo: { latitude: 51.345, longitude: 6.38 }, // pozostawiono
 		historySnippet:
@@ -283,7 +283,7 @@ const citiesData = [
 		postalCode: "41751",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 20000,
 		geo: { latitude: 51.2419, longitude: 6.3984 }, // pozostawiono
 		historySnippet:
@@ -301,7 +301,7 @@ const citiesData = [
 		postalCode: "47929",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 15000,
 		geo: { latitude: 51.3233, longitude: 6.3366 }, // pozostawiono
 		historySnippet:
@@ -319,7 +319,7 @@ const citiesData = [
 		postalCode: "47906",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 8000,
 		geo: { latitude: 51.3843, longitude: 6.4505 },
 		historySnippet:
@@ -337,7 +337,7 @@ const citiesData = [
 		postalCode: "47669",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 8400,
 		geo: { latitude: 51.3919, longitude: 6.3244 }, // pozostawiono
 		historySnippet:
@@ -355,7 +355,7 @@ const citiesData = [
 		postalCode: "41379",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 15600,
 		geo: { latitude: 51.3, longitude: 6.346 }, // pozostawiono
 		historySnippet:
@@ -373,7 +373,7 @@ const citiesData = [
 		postalCode: "47929",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 18800,
 		geo: { latitude: 51.322, longitude: 6.342 }, // pozostawiono
 		historySnippet:
@@ -391,7 +391,7 @@ const citiesData = [
 		postalCode: "47918",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 30000,
 		geo: { latitude: 51.34, longitude: 6.4333 }, // pozostawiono
 		historySnippet:
@@ -409,7 +409,7 @@ const citiesData = [
 		postalCode: "41460",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 159000,
 		geo: { latitude: 51.198, longitude: 6.6858 }, // pozostawiono
 		historySnippet:
@@ -427,7 +427,7 @@ const citiesData = [
 		postalCode: "40667",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 58000,
 		geo: { latitude: 51.2612, longitude: 6.6702 }, // pozostawiono
 		historySnippet:
@@ -445,7 +445,7 @@ const citiesData = [
 		postalCode: "47877",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 53000,
 		geo: { latitude: 51.2631, longitude: 6.5414 }, // pozostawiono
 		historySnippet:
@@ -463,7 +463,7 @@ const citiesData = [
 		postalCode: "41812",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 45000,
 		geo: { latitude: 51.0797, longitude: 6.3167 }, // pozostawiono
 		historySnippet:
@@ -481,7 +481,7 @@ const citiesData = [
 		postalCode: "52525",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 41000,
 		geo: { latitude: 51.0633, longitude: 6.0983 }, // pozostawiono
 		historySnippet:
@@ -499,7 +499,7 @@ const citiesData = [
 		postalCode: "41844",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 28000,
 		geo: { latitude: 51.1408, longitude: 6.2789 }, // pozostawiono
 		historySnippet:
@@ -517,7 +517,7 @@ const citiesData = [
 		postalCode: "41363",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 23000,
 		geo: { latitude: 51.1, longitude: 6.5 }, // pozostawiono
 		historySnippet:
@@ -535,7 +535,7 @@ const citiesData = [
 		postalCode: "48734",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 15000,
 		geo: { latitude: 51.8292, longitude: 7.0056 }, // pozostawiono
 		historySnippet:
@@ -553,7 +553,7 @@ const citiesData = [
 		postalCode: "46509",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 22000,
 		geo: { latitude: 51.6583, longitude: 6.4572 }, // pozostawiono
 		historySnippet:
@@ -571,7 +571,7 @@ const citiesData = [
 		postalCode: "47623",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 28000,
 		geo: { latitude: 51.5833, longitude: 6.25 }, // pozostawiono
 		historySnippet:
@@ -589,7 +589,7 @@ const citiesData = [
 		postalCode: "46446",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 31000,
 		geo: { latitude: 51.8333, longitude: 6.25 }, // pozostawiono
 		historySnippet:
@@ -607,7 +607,7 @@ const citiesData = [
 		postalCode: "6041",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 60000,
 		geo: { latitude: 51.1942, longitude: 5.9872 }, // pozostawiono
 		historySnippet:
@@ -625,7 +625,7 @@ const citiesData = [
 		postalCode: "5953",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 8000,
 		geo: { latitude: 51.2833, longitude: 6.0833 }, // pozostawiono
 		historySnippet:
@@ -643,7 +643,7 @@ const citiesData = [
 		postalCode: "47638",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 15400,
 		geo: { latitude: 51.4411, longitude: 6.2681 }, // pozostawiono
 		historySnippet:
@@ -661,7 +661,7 @@ const citiesData = [
 		postalCode: "46483",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 10500,
 		geo: { latitude: 51.6667, longitude: 6.6167 }, // pozostawiono
 		historySnippet:
@@ -679,7 +679,7 @@ const citiesData = [
 		postalCode: "40721",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 58000,
 		geo: { latitude: 51.1704, longitude: 6.9308 }, // pozostawiono
 		historySnippet:
@@ -697,7 +697,7 @@ const citiesData = [
 		postalCode: "40789",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
-		email: "mr.krystian.stawarczyk@gmail.com",
+		email: "pixelgenie.marketing@gmail.com",
 		population: 45000,
 		geo: { latitude: 51.0912, longitude: 6.8936 }, // pozostawiono
 		historySnippet:

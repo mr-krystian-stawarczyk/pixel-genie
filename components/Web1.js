@@ -61,8 +61,8 @@ function Web1() {
 								<Card.Body>
 									<h1 className="text-start">{t("web1")}</h1>
 									<Card.Text className="text-start">{t("web2")}</Card.Text>
-									<Button className="btn-nav" href="#web-design-portfolio">
-										<span className="text-white"> {t("web3")} </span>
+									<Button className="btn-nav" href="#contact">
+										<span className="text-white"> Kontakt</span>
 									</Button>
 								</Card.Body>
 							</Card>

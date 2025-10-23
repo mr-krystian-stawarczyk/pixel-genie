@@ -1,46 +1,20 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { useAnimation, motion } from "framer-motion";
+
 function Social1() {
-	const { t } = useTranslation();
-	const [ref, inView] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const animateIn = {
-		opacity: 1,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
+	const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
 	const controls = useAnimation();
+
 	useEffect(() => {
-		if (inView) {
-			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
-		}
-	}, [inView, controls, animateIn, animateOut]);
+		controls.start({
+			opacity: inView ? 1 : 0,
+			transition: { duration: 1, ease: "easeInOut" },
+		});
+	}, [inView, controls]);
+
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5">
@@ -51,17 +25,27 @@ function Social1() {
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="webentwicklung-nettetal-socialmedia-webagentur1"
+							alt="Social Media Marketing Agentur Nettetal"
 							priority
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">
-						<Card className="border-0 bg-transparent ">
+						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-start">{t("design81")}</h1>
-								<Card.Text className="text-start">{t("design82")}</Card.Text>
+								<h1 className="text-start">
+									Social Media Marketing für Unternehmen in Nettetal
+								</h1>
+								<Card.Text className="text-start">
+									Steigern Sie Ihre Markenbekanntheit und Kundennähe mit
+									professionellem Social Media Marketing. Pixel Genie entwickelt
+									maßgeschneiderte Strategien für Facebook, Instagram, LinkedIn
+									und TikTok – perfekt abgestimmt auf Ihre Zielgruppe und Ihr
+									Budget.
+								</Card.Text>
 								<Button className="btn-nav" href="#social-media-preis">
-									<span className="text-white"> {t("design83")} </span>
+									<span className="text-white">
+										Mehr über unsere Leistungen
+									</span>
 								</Button>
 							</Card.Body>
 						</Card>

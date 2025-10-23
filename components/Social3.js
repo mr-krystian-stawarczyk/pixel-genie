@@ -1,46 +1,20 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { useAnimation, motion } from "framer-motion";
+
 function Social3() {
-	const { t } = useTranslation();
-	const [ref, inView] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const animateIn = {
-		opacity: 1,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
+	const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
 	const controls = useAnimation();
+
 	useEffect(() => {
-		if (inView) {
-			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
-		}
-	}, [inView, controls, animateIn, animateOut]);
+		controls.start({
+			opacity: inView ? 1 : 0,
+			transition: { duration: 1, ease: "easeInOut" },
+		});
+	}, [inView, controls]);
+
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5">
@@ -51,20 +25,28 @@ function Social3() {
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="webentwicklung-nettetal-socialmedia-webagentur3"
+							alt="Social Media Ads Kampagnen Nettetal"
 							priority
 						/>
 					</Col>
 					<Col lg={5} className="mx-auto my-2">
-						<Card className="border-0 bg-transparent ">
+						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-start">{t("design87")}</h1>
-								<Card.Text className="text-start">{t("design88")}</Card.Text>
+								<h1 className="text-start">
+									Zielgerichtete Werbekampagnen für mehr Erfolg
+								</h1>
+								<Card.Text className="text-start">
+									Mit präzisem Targeting und datenbasierten Werbeanzeigen auf
+									Facebook, Instagram und Co. erreichen Sie genau die Kunden,
+									die sich für Ihre Produkte interessieren. Wir analysieren,
+									optimieren und skalieren Ihre Kampagnen für maximale
+									Ergebnisse.
+								</Card.Text>
 								<Button
 									className="btn-nav"
 									href="#social-media-nettetal-process"
 								>
-									<span className="text-white"> {t("design89")} </span>
+									<span className="text-white">Unsere Strategie entdecken</span>
 								</Button>
 							</Card.Body>
 						</Card>

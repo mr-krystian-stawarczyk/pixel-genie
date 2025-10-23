@@ -12,7 +12,7 @@ const Media2 = dynamic(() => import("@/components/Media2"), { ssr: false });
 const Media3 = dynamic(() => import("@/components/Media3"), { ssr: false });
 const Media4 = dynamic(() => import("@/components/Media4"), { ssr: false });
 const Media5 = dynamic(() => import("@/components/Media5"), { ssr: false });
-const Media6 = dynamic(() => import("@/components/Media6"), { ssr: false });
+
 const Media7 = dynamic(() => import("@/components/Media7"), { ssr: false });
 const Media8 = dynamic(() => import("@/components/Media8"), { ssr: false });
 
@@ -48,7 +48,6 @@ function WebDesign() {
 			<Media3 />
 			<Media4 />
 			<Media5 />
-			<Media6 />
 			<Media7 />
 			<Media8 />
 		</div>

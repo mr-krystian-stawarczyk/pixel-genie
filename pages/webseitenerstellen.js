@@ -8,7 +8,6 @@ const Web2 = dynamic(() => import("@/components/Web2"), { ssr: false });
 const Web3 = dynamic(() => import("@/components/Web3"), { ssr: false });
 const Web4 = dynamic(() => import("@/components/Web4"), { ssr: false });
 const Web5 = dynamic(() => import("@/components/Web5"), { ssr: false });
-const Web6 = dynamic(() => import("@/components/Web6"), { ssr: false });
 const WebPrices = dynamic(() => import("@/components/WebPrices"), {
 	ssr: false,
 });
@@ -59,7 +58,6 @@ function WebSeitenErstellen() {
 			<Web3 />
 			<Web4 />
 			<Web5 />
-			<Web6 />
 			<WebPrices />
 			<Faq1 />
 		</div>

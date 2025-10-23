@@ -10,7 +10,7 @@ const Brand4 = dynamic(() => import("@/components/Brand4"));
 const Brand5 = dynamic(() => import("@/components/Brand5"));
 const Brand6 = dynamic(() => import("@/components/Brand6"));
 const Brand7 = dynamic(() => import("@/components/Brand7"));
-const Brand8 = dynamic(() => import("@/components/Brand8"));
+
 const LocalBusinessJsonLd = dynamic(
 	() => import("@/components/LocalBusinessJsonLd")
 );
@@ -49,7 +49,7 @@ function branding() {
 			<Brand2 />
 			<Brand3 />
 			<Brand4 />
-			<Brand8 />
+
 			<Brand5 />
 			<Brand6 />
 			<Brand7 />

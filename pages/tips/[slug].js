@@ -10,20 +10,23 @@ import { gaEvent } from "@/lib/analytics";
 const SITE_ORIGIN = "https://pixel-genie.de";
 
 export async function getStaticPaths() {
+	// Wszystkie ścieżki muszą być znane w momencie builda
 	const paths = blogPosts.map((p) => ({ params: { slug: p.slug } }));
-	return { paths, fallback: false }; // ✅ eksportuje wszystkie /tips/slug/
+	return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-	const article = blogPosts.find((p) => p.slug === params.slug) || null;
+	const article = blogPosts.find((p) => p.slug === params.slug);
+	if (!article) return { notFound: true };
+
 	const index = blogPosts.findIndex((p) => p.slug === params.slug);
-	const next = index >= 0 ? blogPosts[(index + 1) % blogPosts.length] : null;
-	const prev =
-		index >= 0
-			? blogPosts[(index - 1 + blogPosts.length) % blogPosts.length]
-			: null;
+	const next = index < blogPosts.length - 1 ? blogPosts[index + 1] : null;
+	const prev = index > 0 ? blogPosts[index - 1] : null;
 	const related = blogPosts.filter((_, i) => i !== index).slice(0, 3);
-	return { props: { article, next, prev, related } };
+
+	return {
+		props: { article, next, prev, related },
+	};
 }
 
 export default function BlogPostPage({ article, next, prev, related }) {
@@ -31,15 +34,16 @@ export default function BlogPostPage({ article, next, prev, related }) {
 
 	const pageUrl = `${SITE_ORIGIN}/tips/${article.slug}/`;
 	const ogImage = `${SITE_ORIGIN}${article.imgSrc}`;
-	const ogTitle = article.title;
+	const ogTitle = `${article.title} | Pixel-Genie Blog – Webdesign, SEO & Conversion Tipps`;
 	const ogDescription =
 		article.description ||
 		(Array.isArray(article.details) ? article.details[0] : "");
 
+	// JSON-LD: Article
 	const articleJsonLd = {
 		"@context": "https://schema.org",
-		"@type": "Article",
-		headline: ogTitle,
+		"@type": "BlogPosting",
+		headline: article.title,
 		description: ogDescription,
 		image: [ogImage],
 		author: {
@@ -60,6 +64,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 		mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
 	};
 
+	// JSON-LD: Breadcrumb
 	const breadcrumbLd = {
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
@@ -70,7 +75,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				name: "Blog",
 				item: `${SITE_ORIGIN}/webdesignblog`,
 			},
-			{ "@type": "ListItem", position: 2, name: ogTitle, item: pageUrl },
+			{ "@type": "ListItem", position: 2, name: article.title, item: pageUrl },
 		],
 	};
 
@@ -89,7 +94,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				<meta property="og:title" content={ogTitle} />
 				<meta property="og:description" content={ogDescription} />
 				<meta property="og:url" content={pageUrl} />
-				<meta property="og:site_name" content="Pixel Genie" />
+				<meta property="og:site_name" content="Pixel-Genie" />
 				<meta property="og:image" content={ogImage} />
 				<meta property="og:image:width" content="1200" />
 				<meta property="og:image:height" content="630" />
@@ -115,17 +120,20 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				/>
 			</Head>
 
-			<Container className="py-5 my-5">
+			<Container className="py-5 mt-5">
 				<Row className="justify-content-center">
 					<Col lg={8}>
-						<Card className="border-0 bg-transparent shadow-sm">
+						<article
+							itemScope
+							itemType="https://schema.org/BlogPosting"
+							className="bg-transparent border-0 shadow-sm rounded"
+						>
 							<Image
 								src={article.imgSrc}
 								alt={article.title}
 								width={1200}
 								height={630}
 								priority
-								sizes="(max-width: 768px) 100vw, 1200px"
 								style={{
 									borderRadius: "16px",
 									objectFit: "cover",
@@ -133,9 +141,11 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								}}
 							/>
 
-							<Card.Body>
-								<h1 className="fw-bold my-4">{article.title}</h1>
-								<p className="text-muted mb-3">
+							<div className="mt-4">
+								<h1 className="fw-bold mb-3" itemProp="headline">
+									{article.title}
+								</h1>
+								<p className="text-muted mb-4">
 									{new Date(article.date).toLocaleDateString("de-DE", {
 										year: "numeric",
 										month: "2-digit",
@@ -144,18 +154,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								</p>
 
 								{article.description && (
-									<p className="lead">{article.description}</p>
-								)}
-
-								{Array.isArray(article.keypoints) && (
-									<div className="bg-light p-3 rounded mb-3">
-										<h5 className="fw-bold mb-2 text-dark">Key Takeaways</h5>
-										<ul className="mb-0">
-											{article.keypoints.map((p, i) => (
-												<li key={i}>{p}</li>
-											))}
-										</ul>
-									</div>
+									<p className="lead text-foreground">{article.description}</p>
 								)}
 
 								{Array.isArray(article.details) &&
@@ -171,40 +170,42 @@ export default function BlogPostPage({ article, next, prev, related }) {
 										/>
 									))}
 
-								{/* 🔗 Social share buttons */}
-								<ShareButtons
-									url={pageUrl}
-									title={article.title}
-									description={ogDescription}
-								/>
+								{/* Share buttons */}
+								<div className="my-4">
+									<ShareButtons
+										url={pageUrl}
+										title={article.title}
+										description={ogDescription}
+									/>
+								</div>
 
-								{/* CTA */}
-								<div className="d-flex flex-wrap gap-3 mt-4">
-									<Button
+								{/* CTA — neonowy styl */}
+								<div className="d-flex flex-wrap gap-3 mt-4 justify-content-center">
+									<Link
 										href="#kontakt"
-										className="btn-success"
+										className="btn-premium-footer text-white fw-bold"
 										onClick={handleCta}
 									>
-										<span className="text-white">
-											Website-Analyse starten 🚀
-										</span>
-									</Button>
-									<Link href="/webdesignblog" className="btn btn-nav">
-										<span className="text-white">← Zurück zum Blog</span>
+										🚀 Kostenlose Website-Analyse sichern
+									</Link>
+									<Link href="/webdesignblog" className="btn-premium-footer">
+										← Zurück zum Blog
 									</Link>
 								</div>
 
-								<hr className="my-4" />
+								<hr className="my-5" />
 
 								{/* Prev / Next navigation */}
-								<div className="d-flex justify-content-between bg-white rounded p-3">
-									{prev && (
+								<div className="d-flex justify-content-between">
+									{prev ? (
 										<Link
 											href={`/tips/${prev.slug}/`}
 											className="text-decoration-none fw-semibold"
 										>
 											← {prev.title}
 										</Link>
+									) : (
+										<span />
 									)}
 									{next && (
 										<Link
@@ -215,21 +216,21 @@ export default function BlogPostPage({ article, next, prev, related }) {
 										</Link>
 									)}
 								</div>
-							</Card.Body>
-						</Card>
+							</div>
+						</article>
 
-						{/* Optional: related posts preview */}
+						{/* Related posts */}
 						{Array.isArray(related) && related.length > 0 && (
-							<div className="mt-5">
+							<section className="mt-5">
 								<h3 className="fw-bold mb-4">Verwandte Artikel</h3>
 								<Row>
 									{related.map((r) => (
-										<Col md={4} key={r.slug} className="mb-3">
+										<Col md={4} key={r.slug} className="mb-3 hover">
 											<Link
 												href={`/tips/${r.slug}/`}
 												className="text-decoration-none"
 											>
-												<Card className="border-0 shadow-sm h-100">
+												<Card className="bg-transparent border-0 shadow-sm h-100">
 													<Image
 														src={r.imgSrc}
 														alt={r.title}
@@ -250,7 +251,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 										</Col>
 									))}
 								</Row>
-							</div>
+							</section>
 						)}
 					</Col>
 				</Row>

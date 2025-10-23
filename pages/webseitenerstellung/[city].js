@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 
 const handleEmailClick = () => {
-	window.location.href = "mailto:mr.krystian.stawarczyk@gmail.com";
+	window.location.href = "mailto:pixelgenie.marketing@gmail.com";
 };
 
 export async function getStaticPaths() {
