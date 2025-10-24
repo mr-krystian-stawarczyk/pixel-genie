@@ -34,6 +34,21 @@ function Contact() {
 			<Contact1 />
 			<Contact3 />
 			<Contact2 />
+			<section className="mt-5 text-center">
+				<h3>📰 Pixel-Genie in den Medien</h3>
+				<p>
+					Unser neuer Fachartikel auf <strong>Medium</strong>:
+					<br />
+					<a
+						href="https://medium.com/@pixelgenie.marketing/3-unsichtbare-website-fehler-die-ihre-conversion-rate-senken-60137d20afe5"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="btn-premium-footer mt-3 d-inline-block"
+					>
+						Artikel auf Medium lesen →
+					</a>
+				</p>
+			</section>
 		</div>
 	);
 }

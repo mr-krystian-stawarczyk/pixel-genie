@@ -26,8 +26,13 @@
 # To był powód błędnego canonicala i OG meta w LinkedIn/Facebook.
 # Prawidłowa wersja – pozwala Netlify serwować /tips/slug/index.html itp.
 [[redirects]]
+  from = "/tips/*"
+  to = "/tips/:splat/index.html"
+  status = 200
+
+[[redirects]]
   from = "/*"
-  to = "/:splat"
+  to = "/index.html"
   status = 200
 
 ############################

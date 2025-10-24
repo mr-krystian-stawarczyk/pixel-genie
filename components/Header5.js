@@ -1,82 +1,66 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import dynamic from "next/dynamic";
+import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import Image from "next/image";
 
 function Header5() {
-	const { t } = useTranslation();
-	const [ref, inView] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const animateIn = {
-		opacity: 1,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
+	const [ref, inView] = useInView({ threshold: 0.5 });
 	const controls = useAnimation();
+
 	useEffect(() => {
-		if (inView) {
-			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
-		}
-	}, [inView, controls, animateIn, animateOut]);
+		controls.start({ opacity: inView ? 1 : 0, transition: { duration: 1 } });
+	}, [inView, controls]);
+
 	return (
 		<motion.div ref={ref} animate={controls}>
-			<Container className=" my-5 py-5 ">
-				<Row className="justify-content-center  align-items-center">
-					<Col lg={5} className="mx-auto my-2 text-center">
+			<Container className="my-5 py-5">
+				<Row className="justify-content-center align-items-center g-5">
+					<Col lg={5} className="text-center">
 						<div className="image-container">
 							<Image
 								src="/assets/webentwicklung-nettetal-seo5.png"
 								width={400}
 								height={400}
+								alt="Webdesign Tipps Pixel-Genie"
 								className="responsive-image"
-								alt="webentwicklung-nettetal-seo2"
 								loading="lazy"
 							/>
 							<div className="arrow-animation5">
 								<Image
-									src="/assets/anim4.gif" // Path to your animated arrow GIF
-									width={50} // Adjust size as needed
-									height={50} // Adjust size as needed
+									src="/assets/anim4.gif"
+									width={50}
+									height={50}
 									alt="Animated Arrow"
 									unoptimized
 								/>
 							</div>
 						</div>
 					</Col>
-					<Col lg={5} className="mx-auto my-2">
+
+					<Col lg={5}>
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-bold">{t("header16")}</h1>
-								<Card.Text>{t("header17")}</Card.Text>
-								<Card.Text>{t("header18")}</Card.Text>
-								<Card.Text>{t("header19")}</Card.Text>
-								<div className="text-center">
-									<Link href="webdesignblog" className="m-1">
-										<Button className="btn-nav px-4 ">{t("header20")}</Button>
+								<h1 className="text-bold mb-3">
+									Profitieren Sie von unseren Tipps
+								</h1>
+								<p>
+									Erzielen Sie mehr Online Erfolg mit unseren Tipps für kleine
+									Unternehmen. Erfahren Sie, wie Sie Ihre Sichtbarkeit erhöhen
+									und neue Kunden gewinnen können.
+								</p>
+								<p>
+									Unsere Empfehlungen helfen Ihnen, die richtigen Tools zu
+									wählen und eine effektive Marketingstrategie aufzubauen.
+								</p>
+								<p>
+									In unserem Blog zeigen wir, wie Sie kostenlose Tools optimal
+									nutzen, um Ihre Marke im Internet bekannter zu machen.
+								</p>
+								<div className="text-center mt-4">
+									<Link href="/webdesignblog" className="m-1">
+										<Button className="btn-nav px-4">WEBDESIGN TIPPS</Button>
 									</Link>
 								</div>
 							</Card.Body>

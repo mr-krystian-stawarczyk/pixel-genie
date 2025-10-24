@@ -869,3 +869,326 @@ button:focus {
 		background: rgba(0, 0, 0, 0.85);
 	}
 }
+
+.mobile-floating-cta {
+	opacity: 0;
+	transition: opacity 0.6s ease;
+}
+.mobile-floating-cta.visible {
+	opacity: 1;
+}
+
+/* === SOCIAL ICONS — ORGANIC GLOW MOTION === */
+.social-icon-wrapper {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	overflow: visible;
+}
+
+.social-icon-premium {
+	font-size: 3.5rem;
+	color: var(--text-color);
+	transition: all 0.6s ease;
+	animation: organicGlow 5s ease-in-out infinite;
+	filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.25));
+}
+
+/* Hover z lekkim ruchem i wzmocnieniem blasku */
+.social-icon-wrapper:hover .social-icon-premium {
+	transform: scale(1.12) translateY(-2px);
+	filter: drop-shadow(0 0 22px rgba(0, 123, 255, 0.6));
+}
+/* === GLOBAL RESET === */
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	overflow-x: hidden !important;
+	max-width: 100vw !important;
+	width: 100% !important;
+	position: relative;
+}
+
+/* ✅ tylko pierwszy element pod navem nie „wciska się” do góry */
+main > :first-child,
+#__next > :first-child,
+.page-wrapper > :first-child,
+.header-container:first-child {
+	margin-top: 0 !important;
+}
+
+/* === NAVBAR STABILITY === */
+.navbar,
+.navbar .container,
+.navbar .container-fluid {
+	overflow: visible !important; /* kluczowe: dropdown działa poprawnie */
+}
+
+.nav-transition {
+	transition:
+		background-color 0.4s ease,
+		box-shadow 0.4s ease,
+		backdrop-filter 0.4s ease,
+		height 0.4s ease;
+	will-change: background-color, box-shadow, backdrop-filter;
+}
+
+/* === NAVBAR BUTTONS === */
+.navbar .btn-nav,
+.navbar .btn-nav-drop,
+.navbar .theme-toggle,
+.navbar .dropdown-toggle {
+	min-width: 48px;
+	min-height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 12px !important;
+}
+
+.navbar .nav-link,
+.navbar .dropdown,
+.navbar .theme-toggle {
+	margin: 0 0.25rem;
+}
+
+/* === DROPDOWN DIENSTE === */
+#dienste-dropdown {
+	position: relative !important;
+	z-index: 2000 !important;
+}
+
+#dienste-dropdown .dropdown-menu {
+	width: 240px !important;
+	border-radius: 16px !important;
+	padding: 0.4rem;
+	background: rgba(0, 55, 130, 0.95) !important;
+	backdrop-filter: blur(10px);
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+	z-index: 2100 !important;
+}
+
+.dark #dienste-dropdown .dropdown-menu {
+	background: rgba(15, 15, 30, 0.96) !important;
+}
+
+/* === MOBILE OVERLAY === */
+.mobile-overlay {
+	position: fixed;
+	inset: 0;
+	width: 100vw;
+	height: 100vh;
+	background: radial-gradient(
+		circle at 25% 30%,
+		rgba(0, 55, 130, 0.9),
+		rgba(0, 0, 0, 0.95)
+	);
+	backdrop-filter: blur(10px);
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 999;
+	opacity: 0;
+	overflow-y: auto;
+	transition: opacity 0.4s ease;
+}
+
+.mobile-overlay.show {
+	display: flex;
+	opacity: 1;
+	animation: fadeInMenu 0.4s ease;
+}
+
+@keyframes fadeInMenu {
+	from {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.mobile-overlay .btn-nav {
+	width: 95% !important;
+	max-width: 420px;
+	text-align: center;
+	border-radius: 16px;
+	font-size: 1.15rem;
+	padding: 1rem 1.2rem;
+	line-height: 1.3;
+	animation: mobileGlow 5s ease-in-out infinite;
+}
+
+@keyframes mobileGlow {
+	0%,
+	100% {
+		box-shadow: 0 0 12px rgba(0, 86, 179, 0.35);
+	}
+	50% {
+		box-shadow: 0 0 25px rgba(0, 86, 179, 0.55);
+	}
+}
+
+/* === BURGER ICON === */
+.navbar-toggler-icon-custom {
+	width: 28px;
+	height: 3px;
+	background-color: #fff;
+	position: relative;
+	border-radius: 2px;
+	transition: all 0.3s ease;
+}
+
+.navbar-toggler-icon-custom::before,
+.navbar-toggler-icon-custom::after {
+	content: "";
+	position: absolute;
+	width: 28px;
+	height: 3px;
+	background-color: #fff;
+	border-radius: 2px;
+	transition: all 0.3s ease;
+}
+
+.navbar-toggler-icon-custom::before {
+	top: -8px;
+}
+.navbar-toggler-icon-custom::after {
+	top: 8px;
+}
+
+/* === THEME SWITCH === */
+.theme-icon-wrapper {
+	position: relative;
+	width: 24px;
+	height: 24px;
+}
+
+.theme-sun,
+.theme-moon {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	font-size: 1.4rem;
+	transition: all 0.9s cubic-bezier(0.4, 0.05, 0.25, 1);
+	transform-origin: center;
+}
+
+.animated-theme.sunrise .theme-sun {
+	opacity: 1;
+	transform: rotate(0deg) scale(1);
+	color: #ffcc33;
+	filter: drop-shadow(0 0 5px rgba(255, 204, 51, 0.6));
+}
+.animated-theme.sunrise .theme-moon {
+	opacity: 0;
+	transform: rotate(-180deg) scale(0.3);
+}
+.animated-theme.moonrise .theme-sun {
+	opacity: 0;
+	transform: rotate(180deg) scale(0.3);
+}
+.animated-theme.moonrise .theme-moon {
+	opacity: 1;
+	transform: rotate(0deg) scale(1);
+	color: #9ad1ff;
+	filter: drop-shadow(0 0 5px rgba(154, 209, 255, 0.6));
+}
+
+.animated-theme .theme-sun,
+.animated-theme .theme-moon {
+	animation: applePulse 4s ease-in-out infinite;
+}
+
+@keyframes applePulse {
+	0%,
+	100% {
+		filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
+		transform: scale(1);
+	}
+	50% {
+		filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.45));
+		transform: scale(1.05);
+	}
+}
+
+/* === GLASS NAVBAR (VisionOS Style) === */
+.navbar.scrolled {
+	background: rgba(255, 255, 255, 0.65) !important;
+	backdrop-filter: blur(18px) saturate(180%) !important;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+	box-shadow:
+		inset 0 0 1px rgba(255, 255, 255, 0.25),
+		0 4px 20px rgba(0, 0, 0, 0.1);
+	transition:
+		background 0.5s ease,
+		box-shadow 0.5s ease,
+		border 0.5s ease;
+}
+
+.dark .navbar.scrolled {
+	background: rgba(20, 20, 30, 0.7) !important;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow:
+		inset 0 0 2px rgba(255, 255, 255, 0.1),
+		0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.navbar.scrolled::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		120deg,
+		rgba(255, 255, 255, 0.1) 0%,
+		rgba(255, 255, 255, 0.3) 50%,
+		rgba(255, 255, 255, 0.1) 100%
+	);
+	opacity: 0;
+	transition: opacity 0.6s ease;
+	pointer-events: none;
+}
+.navbar.scrolled:hover::after {
+	opacity: 1;
+}
+
+@media (max-width: 992px) {
+	.navbar.scrolled {
+		background: rgba(0, 0, 0, 0.75) !important;
+		backdrop-filter: blur(14px) saturate(150%) !important;
+		box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+	}
+}
+
+/* 🚫 Wyłącz pulsującą animację CTA w navbarze */
+.navbar .btn-premium-footer {
+	animation: none !important;
+	transform: none !important;
+}
+
+.mobile-overlay .btn-premium-footer {
+	display: none !important;
+}
+.dropdown-toggle.btn-nav {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	padding: 0 !important;
+	width: 48px !important;
+	height: 48px !important;
+}
+
+.dropdown-toggle.btn-nav img {
+	display: block;
+	width: 28px !important;
+	height: 28px !important;
+	object-fit: cover;
+	border-radius: 50%;
+	margin: 0 !important;
+}

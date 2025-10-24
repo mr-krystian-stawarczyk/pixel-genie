@@ -1,80 +1,96 @@
-// components/CookieConsent.js
-import React, { useEffect, useState } from "react";
-import { getCookie, hasCookie, setCookie } from "cookies-next";
-import { Button, ButtonGroup, Col, Row } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
+import { hasCookie, setCookie, deleteCookie } from "cookies-next";
 
-const CookieConsent = () => {
-	const [showConsent, setShowConsent] = useState(false);
-	const { t } = useTranslation();
+export default function CookieConsent() {
+	const [showBanner, setShowBanner] = useState(false);
 
 	useEffect(() => {
-		// Sprawdź, czy zgoda już istnieje
-		const consent = getCookie("localConsent");
-		setShowConsent(!consent);
+		if (!hasCookie("essentialConsent") && !hasCookie("marketingConsent")) {
+			setShowBanner(true);
+		}
 	}, []);
 
-	const acceptCookie = () => {
-		setCookie("localConsent", "true", {
-			sameSite: "Lax", // "None" może być nadmiarowe dla zwykłych zastosowań
-			secure: process.env.NODE_ENV === "production", // tylko w prod
-			maxAge: 60 * 60 * 24 * 365, // 1 rok
-		});
-		setShowConsent(false);
+	// 🔹 Pełna zgoda (Analytics + CTA)
+	const acceptAll = () => {
+		setCookie("essentialConsent", "true", { maxAge: 60 * 60 * 24 * 365 });
+		setCookie("marketingConsent", "true", { maxAge: 60 * 60 * 24 * 365 });
+		setShowBanner(false);
+		window.dispatchEvent(new Event("cookieAccepted")); // CTA + GA
 	};
 
-	const acceptEssentialCookies = () => {
-		// Usunięcie niepotrzebnych cookies
-		const nonEssential = ["_gat", "_gid", "_ga"];
-		nonEssential.forEach((name) => {
-			setCookie(name, "", { expires: new Date(0) });
-		});
-
-		setCookie("localConsent", "true", {
-			sameSite: "Lax",
-			secure: process.env.NODE_ENV === "production",
-			maxAge: 60 * 60 * 24 * 365,
-		});
-		setShowConsent(false);
+	// 🔹 Tylko niezbędne (bez Analytics, ale CTA widoczne)
+	const essentialOnly = () => {
+		setCookie("essentialConsent", "true", { maxAge: 60 * 60 * 24 * 365 });
+		deleteCookie("marketingConsent");
+		setShowBanner(false);
+		window.dispatchEvent(new Event("cookieEssential")); // CTA bez GA
 	};
 
-	if (!showConsent) return null;
+	if (!showBanner) return null;
 
 	return (
 		<div
 			style={{
 				position: "fixed",
-				left: 0,
 				bottom: 0,
-				right: 0,
-				zIndex: 998,
-				background: "rgba(0,0,0,0.8)",
-				padding: "10px",
+				left: 0,
+				width: "100%",
+				background: "rgba(0,0,0,0.9)",
+				color: "white",
+				padding: "1.2rem 0.8rem",
+				zIndex: 999,
+				backdropFilter: "blur(8px)",
+				boxShadow: "0 -4px 15px rgba(0,0,0,0.4)",
 			}}
 		>
-			<Row className="justify-content-center text-center">
-				<Col>
-					<Row className="justify-content-center">
-						<h6 className="text-light">{t("policy28")}</h6>
-						<ButtonGroup style={{ maxWidth: "15rem" }}>
-							<Button
-								className="btn-nav m-2 btn-sm rounded"
-								onClick={acceptCookie}
-							>
-								{t("policy31")}
-							</Button>
-							<Button
-								className="btn-nav m-2 btn-sm rounded"
-								onClick={acceptEssentialCookies}
-							>
-								{t("policy31-1")}
-							</Button>
-						</ButtonGroup>
-					</Row>
-				</Col>
-			</Row>
+			<div className="container text-center text-md-start d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+				<p
+					className="mb-2 mb-md-0 text-white"
+					style={{ maxWidth: "750px", fontSize: "0.95rem" }}
+				>
+					Wir verwenden Cookies, um unsere Website zu verbessern. Einige sind
+					essenziell, andere helfen uns, Ihr Erlebnis zu optimieren.
+					<br />
+					Weitere Details findest du in unserer{" "}
+					<a
+						href="/impressium"
+						className="text-warning fw-bold ms-1"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Datenschutzerklärung &amp; Impressum
+					</a>
+					.
+				</p>
+
+				<div className="d-flex flex-column flex-md-row gap-2">
+					<button
+						onClick={essentialOnly}
+						className="btn btn-outline-light btn-sm px-4 py-2 fw-semibold rounded-3"
+					>
+						Nur essenziell
+					</button>
+
+					{/* 🔥 Przyciągający wzrok przycisk */}
+					<button
+						onClick={acceptAll}
+						className="btn-premium-footer text-white fw-bold px-4 py-2 rounded-3 shadow-sm"
+						style={{
+							background:
+								"linear-gradient(90deg, #ff7b00 0%, #ffb800 50%, #ff9100 100%)",
+							border: "none",
+							fontSize: "1rem",
+							transition: "transform 0.2s ease",
+						}}
+						onMouseEnter={(e) =>
+							(e.currentTarget.style.transform = "scale(1.05)")
+						}
+						onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+					>
+						🚀 Alle Akzeptieren
+					</button>
+				</div>
+			</div>
 		</div>
 	);
-};
-
-export default CookieConsent;
+}

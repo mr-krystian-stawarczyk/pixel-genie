@@ -1,93 +1,56 @@
-import React, { useState, useEffect, useRef } from "react";
-import { NavDropdown } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import { Dropdown } from "react-bootstrap";
-import dynamic from "next/dynamic";
-import Nav from "react-bootstrap/Nav";
+"use client";
+import React, { useState, useEffect } from "react";
+import {
+	Navbar,
+	Nav,
+	Container,
+	Button,
+	Dropdown,
+	NavDropdown,
+} from "react-bootstrap";
 import Link from "next/link";
-import Navbar from "react-bootstrap/Navbar";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import { useTranslation } from "react-i18next";
-import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-import ReactGA from "react-ga";
 import { IoHomeOutline } from "react-icons/io5";
-
+import { BsFillSunFill, BsFillMoonFill, BsX } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
 import { loadLanguage } from "../i18n.js";
 
 const NavbarComp = ({ toggleTheme }) => {
-	const CountUp = dynamic(() => import("react-countup"), { ssr: false });
 	const { t, i18n } = useTranslation();
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
-	const [currentTheme, setCurrentTheme] = useState("dark");
-	const [isLightIcon, setIsLightIcon] = useState(false);
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(false);
 	const [selectedFlag, setSelectedFlag] = useState(
 		"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
 	);
-	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const { theme, setTheme } = useTheme();
+	const [currentTheme, setCurrentTheme] = useState("dark");
+	const [isLight, setIsLight] = useState(theme === "light");
+	const closeMobileMenu = () => {
+		setMenuOpen(false);
+		document.body.style.overflow = "auto";
+	};
 
-	const counterRef = useRef(null);
-	const [isVisible, setIsVisible] = useState(false);
-
-	// Google Analytics
-	useEffect(() => {
-		ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
-		ReactGA.pageview(window.location.pathname + window.location.search);
-	}, []);
-
-	// Scroll effect
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.scrollY > 0) {
-				setScrolled(true);
-				setNavbarColor("#ffffff");
-			} else {
-				setScrolled(false);
-				setNavbarColor("transparent");
-			}
+			setScrolled(window.scrollY > 0);
+			setNavbarColor(window.scrollY > 0 ? "#ffffff" : "transparent");
 		};
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	// Initial theme setup
 	useEffect(() => {
-		if (!theme || theme === "system") {
-			const prefersDark = window.matchMedia(
-				"(prefers-color-scheme: dark)"
-			).matches;
-			const initialTheme = prefersDark ? "dark" : "light";
-			setTheme(initialTheme);
-			setCurrentTheme(initialTheme);
-		} else {
-			setCurrentTheme(theme);
-		}
+		const prefersDark = window.matchMedia(
+			"(prefers-color-scheme: dark)"
+		).matches;
+		setTheme(prefersDark ? "dark" : "light");
+		setCurrentTheme(prefersDark ? "dark" : "light");
+		setIsLight(!prefersDark);
 	}, []);
 
-	// Update body background color on theme change
-	useEffect(() => {
-		if (currentTheme) {
-			document.body.style.backgroundColor =
-				currentTheme === "light" ? "#fff" : "#111";
-		}
-	}, [currentTheme]);
-
-	// Counter observer
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				if (entries[0].isIntersecting) setIsVisible(true);
-			},
-			{ threshold: 0.3 }
-		);
-		if (counterRef.current) observer.observe(counterRef.current);
-		return () => observer.disconnect();
-	}, []);
-
-	// Dropdown language change
 	const handleDropdownSelect = async (eventKey) => {
 		setDropdownOpen(false);
 		switch (eventKey) {
@@ -95,212 +58,348 @@ const NavbarComp = ({ toggleTheme }) => {
 				setSelectedFlag(
 					"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
 				);
-				i18n.changeLanguage("de"); // DE już załadowany
+				i18n.changeLanguage("de");
 				break;
 			case "flag2":
 				setSelectedFlag(
 					"/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
 				);
-				await loadLanguage("eng"); // dynamiczne ładowanie EN
+				await loadLanguage("eng");
 				break;
 			case "flag3":
 				setSelectedFlag(
 					"/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
 				);
-				await loadLanguage("pl"); // dynamiczne ładowanie PL
+				await loadLanguage("pl");
 				break;
 			default:
-				setSelectedFlag(
-					"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
-				);
+				break;
 		}
 	};
 
-	useEffect(() => {
-		if (theme) setCurrentTheme(theme);
-	}, [theme]);
-
-	const getTextColor = () => {
-		if (scrolled) return "#000";
-		if (currentTheme === "light") return "#000";
-		return "#fff";
+	const toggleThemeMode = () => {
+		const next = currentTheme === "light" ? "dark" : "light";
+		setTheme(next);
+		setCurrentTheme(next);
+		setIsLight(next === "light");
+		toggleTheme();
 	};
 
+	const toggleMobileMenu = () => {
+		setMenuOpen(!menuOpen);
+		document.body.style.overflow = !menuOpen ? "hidden" : "auto";
+	};
+
+	const textColor =
+		scrolled || currentTheme === "light" ? "#000" : "var(--text-color)";
+
 	return (
-		<Navbar
-			expand="lg"
-			fixed="top"
-			style={{
-				height: "70px",
-				backgroundColor: navbarColor,
-				transition: "background-color 0.5s ease",
-			}}
-			className="nav-transition rounded-bottom"
-			collapseOnSelect
-		>
-			<Container className="justify-content-space-between">
-				<Navbar.Brand as={Link} href="/" className="rounded py-0 mx-0">
-					<Image
-						src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
-						alt="pixel-genie-nettetal-webentwicklung-logo"
-						width={50}
-						height={50}
-						style={{ width: "auto", height: "auto" }}
-						priority
-						className="mb-1"
-					/>
-					<span
-						className="mx-1 text-bold"
+		<>
+			<Navbar
+				expand="lg"
+				fixed="top"
+				style={{
+					height: "70px",
+					backgroundColor: scrolled ? navbarColor : "transparent",
+					backdropFilter: scrolled ? "blur(12px)" : "none",
+					transition: "background-color 0.4s ease, box-shadow 0.3s ease",
+					boxShadow: scrolled ? "0 2px 10px rgba(0,0,0,0.1)" : "none",
+				}}
+				className="nav-transition rounded-bottom"
+			>
+				<Container className="justify-content-between align-items-center">
+					<Navbar.Brand
+						as={Link}
+						href="/"
+						className="d-flex align-items-center gap-2"
+					>
+						<Image
+							src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
+							alt="Pixel Genie Logo"
+							width={46}
+							height={46}
+							priority
+						/>
+						<span
+							className="fw-bold"
+							style={{
+								color: textColor,
+								fontSize: "1.2rem",
+								transition: "color 0.3s ease",
+							}}
+						>
+							Pixel&nbsp;Genie
+						</span>
+					</Navbar.Brand>
+
+					<Button
+						className="border-0 bg-transparent d-lg-none"
+						onClick={toggleMobileMenu}
+					>
+						{menuOpen ? (
+							<BsX
+								size={34}
+								color={scrolled || currentTheme === "light" ? "#000" : "#fff"}
+							/>
+						) : (
+							<div
+								className="navbar-toggler-icon-custom"
+								style={{
+									backgroundColor:
+										scrolled || currentTheme === "light" ? "#000" : "#fff",
+								}}
+							></div>
+						)}
+					</Button>
+
+					<Navbar.Collapse id="nav" className="mt-3 mt-lg-0 text-center">
+						<Nav className="ms-auto align-items-center gap-2">
+							<Nav.Link as={Link} href="#kontakt" className="d-none d-lg-block">
+								<button className="btn-premium-footer px-4 py-1">
+									🚀 Kostenlose Analyse
+								</button>
+							</Nav.Link>
+
+							<Nav.Link as={Link} href="/" className="m-1">
+								<Button className="btn-nav border-0">
+									<IoHomeOutline size={20} />
+								</Button>
+							</Nav.Link>
+
+							<NavDropdown
+								title={
+									<span style={{ color: "#fff", fontWeight: "bold" }}>
+										Dienste
+									</span>
+								}
+								id="dienste-dropdown"
+								className="btn-nav-drop border-0 p-0 m-0"
+								onMouseEnter={() => setDropdownOpen(true)}
+								onMouseLeave={() => setDropdownOpen(false)}
+								onClick={() => setDropdownOpen((prev) => !prev)} // ✅ dodane
+								show={dropdownOpen}
+								menuVariant={currentTheme === "dark" ? "dark" : "light"}
+							>
+								<div
+									style={{
+										background:
+											currentTheme === "dark"
+												? "rgba(15,15,25,0.97)"
+												: "rgba(0,55,130,0.95)",
+										backdropFilter: "blur(12px)",
+										padding: "0.5rem",
+										borderRadius: "16px",
+										width: "240px",
+									}}
+								>
+									{[
+										["/webseitenerstellen", "Webseiten erstellen"],
+										["/suchmaschinenoptimierung", "SEO Optimierung"],
+										["/branding", "Branding"],
+										["/webdesign", "Webdesign"],
+										["/socialmediamarketing", "Social Media Marketing"],
+									].map(([href, label]) => (
+										<NavDropdown.Item
+											as={Link}
+											href={href}
+											key={label}
+											className="p-0 my-1"
+											onClick={() => setDropdownOpen(false)}
+										>
+											<Button className="btn-nav w-100">{label}</Button>
+										</NavDropdown.Item>
+									))}
+								</div>
+							</NavDropdown>
+
+							<Nav.Link as={Link} href="/webdesignblog" className="m-1">
+								<Button className="btn-nav border-0">Blog</Button>
+							</Nav.Link>
+
+							<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
+								<Button className="btn-nav border-0">Geschichte</Button>
+							</Nav.Link>
+
+							<div className="d-flex align-items-center gap-2 mx-1">
+								<Dropdown onSelect={handleDropdownSelect}>
+									<Dropdown.Toggle
+										className="btn-nav border-0 p-2"
+										style={{
+											background: "transparent",
+											color:
+												scrolled || currentTheme === "light" ? "#000" : "#fff",
+										}}
+									>
+										<Image
+											src={selectedFlag}
+											alt="Lang"
+											width={24}
+											height={24}
+											className="mx-1"
+											priority
+										/>
+									</Dropdown.Toggle>
+									<Dropdown.Menu
+										className="text-center"
+										style={{
+											background:
+												currentTheme === "dark"
+													? "rgba(20,20,30,0.95)"
+													: "rgba(0,55,130,0.9)",
+											backdropFilter: "blur(10px)",
+											borderRadius: "14px",
+										}}
+									>
+										{[
+											[
+												"flag1",
+												"DE",
+												"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png",
+											],
+											[
+												"flag2",
+												"EN",
+												"/assets/webagentur-webentwicklung-nettetal-seo-flageng.png",
+											],
+											[
+												"flag3",
+												"PL",
+												"/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png",
+											],
+										].map(([key, alt, src]) => (
+											<Dropdown.Item key={key} eventKey={key}>
+												<Image src={src} alt={alt} width={36} height={36} />
+											</Dropdown.Item>
+										))}
+									</Dropdown.Menu>
+								</Dropdown>
+
+								<Button
+									onClick={toggleThemeMode}
+									className="btn-nav border-0 p-2 d-flex align-items-center justify-content-center theme-toggle"
+									style={{
+										width: "48px",
+										height: "48px",
+										position: "relative",
+									}}
+								>
+									<div
+										className={`theme-icon-wrapper animated-theme ${isLight ? "sunrise" : "moonrise"}`}
+									>
+										<BsFillSunFill className="theme-sun" />
+										<BsFillMoonFill className="theme-moon" />
+									</div>
+								</Button>
+							</div>
+						</Nav>
+					</Navbar.Collapse>
+				</Container>
+			</Navbar>
+
+			<div className={`mobile-overlay ${menuOpen ? "show" : ""}`}>
+				<Nav className="d-flex flex-column align-items-center gap-3 mt-5">
+					{[
+						["/", "Startseite"],
+						["/webseitenerstellen", "Webseiten"],
+						["/suchmaschinenoptimierung", "SEO"],
+						["/branding", "Branding"],
+						["/webdesign", "Webdesign"],
+					].map(([href, label]) => (
+						<Button
+							key={href}
+							as={Link}
+							href={href}
+							className="btn-nav w-75"
+							onClick={closeMobileMenu} // ✅ zamyka po kliknięciu
+						>
+							{label}
+						</Button>
+					))}
+					<Button
+						as={Link}
+						href="#kontakt"
+						className="btn-premium-footer w-75"
+						onClick={closeMobileMenu} // ✅ zamyka po kliknięciu
+					>
+						🚀 Kostenlose Analyse
+					</Button>
+				</Nav>
+				<div className="d-flex align-items-center justify-content-center gap-3 mt-4">
+					{/* 🌐 język */}
+					<Dropdown onSelect={handleDropdownSelect}>
+						<Dropdown.Toggle
+							className="btn-nav border-0 p-2"
+							style={{
+								background: "transparent",
+								color: currentTheme === "light" ? "#000" : "#fff",
+							}}
+						>
+							<Image
+								src={selectedFlag}
+								alt="Lang"
+								width={24}
+								height={24}
+								className="mx-1"
+								priority
+							/>
+						</Dropdown.Toggle>
+						<Dropdown.Menu
+							className="text-center"
+							style={{
+								background:
+									currentTheme === "dark"
+										? "rgba(20,20,30,0.95)"
+										: "rgba(0,55,130,0.9)",
+								backdropFilter: "blur(10px)",
+								borderRadius: "14px",
+							}}
+						>
+							{[
+								[
+									"flag1",
+									"DE",
+									"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png",
+								],
+								[
+									"flag2",
+									"EN",
+									"/assets/webagentur-webentwicklung-nettetal-seo-flageng.png",
+								],
+								[
+									"flag3",
+									"PL",
+									"/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png",
+								],
+							].map(([key, alt, src]) => (
+								<Dropdown.Item key={key} eventKey={key}>
+									<Image src={src} alt={alt} width={36} height={36} />
+								</Dropdown.Item>
+							))}
+						</Dropdown.Menu>
+					</Dropdown>
+
+					{/* 🌗 motyw */}
+					<Button
+						onClick={toggleThemeMode}
+						className="btn-nav border-0 p-2 d-flex align-items-center justify-content-center theme-toggle"
 						style={{
-							color: scrolled
-								? "#000"
-								: currentTheme === "light"
-									? "#000"
-									: "#fff",
-							transition: "color 0.5s ease",
+							width: "48px",
+							height: "48px",
+							position: "relative",
 						}}
 					>
-						Pixel Genie
-					</span>
-				</Navbar.Brand>
-
-				<Navbar.Toggle
-					aria-controls="basic-navbar-nav" // ✅ poprawione
-					aria-label="Navigation umschalten"
-					className="btn-sm"
-				/>
-
-				<Navbar.Collapse
-					id="basic-navbar-nav"
-					className="rounded justify-content-end text-center p-3 navbar-toggler border-0"
-				>
-					<Nav className="navbar-collapse justify-content-end text-center rounded">
-						<Nav.Link
-							as={Link}
-							href="#kontakt"
-							className="m-1 d-none d-lg-block"
-							aria-label="Kostenlose Website-Analyse"
+						<div
+							className={`theme-icon-wrapper animated-theme ${
+								isLight ? "sunrise" : "moonrise"
+							}`}
 						>
-							<button className="btn-premium-footer px-4 py-2">
-								🚀 Kostenlose Analyse
-							</button>
-						</Nav.Link>
-						{/* Wersja mobilna — uproszczona, bez efektu shine */}
-						<Nav.Link
-							as={Link}
-							href="#kontakt"
-							className="d-block d-lg-none m-1"
-							aria-label="Kostenlose Website-Analyse"
-						>
-							<Button className="btn-success w-100 py-2 fw-bold">
-								🚀 Kostenlose Analyse
-							</Button>
-						</Nav.Link>
-						<Nav.Link as={Link} href="/" className="m-1">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								<IoHomeOutline aria-label="Haupt seite" />
-							</Button>
-						</Nav.Link>
-						<NavDropdown
-							title={t("nav1")}
-							id="basic-nav-dropdown"
-							className="btn-md shadow-md btn-nav-drop rounded my-2 p-1"
-							menuVariant="dark"
-							style={{ fontSize: "1rem" }}
-							show={dropdownOpen}
-							onToggle={() => setDropdownOpen(!dropdownOpen)} // ✅ poprawione
-						>
-							<NavDropdown.Item as={Link} href="/webseitenerstellen">
-								<Button className="w-100 border-0 btn-nav shadow-sm">
-									{t("nav8")}
-								</Button>
-							</NavDropdown.Item>
-							<NavDropdown.Item as={Link} href="/suchmaschinenoptimierung">
-								<Button className="w-100 border-0 btn-nav shadow-sm">
-									SEO
-								</Button>
-							</NavDropdown.Item>
-							<NavDropdown.Divider />
-							<NavDropdown.Item as={Link} href="/branding">
-								<Button className="w-100 border-0 btn-nav">Branding</Button>
-							</NavDropdown.Item>
-							<NavDropdown.Item as={Link} href="/webdesign">
-								<Button className="w-100 border-0 btn-nav">Webdesign</Button>
-							</NavDropdown.Item>
-							<NavDropdown.Item as={Link} href="/socialmediamarketing">
-								<Button className="w-100 border-0 btn-nav">Social Media</Button>
-							</NavDropdown.Item>
-						</NavDropdown>
-						<Nav.Link as={Link} href="/webdesignblog">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md">
-								{t("nav3")}
-							</Button>
-						</Nav.Link>
-						<Nav.Link as={Link} href="/pixelgeniehistory">
-							<Button className="btn-md py-2 btn-nav border-0 shadow-md ">
-								Geschichte
-							</Button>
-						</Nav.Link>{" "}
-						<Dropdown onSelect={handleDropdownSelect} className="border-0">
-							<Dropdown.Toggle className="btn-nav border-0">
-								<Image
-									src={selectedFlag}
-									alt="Selected Flag"
-									width="25"
-									height="25"
-									priority
-								/>
-							</Dropdown.Toggle>
-							<Dropdown.Menu className="text-center justify-content-center my-dropdown">
-								<Dropdown.Item eventKey="flag1">
-									<Image
-										src="/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
-										alt="DE"
-										width="40"
-										height="40"
-										priority
-									/>
-								</Dropdown.Item>
-								<NavDropdown.Divider />
-								<Dropdown.Item eventKey="flag2">
-									<Image
-										src="/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
-										alt="EN"
-										width="40"
-										height="40"
-										priority
-									/>
-								</Dropdown.Item>
-								<NavDropdown.Divider />
-								<Dropdown.Item eventKey="flag3">
-									<Image
-										src="/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
-										alt="PL"
-										width="40"
-										height="40"
-										priority
-									/>
-								</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown>
-						<Button
-							onClick={() => {
-								toggleTheme();
-								setIsLightIcon((prev) => !prev);
-							}}
-							className="btn-nav border-0 btn-md py-2 mx-1 theme-toggle"
-							aria-label="theme wechseln"
-						>
-							{isLightIcon ? (
-								<BsFillMoonFill style={{ color: "grey" }} />
-							) : (
-								<BsFillSunFill style={{ color: "yellow" }} />
-							)}
-						</Button>{" "}
-					</Nav>
-				</Navbar.Collapse>
-			</Container>
-		</Navbar>
+							<BsFillSunFill className="theme-sun" />
+							<BsFillMoonFill className="theme-moon" />
+						</div>
+					</Button>
+				</div>
+			</div>
+		</>
 	);
 };
 

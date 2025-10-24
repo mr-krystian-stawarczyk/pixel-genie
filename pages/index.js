@@ -31,7 +31,12 @@ export default function Home() {
 						__html: JSON.stringify({
 							"@context": "https://schema.org",
 							"@type": "LocalBusiness",
-							name: "Pixel Genie",
+							name: "Pixel-Genie Webagentur Nettetal",
+							image:
+								"https://pixel-genie.de/assets/webentwicklung-nettetal-seo2.png",
+							description:
+								"Pixel-Genie ist Ihre Agentur für Webdesign, Webseiten erstellen, SEO Optimierung und Social Media Marketing in Nettetal. Wir kombinieren Design, Performance und Sichtbarkeit, um Ihr Online-Geschäft zu stärken.",
+							url: "https://pixel-genie.de",
 							telephone: "+48 726 897 493",
 							email: "pixelgenie.marketing@gmail.com",
 							address: {
@@ -41,9 +46,14 @@ export default function Home() {
 								postalCode: "41334",
 								addressCountry: "DE",
 							},
+							sameAs: [
+								"https://www.facebook.com/pixel.genie.de",
+								"https://www.linkedin.com/company/pixelgenie",
+								"https://www.instagram.com/pixel.genie.de",
+							],
 							geo: {
 								"@type": "GeoCoordinates",
-								latitude: 51.292, // Nettetal
+								latitude: 51.292,
 								longitude: 6.34,
 							},
 							areaServed: [
@@ -57,24 +67,37 @@ export default function Home() {
 								"Ratingen",
 								"Willich",
 								"Grefrath",
-								"Tönisvorst",
-								"Lobberich",
-								"Süchteln",
-								"Viersen-Dülken",
-								"Brüggen",
-								"Bracht",
-								"Sittard-Geleen",
-								"Heinsberg",
-								"Aachen",
-								"Cologne",
-								"Düren",
-								"Neuss",
-								"Wegberg",
-								"Erkelenz",
-								"Grevenbroich",
 							],
-							url: "https://pixel-genie.de",
-							sameAs: ["https://www.facebook.com/pixel.genie.de"],
+							offers: {
+								"@type": "OfferCatalog",
+								name: "Unsere Dienstleistungen",
+								itemListElement: [
+									{
+										"@type": "Offer",
+										itemOffered: {
+											"@type": "Service",
+											name: "Webseitenerstellung",
+											url: "https://pixel-genie.de/webseitenerstellen",
+										},
+									},
+									{
+										"@type": "Offer",
+										itemOffered: {
+											"@type": "Service",
+											name: "SEO Optimierung",
+											url: "https://pixel-genie.de/seo",
+										},
+									},
+									{
+										"@type": "Offer",
+										itemOffered: {
+											"@type": "Service",
+											name: "Social Media Marketing",
+											url: "https://pixel-genie.de/socialmediamarketing",
+										},
+									},
+								],
+							},
 						}),
 					}}
 				/>

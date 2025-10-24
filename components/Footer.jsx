@@ -4,11 +4,15 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useTranslation } from "react-i18next";
-import { AiOutlineFacebook } from "react-icons/ai";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import FooterLinksSEO from "./FooterLinksSEO";
-
+import {
+	AiOutlineFacebook,
+	AiFillLinkedin,
+	AiOutlineReddit,
+} from "react-icons/ai";
+import { FaXTwitter } from "react-icons/fa6";
 function Footer() {
 	const { t } = useTranslation();
 	const sectionRef = useRef(null);
@@ -102,7 +106,6 @@ function Footer() {
 							</Card>
 						</Col>
 
-						{/* Kolumna 3 – Facebook */}
 						<Col lg={3} sm={6} className="mx-auto">
 							<Card className="bg-transparent border-0 shadow-lg text-center">
 								<Card.Body className="d-flex flex-column align-items-center">
@@ -110,17 +113,46 @@ function Footer() {
 										className="my-3 text-uppercase"
 										style={{ color: "var(--text-color)" }}
 									>
-										Facebook
+										Folge uns
 									</Card.Title>
 
-									<Link
-										href="https://www.facebook.com/profile.php?id=100090817536941"
-										target="_blank"
-										aria-label="Pixel-Genie Facebook"
-										className="fb-icon-wrapper"
-									>
-										<AiOutlineFacebook className="fb-icon-premium" />
-									</Link>
+									<div className="d-flex justify-content-center gap-4 flex-wrap">
+										<Link
+											href="https://www.facebook.com/profile.php?id=100090817536941"
+											target="_blank"
+											aria-label="Facebook"
+											className="social-icon-wrapper"
+										>
+											<AiOutlineFacebook className="social-icon-premium fb" />
+										</Link>
+
+										<Link
+											href="https://www.linkedin.com/company/pixel-genie-519216390/"
+											target="_blank"
+											aria-label="LinkedIn"
+											className="social-icon-wrapper"
+										>
+											<AiFillLinkedin className="social-icon-premium li" />
+										</Link>
+
+										<Link
+											href="https://x.com/PixelGenieWeb"
+											target="_blank"
+											aria-label="X / Twitter"
+											className="social-icon-wrapper"
+										>
+											<FaXTwitter className="social-icon-premium x" />
+										</Link>
+
+										<Link
+											href="https://www.reddit.com/r/selbststaendig/comments/1oeyd5c/warum-vertrauen-2025-zur-neuen-markenw%C3%A4hrung_wird/"
+											target="_blank"
+											aria-label="Reddit"
+											className="social-icon-wrapper"
+										>
+											<AiOutlineReddit className="social-icon-premium reddit" />
+										</Link>
+									</div>
 
 									<p
 										className="mt-3"
@@ -130,7 +162,8 @@ function Footer() {
 											opacity: 0.8,
 										}}
 									>
-										Folge uns für Tipps zu <strong>Webdesign & SEO</strong>
+										Folge uns auf Social Media für{" "}
+										<strong>Insights & Trends</strong>
 									</p>
 								</Card.Body>
 							</Card>
