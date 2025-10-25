@@ -4,40 +4,38 @@ import Layout from "@/components/Layout";
 import { ThemeProvider } from "next-themes";
 import { CookiesProvider, useCookies } from "react-cookie";
 import Head from "next/head";
+import Script from "next/script";
 import { useRouter } from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
-import { initGA, gaPageview } from "@/lib/analytics";
+import { initGA, gaPageview, GA_ID } from "@/lib/analytics";
 
 function AppContent({ Component, pageProps }) {
 	const router = useRouter();
 	const [mounted, setMounted] = useState(false);
-
-	// ⬅️ ważne: śledzimy obie zgody, ale GA odpalamy tylko przy marketingConsent
 	const [cookies] = useCookies(["essentialConsent", "marketingConsent"]);
 
 	useEffect(() => setMounted(true), []);
 
-	// ✅ Inicjalizacja GA wyłącznie po zgodzie marketingowej i tylko w produkcji
+	// ✅ Inicjalizacja GA tylko po zgodzie marketingowej + tylko prod
 	useEffect(() => {
-		if (process.env.NODE_ENV !== "production") return;
-
-		if (cookies.marketingConsent === "true") {
+		if (
+			process.env.NODE_ENV === "production" &&
+			cookies.marketingConsent === "true"
+		) {
 			initGA();
+			gaPageview(window.location.pathname);
 		}
-
-		// Dodatkowa asekuracja: jeśli zgoda zostanie udzielona "w locie"
-		const onAccept = () => initGA();
-		window.addEventListener("cookieAccepted", onAccept);
-		return () => window.removeEventListener("cookieAccepted", onAccept);
 	}, [cookies.marketingConsent]);
 
-	// ✅ Pageviews po zmianie trasy (gaPageview nic nie wyśle, jeśli GA nie jest zainicjalizowane)
+	// ✅ Track pageviews przy zmianie route
 	useEffect(() => {
-		const handleRouteChange = (url) => gaPageview(url);
+		const handleRouteChange = (url) => {
+			if (cookies.marketingConsent === "true") gaPageview(url);
+		};
 		router.events.on("routeChangeComplete", handleRouteChange);
 		return () => router.events.off("routeChangeComplete", handleRouteChange);
-	}, [router.events]);
+	}, [router.events, cookies.marketingConsent]);
 
 	if (!mounted) return null;
 
@@ -53,6 +51,27 @@ function AppContent({ Component, pageProps }) {
 				<link rel="manifest" href="/manifest.json" />
 			</Head>
 
+			{/* ✅ Ładowanie GA SCRIPT tylko przy zgodzie i tylko na produkcji */}
+			{process.env.NODE_ENV === "production" &&
+				cookies.marketingConsent === "true" && (
+					<>
+						<Script
+							src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+							strategy="afterInteractive"
+						/>
+						<Script id="ga-init" strategy="afterInteractive">
+							{`
+								window.dataLayer = window.dataLayer || [];
+								function gtag(){dataLayer.push(arguments);}
+								gtag('js', new Date());
+								gtag('config', '${GA_ID}', {
+									page_path: window.location.pathname,
+								});
+							`}
+						</Script>
+					</>
+				)}
+
 			<ThemeProvider
 				attribute="class"
 				defaultTheme="dark"
@@ -67,7 +86,6 @@ function AppContent({ Component, pageProps }) {
 	);
 }
 
-// ✅ CookiesProvider MUSI owijać całą aplikację (żeby useCookies działał wszędzie)
 export default function MyApp(props) {
 	return (
 		<CookiesProvider>
