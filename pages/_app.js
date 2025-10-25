@@ -13,19 +13,18 @@ import { initGA, gaPageview, GA_ID } from "@/lib/analytics";
 function AppContent({ Component, pageProps }) {
 	const router = useRouter();
 	const [mounted, setMounted] = useState(false);
-	const [cookies] = useCookies(["essentialConsent", "marketingConsent"]);
+	const [cookies] = useCookies(["marketingConsent"]);
 
-	useEffect(() => {
-		setMounted(true);
-	}, []);
+	useEffect(() => setMounted(true), []);
 
+	// ✅ Jeśli zgoda zostanie udzielona — odpal GA
 	useEffect(() => {
-		if (
-			process.env.NODE_ENV === "production" &&
-			cookies.marketingConsent === "true"
-		) {
+		if (cookies.marketingConsent === "true") {
+			console.log("✅ Marketing consent detected — initializing GA");
 			initGA();
 			gaPageview(window.location.pathname);
+		} else {
+			console.log("❌ No marketing consent — GA disabled");
 		}
 	}, [cookies.marketingConsent]);
 
@@ -33,8 +32,6 @@ function AppContent({ Component, pageProps }) {
 		const handleRouteChange = (url) => {
 			if (cookies.marketingConsent === "true") {
 				gaPageview(url);
-			} else {
-				console.log("GA pageview skipped (no consent):", url);
 			}
 		};
 		router.events.on("routeChangeComplete", handleRouteChange);
@@ -52,37 +49,17 @@ function AppContent({ Component, pageProps }) {
 					content="Pixel-Genie entwickelt moderne Webseiten, SEO-optimierte Lösungen und digitale Markenstrategien."
 				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="manifest" href="/manifest.json" />
 			</Head>
 
-			{process.env.NODE_ENV === "production" &&
-				cookies.marketingConsent === "true" && (
-					<>
-						<Script
-							strategy="afterInteractive"
-							src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-						/>
-						<Script id="ga-init" strategy="afterInteractive">
-							{`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `}
-						</Script>
-					</>
-				)}
+			{/* ✅ <Script> ładuje się ZAWSZE — ale GA nie zbiera danych bez init */}
+			<Script
+				src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+				strategy="afterInteractive"
+			/>
 
-			<ThemeProvider
-				attribute="class"
-				defaultTheme="dark"
-				enableSystem
-				disableTransitionOnChange
-			>
+			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
 				<Layout pageProps={pageProps}>
-					<Component {...pageProps} key={router.asPath} />
+					<Component {...pageProps} />
 				</Layout>
 			</ThemeProvider>
 		</>
