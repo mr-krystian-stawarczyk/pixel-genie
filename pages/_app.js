@@ -15,9 +15,10 @@ function AppContent({ Component, pageProps }) {
 	const [mounted, setMounted] = useState(false);
 	const [cookies] = useCookies(["essentialConsent", "marketingConsent"]);
 
-	useEffect(() => setMounted(true), []);
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
-	// ✅ Inicjalizacja GA tylko po zgodzie marketingowej + tylko prod
 	useEffect(() => {
 		if (
 			process.env.NODE_ENV === "production" &&
@@ -28,10 +29,13 @@ function AppContent({ Component, pageProps }) {
 		}
 	}, [cookies.marketingConsent]);
 
-	// ✅ Track pageviews przy zmianie route
 	useEffect(() => {
 		const handleRouteChange = (url) => {
-			if (cookies.marketingConsent === "true") gaPageview(url);
+			if (cookies.marketingConsent === "true") {
+				gaPageview(url);
+			} else {
+				console.log("GA pageview skipped (no consent):", url);
+			}
 		};
 		router.events.on("routeChangeComplete", handleRouteChange);
 		return () => router.events.off("routeChangeComplete", handleRouteChange);
@@ -51,23 +55,22 @@ function AppContent({ Component, pageProps }) {
 				<link rel="manifest" href="/manifest.json" />
 			</Head>
 
-			{/* ✅ Ładowanie GA SCRIPT tylko przy zgodzie i tylko na produkcji */}
 			{process.env.NODE_ENV === "production" &&
 				cookies.marketingConsent === "true" && (
 					<>
 						<Script
-							src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
 							strategy="afterInteractive"
+							src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
 						/>
 						<Script id="ga-init" strategy="afterInteractive">
 							{`
-								window.dataLayer = window.dataLayer || [];
-								function gtag(){dataLayer.push(arguments);}
-								gtag('js', new Date());
-								gtag('config', '${GA_ID}', {
-									page_path: window.location.pathname,
-								});
-							`}
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `}
 						</Script>
 					</>
 				)}
