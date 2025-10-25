@@ -9,11 +9,15 @@
 import Head from "next/head";
 import Link from "next/link";
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
+import dynamic from "next/dynamic";
 import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData";
 import SEOStats from "@/components/SEOStats";
 import CityMap from "@/components/CityMap";
+const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
+	ssr: false,
+});
 
 // ───────────────────────────────────────────────────────────────────────────────
 // Static generation
@@ -361,7 +365,8 @@ export default function SeoCityPage({ cityData, seo }) {
 								</ul>
 							</SectionSurface>
 						</Col>
-					</Row>
+					</Row>{" "}
+					<GoogleReviews />
 				</Container>
 			</section>
 
