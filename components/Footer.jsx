@@ -13,6 +13,9 @@ import {
 	AiOutlineReddit,
 } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
+import { hasCookie } from "cookies-next"; // ✅ tracking only after consent
+import { gaEvent } from "@/lib/analytics"; // ✅ GA4 tracking
+
 function Footer() {
 	const { t } = useTranslation();
 	const sectionRef = useRef(null);
@@ -27,6 +30,31 @@ function Footer() {
 	useEffect(() => {
 		if (inView) controls.start(animateIn);
 	}, [inView, controls]);
+
+	// ✅ Tracking CTA
+	const handleFooterEmail = () => {
+		if (hasCookie("marketingConsent")) {
+			gaEvent("cta_click", {
+				location: "footer",
+				page: window.location.pathname,
+			});
+		}
+
+		window.open(
+			"mailto:pixelgenie.marketing@gmail.com?subject=Pixel%20Genie%20Webdesign%20Anfrage&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20interessiere%20mich%20f%C3%BCr%20eine%20neue%20Website%20oder%20SEO-Beratung.%0A%0AName%3A%0AFirma%3A%0ATelefon%3A%0A%0AVielen%20Dank!",
+			"_blank"
+		);
+	};
+
+	// ✅ Helper social tracking
+	const handleSocialClick = (platform) => {
+		if (hasCookie("marketingConsent")) {
+			gaEvent("social_click", {
+				platform,
+				page: window.location.pathname,
+			});
+		}
+	};
 
 	return (
 		<footer
@@ -106,6 +134,7 @@ function Footer() {
 							</Card>
 						</Col>
 
+						{/* Kolumna 3 — Social */}
 						<Col lg={3} sm={6} className="mx-auto">
 							<Card className="bg-transparent border-0 shadow-lg text-center">
 								<Card.Body className="d-flex flex-column align-items-center">
@@ -121,6 +150,7 @@ function Footer() {
 											href="https://www.facebook.com/profile.php?id=100090817536941"
 											target="_blank"
 											aria-label="Facebook"
+											onClick={() => handleSocialClick("facebook")}
 											className="social-icon-wrapper"
 										>
 											<AiOutlineFacebook className="social-icon-premium fb" />
@@ -130,6 +160,7 @@ function Footer() {
 											href="https://www.linkedin.com/company/pixel-genie-519216390/"
 											target="_blank"
 											aria-label="LinkedIn"
+											onClick={() => handleSocialClick("linkedin")}
 											className="social-icon-wrapper"
 										>
 											<AiFillLinkedin className="social-icon-premium li" />
@@ -139,6 +170,7 @@ function Footer() {
 											href="https://x.com/PixelGenieWeb"
 											target="_blank"
 											aria-label="X / Twitter"
+											onClick={() => handleSocialClick("twitter")}
 											className="social-icon-wrapper"
 										>
 											<FaXTwitter className="social-icon-premium x" />
@@ -148,6 +180,7 @@ function Footer() {
 											href="https://www.reddit.com/r/selbststaendig/comments/1oeyd5c/warum-vertrauen-2025-zur-neuen-markenw%C3%A4hrung_wird/"
 											target="_blank"
 											aria-label="Reddit"
+											onClick={() => handleSocialClick("reddit")}
 											className="social-icon-wrapper"
 										>
 											<AiOutlineReddit className="social-icon-premium reddit" />
@@ -169,7 +202,7 @@ function Footer() {
 							</Card>
 						</Col>
 
-						{/* Kolumna 4 – Kontakt */}
+						{/* Kolumna 4 */}
 						<Col
 							lg={3}
 							sm={6}
@@ -196,12 +229,7 @@ function Footer() {
 								</p>
 
 								<button
-									onClick={() =>
-										window.open(
-											"mailto:pixelgenie.marketing@gmail.com?subject=Pixel%20Genie%20Webdesign%20Anfrage&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20interessiere%20mich%20f%C3%BCr%20eine%20neue%20Website%20oder%20SEO-Beratung.%0A%0AName%3A%0AFirma%3A%0ATelefon%3A%0A%0AVielen%20Dank!",
-											"_blank"
-										)
-									}
+									onClick={handleFooterEmail}
 									className="btn-premium-footer hover mx-auto d-block"
 								>
 									✨ Jetzt E-Mail senden

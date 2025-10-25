@@ -47,6 +47,33 @@ function AppContent({ Component, pageProps }) {
 
 	if (!mounted) return null;
 
+	// ✅ Scroll depth tracking (tylko po GA init)
+	useEffect(() => {
+		if (!window.gtagInitialized) return;
+
+		const thresholds = [25, 50, 75, 100];
+		let lastSent = 0;
+
+		const onScroll = () => {
+			const scrollPos = window.scrollY + window.innerHeight;
+			const height = document.body.offsetHeight;
+			const percent = (scrollPos / height) * 100;
+
+			for (const t of thresholds) {
+				if (percent >= t && lastSent < t) {
+					lastSent = t;
+					gaEvent("scroll_depth", {
+						percent: t,
+						page: window.location.pathname,
+					});
+				}
+			}
+		};
+
+		window.addEventListener("scroll", onScroll);
+		return () => window.removeEventListener("scroll", onScroll);
+	}, []);
+
 	return (
 		<>
 			<Head>

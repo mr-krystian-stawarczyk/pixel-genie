@@ -28,16 +28,29 @@ export default function Header1() {
 		return () => clearTimeout(timer);
 	}, []);
 
-	// ✉️ Mail do "kostenloses Audit"
+	// ✉️ Mail do "kostenloses Audit i Tracking zdarzenia"
 	const handleAuditClick = () => {
+		if (hasCookie("marketingConsent")) {
+			gaEvent("cta_click", {
+				location: "header_audit",
+				page: window.location.pathname,
+			});
+		}
+
 		window.open(
 			"mailto:pixelgenie.marketing@gmail.com?subject=Kostenloses%20Website%20Audit%20Anfrage&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20möchte%20ein%20kostenloses%20Website-Audit%20anfordern.%0A%0ABitte%20überprüfen%20Sie%20meine%20Website%20und%20geben%20Sie%20mir%20ein%20Feedback%20zu%20Design%2C%20SEO%20und%20Performance.%0A%0AHier%20sind%20meine%20Details%3A%0A%0AName%3A%0AFirma%3A%0AWebsite%3A%0ATelefon%3A%0A%0AVielen%20Dank!",
 			"_blank"
 		);
 	};
-
-	// ✉️ Ogólny kontakt – klient może zapytać o SEO, Webdesign itd.
+	// ✉️ Ogólny kontakt – klient może zapytać o SEO, Webdesign itd. Rowniez zdarzenie analitics
 	const handleEmailClick = () => {
+		if (hasCookie("marketingConsent")) {
+			gaEvent("cta_click", {
+				location: "header_contact",
+				page: window.location.pathname,
+			});
+		}
+
 		window.open(
 			"mailto:pixelgenie.marketing@gmail.com?subject=Allgemeine%20Anfrage%20an%20Pixel%20Genie&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20habe%20eine%20Frage%20zu%20Ihren%20Dienstleistungen.%0A%0AIch%20interessiere%20mich%20für%3A%0A%5B%20%5D%20Webdesign%0A%5B%20%5D%20SEO%0A%5B%20%5D%20Social%20Media%20Marketing%0A%5B%20%5D%20Branding%0A%0ABitte%20kontaktieren%20Sie%20mich%20unter%3A%0AName%3A%0AFirma%3A%0ATelefon%3A%0AWebsite%3A%0A%0AVielen%20Dank!",
 			"_blank"
