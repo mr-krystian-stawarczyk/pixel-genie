@@ -32,13 +32,11 @@ export async function getStaticProps({ params }) {
 			cityData: dataWithSlug,
 			seo,
 		},
-		revalidate: 3600,
 	};
 }
 
 export default function SeoCityPage({ cityData, seo }) {
 	const { city, slug } = cityData;
-
 	const cityName = city.charAt(0).toUpperCase() + city.slice(1);
 	const canonicalUrl = seo.canonical;
 
