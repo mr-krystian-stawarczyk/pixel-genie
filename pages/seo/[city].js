@@ -1,9 +1,9 @@
 // /pages/seo/[city].js
 import Head from "next/head";
-import citiesData from "@/data/citiesData";
-import generateSeoData from "@/lib/generateSeoData";
-import slugify from "@/lib/slugify";
 import Link from "next/link";
+import citiesData from "@/data/citiesData";
+import slugify from "@/lib/slugify";
+import generateSeoData from "@/lib/generateSeoData";
 
 export async function getStaticPaths() {
 	const paths = citiesData.map((c) => ({
@@ -13,14 +13,18 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const slug = params.city.toLowerCase();
+	const slugParam = params.city.toLowerCase();
 	const cityData = citiesData.find(
-		(c) => (c.slug ?? slugify(c.city)).toLowerCase() === slug
+		(c) => (c.slug ?? slugify(c.city)).toLowerCase() === slugParam
 	);
 
 	if (!cityData) return { notFound: true };
 
-	const dataWithSlug = { ...cityData, slug };
+	const dataWithSlug = {
+		...cityData,
+		slug: slugParam,
+	};
+
 	const seo = generateSeoData(dataWithSlug);
 
 	return {
@@ -28,12 +32,13 @@ export async function getStaticProps({ params }) {
 			cityData: dataWithSlug,
 			seo,
 		},
-		revalidate: 86400, // 24h
+		revalidate: 3600,
 	};
 }
 
 export default function SeoCityPage({ cityData, seo }) {
 	const { city, slug } = cityData;
+
 	const cityName = city.charAt(0).toUpperCase() + city.slice(1);
 	const canonicalUrl = seo.canonical;
 
@@ -45,8 +50,8 @@ export default function SeoCityPage({ cityData, seo }) {
 				"@id": `${canonicalUrl}#business`,
 				name: `SEO Agentur ${cityName}`,
 				url: canonicalUrl,
-				priceRange: "€€",
 				telephone: cityData.phone,
+				email: cityData.email,
 			},
 			{
 				"@type": "BreadcrumbList",
@@ -65,19 +70,6 @@ export default function SeoCityPage({ cityData, seo }) {
 					},
 				],
 			},
-			{
-				"@type": "FAQPage",
-				mainEntity: [
-					{
-						"@type": "Question",
-						name: `Warum SEO in ${cityName}?`,
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: `Mehr Kunden und Sichtbarkeit in ${cityName} durch lokales SEO.`,
-						},
-					},
-				],
-			},
 		],
 	};
 
@@ -90,24 +82,25 @@ export default function SeoCityPage({ cityData, seo }) {
 
 				<script
 					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(jsonLd),
+					}}
 				/>
 			</Head>
 
-			{/* ✅ Minimal SSR content */}
-			<main style={{ padding: "2rem" }}>
+			<main style={{ maxWidth: "700px", margin: "2rem auto", padding: "1rem" }}>
 				<h1>SEO Agentur in {cityName}</h1>
 				<p>
-					Professionelle Suchmaschinenoptimierung in {cityName}. Höhere
-					Rankings, mehr Kunden.
+					Wir verbessern Ihre Sichtbarkeit in {cityName}, damit Sie mehr Kunden
+					gewinnen.
 				</p>
 
 				<p>
-					<strong>Kontakt:</strong> {cityData.phone} | {cityData.email}
+					<strong>Kontakt:</strong> {cityData.phone} – {cityData.email}
 				</p>
 
 				<p>
-					<Link href="/seo">← Zurück zu allen Standorten</Link>
+					<Link href="/seo">← Alle Standorte</Link>
 				</p>
 			</main>
 		</>
