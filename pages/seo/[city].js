@@ -1,15 +1,17 @@
 // /pages/seo/[city].js
 import Head from "next/head";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData";
+
+const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 
 export async function getStaticPaths() {
 	const paths = citiesData.map((c) => ({
 		params: { city: (c.slug ?? slugify(c.city)).toLowerCase() },
 	}));
-
 	return { paths, fallback: false };
 }
 
@@ -37,26 +39,29 @@ export async function getStaticProps({ params }) {
 }
 
 export default function SeoCityPage({ cityData, seo }) {
-	const { city } = cityData;
-
+	const { city, geo } = cityData;
 	const cityName = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
+	const canonicalUrl = seo.canonical;
 
-	const canonicalUrl = seo.canonical; // ✅ always ends with /
-
-	// ✅ JSON-LD (ONE SCRIPT)
+	// ✅ FINAL JSON-LD with Google Business Profile + Map + Image
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@graph": [
 			{
 				"@type": "LocalBusiness",
 				"@id": `${canonicalUrl}#business`,
-				name: `SEO Agentur ${cityName}`,
+				name: `Pixel-Genie SEO Agentur ${cityName}`,
 				url: canonicalUrl,
+				image:
+					"https://pixel-genie.de/assets/pixel-genie-webseiten-seo-nettetal-logo.png",
+				logo: "https://pixel-genie.de/assets/pixel-genie-webseiten-seo-nettetal-logo.png",
 				telephone: cityData.phone,
 				email: cityData.email,
-				areaServed: {
-					"@type": "City",
-					name: cityName,
+				hasMap: `https://www.google.com/maps/search/?api=1&query=${geo.latitude},${geo.longitude}`,
+				geo: {
+					"@type": "GeoCoordinates",
+					latitude: geo.latitude,
+					longitude: geo.longitude,
 				},
 				address: {
 					"@type": "PostalAddress",
@@ -64,6 +69,12 @@ export default function SeoCityPage({ cityData, seo }) {
 					postalCode: cityData.postalCode || "",
 					addressCountry: "DE",
 				},
+				sameAs: [
+					"https://www.facebook.com/pixelgenie.de",
+					"https://www.instagram.com/pixelgenie.de",
+					"https://www.linkedin.com/company/pixel-genie",
+					"https://share.google/fbLjMXTKkW8OeFeEX",
+				],
 			},
 			{
 				"@type": "BreadcrumbList",
@@ -98,7 +109,7 @@ export default function SeoCityPage({ cityData, seo }) {
 						name: `Was kostet SEO in ${cityName}?`,
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: `SEO-Optimierungen in ${cityName} starten ab 99€ monatlich – technische SEO und Content inklusive.`,
+							text: `SEO in ${cityName} startet ab 99€ monatlich – inklusive technischer Optimierung & Content-Marketing.`,
 						},
 					},
 				],
@@ -113,20 +124,25 @@ export default function SeoCityPage({ cityData, seo }) {
 				<meta name="description" content={seo.description} />
 				<meta name="robots" content="index,follow" />
 				<link rel="canonical" href={canonicalUrl} />
+				<link
+					rel="icon"
+					href="/assets/pixel-genie-webseiten-seo-nettetal-logo.png"
+					type="image/png"
+				/>
 
-				{/* OpenGraph */}
+				{/* OG */}
+				<meta
+					property="og:image"
+					content="https://pixel-genie.de/assets/pixel-genie-webseiten-seo-nettetal-logo.png"
+				/>
 				<meta property="og:title" content={seo.openGraph.title} />
 				<meta property="og:description" content={seo.openGraph.description} />
-				<meta property="og:url" content={seo.openGraph.url} />
-				<meta property="og:type" content="website" />
-				<meta property="og:locale" content="de_DE" />
 
 				{/* Twitter */}
 				<meta name="twitter:card" content={seo.twitter.card} />
 				<meta name="twitter:title" content={seo.twitter.title} />
-				<meta name="twitter:description" content={seo.twitter.description} />
 
-				{/* ✅ JSON-LD injected once */}
+				{/* ✅ JSON-LD */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{
@@ -135,19 +151,21 @@ export default function SeoCityPage({ cityData, seo }) {
 				/>
 			</Head>
 
-			<main style={{ maxWidth: "700px", margin: "2rem auto", padding: "1rem" }}>
-				<h1>SEO Agentur in {cityName}</h1>
-				<p>
-					Pixel-Genie verbessert Ihre Sichtbarkeit in {cityName} – damit Sie
-					mehr lokale Kunden über Google gewinnen.
-				</p>
+			<main style={{ maxWidth: "850px", margin: "2rem auto", padding: "1rem" }}>
+				<h1 className="display-5 fw-bold">
+					SEO Agentur in {cityName} – lokale Sichtbarkeit 🚀
+				</h1>
 
 				<p>
-					<strong>Kontakt:</strong> {cityData.phone} — {cityData.email}
+					Pixel-Genie sorgt dafür, dass Unternehmen in {cityName} bei Google
+					ganz oben stehen und täglich mehr Anfragen erhalten.
 				</p>
 
-				<p>
-					<Link href="/seo/">← Alle SEO-Standorte ansehen</Link>
+				<h2 className="h4 mt-4 mb-3">📍 Standortkarte</h2>
+				<CityMap cityData={cityData} height={320} />
+
+				<p className="mt-4">
+					<Link href="/seo/">← Alle SEO-Standorte</Link>
 				</p>
 			</main>
 		</>
