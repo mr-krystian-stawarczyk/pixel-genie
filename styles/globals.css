@@ -1229,3 +1229,12 @@ main > :first-child,
 	border-color: rgba(255, 255, 255, 0.2);
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
+
+.cookie-banner {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 9999;
+	background: rgba(0, 0, 0, 0.95);
+	padding: 12px 0;
+}
