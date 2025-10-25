@@ -3,15 +3,15 @@ import {
 	FacebookShareButton,
 	LinkedinShareButton,
 	TwitterShareButton,
-	EmailShareButton,
+	RedditShareButton,
 	FacebookIcon,
 	LinkedinIcon,
 	XIcon,
-	EmailIcon,
+	RedditIcon,
 } from "react-share";
 import { motion } from "framer-motion";
 
-export default function ShareButtons({ url, title, description }) {
+export default function ShareButtons({ url, title, description, isMobile }) {
 	const text = description ? `${title} — ${description}` : title;
 
 	const buttons = [
@@ -20,7 +20,7 @@ export default function ShareButtons({ url, title, description }) {
 			Button: FacebookShareButton,
 			Icon: FacebookIcon,
 			color: "#1877F2",
-			label: "Auf Facebook teilen",
+			label: "Facebook",
 			props: { url, quote: text },
 		},
 		{
@@ -28,7 +28,7 @@ export default function ShareButtons({ url, title, description }) {
 			Button: LinkedinShareButton,
 			Icon: LinkedinIcon,
 			color: "#0A66C2",
-			label: "Auf LinkedIn teilen",
+			label: "LinkedIn",
 			props: { url, title, summary: description },
 		},
 		{
@@ -36,69 +36,63 @@ export default function ShareButtons({ url, title, description }) {
 			Button: TwitterShareButton,
 			Icon: XIcon,
 			color: "#000000",
-			label: "Auf X posten",
+			label: "X",
 			props: { url, title: text },
 		},
 		{
-			id: "email",
-			Button: EmailShareButton,
-			Icon: EmailIcon,
-			color: "#EA4335",
-			label: "Per E-Mail senden",
-			props: { url, subject: title, body: description },
+			id: "reddit",
+			Button: RedditShareButton,
+			Icon: RedditIcon,
+			color: "#FF4500",
+			label: "Reddit",
+			props: { url, title: text },
 		},
 	];
 
 	return (
-		<motion.section
-			className="share-section text-center my-5"
-			initial={{ opacity: 0, y: 30 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true }}
-			transition={{ duration: 0.6, ease: "easeOut" }}
-		>
-			<h5 className="fw-bold mb-4 gradient-text">
-				💬 Teile diesen Artikel, wenn er dir gefällt!
-			</h5>
+		<div className="share-layout d-flex align-items-center gap-2">
+			{/* ✅ Dekstop: SHARE pionowo */}
+			{!isMobile && (
+				<div className="share-vertical-text text-white fw-bold fs-6">
+					<span>S</span>
+					<span>H</span>
+					<span>A</span>
+					<span>R</span>
+					<span>E</span>
+				</div>
+			)}
 
-			<div
-				className="d-flex justify-content-center flex-wrap gap-3"
-				style={{ rowGap: "1.5rem" }}
-			>
-				{buttons.map(({ id, Button, Icon, color, label, props }) => (
-					<motion.div
-						key={id}
-						whileHover={{
-							scale: 1.1,
-							boxShadow: `0 0 20px ${color}55`,
-						}}
-						whileTap={{ scale: 0.95 }}
-						transition={{ type: "spring", stiffness: 260, damping: 14 }}
-						style={{
-							borderRadius: "50%",
-							padding: "0.35rem",
-							background: "rgba(255,255,255,0.6)", // glass look
-							backdropFilter: "blur(8px)",
-							boxShadow:
-								"0 4px 10px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.3)",
-							transition: "all 0.25s ease",
-						}}
-					>
-						<Button
-							{...props}
-							aria-label={label}
-							className="rounded-circle hover"
+			<div className="d-flex flex-column align-items-center gap-2">
+				{/* ✅ Mobile: SHARE nad ikonami */}
+				{isMobile && (
+					<div className="text-white fw-bold small text-uppercase">Share</div>
+				)}
+
+				<div
+					className={`d-flex gap-3 ${
+						isMobile ? "flex-row" : "flex-column"
+					} justify-content-center align-items-center`}
+				>
+					{buttons.map(({ id, Button, Icon, color, label, props }) => (
+						<motion.div
+							key={id}
+							className="share-btn"
+							whileHover={{ scale: 1.15 }}
+							whileTap={{ scale: 0.9 }}
+							transition={{ type: "spring", stiffness: 260, damping: 18 }}
 						>
-							<Icon
-								size={52}
-								round
-								bgStyle={{ fill: color }}
-								iconFillColor="#fff"
-							/>
-						</Button>
-					</motion.div>
-				))}
+							<Button {...props} aria-label={label}>
+								<Icon
+									size={isMobile ? 38 : 48}
+									round
+									bgStyle={{ fill: color }}
+									iconFillColor="#fff"
+								/>
+							</Button>
+						</motion.div>
+					))}
+				</div>
 			</div>
-		</motion.section>
+		</div>
 	);
 }

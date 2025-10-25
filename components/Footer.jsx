@@ -202,7 +202,7 @@ function Footer() {
 										</Link>
 
 										<Link
-											href="https://www.linkedin.com/company/pixel-genie-519216390/"
+											href="https://www.linkedin.com/in/pixel-genie-nettetal/"
 											target="_blank"
 											aria-label="LinkedIn"
 											onClick={() => handleSocialClick("linkedin")}
@@ -222,7 +222,7 @@ function Footer() {
 										</Link>
 
 										<Link
-											href="https://www.reddit.com/r/selbststaendig/comments/1oeyd5c/warum-vertrauen-2025-zur-neuen-markenw%C3%A4hrung_wird/"
+											href="https://www.reddit.com/user/PixelGenieNettetal/"
 											target="_blank"
 											aria-label="Reddit"
 											onClick={() => handleSocialClick("reddit")}

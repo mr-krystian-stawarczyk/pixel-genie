@@ -1,6 +1,7 @@
 const citiesData = [
 	{
 		city: "nettetal",
+		slug: "nettetal",
 		postalCode: "41334",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
@@ -21,12 +22,13 @@ const citiesData = [
 	},
 	{
 		city: "viersen",
+		slug: "viersen",
 		postalCode: "41747",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 76700,
-		geo: { latitude: 51.2569, longitude: 6.3956 }, // pozostawiono oryginał — *ale warto zweryfikować*
+		geo: { latitude: 51.2569, longitude: 6.3956 },
 		historySnippet:
 			"Viersen blickt auf eine lange Geschichte zurück und war im 19. Jahrhundert ein bedeutender Standort der Textilindustrie.",
 		elevation: 45,
@@ -39,12 +41,13 @@ const citiesData = [
 	},
 	{
 		city: "venlo",
+		slug: "venlo",
 		postalCode: "5911",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 103000,
-		geo: { latitude: 51.3704, longitude: 6.1723 }, // pozostawiono
+		geo: { latitude: 51.3704, longitude: 6.1723 },
 		historySnippet:
 			"Venlo ist eine niederländische Stadt am Fluss Maas, bekannt für ihre historische Altstadt und Handelsgeschichte.",
 		elevation: 21,
@@ -57,12 +60,13 @@ const citiesData = [
 	},
 	{
 		city: "moenchengladbach",
+		slug: "moenchengladbach",
 		postalCode: "41061",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 261000,
-		geo: { latitude: 51.1803, longitude: 6.4426 }, // pozostawiono — sugeruję sprawdzić
+		geo: { latitude: 51.1803, longitude: 6.4426 },
 		historySnippet:
 			"Mönchengladbach entwickelte sich im 19. Jahrhundert zu einem Zentrum der Textilindustrie.",
 		elevation: 70,
@@ -75,12 +79,13 @@ const citiesData = [
 	},
 	{
 		city: "krefeld",
+		slug: "krefeld",
 		postalCode: "47798",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 226000,
-		geo: { latitude: 51.3388, longitude: 6.5853 }, // pozostawiono
+		geo: { latitude: 51.3388, longitude: 6.5853 },
 		historySnippet:
 			"Krefeld ist historisch für seine Seiden- und Textilindustrie bekannt, daher auch der Spitzname ‚Samt- und Seidenstadt‘.",
 		elevation: 39,
@@ -93,6 +98,7 @@ const citiesData = [
 	},
 	{
 		city: "kempen",
+		slug: "kempen",
 		postalCode: "47906",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
@@ -111,12 +117,13 @@ const citiesData = [
 	},
 	{
 		city: "duesseldorf",
+		slug: "duesseldorf",
 		postalCode: "40210",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 644000,
-		geo: { latitude: 51.2277, longitude: 6.7735 }, // pozostawiono
+		geo: { latitude: 51.2277, longitude: 6.7735 },
 		historySnippet:
 			"Düsseldorf ist die Landeshauptstadt von Nordrhein-Westfalen und bekannt für Mode, Kunst und Wirtschaft.",
 		elevation: 38,
@@ -129,12 +136,13 @@ const citiesData = [
 	},
 	{
 		city: "duisburg",
+		slug: "duisburg",
 		postalCode: "47051",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 495000,
-		geo: { latitude: 51.4344, longitude: 6.7623 }, // pozostawiono
+		geo: { latitude: 51.4344, longitude: 6.7623 },
 		historySnippet:
 			"Duisburg ist eine wichtige Hafenstadt am Rhein mit starkem industriellen Hintergrund.",
 		elevation: 31,
@@ -147,12 +155,13 @@ const citiesData = [
 	},
 	{
 		city: "oberhausen",
+		slug: "oberhausen",
 		postalCode: "46045",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 210000,
-		geo: { latitude: 51.4963, longitude: 6.8516 }, // pozostawiono
+		geo: { latitude: 51.4963, longitude: 6.8516 },
 		historySnippet:
 			"Oberhausen wuchs im 19. Jahrhundert stark durch die Industrialisierung und den Kohlebergbau.",
 		elevation: 40,
@@ -165,12 +174,13 @@ const citiesData = [
 	},
 	{
 		city: "essen",
+		slug: "essen",
 		postalCode: "45127",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 582000,
-		geo: { latitude: 51.4556, longitude: 7.0116 }, // pozostawiono
+		geo: { latitude: 51.4556, longitude: 7.0116 },
 		historySnippet:
 			"Essen war historisch ein Zentrum der Kohle- und Stahlindustrie im Ruhrgebiet.",
 		elevation: 50,
@@ -187,15 +197,15 @@ const citiesData = [
 			Kultur: "Zollverein, UNESCO-Weltkulturerbe, Museen",
 		},
 	},
-
 	{
 		city: "bocholt",
+		slug: "bocholt",
 		postalCode: "46395",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 71500,
-		geo: { latitude: 51.8387, longitude: 6.6149 }, // pozostawiono
+		geo: { latitude: 51.8387, longitude: 6.6149 },
 		historySnippet:
 			"Bocholt ist eine historische Stadt im Münsterland, bekannt für seine Textilindustrie im 19. Jahrhundert.",
 		elevation: 22,
@@ -208,12 +218,13 @@ const citiesData = [
 	},
 	{
 		city: "moers",
+		slug: "moers",
 		postalCode: "47441",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 104000,
-		geo: { latitude: 51.4545, longitude: 6.6353 }, // pozostawiono
+		geo: { latitude: 51.4545, longitude: 6.6353 },
 		historySnippet:
 			"Moers ist bekannt für seine historische Altstadt und das Moerser Schloss.",
 		elevation: 35,
@@ -226,14 +237,15 @@ const citiesData = [
 	},
 	{
 		city: "geldern",
+		slug: "geldern",
 		postalCode: "47608",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 33700,
-		geo: { latitude: 51.5251, longitude: 6.3007 }, // pozostawiono
+		geo: { latitude: 51.5251, longitude: 6.3007 },
 		historySnippet:
-			"Geldern jest mittelalterliche Stadt mit einer langen Geschichte als regionales Verwaltungszentrum.",
+			"Geldern ist eine mittelalterliche Stadt mit einer langen Geschichte als regionales Verwaltungszentrum.",
 		elevation: 25,
 		areaKm2: 96.0,
 		boroughs: ["Geldern", "Vernum", "Kapellen", "Walbeck", "Lüllingen"],
@@ -244,12 +256,13 @@ const citiesData = [
 	},
 	{
 		city: "hamminkeln",
+		slug: "hamminkeln",
 		postalCode: "46499",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 27700,
-		geo: { latitude: 51.7907, longitude: 6.6002 }, // pozostawiono
+		geo: { latitude: 51.7907, longitude: 6.6002 },
 		historySnippet:
 			"Hamminkeln liegt am Niederrhein und ist historisch landwirtschaftlich geprägt.",
 		elevation: 18,
@@ -262,12 +275,13 @@ const citiesData = [
 	},
 	{
 		city: "kempenbruch",
+		slug: "kempenbruch",
 		postalCode: "47906",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 1200,
-		geo: { latitude: 51.345, longitude: 6.38 }, // pozostawiono
+		geo: { latitude: 51.345, longitude: 6.38 },
 		historySnippet:
 			"Kempenbruch ist ein ländlicher Ortsteil von Kempen mit historischen Bauernhöfen.",
 		elevation: 45,
@@ -279,13 +293,14 @@ const citiesData = [
 		},
 	},
 	{
-		city: "viersen-dülken",
+		city: "viersen-duelken",
+		slug: "viersen-duelken",
 		postalCode: "41751",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 20000,
-		geo: { latitude: 51.2419, longitude: 6.3984 }, // pozostawiono
+		geo: { latitude: 51.2419, longitude: 6.3984 },
 		historySnippet:
 			"Dülken ist ein Stadtteil von Viersen mit mittelalterlicher Stadtgeschichte und historischen Gebäuden.",
 		elevation: 42,
@@ -298,12 +313,13 @@ const citiesData = [
 	},
 	{
 		city: "grefrath",
+		slug: "grefrath",
 		postalCode: "47929",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 15000,
-		geo: { latitude: 51.3233, longitude: 6.3366 }, // pozostawiono
+		geo: { latitude: 51.3233, longitude: 6.3366 },
 		historySnippet:
 			"Grefrath ist eine ländliche Gemeinde im Kreis Viersen mit historischen Kirchen und Fachwerkhäusern.",
 		elevation: 35,
@@ -316,6 +332,7 @@ const citiesData = [
 	},
 	{
 		city: "kempen-st-hubert",
+		slug: "kempen-st-hubert",
 		postalCode: "47906",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
@@ -334,30 +351,32 @@ const citiesData = [
 	},
 	{
 		city: "wachtendonk",
+		slug: "wachtendonk",
 		postalCode: "47669",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 8400,
-		geo: { latitude: 51.3919, longitude: 6.3244 }, // pozostawiono
+		geo: { latitude: 51.3919, longitude: 6.3244 },
 		historySnippet:
-			"Wachtendonk ist eine historische Stadt z mit mittelalterlichem Stadtkern und Wasserschlössern.",
+			"Wachtendonk ist eine historische Stadt mit mittelalterlichem Stadtkern und Wasserschlössern.",
 		elevation: 25,
 		areaKm2: 54.5,
-		boroughs: ["Wachtendonk", "Kleve", "Nierswald"],
+		boroughs: ["Wachtendonk", "Nierswald"],
 		economicHighlights: {
 			Tourismus: "Historische Gebäude und Naturgebiete",
 			Landwirtschaft: "Ackerbau, Obstbau",
 		},
 	},
 	{
-		city: "brüggen",
+		city: "brueggen",
+		slug: "brueggen",
 		postalCode: "41379",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 15600,
-		geo: { latitude: 51.3, longitude: 6.346 }, // pozostawiono
+		geo: { latitude: 51.3, longitude: 6.346 },
 		historySnippet:
 			"Brüggen ist bekannt für Burg Brüggen und die gut erhaltene Altstadt.",
 		elevation: 35,
@@ -370,12 +389,13 @@ const citiesData = [
 	},
 	{
 		city: "schwalmtal",
+		slug: "schwalmtal",
 		postalCode: "47929",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 18800,
-		geo: { latitude: 51.322, longitude: 6.342 }, // pozostawiono
+		geo: { latitude: 51.322, longitude: 6.342 },
 		historySnippet:
 			"Schwalmtal ist eine ländliche Gemeinde mit mehreren Ortsteilen und historischer Kirche St. Mariä Himmelfahrt.",
 		elevation: 33,
@@ -387,13 +407,14 @@ const citiesData = [
 		},
 	},
 	{
-		city: "tönisvorst",
+		city: "toenisvorst",
+		slug: "toenisvorst",
 		postalCode: "47918",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 30000,
-		geo: { latitude: 51.34, longitude: 6.4333 }, // pozostawiono
+		geo: { latitude: 51.34, longitude: 6.4333 },
 		historySnippet:
 			"Tönisvorst ist bekannt für seine Textilgeschichte und die historische Altstadt.",
 		elevation: 35,
@@ -406,12 +427,13 @@ const citiesData = [
 	},
 	{
 		city: "neuss",
+		slug: "neuss",
 		postalCode: "41460",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 159000,
-		geo: { latitude: 51.198, longitude: 6.6858 }, // pozostawiono
+		geo: { latitude: 51.198, longitude: 6.6858 },
 		historySnippet:
 			"Neuss ist eine der ältesten Städte Deutschlands mit römischen Wurzeln.",
 		elevation: 45,
@@ -424,12 +446,13 @@ const citiesData = [
 	},
 	{
 		city: "meerbusch",
+		slug: "meerbusch",
 		postalCode: "40667",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 58000,
-		geo: { latitude: 51.2612, longitude: 6.6702 }, // pozostawiono
+		geo: { latitude: 51.2612, longitude: 6.6702 },
 		historySnippet:
 			"Meerbusch ist eine wohlhabende Stadt westlich von Düsseldorf mit vielen Villenvierteln.",
 		elevation: 35,
@@ -442,12 +465,13 @@ const citiesData = [
 	},
 	{
 		city: "willich",
+		slug: "willich",
 		postalCode: "47877",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 53000,
-		geo: { latitude: 51.2631, longitude: 6.5414 }, // pozostawiono
+		geo: { latitude: 51.2631, longitude: 6.5414 },
 		historySnippet:
 			"Willich ist bekannt für seine historische Kirche und die ländliche Umgebung.",
 		elevation: 41,
@@ -460,12 +484,13 @@ const citiesData = [
 	},
 	{
 		city: "erkelenz",
+		slug: "erkelenz",
 		postalCode: "41812",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 45000,
-		geo: { latitude: 51.0797, longitude: 6.3167 }, // pozostawiono
+		geo: { latitude: 51.0797, longitude: 6.3167 },
 		historySnippet:
 			"Erkelenz ist eine historische Stadt im Kreis Heinsberg mit mittelalterlichem Stadtkern.",
 		elevation: 65,
@@ -478,12 +503,13 @@ const citiesData = [
 	},
 	{
 		city: "heinsberg",
+		slug: "heinsberg",
 		postalCode: "52525",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 41000,
-		geo: { latitude: 51.0633, longitude: 6.0983 }, // pozostawiono
+		geo: { latitude: 51.0633, longitude: 6.0983 },
 		historySnippet:
 			"Heinsberg liegt nahe der niederländischen Grenze und war historisch ein Zentrum der Textil- und Lederindustrie.",
 		elevation: 44,
@@ -496,14 +522,15 @@ const citiesData = [
 	},
 	{
 		city: "wegberg",
+		slug: "wegberg",
 		postalCode: "41844",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 28000,
-		geo: { latitude: 51.1408, longitude: 6.2789 }, // pozostawiono
+		geo: { latitude: 51.1408, longitude: 6.2789 },
 		historySnippet:
-			"Wegberg ist bekannt für seine ländliche Umgebung iund historische Kirchen.",
+			"Wegberg ist bekannt für seine ländliche Umgebung und historische Kirchen.",
 		elevation: 50,
 		areaKm2: 84.0,
 		boroughs: ["Wegberg", "Beeck", "Rothenbach"],
@@ -513,13 +540,14 @@ const citiesData = [
 		},
 	},
 	{
-		city: "jüchen",
+		city: "juechen",
+		slug: "juechen",
 		postalCode: "41363",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 23000,
-		geo: { latitude: 51.1, longitude: 6.5 }, // pozostawiono
+		geo: { latitude: 51.1, longitude: 6.5 },
 		historySnippet:
 			"Jüchen liegt im Rhein-Kreis Neuss und war historisch landwirtschaftlich geprägt.",
 		elevation: 45,
@@ -532,12 +560,13 @@ const citiesData = [
 	},
 	{
 		city: "reken",
+		slug: "reken",
 		postalCode: "48734",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 15000,
-		geo: { latitude: 51.8292, longitude: 7.0056 }, // pozostawiono
+		geo: { latitude: 51.8292, longitude: 7.0056 },
 		historySnippet:
 			"Reken ist eine ländliche Gemeinde im Münsterland mit historischen Dorfzentren.",
 		elevation: 60,
@@ -550,12 +579,13 @@ const citiesData = [
 	},
 	{
 		city: "xanten",
+		slug: "xanten",
 		postalCode: "46509",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 22000,
-		geo: { latitude: 51.6583, longitude: 6.4572 }, // pozostawiono
+		geo: { latitude: 51.6583, longitude: 6.4572 },
 		historySnippet:
 			"Xanten ist berühmt für seine römische Vergangenheit und den Archäologischen Park.",
 		elevation: 25,
@@ -568,12 +598,13 @@ const citiesData = [
 	},
 	{
 		city: "kevelaer",
+		slug: "kevelaer",
 		postalCode: "47623",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 28000,
-		geo: { latitude: 51.5833, longitude: 6.25 }, // pozostawiono
+		geo: { latitude: 51.5833, longitude: 6.25 },
 		historySnippet:
 			"Kevelaer ist ein bedeutender Wallfahrtsort am Niederrhein.",
 		elevation: 25,
@@ -586,12 +617,13 @@ const citiesData = [
 	},
 	{
 		city: "emmerich",
+		slug: "emmerich",
 		postalCode: "46446",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 31000,
-		geo: { latitude: 51.8333, longitude: 6.25 }, // pozostawiono
+		geo: { latitude: 51.8333, longitude: 6.25 },
 		historySnippet:
 			"Emmerich am Rhein ist bekannt für seine Lage am Rhein und den großen Hafen.",
 		elevation: 18,
@@ -604,12 +636,13 @@ const citiesData = [
 	},
 	{
 		city: "roermond",
+		slug: "roermond",
 		postalCode: "6041",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 60000,
-		geo: { latitude: 51.1942, longitude: 5.9872 }, // pozostawiono
+		geo: { latitude: 51.1942, longitude: 5.9872 },
 		historySnippet:
 			"Roermond ist eine historische Stadt in den Niederlanden, bekannt für den gotischen Dom St. Christophorus und das Designer Outlet.",
 		elevation: 22,
@@ -622,12 +655,13 @@ const citiesData = [
 	},
 	{
 		city: "reuver",
+		slug: "reuver",
 		postalCode: "5953",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 8000,
-		geo: { latitude: 51.2833, longitude: 6.0833 }, // pozostawiono
+		geo: { latitude: 51.2833, longitude: 6.0833 },
 		historySnippet:
 			"Reuver ist ein kleiner Ort in Limburg, Niederlande, bekannt für seine ruhige ländliche Umgebung.",
 		elevation: 24,
@@ -640,35 +674,37 @@ const citiesData = [
 	},
 	{
 		city: "straelen",
+		slug: "straelen",
 		postalCode: "47638",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 15400,
-		geo: { latitude: 51.4411, longitude: 6.2681 }, // pozostawiono
+		geo: { latitude: 51.4411, longitude: 6.2681 },
 		historySnippet:
 			"Straelen ist bekannt für seine Blumenzucht und historischen Bauwerke am Niederrhein.",
 		elevation: 28,
 		areaKm2: 75.0,
-		boroughs: ["Straelen", "Birten", "Wachtendonk", "Tolkamer"],
+		boroughs: ["Straelen"],
 		economicHighlights: {
 			Landwirtschaft: "Flora- und Gemüseanbau",
 			Tourismus: "Fahrrad- und Wanderwege entlang des Niederrheins",
 		},
 	},
 	{
-		city: "weezel",
-		postalCode: "46483",
+		city: "weeze",
+		slug: "weeze",
+		postalCode: "47652",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 10500,
-		geo: { latitude: 51.6667, longitude: 6.6167 }, // pozostawiono
+		geo: { latitude: 51.6667, longitude: 6.6167 },
 		historySnippet:
 			"Weeze ist eine kleine Stadt am Niederrhein, bekannt für den Flughafen Weeze und historische Kirche St. Cyriacus.",
 		elevation: 20,
-		areaKm2: 80.0,
-		boroughs: ["Weeze", "Winterswijk", "Laar"],
+		areaKm2: 79.5,
+		boroughs: ["Weeze"],
 		economicHighlights: {
 			Flughafen: "Regionaler Flughafen als Wirtschaftsmotor",
 			Landwirtschaft: "Ackerbau und Pferdezucht",
@@ -676,12 +712,13 @@ const citiesData = [
 	},
 	{
 		city: "hilden",
+		slug: "hilden",
 		postalCode: "40721",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 58000,
-		geo: { latitude: 51.1704, longitude: 6.9308 }, // pozostawiono
+		geo: { latitude: 51.1704, longitude: 6.9308 },
 		historySnippet:
 			"Hilden ist eine Stadt in Nordrhein-Westfalen mit einer gut erhaltenen Altstadt und starker Textiltradition.",
 		elevation: 60,
@@ -694,6 +731,7 @@ const citiesData = [
 	},
 	{
 		city: "niederkruechten",
+		slug: "niederkruechten",
 		postalCode: "41372",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
@@ -712,6 +750,7 @@ const citiesData = [
 	},
 	{
 		city: "rheurdt",
+		slug: "rheurdt",
 		postalCode: "47509",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
@@ -730,6 +769,7 @@ const citiesData = [
 	},
 	{
 		city: "niederkruechten-elmpt",
+		slug: "niederkruechten-elmpt",
 		postalCode: "41372",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
@@ -748,6 +788,7 @@ const citiesData = [
 	},
 	{
 		city: "schaag",
+		slug: "schaag",
 		postalCode: "41334",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
@@ -767,12 +808,13 @@ const citiesData = [
 	},
 	{
 		city: "monheim-am-rhein",
+		slug: "monheim-am-rhein",
 		postalCode: "40789",
 		address: "Fasanenstr. 10",
 		phone: "+48 726 897 493",
 		email: "pixelgenie.marketing@gmail.com",
 		population: 45000,
-		geo: { latitude: 51.0912, longitude: 6.8936 }, // pozostawiono
+		geo: { latitude: 51.0912, longitude: 6.8936 },
 		historySnippet:
 			"Monheim am Rhein liegt zwischen Düsseldorf und Köln und ist bekannt für innovative Stadtentwicklung und Unternehmensansiedlungen.",
 		elevation: 35,

@@ -7,7 +7,7 @@ import blogPosts from "@/data/blogPosts";
 import ShareButtons from "@/components/ShareButtons";
 import { gaEvent } from "@/lib/analytics";
 import { useEffect, useState } from "react";
-
+import ShareBarSticky from "@/components/ShareBarSticky";
 const SITE_ORIGIN = "https://pixel-genie.de";
 
 export async function getStaticPaths() {
@@ -124,33 +124,12 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				/>
 			</Head>
 
-			{/* ✅ Sticky Share Bar (widoczny i działa) */}
-			<div
-				style={{
-					position: "fixed",
-					zIndex: 2000,
-					top: isMobile ? "auto" : "50%",
-					left: isMobile ? 0 : "10px",
-					bottom: isMobile ? 0 : "auto",
-					transform: isMobile ? "none" : "translateY(-50%)",
-					background: isMobile ? "rgba(15,15,15,0.95)" : "transparent",
-					padding: isMobile ? "6px 0" : "0",
-					width: isMobile ? "100%" : "auto",
-					boxShadow: isMobile ? "0 -3px 10px rgba(0,0,0,0.3)" : "none",
-					borderTopLeftRadius: isMobile ? "12px" : "0",
-					borderTopRightRadius: isMobile ? "12px" : "0",
-				}}
-			>
-				<div
-					style={{
-						display: "flex",
-						flexDirection: isMobile ? "row" : "column",
-						alignItems: "center",
-						justifyContent: "center",
-						gap: "10px",
-					}}
-				></div>
-			</div>
+			<ShareBarSticky
+				isMobile={isMobile}
+				url={pageUrl}
+				title={article.title}
+				description={ogDescription}
+			/>
 
 			<Container className="pt-5">
 				<Row className="justify-content-center">

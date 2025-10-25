@@ -39,7 +39,7 @@ export default function MobileFloatingCTA() {
 	};
 
 	return (
-		<div className="mobile-floating-cta text-center">
+		<div className="mobile-floating-cta text-center rounded">
 			<button
 				onClick={handleClick}
 				className="btn-premium-footer text-white fw-bold w-100"

@@ -1322,3 +1322,120 @@ details p {
 		margin-top: 1.4rem;
 	}
 }
+
+/* === SHARE ICON PREMIUM GLOW === */
+.share-icons-wrapper .share-btn {
+	transition: all 0.3s ease;
+	will-change: transform, box-shadow;
+}
+
+.share-icons-wrapper .share-btn:hover {
+	transform: translateY(-3px);
+	box-shadow:
+		0 0 25px rgba(0, 123, 255, 0.55),
+		0 0 45px rgba(102, 16, 242, 0.35);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+	.share-section {
+		margin-top: 2rem;
+	}
+	.share-icons-wrapper {
+		gap: 1.2rem !important;
+	}
+	.share-icons-wrapper .share-btn svg {
+		width: 44px !important;
+		height: 44px !important;
+	}
+}
+
+.share-label {
+	font-size: 0.95rem;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	opacity: 0.8;
+}
+/* === DESKTOP: SHARE jako kolumna === */
+@media (min-width: 992px) {
+	.share-vertical-text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: var(--text-color);
+		opacity: 0.7;
+		user-select: none;
+	}
+
+	.share-vertical-text span {
+		display: block;
+		font-size: 0.85rem;
+		transition: transform 0.2s ease;
+	}
+
+	/* Lekka animacja premium na hover */
+	.share-vertical-text span:hover {
+		transform: scale(1.15);
+	}
+}
+
+/* === MOBILE: ukryj napis === */
+@media (max-width: 991px) {
+	.share-vertical-text {
+		display: none !important;
+	}
+}
+/* === DESKTOP: SHARE jako kolumna + ikony pionowo === */
+@media (min-width: 992px) {
+	.share-layout {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+	}
+
+	/* Tekst SHARE literka pod literką */
+	.share-vertical-text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: var(--text-color);
+		opacity: 0.8;
+		user-select: none;
+	}
+
+	.share-icons {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+}
+
+/* === MOBILE: SHARE ukryty, ikony poziomo === */
+@media (max-width: 991px) {
+	.share-vertical-text {
+		display: none;
+	}
+
+	.share-layout {
+		display: flex !important;
+		flex-direction: row !important;
+		justify-content: center;
+		align-items: center;
+		gap: 16px;
+		margin-top: 1rem;
+	}
+
+	.share-icons {
+		display: flex !important;
+		flex-direction: row !important;
+		gap: 14px;
+	}
+}
