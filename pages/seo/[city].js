@@ -1,4 +1,5 @@
 // /pages/seo/[city].js
+// ✅ /pages/seo/[city].js — POPRAWIONY POD GOOGLE
 import Head from "next/head";
 import citiesData from "@/data/citiesData";
 import generateSeoData from "@/lib/generateSeoData";
@@ -25,9 +26,7 @@ export async function getStaticProps({ params }) {
 		(c) => c.city.toLowerCase() === params.city.toLowerCase()
 	);
 
-	if (!cityData) {
-		return { notFound: true };
-	}
+	if (!cityData) return { notFound: true };
 
 	const seo = generateSeoData(cityData);
 	return { props: { cityData, seo } };
@@ -36,24 +35,21 @@ export async function getStaticProps({ params }) {
 export default function SeoCityPage({ cityData, seo }) {
 	const { city } = cityData;
 	const cityName = city.charAt(0).toUpperCase() + city.slice(1);
+	const canonicalUrl =
+		seo?.canonical || `https://pixel-genie.de/seo/${city.toLowerCase()}`;
 
-	// stylistyka „surface” pod Twój dark theme
 	const surfaceStyle = {
 		backgroundColor: "transparent",
 		color: "var(--text-color)",
 		borderColor: "rgba(255,255,255,0.12)",
 	};
-
 	const sectionStyle = {
 		backgroundColor: "transparent",
 		color: "var(--text-color)",
 	};
-
 	const mutedStyle = { opacity: 0.8 };
 
-	// JSON-LD (LocalBusiness, Service, BreadcrumbList, FAQPage, WebSite/SearchAction)
-	const canonicalUrl =
-		seo?.canonical || `https://pixel-genie.de/seo/${city.toLowerCase()}`;
+	// ✅ JSON-LD — tylko JEDEN FAQPage
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@graph": [
@@ -63,8 +59,8 @@ export default function SeoCityPage({ cityData, seo }) {
 				name: "Pixel-Genie SEO Agentur",
 				image: "https://pixel-genie.de/assets/og-default.jpg",
 				url: canonicalUrl,
-				telephone: cityData.phone || "",
-				email: cityData.email || "",
+				telephone: cityData.phone,
+				email: cityData.email,
 				priceRange: "€€",
 				address: {
 					"@type": "PostalAddress",
@@ -78,10 +74,7 @@ export default function SeoCityPage({ cityData, seo }) {
 					latitude: cityData.geo?.latitude || 0,
 					longitude: cityData.geo?.longitude || 0,
 				},
-				areaServed: {
-					"@type": "City",
-					name: cityName,
-				},
+				areaServed: { "@type": "City", name: cityName },
 				sameAs: [
 					"https://www.facebook.com/pixelgenie.de",
 					"https://www.instagram.com/pixelgenie.de",
@@ -129,7 +122,7 @@ export default function SeoCityPage({ cityData, seo }) {
 						name: `Wie lange dauert SEO in ${cityName}?`,
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: `Erste Verbesserungen sind nach 4–8 Wochen sichtbar, stabile Top-Rankings nach 3–6 Monaten – abhängig vom Wettbewerb in ${cityName}.`,
+							text: `Erste Verbesserungen nach 4–8 Wochen, stabile Rankings nach 3–6 Monaten – je nach Wettbewerb in ${cityName}.`,
 						},
 					},
 					{
@@ -137,7 +130,7 @@ export default function SeoCityPage({ cityData, seo }) {
 						name: `Was kostet SEO in ${cityName}?`,
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: `Lokale SEO-Pakete starten ab 100 € monatlich, inkl. technischer Optimierung, Content-Strategie und Reporting.`,
+							text: `Lokale SEO-Pakete starten ab 100 € monatlich – inkl. Technik, Content & Reporting.`,
 						},
 					},
 					{
@@ -145,7 +138,7 @@ export default function SeoCityPage({ cityData, seo }) {
 						name: `Warum ist lokales SEO in ${cityName} wichtig?`,
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: `Über 70 % regionaler Suchen führen zu Kontaktanfragen – wer nicht sichtbar ist, verliert Kunden an lokale Konkurrenz.`,
+							text: `70 % regionaler Suchanfragen führen zu Kontakt – ohne Sichtbarkeit verliert man Kunden.`,
 						},
 					},
 					{
@@ -153,7 +146,7 @@ export default function SeoCityPage({ cityData, seo }) {
 						name: `Bietet Pixel-Genie SEO-Audits in ${cityName} an?`,
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: `Ja, inklusive Analyse von Technik, Content, Backlinks und Google Business Profil für ${cityName}.`,
+							text: `Ja — technische Analyse, Content, Backlinks & Google Business Profil.`,
 						},
 					},
 				],
@@ -184,7 +177,7 @@ export default function SeoCityPage({ cityData, seo }) {
 				/>
 				<link rel="canonical" href={canonicalUrl} />
 
-				{/* Open Graph */}
+				{/* OG */}
 				<meta property="og:title" content={seo.openGraph.title} />
 				<meta property="og:description" content={seo.openGraph.description} />
 				<meta property="og:type" content="website" />
@@ -192,7 +185,7 @@ export default function SeoCityPage({ cityData, seo }) {
 				<meta property="og:site_name" content="Pixel-Genie" />
 				<meta
 					property="og:image"
-					content={"https://pixel-genie.de/assets/og-default.jpg"}
+					content="https://pixel-genie.de/assets/og-default.jpg"
 				/>
 				<meta property="og:locale" content="de_DE" />
 
@@ -202,13 +195,12 @@ export default function SeoCityPage({ cityData, seo }) {
 				<meta name="twitter:description" content={seo.twitter.description} />
 				<meta
 					name="twitter:image"
-					content={"https://pixel-genie.de/assets/og-default.jpg"}
+					content="https://pixel-genie.de/assets/og-default.jpg"
 				/>
 
-				{/* Structured Data */}
+				{/* ✅ Jeden skrypt structured data */}
 				<script
 					type="application/ld+json"
-					// eslint-disable-next-line react/no-danger
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				/>
 			</Head>
