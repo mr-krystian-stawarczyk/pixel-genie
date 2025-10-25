@@ -21,6 +21,7 @@ const LocalBusinessJsonLd = dynamic(
 );
 
 import citiesData from "@/data/citiesData";
+import GoogleReviews from "@/components/GoogleReviews";
 
 function WebSeitenErstellen() {
 	const cityData = citiesData.find((c) => c.city === "nettetal");
@@ -53,7 +54,9 @@ function WebSeitenErstellen() {
 			<LocalBusinessJsonLd cityData={cityData} />
 			<HeaderCounted />
 			{/* Komponent dynamicznie importowany */}
+			<GoogleReviews />
 			<Web1 />
+
 			<Web2 />
 			<Web3 />
 			<Web4 />

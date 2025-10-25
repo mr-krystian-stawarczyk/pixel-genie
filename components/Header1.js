@@ -8,6 +8,10 @@ import Container from "react-bootstrap/Container";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 
+// ✅ DODANE
+import { hasCookie } from "cookies-next";
+import { gaEvent } from "@/lib/analytics";
+
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
 	loading: () => <div style={{ position: "absolute", inset: 0 }} />,

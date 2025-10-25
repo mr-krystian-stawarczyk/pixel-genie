@@ -15,13 +15,20 @@ export async function getStaticPaths() {
 }
 
 const handleEmailClick = () => {
-	window.location.href = "mailto:pixelgenie.marketing@gmail.com";
+	if (typeof window !== "undefined") {
+		window.location.href = "mailto:pixelgenie.marketing@gmail.com";
+	}
 };
 
 export async function getStaticProps({ params }) {
 	const cityData = citiesData.find(
 		(c) => c.city.toLowerCase() === params.city.toLowerCase()
 	);
+
+	if (!cityData) {
+		return { notFound: true };
+	}
+
 	const seo = generateSeoData(cityData);
 	return { props: { cityData, seo } };
 }
@@ -30,7 +37,7 @@ export default function SeoCityPage({ cityData, seo }) {
 	const { city } = cityData;
 	const cityName = city.charAt(0).toUpperCase() + city.slice(1);
 
-	// helper do tzw. „surface” – bez białych kart; korzystamy z Twoich CSS zmiennych
+	// stylistyka „surface” pod Twój dark theme
 	const surfaceStyle = {
 		backgroundColor: "transparent",
 		color: "var(--text-color)",
@@ -44,18 +51,166 @@ export default function SeoCityPage({ cityData, seo }) {
 
 	const mutedStyle = { opacity: 0.8 };
 
+	// JSON-LD (LocalBusiness, Service, BreadcrumbList, FAQPage, WebSite/SearchAction)
+	const canonicalUrl =
+		seo?.canonical || `https://pixel-genie.de/seo/${city.toLowerCase()}`;
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "LocalBusiness",
+				"@id": `${canonicalUrl}#business`,
+				name: "Pixel-Genie SEO Agentur",
+				image: "https://pixel-genie.de/assets/og-default.jpg",
+				url: canonicalUrl,
+				telephone: cityData.phone || "",
+				email: cityData.email || "",
+				priceRange: "€€",
+				address: {
+					"@type": "PostalAddress",
+					streetAddress: cityData.address || "",
+					addressLocality: cityName,
+					postalCode: cityData.postalCode || "",
+					addressCountry: "DE",
+				},
+				geo: {
+					"@type": "GeoCoordinates",
+					latitude: cityData.geo?.latitude || 0,
+					longitude: cityData.geo?.longitude || 0,
+				},
+				areaServed: {
+					"@type": "City",
+					name: cityName,
+				},
+				sameAs: [
+					"https://www.facebook.com/pixelgenie.de",
+					"https://www.instagram.com/pixelgenie.de",
+					"https://www.linkedin.com/company/pixel-genie",
+				],
+				openingHours: ["Mo-Fr 09:00-17:00"],
+			},
+			{
+				"@type": "Service",
+				"@id": `${canonicalUrl}#seo-service`,
+				serviceType: `SEO Agentur in ${cityName}`,
+				provider: { "@id": `${canonicalUrl}#business` },
+				areaServed: { "@type": "City", name: cityName },
+				offers: {
+					"@type": "Offer",
+					price: "100",
+					priceCurrency: "EUR",
+					availability: "https://schema.org/InStock",
+					url: canonicalUrl,
+				},
+			},
+			{
+				"@type": "BreadcrumbList",
+				itemListElement: [
+					{
+						"@type": "ListItem",
+						position: 1,
+						name: "SEO",
+						item: "https://pixel-genie.de/seo",
+					},
+					{
+						"@type": "ListItem",
+						position: 2,
+						name: `SEO Agentur ${cityName}`,
+						item: canonicalUrl,
+					},
+				],
+			},
+			{
+				"@type": "FAQPage",
+				"@id": `${canonicalUrl}#faq`,
+				mainEntity: [
+					{
+						"@type": "Question",
+						name: `Wie lange dauert SEO in ${cityName}?`,
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: `Erste Verbesserungen sind nach 4–8 Wochen sichtbar, stabile Top-Rankings nach 3–6 Monaten – abhängig vom Wettbewerb in ${cityName}.`,
+						},
+					},
+					{
+						"@type": "Question",
+						name: `Was kostet SEO in ${cityName}?`,
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: `Lokale SEO-Pakete starten ab 100 € monatlich, inkl. technischer Optimierung, Content-Strategie und Reporting.`,
+						},
+					},
+					{
+						"@type": "Question",
+						name: `Warum ist lokales SEO in ${cityName} wichtig?`,
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: `Über 70 % regionaler Suchen führen zu Kontaktanfragen – wer nicht sichtbar ist, verliert Kunden an lokale Konkurrenz.`,
+						},
+					},
+					{
+						"@type": "Question",
+						name: `Bietet Pixel-Genie SEO-Audits in ${cityName} an?`,
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: `Ja, inklusive Analyse von Technik, Content, Backlinks und Google Business Profil für ${cityName}.`,
+						},
+					},
+				],
+			},
+			{
+				"@type": "WebSite",
+				"@id": "https://pixel-genie.de/#website",
+				url: "https://pixel-genie.de",
+				name: "Pixel-Genie",
+				potentialAction: {
+					"@type": "SearchAction",
+					target: "https://pixel-genie.de/?s={search_term_string}",
+					"query-input": "required name=search_term_string",
+				},
+			},
+		],
+	};
+
 	return (
 		<>
 			<Head>
 				<title>{seo.title}</title>
 				<meta name="description" content={seo.description} />
 				<meta name="keywords" content={seo.keywords} />
-				<link rel="canonical" href={seo.canonical} />
+				<meta
+					name="robots"
+					content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+				/>
+				<link rel="canonical" href={canonicalUrl} />
+
+				{/* Open Graph */}
 				<meta property="og:title" content={seo.openGraph.title} />
 				<meta property="og:description" content={seo.openGraph.description} />
 				<meta property="og:type" content="website" />
 				<meta property="og:url" content={seo.openGraph.url} />
 				<meta property="og:site_name" content="Pixel-Genie" />
+				<meta
+					property="og:image"
+					content={"https://pixel-genie.de/assets/og-default.jpg"}
+				/>
+				<meta property="og:locale" content="de_DE" />
+
+				{/* Twitter */}
+				<meta name="twitter:card" content={seo.twitter.card} />
+				<meta name="twitter:title" content={seo.twitter.title} />
+				<meta name="twitter:description" content={seo.twitter.description} />
+				<meta
+					name="twitter:image"
+					content={"https://pixel-genie.de/assets/og-default.jpg"}
+				/>
+
+				{/* Structured Data */}
+				<script
+					type="application/ld+json"
+					// eslint-disable-next-line react/no-danger
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				/>
 			</Head>
 
 			{/* HERO */}
@@ -86,7 +241,7 @@ export default function SeoCityPage({ cityData, seo }) {
 							<Card className="h-100 shadow-sm" style={surfaceStyle} border="1">
 								<Card.Body>
 									<h2 className="h4 fw-semibold mb-3">
-										🌍 Warum SEO in {cityName} entscheidend ist ?
+										🌍 Warum SEO in {cityName} entscheidend ist?
 									</h2>
 									<p>
 										In {cityName} entscheidet Google über den Erfolg. Wenn dein
@@ -102,12 +257,11 @@ export default function SeoCityPage({ cityData, seo }) {
 								</Card.Body>
 							</Card>
 						</Col>
-						{/* Statystyki w karcie „surface” */}
 					</Row>
 				</Container>
 			</section>
 
-			{/* Sekcja z mapą i opisem – 2 kolumny */}
+			{/* Statystyki + Mapa */}
 			<section className="py-5" style={sectionStyle}>
 				<Container>
 					<Row>
@@ -122,7 +276,6 @@ export default function SeoCityPage({ cityData, seo }) {
 						<Col md={4}>
 							<Card className="h-100 shadow-sm" style={surfaceStyle} border="1">
 								<Card.Body className="p-0">
-									{/* mapa ma stałą wysokość i pełną szerokość – siedzi w kolumnie */}
 									<CityMap
 										key={cityData.city}
 										cityData={cityData}
@@ -135,7 +288,7 @@ export default function SeoCityPage({ cityData, seo }) {
 				</Container>
 			</section>
 
-			{/* Lista usług */}
+			{/* Usługi */}
 			<section className="py-5 border-top border-bottom" style={sectionStyle}>
 				<Container>
 					<Row>
@@ -171,7 +324,7 @@ export default function SeoCityPage({ cityData, seo }) {
 					<Row className="align-items-center">
 						<Col md={8}>
 							<h2 className="h3 fw-semibold mb-3">
-								Warum Pixel-Genie die richtige Agentur für {city} ist
+								Warum Pixel-Genie die richtige Agentur für {cityName} ist
 							</h2>
 							<p>
 								Wir verbinden datengetriebene Strategien mit kreativer
@@ -179,7 +332,7 @@ export default function SeoCityPage({ cityData, seo }) {
 								aus einer Hand, mit klarem Fokus auf Ranking UND Conversion.
 							</p>
 							<p className="mb-4">
-								Unser Team kennt den regionalen Wettbewerb in {city} und
+								Unser Team kennt den regionalen Wettbewerb in {cityName} und
 								entwickelt Kampagnen, die dort wirken, wo deine Kunden suchen.
 							</p>
 							<Button
@@ -215,7 +368,8 @@ export default function SeoCityPage({ cityData, seo }) {
 					</Row>
 				</Container>
 			</section>
-			{/* --- FAQ SECTION --- */}
+
+			{/* FAQ (widoczne na stronie) */}
 			<section className="py-5  border-top border-bottom">
 				<Container>
 					<Row>
@@ -267,9 +421,10 @@ export default function SeoCityPage({ cityData, seo }) {
 				</Container>
 			</section>
 
-			{/* --- JSON-LD structured data for FAQ --- */}
+			{/* JSON-LD FAQ (drugi skrypt – ok, bo inny @type) */}
 			<script
 				type="application/ld+json"
+				// eslint-disable-next-line react/no-danger
 				dangerouslySetInnerHTML={{
 					__html: JSON.stringify({
 						"@context": "https://schema.org",
@@ -315,13 +470,13 @@ export default function SeoCityPage({ cityData, seo }) {
 				}}
 			/>
 
-			{/* --- Internal Link Building: Weitere Standorte --- */}
+			{/* Internal Link Building: SEO-Cluster (tematyczna spójność) */}
 			<section className="py-5 border-top" style={sectionStyle}>
 				<Container>
 					<Row className="my-4">
 						<Col>
 							<h3 className="text-center fw-semibold mb-4">
-								Weitere Standorte in der Nähe von {cityName}
+								Weitere SEO-Standorte in der Nähe von {cityName}
 							</h3>
 
 							<Row className="justify-content-center">
@@ -338,7 +493,7 @@ export default function SeoCityPage({ cityData, seo }) {
 											className="mb-3 d-flex justify-content-center"
 										>
 											<Link
-												href={`/webdesign-agentur/${c.city.toLowerCase()}`}
+												href={`/seo/${c.city.toLowerCase()}`}
 												className="d-flex align-items-center justify-content-center text-decoration-none fw-medium text-center rounded-3 hover"
 												style={{
 													color: "var(--text-color)",
@@ -350,13 +505,13 @@ export default function SeoCityPage({ cityData, seo }) {
 													padding: "0.5rem 0.75rem",
 													lineHeight: "1.2",
 													textAlign: "center",
-													whiteSpace: "normal", // <-- ważne!
-													wordBreak: "break-word", // <-- dzieli długie słowa
+													whiteSpace: "normal",
+													wordBreak: "break-word",
 													transition: "all 0.3s ease",
 												}}
 											>
 												<span className="d-block">
-													Seo Agentur <br />
+													SEO Agentur <br />
 													{c.city.charAt(0).toUpperCase() + c.city.slice(1)}
 												</span>
 											</Link>
@@ -368,7 +523,7 @@ export default function SeoCityPage({ cityData, seo }) {
 				</Container>
 			</section>
 
-			{/* Footer wewnętrzny sekcji – zostawiam jak w innych podstronach */}
+			{/* Footer sekcji */}
 			<footer className="py-4 text-center" style={sectionStyle}>
 				<Container>
 					<p className="mb-0 small" style={mutedStyle}>

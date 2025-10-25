@@ -152,13 +152,13 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				></div>
 			</div>
 
-			<Container className="py-5 mt-5">
+			<Container className="pt-5">
 				<Row className="justify-content-center">
 					<Col lg={8}>
 						<article
 							itemScope
 							itemType="https://schema.org/BlogPosting"
-							className="bg-transparent border-0 shadow-sm rounded"
+							className="bg-transparent border-0 shadow-sm rounded blog-article mt-4"
 						>
 							<Image
 								src={article.imgSrc}
@@ -294,11 +294,11 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								<hr className="my-5" />
 
 								{/* Prev / Next */}
-								<div className="d-flex justify-content-between">
+								<div className="d-flex justify-content-between mt-5">
 									{prev ? (
 										<Link
 											href={`/tips/${prev.slug}/`}
-											className="text-decoration-none fw-semibold"
+											className="fw-semibold text-blue"
 										>
 											← {prev.title}
 										</Link>
@@ -308,7 +308,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									{next && (
 										<Link
 											href={`/tips/${next.slug}/`}
-											className="text-decoration-none fw-semibold"
+											className="fw-semibold text-blue"
 										>
 											{next.title} →
 										</Link>

@@ -147,6 +147,124 @@ export default function CityPage({
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				/>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							"@context": "https://schema.org",
+							"@graph": [
+								{
+									"@type": "LocalBusiness",
+									"@id": `https://pixel-genie.de/webentwicklung/${city.city.toLowerCase()}#business`,
+									name: "Pixel-Genie Webentwicklung & SEO",
+									url: `https://pixel-genie.de/webentwicklung/${city.city.toLowerCase()}`,
+									image: "https://pixel-genie.de/assets/og-default.jpg",
+									description: seoDescription,
+									priceRange: "€€",
+									telephone: city.phone,
+									email: city.email,
+									address: {
+										"@type": "PostalAddress",
+										addressLocality: cityName,
+										postalCode: city.postalCode,
+										addressCountry: "DE",
+									},
+									geo: {
+										"@type": "GeoCoordinates",
+										latitude: city.geo?.latitude,
+										longitude: city.geo?.longitude,
+									},
+									areaServed: {
+										"@type": "City",
+										name: cityName,
+									},
+									sameAs: [
+										"https://www.facebook.com/pixelgenie.de",
+										"https://www.instagram.com/pixelgenie.de",
+										"https://www.linkedin.com/company/pixel-genie",
+									],
+									openingHours: ["Mo-Fr 09:00-17:00"],
+								},
+
+								{
+									"@type": "Service",
+									"@id": `https://pixel-genie.de/webentwicklung/${city.city.toLowerCase()}#service`,
+									serviceType: `Webentwicklung in ${cityName}`,
+									provider: {
+										"@id": `https://pixel-genie.de/webentwicklung/${city.city.toLowerCase()}#business`,
+									},
+									areaServed: {
+										"@type": "City",
+										name: cityName,
+									},
+									offers: {
+										"@type": "Offer",
+										price: "499",
+										priceCurrency: "EUR",
+										availability: "https://schema.org/InStock",
+										url: `https://pixel-genie.de/webentwicklung/${city.city.toLowerCase()}`,
+									},
+								},
+
+								{
+									"@type": "WebSite",
+									"@id": "https://pixel-genie.de/#website",
+									name: "Pixel-Genie Webentwicklung",
+									url: "https://pixel-genie.de",
+								},
+
+								{
+									"@type": "BreadcrumbList",
+									itemListElement: [
+										{
+											"@type": "ListItem",
+											position: 1,
+											name: "Webentwicklung",
+											item: "https://pixel-genie.de/webentwicklung",
+										},
+										{
+											"@type": "ListItem",
+											position: 2,
+											name: `Webentwicklung in ${cityName}`,
+											item: `https://pixel-genie.de/webentwicklung/${city.city.toLowerCase()}`,
+										},
+									],
+								},
+
+								{
+									"@type": "FAQPage",
+									"@id": `https://pixel-genie.de/webentwicklung/${city.city.toLowerCase()}#faq`,
+									mainEntity: [
+										{
+											"@type": "Question",
+											name: `Was kostet Webentwicklung in ${cityName}?`,
+											acceptedAnswer: {
+												"@type": "Answer",
+												text: `Die Kosten für Webentwicklung in ${cityName} beginnen bei 499 € — je nach Funktionsumfang.`,
+											},
+										},
+										{
+											"@type": "Question",
+											name: `Ist SEO in den Webprojekten in ${cityName} enthalten?`,
+											acceptedAnswer: {
+												"@type": "Answer",
+												text: "Ja! SEO-Optimierung ist bei uns immer Standard — inklusive bester Core Web Vitals.",
+											},
+										},
+										{
+											"@type": "Question",
+											name: `Bietet Pixel-Genie Wartung & Support in ${cityName}?`,
+											acceptedAnswer: {
+												"@type": "Answer",
+												text: "Ja — inklusive Updates, Hosting, Performance-Monitoring und Inhaltsbetreuung.",
+											},
+										},
+									],
+								},
+							],
+						}),
+					}}
+				/>
 			</Head>
 
 			<Container className="min-h-screen px-6 md:px-10 py-10 my-5 pt-5">

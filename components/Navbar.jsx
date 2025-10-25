@@ -321,7 +321,7 @@ const NavbarComp = ({ toggleTheme }) => {
 			</Navbar>
 
 			<div className={`mobile-overlay ${menuOpen ? "show" : ""}`}>
-				<Nav className="d-flex flex-column align-items-center gap-3 mt-5">
+				<Nav className="d-flex flex-column align-items-center gap-3">
 					{[
 						["/", "Startseite"],
 						["/webseitenerstellen", "Webseiten"],

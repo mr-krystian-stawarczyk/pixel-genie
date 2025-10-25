@@ -67,6 +67,126 @@ export default function WebdesignAgenturCityPage({ cityData, seo }) {
 				<meta property="og:type" content="website" />
 				<meta property="og:url" content={seo.openGraph.url} />
 				<meta property="og:site_name" content="Pixel-Genie" />
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							"@context": "https://schema.org",
+							"@graph": [
+								{
+									"@type": "LocalBusiness",
+									"@id": `${seo.canonical}#business`,
+									name: "Pixel-Genie Webdesign Agentur",
+									url: seo.canonical,
+									image: `${SITE_ORIGIN}/assets/pg-office.jpg`,
+									description: seo.description,
+									priceRange: "€€",
+									telephone: cityData.phone,
+									email: cityData.email,
+									logo: {
+										"@type": "ImageObject",
+										url: `${SITE_ORIGIN}/assets/pixel-genie-logo.png`,
+									},
+									address: {
+										"@type": "PostalAddress",
+										addressLocality: cityData.city,
+										postalCode: cityData.postalCode,
+										addressCountry: "DE",
+									},
+									geo: {
+										"@type": "GeoCoordinates",
+										latitude: cityData.lat,
+										longitude: cityData.lng,
+									},
+									areaServed: {
+										"@type": "City",
+										name: cityData.city,
+									},
+									sameAs: [
+										"https://www.facebook.com/pixelgenie.de",
+										"https://www.linkedin.com/company/pixel-genie",
+										"https://www.instagram.com/pixelgenie.de",
+									],
+									openingHours: ["Mo-Fr 09:00-17:00"],
+									serviceType: "Webdesign",
+								},
+
+								{
+									"@type": "Service",
+									"@id": `${seo.canonical}#service`,
+									name: `Webdesign Agentur ${cityData.city}`,
+									provider: { "@id": `${seo.canonical}#business` },
+									areaServed: cityData.city,
+									offers: {
+										"@type": "Offer",
+										price: "200",
+										priceCurrency: "EUR",
+										availability: "https://schema.org/InStock",
+									},
+								},
+
+								{
+									"@type": "Article",
+									"@id": `${seo.canonical}#content`,
+									headline: seo.title,
+									description: seo.description,
+									mainEntityOfPage: seo.canonical,
+									publisher: {
+										"@id": `${seo.canonical}#business`,
+									},
+									author: {
+										"@type": "Organization",
+										name: "Pixel-Genie Webagentur Nettetal",
+									},
+									image: `${SITE_ORIGIN}${cityData.heroImage || "/assets/og-default.jpg"}`,
+									datePublished: "2025-01-01",
+									dateModified: "2025-01-01",
+								},
+
+								{
+									"@type": "BreadcrumbList",
+									itemListElement: [
+										{
+											"@type": "ListItem",
+											position: 1,
+											name: "Webdesign",
+											item: `${SITE_ORIGIN}/webdesign`,
+										},
+										{
+											"@type": "ListItem",
+											position: 2,
+											name: `Webdesign Agentur ${cityData.city}`,
+											item: seo.canonical,
+										},
+									],
+								},
+
+								{
+									"@type": "FAQPage",
+									"@id": `${seo.canonical}#faq`,
+									mainEntity: [
+										{
+											"@type": "Question",
+											name: "Was kostet Webdesign?",
+											acceptedAnswer: {
+												"@type": "Answer",
+												text: "Webdesign-Projekte beginnen ab 200€ – je nach Funktionsumfang.",
+											},
+										},
+										{
+											"@type": "Question",
+											name: "Wie lange dauert ein Webprojekt?",
+											acceptedAnswer: {
+												"@type": "Answer",
+												text: "Die Umsetzung dauert im Schnitt 3–6 Wochen.",
+											},
+										},
+									],
+								},
+							],
+						}),
+					}}
+				/>
 			</Head>
 
 			{/* HERO */}

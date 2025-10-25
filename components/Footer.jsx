@@ -133,7 +133,52 @@ function Footer() {
 								</Card.Body>
 							</Card>
 						</Col>
+						{/* Kolumna 4 */}
+						<Col
+							lg={3}
+							sm={6}
+							className="justify-content-center text-center align-items-center"
+							id="kontakt"
+						>
+							<Card className="bg-transparent border-0 shadow-lg pt-3 text-center">
+								<Card.Title
+									className="my-3 text-uppercase"
+									style={{ color: "var(--text-color)" }}
+								>
+									{t("footer14")}
+								</Card.Title>
 
+								<p
+									style={{
+										color: "var(--text-color)",
+										fontSize: "1rem",
+										marginBottom: "1rem",
+										padding: "1rem",
+									}}
+								>
+									Haben Sie Fragen oder wünschen Sie ein unverbindliches
+									Angebot?
+								</p>
+
+								<button
+									onClick={handleFooterEmail}
+									className="btn-premium-footer hover mx-auto d-block"
+								>
+									✨ Jetzt E-Mail senden
+								</button>
+
+								<p
+									className="mt-3"
+									style={{
+										fontSize: "0.9rem",
+										color: "var(--text-color)",
+										opacity: 0.8,
+									}}
+								>
+									Antwort garantiert innerhalb von 24 Stunden.
+								</p>
+							</Card>
+						</Col>
 						{/* Kolumna 3 — Social */}
 						<Col lg={3} sm={6} className="mx-auto">
 							<Card className="bg-transparent border-0 shadow-lg text-center">
@@ -199,52 +244,6 @@ function Footer() {
 										<strong>Insights & Trends</strong>
 									</p>
 								</Card.Body>
-							</Card>
-						</Col>
-
-						{/* Kolumna 4 */}
-						<Col
-							lg={3}
-							sm={6}
-							className="justify-content-center text-center align-items-center"
-							id="kontakt"
-						>
-							<Card className="bg-transparent border-0 shadow-lg pt-3 text-center">
-								<Card.Title
-									className="my-3 text-uppercase"
-									style={{ color: "var(--text-color)" }}
-								>
-									{t("footer14")}
-								</Card.Title>
-
-								<p
-									style={{
-										color: "var(--text-color)",
-										fontSize: "1rem",
-										marginBottom: "1rem",
-									}}
-								>
-									Haben Sie Fragen oder wünschen Sie ein unverbindliches
-									Angebot?
-								</p>
-
-								<button
-									onClick={handleFooterEmail}
-									className="btn-premium-footer hover mx-auto d-block"
-								>
-									✨ Jetzt E-Mail senden
-								</button>
-
-								<p
-									className="mt-3"
-									style={{
-										fontSize: "0.9rem",
-										color: "var(--text-color)",
-										opacity: 0.8,
-									}}
-								>
-									Antwort garantiert innerhalb von 24 Stunden.
-								</p>
 							</Card>
 						</Col>
 					</Row>

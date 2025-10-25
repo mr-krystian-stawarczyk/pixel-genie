@@ -21,6 +21,7 @@ import "slick-carousel/slick/slick-theme.css";
 import blogPosts from "@/data/blogPosts";
 import { gaEvent } from "@/lib/analytics";
 import BlogIndexList from "./BlogIndexList";
+import { hasCookie } from "cookies-next"; // ✅ DODAJ TO
 
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
@@ -39,6 +40,20 @@ function Blog2({ pageUrl = PAGE_URL }) {
 	const [articles, setArticles] = useState([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [shareMessage, setShareMessage] = useState("");
+
+	const sendEmailCTA = (location) => {
+		if (hasCookie("marketingConsent")) {
+			gaEvent("cta_click", {
+				location,
+				page: window.location.pathname,
+			});
+		}
+
+		window.open(
+			"mailto:pixelgenie.marketing@gmail.com?subject=Pixel%20Genie%20Webdesign%20Anfrage&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20interessiere%20mich%20für%20eine%20neue%20Website%20oder%20SEO-Beratung.%0A%0AName%3A%0AFirma%3A%0ATelefon%3A%0A%0AVielen%20Dank!",
+			"_blank"
+		);
+	};
 
 	useEffect(() => setArticles(blogPosts), []);
 
@@ -276,8 +291,10 @@ function Blog2({ pageUrl = PAGE_URL }) {
 																				</Link>
 
 																				{/* 🔹 Przycisk „Kontakt aufnehmen” */}
-																				<Link
-																					href="#kontakt"
+																				<button
+																					onClick={() =>
+																						sendEmailCTA("blog_slider_cta")
+																					}
 																					className="btn-premium-footer text-white fw-bold px-4 py-2"
 																					style={{
 																						display: "inline-flex",
@@ -291,23 +308,11 @@ function Blog2({ pageUrl = PAGE_URL }) {
 																						transition:
 																							"transform 0.25s ease, box-shadow 0.25s ease",
 																					}}
-																					onMouseEnter={(e) => {
-																						e.currentTarget.style.transform =
-																							"scale(1.05)";
-																						e.currentTarget.style.boxShadow =
-																							"0 0 25px rgba(0,212,255,0.6)";
-																					}}
-																					onMouseLeave={(e) => {
-																						e.currentTarget.style.transform =
-																							"scale(1)";
-																						e.currentTarget.style.boxShadow =
-																							"0 0 15px rgba(0,200,255,0.3)";
-																					}}
 																				>
 																					<span className="text-white">
 																						Kontakt aufnehmen
 																					</span>
-																				</Link>
+																				</button>
 																			</div>
 																		</Accordion.Body>
 																	</Accordion.Item>

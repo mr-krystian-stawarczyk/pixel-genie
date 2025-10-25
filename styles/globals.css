@@ -1238,3 +1238,87 @@ main > :first-child,
 	background: rgba(0, 0, 0, 0.95);
 	padding: 12px 0;
 }
+
+/* ✅ GLOBAL CTA STABILITY FIX */
+.btn-premium,
+.btn-premium-footer {
+	will-change: transform; /* GPU fix */
+	transform: translateZ(0); /* stabilizacja */
+	min-height: 48px; /* stała wysokość - brak „podskoków” */
+	border: 0 !important; /* brak przeskoku obramowania */
+	outline: none !important;
+}
+
+/* --- BLOG READING UX UPGRADE --- */
+
+.blog-article {
+	font-size: 1.05rem;
+	line-height: 1.7;
+}
+
+.blog-article p {
+	margin: 1.1rem 0;
+}
+
+.blog-article h2,
+.blog-article h3 {
+	margin-top: 2.4rem;
+	margin-bottom: 0.8rem;
+	font-weight: 700;
+}
+
+.blog-article ul {
+	padding-left: 1.2rem;
+}
+
+.blog-quote {
+	border-left: 4px solid #007bff;
+	padding: 0.8rem 1rem;
+	margin: 2rem 0;
+	font-style: italic;
+	background: rgba(0, 123, 255, 0.05);
+	border-radius: 0 8px 8px 0;
+}
+
+.blog-footer-cta {
+	background: rgba(0, 0, 0, 0.03);
+	padding: 1.5rem;
+	border-radius: 14px;
+	text-align: center;
+}
+
+details {
+	background: rgba(0, 0, 0, 0.03);
+	padding: 1rem 1.2rem;
+	border-radius: 12px;
+	transition: background 0.3s;
+	cursor: pointer;
+}
+details:hover {
+	background: rgba(0, 123, 255, 0.07);
+}
+details summary {
+	font-size: 1.05rem;
+}
+details p {
+	margin-top: 0.6rem !important;
+}
+
+@media (max-width: 768px) {
+	.blog-article {
+		font-size: 1.1rem;
+		line-height: 1.75;
+	}
+	.blog-article p,
+	.blog-article li {
+		font-size: 1.05rem;
+	}
+	.blog-article img {
+		border-radius: 14px;
+	}
+	.blog-article h1 {
+		font-size: 1.7rem;
+		line-height: 1.3;
+		margin-top: 1.4rem;
+	}
+}
