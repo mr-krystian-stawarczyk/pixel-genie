@@ -313,7 +313,7 @@ export default function SeoCityPage({ cityData, seo }) {
 			{/* ─────────────────────────────────────────────────────────────────────── */}
 			{/* HERO */}
 			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 my-5 border-bottom" style={sectionStyle}>
+			<section className="py-5 my-5 " style={sectionStyle}>
 				<Container>
 					<Row className="align-items-center mt-5">
 						<Col lg={7} className="mb-4 mb-lg-0">
@@ -512,7 +512,7 @@ export default function SeoCityPage({ cityData, seo }) {
 			{/* ─────────────────────────────────────────────────────────────────────── */}
 			{/* Leistungen */}
 			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 border-top border-bottom" style={sectionStyle}>
+			<section className="py-5 " style={sectionStyle}>
 				<Container>
 					<Row>
 						<Col md={12}>
@@ -603,7 +603,7 @@ export default function SeoCityPage({ cityData, seo }) {
 			{/* ─────────────────────────────────────────────────────────────────────── */}
 			{/* Pakete – Preise */}
 			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 border-top border-bottom" style={sectionStyle}>
+			<section className="py-5 " style={sectionStyle}>
 				<Container>
 					<h2 className="h3 fw-bold mb-4 text-center">
 						Flexible SEO-Pakete in {cityName}
@@ -719,11 +719,7 @@ export default function SeoCityPage({ cityData, seo }) {
 			{/* ─────────────────────────────────────────────────────────────────────── */}
 			{/* FAQ (HTML) */}
 			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section
-				className="py-5 border-top border-bottom"
-				id="faq"
-				style={sectionStyle}
-			>
+			<section className="py-5 " id="faq" style={sectionStyle}>
 				<Container>
 					<Row>
 						<Col md={12}>
@@ -771,7 +767,7 @@ export default function SeoCityPage({ cityData, seo }) {
 			{/* ─────────────────────────────────────────────────────────────────────── */}
 			{/* CTA / Kontakt */}
 			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 border-top" id="kontakt" style={sectionStyle}>
+			<section className="py-5 " id="kontakt" style={sectionStyle}>
 				<Container>
 					<Row className="align-items-center">
 						<Col md={8} className="mb-3">
