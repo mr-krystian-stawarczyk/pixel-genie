@@ -1,38 +1,34 @@
-// CookieConsent.js — NOWA WERSJA
+// /components/CookieConsent.js
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
 export default function CookieConsent() {
-	const [cookies, setCookie, removeCookie] = useCookies([
-		"essentialConsent",
-		"marketingConsent",
-	]);
+	const [cookies, setCookie] = useCookies(["marketingConsent"]);
 	const [showBanner, setShowBanner] = useState(false);
 
 	useEffect(() => {
-		if (!cookies.essentialConsent && !cookies.marketingConsent) {
+		if (!cookies.marketingConsent) {
 			setShowBanner(true);
 		}
-	}, [cookies]);
+	}, [cookies.marketingConsent]);
 
 	const acceptAll = () => {
-		setCookie("essentialConsent", "true", {
-			path: "/",
-			maxAge: 360 * 24 * 60 * 60,
-		});
 		setCookie("marketingConsent", "true", {
 			path: "/",
-			maxAge: 360 * 24 * 60 * 60,
+			sameSite: "Lax",
+			secure: true,
+			maxAge: 365 * 24 * 60 * 60,
 		});
 		setShowBanner(false);
 	};
 
 	const essentialOnly = () => {
-		setCookie("essentialConsent", "true", {
+		setCookie("marketingConsent", "false", {
 			path: "/",
-			maxAge: 360 * 24 * 60 * 60,
+			sameSite: "Lax",
+			secure: true,
+			maxAge: 365 * 24 * 60 * 60,
 		});
-		removeCookie("marketingConsent", { path: "/" });
 		setShowBanner(false);
 	};
 
@@ -43,19 +39,13 @@ export default function CookieConsent() {
 			style={{
 				position: "fixed",
 				bottom: 0,
-				left: 0,
 				width: "100%",
-				background: "rgba(0,0,0,0.9)",
-				color: "white",
-				padding: "1.2rem 0.8rem",
+				background: "rgba(0,0,0,.85)",
 				zIndex: 999,
 			}}
 		>
-			<div className="d-flex justify-content-between align-items-center container">
-				<p style={{ maxWidth: "700px", margin: 0 }}>
-					Wir verwenden Cookies, um unsere Website zu verbessern. Weitere
-					Details findest du im Impressum.
-				</p>
+			<div className="container py-3 d-flex justify-content-between align-items-center">
+				<span className="text-white">Wir verwenden Cookies.</span>
 				<div className="d-flex gap-2">
 					<button className="btn btn-outline-light" onClick={essentialOnly}>
 						Nur essenziell
