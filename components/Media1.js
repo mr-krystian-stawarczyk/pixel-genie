@@ -24,9 +24,9 @@ function Media1() {
 
 	return (
 		<motion.div ref={ref} animate={controls}>
-			<Container className="pt-5">
+			<Container>
 				{/* Header Animation */}
-				<Row className="justify-content-center text-center align-items-center mb-4">
+				<Row className="justify-content-center text-center align-items-center ">
 					<Col>
 						<Image
 							src="/assets/webdesign-header-welcome.gif"
@@ -41,7 +41,7 @@ function Media1() {
 
 				{/* Main Section */}
 				<Row className="justify-content-center text-center align-items-center">
-					<Col lg={8}>
+					<Col lg={10}>
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
 								<h1 className="fw-bold mb-3">

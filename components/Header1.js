@@ -28,13 +28,25 @@ export default function Header1() {
 		return () => clearTimeout(timer);
 	}, []);
 
+	// ✉️ Mail do "kostenloses Audit"
+	const handleAuditClick = () => {
+		window.open(
+			"mailto:pixelgenie.marketing@gmail.com?subject=Kostenloses%20Website%20Audit%20Anfrage&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20möchte%20ein%20kostenloses%20Website-Audit%20anfordern.%0A%0ABitte%20überprüfen%20Sie%20meine%20Website%20und%20geben%20Sie%20mir%20ein%20Feedback%20zu%20Design%2C%20SEO%20und%20Performance.%0A%0AHier%20sind%20meine%20Details%3A%0A%0AName%3A%0AFirma%3A%0AWebsite%3A%0ATelefon%3A%0A%0AVielen%20Dank!",
+			"_blank"
+		);
+	};
+
+	// ✉️ Ogólny kontakt – klient może zapytać o SEO, Webdesign itd.
 	const handleEmailClick = () => {
-		window.location.href = "mailto:pixelgenie.marketing@gmail.com";
+		window.open(
+			"mailto:pixelgenie.marketing@gmail.com?subject=Allgemeine%20Anfrage%20an%20Pixel%20Genie&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20habe%20eine%20Frage%20zu%20Ihren%20Dienstleistungen.%0A%0AIch%20interessiere%20mich%20für%3A%0A%5B%20%5D%20Webdesign%0A%5B%20%5D%20SEO%0A%5B%20%5D%20Social%20Media%20Marketing%0A%5B%20%5D%20Branding%0A%0ABitte%20kontaktieren%20Sie%20mich%20unter%3A%0AName%3A%0AFirma%3A%0ATelefon%3A%0AWebsite%3A%0A%0AVielen%20Dank!",
+			"_blank"
+		);
 	};
 
 	return (
 		<header className="header-container position-relative" ref={sectionRef}>
-			{/* Background + Particles */}
+			{/* 🌌 Background + Particles */}
 			<div
 				className="particles-container"
 				style={{
@@ -54,7 +66,7 @@ export default function Header1() {
 				{showParticles && <ParticlesComponent />}
 			</div>
 
-			{/* Hero Content */}
+			{/* 🧠 Hero Content */}
 			<Container
 				className="header-content-container d-flex justify-content-center align-items-center text-center"
 				style={{
@@ -71,10 +83,10 @@ export default function Header1() {
 					<Card className="bg-transparent border-0 blur p-md-3 p-md-5 rounded-4">
 						<Card.Body>
 							<h1 className="fw-bold mb-3 lh-base display-5 mt-5">
-								Webseiten erstellen mit Pixel-Genie – Ihre Agentur für modernes
-								Webdesign, SEO & Marketing in Nettetal
+								Webseiten erstellen mit <br /> Pixel-Genie – Ihre Agentur für
+								modernes Webdesign, SEO & Marketing in Nettetal
 							</h1>
-							<p className="lead  mb-4">
+							<p className="lead mb-4">
 								Steigern Sie Ihre Online-Präsenz mit professionellen Websites,
 								die Design, Performance und Sichtbarkeit vereinen.
 							</p>
@@ -87,7 +99,11 @@ export default function Header1() {
 								>
 									<span className="text-white">Webseiten erstellen</span>
 								</Button>
-								<Button as={Link} href="/seo" className="btn-lg btn-nav">
+								<Button
+									as={Link}
+									href="/suchmaschinenoptimierung"
+									className="btn-lg btn-nav"
+								>
 									<span className="text-white">SEO Optimierung</span>
 								</Button>
 								<Button
@@ -102,16 +118,20 @@ export default function Header1() {
 
 						<Card.Body className="mt-4">
 							<div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+								{/* 🚀 Kostenloses Audit – otwiera gotowego maila */}
 								<Button
-									as={Link}
-									href="/kontakt"
-									className="btn-md btn-nav px-4"
+									as="button"
+									onClick={handleAuditClick}
+									className="btn-premium-footer text-white fw-bold"
+									style={{
+										cursor: "pointer",
+										boxShadow: "0 0 10px rgba(255,255,255,0.2)",
+									}}
 								>
-									<span className="text-white text-lg">
-										🚀 Jetzt kostenloses Audit anfordern
-									</span>
+									🚀 Jetzt kostenloses Audit anfordern
 								</Button>
 
+								{/* ✉️ Ogólny kontakt */}
 								<Button
 									as="button"
 									onClick={handleEmailClick}

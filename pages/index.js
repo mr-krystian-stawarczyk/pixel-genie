@@ -3,6 +3,7 @@ import Head from "next/head";
 import React from "react";
 import dynamic from "next/dynamic";
 import Header1 from "@/components/Header1";
+
 // Dynamiczny import dla Header1 do Header6
 
 const Header2 = dynamic(() => import("@/components/Header2"));
@@ -10,7 +11,7 @@ const Header3 = dynamic(() => import("@/components/Header3"));
 const Header4 = dynamic(() => import("@/components/Header4"));
 const Header5 = dynamic(() => import("@/components/Header5"));
 const Header6 = dynamic(() => import("@/components/Header6"));
-
+const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"));
 // TechBar jest już dynamicznie zaimportowany
 const TechBar = dynamic(() => import("@/components/TechBar"));
 
@@ -105,11 +106,12 @@ export default function Home() {
 
 			{/* Dynamicznie załadowane komponenty */}
 			<Header1 />
-			<TechBar />
+			<GoogleReviews />
 			<Header2 />
 			<Header3 />
 			<Header4 />
 			<Header5 />
+			<TechBar />
 			<Header6 />
 		</>
 	);

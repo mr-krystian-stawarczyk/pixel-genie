@@ -72,7 +72,7 @@ export default function WebdesignAgenturCityPage({ cityData, seo }) {
 			{/* HERO */}
 			<section className="py-5 mt-5 border-bottom" style={sectionStyle}>
 				<Container>
-					<Row className="align-items-center">
+					<Row className="align-items-center mt-5">
 						<Col lg={7}>
 							<h1 className="display-5 fw-bold mb-3">
 								Webdesign Agentur in {cityName} – digitale Erlebnisse, die

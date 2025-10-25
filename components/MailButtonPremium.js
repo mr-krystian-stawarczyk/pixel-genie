@@ -22,7 +22,7 @@ function MailButtonPremium() {
 			disabled={sending}
 			whileHover={{ scale: 1.07 }}
 			whileTap={{ scale: 0.95 }}
-			className={`btn-premium mt-4 ${sending ? "sending" : ""}`}
+			className={`btn-premium mt-2 ${sending ? "sending" : ""}`}
 			title="E-Mail an Pixel Genie senden"
 		>
 			{sending ? "Wird geöffnet..." : "✨ Jetzt E-Mail senden"}

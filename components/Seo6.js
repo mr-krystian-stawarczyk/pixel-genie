@@ -1,35 +1,19 @@
-import React from "react";
-import { useEffect } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import dynamic from "next/dynamic";
-import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import { useTranslation } from "react-i18next";
+"use client";
+import React, { useEffect } from "react";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
+import { useAnimation, motion } from "framer-motion";
 
-import { motion } from "framer-motion";
-function Seo6() {
-	const { t } = useTranslation();
-	const [ref1, inView1] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const [ref2, inView2] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-	const [ref3, inView3] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
+export default function Seo6() {
+	const [ref1, inView1] = useInView({ threshold: 0.4, triggerOnce: false });
+	const [ref2, inView2] = useInView({ threshold: 0.4, triggerOnce: false });
+	const [ref3, inView3] = useInView({ threshold: 0.4, triggerOnce: false });
 
 	const animateIn = {
 		opacity: 1,
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
+		transform: "translateY(0)",
+		transition: { duration: 0.8, ease: "easeOut" },
 	};
 
 	const controls1 = useAnimation();
@@ -37,168 +21,176 @@ function Seo6() {
 	const controls3 = useAnimation();
 
 	useEffect(() => {
-		if (inView1) {
-			controls1.start(animateIn);
-		}
-	}, [inView1, controls1, animateIn]);
-
+		if (inView1) controls1.start(animateIn);
+	}, [inView1]);
 	useEffect(() => {
-		let timeout;
-		if (inView2) {
-			timeout = setTimeout(() => {
-				controls2.start(animateIn);
-			}, 500);
-		}
-
-		return () => clearTimeout(timeout);
-	}, [inView2, controls2, animateIn]);
-
+		if (inView2) controls2.start(animateIn);
+	}, [inView2]);
 	useEffect(() => {
-		let timeout;
-		if (inView3) {
-			timeout = setTimeout(() => {
-				controls3.start(animateIn);
-			}, 1000);
-		}
+		if (inView3) controls3.start(animateIn);
+	}, [inView3]);
 
-		return () => clearTimeout(timeout);
-	}, [inView3, controls3, animateIn]);
+	// ✉️ Funkcja otwierająca gotowego maila
+	const handleEmail = (plan) => {
+		const subject = encodeURIComponent(`Anfrage zu SEO-Plan: ${plan}`);
+		const body = encodeURIComponent(
+			`Hallo Pixel Genie Team,\n\nich interessiere mich für euren ${plan}.\nBitte sendet mir weitere Informationen über Leistungen, Vertragsbedingungen und mögliche Starttermine.\n\nMeine Website:\n[Hier einfügen]\n\nMit freundlichen Grüßen,\n[Ihr Name]`
+		);
+		window.location.href = `mailto:pixelgenie.marketing@gmail.com?subject=${subject}&body=${body}`;
+	};
 
 	return (
-		<Container className="my-5 py-5 " id="seoprices">
-			<Row className="justify-content-center align-items-center">
-				<Col lg={4} md={6} xs={12} className="py-5 text-center">
+		<Container id="seoprices" className="py-5 transition-colors duration-500">
+			<Row className="justify-content-center text-center mb-5">
+				<Col lg={8}>
 					<Image
 						src="/assets/webentwicklung-webagentur-nettetal-price.png"
-						width={300}
-						height={300}
-						className="responsive-image"
-						alt="SEO-webentwicklung-nettetal-preis1"
+						width={280}
+						height={280}
+						alt="SEO Preise Pixel Genie Nettetal"
+						className="my-3"
 						priority
 					/>
-					<h4>{t("web23")}</h4>
+					<h2 className="fw-bold display-6 mb-3">
+						SEO-Pakete für jedes Unternehmen – transparent, fair & effektiv
+					</h2>
+					<p className="lead ">
+						Unsere monatlichen SEO-Pakete sind speziell darauf ausgelegt, Ihre
+						Website sichtbarer zu machen, mehr Kunden zu gewinnen und Ihre
+						Google-Rankings nachhaltig zu verbessern – egal, ob Sie ein
+						Start-up, lokales Unternehmen oder eine größere Marke sind.
+					</p>
 				</Col>
 			</Row>
-			<Row
-				className="text-dark justify-content-center align-items-center"
-				style={{
-					alignItems: "center",
-					justifyContent: "center",
-				}}
-			>
-				<Col lg={4} className="mx-auto my-2">
+
+			<Row className="justify-content-center text-center">
+				{/* BASIC */}
+				<Col lg={4} md={6} className="mb-4">
 					<motion.div
 						ref={ref1}
+						initial={{ opacity: 0, transform: "translateY(40px)" }}
 						animate={controls1}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
 					>
-						<Card
-							style={{ minWidth: "18rem" }}
-							className="shadow-lg border-0 text-dark"
-						>
-							<Card.Body>
-								<h1>{t("seo21")}</h1>
-								<Card.Text>{t("seo22")}</Card.Text>
-							</Card.Body>
-							<Card.Body>
-								<Card.Title>{t("seo23")}</Card.Title>
-								<Card.Text>{t("seo24")}</Card.Text>
-								<Card.Text>{t("seo25")}</Card.Text>
-								<Card.Text>{t("seo26")}</Card.Text>
-								<Card.Text>{t("seo27")}</Card.Text>
-								<Card.Text>{t("seo28")}</Card.Text>
-								<Card.Text>{t("seo29")}</Card.Text>
-								<Card.Text>{t("seo30")}</Card.Text>
-							</Card.Body>
-							<Card.Body>
-								<h4>{t("seo31")}</h4>
-								<Card.Text>{t("seo32")}</Card.Text>
-								<Card.Text>{t("seo33")}</Card.Text>
-								<Card.Text> {t("seo34")}</Card.Text>
+						<Card className="h-100 border-primary shadow-lg bg-transparent rounded-4">
+							<Card.Body className="p-4">
+								<h3 className="fw-bold text-primary">BASIC PLAN</h3>
+								<p>
+									Ihr Einstieg in die Welt der SEO-Optimierung – ideal für
+									kleine Unternehmen, die lokal gefunden werden wollen.
+								</p>
+								<h2 className="fw-bold mb-3">99 € / Monat</h2>
+								<hr />
+								<ul className="list-unstyled text-start">
+									<p>✔ Technisches Website-Audit & Fehleranalyse</p>
+									<p>✔ Keyword-Recherche für lokale Zielgruppen</p>
+									<p>✔ OnPage-Optimierung (Meta, Titel, Struktur)</p>
+									<p>✔ Content-Optimierung & SEO-Texte</p>
+									<p>✔ Monatlicher Ranking-Report</p>
+									<p>✔ Google Search Console Einrichtung</p>
+								</ul>
+								<Button
+									variant="primary"
+									className="mt-3"
+									onClick={() => handleEmail("BASIC PLAN (99 €/Monat)")}
+								>
+									<span className="text-white">Jetzt starten</span>
+								</Button>
 							</Card.Body>
 						</Card>
 					</motion.div>
 				</Col>
-				<Col lg={4} className="mx-auto my-2">
+
+				{/* BUSINESS */}
+				<Col lg={4} md={6} className="mb-4 ">
 					<motion.div
 						ref={ref2}
+						initial={{ opacity: 0, transform: "translateY(40px)" }}
 						animate={controls2}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
 					>
-						<Card
-							style={{ minWidth: "18rem" }}
-							className="shadow-lg border-0 text-dark"
-						>
-							<Card.Body>
-								<h1>{t("seo35")}</h1>
-								<Card.Text>{t("seo36")}</Card.Text>
-							</Card.Body>
-							<Card.Body>
-								<Card.Title>{t("seo37")}</Card.Title>
-								<Card.Text>{t("seo38")}</Card.Text>
-								<Card.Text>{t("seo39")}</Card.Text>
-								<Card.Text>{t("seo40")}</Card.Text>
-								<Card.Text>{t("seo41")}</Card.Text>
-								<Card.Text>{t("seo42")}</Card.Text>
-								<Card.Text>{t("seo43")}</Card.Text>
-								<Card.Text>{t("seo44")}</Card.Text>
-							</Card.Body>
-							<Card.Body>
-								<Image
-									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
-									width={100}
-									height={100}
-									className="responsive-image"
-									alt="webagentur-webentwiclkung-nettetal-seo-bestseller"
-									priority
-								/>
-								<h3>{t("seo45")}</h3>
-								<Card.Text>{t("seo46")}</Card.Text>
-								<Card.Text>{t("seo47")}</Card.Text>
-								<Card.Text>{t("seo48")}</Card.Text>
+						<Card className="h-100 border-success shadow-lg rounded-4 bg-transparent position-relative">
+							<Card.Body className="p-4">
+								<h3 className="fw-bold text-success">BUSINESS PLAN</h3>
+								<p>
+									Der Bestseller für wachsende Marken – inklusive technischer
+									Optimierung, Content-Marketing und Performance-Boost.
+								</p>
+								<h2 className="fw-bold mb-3">149 € / Monat</h2>
+								<hr />
+								<ul className="list-unstyled text-start">
+									<p>✔ Detailliertes SEO-Audit & Ladezeiten-Analyse</p>
+									<p>✔ Umfassende Keyword-Strategie (lokal & regional)</p>
+									<p>✔ Optimierung für Core Web Vitals</p>
+									<p>✔ Technische SEO (Schema, strukturierte Daten)</p>
+									<p>✔ Backlink-Aufbau & Linkmonitoring</p>
+									<p>✔ Monatlicher Performance-Report</p>
+									<p>✔ 1 Stunde SEO-Beratung im Monat inklusive</p>
+								</ul>
+								<Button
+									variant="success"
+									className="mt-3 text-white"
+									onClick={() => handleEmail("BUSINESS PLAN (149 €/Monat)")}
+								>
+									Bestseller sichern
+								</Button>
 							</Card.Body>
 						</Card>
 					</motion.div>
 				</Col>
-				<Col lg={4} className="mx-auto my-2">
+
+				{/* PREMIUM */}
+				<Col lg={4} md={6} className="mb-4">
 					<motion.div
 						ref={ref3}
+						initial={{ opacity: 0, transform: "translateY(40px)" }}
 						animate={controls3}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
 					>
 						<Card
-							style={{ minWidth: "18rem" }}
-							className="shadow-lg border-0 text-dark"
+							className="h-100 border-warning shadow-lg rounded-4 bg-gradient text-light"
+							style={{
+								background: "linear-gradient(135deg,#0b0b2e 0%,#21216b 100%)",
+							}}
 						>
-							<Card.Body>
-								<h1>{t("seo49")}</h1>
-								<Card.Text>{t("seo50")}</Card.Text>
-							</Card.Body>
-							<Card.Body>
-								<Card.Title>{t("seo51")}</Card.Title>
-								<Card.Text>{t("seo52")}</Card.Text>
-								<Card.Text>{t("seo53")}</Card.Text>
-								<Card.Text>{t("seo54")}</Card.Text>
-								<Card.Text>{t("seo55")}</Card.Text>
-								<Card.Text>{t("seo56")}</Card.Text>
-								<Card.Text>{t("seo57")}</Card.Text>
-								<Card.Text>{t("seo58")}</Card.Text>
-							</Card.Body>
-							<Card.Body>
-								<h3>{t("seo59")}</h3>
-								<Card.Text>{t("seo60")}</Card.Text>
-								<Card.Text>{t("seo61")}</Card.Text>
-								<Card.Text>{t("seo62")}</Card.Text>
+							<Card.Body className="p-4">
+								<h3 className="fw-bold text-warning">PREMIUM PLAN</h3>
+								<p>
+									Das Rundum-sorglos-Paket für Unternehmen, die das Maximum aus
+									ihrer Online-Präsenz herausholen wollen – inkl. SEO, Content,
+									UX & Ads.
+								</p>
+								<h2 className="fw-bold mb-3 text-warning">299 € / Monat</h2>
+								<hr className="border-light" />
+								<ul className="list-unstyled text-start">
+									<p>✔ Individuelle SEO-Strategie & Wettbewerbsanalyse</p>
+									<p>✔ Vollständige technische Optimierung (Next.js/React)</p>
+									<p>✔ Hochwertige Backlinks & Outreach-Kampagnen</p>
+									<p>✔ Conversion-Tracking & Heatmap-Analysen</p>
+									<p>✔ Content-Erstellung inkl. Blog & Landingpages</p>
+									<p>✔ Monatliche Strategie-Calls & Reporting</p>
+									<p>✔ Priorisierter Support & persönliche Betreuung</p>
+								</ul>
+								<Button
+									variant="warning"
+									className="mt-3 fw-bold"
+									onClick={() => handleEmail("PREMIUM PLAN (299 €/Monat)")}
+								>
+									Premium buchen
+								</Button>
 							</Card.Body>
 						</Card>
 					</motion.div>
+				</Col>
+			</Row>
+
+			<Row className="justify-content-center text-center mt-5">
+				<Col lg={8}>
+					<p className="text-muted">
+						Alle Preise verstehen sich zzgl. MwSt. – keine versteckten Gebühren.
+						Jedes Paket kann monatlich gekündigt oder individuell erweitert
+						werden. Pixel Genie steht für transparente SEO-Leistungen, messbare
+						Ergebnisse und persönliche Betreuung. Ihr Erfolg ist unser Ziel.
+					</p>
 				</Col>
 			</Row>
 		</Container>
 	);
 }
-
-export default Seo6;

@@ -119,7 +119,7 @@ export default function WebseiteErstellungCity({
 			</Head>
 
 			<Container className="min-h-screen px-6 md:px-10 py-10 my-5">
-				<Row className="text-center">
+				<Row className="text-center pt-5">
 					<h1 className="text-4xl md:text-5xl font-bold mt-5">{heading1}</h1>
 					<p className="text-lg mb-8 mt-3 leading-relaxed">{heading2}</p>
 				</Row>

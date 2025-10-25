@@ -33,33 +33,59 @@ function HeaderCounted() {
 	});
 
 	return (
-		<Container className="border-0 my-5 py-5" ref={sectionRef}>
+		<Container className="border-0 my-5" ref={sectionRef}>
 			<Row className="text-center justify-content-center align-items-center">
-				<h1 className="py-3">Unsere Ergebnisse sprechen für sich</h1>
+				<h1 className="py-3 fw-bold">Unsere Ergebnisse sprechen für sich</h1>
 
-				<Col lg={5}>
+				<Col lg={8}>
 					<Card className="border-0 bg-transparent">
 						<Card.Body>
 							<h2 className="text-bold">
-								Webentwicklung & Performance Optimierung
+								Webentwicklung, SEO Optimierung & modernes Webdesign in Nettetal
 							</h2>
 							<p>
-								Wir entwickeln Websites, die nicht nur gut aussehen, sondern
-								auch schnell laden, SEO-stark und konversionsoptimiert sind.
+								Bei <strong>Pixel Genie</strong> kombinieren wir
+								<span> modernes Webdesign</span>,{" "}
+								<span>technische Webentwicklung</span> und{" "}
+								<span>SEO Optimierung</span>, um Unternehmen in Nettetal und
+								ganz Deutschland online sichtbar zu machen. Unsere Websites
+								werden so entwickelt, dass sie nicht nur visuell überzeugen,
+								sondern auch durch <strong>Performance, Conversion</strong> und
+								<strong> Benutzerfreundlichkeit</strong> glänzen.
+							</p>
+							<p>
+								Als <strong>Webdesign Agentur aus Nettetal</strong> legen wir
+								Besonderen Wert auf <strong>Responsive Design</strong>, schnelle
+								Ladezeiten, <strong>OnPage SEO</strong> und{" "}
+								<strong>strukturierte Inhalte</strong>. So erreichen Sie mehr
+								Sichtbarkeit bei Google, bessere Nutzererfahrungen und messbare
+								Resultate – von <em>lokalen Betrieben</em> bis zu{" "}
+								<em>mittelständischen Unternehmen</em>.
 							</p>
 						</Card.Body>
 					</Card>
 				</Col>
 
-				<Col lg={5}>
+				<Col lg={4}>
 					<animated.div style={animationProps}>
 						<Card className="border-primary bg-light p-2 m-2">
 							<Card.Body>
-								<Card.Title>Abgeschlossene Projekte</Card.Title>
-								<Card.Title>
+								<Card.Title className="text-bold">
+									Abgeschlossene Projekte
+								</Card.Title>
+								<Card.Title className="text-bold">
+									+{isVisible && <CountUp start={1} end={31} duration={12} />}
+								</Card.Title>
+							</Card.Body>
+						</Card>
+
+						<Card className="border-primary bg-light p-2 m-2">
+							<Card.Body>
+								<Card.Title className="text-bold">Online Reichweite</Card.Title>
+								<Card.Title className="text-bold">
 									+
 									{isVisible && (
-										<CountUp start={1} end={31} duration={12} delay={0} />
+										<CountUp start={80000} end={87000} duration={12} />
 									)}
 								</Card.Title>
 							</Card.Body>
@@ -67,29 +93,9 @@ function HeaderCounted() {
 
 						<Card className="border-primary bg-light p-2 m-2">
 							<Card.Body>
-								<Card.Title>Zeilen Code entwickelt</Card.Title>
-								<Card.Title>
-									+
-									{isVisible && (
-										<CountUp
-											start={80000}
-											end={87000}
-											duration={12}
-											delay={0}
-										/>
-									)}
-								</Card.Title>
-							</Card.Body>
-						</Card>
-
-						<Card className="border-primary bg-light p-2 m-2">
-							<Card.Body>
-								<Card.Title>SEO Keywords auf Seite 1</Card.Title>
-								<Card.Title>
-									+
-									{isVisible && (
-										<CountUp start={10} end={72} duration={12} delay={0} />
-									)}
+								<Card.Title className="text-bold">Zufriedene Kunden</Card.Title>
+								<Card.Title className="text-bold">
+									+{isVisible && <CountUp start={10} end={72} duration={12} />}
 								</Card.Title>
 							</Card.Body>
 						</Card>

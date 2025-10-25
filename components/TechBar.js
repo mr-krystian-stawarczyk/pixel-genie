@@ -52,7 +52,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white text-bold">Google Business</h3>
+						<h3 className="text-white text-semibold">
+							Google<br></br> Business
+						</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -63,7 +65,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white text-bold">Facebook Ads</h3>
+						<h3 className="text-white text-semibold">
+							Facebook <br></br>Ads
+						</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -74,7 +78,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white text-bold">SEO Optimierung</h3>
+						<h3 className="text-white text-semibold">
+							SEO<br></br> Optimierung
+						</h3>
 					</div>
 					<div className="text-center ">
 						<Image
@@ -85,7 +91,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white text-bold">Google Analytics</h3>
+						<h3 className="text-white text-semibold">
+							Google <br></br>Analytics
+						</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -96,7 +104,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white text-bold">Webdesign</h3>
+						<h3 className="text-white text-semibold">
+							Web <br></br>Design
+						</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -107,7 +117,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white text-bold">Stripe Online Bezahlung</h3>
+						<h3 className="text-white text-semibold">
+							Stripe <br></br> Bezahlung
+						</h3>
 					</div>
 					<div className="text-center">
 						<Image
@@ -118,7 +130,9 @@ const TechBar = () => {
 							className="img-fluid mx-auto"
 							loading="lazy"
 						/>
-						<h3 className="text-white text-bold">React Programmierung</h3>
+						<h3 className="text-white text-semibold">
+							React<br></br> Dev
+						</h3>
 					</div>
 				</Slider>
 			</Row>

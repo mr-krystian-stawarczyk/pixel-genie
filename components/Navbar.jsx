@@ -76,18 +76,38 @@ const NavbarComp = ({ toggleTheme }) => {
 				break;
 		}
 	};
-
 	const toggleThemeMode = () => {
 		const next = currentTheme === "light" ? "dark" : "light";
+
+		// 🚀 dodaj klasy fade
+		document.documentElement.classList.add("theme-fade", "theme-fade-changing");
+
+		// Zmień motyw
 		setTheme(next);
 		setCurrentTheme(next);
 		setIsLight(next === "light");
 		toggleTheme();
+
+		// 🔚 usuń po zakończeniu animacji
+		setTimeout(() => {
+			document.documentElement.classList.remove("theme-fade-changing");
+			setTimeout(() => {
+				document.documentElement.classList.remove("theme-fade");
+			}, 300);
+		}, 300);
 	};
 
 	const toggleMobileMenu = () => {
 		setMenuOpen(!menuOpen);
 		document.body.style.overflow = !menuOpen ? "hidden" : "auto";
+	};
+
+	// ✉️ Mail – Kostenloses Audit
+	const handleAuditMail = () => {
+		window.open(
+			"mailto:pixelgenie.marketing@gmail.com?subject=Kostenloses%20Website%20Audit%20Anfrage&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20möchte%20ein%20kostenloses%20Website-Audit%20anfordern.%0A%0ABitte%20überprüfen%20Sie%20meine%20Website%20und%20geben%20Sie%20mir%20ein%20Feedback%20zu%20Design%2C%20SEO%20und%20Performance.%0A%0AHier%20sind%20meine%20Details%3A%0A%0AName%3A%0AFirma%3A%0AWebsite%3A%0ATelefon%3A%0A%0AVielen%20Dank!",
+			"_blank"
+		);
 	};
 
 	const textColor =
@@ -154,7 +174,11 @@ const NavbarComp = ({ toggleTheme }) => {
 
 					<Navbar.Collapse id="nav" className="mt-3 mt-lg-0 text-center">
 						<Nav className="ms-auto align-items-center gap-2">
-							<Nav.Link as={Link} href="#kontakt" className="d-none d-lg-block">
+							<Nav.Link
+								as="button"
+								onClick={handleAuditMail}
+								className="d-none d-lg-block"
+							>
 								<button className="btn-premium-footer px-4 py-1">
 									🚀 Kostenlose Analyse
 								</button>
@@ -195,8 +219,8 @@ const NavbarComp = ({ toggleTheme }) => {
 									{[
 										["/webseitenerstellen", "Webseiten erstellen"],
 										["/suchmaschinenoptimierung", "SEO Optimierung"],
-										["/branding", "Branding"],
 										["/webdesign", "Webdesign"],
+										["/branding", "Branding"],
 										["/socialmediamarketing", "Social Media Marketing"],
 									].map(([href, label]) => (
 										<NavDropdown.Item
@@ -217,7 +241,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							</Nav.Link>
 
 							<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
-								<Button className="btn-nav border-0">Geschichte</Button>
+								<Button className="btn-nav border-0">Pixel</Button>
 							</Nav.Link>
 
 							<div className="d-flex align-items-center gap-2 mx-1">
@@ -302,8 +326,9 @@ const NavbarComp = ({ toggleTheme }) => {
 						["/", "Startseite"],
 						["/webseitenerstellen", "Webseiten"],
 						["/suchmaschinenoptimierung", "SEO"],
-						["/branding", "Branding"],
+						["/webdesignblog", "Webdesign Blog"],
 						["/webdesign", "Webdesign"],
+						["/branding", "Branding"],
 					].map(([href, label]) => (
 						<Button
 							key={href}

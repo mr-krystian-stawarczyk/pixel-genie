@@ -1,17 +1,19 @@
+"use client";
 import React, { useEffect } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
 import Image from "next/image";
 
-function Media7() {
-	const [ref1, inView1] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref2, inView2] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref3, inView3] = useInView({ threshold: 0.5, triggerOnce: false });
+export default function Media7() {
+	const [ref1, inView1] = useInView({ threshold: 0.4, triggerOnce: false });
+	const [ref2, inView2] = useInView({ threshold: 0.4, triggerOnce: false });
+	const [ref3, inView3] = useInView({ threshold: 0.4, triggerOnce: false });
 
 	const animateIn = {
 		opacity: 1,
-		transition: { duration: 1, ease: "easeInOut" },
+		y: 0,
+		transition: { duration: 0.8, ease: "easeOut" },
 	};
 
 	const controls1 = useAnimation();
@@ -20,145 +22,234 @@ function Media7() {
 
 	useEffect(() => {
 		if (inView1) controls1.start(animateIn);
-	}, [inView1, controls1]);
-
+	}, [inView1]);
 	useEffect(() => {
-		let timeout;
-		if (inView2) timeout = setTimeout(() => controls2.start(animateIn), 500);
-		return () => clearTimeout(timeout);
-	}, [inView2, controls2]);
-
+		if (inView2) controls2.start(animateIn);
+	}, [inView2]);
 	useEffect(() => {
-		let timeout;
-		if (inView3) timeout = setTimeout(() => controls3.start(animateIn), 1000);
-		return () => clearTimeout(timeout);
-	}, [inView3, controls3]);
+		if (inView3) controls3.start(animateIn);
+	}, [inView3]);
+
+	// 📧 Email handler
+	const handleEmail = (plan) => {
+		const subject = encodeURIComponent(`Anfrage zu Webdesign-Paket: ${plan}`);
+		const body = encodeURIComponent(
+			`Hallo Pixel Genie Team,\n\nich interessiere mich für das Webdesign-Paket "${plan}".\nBitte senden Sie mir weitere Informationen zu Leistungen, Ablauf und möglichen Erweiterungen.\n\nMeine Geschäftsdaten:\nName / Firma:\nWebsite (falls vorhanden):\n[Hier einfügen]\n\nMit freundlichen Grüßen,\n[Ihr Name]`
+		);
+		window.location.href = `mailto:pixelgenie.marketing@gmail.com?subject=${subject}&body=${body}`;
+	};
 
 	return (
 		<Container className="my-5 py-5" id="webdesign-nettetal-preise">
-			<Row className="justify-content-center align-items-center text-center mb-5">
-				<Col lg={6}>
+			<Row className="justify-content-center text-center mb-5">
+				<Col lg={8}>
 					<Image
 						src="/assets/webentwicklung-webagentur-nettetal-price.png"
-						width={300}
-						height={300}
-						alt="webdesign-nettetal-preise"
+						width={280}
+						height={280}
+						alt="Webdesign Nettetal Preise"
+						className="my-3"
 						priority
 					/>
-					<h2 className="mt-3 fw-bold">
-						Webdesign & SEO Optimierte Websites in Nettetal
+					<h2 className="fw-bold display-6">
+						Webdesign & SEO-optimierte Websites aus Nettetal
 					</h2>
-					<p>
-						Individuelle, schnelle und moderne Webseiten – optimiert für Google,
-						Performance und Erfolg. Pixel Genie Nettetal – Ihre Webagentur am
-						Niederrhein.
+					<p className="lead ">
+						Individuelles Design, blitzschnelle Performance und
+						Google-Optimierung in einem Paket. Pixel Genie entwickelt Websites,
+						die nicht nur schön, sondern auch erfolgreich sind.
 					</p>
 				</Col>
 			</Row>
 
-			<Row className="text-dark justify-content-center align-items-stretch">
-				{/* Starter Paket */}
-				<Col lg={4} className="mx-auto my-3 hover">
-					<motion.div ref={ref1} animate={controls1} initial={{ opacity: 0 }}>
-						<Card className="shadow-lg border-0 text-dark h-100">
-							<Card.Body>
-								<h1 className="fw-bold text-primary">Starter</h1>
-								<Card.Text>
-									Perfekt für kleine Unternehmen oder Start-ups, die eine modern
-									gestaltete Website benötigen. Klare Struktur, starke
-									Sichtbarkeit und professionelle Wirkung – ideal für den ersten
-									Eindruck online.
-								</Card.Text>
-								<hr />
-								<Card.Title>Leistungen:</Card.Title>
-								<ul className="text-start">
-									<li>Bis zu 5 Unterseiten</li>
-									<li>Responsives Webdesign (Mobile, Tablet, Desktop)</li>
-									<li>Kontaktformular & Google Maps</li>
-									<li>Basis SEO Optimierung (Meta-Tags, Geschwindigkeit)</li>
-									<li>Hosting-Einrichtung & Domainberatung</li>
-								</ul>
-							</Card.Body>
-							<Card.Footer className="bg-white border-0">
-								<h4 className="fw-bold">ab 399 €</h4>
-								<p className="text-muted mb-0">Einmalige Zahlung</p>
-							</Card.Footer>
-						</Card>
-					</motion.div>
-				</Col>
-
-				{/* Business Paket */}
-				<Col lg={4} className="mx-auto my-3 hover">
-					<motion.div ref={ref2} animate={controls2} initial={{ opacity: 0 }}>
-						<Card className="shadow-lg border-0 text-dark h-100">
-							<Card.Body>
-								<h1 className="fw-bold text-success">Business</h1>
-								<Card.Text>
-									Für wachsende Unternehmen, die sich professionell präsentieren
-									und gefunden werden wollen. Mit modernen Funktionen,
-									erweiterter SEO und Conversion-Optimierung.
-								</Card.Text>
-								<hr />{" "}
-								<Image
-									src="/assets/webagentur-webentwiclkung-nettetal-seo-bestseller.png"
-									width={80}
-									height={80}
-									alt="bestseller webdesign nettetal"
-									className="mt-2"
-								/>
-								<Card.Title>Leistungen:</Card.Title>
-								<ul className="text-start">
-									<li>Bis zu 10 Unterseiten</li>
-									<li>Erweiterte SEO Optimierung & Keyword-Analyse</li>
-									<li>Blog- oder News-Sektion (CMS integriert)</li>
-									<li>Kontaktformulare mit Logik / Lead-Tracking</li>
-									<li>Google Analytics & Search Console Setup</li>
-									<li>3 Monate technischer Support inklusive</li>
-								</ul>
-							</Card.Body>
-
-							<Card.Footer className="bg-white border-0">
-								<h4 className="fw-bold">ab 799 €</h4>
-								<p className="text-muted mb-0">
-									Perfekt für KMU & Dienstleister
+			{/* --- Pakete --- */}
+			<Row className="justify-content-center text-center g-4">
+				{/* Starter */}
+				<Col lg={4} md={6}>
+					<motion.div
+						ref={ref1}
+						initial={{ opacity: 0, y: 40 }}
+						animate={controls1}
+					>
+						<Card className="h-100 shadow-lg border-0 rounded-4 hover:scale-105 transition-all duration-300 bg-transparent">
+							<Card.Body className="p-4">
+								<h3 className="fw-bold text-primary">Starter Website</h3>
+								<p className="">
+									Für kleine Unternehmen und Start-ups, die schnell
+									professionell online gehen möchten – mit Fokus auf Design und
+									Sichtbarkeit.
 								</p>
-							</Card.Footer>
+								<h2 className="fw-bold text-primary mb-3">ab 499 €</h2>
+								<hr />
+								<p>✔ One-Page oder Mini-Website (bis 3 Seiten)</p>
+								<p>✔ Modernes, responsives Design</p>
+								<p>✔ Basis-SEO & technische Optimierung</p>
+								<p>✔ Kontaktformular & Google Maps</p>
+								<p>✔ Impressum & Datenschutz inklusive</p>
+								<Button
+									variant="primary"
+									className="mt-3"
+									onClick={() => handleEmail("Starter Website (ab 499 €)")}
+								>
+									Jetzt anfragen
+								</Button>
+							</Card.Body>
 						</Card>
 					</motion.div>
 				</Col>
 
-				{/* Premium Paket */}
-				<Col lg={4} className="mx-auto my-3 hover">
-					<motion.div ref={ref3} animate={controls3} initial={{ opacity: 0 }}>
-						<Card className="shadow-lg border-0 text-dark h-100">
-							<Card.Body>
-								<h1 className="fw-bold text-danger">Premium</h1>
-								<Card.Text>
-									Für Unternehmen mit höchsten Ansprüchen an Design, Leistung
-									und Funktionalität. Ideal für Online-Shops, große Marken und
-									individuelle Lösungen – komplett maßgeschneidert.
-								</Card.Text>
+				{/* Business */}
+				<Col lg={4} md={6}>
+					<motion.div
+						ref={ref2}
+						initial={{ opacity: 0, y: 40 }}
+						animate={controls2}
+					>
+						<Card className="h-100 shadow-xl border-success rounded-4 bg-light hover:scale-105 transition-all duration-300 position-relative">
+							<Card.Body className="p-4">
+								<h3 className="fw-bold text-success">Business Website</h3>
+								<p className="text-black">
+									Unser Bestseller – ideal für KMU und Dienstleister, die mehr
+									Online-Reichweite, bessere Conversion und Performance wollen.
+								</p>
+								<h2 className="fw-bold text-success mb-3">ab 899 €</h2>
 								<hr />
-								<Card.Title>Leistungen:</Card.Title>
-								<ul className="text-start">
-									<li>Unbegrenzte Seiten & individuelle Funktionen</li>
-									<li>E-Commerce (Shop, Zahlungen, Lagerverwaltung)</li>
-									<li>UX/UI Design auf Markenbasis</li>
-									<li>Mehrsprachigkeit & internationale SEO</li>
-									<li>Performance-Optimierung (Next.js, Core Web Vitals)</li>
-									<li>6 Monate Betreuung & Support</li>
-								</ul>
+								<p className="text-black">
+									✔ Bis zu 10 Seiten mit CMS-Verwaltung
+								</p>
+								<p className="text-black">
+									✔ Erweiterte SEO-Strategie & Keyword-Recherche
+								</p>
+								<p className="text-black">
+									✔ Blog-Integration oder News-Bereich
+								</p>
+								<p className="text-black">
+									✔ Core Web Vitals Optimierung (Lighthouse 90+)
+								</p>
+								<p className="text-black">
+									✔ Analytics & Search Console Setup
+								</p>
+								<p className="text-black">
+									✔ 3 Monate technischer Support inklusive
+								</p>
+								<Button
+									variant="success"
+									className="mt-3 text-white"
+									onClick={() => handleEmail("Business Website (ab 899 €)")}
+								>
+									Bestseller anfragen
+								</Button>
 							</Card.Body>
-							<Card.Footer className="bg-white border-0">
-								<h4 className="fw-bold">ab 1000 €</h4>
-								<p className="text-muted mb-0">Nach Projektumfang & Bedarf</p>
-							</Card.Footer>
 						</Card>
 					</motion.div>
+				</Col>
+
+				{/* Premium */}
+				<Col lg={4} md={6}>
+					<motion.div
+						ref={ref3}
+						initial={{ opacity: 0, y: 40 }}
+						animate={controls3}
+					>
+						<Card
+							className="h-100 border-0 rounded-4 text-light shadow-lg hover:scale-105 transition-all duration-300"
+							style={{
+								background: "linear-gradient(135deg,#0b0b2e 0%,#21216b 100%)",
+							}}
+						>
+							<Card.Body className="p-4">
+								<h3 className="fw-bold text-warning">Premium Website</h3>
+								<p className="text-white">
+									Für Unternehmen mit höchsten Ansprüchen an Design, UX, Technik
+									und SEO. Maßgeschneidert für Marken mit Wachstum.
+								</p>
+								<h2 className="fw-bold text-warning mb-3">ab 1499 €</h2>
+								<hr className="border-light" />
+								<p className="text-white">
+									✔ Unbegrenzte Seiten & dynamische Funktionen
+								</p>
+								<p className="text-white">✔ E-Commerce oder Buchungssystem</p>
+								<p className="text-white">
+									✔ Mehrsprachigkeit & internationale SEO
+								</p>
+								<p className="text-white">
+									✔ UI/UX Design nach Markenrichtlinien
+								</p>
+								<p className="text-white">
+									✔ Laufende Betreuung & Prior-Support
+								</p>
+								<Button
+									variant="warning"
+									className="mt-3 fw-bold text-dark"
+									onClick={() => handleEmail("Premium Website (ab 1499 €)")}
+								>
+									Premium buchen
+								</Button>
+							</Card.Body>
+						</Card>
+					</motion.div>
+				</Col>
+			</Row>
+
+			{/* Upsells */}
+			<Row className="justify-content-center text-center mt-5">
+				<Col lg={8}>
+					<h3 className="fw-bold mb-3">✨ Erweiterungen & Zusatzleistungen</h3>
+					<p className="">
+						Alle Pakete lassen sich flexibel erweitern – holen Sie das Maximum
+						aus Ihrer Website heraus mit unseren Add-ons:
+					</p>
+				</Col>
+			</Row>
+
+			<Row className="justify-content-center text-center g-3 mt-3">
+				<Col md={3} sm={6}>
+					<Card className="border-0 shadow-sm hover:scale-105 transition-all duration-300 p-3">
+						<h5 className="fw-bold text-dark">📰 Blog Integration</h5>
+						<p className=" small text-dark">
+							Einfache Blogverwaltung & SEO-Struktur. <br /> <b>+199 €</b>
+						</p>
+					</Card>
+				</Col>
+
+				<Col md={3} sm={6}>
+					<Card className="border-0 shadow-sm hover:scale-105 transition-all duration-300 p-3">
+						<h5 className="fw-bold text-dark">🎨 Grafikdesign</h5>
+						<p className=" small text-dark">
+							Individuelle Website-Grafiken & Icons. <br /> <b>ab 79 €</b>
+						</p>
+					</Card>
+				</Col>
+
+				<Col md={3} sm={6}>
+					<Card className="border-0 shadow-sm hover:scale-105 transition-all duration-300 p-3">
+						<h5 className="fw-bold text-dark">✍️ Texterstellung</h5>
+						<p className=" small text-dark">
+							Professionelle SEO-Texte für Ihre Website. <br />{" "}
+							<b>+29 € / Seite</b>
+						</p>
+					</Card>
+				</Col>
+
+				<Col md={3} sm={6}>
+					<Card className="border-0 shadow-sm hover:scale-105 transition-all duration-300 p-3">
+						<h5 className="fw-bold text-dark">📢 Banner & Social Media</h5>
+						<p className="text-dark small">
+							Promo-Grafiken für Ihre Werbekampagnen. <br /> <b>ab 29 €</b>
+						</p>
+					</Card>
+				</Col>
+			</Row>
+
+			<Row className="justify-content-center text-center mt-4">
+				<Col lg={8}>
+					<p className="">
+						Alle Preise zzgl. MwSt. – transparent, flexibel und ohne versteckte
+						Kosten. <br />
+						<b>Pixel Genie – Webdesign, das begeistert und verkauft.</b>
+					</p>
 				</Col>
 			</Row>
 		</Container>
 	);
 }
-
-export default Media7;

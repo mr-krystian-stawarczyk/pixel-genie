@@ -149,7 +149,7 @@ export default function CityPage({
 				/>
 			</Head>
 
-			<Container className="min-h-screen px-6 md:px-10 py-10 my-5 pt-2">
+			<Container className="min-h-screen px-6 md:px-10 py-10 my-5 pt-5">
 				<Row className="mt-5">
 					<h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">
 						{heading1}

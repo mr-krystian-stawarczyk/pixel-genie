@@ -61,7 +61,7 @@ export default function SeoCityPage({ cityData, seo }) {
 			{/* HERO */}
 			<section className="py-5 my-5 border-bottom" style={sectionStyle}>
 				<Container>
-					<Row className="align-items-center">
+					<Row className="align-items-center mt-5">
 						<Col lg={7} className="mb-4 mb-lg-0">
 							<h1 className="display-5 fw-bold mb-3">
 								SEO Agentur in {cityName} – Sichtbarkeit, die verkauft

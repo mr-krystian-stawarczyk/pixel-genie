@@ -76,7 +76,7 @@ function Media5() {
 						<h1 className="shadow-lg rounded text-bold text-primary">1</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "20rem" }}
+							style={{ height: "23rem" }}
 						>
 							<Card.Body>
 								<h3>Analyse & Strategie</h3>
@@ -110,7 +110,7 @@ function Media5() {
 						<h1 className="shadow-lg rounded text-bold text-success">2</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "20rem" }}
+							style={{ height: "23rem" }}
 						>
 							<Card.Body>
 								<h3>Design & Prototyping</h3>
@@ -131,7 +131,7 @@ function Media5() {
 						<h1 className="shadow-lg rounded text-bold text-warning">3</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "20rem" }}
+							style={{ height: "23rem" }}
 						>
 							<Card.Body>
 								<h3>Entwicklung & SEO</h3>
@@ -158,7 +158,7 @@ function Media5() {
 						<h1 className="shadow-lg rounded text-bold text-danger">4</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "20rem" }}
+							style={{ height: "23rem" }}
 						>
 							<Card.Body>
 								<h3>Launch & Betreuung</h3>

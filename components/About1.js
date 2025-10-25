@@ -33,12 +33,12 @@ function About1() {
 	return (
 		<>
 			<motion.div ref={ref} animate={controls}>
-				<Container className="py-5">
+				<Container className="py-5 ">
 					<Row className="justify-content-center align-items-center">
 						<Col
 							xs={{ span: 12, order: 2 }}
 							lg={{ span: 5, order: 1 }}
-							className="mx-auto my-2 blur"
+							className="mx-auto my-2 "
 						>
 							<Card className="border-0 bg-transparent ">
 								<Card.Body>
