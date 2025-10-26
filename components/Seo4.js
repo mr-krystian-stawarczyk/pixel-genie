@@ -1,46 +1,24 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import dynamic from "next/dynamic";
-import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
 import Image from "next/image";
-import { useTranslation } from "react-i18next";
+import { useInView } from "react-intersection-observer";
+import { useAnimation, motion } from "framer-motion";
+import AutoTranslate from "@/components/AutoTranslate";
 
-import { motion } from "framer-motion";
 function Seo4() {
-	const { t } = useTranslation();
 	const [ref, inView] = useInView({
 		threshold: 0.5,
 		triggerOnce: false,
 	});
 
-	const animateIn = {
-		opacity: 1,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls = useAnimation();
 	useEffect(() => {
-		if (inView) {
-			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
-		}
-	}, [inView, controls, animateIn, animateOut]);
+		controls.start({
+			opacity: inView ? 1 : 0,
+			transition: { duration: 1, ease: "easeInOut" },
+		});
+	}, [inView, controls]);
+
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5 ">
@@ -55,13 +33,31 @@ function Seo4() {
 							priority
 						/>
 					</Col>
+
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1 className="text-start"> {t("seo10")} </h1>
-								<Card.Text className="text-start">{t("seo11")}</Card.Text>
+								<h1 className="text-start">
+									<AutoTranslate>
+										Linkbuilding und Optimierung für ein stärkeres SEO
+									</AutoTranslate>
+								</h1>
+
+								<Card.Text className="text-start">
+									<AutoTranslate>
+										Pixel Genie Nettetal bietet Linkbuilding und technische
+										Optimierungsdienste an, die für eine effektive SEO Strategie
+										entscheidend sind. Unser Team unterstützt Sie beim Aufbau
+										hochwertiger Backlinks für Ihre Website und sorgt für eine
+										optimale technische Konfiguration, um bessere Suchergebnisse
+										zu erzielen.
+									</AutoTranslate>
+								</Card.Text>
+
 								<Button className="btn-nav" href="#contact">
-									<span className="text-white"> {t("seo12")} </span>
+									<span className="text-white">
+										<AutoTranslate>PIXEL GENIE KONTAKT</AutoTranslate>
+									</span>
 								</Button>
 							</Card.Body>
 						</Card>

@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"dev": "netlify dev",
+		"dev": "next dev",
+		"dev:netlify": "netlify dev",
 		"build": "next build && next-sitemap",
 		"postbuild": "next-sitemap",
 		"export": "next export",

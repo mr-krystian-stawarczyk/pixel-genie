@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
+import AutoTranslate from "@/components/AutoTranslate";
 
 export default function Seo6() {
 	const [ref1, inView1] = useInView({ threshold: 0.4, triggerOnce: false });
@@ -30,7 +31,6 @@ export default function Seo6() {
 		if (inView3) controls3.start(animateIn);
 	}, [inView3]);
 
-	// ✉️ Funkcja otwierająca gotowego maila
 	const handleEmail = (plan) => {
 		const subject = encodeURIComponent(`Anfrage zu SEO-Plan: ${plan}`);
 		const body = encodeURIComponent(
@@ -52,13 +52,17 @@ export default function Seo6() {
 						priority
 					/>
 					<h2 className="fw-bold display-6 mb-3">
-						SEO-Pakete für jedes Unternehmen – transparent, fair & effektiv
+						<AutoTranslate>
+							SEO-Pakete für jedes Unternehmen – transparent, fair & effektiv
+						</AutoTranslate>
 					</h2>
-					<p className="lead ">
-						Unsere monatlichen SEO-Pakete sind speziell darauf ausgelegt, Ihre
-						Website sichtbarer zu machen, mehr Kunden zu gewinnen und Ihre
-						Google-Rankings nachhaltig zu verbessern – egal, ob Sie ein
-						Start-up, lokales Unternehmen oder eine größere Marke sind.
+					<p className="lead">
+						<AutoTranslate>
+							Unsere monatlichen SEO-Pakete sind speziell darauf ausgelegt, Ihre
+							Website sichtbarer zu machen, mehr Kunden zu gewinnen und Ihre
+							Google-Rankings nachhaltig zu verbessern – egal, ob Sie ein
+							Start-up, lokales Unternehmen oder eine größere Marke sind.
+						</AutoTranslate>
 					</p>
 				</Col>
 			</Row>
@@ -73,27 +77,58 @@ export default function Seo6() {
 					>
 						<Card className="h-100 border-primary shadow-lg bg-transparent rounded-4">
 							<Card.Body className="p-4">
-								<h3 className="fw-bold text-primary">BASIC PLAN</h3>
+								<h3 className="fw-bold text-primary">
+									<AutoTranslate>BASIC PLAN</AutoTranslate>
+								</h3>
+
 								<p>
-									Ihr Einstieg in die Welt der SEO-Optimierung – ideal für
-									kleine Unternehmen, die lokal gefunden werden wollen.
+									<AutoTranslate>
+										Ihr Einstieg in die Welt der SEO-Optimierung – ideal für
+										kleine Unternehmen, die lokal gefunden werden wollen.
+									</AutoTranslate>
 								</p>
+
 								<h2 className="fw-bold mb-3">99 € / Monat</h2>
+
 								<hr />
+
 								<ul className="list-unstyled text-start">
-									<p>✔ Technisches Website-Audit & Fehleranalyse</p>
-									<p>✔ Keyword-Recherche für lokale Zielgruppen</p>
-									<p>✔ OnPage-Optimierung (Meta, Titel, Struktur)</p>
-									<p>✔ Content-Optimierung & SEO-Texte</p>
-									<p>✔ Monatlicher Ranking-Report</p>
-									<p>✔ Google Search Console Einrichtung</p>
+									<p>
+										<AutoTranslate>
+											✔ Technisches Website-Audit & Fehleranalyse
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Keyword-Recherche für lokale Zielgruppen
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ OnPage-Optimierung (Meta, Titel, Struktur)
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Content-Optimierung & SEO-Texte
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>✔ Monatlicher Ranking-Report</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Google Search Console Einrichtung
+										</AutoTranslate>
+									</p>
 								</ul>
+
 								<Button
 									variant="primary"
 									className="mt-3"
 									onClick={() => handleEmail("BASIC PLAN (99 €/Monat)")}
 								>
-									<span className="text-white">Jetzt starten</span>
+									<AutoTranslate>Jetzt starten</AutoTranslate>
 								</Button>
 							</Card.Body>
 						</Card>
@@ -101,7 +136,7 @@ export default function Seo6() {
 				</Col>
 
 				{/* BUSINESS */}
-				<Col lg={4} md={6} className="mb-4 ">
+				<Col lg={4} md={6} className="mb-4">
 					<motion.div
 						ref={ref2}
 						initial={{ opacity: 0, transform: "translateY(40px)" }}
@@ -109,28 +144,65 @@ export default function Seo6() {
 					>
 						<Card className="h-100 border-success shadow-lg rounded-4 bg-transparent position-relative">
 							<Card.Body className="p-4">
-								<h3 className="fw-bold text-success">BUSINESS PLAN</h3>
+								<h3 className="fw-bold text-success">
+									<AutoTranslate>BUSINESS PLAN</AutoTranslate>
+								</h3>
+
 								<p>
-									Der Bestseller für wachsende Marken – inklusive technischer
-									Optimierung, Content-Marketing und Performance-Boost.
+									<AutoTranslate>
+										Der Bestseller für wachsende Marken – inklusive technischer
+										Optimierung, Content-Marketing und Performance-Boost.
+									</AutoTranslate>
 								</p>
+
 								<h2 className="fw-bold mb-3">149 € / Monat</h2>
+
 								<hr />
+
 								<ul className="list-unstyled text-start">
-									<p>✔ Detailliertes SEO-Audit & Ladezeiten-Analyse</p>
-									<p>✔ Umfassende Keyword-Strategie (lokal & regional)</p>
-									<p>✔ Optimierung für Core Web Vitals</p>
-									<p>✔ Technische SEO (Schema, strukturierte Daten)</p>
-									<p>✔ Backlink-Aufbau & Linkmonitoring</p>
-									<p>✔ Monatlicher Performance-Report</p>
-									<p>✔ 1 Stunde SEO-Beratung im Monat inklusive</p>
+									<p>
+										<AutoTranslate>
+											✔ Detailliertes SEO-Audit & Ladezeiten-Analyse
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Umfassende Keyword-Strategie (lokal & regional)
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Optimierung für Core Web Vitals
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Technische SEO (Schema, strukturierte Daten)
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Backlink-Aufbau & Linkmonitoring
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Monatlicher Performance-Report
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ 1 Stunde SEO-Beratung im Monat inklusive
+										</AutoTranslate>
+									</p>
 								</ul>
+
 								<Button
 									variant="success"
 									className="mt-3 text-white"
 									onClick={() => handleEmail("BUSINESS PLAN (149 €/Monat)")}
 								>
-									Bestseller sichern
+									<AutoTranslate>Bestseller sichern</AutoTranslate>
 								</Button>
 							</Card.Body>
 						</Card>
@@ -151,29 +223,66 @@ export default function Seo6() {
 							}}
 						>
 							<Card.Body className="p-4">
-								<h3 className="fw-bold text-warning">PREMIUM PLAN</h3>
-								<p>
-									Das Rundum-sorglos-Paket für Unternehmen, die das Maximum aus
-									ihrer Online-Präsenz herausholen wollen – inkl. SEO, Content,
-									UX & Ads.
+								<h3 className="fw-bold text-warning">
+									<AutoTranslate>PREMIUM PLAN</AutoTranslate>
+								</h3>
+
+								<p className="text-white">
+									<AutoTranslate>
+										Das Rundum-sorglos-Paket für Unternehmen, die das Maximum
+										aus ihrer Online-Präsenz herausholen wollen – inkl. SEO,
+										Content, UX & Ads.
+									</AutoTranslate>
 								</p>
+
 								<h2 className="fw-bold mb-3 text-warning">299 € / Monat</h2>
+
 								<hr className="border-light" />
+
 								<ul className="list-unstyled text-start">
-									<p>✔ Individuelle SEO-Strategie & Wettbewerbsanalyse</p>
-									<p>✔ Vollständige technische Optimierung (Next.js/React)</p>
-									<p>✔ Hochwertige Backlinks & Outreach-Kampagnen</p>
-									<p>✔ Conversion-Tracking & Heatmap-Analysen</p>
-									<p>✔ Content-Erstellung inkl. Blog & Landingpages</p>
-									<p>✔ Monatliche Strategie-Calls & Reporting</p>
-									<p>✔ Priorisierter Support & persönliche Betreuung</p>
+									<p>
+										<AutoTranslate>
+											✔ Individuelle SEO-Strategie & Wettbewerbsanalyse
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Vollständige technische Optimierung (Next.js/React)
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Hochwertige Backlinks & Outreach-Kampagnen
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Conversion-Tracking & Heatmap-Analysen
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Content-Erstellung inkl. Blog & Landingpages
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Monatliche Strategie-Calls & Reporting
+										</AutoTranslate>
+									</p>
+									<p>
+										<AutoTranslate>
+											✔ Priorisierter Support & persönliche Betreuung
+										</AutoTranslate>
+									</p>
 								</ul>
+
 								<Button
 									variant="warning"
 									className="mt-3 fw-bold"
 									onClick={() => handleEmail("PREMIUM PLAN (299 €/Monat)")}
 								>
-									Premium buchen
+									<AutoTranslate>Premium buchen</AutoTranslate>
 								</Button>
 							</Card.Body>
 						</Card>
@@ -184,10 +293,13 @@ export default function Seo6() {
 			<Row className="justify-content-center text-center mt-5">
 				<Col lg={8}>
 					<p className="text-muted">
-						Alle Preise verstehen sich zzgl. MwSt. – keine versteckten Gebühren.
-						Jedes Paket kann monatlich gekündigt oder individuell erweitert
-						werden. Pixel Genie steht für transparente SEO-Leistungen, messbare
-						Ergebnisse und persönliche Betreuung. Ihr Erfolg ist unser Ziel.
+						<AutoTranslate>
+							Alle Preise verstehen sich zzgl. MwSt. – keine versteckten
+							Gebühren. Jedes Paket kann monatlich gekündigt oder individuell
+							erweitert werden. Pixel Genie steht für transparente
+							SEO-Leistungen, messbare Ergebnisse und persönliche Betreuung. Ihr
+							Erfolg ist unser Ziel.
+						</AutoTranslate>
 					</p>
 				</Col>
 			</Row>

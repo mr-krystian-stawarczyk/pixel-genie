@@ -1,12 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import { Container, Accordion, Row, Col } from "react-bootstrap";
+import AutoTranslate from "@/components/AutoTranslate";
 
-import { useTranslation } from "react-i18next";
 function Faq1() {
-	const { t } = useTranslation();
 	return (
-		<Container className=" mb-5 pb-5" id="web-design-faq">
+		<Container className="mb-5 pb-5" id="web-design-faq">
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
 					<Image
@@ -16,79 +15,225 @@ function Faq1() {
 						alt="webentwicklung-nettetal-webseiten-fragen1"
 						priority
 					/>
-					<h2>{t("web117")}</h2>
+					<h2>
+						<AutoTranslate>Häufig gestellte Fragen</AutoTranslate>
+					</h2>
 				</Col>
 			</Row>
+
 			<Row className="justify-content-center align-items-center">
 				<Col lg={9} className="mx-auto">
 					<Accordion className="shadow-lg">
 						<Accordion.Item eventKey="0">
-							<Accordion.Header>{t("web85")}</Accordion.Header>
-							<Accordion.Body>{t("web86")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Wie viel berechnen Sie für den Aufbau einer Website?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Auf diese Frage gibt es keine konkrete Antwort. Der Aufbau
+									einer Website wird auf der Grundlage der individuellen
+									Anforderungen jedes Projekts bewertet. Jede Website ist
+									einzigartig und erfordert verschiedene Elemente. Wir entwerfen
+									und erstellen maßgeschneiderte Websites speziell für Ihr
+									Unternehmen. Wir werden viele Fragen stellen, Ihre Bedürfnisse
+									bewerten und Ihnen basierend auf dieser Bewertung eine
+									Kostenschätzung unterbreiten. Unser kleinstes Paket beginnt
+									bei 299 EUR. Kontaktieren Sie uns unter info@pixel-genie.de,
+									um den Bewertungsprozess zu starten!
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="1">
-							<Accordion.Header>{t("web87")}</Accordion.Header>
-							<Accordion.Body>{t("web88")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Wie lange dauert es, bis meine Website fertiggestellt ist?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Unser Standard Zeitplan sieht vor, dass der Aufbau einer
+									Website zwischen 2 und 4 Wochen dauert, aber das hängt vom
+									Projekt ab, da die Größe und das Tempo jedes Projekts vom
+									Kunden festgelegt werden...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="2">
-							<Accordion.Header>{t("web89")}</Accordion.Header>
-							<Accordion.Body>{t("web90")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Muss ich mich in Nettetal befinden, um mit Ihnen
+									zusammenzuarbeiten?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Nein! Wir arbeiten mit Kunden aus der ganzen Welt zusammen...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="3">
-							<Accordion.Header>{t("web91")}</Accordion.Header>
-							<Accordion.Body>{t("web92")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Kann ich meine Website nach Fertigstellung selbst
+									aktualisieren?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Ja! Wir freuen uns sehr, wenn unsere Kunden die Kontrolle über
+									ihre Website übernehmen...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="4">
-							<Accordion.Header>{t("web93")}</Accordion.Header>
-							<Accordion.Body>{t("web94")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>Werden Sie unsere Website warten?</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Wir können bei der Wartung Ihrer Website helfen, aber Sie
+									können dies auch selbstständig tun...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="5">
-							<Accordion.Header>{t("web95")}</Accordion.Header>
-							<Accordion.Body>{t("web96")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Liefern Sie Hosting und Domain für die Website?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Hosting und Domain werden während des ersten Gesprächs
+									festgelegt...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="6">
-							<Accordion.Header>{t("web97")}</Accordion.Header>
-							<Accordion.Body>{t("web98")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Wird meine Website für mobile Geräte optimiert sein?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Natürlich! Es ist jetzt wichtiger denn je, eine responsive
+									Website zu haben!
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="7">
-							<Accordion.Header>{t("web99")}</Accordion.Header>
-							<Accordion.Body>{t("web100")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Wie viel Einfluss habe ich auf den Webdesign-Prozess?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Viel! Ihre Meinungen und Informationen sind entscheidend...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="8">
-							<Accordion.Header>{t("web101")}</Accordion.Header>
-							<Accordion.Body>{t("web102")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Wer schreibt die Inhalte für die Website?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Wir bitten Sie, sämtlichen Textinhalt bereitzustellen...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="9">
-							<Accordion.Header>{t("web103")}</Accordion.Header>
-							<Accordion.Body>{t("web104")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Erstellen Sie Websites auf Basis von WordPress?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Nein. Wir verwenden moderne Technologien wie React &
+									Next.js...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="10">
-							<Accordion.Header>{t("web105")}</Accordion.Header>
-							<Accordion.Body>{t("web106")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Was ist, wenn ich in Zukunft Unterstützung benötige?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Wir sind nur eine E-Mail entfernt! Wir unterstützen Sie gerne
+									langfristig...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="11">
-							<Accordion.Header>{t("web107")}</Accordion.Header>
-							<Accordion.Body>{t("web108")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Sind SEO-Dienste beim Aufbau enthalten?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Nein, monatliche SEO-Leistungen sind nicht enthalten...
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="12">
-							<Accordion.Header>{t("web109")}</Accordion.Header>
-							<Accordion.Body>{t("web110")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Arbeiten Sie mit kleinen Unternehmen?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Ja! Wir arbeiten mit Startups, KMUs und Konzernen zusammen.
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="13">
-							<Accordion.Header>{t("web111")}</Accordion.Header>
-							<Accordion.Body>{t("web112")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>
+									Welche Zahlungsmethoden akzeptieren Sie?
+								</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Banküberweisung und PayPal — je nach Vereinbarung.
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
+
 						<Accordion.Item eventKey="14">
-							<Accordion.Header>{t("web113")}</Accordion.Header>
-							<Accordion.Body>{t("web114")}</Accordion.Body>
-						</Accordion.Item>
-						<Accordion.Item eventKey="15">
-							<Accordion.Header>{t("web115")}</Accordion.Header>
-							<Accordion.Body>{t("web116")}</Accordion.Body>
-						</Accordion.Item>
-						<Accordion.Item eventKey="16">
-							<Accordion.Header>{t("web118")}</Accordion.Header>
-							<Accordion.Body>{t("web119")}</Accordion.Body>
+							<Accordion.Header>
+								<AutoTranslate>Wie fange ich an?</AutoTranslate>
+							</Accordion.Header>
+							<Accordion.Body>
+								<AutoTranslate>
+									Kontaktieren Sie uns per E-Mail an
+									pixelgenie.marketing@gmail.com — wir helfen Ihnen loszulegen!
+								</AutoTranslate>
+							</Accordion.Body>
 						</Accordion.Item>
 					</Accordion>
 				</Col>

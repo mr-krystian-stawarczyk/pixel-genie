@@ -9,7 +9,7 @@ import { gaEvent } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 import ShareBarSticky from "@/components/ShareBarSticky";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
-
+import AutoTranslate from "@/components/AutoTranslate";
 const SITE_ORIGIN = "https://pixel-genie.de";
 
 export async function getStaticPaths() {
@@ -129,7 +129,9 @@ export default function BlogPostPage({ article, next, prev, related }) {
 							/>
 
 							<div className="mt-4">
-								<h1 className="fw-bold mb-3">{article.title}</h1>
+								<h1 className="fw-bold mb-3">
+									<AutoTranslate>{article.title}</AutoTranslate>
+								</h1>
 
 								<p className="mb-4">
 									{new Date(article.date).toLocaleDateString("de-DE", {

@@ -1,46 +1,24 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import dynamic from "next/dynamic";
-import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
 import Image from "next/image";
-import { useTranslation } from "react-i18next";
+import { useInView } from "react-intersection-observer";
+import { useAnimation, motion } from "framer-motion";
+import AutoTranslate from "@/components/AutoTranslate";
 
-import { motion } from "framer-motion";
 function Seo2() {
-	const { t } = useTranslation();
 	const [ref, inView] = useInView({
 		threshold: 0.5,
 		triggerOnce: false,
 	});
 
-	const animateIn = {
-		opacity: 1,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls = useAnimation();
 	useEffect(() => {
-		if (inView) {
-			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
-		}
-	}, [inView, controls, animateIn, animateOut]);
+		controls.start({
+			opacity: inView ? 1 : 0,
+			transition: { duration: 1, ease: "easeInOut" },
+		});
+	}, [inView, controls]);
+
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5">
@@ -55,13 +33,31 @@ function Seo2() {
 							priority
 						/>
 					</Col>
+
 					<Col lg={5} className="mx-auto my-2">
-						<Card className="border-0 bg-transparent ">
+						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-start"> {t("seo4")}</h1>
-								<Card.Text className="text-start">{t("seo5")}</Card.Text>
+								<h1 className="text-start">
+									<AutoTranslate>
+										SEO Audit zur besseren Optimierung der Website
+									</AutoTranslate>
+								</h1>
+
+								<Card.Text className="text-start">
+									<AutoTranslate>
+										Pixel Genie Nettetal bietet SEO Audit Services an, die Ihnen
+										dabei helfen, die Stärken und Schwächen Ihrer Website in
+										Bezug auf die SEO Optimierung zu identifizieren. Unser Team
+										von Experten führt eine umfassende Analyse durch und schlägt
+										konkrete Verbesserungsstrategien vor, damit Sie das volle
+										Potenzial Ihrer Website in Suchmaschinen ausschöpfen können.
+									</AutoTranslate>
+								</Card.Text>
+
 								<Button className="btn-nav" href="#seofaq">
-									<span className="text-white"> {t("seo6")} </span>
+									<span className="text-white">
+										<AutoTranslate>SEO NETTETAL FRAGEN</AutoTranslate>
+									</span>
 								</Button>
 							</Card.Body>
 						</Card>

@@ -3,9 +3,11 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
+import AutoTranslateArticle from "@/components/AutoTranslateArticle";
 
 function Media3() {
 	const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
+
 	const animateIn = {
 		opacity: 1,
 		transition: { duration: 1, ease: "easeInOut" },
@@ -21,10 +23,19 @@ function Media3() {
 		else controls.start(animateOut);
 	}, [inView, controls]);
 
+	// ✅ pełne tłumaczenie — podział na paragrafy
+	const text = `
+<div>
+<p>Unsere Websites werden mit modernen Frameworks wie Next.js und React entwickelt – schnell, sicher und SEO-optimiert.</p>
+<p>Damit Ihre Seite perfekt performt, bei Google ganz vorne steht und auf jedem Gerät beeindruckt.</p>
+</div>
+`;
+
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center align-items-center">
+					{/* ✅ obrazek lewa strona */}
 					<Col lg={5} className="mx-auto my-2 text-center">
 						<Image
 							src="/assets/webentwicklung-nettetal-design-seo3.png"
@@ -35,18 +46,21 @@ function Media3() {
 							priority
 						/>
 					</Col>
+
+					{/* ✅ treść prawa strona */}
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
+								{/* ✅ SEO: H1 bez tłumaczenia */}
 								<h1 className="text-start fw-bold">
 									Modernste Technik & SEO Performance
 								</h1>
-								<Card.Text className="text-start">
-									Unsere Websites werden mit modernen Frameworks wie Next.js und
-									React entwickelt – schnell, sicher und SEO-optimiert. Damit
-									Ihre Seite bei Google ganz vorne steht und perfekt auf jedem
-									Gerät funktioniert.
-								</Card.Text>
+
+								{/* ✅ tłumaczenie z zachowaniem kolorów */}
+								<div className="text-start">
+									<AutoTranslateArticle html={text} slug="media3-text" />
+								</div>
+
 								<Button className="btn-nav mt-3" href="#design-nettetal-fragen">
 									<span className="text-white">Häufige Fragen</span>
 								</Button>

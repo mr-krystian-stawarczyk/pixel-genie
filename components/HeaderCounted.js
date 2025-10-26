@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Col, Container, Row, Card } from "react-bootstrap";
 import CountUp from "react-countup";
 import { useSpring, animated } from "react-spring";
+import AutoTranslate from "@/components/AutoTranslate";
 
 function HeaderCounted() {
 	const sectionRef = useRef(null);
@@ -35,32 +36,39 @@ function HeaderCounted() {
 	return (
 		<Container className="border-0 my-5" ref={sectionRef}>
 			<Row className="text-center justify-content-center align-items-center">
-				<h1 className="py-3 fw-bold">Unsere Ergebnisse sprechen für sich</h1>
+				<h1 className="py-3 fw-bold">
+					<AutoTranslate>Unsere Ergebnisse sprechen für sich</AutoTranslate>
+				</h1>
 
 				<Col lg={8}>
 					<Card className="border-0 bg-transparent">
 						<Card.Body>
 							<h2 className="text-bold">
-								Webentwicklung, SEO Optimierung & modernes Webdesign in Nettetal
+								<AutoTranslate>
+									Webentwicklung, SEO Optimierung & modernes Webdesign in
+									Nettetal
+								</AutoTranslate>
 							</h2>
+
 							<p>
-								Bei <strong>Pixel Genie</strong> kombinieren wir
-								<span> modernes Webdesign</span>,{" "}
-								<span>technische Webentwicklung</span> und{" "}
-								<span>SEO Optimierung</span>, um Unternehmen in Nettetal und
-								ganz Deutschland online sichtbar zu machen. Unsere Websites
-								werden so entwickelt, dass sie nicht nur visuell überzeugen,
-								sondern auch durch <strong>Performance, Conversion</strong> und
-								<strong> Benutzerfreundlichkeit</strong> glänzen.
+								<AutoTranslate>
+									Bei Pixel Genie kombinieren wir modernes Webdesign, technische
+									Webentwicklung und SEO Optimierung, um Unternehmen in Nettetal
+									und ganz Deutschland online sichtbar zu machen. Unsere
+									Websites werden so entwickelt, dass sie nicht nur visuell
+									überzeugen, sondern auch durch Performance, Conversion und
+									Benutzerfreundlichkeit glänzen.
+								</AutoTranslate>
 							</p>
+
 							<p>
-								Als <strong>Webdesign Agentur aus Nettetal</strong> legen wir
-								Besonderen Wert auf <strong>Responsive Design</strong>, schnelle
-								Ladezeiten, <strong>OnPage SEO</strong> und{" "}
-								<strong>strukturierte Inhalte</strong>. So erreichen Sie mehr
-								Sichtbarkeit bei Google, bessere Nutzererfahrungen und messbare
-								Resultate – von <em>lokalen Betrieben</em> bis zu{" "}
-								<em>mittelständischen Unternehmen</em>.
+								<AutoTranslate>
+									Als Webdesign Agentur aus Nettetal legen wir besonderen Wert
+									auf Responsive Design, schnelle Ladezeiten, OnPage SEO und
+									strukturierte Inhalte. So erreichen Sie mehr Sichtbarkeit bei
+									Google, bessere Nutzererfahrungen und messbare Resultate – von
+									lokalen Betrieben bis zu mittelständischen Unternehmen.
+								</AutoTranslate>
 							</p>
 						</Card.Body>
 					</Card>
@@ -71,7 +79,7 @@ function HeaderCounted() {
 						<Card className="border-primary bg-light p-2 m-2">
 							<Card.Body>
 								<Card.Title className="text-bold">
-									Abgeschlossene Projekte
+									<AutoTranslate>Abgeschlossene Projekte</AutoTranslate>
 								</Card.Title>
 								<Card.Title className="text-bold">
 									+{isVisible && <CountUp start={1} end={31} duration={12} />}
@@ -81,7 +89,9 @@ function HeaderCounted() {
 
 						<Card className="border-primary bg-light p-2 m-2">
 							<Card.Body>
-								<Card.Title className="text-bold">Online Reichweite</Card.Title>
+								<Card.Title className="text-bold">
+									<AutoTranslate>Online Reichweite</AutoTranslate>
+								</Card.Title>
 								<Card.Title className="text-bold">
 									+
 									{isVisible && (
@@ -93,7 +103,9 @@ function HeaderCounted() {
 
 						<Card className="border-primary bg-light p-2 m-2">
 							<Card.Body>
-								<Card.Title className="text-bold">Zufriedene Kunden</Card.Title>
+								<Card.Title className="text-bold">
+									<AutoTranslate>Zufriedene Kunden</AutoTranslate>
+								</Card.Title>
 								<Card.Title className="text-bold">
 									+{isVisible && <CountUp start={10} end={72} duration={12} />}
 								</Card.Title>

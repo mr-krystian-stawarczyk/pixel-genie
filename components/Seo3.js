@@ -1,46 +1,24 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import dynamic from "next/dynamic";
-import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
 import Image from "next/image";
-import { useTranslation } from "react-i18next";
+import { useInView } from "react-intersection-observer";
+import { useAnimation, motion } from "framer-motion";
+import AutoTranslate from "@/components/AutoTranslate";
 
-import { motion } from "framer-motion";
 function Seo3() {
-	const { t } = useTranslation();
 	const [ref, inView] = useInView({
 		threshold: 0.5,
 		triggerOnce: false,
 	});
 
-	const animateIn = {
-		opacity: 1,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls = useAnimation();
 	useEffect(() => {
-		if (inView) {
-			controls.start(animateIn);
-		} else {
-			controls.start(animateOut);
-		}
-	}, [inView, controls, animateIn, animateOut]);
+		controls.start({
+			opacity: inView ? 1 : 0,
+			transition: { duration: 1, ease: "easeInOut" },
+		});
+	}, [inView, controls]);
+
 	return (
 		<motion.div ref={ref} animate={controls}>
 			<Container className="mt-5 pt-5">
@@ -48,15 +26,33 @@ function Seo3() {
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-start">{t("seo7")}</h1>
-								<Card.Text className="text-start">{t("seo8")}</Card.Text>
+								<h1 className="text-start">
+									<AutoTranslate>
+										Keywords und Content Strategien für effektiveres SEO
+									</AutoTranslate>
+								</h1>
+
+								<Card.Text className="text-start">
+									<AutoTranslate>
+										Unser Team von SEO Experten von Pixel Genie Nettetal
+										unterstützt Sie bei der Auswahl der richtigen Keywords und
+										der Entwicklung von Content Strategien, die zur Verbesserung
+										der Sichtbarkeit Ihrer Website in den Suchergebnissen
+										beitragen. Nutzen Sie das Potenzial organischen Traffics und
+										erreichen Sie Ihre Zielgruppe.
+									</AutoTranslate>
+								</Card.Text>
+
 								<Button className="btn-nav" href="#seoprices">
-									<span className="text-white"> {t("seo9")} </span>
+									<span className="text-white">
+										<AutoTranslate>SEO OPTIMIERUNG PREISE</AutoTranslate>
+									</span>
 								</Button>
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col lg={5} className="mx-auto">
+
+					<Col lg={5} className="mx-auto my-2">
 						<Image
 							src="/assets/SEO-webentwicklung-nettetal-3.png"
 							width={400}

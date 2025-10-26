@@ -1,174 +1,156 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { useAnimation, motion } from "framer-motion";
+import AutoTranslate from "@/components/AutoTranslate";
+
 function Seo5() {
-	const { t } = useTranslation();
-	const [ref1, inView1] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const [ref2, inView2] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-	const [ref3, inView3] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const [ref4, inView4] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const animateIn = {
-		opacity: 1,
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const animateOut = {
-		opacity: 0,
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
+	const [ref1, inView1] = useInView({ threshold: 0.5, triggerOnce: false });
+	const [ref2, inView2] = useInView({ threshold: 0.5, triggerOnce: false });
+	const [ref3, inView3] = useInView({ threshold: 0.5, triggerOnce: false });
+	const [ref4, inView4] = useInView({ threshold: 0.5, triggerOnce: false });
 
 	const controls1 = useAnimation();
 	const controls2 = useAnimation();
 	const controls3 = useAnimation();
 	const controls4 = useAnimation();
 
-	useEffect(() => {
-		if (inView1) {
-			controls1.start(animateIn);
-		} else {
-			controls1.start(animateOut);
-		}
-	}, [inView1, controls1, animateIn, animateOut]);
+	const animateIn = {
+		opacity: 1,
+		transition: { duration: 1, ease: "easeInOut" },
+	};
 
 	useEffect(() => {
-		let timeout;
+		inView1 ? controls1.start(animateIn) : controls1.start({ opacity: 0 });
+	}, [inView1, controls1]);
+
+	useEffect(() => {
 		if (inView2) {
-			timeout = setTimeout(() => {
-				controls2.start(animateIn);
-			}, 500);
+			setTimeout(() => controls2.start(animateIn), 500);
 		} else {
-			controls2.start(animateOut);
+			controls2.start({ opacity: 0 });
 		}
-
-		return () => clearTimeout(timeout);
-	}, [inView2, controls2, animateIn, animateOut]);
+	}, [inView2, controls2]);
 
 	useEffect(() => {
-		let timeout;
 		if (inView3) {
-			timeout = setTimeout(() => {
-				controls3.start(animateIn);
-			}, 700);
+			setTimeout(() => controls3.start(animateIn), 700);
 		} else {
-			controls3.start(animateOut);
+			controls3.start({ opacity: 0 });
 		}
-
-		return () => clearTimeout(timeout);
-	}, [inView3, controls3, animateIn, animateOut]);
+	}, [inView3, controls3]);
 
 	useEffect(() => {
-		let timeout;
 		if (inView4) {
-			timeout = setTimeout(() => {
-				controls4.start(animateIn);
-			}, 1000);
+			setTimeout(() => controls4.start(animateIn), 1000);
 		} else {
-			controls4.start(animateOut);
+			controls4.start({ opacity: 0 });
 		}
+	}, [inView4, controls4]);
 
-		return () => clearTimeout(timeout);
-	}, [inView4, controls4, animateIn, animateOut]);
 	return (
 		<Container className="my-5 py-5" id="process">
 			<Row className="justify-content-center text-center align-items-center">
+				{/* 1 */}
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div
-						ref={ref1}
-						animate={controls1}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
+					<motion.div ref={ref1} animate={controls1} initial={{ opacity: 0 }}>
 						<Card
-							className="border-0 bg-transparent  shadow-lg"
+							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
 						>
 							<Card.Body>
 								<h1>1</h1>
-								<h2>{t("seo13")}</h2>
-								<Card.Text>{t("seo14")}</Card.Text>
+								<h2>
+									<AutoTranslate>
+										SEO Audit und Wettbewerbsanalyse
+									</AutoTranslate>
+								</h2>
+								<Card.Text>
+									<AutoTranslate>
+										Unser SEO Strategieprozess beginnt mit einem umfangreichen
+										SEO Audit und einer Wettbewerbsanalyse für Ihre Pixel Genie
+										Nettetal SEO Website. Wir analysieren technische Aspekte
+										Ihrer Website wie Struktur, Metadaten und Ladezeiten, um
+										Verbesserungsbereiche zu identifizieren.
+									</AutoTranslate>
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>
 				</Col>
+
+				{/* 2 */}
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div
-						ref={ref2}
-						animate={controls2}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
+					<motion.div ref={ref2} animate={controls2} initial={{ opacity: 0 }}>
 						<Card
-							className="border-0 bg-transparent  shadow-lg"
+							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
 						>
 							<Card.Body>
 								<h1>2</h1>
-								<h2>{t("seo15")}</h2>
-								<Card.Text>{t("seo16")}</Card.Text>
+								<h2>
+									<AutoTranslate>Strategieplanung und Keywords</AutoTranslate>
+								</h2>
+								<Card.Text>
+									<AutoTranslate>
+										Nach dem SEO Audit werden wir eine maßgeschneiderte SEO
+										Strategie entwickeln. Wir erstellen eine Liste relevanter
+										Keywords und optimieren Inhalte, damit sie
+										benutzerfreundlich und SEO-optimiert sind.
+									</AutoTranslate>
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>
 				</Col>
+
+				{/* 3 */}
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div
-						ref={ref3}
-						animate={controls3}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
+					<motion.div ref={ref3} animate={controls3} initial={{ opacity: 0 }}>
 						<Card
-							className="border-0 bg-transparent  shadow-lg"
+							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
 						>
 							<Card.Body>
 								<h1>3</h1>
-								<h2>{t("seo17")}</h2>
-								<Card.Text>{t("seo18")}</Card.Text>
+								<h2>
+									<AutoTranslate>
+										Technische Optimierung und Content Erstellung
+									</AutoTranslate>
+								</h2>
+								<Card.Text>
+									<AutoTranslate>
+										Wir verbessern Navigation, Struktur, Meta-Tags und Inhalte,
+										um sicherzustellen, dass Ihre Website technisch einwandfrei
+										und für Suchmaschinen attraktiv ist.
+									</AutoTranslate>
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>
 				</Col>
+
+				{/* 4 */}
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div
-						ref={ref4}
-						animate={controls4}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
+					<motion.div ref={ref4} animate={controls4} initial={{ opacity: 0 }}>
 						<Card
-							className="border-0 bg-transparent  shadow-lg"
+							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "45rem" }}
 						>
 							<Card.Body>
 								<h1>4</h1>
-								<h2>{t("seo19")}</h2>
-								<Card.Text>{t("seo20")}</Card.Text>
+								<h2>
+									<AutoTranslate>
+										Überwachung, Analyse und Optimierung
+									</AutoTranslate>
+								</h2>
+								<Card.Text>
+									<AutoTranslate>
+										Wir überwachen laufend Ihr Ranking, analysieren
+										Performance-Daten und optimieren Ihre SEO-Strategie
+										kontinuierlich für maximale Ergebnisse.
+									</AutoTranslate>
+								</Card.Text>
 							</Card.Body>
 						</Card>
 					</motion.div>

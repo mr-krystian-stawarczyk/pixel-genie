@@ -56,7 +56,6 @@ function WebSeitenErstellen() {
 			{/* Komponent dynamicznie importowany */}
 			<GoogleReviews />
 			<Web1 />
-
 			<Web2 />
 			<Web3 />
 			<Web4 />
