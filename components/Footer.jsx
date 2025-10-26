@@ -78,11 +78,11 @@ function Footer() {
 										className="my-3 text-uppercase"
 										style={{ color: "var(--text-color)" }}
 									>
-										<AutoTranslate>{t("footer1")}</AutoTranslate>
+										<AutoTranslate>Produkte</AutoTranslate>
 									</Card.Title>
 									<Link href="/webseitenerstellen" className="footer-links">
 										<Card.Text className="hover py-2">
-											<AutoTranslate>{t("footer2")}</AutoTranslate>
+											<AutoTranslate>Webseiten Erstellen</AutoTranslate>
 										</Card.Text>
 									</Link>
 									<Link
@@ -90,22 +90,22 @@ function Footer() {
 										className="footer-links"
 									>
 										<Card.Text className="hover py-2">
-											<AutoTranslate>{t("footer3")}</AutoTranslate>
+											<AutoTranslate>Suchmaschinenoptimierung</AutoTranslate>
 										</Card.Text>
 									</Link>
 									<Link href="/branding" className="footer-links">
 										<Card.Text className="hover py-2">
-											<AutoTranslate>{t("footer4")}</AutoTranslate>
+											<AutoTranslate>Branding</AutoTranslate>
 										</Card.Text>
 									</Link>
 									<Link href="/webdesign" className="footer-links">
 										<Card.Text className="hover py-2">
-											<AutoTranslate>{t("footer5")}</AutoTranslate>
+											<AutoTranslate>Webdesign</AutoTranslate>
 										</Card.Text>
 									</Link>
 									<Link href="/socialmediamarketing" className="footer-links">
 										<Card.Text className="hover py-2">
-											<AutoTranslate>{t("footer6")}</AutoTranslate>
+											<AutoTranslate>Social Media Marketing</AutoTranslate>
 										</Card.Text>
 									</Link>
 								</Card.Body>
@@ -120,16 +120,16 @@ function Footer() {
 										className="my-3 text-uppercase"
 										style={{ color: "var(--text-color)" }}
 									>
-										<AutoTranslate>{t("footer7")}</AutoTranslate>
+										<AutoTranslate>Unternehmen</AutoTranslate>
 									</Card.Title>
 									<Link href="/pixelgeniehistory" className="footer-links">
 										<Card.Text className="hover py-2">
-											<AutoTranslate>{t("footer8")}</AutoTranslate>
+											<AutoTranslate>Über uns</AutoTranslate>
 										</Card.Text>
 									</Link>
 									<Link href="/webdesignblog" className="footer-links">
 										<Card.Text className="hover py-2">
-											<AutoTranslate>{t("footer10")}</AutoTranslate>
+											<AutoTranslate>Tipps</AutoTranslate>
 										</Card.Text>
 									</Link>
 									<Link href="/impressium" className="footer-links">
@@ -163,7 +163,7 @@ function Footer() {
 									className="my-3 text-uppercase"
 									style={{ color: "var(--text-color)" }}
 								>
-									<AutoTranslate>{t("footer14")}</AutoTranslate>
+									<AutoTranslate>Kontakt</AutoTranslate>
 								</Card.Title>
 
 								<p
