@@ -19,6 +19,15 @@ export default function Document() {
 					href="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
 				/>
 			</Head>
+			<link rel="alternate" href="https://pixel-genie.de/" hreflang="de" />
+			<link
+				rel="alternate"
+				href="https://pixel-genie.de/"
+				hreflang="x-default"
+			/>
+			<link rel="alternate" href="https://pixel-genie.de/en" hreflang="en" />
+			<link rel="alternate" href="https://pixel-genie.de/pl" hreflang="pl" />
+			<link rel="alternate" href="https://pixel-genie.de/nl" hreflang="nl" />
 			<body>
 				<Main />
 				<NextScript />a

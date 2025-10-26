@@ -8,6 +8,7 @@ import ShareButtons from "@/components/ShareButtons";
 import { gaEvent } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 import ShareBarSticky from "@/components/ShareBarSticky";
+import AutoTranslateArticle from "@/components/AutoTranslateArticle";
 const SITE_ORIGIN = "https://pixel-genie.de";
 
 export async function getStaticPaths() {
@@ -174,15 +175,12 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									<p className="lead text-foreground">{article.description}</p>
 								)}
 
-								{Array.isArray(article.details) &&
-									article.details.map((p, i) => (
-										<p
-											key={i}
-											dangerouslySetInnerHTML={{
-												__html: formatText(p),
-											}}
-										/>
-									))}
+								{Array.isArray(article.details) && (
+									<AutoTranslateArticle
+										html={article.details.map(formatText).join("<br><br>")}
+										slug={article.slug}
+									/>
+								)}
 
 								{/* ✅ Inline ShareButtons */}
 								<div className="my-5">

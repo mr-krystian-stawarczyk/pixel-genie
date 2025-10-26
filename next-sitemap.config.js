@@ -124,7 +124,7 @@ const config = {
 	},
 
 	// standardowe wykluczenia
-	exclude: ["/404", "/500", "/_app", "/_document", "/_error"],
+	exclude: ["/404", "/500", "/_app", "/_document", "/_error", "/pl/*", "/nl/*"],
 };
 
 module.exports = config;
