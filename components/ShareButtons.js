@@ -11,16 +11,45 @@ import {
 } from "react-share";
 import { motion } from "framer-motion";
 
-export default function ShareButtons({ url, title, description, isMobile }) {
+export default function ShareButtons({
+	url,
+	title,
+	description,
+	isMobile,
+	variant,
+}) {
 	const text = description ? `${title} — ${description}` : title;
 
-	const buttons = [
+	const shareNative = () => {
+		if (navigator.share) {
+			return navigator
+				.share({ title, text, url })
+				.catch(() => console.log("Share cancelled"));
+		}
+	};
+
+	const openTwitter = () =>
+		navigator.share
+			? shareNative()
+			: window.open(
+					`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
+					"_blank"
+				);
+
+	const openReddit = () =>
+		navigator.share
+			? shareNative()
+			: window.open(
+					`https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`,
+					"_blank"
+				);
+
+	const brandButtons = [
 		{
 			id: "facebook",
 			Button: FacebookShareButton,
 			Icon: FacebookIcon,
 			color: "#1877F2",
-			label: "Facebook",
 			props: { url, quote: text },
 		},
 		{
@@ -28,32 +57,56 @@ export default function ShareButtons({ url, title, description, isMobile }) {
 			Button: LinkedinShareButton,
 			Icon: LinkedinIcon,
 			color: "#0A66C2",
-			label: "LinkedIn",
-			props: { url, title, summary: description },
+			props: { url, title },
 		},
 		{
 			id: "twitter",
 			Button: TwitterShareButton,
 			Icon: XIcon,
 			color: "#000000",
-			label: "X",
-			props: { url, title: text },
+			props: isMobile ? { onClick: openTwitter } : { url, title: text },
 		},
 		{
 			id: "reddit",
 			Button: RedditShareButton,
 			Icon: RedditIcon,
 			color: "#FF4500",
-			label: "Reddit",
-			props: { url, title: text },
+			props: isMobile ? { onClick: openReddit } : { url, title: text },
 		},
 	];
 
+	// ✅ LOGIC: animacja tylko dla inline
+	const inlineAnimation =
+		variant === "inline"
+			? {
+					animate: {
+						scale: [1, 1.04, 1],
+						filter: [
+							"drop-shadow(0 0 0px rgba(0,123,255,0))",
+							isMobile
+								? "drop-shadow(0 0 6px rgba(0,123,255,0.25))"
+								: "drop-shadow(0 0 16px rgba(0,123,255,0.45))",
+							"drop-shadow(0 0 0px rgba(0,123,255,0))",
+						],
+					},
+					transition: {
+						duration: isMobile ? 5 : 3,
+						repeat: Infinity,
+						ease: "easeInOut",
+					},
+				}
+			: {};
+
 	return (
-		<div className="share-layout d-flex align-items-center gap-2">
-			{/* ✅ Dekstop: SHARE pionowo */}
-			{!isMobile && (
-				<div className="share-vertical-text text-white fw-bold fs-6">
+		<motion.div
+			className={`share-layout
+				${variant === "sticky" ? "share-sticky" : ""}
+				${variant === "inline" ? "share-inline" : ""}
+			`}
+			{...inlineAnimation}
+		>
+			{!isMobile && variant === "sticky" && (
+				<div className="share-vertical-text fw-bold">
 					<span>S</span>
 					<span>H</span>
 					<span>A</span>
@@ -62,37 +115,36 @@ export default function ShareButtons({ url, title, description, isMobile }) {
 				</div>
 			)}
 
-			<div className="d-flex flex-column align-items-center gap-2">
-				{/* ✅ Mobile: SHARE nad ikonami */}
-				{isMobile && (
-					<div className="text-white fw-bold small text-uppercase">Share</div>
-				)}
+			{variant === "inline" && (
+				<div className="share-label fw-semibold">Share:</div>
+			)}
 
-				<div
-					className={`d-flex gap-3 ${
-						isMobile ? "flex-row" : "flex-column"
-					} justify-content-center align-items-center`}
-				>
-					{buttons.map(({ id, Button, Icon, color, label, props }) => (
-						<motion.div
-							key={id}
-							className="share-btn"
-							whileHover={{ scale: 1.15 }}
-							whileTap={{ scale: 0.9 }}
-							transition={{ type: "spring", stiffness: 260, damping: 18 }}
-						>
-							<Button {...props} aria-label={label}>
-								<Icon
-									size={isMobile ? 38 : 48}
-									round
-									bgStyle={{ fill: color }}
-									iconFillColor="#fff"
-								/>
-							</Button>
-						</motion.div>
-					))}
-				</div>
+			{isMobile && variant === "sticky" && (
+				<div className="share-label fw-semibold">Share</div>
+			)}
+
+			<div
+				className={`d-flex ${
+					!isMobile && variant === "sticky" ? "flex-column" : "flex-row"
+				} gap-3`}
+			>
+				{brandButtons.map(({ id, Button, Icon, color, props }) => (
+					<motion.div
+						key={id}
+						className="share-btn"
+						whileHover={{ scale: 1.12 }}
+					>
+						<Button {...props}>
+							<Icon
+								round
+								size={isMobile ? 44 : 48}
+								bgStyle={{ fill: color }}
+								iconFillColor="#fff"
+							/>
+						</Button>
+					</motion.div>
+				))}
 			</div>
-		</div>
+		</motion.div>
 	);
 }

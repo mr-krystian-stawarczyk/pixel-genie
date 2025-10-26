@@ -14,18 +14,11 @@ export default function ShareBarSticky({ isMobile, url, title, description }) {
 				left: isMobile ? 0 : "16px",
 				bottom: isMobile ? 0 : "auto",
 				transform: isMobile ? "none" : "translateY(-50%)",
-				background: isMobile ? "rgba(0, 0, 0, 1)" : "transparent",
-				width: isMobile ? "100%" : "auto",
-				height: isMobile ? "15%" : "auto",
-				padding: isMobile ? "1px 0" : 0,
-				borderTopLeftRadius: isMobile ? "12px" : 0,
-				borderTopRightRadius: isMobile ? "12px" : 0,
-				boxShadow: isMobile ? "0 -3px 10px rgba(0,0,0,0.3)" : "none",
 				pointerEvents: "none",
+				width: isMobile ? "100%" : "auto",
 			}}
-			className="sharebar-fixed"
+			className={isMobile ? "share-sticky sharebar-fixed" : "sharebar-fixed"}
 		>
-			{/* ✅ ShareButtons osadzone lokalnie */}
 			<div
 				style={{
 					pointerEvents: "auto",
@@ -41,6 +34,7 @@ export default function ShareBarSticky({ isMobile, url, title, description }) {
 					title={title}
 					description={description}
 					isMobile={isMobile}
+					variant="sticky"
 				/>
 			</div>
 		</motion.div>

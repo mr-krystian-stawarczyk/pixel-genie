@@ -6,8 +6,9 @@ import MobileFloatingCTA from "./MobileFloatingCTA";
 import CookieConsent from "./CookieConsent";
 import localFont from "next/font/local";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
 
-// 🔹 Lokalny font Poppins z display: swap (szybsze renderowanie tekstu)
+// 🔹 Lokalny font Poppins
 const poppins = localFont({
 	src: [
 		{
@@ -26,10 +27,14 @@ const poppins = localFont({
 
 const Layout = ({ children, pageProps }) => {
 	const { theme, setTheme } = useTheme();
+	const router = useRouter();
 
 	const toggleTheme = () => {
 		setTheme(theme === "light" ? "dark" : "light");
 	};
+
+	// ✅ Ukryj CTA na blogowych slugach
+	const hideCTA = router.pathname.startsWith("/tips/");
 
 	return (
 		<div
@@ -42,7 +47,9 @@ const Layout = ({ children, pageProps }) => {
 			</header>
 
 			<main className="main-container">{children}</main>
-			<MobileFloatingCTA />
+
+			{/* ✅ Pokaż CTA tylko poza stronami artykułów */}
+			{!hideCTA && <MobileFloatingCTA />}
 
 			<footer>
 				<Footer />

@@ -94,6 +94,26 @@ export default function BlogPostPage({ article, next, prev, related }) {
 			{ "@type": "ListItem", position: 2, name: article.title, item: pageUrl },
 		],
 	};
+	const formatText = (text) => {
+		let result = text;
+
+		// ### Nagłówki
+		result = result.replace(/### (.*)/g, "<h3>$1</h3>");
+
+		// **bold**
+		result = result.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+		// ↩️ Podział zdań na akapity po kropkach
+		result = result.replace(/\. (?=[A-ZÄÖÜ])/g, ".<br><br>");
+
+		// ↩️ Podział po dwukropkach — nowa myśl
+		result = result.replace(/: (?=[A-ZÄÖÜ])/g, ":<br><br>");
+
+		// Standardowe nowe linie
+		result = result.replace(/\n+/g, "<br>");
+
+		return result;
+	};
 
 	return (
 		<>
@@ -101,19 +121,9 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				<title>{ogTitle}</title>
 				<meta name="description" content={ogDescription} />
 				<link rel="canonical" href={pageUrl} />
-				<meta property="og:locale" content="de_DE" />
-				<meta property="og:type" content="article" />
 				<meta property="og:title" content={ogTitle} />
 				<meta property="og:description" content={ogDescription} />
-				<meta property="og:url" content={pageUrl} />
-				<meta property="og:site_name" content="Pixel-Genie" />
 				<meta property="og:image" content={ogImage} />
-				<meta property="og:image:width" content="1200" />
-				<meta property="og:image:height" content="630" />
-				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:title" content={ogTitle} />
-				<meta name="twitter:description" content={ogDescription} />
-				<meta name="twitter:image" content={ogImage} />
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -134,11 +144,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 			<Container className="pt-5">
 				<Row className="justify-content-center">
 					<Col lg={8}>
-						<article
-							itemScope
-							itemType="https://schema.org/BlogPosting"
-							className="bg-transparent border-0 shadow-sm rounded blog-article mt-4"
-						>
+						<article className="bg-transparent border-0 shadow-sm rounded blog-article mt-4">
 							<Image
 								src={article.imgSrc}
 								alt={article.title}
@@ -153,10 +159,9 @@ export default function BlogPostPage({ article, next, prev, related }) {
 							/>
 
 							<div className="mt-4">
-								<h1 className="fw-bold mb-3" itemProp="headline">
-									{article.title}
-								</h1>
-								<p className="text-muted mb-4">
+								<h1 className="fw-bold mb-3">{article.title}</h1>
+
+								<p className=" mb-4">
 									{new Date(article.date).toLocaleDateString("de-DE", {
 										year: "numeric",
 										month: "2-digit",
@@ -169,30 +174,27 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									<p className="lead text-foreground">{article.description}</p>
 								)}
 
-								{/* Główna treść */}
 								{Array.isArray(article.details) &&
 									article.details.map((p, i) => (
 										<p
 											key={i}
 											dangerouslySetInnerHTML={{
-												__html: p
-													.replace(/\n/g, "<br>")
-													.replace(/### (.*)/g, "<h3>$1</h3>")
-													.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
+												__html: formatText(p),
 											}}
 										/>
 									))}
 
-								{/* ShareButtons pod treścią */}
+								{/* ✅ Inline ShareButtons */}
 								<div className="my-5">
 									<ShareButtons
 										url={pageUrl}
 										title={article.title}
 										description={ogDescription}
+										isMobile={isMobile}
+										variant="inline"
 									/>
 								</div>
 
-								{/* Key Takeaways */}
 								{article.keypoints && (
 									<section className="mt-5">
 										<h3 className="fw-bold mb-3">🔑 Wichtigste Erkenntnisse</h3>
@@ -204,7 +206,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									</section>
 								)}
 
-								{/* FAQ */}
 								{article.faq && article.faq.length > 0 && (
 									<section className="mt-5">
 										<h3 className="fw-bold mb-4">
@@ -219,7 +220,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									</section>
 								)}
 
-								{/* Quellen */}
 								{article.sources && article.sources.length > 0 && (
 									<section className="mt-5">
 										<h3 className="fw-bold mb-3">🔗 Weiterführende Quellen</h3>
@@ -239,40 +239,31 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									</section>
 								)}
 
-								{/* Autor */}
 								<section className="mt-5 p-4 bg-transparent rounded shadow-sm">
 									<h4 className="fw-bold mb-2">Über den Autor</h4>
 									<p>
 										Dieser Artikel wurde verfasst von{" "}
-										<strong>Pixel-Genie Webagentur Nettetal</strong> – Experten
-										für Webdesign, SEO und Conversion-Optimierung.
-									</p>
-									<p>
-										Mehr erfahren unter{" "}
-										<Link href="/pixelgeniehistory" className="fw-semibold">
-											Über uns
-										</Link>
-										.
+										<strong>Pixel-Genie Webagentur Nettetal</strong>.
 									</p>
 								</section>
 
-								{/* CTA */}
 								<div className="d-flex flex-wrap gap-3 mt-5 justify-content-center">
 									<Link
 										href="#kontakt"
 										className="btn-premium-footer text-white fw-bold"
 										onClick={handleCta}
 									>
-										🚀 Kostenlose Website-Analyse sichern
+										<p className="text-white">
+											🚀 Kostenlose Website-Analyse sichern
+										</p>
 									</Link>
 									<Link href="/webdesignblog" className="btn-premium-footer">
-										← Zurück zum Blog
+										<p className="text-white"> ← Zurück zum Blog</p>
 									</Link>
 								</div>
 
 								<hr className="my-5" />
 
-								{/* Prev / Next */}
 								<div className="d-flex justify-content-between mt-5">
 									{prev ? (
 										<Link
@@ -294,7 +285,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									)}
 								</div>
 
-								{/* Related */}
 								{Array.isArray(related) && related.length > 0 && (
 									<section className="mt-5">
 										<h3 className="fw-bold mb-4">

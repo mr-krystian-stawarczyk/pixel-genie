@@ -1,6 +1,8 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { hasCookie } from "cookies-next";
 import { gaEvent } from "@/lib/analytics";
+import AutoTranslate from "./AutoTranslate"; // ✅ DODANE
 
 export default function MobileFloatingCTA() {
 	const [visible, setVisible] = useState(false);
@@ -33,7 +35,11 @@ export default function MobileFloatingCTA() {
 		}
 
 		window.open(
-			"mailto:pixelgenie.marketing@gmail.com?subject=Pixel%20Genie%20Webdesign%20Anfrage&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20interessiere%20mich%20f%C3%BCr%20eine%20neue%20Website%20oder%20SEO-Beratung.%0A%0AName%3A%0AFirma%3A%0ATelefon%3A%0A%0AVielen%20Dank!",
+			`mailto:pixelgenie.marketing@gmail.com?subject=${encodeURIComponent(
+				"Pixel Genie Webdesign Anfrage"
+			)}&body=${encodeURIComponent(
+				"Hallo Pixel Genie,\n\nIch interessiere mich für eine neue Website oder SEO-Beratung.\n\nName:\nFirma:\nTelefon:\n\nVielen Dank!"
+			)}`,
 			"_blank"
 		);
 	};
@@ -45,7 +51,7 @@ export default function MobileFloatingCTA() {
 				className="btn-premium-footer text-white fw-bold w-100"
 				style={{ border: "none" }}
 			>
-				🚀 Jetzt starten
+				🚀 <AutoTranslate>Jetzt starten</AutoTranslate>
 			</button>
 		</div>
 	);

@@ -8,6 +8,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 import { initGA, gaPageview, GA_ID, gaEvent } from "@/lib/analytics";
 import { getCookie } from "cookies-next";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18n";
 
 function AppContent({ Component, pageProps }) {
 	const router = useRouter();
@@ -105,9 +107,11 @@ function AppContent({ Component, pageProps }) {
 				enableSystem
 				disableTransitionOnChange
 			>
-				<Layout pageProps={pageProps}>
-					<Component {...pageProps} key={router.asPath} />
-				</Layout>
+				<I18nextProvider i18n={i18n}>
+					<Layout pageProps={pageProps}>
+						<Component {...pageProps} key={router.asPath} />
+					</Layout>{" "}
+				</I18nextProvider>
 			</ThemeProvider>
 		</>
 	);

@@ -14,8 +14,7 @@ import { useTheme } from "next-themes";
 import { IoHomeOutline } from "react-icons/io5";
 import { BsFillSunFill, BsFillMoonFill, BsX } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
-import { loadLanguage } from "../i18n.js";
-
+import AutoTranslate from "@/components/AutoTranslate"; // dopasuj ścieżkę
 const NavbarComp = ({ toggleTheme }) => {
 	const { t, i18n } = useTranslation();
 	const [scrolled, setScrolled] = useState(false);
@@ -50,7 +49,6 @@ const NavbarComp = ({ toggleTheme }) => {
 		setCurrentTheme(prefersDark ? "dark" : "light");
 		setIsLight(!prefersDark);
 	}, []);
-
 	const handleDropdownSelect = async (eventKey) => {
 		setDropdownOpen(false);
 		switch (eventKey) {
@@ -64,13 +62,19 @@ const NavbarComp = ({ toggleTheme }) => {
 				setSelectedFlag(
 					"/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
 				);
-				await loadLanguage("eng");
+				i18n.changeLanguage("en");
 				break;
 			case "flag3":
 				setSelectedFlag(
 					"/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
 				);
-				await loadLanguage("pl");
+				i18n.changeLanguage("pl");
+				break;
+			case "flag4": // 🇳🇱
+				setSelectedFlag(
+					"/assets/webagentur-webentwicklung-nettetal-seo-flagnl.png"
+				);
+				i18n.changeLanguage("nl");
 				break;
 			default:
 				break;
@@ -177,11 +181,9 @@ const NavbarComp = ({ toggleTheme }) => {
 							<Nav.Link
 								as="button"
 								onClick={handleAuditMail}
-								className="d-none d-lg-block"
+								className="d-none d-lg-block btn-premium-footer px-4 py-1"
 							>
-								<button className="btn-premium-footer px-4 py-1">
-									🚀 Kostenlose Analyse
-								</button>
+								🚀 <AutoTranslate>{"Kostenlose Analyse"}</AutoTranslate>
 							</Nav.Link>
 
 							<Nav.Link as={Link} href="/" className="m-1">
@@ -193,7 +195,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							<NavDropdown
 								title={
 									<span style={{ color: "#fff", fontWeight: "bold" }}>
-										Dienste
+										<AutoTranslate>Dienste</AutoTranslate>
 									</span>
 								}
 								id="dienste-dropdown"
@@ -230,7 +232,9 @@ const NavbarComp = ({ toggleTheme }) => {
 											className="p-0 my-1"
 											onClick={() => setDropdownOpen(false)}
 										>
-											<Button className="btn-nav w-100">{label}</Button>
+											<Button className="btn-nav w-100">
+												<AutoTranslate>{label}</AutoTranslate>
+											</Button>
 										</NavDropdown.Item>
 									))}
 								</div>
@@ -241,7 +245,9 @@ const NavbarComp = ({ toggleTheme }) => {
 							</Nav.Link>
 
 							<Nav.Link as={Link} href="/pixelgeniehistory" className="m-1">
-								<Button className="btn-nav border-0">Pixel</Button>
+								<Button className="btn-nav border-0">
+									<AutoTranslate>Pixel</AutoTranslate>
+								</Button>
 							</Nav.Link>
 
 							<div className="d-flex align-items-center gap-2 mx-1">
@@ -290,6 +296,11 @@ const NavbarComp = ({ toggleTheme }) => {
 												"PL",
 												"/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png",
 											],
+											[
+												"flag4",
+												"NL",
+												"/assets/webagentur-webentwicklung-nettetal-seo-flagnl.png",
+											], // <—
 										].map(([key, alt, src]) => (
 											<Dropdown.Item key={key} eventKey={key}>
 												<Image src={src} alt={alt} width={36} height={36} />
@@ -337,7 +348,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							className="btn-nav w-75"
 							onClick={closeMobileMenu} // ✅ zamyka po kliknięciu
 						>
-							{label}
+							<AutoTranslate>{label}</AutoTranslate>
 						</Button>
 					))}
 					<Button
@@ -346,7 +357,7 @@ const NavbarComp = ({ toggleTheme }) => {
 						className="btn-premium-footer w-75"
 						onClick={closeMobileMenu} // ✅ zamyka po kliknięciu
 					>
-						🚀 Kostenlose Analyse
+						🚀 <AutoTranslate>Kostenlose Analyse</AutoTranslate>
 					</Button>
 				</Nav>
 				<div className="d-flex align-items-center justify-content-center gap-3 mt-4">
@@ -394,6 +405,11 @@ const NavbarComp = ({ toggleTheme }) => {
 									"flag3",
 									"PL",
 									"/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png",
+								],
+								[
+									"flag4",
+									"NL",
+									"/assets/webagentur-webentwicklung-nettetal-seo-flagnl.png",
 								],
 							].map(([key, alt, src]) => (
 								<Dropdown.Item key={key} eventKey={key}>

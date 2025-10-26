@@ -891,7 +891,7 @@ button:focus {
 /* Drobne dostosowanie dla ciemnych motywów */
 @media (prefers-color-scheme: dark) {
 	.sharebar-fixed {
-		background: rgba(0, 0, 0, 0.85);
+		background: rgba(0, 0, 0, 0);
 	}
 }
 
@@ -1005,9 +1005,9 @@ main > :first-child,
 	position: fixed;
 	inset: 0;
 	width: 100vw;
-	height: 100vh;
+	height: 98vh;
 
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(20px);
 	display: none;
 	flex-direction: column;
 	align-items: center;
@@ -1037,7 +1037,7 @@ main > :first-child,
 }
 
 .mobile-overlay .btn-nav {
-	width: 95% !important;
+	max-width: 90% !important;
 	max-width: 420px;
 	margin: 0;
 	text-align: center;
@@ -1253,7 +1253,7 @@ main > :first-child,
 
 .blog-article {
 	font-size: 1.05rem;
-	line-height: 1.7;
+	line-height: 1.4;
 }
 
 .blog-article p {
@@ -1322,44 +1322,37 @@ details p {
 		margin-top: 1.4rem;
 	}
 }
-
-/* === SHARE ICON PREMIUM GLOW === */
-.share-icons-wrapper .share-btn {
-	transition: all 0.3s ease;
-	will-change: transform, box-shadow;
+/* === GLOBAL SHARE LAYOUT === */
+.share-layout {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	background: transparent;
 }
 
-.share-icons-wrapper .share-btn:hover {
-	transform: translateY(-3px);
-	box-shadow:
-		0 0 25px rgba(0, 123, 255, 0.55),
-		0 0 45px rgba(102, 16, 242, 0.35);
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-	.share-section {
-		margin-top: 2rem;
-	}
-	.share-icons-wrapper {
-		gap: 1.2rem !important;
-	}
-	.share-icons-wrapper .share-btn svg {
-		width: 44px !important;
-		height: 44px !important;
-	}
-}
-
+/* Standard label */
 .share-label {
 	font-size: 0.95rem;
+	font-weight: 600;
 	letter-spacing: 0.5px;
 	text-transform: uppercase;
-	opacity: 0.8;
+	opacity: 0.85;
+	color: var(--text-color);
 }
-/* === DESKTOP: SHARE jako kolumna === */
+
+/* === DESKTOP: Sticky vertical === */
 @media (min-width: 992px) {
+	.share-sticky {
+		flex-direction: column !important;
+		align-items: center !important;
+		gap: 12px !important;
+		background: transparent !important;
+		box-shadow: none !important;
+		border-radius: 0 !important;
+	}
+
 	.share-vertical-text {
-		display: flex;
+		display: flex !important;
 		flex-direction: column;
 		align-items: center;
 		gap: 4px;
@@ -1367,75 +1360,133 @@ details p {
 		text-transform: uppercase;
 		color: var(--text-color);
 		opacity: 0.7;
-		user-select: none;
 	}
-
 	.share-vertical-text span {
-		display: block;
 		font-size: 0.85rem;
 		transition: transform 0.2s ease;
 	}
-
-	/* Lekka animacja premium na hover */
 	.share-vertical-text span:hover {
 		transform: scale(1.15);
 	}
 }
 
-/* === MOBILE: ukryj napis === */
-@media (max-width: 991px) {
-	.share-vertical-text {
-		display: none !important;
-	}
+/* === Inline share under article === */
+.share-inline {
+	flex-direction: row !important;
+	justify-content: center !important;
+	align-items: center !important;
+	gap: 18px !important;
+	margin: 2rem 0;
 }
-/* === DESKTOP: SHARE jako kolumna + ikony pionowo === */
-@media (min-width: 992px) {
-	.share-layout {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 10px;
-	}
-
-	/* Tekst SHARE literka pod literką */
-	.share-vertical-text {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 4px;
-		font-weight: 700;
-		text-transform: uppercase;
-		color: var(--text-color);
-		opacity: 0.8;
-		user-select: none;
-	}
-
-	.share-icons {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 12px;
-	}
+.share-inline .share-btn {
+	width: 50px !important;
+	height: 50px !important;
+}
+.share-inline .share-vertical-text {
+	display: none !important;
 }
 
-/* === MOBILE: SHARE ukryty, ikony poziomo === */
+/* ✅ Rounded icon edges */
+.share-btn svg {
+	border-radius: 50% !important;
+}
+
+/* ========================================================= */
+/* === SEQUENTIAL BREATHING ANIMATION (ALL DEVICES 🌬️) === */
+/* ========================================================= */
+
+/* 🔥 Default pulse (INLINE + STICKY) */
+.share-btn {
+	animation: sharePulse 7s ease-in-out infinite;
+}
+
+/* ⏱️ Delay staggers each icon */
+.share-btn:nth-child(1) {
+	animation-delay: 0s;
+}
+.share-btn:nth-child(2) {
+	animation-delay: 1.4s;
+}
+.share-btn:nth-child(3) {
+	animation-delay: 2.8s;
+}
+.share-btn:nth-child(4) {
+	animation-delay: 4.2s;
+}
+
+/* ✅ Smooth premium glow */
+@keyframes sharePulse {
+	0%,
+	100% {
+		filter: drop-shadow(0 0 0px rgba(0, 123, 255, 0));
+		transform: scale(1);
+	}
+	50% {
+		filter: drop-shadow(0 0 12px rgb(0, 123, 255));
+		transform: scale(1.05);
+	}
+}
+
+/* ========================================================= */
+/* === Mobile Sticky Bar — more subtle to avoid distraction === */
+/* ========================================================= */
 @media (max-width: 991px) {
-	.share-vertical-text {
-		display: none;
+	.share-sticky {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		flex-direction: row !important;
+		justify-content: center !important;
+		align-items: center !important;
+		gap: 20px;
+		padding: 12px 10px;
+		border-radius: 14px 14px 0 0;
+		background: rgb(10, 10, 10);
+		backdrop-filter: blur(14px) saturate(150%);
+		box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.35);
+		z-index: 2000;
 	}
 
-	.share-layout {
-		display: flex !important;
-		flex-direction: row !important;
-		justify-content: center;
-		align-items: center;
-		gap: 16px;
-		margin-top: 1rem;
+	.share-label {
+		color: #fff !important;
+		margin-right: 4px;
 	}
 
-	.share-icons {
-		display: flex !important;
-		flex-direction: row !important;
-		gap: 14px;
+	.share-sticky .share-btn {
+		width: 46px !important;
+		height: 46px !important;
+
+		/* 💤 subtle pulse */
+		animation-duration: 8s;
 	}
+
+	/* inline on mobile still gets the stronger effect */
+	.share-inline .share-btn {
+		animation-duration: 6s !important;
+	}
+}
+@media (max-width: 768px) {
+	.blog-article p {
+		font-size: 1.08rem;
+		line-height: 1.4;
+		letter-spacing: 0.2px;
+		margin: 1.3rem 0 !important;
+	}
+	.blog-article h3 {
+		margin-top: 2.2rem !important;
+	}
+}
+.theme-toggle {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	padding: 0 !important;
+}
+
+.theme-icon-wrapper {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	height: 100% !important;
 }

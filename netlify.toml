@@ -3,7 +3,7 @@
 ############################
 [build]
   command = "npm run build"
-  publish = "out"
+publish = ".next"
 
   [build.environment]
     NODE_VERSION = "20"
@@ -15,8 +15,9 @@
 # ✅ Functions (Next adapter + optymalizacja)
 ############################
 [functions]
-  included_files = ["public/**"]
+  directory = "netlify/functions"
   node_bundler = "esbuild"
+  included_files = ["public/**"]
   external_node_modules = ["sharp", "react", "next", "next-themes"]
 
 ############################
@@ -79,3 +80,8 @@
   for = "/tips/*"
   [headers.values]
     Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+
+[[headers]]
+  for = "/.netlify/functions/translate"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
