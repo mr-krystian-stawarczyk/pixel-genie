@@ -12,6 +12,7 @@ import {
 	AiFillLinkedin,
 	AiOutlineReddit,
 } from "react-icons/ai";
+import AutoTranslate from "@/components/AutoTranslate";
 import { FaXTwitter } from "react-icons/fa6";
 import { hasCookie } from "cookies-next"; // ✅ tracking only after consent
 import { gaEvent } from "@/lib/analytics"; // ✅ GA4 tracking
@@ -77,25 +78,35 @@ function Footer() {
 										className="my-3 text-uppercase"
 										style={{ color: "var(--text-color)" }}
 									>
-										{t("footer1")}
+										<AutoTranslate>{t("footer1")}</AutoTranslate>
 									</Card.Title>
 									<Link href="/webseitenerstellen" className="footer-links">
-										<Card.Text className="hover py-2">{t("footer2")}</Card.Text>
+										<Card.Text className="hover py-2">
+											<AutoTranslate>{t("footer2")}</AutoTranslate>
+										</Card.Text>
 									</Link>
 									<Link
 										href="/suchmaschinenoptimierung"
 										className="footer-links"
 									>
-										<Card.Text className="hover py-2">{t("footer3")}</Card.Text>
+										<Card.Text className="hover py-2">
+											<AutoTranslate>{t("footer3")}</AutoTranslate>
+										</Card.Text>
 									</Link>
 									<Link href="/branding" className="footer-links">
-										<Card.Text className="hover py-2">{t("footer4")}</Card.Text>
+										<Card.Text className="hover py-2">
+											<AutoTranslate>{t("footer4")}</AutoTranslate>
+										</Card.Text>
 									</Link>
 									<Link href="/webdesign" className="footer-links">
-										<Card.Text className="hover py-2">{t("footer5")}</Card.Text>
+										<Card.Text className="hover py-2">
+											<AutoTranslate>{t("footer5")}</AutoTranslate>
+										</Card.Text>
 									</Link>
 									<Link href="/socialmediamarketing" className="footer-links">
-										<Card.Text className="hover py-2">{t("footer6")}</Card.Text>
+										<Card.Text className="hover py-2">
+											<AutoTranslate>{t("footer6")}</AutoTranslate>
+										</Card.Text>
 									</Link>
 								</Card.Body>
 							</Card>
@@ -109,30 +120,37 @@ function Footer() {
 										className="my-3 text-uppercase"
 										style={{ color: "var(--text-color)" }}
 									>
-										{t("footer7")}
+										<AutoTranslate>{t("footer7")}</AutoTranslate>
 									</Card.Title>
 									<Link href="/pixelgeniehistory" className="footer-links">
-										<Card.Text className="hover py-2">{t("footer8")}</Card.Text>
+										<Card.Text className="hover py-2">
+											<AutoTranslate>{t("footer8")}</AutoTranslate>
+										</Card.Text>
 									</Link>
 									<Link href="/webdesignblog" className="footer-links">
 										<Card.Text className="hover py-2">
-											{t("footer10")}
+											<AutoTranslate>{t("footer10")}</AutoTranslate>
 										</Card.Text>
 									</Link>
 									<Link href="/impressium" className="footer-links">
-										<Card.Text className="hover py-2">Cookies</Card.Text>
-									</Link>
-									<Link href="/impressium" className="footer-links">
-										<Card.Text className="hover py-2">Impressum</Card.Text>
+										<Card.Text className="hover py-2">
+											<AutoTranslate>Cookies</AutoTranslate>
+										</Card.Text>
 									</Link>
 									<Link href="/impressium" className="footer-links">
 										<Card.Text className="hover py-2">
-											Data Protection
+											<AutoTranslate>Impressum</AutoTranslate>
+										</Card.Text>
+									</Link>
+									<Link href="/impressium" className="footer-links">
+										<Card.Text className="hover py-2">
+											<AutoTranslate>Data Protection</AutoTranslate>
 										</Card.Text>
 									</Link>
 								</Card.Body>
 							</Card>
 						</Col>
+
 						{/* Kolumna 4 */}
 						<Col
 							lg={3}
@@ -145,7 +163,7 @@ function Footer() {
 									className="my-3 text-uppercase"
 									style={{ color: "var(--text-color)" }}
 								>
-									{t("footer14")}
+									<AutoTranslate>{t("footer14")}</AutoTranslate>
 								</Card.Title>
 
 								<p
@@ -156,15 +174,17 @@ function Footer() {
 										padding: "1rem",
 									}}
 								>
-									Haben Sie Fragen oder wünschen Sie ein unverbindliches
-									Angebot?
+									<AutoTranslate>
+										Haben Sie Fragen oder wünschen Sie ein unverbindliches
+										Angebot?
+									</AutoTranslate>
 								</p>
 
 								<button
 									onClick={handleFooterEmail}
 									className="btn-premium-footer hover mx-auto d-block"
 								>
-									✨ Jetzt E-Mail senden
+									<AutoTranslate>✨ Jetzt E-Mail senden</AutoTranslate>
 								</button>
 
 								<p
@@ -175,10 +195,13 @@ function Footer() {
 										opacity: 0.8,
 									}}
 								>
-									Antwort garantiert innerhalb von 24 Stunden.
+									<AutoTranslate>
+										Antwort garantiert innerhalb von 24 Stunden.
+									</AutoTranslate>
 								</p>
 							</Card>
 						</Col>
+
 						{/* Kolumna 3 — Social */}
 						<Col lg={3} sm={6} className="mx-auto">
 							<Card className="bg-transparent border-0 shadow-lg text-center">
@@ -187,7 +210,7 @@ function Footer() {
 										className="my-3 text-uppercase"
 										style={{ color: "var(--text-color)" }}
 									>
-										Folge uns
+										<AutoTranslate>Folge uns</AutoTranslate>
 									</Card.Title>
 
 									<div className="d-flex justify-content-center gap-4 flex-wrap">
@@ -240,8 +263,10 @@ function Footer() {
 											opacity: 0.8,
 										}}
 									>
-										Folge uns auf Social Media für{" "}
-										<strong>Insights & Trends</strong>
+										<AutoTranslate>
+											Folge uns auf Social Media für{" "}
+											<strong>Insights & Trends</strong>
+										</AutoTranslate>
 									</p>
 								</Card.Body>
 							</Card>

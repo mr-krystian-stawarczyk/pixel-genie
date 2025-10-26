@@ -9,6 +9,7 @@ import { gaEvent } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 import ShareBarSticky from "@/components/ShareBarSticky";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
+
 const SITE_ORIGIN = "https://pixel-genie.de";
 
 export async function getStaticPaths() {
@@ -58,63 +59,39 @@ export default function BlogPostPage({ article, next, prev, related }) {
 
 	const handleCta = () => gaEvent("blog_cta_click", { slug: article.slug });
 
-	const articleJsonLd = {
-		"@context": "https://schema.org",
-		"@type": "BlogPosting",
-		headline: article.title,
-		description: ogDescription,
-		image: [ogImage],
-		author: {
-			"@type": "Organization",
-			name: "Pixel-Genie Webagentur Nettetal",
-			url: SITE_ORIGIN,
-		},
-		publisher: {
-			"@type": "Organization",
-			name: "Pixel-Genie",
-			logo: {
-				"@type": "ImageObject",
-				url: `${SITE_ORIGIN}/assets/pixel-genie-logo.png`,
-			},
-		},
-		datePublished: article.date,
-		dateModified: article.date,
-		mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
-	};
+	// ✅ FULL dynamic article HTML block for translation
+	const articleHtml = `
+		${article.description ? `<p class="lead">${article.description}</p>` : ""}
+		${article.details.map((p) => `<p>${p}</p>`).join("")}
 
-	const breadcrumbLd = {
-		"@context": "https://schema.org",
-		"@type": "BreadcrumbList",
-		itemListElement: [
-			{
-				"@type": "ListItem",
-				position: 1,
-				name: "Blog",
-				item: `${SITE_ORIGIN}/webdesignblog`,
-			},
-			{ "@type": "ListItem", position: 2, name: article.title, item: pageUrl },
-		],
-	};
-	const formatText = (text) => {
-		let result = text;
+		${
+			article.keypoints?.length
+				? `
+			<section>
+				<h3>🔑 Wichtigste Erkenntnisse</h3>
+				<ul>${article.keypoints.map((k) => `<li>${k}</li>`).join("")}</ul>
+			</section>`
+				: ""
+		}
 
-		// ### Nagłówki
-		result = result.replace(/### (.*)/g, "<h3>$1</h3>");
-
-		// **bold**
-		result = result.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-
-		// ↩️ Podział zdań na akapity po kropkach
-		result = result.replace(/\. (?=[A-ZÄÖÜ])/g, ".<br><br>");
-
-		// ↩️ Podział po dwukropkach — nowa myśl
-		result = result.replace(/: (?=[A-ZÄÖÜ])/g, ":<br><br>");
-
-		// Standardowe nowe linie
-		result = result.replace(/\n+/g, "<br>");
-
-		return result;
-	};
+		${
+			article.faq?.length
+				? `
+			<section>
+				<h3>❓ Häufige Fragen zum Thema</h3>
+				${article.faq
+					.map(
+						(f) => `
+				<details>
+					<summary>${f.q}</summary>
+					<p>${f.a}</p>
+				</details>`
+					)
+					.join("")}
+			</section>`
+				: ""
+		}
+	`;
 
 	return (
 		<>
@@ -125,14 +102,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				<meta property="og:title" content={ogTitle} />
 				<meta property="og:description" content={ogDescription} />
 				<meta property="og:image" content={ogImage} />
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-				/>
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-				/>
 			</Head>
 
 			<ShareBarSticky
@@ -162,7 +131,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 							<div className="mt-4">
 								<h1 className="fw-bold mb-3">{article.title}</h1>
 
-								<p className=" mb-4">
+								<p className="mb-4">
 									{new Date(article.date).toLocaleDateString("de-DE", {
 										year: "numeric",
 										month: "2-digit",
@@ -171,18 +140,9 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									· ⏱️ {article.readingTime}
 								</p>
 
-								{article.description && (
-									<p className="lead text-foreground">{article.description}</p>
-								)}
+								{/* ✅ Full translated article */}
+								<AutoTranslateArticle html={articleHtml} slug={article.slug} />
 
-								{Array.isArray(article.details) && (
-									<AutoTranslateArticle
-										html={article.details.map(formatText).join("<br><br>")}
-										slug={article.slug}
-									/>
-								)}
-
-								{/* ✅ Inline ShareButtons */}
 								<div className="my-5">
 									<ShareButtons
 										url={pageUrl}
@@ -192,50 +152,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 										variant="inline"
 									/>
 								</div>
-
-								{article.keypoints && (
-									<section className="mt-5">
-										<h3 className="fw-bold mb-3">🔑 Wichtigste Erkenntnisse</h3>
-										<ul>
-											{article.keypoints.map((k, i) => (
-												<li key={i}>{k}</li>
-											))}
-										</ul>
-									</section>
-								)}
-
-								{article.faq && article.faq.length > 0 && (
-									<section className="mt-5">
-										<h3 className="fw-bold mb-4">
-											❓ Häufige Fragen zum Thema
-										</h3>
-										{article.faq.map((f, i) => (
-											<details key={i} className="mb-3">
-												<summary className="fw-semibold">{f.q}</summary>
-												<p className="mt-2 text-secondary">{f.a}</p>
-											</details>
-										))}
-									</section>
-								)}
-
-								{article.sources && article.sources.length > 0 && (
-									<section className="mt-5">
-										<h3 className="fw-bold mb-3">🔗 Weiterführende Quellen</h3>
-										<ul>
-											{article.sources.map((s, i) => (
-												<li key={i}>
-													<a
-														href={s.url}
-														target="_blank"
-														rel="nofollow noopener"
-													>
-														{s.label}
-													</a>
-												</li>
-											))}
-										</ul>
-									</section>
-								)}
 
 								<section className="mt-5 p-4 bg-transparent rounded shadow-sm">
 									<h4 className="fw-bold mb-2">Über den Autor</h4>
@@ -273,6 +189,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									) : (
 										<span />
 									)}
+
 									{next && (
 										<Link
 											href={`/tips/${next.slug}/`}
