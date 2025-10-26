@@ -3,38 +3,29 @@
 ############################
 [build]
   command = "npm run build"
-publish = ".next"
+  publish = ".next"
 
   [build.environment]
     NODE_VERSION = "20"
     NEXT_TELEMETRY_DISABLED = "1"
-    NETLIFY_USE_YARN = "false"
-    NETLIFY_BUILD_IMAGE = "ubuntu-noble-24.04"
 
 ############################
-# ✅ Functions (Next adapter + optymalizacja)
+# ✅ Functions (optimized)
 ############################
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  included_files = ["public/**"]
-  external_node_modules = ["sharp", "react", "next", "next-themes"]
 
 ############################
 # ✅ Redirects (statyczne strony Next.js)
 ############################
-# ❗ UWAGA: NIE kierujemy wszystkiego do /index.html!
-# To był powód błędnego canonicala i OG meta w LinkedIn/Facebook.
-# Prawidłowa wersja – pozwala Netlify serwować /tips/slug/index.html itp.
 [[redirects]]
   from = "/tips/*"
   to = "/tips/:splat/index.html"
   status = 200
 
-
-
 ############################
-# ✅ Nagłówki bezpieczeństwa + cache globalny
+# ✅ Security + Global cache
 ############################
 [[headers]]
   for = "/*"
@@ -46,7 +37,7 @@ publish = ".next"
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
 
 ############################
-# ✅ Statyczne zasoby (JS, CSS, assets)
+# ✅ Static assets caching
 ############################
 [[headers]]
   for = "/_next/static/*"
@@ -66,7 +57,7 @@ publish = ".next"
     Access-Control-Allow-Origin = "*"
 
 ############################
-# ✅ HTML – krótki cache dla dynamicznych stron
+# ✅ HTML cache
 ############################
 [[headers]]
   for = "/*.html"
@@ -74,13 +65,16 @@ publish = ".next"
     Cache-Control = "public, max-age=60, must-revalidate"
 
 ############################
-# ✅ Blog /tips/ — pełne wyłączenie cache (dla OG tagów)
+# ✅ Blog OG — no cache
 ############################
 [[headers]]
   for = "/tips/*"
   [headers.values]
     Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
 
+############################
+# ✅ Translation Function Cache
+############################
 [[headers]]
   for = "/.netlify/functions/translate"
   [headers.values]
