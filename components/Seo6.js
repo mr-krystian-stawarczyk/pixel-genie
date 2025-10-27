@@ -227,7 +227,7 @@ export default function Seo6() {
 									<AutoTranslate>PREMIUM PLAN</AutoTranslate>
 								</h3>
 
-								<p className="text-white">
+								<p style={{ color: "var(--text-color)" }}>
 									<AutoTranslate>
 										Das Rundum-sorglos-Paket für Unternehmen, die das Maximum
 										aus ihrer Online-Präsenz herausholen wollen – inkl. SEO,

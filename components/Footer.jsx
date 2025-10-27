@@ -264,8 +264,7 @@ function Footer() {
 										}}
 									>
 										<AutoTranslate>
-											Folge uns auf Social Media für{" "}
-											<strong>Insights & Trends</strong>
+											Folge uns auf Social Media für Insights & Trends
 										</AutoTranslate>
 									</p>
 								</Card.Body>

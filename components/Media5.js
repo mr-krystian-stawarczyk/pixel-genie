@@ -87,7 +87,7 @@ function Media5() {
 					<h2 className="fw-bold mb-3">
 						Unser Prozess – So entsteht Ihre Website
 					</h2>
-					<p className="text-body">
+					<p style={{ color: "var(--text-color)" }}>
 						Transparenz, Kreativität und Strategie – so gestaltet Pixel Genie
 						maßgeschneiderte <Link href="/webdesign/">Websites</Link> und{" "}
 						<Link href="/suchmaschinenoptimierung/">SEO-Lösungen</Link> in{" "}

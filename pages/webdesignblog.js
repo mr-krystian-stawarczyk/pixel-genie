@@ -9,7 +9,7 @@ import blogPosts from "@/data/blogPosts";
 // 🔹 Komponenty dynamiczne (bez SSR dla szybkości)
 const Blog1 = dynamic(() => import("@/components/Blog1"), { ssr: false });
 const Blog2 = dynamic(() => import("@/components/Blog2"), { ssr: false });
-const Faq1 = dynamic(() => import("@/components/Faq1"), { ssr: false });
+const BlogFAQ = dynamic(() => import("@/components/BlogFAQ"), { ssr: false });
 
 // 🔹 Dane lokalnego biznesu (schema.org)
 const cityData = citiesData.find((c) => c.city === "nettetal");
@@ -96,7 +96,7 @@ export default function WebDesignBlog({ posts }) {
 			<LocalBusinessJsonLd cityData={cityData} />
 			<Blog1 />
 			<Blog2 posts={posts} pageUrl={pageUrl} />
-			<Faq1 />
+			<BlogFAQ />
 		</div>
 	);
 }

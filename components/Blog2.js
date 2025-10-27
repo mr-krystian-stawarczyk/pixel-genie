@@ -222,7 +222,10 @@ function Blog2({ pageUrl = PAGE_URL }) {
 
 												{/* DESCRIPTION */}
 												{article.description && (
-													<p className="text-body" itemProp="description">
+													<p
+														style={{ color: "var(--text-color)" }}
+														itemProp="description"
+													>
 														{article.description}
 													</p>
 												)}
@@ -256,11 +259,19 @@ function Blog2({ pageUrl = PAGE_URL }) {
 																		<Accordion.Header>
 																			Mehr lesen
 																		</Accordion.Header>
-																		<Accordion.Body className="text-body text-start">
+																		<Accordion.Body
+																			className="text-start"
+																			style={{
+																				color: "var(--text-color)",
+																				background: "var(--bg-color)",
+																				borderRadius: "12px",
+																			}}
+																		>
 																			{article.details.map((d, i) => (
 																				<p
 																					key={i}
-																					className="text-body mb-2"
+																					className="mb-2"
+																					style={{ color: "var(--text-color)" }}
 																					dangerouslySetInnerHTML={{
 																						__html: d.replace(/\n/g, "<br>"),
 																					}}

@@ -1,215 +1,158 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import { Container, Accordion, Row, Col } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
+import { Container, Accordion, Row, Col, Button } from "react-bootstrap";
+import AutoTranslate from "@/components/AutoTranslate";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
+import Head from "next/head";
 
 function About3() {
-	const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
+	const [ref, inView] = useInView({ threshold: 0.25, triggerOnce: true });
 	const controls = useAnimation();
 
 	useEffect(() => {
 		if (inView) {
 			controls.start({
 				opacity: 1,
-				transition: { duration: 1.2, ease: "easeInOut" },
+				y: 0,
+				transition: { duration: 1, ease: "easeOut" },
 			});
 		}
 	}, [inView, controls]);
 
-	const { t } = useTranslation();
+	const faq = [
+		{
+			q: "Was macht Pixel Genie als Agentur besonders?",
+			a: "Wir bringen Webdesign, Entwicklung und SEO unter ein Dach – ohne Outsourcing. Dadurch sind wir schneller, persönlicher und garantieren Top-Qualität für jedes Projekt.",
+		},
+		{
+			q: "Wie läuft ein Webdesign-Projekt bei euch ab?",
+			a: "Wir starten mit Analyse & Beratung, dann Design, Entwicklung und SEO-Optimierung. Das Wichtigste: Sie sind in jedem Schritt involviert, transparent & ohne Überraschungen.",
+		},
+		{
+			q: "Welche Technologien verwendet ihr?",
+			a: "Wir arbeiten mit React, Next.js, Tailwind, Bootstrap – modernste Tools für Core Web Vitals, Performance & Sicherheit. Keine veralteten Themes oder Baukastensysteme.",
+		},
+		{
+			q: "Wie viel Erfahrung habt ihr?",
+			a: "Über 10 Jahre Web- & Marketing-Erfahrung. Gründung 2024 in Nettetal, aber Know-how aus dutzenden Kundenprojekten in DE & NL.",
+		},
+		{
+			q: "Arbeitet ihr nur lokal in Nettetal?",
+			a: "Nein, aber wir lieben es lokal. Wir betreuen Kundinnen & Kunden aus Nettetal, NRW und europaweit – genau so flexibel wie Ihre Anforderungen.",
+		},
+		{
+			q: "Wie messt ihr den Erfolg einer Website?",
+			a: "Mit klaren KPIs: SEO Rankings, Core Web Vitals, Conversions, Anfragen, Verkäufe. Keine „Likes“, sondern echtes Geschäftswachstum.",
+		},
+		{
+			q: "Kann ich meine Website selbst pflegen?",
+			a: "Natürlich! Wir geben Ihnen ein einfach zu bedienendes CMS. Wenn Sie möchten, übernehmen wir Updates & Inhalte – aber nur wenn SIE es wollen.",
+		},
+		{
+			q: "Bietet ihr auch langfristige Betreuung an?",
+			a: "Ja! Wartung, SEO, Content, Monitoring – wir lassen Sie nicht nach dem Launch allein. Eine Website ist ein Projekt mit Zukunft, nicht nur ein Produkt.",
+		},
+		{
+			q: "Wie hoch ist euer Qualitätsanspruch?",
+			a: "Sehr hoch. Jede Website wird mehrfach getestet (Performance, UX, Mobile, Sicherheit). Wir veröffentlichen nichts, was wir nicht selbst lieben würden.",
+		},
+		{
+			q: "Warum heißt ihr Pixel Genie?",
+			a: "Weil wir glauben, dass jedes Pixel zählt. Und weil gute Technologie sich manchmal wie Magie anfühlt ✨ – solange man weiß, wie sie funktioniert.",
+		},
+	];
 
 	return (
-		<motion.div ref={ref} animate={controls}>
-			<Container
-				fluid
-				className="py-5  transition-colors duration-500"
-				id="pixel-genie-history"
-			>
-				<Row className="justify-content-center text-center mb-5">
-					<Col lg={8}>
-						<Image
-							src="/assets/webentwicklung-nettetal-fragen1.png"
-							width={260}
-							height={260}
-							alt="Pixel Genie Webentwicklung Nettetal"
-							className="my-3"
-							priority
-						/>
-						<h2 className="fw-bold display-5 mb-3">
-							Die am häufigsten gestellten Fragen an die Agentur
-							Pixel&nbsp;Genie
-						</h2>
-						<p className="lead">
-							In diesem Bereich finden Sie Antworten auf die häufigsten Fragen,
-							die Kunden unserer{" "}
-							<strong>Webdesign- und SEO Agentur aus Nettetal</strong> stellen.
-							Hier erfahren Sie alles über unsere Arbeitsweise, Philosophie,
-							Technologien und darüber, wie Pixel&nbsp;Genie in nur zwei Jahren
-							zu einem anerkannten Namen in der <strong>Webentwicklung</strong>{" "}
-							und <strong>Performance Optimierung</strong> wurde.
-						</p>
-					</Col>
-				</Row>
+		<>
+			{/* ✅ SEO: FAQ Rich Snippets */}
+			<Head>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							"@context": "https://schema.org",
+							"@type": "FAQPage",
+							mainEntity: faq.map((f) => ({
+								"@type": "Question",
+								name: f.q,
+								acceptedAnswer: { "@type": "Answer", text: f.a },
+							})),
+						}),
+					}}
+				/>
+			</Head>
 
-				<Row className="justify-content-center">
-					<Col lg={9}>
-						<Accordion className="shadow-lg bg-dark text-light border-0 rounded-4">
-							{/* 1 */}
-							<Accordion.Item eventKey="0">
-								<Accordion.Header>
-									Was bedeutet das Wort Pixel?
-								</Accordion.Header>
-								<Accordion.Body>
-									Das Wort <strong>Pixel</strong> steht symbolisch für das
-									kleinste, aber bedeutendste Detail eines digitalen Projekts.
-									Bei Pixel&nbsp;Genie glauben wir, dass jedes Pixel zählt – es
-									steht für{" "}
-									<em>Perfektion, Genauigkeit und visuelle Klarheit</em>. Unser
-									Name spiegelt unsere Philosophie wider: Wir entwickeln
-									Websites, bei denen jedes Pixel ein Teil einer größeren Vision
-									ist – ein Zusammenspiel aus Design, Geschwindigkeit und
-									Benutzerfreundlichkeit.
-								</Accordion.Body>
-							</Accordion.Item>
+			<motion.div ref={ref} animate={controls} initial={{ opacity: 0, y: 80 }}>
+				<Container fluid className="py-5">
+					<Row className="justify-content-center text-center mb-5">
+						<Col lg={8}>
+							<Image
+								src="/assets/webentwicklung-nettetal-fragen1.png"
+								width={240}
+								height={240}
+								alt="Pixel Genie Agentur FAQ"
+								className="my-3"
+							/>
+							<h2 className="fw-bold display-5 mb-3">
+								<AutoTranslate>
+									Fragen zu Pixel Genie? Wir beantworten alles.
+								</AutoTranslate>
+							</h2>
+							<p className="lead text-muted">
+								<AutoTranslate>
+									Vertrauen beginnt mit Transparenz. Hier erfahren Sie ganz
+									genau, wie wir arbeiten – und warum wir für viele die erste
+									Wahl in Nettetal sind.
+								</AutoTranslate>
+							</p>
+						</Col>
+					</Row>
 
-							{/* 2 */}
-							<Accordion.Item eventKey="1">
-								<Accordion.Header>
-									Wie lange existiert Pixel Genie?
-								</Accordion.Header>
-								<Accordion.Body>
-									Pixel&nbsp;Genie wurde im Jahr <strong>2023</strong> gegründet
-									und ist seitdem zu einer der aufstrebenden{" "}
-									<em>Webdesign- und SEO Agenturen in Nettetal</em> geworden.
-									Obwohl wir erst seit <strong>zwei Jahren</strong> operativ
-									tätig sind, vereint unser Team über ein Jahrzehnt an Erfahrung
-									in{" "}
-									<strong>
-										Webentwicklung, Next.js, React und digitalem Marketing
-									</strong>
-									. Unsere Projekte zeichnen sich durch technologische
-									Innovation, hervorragende Performance und ein tiefes
-									Verständnis für Google-SEO aus.
-								</Accordion.Body>
-							</Accordion.Item>
+					<Row className="justify-content-center">
+						<Col lg={9}>
+							<Accordion className="shadow-lg border-0 rounded-4">
+								{faq.map((item, i) => (
+									<Accordion.Item eventKey={String(i)} key={i}>
+										<Accordion.Header>
+											<AutoTranslate>{item.q}</AutoTranslate>
+										</Accordion.Header>
+										<Accordion.Body>
+											<AutoTranslate>{item.a}</AutoTranslate>
+										</Accordion.Body>
+									</Accordion.Item>
+								))}
+							</Accordion>
+						</Col>
+					</Row>
 
-							{/* 3 */}
-							<Accordion.Item eventKey="2">
-								<Accordion.Header>
-									Mit wem arbeitet Pixel Genie zusammen?
-								</Accordion.Header>
-								<Accordion.Body>
-									Wir betreuen eine vielfältige Kundschaft – von jungen
-									Start-ups bis zu etablierten Unternehmen. Unsere Expertise im{" "}
-									<strong>Webdesign</strong>, in der{" "}
-									<strong>SEO Optimierung</strong> und im{" "}
-									<strong>Performance Marketing</strong> ermöglicht es uns,
-									individuelle Lösungen zu schaffen. Ob Online-Shop, Portfolio
-									oder Unternehmenswebsite – jedes Projekt erhält bei uns eine
-									maßgeschneiderte Strategie, die Design und Technik vereint.
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 4 */}
-							<Accordion.Item eventKey="3">
-								<Accordion.Header>
-									Arbeiten Sie nur lokal in Nettetal?
-								</Accordion.Header>
-								<Accordion.Body>
-									Nein, wir arbeiten mit Kunden in ganz Deutschland, den
-									Niederlanden und der Schweiz zusammen. Unsere Basis in{" "}
-									<strong>Nettetal</strong> ist unser kreatives Zuhause, aber
-									dank moderner Tools wie{" "}
-									<em>Zoom, Slack und Cloud-Plattformen</em>
-									können wir nahtlos mit internationalen Partnern kommunizieren.
-									So kombinieren wir lokale Nähe mit globalem Know-how.
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 5 */}
-							<Accordion.Item eventKey="4">
-								<Accordion.Header>
-									Warum haben Sie mit dieser Arbeit begonnen?
-								</Accordion.Header>
-								<Accordion.Body>
-									Unsere Motivation war es, eine Agentur zu schaffen, die{" "}
-									<em>Design, Performance und SEO</em> in perfekter Balance
-									vereint. Wir wollten Websites entwickeln, die nicht nur schön
-									aussehen, sondern auch bei Google und Nutzern gleichermaßen
-									überzeugen. So entstand Pixel&nbsp;Genie – eine Kombination
-									aus technischer Präzision, kreativem Denken und digitaler
-									Leidenschaft.
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 6 */}
-							<Accordion.Item eventKey="5">
-								<Accordion.Header>
-									Was macht Pixel Genie anders als andere Agenturen?
-								</Accordion.Header>
-								<Accordion.Body>
-									Wir setzen nicht auf Masse, sondern auf Klasse. Jede Website
-									wird von Grund auf mit modernen Technologien wie{" "}
-									<strong>Next.js</strong> und <strong>React</strong>{" "}
-									entwickelt, optimiert für <strong>Core Web Vitals</strong> und{" "}
-									<em>SEO Performance</em>. Wir hören zu, analysieren Daten,
-									testen, messen und verbessern kontinuierlich. Das Ergebnis:
-									Websites, die schneller, sichtbarer und nachhaltiger sind.
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 7 */}
-							<Accordion.Item eventKey="6">
-								<Accordion.Header>
-									Wo kann man mehr über Pixel Genie erfahren?
-								</Accordion.Header>
-								<Accordion.Body>
-									Folgen Sie uns auf{" "}
-									<strong>Instagram, LinkedIn und Facebook</strong> – dort
-									teilen wir regelmäßig Insights über Webentwicklung, SEO und
-									digitales Branding. Weitere Informationen, Case Studies und
-									Blogbeiträge finden Sie auf unserer offiziellen Seite{" "}
-									<a
-										href="https://pixel-genie.de"
-										className="text-white fw-bold"
-									>
-										pixel-genie.de
-									</a>
-									. Für direkte Anfragen erreichen Sie uns unter{" "}
-									<a
-										href="mailto:pixelgenie.marketing@gmail.com"
-										className="text-white fw-bold"
-									>
-										pixelgenie.marketing@gmail.com
-									</a>
-									.
-								</Accordion.Body>
-							</Accordion.Item>
-						</Accordion>
-					</Col>
-				</Row>
-
-				<Row className="justify-content-center text-center mt-5">
-					<Col lg={9}>
-						<h4 className="fw-bold mt-4 mb-3">
-							🚀 Fazit: Ihre Marke verdient digitale Exzellenz
-						</h4>
-						<p>
-							Pixel&nbsp;Genie steht für <strong>Designqualität</strong>,{" "}
-							<strong>technische Präzision</strong> und{" "}
-							<strong>SEO-Strategie</strong>. Unsere Mission: Marken dabei zu
-							unterstützen, durch digitales Design und Performance-Marketing
-							sichtbar und erfolgreich zu werden. Mit jedem Projekt setzen wir
-							neue Standards in <em>Webentwicklung</em> und{" "}
-							<em>Online Marketing</em>.
-						</p>
-					</Col>
-				</Row>
-			</Container>
-		</motion.div>
+					{/* ✅ CTA domykający lejek */}
+					<Row className="justify-content-center text-center mt-5">
+						<Col lg={8}>
+							<h3 className="fw-bold">
+								<AutoTranslate>
+									Klingt gut? Dann lassen Sie uns über Ihr Projekt sprechen!
+								</AutoTranslate>
+							</h3>
+							<p>
+								<AutoTranslate>
+									Wir freuen uns darauf, Ihre Marke online sichtbar &
+									erfolgreich zu machen.
+								</AutoTranslate>
+							</p>
+							<Button href="#contact" className="btn-nav mt-3">
+								<span className="text-white">
+									<AutoTranslate>
+										Kostenloses Erstgespräch sichern
+									</AutoTranslate>
+								</span>
+							</Button>
+						</Col>
+					</Row>
+				</Container>
+			</motion.div>
+		</>
 	);
 }
 

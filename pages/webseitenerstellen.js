@@ -11,7 +11,7 @@ const Web5 = dynamic(() => import("@/components/Web5"), { ssr: false });
 const WebPrices = dynamic(() => import("@/components/WebPrices"), {
 	ssr: false,
 });
-const Faq1 = dynamic(() => import("@/components/Faq1"), { ssr: false });
+const WebFAQ = dynamic(() => import("@/components/WebFAQ"), { ssr: false });
 const HeaderCounted = dynamic(() => import("@/components/HeaderCounted"), {
 	ssr: false,
 });
@@ -61,7 +61,7 @@ function WebSeitenErstellen() {
 			<Web4 />
 			<Web5 />
 			<WebPrices />
-			<Faq1 />
+			<WebFAQ />
 		</div>
 	);
 }

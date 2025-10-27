@@ -17,6 +17,10 @@ export default function Media7() {
 		transition: { duration: 0.8, ease: "easeOut" },
 	};
 
+	const whiteText = {
+		color: "var(--text-color)",
+	};
+
 	const controls1 = useAnimation();
 	const controls2 = useAnimation();
 	const controls3 = useAnimation();
@@ -76,7 +80,7 @@ export default function Media7() {
 					<h2 className="fw-bold display-6">
 						Webdesign & SEO-optimierte Websites aus Nettetal
 					</h2>
-					<p className="lead text-body">
+					<p className="lead " style={{ color: "var(--text-color)" }}>
 						Individuelles Design, blitzschnelle Performance und
 						Google-Optimierung – Websites, die nicht nur schön, sondern auch
 						erfolgreich sind.
@@ -93,7 +97,7 @@ export default function Media7() {
 						initial={{ opacity: 0, y: 40 }}
 						animate={controls1}
 					>
-						<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent hover:scale-105 transition-all duration-300">
+						<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent hover:scale-105 transition-all duration-300 hover">
 							<Card.Body className="p-4">
 								<h3 className="fw-bold text-primary">Starter Website</h3>
 
@@ -107,12 +111,26 @@ export default function Media7() {
 								<h2 className="fw-bold text-primary my-3">ab 499 €</h2>
 								<hr />
 
-								<ul className="text-body text-start small">
-									<li>One-Page oder Mini-Website (bis 3 Seiten)</li>
-									<li>Modernes, responsives Design</li>
-									<li>Basis-SEO & Ladezeit-Optimierung</li>
-									<li>Kontaktformular & Google Maps</li>
-									<li>Impressum & Datenschutz inklusive</li>
+								<ul
+									className="text-body text-start small"
+									style={{ color: "var(--text-color)" }}
+								>
+									<li style={{ color: "var(--text-color)" }}>
+										One-Page oder Mini-Website (bis 3 Seiten)
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Modernes, responsives Design
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Basis-SEO & Ladezeit-Optimierung
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Kontaktformular & Google Maps
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										{" "}
+										Impressum & Datenschutz inklusive
+									</li>
 								</ul>
 
 								<Button
@@ -133,27 +151,45 @@ export default function Media7() {
 						initial={{ opacity: 0, y: 40 }}
 						animate={controls2}
 					>
-						<Card className="h-100 shadow-xl border-success bg-light rounded-4 hover:scale-105 transition-all duration-300">
+						<Card className="h-100 shadow-xl  bg-secondary rounded-4 hover:scale-105 border-success transition-all duration-300 hover">
 							<Card.Body className="p-4">
-								<h3 className="fw-bold text-success">Business Website</h3>
+								<h3 className="fw-bold text-success bg-dark rounded">
+									Business Website
+								</h3>
 
-								<div className="text-white text-start small">
-									<AutoTranslateArticle
-										html={businessDesc}
-										slug="business-desc"
-									/>
+								<div className=" text-start small text-black">
+									<span className="text-black">
+										<AutoTranslateArticle
+											html={businessDesc}
+											slug="business-desc"
+										/>
+									</span>
 								</div>
 
-								<h2 className="fw-bold text-success my-3">ab 899 €</h2>
+								<h2 className="fw-bold text-success bg-dark rounded my-3">
+									ab 899 €
+								</h2>
 								<hr />
 
 								<ul className="text-body text-start small">
-									<li>Bis zu 10 Seiten + CMS</li>
-									<li>SEO-Strategie & Keyword-Analyse</li>
-									<li>Blog- oder News-System</li>
-									<li>Core Web Vitals Optimierung</li>
-									<li>Analytics & Search Console</li>
-									<li>3 Monate Support inklusive</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Bis zu 10 Seiten + CMS
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										SEO-Strategie & Keyword-Analyse
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Blog- oder News-System
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Core Web Vitals Optimierung
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Analytics & Search Console
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										3 Monate Support inklusive
+									</li>
 								</ul>
 
 								<Button
@@ -176,7 +212,7 @@ export default function Media7() {
 						animate={controls3}
 					>
 						<Card
-							className="h-100 border-0 text-light rounded-4 shadow-lg hover:scale-105 transition-all duration-300"
+							className="h-100 border-0 text-light rounded-4 shadow-lg hover:scale-105 transition-all duration-300 hover"
 							style={{
 								background: "linear-gradient(135deg,#0b0b2e 0%,#21216b 100%)",
 							}}
@@ -184,10 +220,11 @@ export default function Media7() {
 							<Card.Body className="p-4">
 								<h3 className="fw-bold text-warning">Premium Website</h3>
 
-								<div className="text-light text-start small">
+								<div className="premium-desc-wrapper">
 									<AutoTranslateArticle
 										html={premiumDesc}
 										slug="premium-desc"
+										style={whiteText}
 									/>
 								</div>
 
@@ -219,7 +256,7 @@ export default function Media7() {
 			<Row className="justify-content-center text-center mt-5">
 				<Col lg={8}>
 					<h3 className="fw-bold mb-3">✨ Erweiterungen & Zusatzleistungen</h3>
-					<p className="text-body">
+					<p style={{ color: "var(--text-color)" }}>
 						Jedes Paket kann flexibel erweitert werden – holen Sie das Maximum
 						aus Ihrer Website heraus:
 					</p>

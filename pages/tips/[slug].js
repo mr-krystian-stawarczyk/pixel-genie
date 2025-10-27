@@ -10,6 +10,12 @@ import { useEffect, useState } from "react";
 import ShareBarSticky from "@/components/ShareBarSticky";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
 import AutoTranslate from "@/components/AutoTranslate";
+
+// NEW: upgrades
+import TableOfContents from "@/components/TableOfContents";
+import AnchorsInjector from "@/components/AnchorsInjector";
+import { breadcrumbJsonLd, articleJsonLd, faqJsonLd } from "@/lib/seoSchema";
+
 const SITE_ORIGIN = "https://pixel-genie.de";
 
 export async function getStaticPaths() {
@@ -93,6 +99,22 @@ export default function BlogPostPage({ article, next, prev, related }) {
 		}
 	`;
 
+	// JSON-LD objects
+	const breadcrumbLd = breadcrumbJsonLd({
+		siteOrigin: SITE_ORIGIN,
+		articleTitle: article.title,
+		pageUrl,
+	});
+
+	const articleLd = articleJsonLd({
+		headline: ogTitle,
+		datePublished: article.date,
+		image: ogImage,
+		pageUrl,
+	});
+
+	const faqLd = faqJsonLd(article.faq);
+
 	return (
 		<>
 			<Head>
@@ -102,8 +124,27 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				<meta property="og:title" content={ogTitle} />
 				<meta property="og:description" content={ogDescription} />
 				<meta property="og:image" content={ogImage} />
+
+				{/* JSON-LD: Breadcrumbs */}
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+				/>
+				{/* JSON-LD: Article */}
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+				/>
+				{/* JSON-LD: FAQ (only if present) */}
+				{faqLd && (
+					<script
+						type="application/ld+json"
+						dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+					/>
+				)}
 			</Head>
 
+			{/* Sticky share bar + sticky CTA mobile */}
 			<ShareBarSticky
 				isMobile={isMobile}
 				url={pageUrl}
@@ -142,8 +183,19 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									· ⏱️ {article.readingTime}
 								</p>
 
-								{/* ✅ Full translated article */}
-								<AutoTranslateArticle html={articleHtml} slug={article.slug} />
+								{/* ✅ TOC nad treścią */}
+								<TableOfContents html={articleHtml} />
+
+								{/* ✅ Render artykułu (po tłumaczeniu) + wstrzyknięcie anchorów */}
+								<div id={`article-${article.slug}`}>
+									<AutoTranslateArticle
+										html={articleHtml}
+										slug={article.slug}
+									/>
+								</div>
+								<AnchorsInjector
+									containerSelector={`#article-${article.slug}`}
+								/>
 
 								<div className="my-5">
 									<ShareButtons

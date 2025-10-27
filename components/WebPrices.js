@@ -59,7 +59,7 @@ export default function WebPrices() {
 						</AutoTranslate>
 					</h2>
 
-					<p className="lead text-muted">
+					<p className="lead ">
 						<AutoTranslate>
 							Ob Start-up, Handwerksbetrieb oder Marke – wir erstellen Websites,
 							die Besucher begeistern und bei Google performen.
@@ -76,7 +76,7 @@ export default function WebPrices() {
 						initial={{ opacity: 0, y: 40 }}
 						animate={controls1}
 					>
-						<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent">
+						<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent hover">
 							<Card.Body className="p-4">
 								<h3 className="fw-bold text-primary mb-2">BASIC WEBSITE</h3>
 
@@ -115,7 +115,7 @@ export default function WebPrices() {
 						initial={{ opacity: 0, y: 40 }}
 						animate={controls2}
 					>
-						<Card className="h-100 shadow-xl rounded-4 bg-light">
+						<Card className="h-100 shadow-xl rounded-4 bg-light hover">
 							<Card.Body className="p-4">
 								<h3 className="fw-bold text-success mb-2">BUSINESS WEBSITE</h3>
 
@@ -163,7 +163,7 @@ export default function WebPrices() {
 						animate={controls3}
 					>
 						<Card
-							className="h-100 rounded-4 text-light shadow-lg"
+							className="h-100 rounded-4 text-light shadow-lg hover"
 							style={{ background: "linear-gradient(135deg,#0b0b2e,#21216b)" }}
 						>
 							<Card.Body className="p-4">
@@ -179,11 +179,13 @@ export default function WebPrices() {
 								<h2 className="fw-bold mb-3 text-warning">ab 1499 €</h2>
 								<hr className="border-light" />
 
-								<p>✔ Individuelles UX/UI Konzept</p>
-								<p>✔ Unbegrenzte Seiten & CMS</p>
-								<p>✔ Technische SEO + Core Web Vitals 95+</p>
-								<p>✔ Blog + Content-System inklusive</p>
-								<p>✔ Conversion-Tracking & A/B Tests</p>
+								<p className="text-white">✔ Individuelles UX/UI Konzept</p>
+								<p className="text-white">✔ Unbegrenzte Seiten & CMS</p>
+								<p className="text-white">
+									✔ Technische SEO + Core Web Vitals 95+
+								</p>
+								<p className="text-white">✔ Blog + Content-System inklusive</p>
+								<p className="text-white">✔ Conversion-Tracking & A/B Tests</p>
 
 								<Button
 									variant="warning"
@@ -205,7 +207,7 @@ export default function WebPrices() {
 						<AutoTranslate>✨ Erweiterungen & Add-ons</AutoTranslate>
 					</h3>
 
-					<p className="text-muted">
+					<p>
 						<AutoTranslate>
 							Individuell anpassbar für jedes Paket – steigern Sie die Wirkung
 							Ihrer Website mit unseren Extras

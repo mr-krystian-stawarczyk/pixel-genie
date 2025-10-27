@@ -1490,3 +1490,6 @@ details p {
 	justify-content: center !important;
 	height: 100% !important;
 }
+.premium-desc-wrapper * {
+	color: white !important;
+}

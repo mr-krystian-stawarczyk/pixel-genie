@@ -56,7 +56,7 @@ function Seo5() {
 					<motion.div ref={ref1} animate={controls1} initial={{ opacity: 0 }}>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "45rem" }}
+							style={{ height: "28rem" }}
 						>
 							<Card.Body>
 								<h1>1</h1>
@@ -84,7 +84,7 @@ function Seo5() {
 					<motion.div ref={ref2} animate={controls2} initial={{ opacity: 0 }}>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "45rem" }}
+							style={{ height: "28rem" }}
 						>
 							<Card.Body>
 								<h1>2</h1>
@@ -109,7 +109,7 @@ function Seo5() {
 					<motion.div ref={ref3} animate={controls3} initial={{ opacity: 0 }}>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "45rem" }}
+							style={{ height: "28rem" }}
 						>
 							<Card.Body>
 								<h1>3</h1>
@@ -135,7 +135,7 @@ function Seo5() {
 					<motion.div ref={ref4} animate={controls4} initial={{ opacity: 0 }}>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "45rem" }}
+							style={{ height: "28rem" }}
 						>
 							<Card.Body>
 								<h1>4</h1>

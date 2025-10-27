@@ -31,7 +31,7 @@ function MediaFAQ() {
 							Häufige Fragen zu Webdesign, SEO <br /> & Online Marketing
 						</h2>
 
-						<div className="text-start text-body">
+						<div style={{ color: "var(--text-color)" }}>
 							<AutoTranslateArticle
 								slug="faq-intro"
 								html={`

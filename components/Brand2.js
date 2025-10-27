@@ -1,37 +1,29 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { useAnimation, motion } from "framer-motion";
+import AutoTranslate from "@/components/AutoTranslate";
+
 function Brand2() {
-	const { t } = useTranslation();
 	const [ref, inView] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
+		threshold: 0.3,
+		triggerOnce: true,
 	});
 
-	const animateIn = {
-		opacity: 1,
-
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
 	const controls = useAnimation();
+
 	useEffect(() => {
 		if (inView) {
-			controls.start(animateIn);
+			controls.start({
+				opacity: 1,
+				transition: { duration: 1, ease: "easeInOut" },
+			});
 		}
-	}, [inView, controls, animateIn]);
+	}, [inView, controls]);
+
 	return (
-		<motion.div ref={ref} animate={controls}>
+		<motion.div ref={ref} animate={controls} initial={{ opacity: 0 }}>
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center text-center align-items-center">
 					<Col lg={5} className="mx-auto my-2">
@@ -40,17 +32,37 @@ function Brand2() {
 							width={400}
 							height={400}
 							className="responsive-image"
-							alt="webagentur-nettetal-branding-seo2"
+							alt="branding-logo-design-nettetal"
 							priority
 						/>
 					</Col>
+
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1 className="text-start">{t("bran4")}</h1>
-								<Card.Text className="text-start">{t("bran5")}</Card.Text>
+								<h1 className="text-start">
+									<AutoTranslate>
+										Erstellung eines einzigartigen Logos mit SEO Power
+									</AutoTranslate>
+								</h1>
+
+								<Card.Text className="text-start">
+									<AutoTranslate>
+										Ein aussagekräftiges Logo ist das Herzstück jeder starken
+										Marke. Wir entwickeln ein exklusives Logo für Ihr
+										Unternehmen – individuell, markant und perfekt abgestimmt
+										auf Ihre Zielgruppe. Zusätzlich optimieren wir Ihre
+										Datei-Assets für Suchmaschinen, damit Ihre Marke nicht nur
+										großartig aussieht – sondern auch besser gefunden wird.
+									</AutoTranslate>
+								</Card.Text>
+
 								<Button className="btn-nav" href="#branding-nettetal-preis">
-									<span className="text-white"> {t("bran6")}</span>
+									<span className="text-white">
+										<AutoTranslate>
+											Branding Nettetal Preise ansehen
+										</AutoTranslate>
+									</span>
 								</Button>
 							</Card.Body>
 						</Card>

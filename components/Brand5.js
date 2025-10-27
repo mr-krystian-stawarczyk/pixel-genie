@@ -1,165 +1,76 @@
-import React from "react";
-import { useEffect } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import dynamic from "next/dynamic";
+import React, { useEffect } from "react";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { useAnimation } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-function Brand5() {
-	const { t } = useTranslation();
-	const [ref1, inView1] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
+import { useAnimation, motion } from "framer-motion";
+import AutoTranslate from "@/components/AutoTranslate";
+
+function Brand4() {
+	const [ref, inView] = useInView({
+		threshold: 0.3,
+		triggerOnce: true,
 	});
 
-	const [ref2, inView2] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-	const [ref3, inView3] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const [ref4, inView4] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const animateIn = {
-		opacity: 1,
-		transition: {
-			duration: 1,
-			ease: "easeInOut",
-		},
-	};
-
-	const controls1 = useAnimation();
-	const controls2 = useAnimation();
-	const controls3 = useAnimation();
-	const controls4 = useAnimation();
+	const controls = useAnimation();
 
 	useEffect(() => {
-		if (inView1) {
-			controls1.start(animateIn);
+		if (inView) {
+			controls.start({
+				opacity: 1,
+				transition: { duration: 1, ease: "easeInOut" },
+			});
 		}
-	}, [inView1, controls1, animateIn]);
+	}, [inView, controls]);
 
-	useEffect(() => {
-		let timeout;
-		if (inView2) {
-			timeout = setTimeout(() => {
-				controls2.start(animateIn);
-			}, 500);
-		}
-
-		return () => clearTimeout(timeout);
-	}, [inView2, controls2, animateIn]);
-
-	useEffect(() => {
-		let timeout;
-		if (inView3) {
-			timeout = setTimeout(() => {
-				controls3.start(animateIn);
-			}, 700);
-		}
-
-		return () => clearTimeout(timeout);
-	}, [inView3, controls3, animateIn]);
-
-	useEffect(() => {
-		let timeout;
-		if (inView4) {
-			timeout = setTimeout(() => {
-				controls4.start(animateIn);
-			}, 1000);
-		}
-
-		return () => clearTimeout(timeout);
-	}, [inView4, controls4, animateIn]);
 	return (
-		<Container className="my-5 py-5">
-			<Row className="justify-content-center text-center align-items-center">
-				<Col lg={3} className="mx-auto">
-					<motion.div
-						ref={ref1}
-						animate={controls1}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
-						<Card
-							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "48rem" }}
-						>
+		<motion.div ref={ref} animate={controls} initial={{ opacity: 0 }}>
+			<Container className="mt-5 pt-5">
+				<Row className="justify-content-center text-center align-items-center">
+					<Col lg={5} className="mx-auto my-2">
+						<Image
+							src="/assets/webagentur-nettetal-branding-seo4.png"
+							width={400}
+							height={400}
+							className="responsive-image"
+							alt="branding-kommunikationsstrategie-nettetal"
+							priority
+						/>
+					</Col>
+
+					<Col lg={5} className="mx-auto my-2">
+						<Card className="border-0 bg-transparent ">
 							<Card.Body>
-								<h1>1</h1>
-								<h2>{t("bran14")}</h2>
-								<Card.Text>{t("bran15")}</Card.Text>
+								<h1 className="text-start">
+									<AutoTranslate>
+										Markenkommunikation, die Vertrauen schafft
+									</AutoTranslate>
+								</h1>
+
+								<Card.Text className="text-start">
+									<AutoTranslate>
+										Erfolgreiches Branding bedeutet, Ihre Botschaft genau dort
+										zu senden, wo sich Ihre Zielgruppe bewegt – und zwar so,
+										dass sie hängen bleibt. Wir entwickeln eine klare,
+										authentische Kommunikationsstrategie, die exakt zu Ihrer
+										Markenidentität passt und Ihre Vision perfekt vermittelt.
+										Das Ergebnis: Steigende Interaktionen, ein wachsendes
+										Vertrauen und eine sichtbar stärkere Marktposition – online
+										und offline.
+									</AutoTranslate>
+								</Card.Text>
+
+								<Button className="btn-nav" href="#contact">
+									<span className="text-white">
+										<AutoTranslate>Jetzt Kontakt aufnehmen</AutoTranslate>
+									</span>
+								</Button>
 							</Card.Body>
 						</Card>
-					</motion.div>
-				</Col>
-				<Col lg={3} className="mx-auto">
-					<motion.div
-						ref={ref2}
-						animate={controls2}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
-						<Card
-							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "48rem" }}
-						>
-							<Card.Body>
-								<h1>2</h1>
-								<h2>{t("bran16")}</h2>
-								<Card.Text>{t("bran17")}</Card.Text>
-							</Card.Body>
-						</Card>
-					</motion.div>
-				</Col>
-				<Col lg={3} className="mx-auto">
-					<motion.div
-						ref={ref3}
-						animate={controls3}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
-						<Card
-							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "48rem" }}
-						>
-							<Card.Body>
-								<h1>3</h1>
-								<h2>{t("bran18")}</h2>
-								<Card.Text>{t("bran19")}</Card.Text>
-							</Card.Body>
-						</Card>
-					</motion.div>
-				</Col>
-				<Col lg={3} className="mx-auto">
-					<motion.div
-						ref={ref4}
-						animate={controls4}
-						initial={{ opacity: 0 }}
-						transition={{ delay: 1 }}
-					>
-						<Card
-							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "48rem" }}
-						>
-							<Card.Body>
-								<h1>4</h1>
-								<h2>{t("bran20")}</h2>
-								<Card.Text>{t("bran21")}</Card.Text>
-							</Card.Body>
-						</Card>
-					</motion.div>
-				</Col>
-			</Row>
-		</Container>
+					</Col>
+				</Row>
+			</Container>
+		</motion.div>
 	);
 }
 
-export default Brand5;
+export default Brand4;

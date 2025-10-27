@@ -2,120 +2,99 @@ import React, { useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
+import AutoTranslate from "@/components/AutoTranslate";
 
 function Social5() {
-	const [ref1, inView1] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref2, inView2] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref3, inView3] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref4, inView4] = useInView({ threshold: 0.5, triggerOnce: false });
+	const controls = [
+		useAnimation(),
+		useAnimation(),
+		useAnimation(),
+		useAnimation(),
+	];
+	const refs = [];
+	const inViews = [];
 
-	const controls1 = useAnimation();
-	const controls2 = useAnimation();
-	const controls3 = useAnimation();
-	const controls4 = useAnimation();
-
-	useEffect(() => {
-		if (inView1) controls1.start({ opacity: 1, transition: { duration: 1 } });
-		else controls1.start({ opacity: 0 });
-	}, [inView1, controls1]);
-
-	useEffect(() => {
-		if (inView2) controls2.start({ opacity: 1, transition: { duration: 1 } });
-		else controls2.start({ opacity: 0 });
-	}, [inView2, controls2]);
+	for (let i = 0; i < 4; i++) {
+		const [ref, inView] = useInView({
+			threshold: 0.3,
+			triggerOnce: true,
+		});
+		refs.push(ref);
+		inViews.push(inView);
+	}
 
 	useEffect(() => {
-		if (inView3) controls3.start({ opacity: 1, transition: { duration: 1 } });
-		else controls3.start({ opacity: 0 });
-	}, [inView3, controls3]);
+		inViews.forEach((view, i) => {
+			if (view) {
+				setTimeout(() => {
+					controls[i].start({
+						opacity: 1,
+						y: 0,
+						transition: { duration: 1, ease: "easeOut" },
+					});
+				}, i * 250);
+			}
+		});
+	}, [...inViews, controls]);
 
-	useEffect(() => {
-		if (inView4) controls4.start({ opacity: 1, transition: { duration: 1 } });
-		else controls4.start({ opacity: 0 });
-	}, [inView4, controls4]);
+	const steps = [
+		{
+			num: 1,
+			title: "Analyse & Strategieentwicklung",
+			text: `
+				Wir prüfen Ihre aktuelle Sichtbarkeit, analysieren Zielgruppe, 
+				Mitbewerber & Content-Potenziale. Danach entwickeln wir eine 
+				smarte Social Media Strategie, die perfekt auf Ihre Marke und 
+				Kunden in Nettetal zugeschnitten ist.`,
+		},
+		{
+			num: 2,
+			title: "Content Design & Redaktionsplan",
+			text: `
+				Wir erstellen kreative Posts, Videos und Stories, die Ihre Marke 
+				visuell stark präsentieren. Alles in einem strukturierten Postingplan,
+				damit Ihre Community regelmäßig mit Ihnen interagiert.`,
+		},
+		{
+			num: 3,
+			title: "Werbeanzeigen & Lead Generierung",
+			text: `
+				Mit gezielten Social Ads erreichen wir neue Zielgruppen, steigern 
+				Reichweite & Conversions. Jede Kampagne wird datenbasiert optimiert — 
+				damit kein Budget verschwendet wird.`,
+		},
+		{
+			num: 4,
+			title: "Reporting, Analyse & Optimierung",
+			text: `
+				Wir liefern klare, verständliche KPIs, Insights und 
+				konkrete Handlungsempfehlungen. So entwickeln wir Ihre Social Media 
+				Präsenz Monat für Monat weiter – nachhaltig und profitabel.`,
+		},
+	];
 
 	return (
 		<Container className="my-5 py-5" id="social-media-nettetal-process">
-			<Row className="justify-content-center text-center align-items-center">
-				<Col lg={3} className="mx-auto my-2">
-					<motion.div ref={ref1} animate={controls1} initial={{ opacity: 0 }}>
-						<Card
-							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "45rem" }}
+			<Row className="justify-content-center text-center align-items-start">
+				{steps.map((item, i) => (
+					<Col lg={3} className="mx-auto my-3" key={i}>
+						<motion.div
+							ref={refs[i]}
+							animate={controls[i]}
+							initial={{ opacity: 0, y: 50 }}
 						>
-							<Card.Body>
-								<h1>1</h1>
-								<h2>Analyse & Strategieentwicklung</h2>
-								<Card.Text>
-									Im ersten Schritt analysieren wir Ihre aktuelle Präsenz,
-									Zielgruppe und Mitbewerber. Auf dieser Grundlage entwickeln
-									wir eine individuelle Social-Media-Strategie, die zu Ihrer
-									Marke und Ihren Zielen passt.
+							<Card className="border-0 bg-transparent shadow-lg p-4 h-100">
+								<h1 className="mb-3">{item.num}</h1>
+								<h2 className="h5 text-start">
+									<AutoTranslate>{item.title}</AutoTranslate>
+								</h2>
+								<Card.Text className="text-start">
+									<AutoTranslate>{item.text}</AutoTranslate>
 								</Card.Text>
-							</Card.Body>
-						</Card>
-					</motion.div>
-				</Col>
-
-				<Col lg={3} className="mx-auto my-2">
-					<motion.div ref={ref2} animate={controls2} initial={{ opacity: 0 }}>
-						<Card
-							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "45rem" }}
-						>
-							<Card.Body>
-								<h1>2</h1>
-								<h2>Content Design & Redaktionsplan</h2>
-								<Card.Text>
-									Wir gestalten hochwertige, markenkonforme Inhalte – Bilder,
-									Videos und Texte – und erstellen einen durchdachten
-									Redaktionsplan. So bleiben Sie mit Ihrer Community regelmäßig
-									im Kontakt.
-								</Card.Text>
-							</Card.Body>
-						</Card>
-					</motion.div>
-				</Col>
-
-				<Col lg={3} className="mx-auto my-2">
-					<motion.div ref={ref3} animate={controls3} initial={{ opacity: 0 }}>
-						<Card
-							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "45rem" }}
-						>
-							<Card.Body>
-								<h1>3</h1>
-								<h2>Werbung & Kampagnenmanagement</h2>
-								<Card.Text>
-									Durch gezielte Anzeigenkampagnen auf Facebook, Instagram oder
-									LinkedIn steigern wir Ihre Reichweite und generieren neue
-									Leads. Wir optimieren Ihre Kampagnen laufend für bestmögliche
-									Ergebnisse.
-								</Card.Text>
-							</Card.Body>
-						</Card>
-					</motion.div>
-				</Col>
-
-				<Col lg={3} className="mx-auto my-2">
-					<motion.div ref={ref4} animate={controls4} initial={{ opacity: 0 }}>
-						<Card
-							className="border-0 bg-transparent shadow-lg"
-							style={{ height: "45rem" }}
-						>
-							<Card.Body>
-								<h1>4</h1>
-								<h2>Analyse, Reporting & Optimierung</h2>
-								<Card.Text>
-									Wir überwachen Ihre Performance, liefern detaillierte Reports
-									und passen Strategien laufend an. So stellen wir sicher, dass
-									Ihre Social-Media-Aktivitäten messbar zum Unternehmenserfolg
-									beitragen.
-								</Card.Text>
-							</Card.Body>
-						</Card>
-					</motion.div>
-				</Col>
+							</Card>
+						</motion.div>
+					</Col>
+				))}
 			</Row>
 		</Container>
 	);

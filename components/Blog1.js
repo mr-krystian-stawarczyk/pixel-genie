@@ -31,8 +31,9 @@ export default function Blog1() {
 	// ✅ dynamicznie tłumaczone paragrafy HTML
 	const paragraph = `
 <div>
-<p>Im Folgenden präsentieren wir Ihnen eine Auswahl unserer aktuellen Artikel, die wertvolle Einblicke in die Steigerung Ihrer Online Erfolge bieten.</p>
-<p>Unsere Artikel decken relevante Themen ab, darunter die Gestaltung von Webseiten und die Leistungen von Werbeagenturen.</p>
+<p>Unser Blog zeigt Ihnen, wie Sie Webdesign, SEO und Social Media gezielt für Ihr Unternehmen einsetzen.</p>
+<p>Wir erklären verständlich, wie Websites besser gefunden werden, wie Sie mehr Anfragen erhalten und wie moderne Technik (React, Next.js) Ihre Website schneller und erfolgreicher macht.</p>
+<p>Jede Woche erscheinen neue Artikel – optimiert für Unternehmen in NRW: Nettetal, Viersen, Krefeld, Düsseldorf und Mönchengladbach.</p>
 </div>
 `;
 
