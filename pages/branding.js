@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 const Brand1 = dynamic(() => import("@/components/Brand1"));
 const Brand2 = dynamic(() => import("@/components/Brand2"));
 const Brand3 = dynamic(() => import("@/components/Brand3"));
-const Brand4 = dynamic(() => import("@/components/Brand4"));
 const Brand5 = dynamic(() => import("@/components/Brand5"));
 const Brand6 = dynamic(() => import("@/components/Brand6"));
 const Brand7 = dynamic(() => import("@/components/Brand7"));
@@ -48,7 +47,6 @@ function branding() {
 			<Brand1 />
 			<Brand2 />
 			<Brand3 />
-			<Brand4 />
 
 			<Brand5 />
 			<Brand6 />

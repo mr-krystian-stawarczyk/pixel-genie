@@ -62,7 +62,7 @@ function About4() {
 				<h2 className="fw-bold display-6">
 					<AutoTranslate>Warum Pixel Genie?</AutoTranslate>
 				</h2>
-				<p className="text-muted mt-3">
+				<p className=" mt-3">
 					<AutoTranslate>
 						Wir vereinen Kreativität, Technik & Bauchgefühl — für Websites, die
 						Menschen überzeugen & bei Google vorne stehen.

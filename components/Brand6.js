@@ -56,7 +56,7 @@ export default function Brand6() {
 						</AutoTranslate>
 					</h2>
 
-					<p className="lead text-muted">
+					<p className="lead ">
 						<AutoTranslate>
 							Sichtbar werden. Vertrauen gewinnen. Konkurrenz überholen.
 						</AutoTranslate>
@@ -125,7 +125,7 @@ export default function Brand6() {
 								<h3 className="fw-bold text-success mb-2">
 									Professional Branding
 								</h3>
-								<p className="text-muted">
+								<p className="text-black">
 									<AutoTranslate>
 										Sichtbarkeit + Performance – die perfekte Mischung
 									</AutoTranslate>
@@ -205,7 +205,7 @@ export default function Brand6() {
 						<AutoTranslate>✨ Erweiterungen & Add-ons</AutoTranslate>
 					</h3>
 
-					<p className="text-muted">
+					<p className="">
 						<AutoTranslate>
 							Flexibel kombinierbar – mehr Branding-Power für Ihre Marke
 						</AutoTranslate>
@@ -225,7 +225,7 @@ export default function Brand6() {
 					<Col md={3} sm={6} key={i}>
 						<Card className="border-0 shadow-sm p-3">
 							<h5 className="fw-bold text-black">{label}</h5>
-							<p className="text-muted small">
+							<p className="text-black small">
 								<b>{price}</b>
 							</p>
 						</Card>
@@ -235,7 +235,7 @@ export default function Brand6() {
 
 			<Row className="justify-content-center text-center mt-5">
 				<Col lg={8}>
-					<p className="text-muted">
+					<p className="">
 						<AutoTranslate>
 							Alle Preise zzgl. MwSt. – fair, transparent & mit starker Wirkung
 						</AutoTranslate>

@@ -1,187 +1,186 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { Container, Accordion, Row, Col } from "react-bootstrap";
 import AutoTranslate from "@/components/AutoTranslate";
+import Head from "next/head";
 
-function Brand7() {
+const Brand7 = () => {
+	const siteUrl = "https://pixel-genie.de/branding";
+
+	const faqSchema = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: [
+			{
+				"@type": "Question",
+				name: "Branding Agentur Nettetal – Was macht gutes Branding aus?",
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: "Branding bedeutet, wie Ihre Marke wahrgenommen wird – Emotionen, Vertrauen und Wiedererkennung. Pixel-Genie gestaltet Marken, die im Kopf bleiben und Kunden überzeugen.",
+				},
+			},
+		],
+	};
+
 	return (
-		<Container className="mb-5 pb-5" id="branding-nettetal-faq">
-			<Row className="justify-content-center align-items-center text-center">
-				<Col lg={5} className="py-4">
-					<Image
-						src="/assets/webentwicklung-nettetal-fragen1.png"
-						width={300}
-						height={300}
-						alt="Branding Agentur Nettetal FAQ"
-						priority
-					/>
-					<h2 className="mt-3">
-						<AutoTranslate>
-							Häufige Fragen rund um Branding in Nettetal – verständlich erklärt
-							✅
-						</AutoTranslate>
-					</h2>
-				</Col>
-			</Row>
+		<>
+			<Head>
+				<title>
+					Branding Agentur Nettetal NRW | Markenaufbau & Corporate Identity
+				</title>
+				<meta
+					name="description"
+					content="Branding & Markendesign in Nettetal, Viersen & NRW. Wir gestalten starke Marken mit Logo, Corporate Design & strategischem Marketing – für echte Wiedererkennung & Kundenvertrauen."
+				/>
+				<link rel="canonical" href={siteUrl} />
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+				/>
+			</Head>
 
-			<Row className="justify-content-center">
-				<Col lg={9}>
-					<Accordion className="shadow-lg">
-						{/* 1 */}
-						<Accordion.Item eventKey="0">
-							<Accordion.Header>
-								<AutoTranslate>
-									Was bedeutet Branding eigentlich genau?
-								</AutoTranslate>
-							</Accordion.Header>
-							<Accordion.Body>
-								<AutoTranslate>
+			<Container className="mb-5 pb-5" id="branding-nrw-faq">
+				<Row className="justify-content-center align-items-center text-center">
+					<Col lg={6} className="py-4">
+						<Image
+							src="/assets/pixel-genie-webseiten-seo-nettetal-logo.png"
+							width={260}
+							height={260}
+							alt="Pixel-Genie Branding Agentur in Nettetal – Logo & Corporate Design"
+							priority
+						/>
+						<h2 className="fw-bold mt-3">
+							Branding FAQ NRW – starke Marken mit Wiedererkennung 💡
+						</h2>
+						<p className="">
+							Für Unternehmen in Nettetal, Viersen, Krefeld & ganz NRW, die mehr
+							als nur „ein Logo“ wollen.
+						</p>
+					</Col>
+				</Row>
+
+				<Row className="justify-content-center">
+					<Col lg={10}>
+						<Accordion className="shadow-lg">
+							<Accordion.Item eventKey="0">
+								<Accordion.Header>
+									Was bedeutet Branding genau?
+								</Accordion.Header>
+								<Accordion.Body>
 									Branding ist das Gefühl, das Menschen mit Ihrer Marke
-									verbinden. Es ist nicht nur ein Logo oder Farben – sondern der
-									komplette Eindruck, den Ihr Unternehmen hinterlässt. Gutes
-									Branding sorgt dafür, dass sich Kunden erinnern: „Aha, diese
-									Firma kann ich vertrauen.“
-								</AutoTranslate>
-							</Accordion.Body>
-						</Accordion.Item>
+									verbinden — nicht das Logo an sich, sondern die Mission, die
+									Story, die Haltung dahinter. Eine Marke muss Emotionen wecken.
+									Wir helfen Ihnen, eine Identität zu schaffen, die bleibt.
+								</Accordion.Body>
+							</Accordion.Item>
 
-						{/* 2 */}
-						<Accordion.Item eventKey="1">
-							<Accordion.Header>
-								<AutoTranslate>
-									Warum spielt Logodesign dabei eine so große Rolle?
-								</AutoTranslate>
-							</Accordion.Header>
-							<Accordion.Body>
-								<AutoTranslate>
-									Weil das Logo das Gesicht Ihrer Marke ist! Es entscheidet in
-									Sekunden darüber, ob jemand Sie professionell wahrnimmt oder
-									weiter scrollt. Ein starkes Logo repräsentiert Ihre Identität
-									– klar, einprägsam und visuell attraktiv.
-								</AutoTranslate>
-							</Accordion.Body>
-						</Accordion.Item>
+							<Accordion.Item eventKey="1">
+								<Accordion.Header>
+									Warum ist Logodesign für Marken so wichtig?
+								</Accordion.Header>
+								<Accordion.Body>
+									Weil es der erste Eindruck Ihrer Firma ist. Ein
+									professionelles Logo von{" "}
+									<Link href="/branding/">Pixel-Genie</Link> schafft Vertrauen,
+									Wiedererkennung und spricht Ihre Zielgruppe gezielt an.
+								</Accordion.Body>
+							</Accordion.Item>
 
-						{/* 3 */}
-						<Accordion.Item eventKey="2">
-							<Accordion.Header>
-								<AutoTranslate>
-									Wie unterstützt SEO mein Branding?
-								</AutoTranslate>
-							</Accordion.Header>
-							<Accordion.Body>
-								<AutoTranslate>
-									Wenn Ihre Marke online nicht gefunden wird, gibt es sie
-									(gefühlt) gar nicht. SEO sorgt dafür, dass Ihre Website auf
-									relevanten Suchbegriffen sichtbar ist – und so Vertrauen und
-									Bekanntheit automatisch aufbaut. Branding + SEO =
-									Power-Kombination 💥
-								</AutoTranslate>
-							</Accordion.Body>
-						</Accordion.Item>
+							<Accordion.Item eventKey="2">
+								<Accordion.Header>
+									Wie beeinflusst SEO mein Branding?
+								</Accordion.Header>
+								<Accordion.Body>
+									Eine starke Marke muss sichtbar sein. Durch{" "}
+									<Link href="/suchmaschinenoptimierung/">SEO NRW</Link> sorgen
+									wir dafür, dass Kunden genau in Ihrer Region Marken wie Ihre
+									finden und sich erinnern.
+								</Accordion.Body>
+							</Accordion.Item>
 
-						{/* 4 */}
-						<Accordion.Item eventKey="3">
-							<Accordion.Header>
-								<AutoTranslate>
-									Wie mache ich meine Marke bekannt?
-								</AutoTranslate>
-							</Accordion.Header>
-							<Accordion.Body>
-								<AutoTranslate>
-									Mit einem konsistenten Auftritt auf Website, Social Media und
-									in Werbeanzeigen. Erzählen Sie Ihre Story – was macht Sie
-									einzigartig? Menschen kaufen nicht nur Produkte… sie kaufen
-									Marken, denen sie sich verbunden fühlen.
-								</AutoTranslate>
-							</Accordion.Body>
-						</Accordion.Item>
+							<Accordion.Item eventKey="3">
+								<Accordion.Header>
+									Wie wird meine Marke bekannt?
+								</Accordion.Header>
+								<Accordion.Body>
+									Klare Markenbotschaften + Social Content +
+									Google-Sichtbarkeit.{" "}
+									<Link href="/social-media/">
+										Social Media Marketing stärkt Markenloyalität
+									</Link>{" "}
+									und macht Ihre Story sichtbar.
+								</Accordion.Body>
+							</Accordion.Item>
 
-						{/* 5 */}
-						<Accordion.Item eventKey="4">
-							<Accordion.Header>
-								<AutoTranslate>Was ist Corporate Identity?</AutoTranslate>
-							</Accordion.Header>
-							<Accordion.Body>
-								<AutoTranslate>
-									Corporate Identity bedeutet: Überall gleich aussehen & gleich
-									klingen. Dadurch entsteht Wiedererkennung. Und damit
-									Sicherheit für Kunden. Wenn alles chaotisch ist – verlieren
-									Menschen das Vertrauen.
-								</AutoTranslate>
-							</Accordion.Body>
-						</Accordion.Item>
+							<Accordion.Item eventKey="4">
+								<Accordion.Header>
+									Was gehört zur Corporate Identity?
+								</Accordion.Header>
+								<Accordion.Body>
+									Farben, Schrift, Tonalität, Bildsprache — alles, was
+									Unternehmen unverwechselbar macht. Wir entwickeln Brand-Design
+									für **starke Wiedererkennung** auf Website & Social Media.
+								</Accordion.Body>
+							</Accordion.Item>
 
-						{/* 6 */}
-						<Accordion.Item eventKey="5">
-							<Accordion.Header>
-								<AutoTranslate>
-									Wie lange dauert es, eine Marke aufzubauen?
-								</AutoTranslate>
-							</Accordion.Header>
-							<Accordion.Body>
-								<AutoTranslate>
-									Die Basis entsteht in wenigen Wochen. Ein starker Brand wächst
-									mit der Zeit – durch Marketing, Sichtbarkeit und
-									Kundenerlebnisse. Wer langfristig investiert, gewinnt
-									langfristig Marktanteile.
-								</AutoTranslate>
-							</Accordion.Body>
-						</Accordion.Item>
+							<Accordion.Item eventKey="5">
+								<Accordion.Header>
+									Wie schnell kann ich ein Branding starten?
+								</Accordion.Header>
+								<Accordion.Body>
+									Heute. Der erste Schritt:{" "}
+									<Link href="/kontakt/">
+										Kostenlose Marken-Beratung sichern
+									</Link>{" "}
+									🚀 — wir klären Positionierung, Zielgruppe und
+									Design-Richtung.
+								</Accordion.Body>
+							</Accordion.Item>
 
-						{/* 7 */}
-						<Accordion.Item eventKey="6">
-							<Accordion.Header>
-								<AutoTranslate>
-									Wie hebe ich mich wirklich von Mitbewerbern ab?
-								</AutoTranslate>
-							</Accordion.Header>
-							<Accordion.Body>
-								<AutoTranslate>
-									Mit einer klaren Positionierung. Was machen Sie besser? Was
-									macht Sie menschlich? Was bekommt man nur bei Ihnen? Je
-									deutlicher Sie es kommunizieren – desto stärker der Wunsch,
-									bei Ihnen zu kaufen.
-								</AutoTranslate>
-							</Accordion.Body>
-						</Accordion.Item>
+							<Accordion.Item eventKey="6">
+								<Accordion.Header>
+									Welche Branchen profitieren besonders?
+								</Accordion.Header>
+								<Accordion.Body>
+									Handwerk ✅ Dienstleistungen ✅ Gesundheitswesen ✅
+									Gastronomie ✅ E-Commerce ✅ — immer, wenn Mensch & Vertrauen
+									entscheiden.
+								</Accordion.Body>
+							</Accordion.Item>
 
-						{/* 8 */}
-						<Accordion.Item eventKey="7">
-							<Accordion.Header>
-								<AutoTranslate>
-									Spielen Bewertungen eine Rolle für Branding?
-								</AutoTranslate>
-							</Accordion.Header>
-							<Accordion.Body>
-								<AutoTranslate>
-									Absolut! Google Reviews & Social Proof überzeugen oft mehr als
-									jede Werbeanzeige. Positive Erfahrungen Ihrer Kunden machen
-									Ihre Marke glaubwürdig und führen zu mehr Anfragen.
-								</AutoTranslate>
-							</Accordion.Body>
-						</Accordion.Item>
+							<Accordion.Item eventKey="7">
+								<Accordion.Header>Warum Pixel-Genie?</Accordion.Header>
+								<Accordion.Body>
+									Wir bringen Design + Technik + Marketing zusammen:{" "}
+									<Link href="/webdesign/">Webdesign</Link>,{" "}
+									<Link href="/logo-design/">Logo-Design</Link>,{" "}
+									<Link href="/brand-story/">Brand Story</Link>. Alles, was eine
+									Marke braucht — aus einer Hand.
+								</Accordion.Body>
+							</Accordion.Item>
+						</Accordion>
+					</Col>
+				</Row>
 
-						{/* 9 */}
-						<Accordion.Item eventKey="8">
-							<Accordion.Header>
-								<AutoTranslate>
-									Ist eine mobile optimierte Marke wichtig?
-								</AutoTranslate>
-							</Accordion.Header>
-							<Accordion.Body>
-								<AutoTranslate>
-									Über 70% aller Nutzer sind mobil unterwegs! Wenn Ihre Marke
-									dort nicht glänzt, wirkt sie unprofessionell. Wir sorgen
-									dafür, dass Sie auf jedem Gerät hervorragend aussehen.
-								</AutoTranslate>
-							</Accordion.Body>
-						</Accordion.Item>
-					</Accordion>
-				</Col>
-			</Row>
-		</Container>
+				{/* ✅ Abschluss: Mini CTA + lokalne wzmocnienie */}
+				<Row className="text-center mt-5">
+					<Col lg={9}>
+						<p className="text-muted">
+							Starke Marken entstehen nicht zufällig — sie werden gemacht.
+							Pixel-Genie unterstützt Unternehmen in **Nettetal, Viersen,
+							Krefeld, Mönchengladbach & ganz NRW** beim Markenaufbau.
+						</p>
+						<p>
+							Starten Sie heute:{" "}
+							<Link href="/kontakt/">Branding Beratung sichern →</Link>
+						</p>
+					</Col>
+				</Row>
+			</Container>
+		</>
 	);
-}
+};
 
 export default Brand7;

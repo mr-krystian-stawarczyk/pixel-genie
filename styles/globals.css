@@ -1493,3 +1493,14 @@ details p {
 .premium-desc-wrapper * {
 	color: white !important;
 }
+.accordion-button {
+	transition:
+		background 0.3s ease,
+		transform 0.2s ease;
+	font-weight: 600;
+}
+
+.accordion-button:hover {
+	background: rgba(255, 136, 0, 0.1);
+	transform: translateX(4px);
+}

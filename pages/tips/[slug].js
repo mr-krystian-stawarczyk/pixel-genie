@@ -1,17 +1,16 @@
-// /pages/tips/[slug].js
+"use client";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import blogPosts from "@/data/blogPosts";
 import ShareButtons from "@/components/ShareButtons";
-import { gaEvent } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 import ShareBarSticky from "@/components/ShareBarSticky";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
 import AutoTranslate from "@/components/AutoTranslate";
 
-// NEW: upgrades
+// Upgrades
 import TableOfContents from "@/components/TableOfContents";
 import AnchorsInjector from "@/components/AnchorsInjector";
 import { breadcrumbJsonLd, articleJsonLd, faqJsonLd } from "@/lib/seoSchema";
@@ -58,62 +57,99 @@ export default function BlogPostPage({ article, next, prev, related }) {
 
 	const pageUrl = `${SITE_ORIGIN}/tips/${article.slug}/`;
 	const ogImage = `${SITE_ORIGIN}${article.imgSrc}`;
-	const ogTitle = `${article.title} | Pixel-Genie Blog – Webdesign, SEO & Conversion Tipps`;
+	const ogTitle = `${article.title} | Pixel-Genie Blog – Webdesign, SEO & Online Sichtbarkeit in NRW`;
 	const ogDescription =
 		article.description ||
 		(Array.isArray(article.details) ? article.details[0] : "");
 
-	const handleCta = () => gaEvent("blog_cta_click", { slug: article.slug });
-
-	// ✅ FULL dynamic article HTML block for translation
 	const articleHtml = `
-		${article.description ? `<p class="lead">${article.description}</p>` : ""}
-		${article.details.map((p) => `<p>${p}</p>`).join("")}
+    ${article.description ? `<p class="lead">${article.description}</p>` : ""}
+    ${article.details.map((p) => `<p>${p}</p>`).join("")}
 
-		${
+    ${
 			article.keypoints?.length
 				? `
-			<section>
-				<h3>🔑 Wichtigste Erkenntnisse</h3>
-				<ul>${article.keypoints.map((k) => `<li>${k}</li>`).join("")}</ul>
-			</section>`
+        <section>
+          <h3>🔑 Wichtigste Erkenntnisse</h3>
+          <ul>${article.keypoints.map((k) => `<li>${k}</li>`).join("")}</ul>
+        </section>`
 				: ""
 		}
 
-		${
+    ${
 			article.faq?.length
 				? `
-			<section>
-				<h3>❓ Häufige Fragen zum Thema</h3>
-				${article.faq
-					.map(
-						(f) => `
-				<details>
-					<summary>${f.q}</summary>
-					<p>${f.a}</p>
-				</details>`
-					)
-					.join("")}
-			</section>`
+        <section>
+          <h3>❓ Häufige Fragen zum Thema</h3>
+          ${article.faq
+						.map(
+							(f) => `
+          <details>
+            <summary>${f.q}</summary>
+            <p>${f.a}</p>
+          </details>`
+						)
+						.join("")}
+        </section>`
 				: ""
 		}
-	`;
+  `;
 
-	// JSON-LD objects
+	// ✅ JSON-LD with E-E-A-T
 	const breadcrumbLd = breadcrumbJsonLd({
 		siteOrigin: SITE_ORIGIN,
 		articleTitle: article.title,
 		pageUrl,
 	});
 
-	const articleLd = articleJsonLd({
+	const articleLd = {
+		"@context": "https://schema.org",
+		"@type": "Article",
 		headline: ogTitle,
+		description: ogDescription,
 		datePublished: article.date,
+		dateModified: new Date().toISOString(),
 		image: ogImage,
-		pageUrl,
-	});
+		mainEntityOfPage: pageUrl,
+		author: {
+			"@type": "Organization",
+			name: "Pixel-Genie Webagentur Nettetal",
+			url: SITE_ORIGIN,
+		},
+		publisher: {
+			"@type": "Organization",
+			name: "Pixel-Genie",
+			logo: {
+				"@type": "ImageObject",
+				url: `${SITE_ORIGIN}/assets/pixel-genie-webseiten-seo-nettetal-logo.png`,
+				width: 512,
+				height: 512,
+			},
+		},
+	};
 
 	const faqLd = faqJsonLd(article.faq);
+
+	const localBusinessLd = {
+		"@context": "https://schema.org",
+		"@type": "LocalBusiness",
+		name: "Pixel-Genie Webagentur Nettetal",
+		url: SITE_ORIGIN,
+		image: `${SITE_ORIGIN}/assets/pixel-genie-webseiten-seo-nettetal-logo.png`,
+		address: {
+			"@type": "PostalAddress",
+			addressLocality: "Nettetal",
+			addressRegion: "NRW",
+			addressCountry: "DE",
+		},
+		areaServed: [
+			"Nettetal",
+			"Viersen",
+			"Krefeld",
+			"Mönchengladbach",
+			"Düsseldorf",
+		],
+	};
 
 	return (
 		<>
@@ -121,30 +157,31 @@ export default function BlogPostPage({ article, next, prev, related }) {
 				<title>{ogTitle}</title>
 				<meta name="description" content={ogDescription} />
 				<link rel="canonical" href={pageUrl} />
+
 				<meta property="og:title" content={ogTitle} />
 				<meta property="og:description" content={ogDescription} />
 				<meta property="og:image" content={ogImage} />
 
-				{/* JSON-LD: Breadcrumbs */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
 				/>
-				{/* JSON-LD: Article */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
 				/>
-				{/* JSON-LD: FAQ (only if present) */}
 				{faqLd && (
 					<script
 						type="application/ld+json"
 						dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
 					/>
 				)}
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }}
+				/>
 			</Head>
 
-			{/* Sticky share bar + sticky CTA mobile */}
 			<ShareBarSticky
 				isMobile={isMobile}
 				url={pageUrl}
@@ -165,7 +202,6 @@ export default function BlogPostPage({ article, next, prev, related }) {
 								style={{
 									borderRadius: "16px",
 									objectFit: "cover",
-									objectPosition: "center",
 								}}
 							/>
 
@@ -183,10 +219,8 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									· ⏱️ {article.readingTime}
 								</p>
 
-								{/* ✅ TOC nad treścią */}
 								<TableOfContents html={articleHtml} />
 
-								{/* ✅ Render artykułu (po tłumaczeniu) + wstrzyknięcie anchorów */}
 								<div id={`article-${article.slug}`}>
 									<AutoTranslateArticle
 										html={articleHtml}
@@ -207,50 +241,42 @@ export default function BlogPostPage({ article, next, prev, related }) {
 									/>
 								</div>
 
-								<section className="mt-5 p-4 bg-transparent rounded shadow-sm">
-									<h4 className="fw-bold mb-2">Über den Autor</h4>
+								{/* ✅ BUSINESS CTA BLOCK */}
+								<section className="my-5 p-4 bg-body-black rounded-3 shadow-sm">
+									<h3 className="fw-bold mb-2">
+										Bessere Sichtbarkeit? Mehr Kunden in NRW?
+									</h3>
 									<p>
-										Dieser Artikel wurde verfasst von{" "}
-										<strong>Pixel-Genie Webagentur Nettetal</strong>.
+										Wir erstellen Websites, die Anfragen bringen – für
+										Unternehmen aus Nettetal, Krefeld, Viersen, Mönchengladbach
+										& Düsseldorf.
+									</p>
+									<p>
+										Mehr erfahren: <Link href="/webdesign/">Webdesign NRW</Link>{" "}
+										· <Link href="/seo/">SEO Beratung</Link>
 									</p>
 								</section>
 
-								<div className="d-flex flex-wrap gap-3 mt-5 justify-content-center">
-									<Link
-										href="#kontakt"
-										className="btn-premium-footer text-white fw-bold"
-										onClick={handleCta}
-									>
-										<p className="text-white">
-											🚀 Kostenlose Website-Analyse sichern
-										</p>
-									</Link>
-									<Link href="/webdesignblog" className="btn-premium-footer">
-										<p className="text-white"> ← Zurück zum Blog</p>
-									</Link>
-								</div>
+								<section className="mt-5 p-4 rounded shadow-sm">
+									<h4 className="fw-bold mb-2">Über den Autor</h4>
+									<p>
+										Verfasst von{" "}
+										<strong>Pixel-Genie Webagentur Nettetal</strong> – Fokus auf
+										Webdesign, SEO und Social Media Marketing für lokale
+										Unternehmen in Nordrhein-Westfalen.
+									</p>
+								</section>
 
 								<hr className="my-5" />
 
 								<div className="d-flex justify-content-between mt-5">
 									{prev ? (
-										<Link
-											href={`/tips/${prev.slug}/`}
-											className="fw-semibold text-blue"
-										>
-											← {prev.title}
-										</Link>
+										<Link href={`/tips/${prev.slug}/`}>← {prev.title}</Link>
 									) : (
 										<span />
 									)}
-
 									{next && (
-										<Link
-											href={`/tips/${next.slug}/`}
-											className="fw-semibold text-blue"
-										>
-											{next.title} →
-										</Link>
+										<Link href={`/tips/${next.slug}/`}>{next.title} →</Link>
 									)}
 								</div>
 
@@ -262,10 +288,7 @@ export default function BlogPostPage({ article, next, prev, related }) {
 										<Row>
 											{related.map((r) => (
 												<Col md={4} key={r.slug} className="mb-3 hover">
-													<Link
-														href={`/tips/${r.slug}/`}
-														className="text-decoration-none"
-													>
+													<Link href={`/tips/${r.slug}/`}>
 														<Card className="bg-transparent border-0 shadow-sm h-100">
 															<Image
 																src={r.imgSrc}

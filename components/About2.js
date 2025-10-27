@@ -41,13 +41,13 @@ function About2() {
 
 	return (
 		<Container className="overflow-hidden my-5">
-			<Row className="text-center mb-4">
+			<Row className="text-center my-4">
 				<h2 className="fw-bold display-6">
 					<AutoTranslate>
 						Unsere Reise – und wie sie Ihnen heute hilft
 					</AutoTranslate>
 				</h2>
-				<p className="text-muted px-4">
+				<p className="px-4">
 					<AutoTranslate>
 						Jede Etappe hat uns besser gemacht – und diese Erfahrung bringen wir
 						in jedes Webprojekt ein. Konstantes Lernen, klare Werte und echte

@@ -1,77 +1,104 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { Container, Accordion, Row, Col } from "react-bootstrap";
-import AutoTranslate from "@/components/AutoTranslate";
 import Head from "next/head";
 
+// ✅ HUMAN, SALES-FOCUSED, SEO COPY
 const FAQ = [
 	{
 		q: "Wie läuft die Erstellung einer Website bei Pixel Genie ab?",
-		a: "Wir arbeiten transparent in 4 klaren Schritten: Analyse & Beratung → Design & Entwicklung → Inhalte & SEO → Testen & Launch. Der Prozess ist strukturiert, ohne Stress, mit regelmäßigen Abstimmungen.",
+		a: `
+Wir starten immer persönlich – <strong>kein Formular, kein anonymer Vertrieb</strong>.<br/><br/>
+So läuft's Schritt für Schritt:<br/>
+1️⃣ Wir hören zu: Ziele, Branche, Wettbewerb<br/>
+2️⃣ Individuelles Design – abgestimmt auf Ihre Marke<br/>
+3️⃣ Inhalte, die verkaufen (SEO & Psychologie 💡)<br/>
+4️⃣ Launch + Google Setup + Tracking<br/><br/>
+👉 Transparente Kommunikation in jeder Phase – <strong>Zero Stress</strong>.
+`,
 	},
 	{
-		q: "Wie lange dauert es, eine Website zu erstellen?",
-		a: "Eine One-Page Website benötigt ca. 10–20 Tage, eine Business Website 3–6 Wochen. Bei größeren Projekten stimmen wir einen realistischen Zeitplan gemeinsam ab.",
+		q: "Was kostet eine Website für mein Unternehmen?",
+		a: `
+Wir bieten Webdesign für <strong>echte Unternehmen in NRW</strong> – keine Baukasten-Spielzeugseiten.<br/><br/>
+Preisrahmen:<br/>
+• <strong>Ab 499 €</strong> – für klare One-Pager<br/>
+• <strong>799–1500 €</strong> – für Business Websites mit SEO<br/><br/>
+➡ Jede Website ist ein <strong>Verkaufswerkzeug</strong>, kein Online-Flyer.<br/>
+Mehr dazu auf unserer <a href="/webdesign/" class="text-decoration-none">Webdesign-Seite</a>.
+`,
 	},
 	{
-		q: "Was kostet eine professionelle Website in NRW?",
-		a: "Unsere Preise starten bei 499 € für eine moderne One-Page Website. Business Websites ab 899 €, Premium-Projekte ab 1499 €. Alle Preise sind fair kalkuliert und transparent.",
+		q: "Wird meine Website bei Google sichtbar sein?",
+		a: `
+🔥 Oh ja. Wir bauen Websites so, wie Google sie liebt:<br/>
+• <strong>PageSpeed 90+</strong><br/>
+• saubere Struktur & Schema.org<br/>
+• SEO-Texte statt Lorem Ipsum<br/>
+• Lokale Sichtbarkeit in NRW (Maps + Keywords)<br/><br/>
+✨ Ergebnis: Mehr Anfragen. Weniger Zufall.<br/>
+Mehr Infos auf <a href="/seo/" class="text-decoration-none">SEO NRW</a>.
+`,
 	},
 	{
-		q: "Ist die Website für mobile Geräte optimiert?",
-		a: "Ja – jedes Projekt ist 100 % responsive. Mobilnutzer sind inzwischen über 65 % aller Besucher in NRW.",
+		q: "Erstellen Sie Websites auch für Handwerk, Dienstleister & lokale Unternehmen?",
+		a: `
+✅ Genau für diese Zielgruppen sind wir da:<br/>
+• Handwerk & Bau<br/>
+• Immobilien, Beratung & Services<br/>
+• Gastronomie & Gesundheit<br/><br/>
+Wir kennen den NRW-Markt – vom <a href="/webdesign/viersen/">Kreis Viersen</a> bis <a href="/webdesign/duesseldorf/">Düsseldorf</a>.
+`,
 	},
 	{
-		q: "Wird meine Website bei Google gefunden?",
-		a: "Ja. Wir erstellen Websites mit gezielter OnPage-SEO: schnelle Ladezeiten, strukturierte Daten, Keyword-Optimierung und Verbindung zu Google Analytics & Search Console.",
-	},
-	{
-		q: "Betreuen Sie Unternehmen in ganz NRW?",
-		a: "Ja – besonders in Nettetal, Viersen, Krefeld, Düsseldorf, Mönchengladbach, Köln, Duisburg, Essen, Dortmund und ganz Nordrhein-Westfalen.",
-	},
-	{
-		q: "Können Sie auch Texte erstellen?",
-		a: "Ja – SEO-Texte, Leistungsbeschreibungen, Blogartikel und Conversion Texte auf Wunsch inkludiert.",
+		q: "Wie lange dauert es, bis die neue Website online ist?",
+		a: `
+Schneller als Sie denken:<br/>
+• Basic Business Website: <strong>7–12 Tage</strong><br/>
+• Größere Projekte: <strong>3–5 Wochen</strong><br/><br/>
+✅ Wir arbeiten modern & agil → keine Agentur-Lahmheit.
+`,
 	},
 	{
 		q: "Kann ich später selbst Inhalte ändern?",
-		a: "Natürlich! Wir bieten Websites mit CMS (z. B. Headless, Sanity). So bleiben Sie unabhängig und flexibel.",
+		a: `
+Ja – Sie bleiben unabhängig.<br/><br/>
+Wir setzen auf <strong>CMS & Headless Technik</strong>:<br/>
+Text ändern? <strong>2 Klicks</strong>.<br/>
+Neues Projekt einfügen? <strong>10 Sekunden</strong>.<br/><br/>
+Sie haben die Kontrolle – kein Abozwang.
+`,
 	},
 	{
-		q: "Wie sieht es mit Hosting und Wartung aus?",
-		a: "Wir bieten Hosting & technische Pflege optional als Komplettpaket an – damit Ihre Website sicher und immer verfügbar bleibt.",
+		q: "Was macht Pixel Genie anders als andere Agenturen?",
+		a: `
+🚀 Wir bauen keine „schöne Websites“. Wir bauen <strong>Websites, die verkaufen</strong>.<br/><br/>
+• Performance statt Spielereien<br/>
+• Messbare Ergebnisse statt Versprechen<br/>
+• Direkte Kommunikation statt Ticketsystem<br/><br/>
+Unsere Kunden sagen:<br/>
+„Endlich eine Agentur, die abliefert.“ ✅<br/>
+<small>(Referenzen auf Anfrage)</small>
+`,
 	},
 	{
-		q: "Bieten Sie auch moderne Technologien an?",
-		a: "Ja – wir arbeiten mit Next.js, React, Headless CMS, Lighthouse-Optimierung, DSGVO Tools, Performance-Boost und mehr.",
-	},
-	{
-		q: "Kann die Website später erweitert werden?",
-		a: "Ja, wir planen skalierbar: Online-Shop, Blog, Termin-System, Landingpages – jederzeit erweiterbar.",
-	},
-	{
-		q: "Welche Branchen unterstützen Sie im Webdesign?",
-		a: "Handwerk, Immobilien, Gastronomie, Industrie, Dienstleister, Gesundheit, E-Commerce – mit Erfahrung in lokalen Märkten in NRW.",
-	},
-	{
-		q: "Erstellen Sie auch Online Shops?",
-		a: "Ja – von kleinen Shops bis zu skalierbaren E-Commerce Lösungen, technisch stabil und SEO-stark.",
-	},
-	{
-		q: "Wie übernehme ich die Website nach dem Launch?",
-		a: "Nach dem Go-Live erhalten Sie Zugangsdaten, Struktur-Guide und auf Wunsch eine kurze Schulung.",
-	},
-	{
-		q: "Sind DSGVO-Anforderungen bereits berücksichtigt?",
-		a: "Ja – Cookie-Banner, Datenschutzerklärung, Impressum, Consent Tools, Hosting in der EU.",
+		q: "Was macht eine Website erfolgreich?",
+		a: `
+💡 Erfolgreiche Websites sind wie gute Verkäufer:<br/>
+• Klarer Nutzen → “Warum Sie?”<br/>
+• Beweise → Vertrauen & Social Proof<br/>
+• SEO-Text mit Conversion Fokus<br/>
+• Geschwindigkeit & Nutzerführung<br/><br/>
+➡ Das ist unsere DNA bei <a href="/webdesign/" class="text-decoration-none">Pixel Genie Webdesign</a>.
+`,
 	},
 ];
 
-const WebFAQ = () => {
+export default function WebFAQ() {
 	const siteUrl = "https://pixel-genie.de/webdesign";
 
-	// ✅ JSON-LD AUTOMATYCZNIE Z FAQs
 	const faqSchema = {
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
@@ -85,12 +112,10 @@ const WebFAQ = () => {
 	return (
 		<>
 			<Head>
-				<title>
-					Webdesign FAQ NRW | Webseiten erstellen lassen | Pixel Genie
-				</title>
+				<title>Webseiten erstellen in NRW – FAQ | Pixel Genie</title>
 				<meta
 					name="description"
-					content="Webdesign und Webseiten Erstellung in NRW – klare Antworten: Kosten, Dauer, SEO, mobile Optimierung, Google Sichtbarkeit. Pixel Genie erstellt leistungsstarke Websites für Unternehmen in Nettetal, Düsseldorf, Viersen, Krefeld & ganz NRW."
+					content="Webdesign FAQ: Erstellung, Kosten, SEO, Dauer & Ergebnisse. Ehrliche Antworten & echte Ergebnisse. Pixel Genie – Websites, die verkaufen. NRW."
 				/>
 				<link rel="canonical" href={siteUrl} />
 				<script
@@ -99,57 +124,38 @@ const WebFAQ = () => {
 				/>
 			</Head>
 
-			<Container className="my-5 py-5" id="webdesign-nrw-faq">
-				{/* ✅ HERO SEO */}
-				<Row className="text-center mb-4">
+			<Container id="webseite-erstellen-faq" className="my-5 py-5">
+				<Row className="text-center mb-5">
 					<Col lg={8} className="mx-auto">
 						<Image
-							src="/assets/webentwicklung-nettetal-fragen1.png"
-							width={260}
-							height={260}
-							alt="Webdesign Agentur NRW Pixel Genie"
+							src="/assets/pixel-genie-webseiten-seo-nettetal-logo.png"
+							width={230}
+							height={230}
+							alt="Pixel-Genie Webagentur Nettetal Logo – Webseiten erstellen NRW"
 							priority
 						/>
-						<h1 className="fw-bold mt-3">
-							Webseiten erstellen in NRW – Häufige Fragen (FAQ)
-						</h1>
-						<p>
-							Klare, strukturierte Antworten für Unternehmen, die eine moderne
-							Website planen – mit Fokus auf Sichtbarkeit, Performance und
-							Nutzererlebnis.
-						</p>
+						<h2 className="fw-bold mt-3">
+							Webseiten erstellen lassen – FAQ für NRW
+						</h2>
+						<p className="">Klar. Direkt. Ohne Agentur-Blabla.</p>
 					</Col>
 				</Row>
 
-				{/* ✅ FAQ ACCORDION */}
-				<Row className="justify-content-center mt-3">
+				<Row className="justify-content-center">
 					<Col lg={9}>
 						<Accordion className="shadow-lg">
 							{FAQ.map((item, idx) => (
-								<Accordion.Item eventKey={idx.toString()} key={idx}>
+								<Accordion.Item key={idx} eventKey={idx.toString()}>
 									<Accordion.Header>{item.q}</Accordion.Header>
-									<Accordion.Body>{item.a}</Accordion.Body>
+									<Accordion.Body
+										dangerouslySetInnerHTML={{ __html: item.a }}
+									/>
 								</Accordion.Item>
 							))}
 						</Accordion>
 					</Col>
 				</Row>
-
-				{/* ✅ SEO Abschlussabsatz */}
-				<Row className="justify-content-center text-center mt-5">
-					<Col lg={10}>
-						<p>
-							Pixel Genie unterstützt Unternehmen in NRW bei der professionellen
-							Website-Erstellung: moderne Technik, klare Struktur, starke
-							Google-Sichtbarkeit und ein ruhiger, verlässlicher Ablauf. Wir
-							sorgen dafür, dass Ihre Website langfristig für Sie arbeitet –
-							nicht umgekehrt.
-						</p>
-					</Col>
-				</Row>
 			</Container>
 		</>
 	);
-};
-
-export default WebFAQ;
+}

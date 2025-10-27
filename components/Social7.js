@@ -2,97 +2,112 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Container, Accordion, Row, Col, Button } from "react-bootstrap";
-import AutoTranslate from "@/components/AutoTranslate";
+import { Container, Accordion, Row, Col } from "react-bootstrap";
 import Head from "next/head";
-
-const ORTE = [
-	"Düsseldorf",
-	"Krefeld",
-	"Viersen",
-	"Nettetal",
-	"Mönchengladbach",
-	"Köln",
-	"Duisburg",
-	"Essen",
-	"Dortmund",
-	"Bochum",
-	"Wuppertal",
-	"Aachen",
-];
+import AutoTranslate from "@/components/AutoTranslate";
 
 const FAQ = [
 	{
-		q: "Warum ist Social Media Marketing in NRW wichtig?",
-		a: "Mehrere Millionen Menschen nutzen Social Media täglich in NRW. Wer dort präsent ist, steigert Vertrauen und Kundenzahl – besonders in Regionen wie Düsseldorf, Krefeld, Viersen, Nettetal und Mönchengladbach.",
+		q: "Warum ist Social Media Marketing für Unternehmen in Nettetal & NRW entscheidend?",
+		a: `
+Über 80 % aller Menschen in NRW informieren sich <strong>vor einer Anfrage</strong> über Social Media. 
+Wer sichtbar ist, wird zuerst kontaktiert – besonders local-first in 
+<strong>Nettetal, Viersen, Krefeld, Mönchengladbach und Düsseldorf</strong>.
+<br/><br/>
+Social Media schafft Vertrauen, bevor Ihr Kunde überhaupt spricht. 
+➡ Das ist digitale Mundpropaganda – kontinuierlich und planbar.
+    `,
 	},
 	{
-		q: "Welche Vorteile habe ich mit professioneller Social Media Betreuung?",
-		a: "Planung, klare Strukturen, konstante Präsenz, messbare Ergebnisse und weniger Stress im Alltag – wir übernehmen Marketing, Sie die neuen Aufträge.",
+		q: "Wie unterstützt Pixel Genie mein Social Media Marketing konkret?",
+		a: `
+Wir planen & produzieren <strong>Content, der verkauft – nicht nur gefällt</strong>:
+<ul>
+<li>Storytelling: Was macht Ihr Unternehmen einzigartig?</li>
+<li>Reels & Kurzvideos: Reichweiten-Booster</li>
+<li>Strategische Postingzeiten für max. Sichtbarkeit</li>
+<li>Community Management & gezielte Interaktion</li>
+</ul>
+✔ Ruhig, professionell, und ohne Stress für Sie.
+    `,
 	},
 	{
-		q: "Welche Plattformen eignen sich für mein Unternehmen?",
-		a: "Wir wählen Instagram, Facebook, LinkedIn oder TikTok abhängig von Zielgruppe und Branche. Entscheidungen beruhen auf Daten, nicht auf Trends.",
+		q: "Welche Plattformen eignen sich für lokale Unternehmen?",
+		a: `
+Wir empfehlen nur, was wirklich funktioniert:
+<br/><br/>
+• <strong>Instagram</strong> & Facebook – lokale Reichweite<br/>
+• <strong>LinkedIn</strong> – B2B & Dienstleistungen<br/>
+• <strong>Google Unternehmensprofil</strong> – Local SEO Booster<br/>
+• <strong>TikTok</strong> – wenn junge Zielgruppe im Fokus<br/><br/>
+➡ Entscheidungen basieren auf Daten, nicht Hype.
+    `,
 	},
 	{
-		q: "Wie schnell sind Ergebnisse sichtbar?",
-		a: "Nach 4–8 Wochen steigen Reichweite und Interaktionen spürbar. Nach 3–6 Monaten zeigt sich stabiler Anfragezuwachs.",
+		q: "Wie schnell kann Social Media neue Kunden bringen?",
+		a: `
+Kurzfristig: <strong>+50 % Sichtbarkeit</strong> und mehr Profilbesuche nach 4–8 Wochen.<br/>
+Mittelfristig: <strong>planbare Kundenanfragen</strong> nach 3–6 Monaten.<br/><br/>
+Wir nutzen Website-Verknüpfung und <a href="/seo/" class="text-decoration-none">lokale SEO</a>, 
+damit Traffic zu echten Aufträgen wird.
+    `,
 	},
 	{
-		q: "Gibt es feste Pakete und klare Preise?",
-		a: "Ja – transparenter monatlicher Aufwand, flexible Erweiterungen. Preise bleiben nachvollziehbar.",
+		q: "Was macht richtig guten Social Media Content aus?",
+		a: `
+Content muss Probleme lösen – nicht nur hübsch aussehen:
+<ul>
+<li>Klarer Nutzen & regionale Ansprache</li>
+<li>Konkrete Vorteile & echte Menschen</li>
+<li>Markenidentität, Farben, Tonalität stabil</li>
+<li>Regelmäßigkeit: mindestens 3–5 Posts pro Woche</li>
+</ul>
+➡ <strong>Vertrauen + Sichtbarkeit = neue Kunden</strong>
+    `,
 	},
 	{
-		q: "Brauchen kleine Unternehmen Social Media?",
-		a: "Gerade lokale Betriebe können gezielt Kundschaft in der Region erreichen – kosteneffizienter als klassische Werbung.",
+		q: "Kann Social Media wirklich Verkäufe erzeugen?",
+		a: `
+100 %. Aber nicht über Likes – sondern über <strong>gezielte Kundenführung</strong>:
+<ul>
+<li>Starke CTA: Anfrage, Beratung, Termin</li>
+<li>Retargeting – Interessenten erneut erreichen</li>
+<li>Lokale Kampagnen für NRW</li>
+</ul>
+➡ Social Media wird Ihr <strong>Vertriebskanal</strong>, nicht nur Unterhaltung.
+    `,
 	},
 	{
-		q: "Was macht guten Social Media Content aus?",
-		a: "Authentizität, klare Botschaften, Unterstützung der Marke, moderne Medienformate und regelmäßige Veröffentlichungen.",
+		q: "Übernimmt Pixel Genie wirklich ALLES?",
+		a: `
+Ja! Sie geben frei, wir produzieren & posten:
+<ul>
+<li>Strategie & Redaktionsplan</li>
+<li>Professionelle Texte + Grafiken</li>
+<li>Reels, Storys, Carousel Designs</li>
+<li>Community Betreuung & Antworten</li>
+</ul>
+➡ Sie haben Zeit fürs Geschäft – wir für Ihre Sichtbarkeit.
+    `,
 	},
 	{
-		q: "Kann Social Media Neukunden bringen?",
-		a: "Ja. Durch Community-Aufbau, intelligente Call-to-Actions und Tracking lässt sich Kundengewinnung gezielt steuern.",
+		q: "Kann Social Media mein Local SEO in NRW unterstützen?",
+		a: `
+Ja – Social Signals + Website Traffic = <strong>bessere Rankings</strong>.
+<br/><br/>
+Wir verbinden alle Inhalte mit Ihrer Landingpage 
+<a href="/webdesign/" class="text-decoration-none">Webseiten erstellen Nordrhein-Westfalen</a> 
+und Ihrem Google-Unternehmensprofil.<br/><br/>
+➡ Das sorgt für Platzierungen <strong>in Ihrer Region</strong>.
+    `,
 	},
 	{
-		q: "Wie bleiben Inhalte markenkonform?",
-		a: "Wir definieren Markenstimme, Farben, Bildstil und Kernbotschaften – für ein einheitliches Markenerlebnis.",
-	},
-	{
-		q: "Betreuen Sie auch Social Ads?",
-		a: "Ja – inklusive Zielgruppenaufbau, Retargeting und Optimierung basierend auf echten Verkaufszahlen.",
-	},
-	{
-		q: "Wie läuft die Zusammenarbeit ab?",
-		a: "Kickoff → Content-Plan → Erstellung & Posting → Monitoring → Report. Klar strukturierte Monatszyklen.",
-	},
-	{
-		q: "Welche Branchen profitieren besonders?",
-		a: "Handwerk, Gesundheit, Immobilien, Gastronomie, E-Commerce, Fitness, Dienstleistungen und Bildung – überall dort, wo Vertrauen zählt.",
-	},
-	{
-		q: "Wie wird Erfolg gemessen?",
-		a: "Über KPIs wie Reichweite, Profilzugriffe, Klicks & konkrete Kundenanfragen – replizierbare Kennzahlen.",
-	},
-	{
-		q: "Was, wenn ich wenig Zeit dafür habe?",
-		a: "Dafür sind wir da – wir übernehmen Planung, Gestaltung, Texte, Uploads & Community Support.",
-	},
-	{
-		q: "Erstellen Sie auch Videos und Reels?",
-		a: "Ja. Kurzvideos sorgen für überdurchschnittliche Reichweite – daher fester Bestandteil unserer Betreuung.",
-	},
-	{
-		q: "Kann Social Media Website-Traffic erhöhen?",
-		a: "Ja – qualifizierter Traffic mit hoher Interaktionsrate verbessert SEO und steigert Conversions.",
-	},
-	{
-		q: "Bieten Sie Workshops & Beratung an?",
-		a: "Natürlich – interne Schulungen sorgen für noch bessere Zusammenarbeit und Verständnis.",
-	},
-	{
-		q: "Sind Sie wirklich für ganz NRW erreichbar?",
-		a: "Ja – sowohl digital als auch vor Ort in Regionen wie Düsseldorf, Krefeld, Viersen, Nettetal und Mönchengladbach.",
+		q: "Sind Sie in meiner Nähe erreichbar?",
+		a: `
+Natürlich – persönlich vor Ort in <strong>Nettetal</strong> und Grenzregion NL. 
+Digitale Betreuung in ganz NRW: Düsseldorf, Viersen, Krefeld, MG, Duisburg etc.<br/><br/>
+➡ Wir sprechen Ihre Region, Ihre Kunden und Ihr Business.
+    `,
 	},
 ];
 
@@ -112,99 +127,68 @@ const Social7 = () => {
 	return (
 		<>
 			<Head>
-				<title>
-					Social Media FAQ NRW | Pixel Genie – Antworten für Unternehmen
-				</title>
+				<title>Social Media Marketing FAQ NRW | Pixel-Genie Nettetal</title>
 				<meta
 					name="description"
-					content="Häufige Fragen rund um Social Media Marketing in NRW. Klar beantwortet: Kanäle, Ergebnisse, Vorteile, Regionen. Pixel Genie unterstützt Unternehmen in Düsseldorf, Krefeld, Viersen, Nettetal, Mönchengladbach sowie in ganz Nordrhein-Westfalen."
+					content="Social Media FAQ NRW: Wie gewinnt man neue Kunden über Instagram, Facebook, LinkedIn & Google Profile? Pixel-Genie unterstützt Nettetal, Viersen, Krefeld, Düsseldorf & ganz NRW mit messbarer Sichtbarkeit."
 				/>
 				<link rel="canonical" href={siteUrl} />
-				{/* ✅ JSON-LD FAQ */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
 				/>
 			</Head>
 
-			<Container className="mb-5 pb-5" id="social-media-nrw-faq">
-				{/* ✅ HERO */}
-				<Row className="justify-content-center text-center">
+			<Container className="py-5" id="social-media-nrw-faq">
+				<Row className="justify-content-center text-center mb-5">
 					<Col lg={8}>
 						<Image
-							src="/assets/webentwicklung-nettetal-fragen1.png"
-							width={260}
-							height={260}
-							alt="Social Media Betreuung für Unternehmen in NRW"
+							src="/assets/pixel-genie-webseiten-seo-nettetal-logo.png"
+							width={240}
+							height={240}
+							alt="Pixel-Genie SEO Agentur Nettetal & NRW – Sichtbarkeit steigern"
 							priority
 						/>
+
 						<h1 className="fw-bold mt-3">
-							Social Media FAQ in NRW – ruhig erklärt, klar umgesetzt
+							<AutoTranslate>
+								Social Media FAQ NRW – ruhig erklärt, klar umgesetzt
+							</AutoTranslate>
 						</h1>
-						<p className="text-muted">
-							Fragen und Antworten für Unternehmen, die ihre Sichtbarkeit in
-							Nordrhein-Westfalen planbar steigern wollen.
+						<p className="">
+							<AutoTranslate>
+								Antworten für Unternehmen aus Nettetal & NRW, die online präsent
+								sein wollen, wo ihre Kunden täglich sind.
+							</AutoTranslate>
 						</p>
 					</Col>
 				</Row>
 
-				{/* ✅ 3-Schritt Arbeitsweise */}
-				<Row className="justify-content-center text-center mt-5">
+				<Row className="justify-content-center">
 					<Col lg={9}>
-						<h2 className="fw-bold">
-							Wie wir arbeiten – in 3 ruhigen Schritten
-						</h2>
-						<ul className="text-start d-inline-block mt-3">
-							<li>
-								Analyse & Strategie – Ziele, Zielgruppe, Plattformen, Tonalität
-							</li>
-							<li>
-								Content & Community – Planung, Gestaltung, Veröffentlichung
-							</li>
-							<li>Ergebnisse & Optimierung – klare Reports & Empfehlungen</li>
-						</ul>
-					</Col>
-				</Row>
-
-				{/* ✅ KPI VORTEILE */}
-				<Row className="justify-content-center text-center mt-5">
-					<Col lg={9}>
-						<h2 className="fw-bold">Welche Ergebnisse sind realistisch?</h2>
-						<p className="text-muted">
-							Social Media Marketing wirkt kontinuierlich und nachhaltig:
-						</p>
-						<ul className="text-start d-inline-block">
-							<li>+40–120 % Reichweitensteigerung nach 3 Monaten</li>
-							<li>Deutlich mehr Profilbesuche & Website-Traffic</li>
-							<li>Besserer Markenaufbau & Kundenvertrauen</li>
-							<li>Mehr Anfragen zu Dienstleistungen & Produkten</li>
-						</ul>
-					</Col>
-				</Row>
-
-				{/* ✅ FAQ LIST */}
-				<Row className="justify-content-center mt-5">
-					<Col lg={9}>
-						<h2 className="fw-bold text-center mb-3">Häufige Fragen (FAQ)</h2>
 						<Accordion className="shadow-lg">
 							{FAQ.map((item, idx) => (
 								<Accordion.Item eventKey={idx.toString()} key={idx}>
-									<Accordion.Header>{item.q}</Accordion.Header>
-									<Accordion.Body>{item.a}</Accordion.Body>
+									<Accordion.Header>
+										<AutoTranslate>{item.q}</AutoTranslate>
+									</Accordion.Header>
+									<Accordion.Body
+										className="text-body"
+										dangerouslySetInnerHTML={{ __html: item.a }}
+									/>
 								</Accordion.Item>
 							))}
 						</Accordion>
 					</Col>
 				</Row>
 
-				{/* ✅ Final SEO Absatz */}
 				<Row className="justify-content-center text-center mt-5">
 					<Col lg={9}>
-						<p className="text-muted">
-							Ob Düsseldorf, Krefeld, Viersen, Nettetal, Mönchengladbach, Köln,
-							Duisburg oder das gesamte NRW – Social Media ist ein wirksamer
-							Weg, neue Kunden zu erreichen und bestehende Beziehungen zu
-							stärken. Wir begleiten Sie ruhig und strukturiert auf diesem Weg.
+						<p className="text-muted small">
+							<AutoTranslate>
+								Pixel-Genie bietet Social Media Marketing aus Nettetal für ganz
+								NRW – strukturiert, kreativ & ohne Stress für Sie.
+							</AutoTranslate>
 						</p>
 					</Col>
 				</Row>

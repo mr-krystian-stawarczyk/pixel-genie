@@ -170,13 +170,19 @@ export default function Social6() {
 								</p>
 								<h2 className="fw-bold mb-3 text-warning">399 € / Monat</h2>
 								<hr className="border-light" />
-								<p>✔ Management von 3 Profilen</p>
-								<p>✔ Tägliche Posts + Reels / Shorts</p>
-								<p>✔ Community & Message Support</p>
-								<p>✔ Kampagnenmanagement + Optimierung</p>
-								<p>✔ Wettbewerbsanalyse + Growth-Strategie</p>
-								<p>✔ Wöchentliche Reports & Insights</p>
-								<p>✔ Premium Grafikdesign + A/B Tests</p>
+								<p className="text-white">✔ Management von 3 Profilen</p>
+								<p className="text-white">✔ Tägliche Posts + Reels / Shorts</p>
+								<p className="text-white">✔ Community & Message Support</p>
+								<p className="text-white">
+									✔ Kampagnenmanagement + Optimierung
+								</p>
+								<p className="text-white">
+									✔ Wettbewerbsanalyse + Growth-Strategie
+								</p>
+								<p className="text-white">✔ Wöchentliche Reports & Insights</p>
+								<p className="text-white">
+									✔ Premium Grafikdesign + A/B Tests
+								</p>
 
 								<Button
 									variant="warning"
@@ -198,7 +204,7 @@ export default function Social6() {
 						<AutoTranslate>✨ Add-ons für mehr Reichweite</AutoTranslate>
 					</h3>
 
-					<p className="text-muted">
+					<p className="">
 						<AutoTranslate>
 							Flexibel erweiterbar – passend zu jedem Social Paket
 						</AutoTranslate>

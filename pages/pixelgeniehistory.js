@@ -5,12 +5,15 @@ import citiesData from "@/data/citiesData";
 // Dynamiczny import komponentów
 import dynamic from "next/dynamic";
 import About1 from "@/components/About1";
+
 // Dynamiczny import komponentów
 
 const About2 = dynamic(() => import("@/components/About2"), { ssr: false });
 const About3 = dynamic(() => import("@/components/About3"), { ssr: false });
 const About4 = dynamic(() => import("@/components/About4"), { ssr: false });
-
+const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
+	ssr: false,
+});
 function PixelgenieHistory() {
 	const cityData = citiesData.find((c) => c.city === "nettetal");
 
@@ -41,6 +44,7 @@ function PixelgenieHistory() {
 			{/* Komponent dynamicznie importowany */}
 			<About1 />
 			<About4 />
+			<GoogleReviews />
 			<About2 />
 			<About3 />
 		</div>

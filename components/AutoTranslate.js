@@ -11,7 +11,7 @@ const noTranslate = [
 	"Social Media Marketing",
 ];
 
-const memCache = new Map();
+const memCache = new Map(); // RAM cache
 
 export default function AutoTranslate({ children }) {
 	const { i18n } = useTranslation();
@@ -22,42 +22,49 @@ export default function AutoTranslate({ children }) {
 	const key = useMemo(() => `${i18n.language}::${pure}`, [i18n.language, pure]);
 
 	const [out, setOut] = useState(pure);
-
 	const spanRef = useRef(null);
 
 	useEffect(() => {
-		// 🇩🇪 Niemiecki — bez tłumaczenia
 		if (i18n.language === "de" || noTranslate.includes(pure)) {
 			setOut(pure);
 			return;
 		}
 
-		// 🚀 Lazy translation — ignoruj gdy niewidoczny
-		if (spanRef.current && !spanRef.current.offsetParent) {
+		// ✅ Nie tłumacz jeśli niewidoczny
+		if (spanRef.current && !spanRef.current.offsetParent) return;
+
+		// ✅ 1️⃣ najpierw RAM cache
+		const cachedRAM = memCache.get(key);
+		if (cachedRAM) {
+			setOut(cachedRAM);
 			return;
 		}
 
-		const cached = memCache.get(key);
-		if (cached) {
-			setOut(cached);
+		// ✅ 2️⃣ localStorage = persistent cache
+		const cachedLocal = localStorage.getItem(key);
+		if (cachedLocal) {
+			memCache.set(key, cachedLocal);
+			setOut(cachedLocal);
 			return;
 		}
 
+		// ✅ fetch tłumaczenia tylko jeśli brak cache
 		let cancelled = false;
-
 		fetch(
-			`/.netlify/functions/translate?text=${encodeURIComponent(pure)}&lang=${i18n.language}`
+			`/.netlify/functions/translate?text=${encodeURIComponent(
+				pure
+			)}&lang=${i18n.language}`
 		)
 			.then((res) => res.json())
 			.then((data) => {
 				let t = data?.translation ?? pure;
 				t = String(t)
 					.replace(/^\[|\]$/g, "")
-					.trim(); // ✅ safe no brackets
-
+					.trim();
 				if (!cancelled) {
-					memCache.set(key, t);
 					setOut(t);
+					memCache.set(key, t);
+					localStorage.setItem(key, t); // ✅ zapis do pamięci trwałej
 				}
 			})
 			.catch(() => {

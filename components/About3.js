@@ -7,8 +7,10 @@ import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
 import Head from "next/head";
 
+const SITE_ORIGIN = "https://pixel-genie.de";
+
 function About3() {
-	const [ref, inView] = useInView({ threshold: 0.25, triggerOnce: true });
+	const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
 	const controls = useAnimation();
 
 	useEffect(() => {
@@ -24,129 +26,181 @@ function About3() {
 	const faq = [
 		{
 			q: "Was macht Pixel Genie als Agentur besonders?",
-			a: "Wir bringen Webdesign, Entwicklung und SEO unter ein Dach – ohne Outsourcing. Dadurch sind wir schneller, persönlicher und garantieren Top-Qualität für jedes Projekt.",
+			a: `
+Wir vereinen <strong>Webdesign, Entwicklung, SEO & Social Media</strong> unter einem Dach. 
+Damit liefern wir <strong>sichtbare Ergebnisse</strong> statt Versprechen – schnell, persönlich und datenbasiert.
+Besonders stark für Unternehmen aus <strong>Nettetal, Krefeld, Viersen & Umgebung</strong>.
+      `,
 		},
 		{
-			q: "Wie läuft ein Webdesign-Projekt bei euch ab?",
-			a: "Wir starten mit Analyse & Beratung, dann Design, Entwicklung und SEO-Optimierung. Das Wichtigste: Sie sind in jedem Schritt involviert, transparent & ohne Überraschungen.",
+			q: "Wofür steht Pixel Genie in Nettetal?",
+			a: `
+Wir helfen regionalen Betrieben, <strong>online mehr Kunden zu gewinnen</strong>.
+Keine Spielerei – <strong>mehr Anfragen, mehr Umsatz, mehr Bekanntheit</strong> in NRW & Grenzregion NL.
+      `,
+		},
+		{
+			q: "Wie läuft ein Projekt bei Pixel Genie ab?",
+			a: `
+1️⃣ Analyse: Ziele, Zielgruppe, Keywords<br/>
+2️⃣ Design & Entwicklung: mobil-schnell & SEO-stark<br/>
+3️⃣ Inhalte & Conversion-Optimierung<br/>
+4️⃣ Launch & Tracking – messbare Ergebnisse ab Tag 1
+      `,
 		},
 		{
 			q: "Welche Technologien verwendet ihr?",
-			a: "Wir arbeiten mit React, Next.js, Tailwind, Bootstrap – modernste Tools für Core Web Vitals, Performance & Sicherheit. Keine veralteten Themes oder Baukastensysteme.",
+			a: `
+Wir setzen auf <strong>Next.js, React, Headless CMS, DSGVO-Technik</strong> und Performance-Optimierung 
+(Core Web Vitals > 90). 
+➡ Keine Baukästen, keine veralteten Systeme.
+      `,
 		},
 		{
-			q: "Wie viel Erfahrung habt ihr?",
-			a: "Über 10 Jahre Web- & Marketing-Erfahrung. Gründung 2024 in Nettetal, aber Know-how aus dutzenden Kundenprojekten in DE & NL.",
+			q: "Warum helfen wir besonders regionalen Unternehmen?",
+			a: `
+Weil <strong>Local SEO</strong> heute entscheidet, wer angerufen wird.
+Wir setzen auf regionale Sichtbarkeit:<br/>
+• Webdesign Nettetal<br/>
+• SEO für Viersen & Krefeld<br/>
+• Performance in ganz NRW
+      `,
 		},
 		{
-			q: "Arbeitet ihr nur lokal in Nettetal?",
-			a: "Nein, aber wir lieben es lokal. Wir betreuen Kundinnen & Kunden aus Nettetal, NRW und europaweit – genau so flexibel wie Ihre Anforderungen.",
+			q: "Wie wird Erfolg gemessen?",
+			a: `
+Mit klaren Business-KPIs:<br/>
+<strong>Anfragen, Leads & Verkäufe</strong> – nicht Likes.<br/>
+➡ Websites müssen <strong>profitabel</strong> sein.
+      `,
 		},
 		{
-			q: "Wie messt ihr den Erfolg einer Website?",
-			a: "Mit klaren KPIs: SEO Rankings, Core Web Vitals, Conversions, Anfragen, Verkäufe. Keine „Likes“, sondern echtes Geschäftswachstum.",
+			q: "Kann ich Inhalte später selbst pflegen?",
+			a: `
+Ja! Sie erhalten eine intuitive CMS-Lösung.<br/>
+Auf Wunsch übernehmen wir Updates, Content & SEO – <strong>nur wenn SIE es wollen</strong>.
+      `,
 		},
 		{
-			q: "Kann ich meine Website selbst pflegen?",
-			a: "Natürlich! Wir geben Ihnen ein einfach zu bedienendes CMS. Wenn Sie möchten, übernehmen wir Updates & Inhalte – aber nur wenn SIE es wollen.",
-		},
-		{
-			q: "Bietet ihr auch langfristige Betreuung an?",
-			a: "Ja! Wartung, SEO, Content, Monitoring – wir lassen Sie nicht nach dem Launch allein. Eine Website ist ein Projekt mit Zukunft, nicht nur ein Produkt.",
-		},
-		{
-			q: "Wie hoch ist euer Qualitätsanspruch?",
-			a: "Sehr hoch. Jede Website wird mehrfach getestet (Performance, UX, Mobile, Sicherheit). Wir veröffentlichen nichts, was wir nicht selbst lieben würden.",
-		},
-		{
-			q: "Warum heißt ihr Pixel Genie?",
-			a: "Weil wir glauben, dass jedes Pixel zählt. Und weil gute Technologie sich manchmal wie Magie anfühlt ✨ – solange man weiß, wie sie funktioniert.",
+			q: "Wird Social Media auch unterstützt?",
+			a: `
+Ja – inkl. Content-Plan, Posting & Community Management.<br/>
+➡ Verstärkt Website-Leads & Google-Traffic.
+      `,
 		},
 	];
 
+	const faqSchema = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faq.map((f) => ({
+			"@type": "Question",
+			name: f.q,
+			acceptedAnswer: { "@type": "Answer", text: f.a },
+		})),
+	};
+
+	const orgSchema = {
+		"@context": "https://schema.org",
+		"@type": "LocalBusiness",
+		name: "Pixel-Genie Webagentur Nettetal",
+		url: SITE_ORIGIN,
+		address: {
+			"@type": "PostalAddress",
+			addressLocality: "Nettetal",
+			addressRegion: "NRW",
+			addressCountry: "DE",
+		},
+		image: `${SITE_ORIGIN}/assets/pixel-genie-webseiten-seo-nettetal-logo.png`,
+		sameAs: [
+			"https://linkedin.com/company/pixel-genie-519216390",
+			"https://facebook.com/100090817536941",
+			"https://x.com/PixelGenieWeb",
+			"https://reddit.com/u/PixelGenieNettetal",
+			"https://medium.com/@pixelgenie.marketing",
+		],
+	};
+
 	return (
 		<>
-			{/* ✅ SEO: FAQ Rich Snippets */}
 			<Head>
+				<title>
+					Über Pixel Genie – Webdesign & SEO Agentur in Nettetal NRW
+				</title>
+				<meta
+					name="description"
+					content="Pixel Genie ist die moderne Webdesign & SEO Agentur in Nettetal, spezialisiert auf Performance, Local SEO & Kundengewinnung für KMU in NRW & Grenzregion NL."
+				/>
 				<script
 					type="application/ld+json"
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify({
-							"@context": "https://schema.org",
-							"@type": "FAQPage",
-							mainEntity: faq.map((f) => ({
-								"@type": "Question",
-								name: f.q,
-								acceptedAnswer: { "@type": "Answer", text: f.a },
-							})),
-						}),
-					}}
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+				/>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
 				/>
 			</Head>
 
-			<motion.div ref={ref} animate={controls} initial={{ opacity: 0, y: 80 }}>
-				<Container fluid className="py-5">
+			<motion.div ref={ref} animate={controls} initial={{ opacity: 0, y: 60 }}>
+				<Container className="py-5">
+					{/* HERO */}
 					<Row className="justify-content-center text-center mb-5">
-						<Col lg={8}>
+						<Col lg={7}>
 							<Image
-								src="/assets/webentwicklung-nettetal-fragen1.png"
-								width={240}
-								height={240}
-								alt="Pixel Genie Agentur FAQ"
-								className="my-3"
+								src="/assets/pixel-genie-webseiten-seo-nettetal-logo.png"
+								width={200}
+								height={200}
+								alt="Pixel Genie Webagentur Nettetal Logo"
+								priority
 							/>
-							<h2 className="fw-bold display-5 mb-3">
+							<h1 className="fw-bold mt-4 display-5">
 								<AutoTranslate>
-									Fragen zu Pixel Genie? Wir beantworten alles.
+									Pixel Genie – Ihre Webagentur für Nettetal & NRW
 								</AutoTranslate>
-							</h2>
-							<p className="lead text-muted">
+							</h1>
+							<p className="lead  mt-2">
 								<AutoTranslate>
-									Vertrauen beginnt mit Transparenz. Hier erfahren Sie ganz
-									genau, wie wir arbeiten – und warum wir für viele die erste
-									Wahl in Nettetal sind.
+									Wir entwickeln Websites, die verkaufen – lokal stark &
+									technisch perfekt.
 								</AutoTranslate>
 							</p>
 						</Col>
 					</Row>
 
+					{/* FAQ */}
 					<Row className="justify-content-center">
 						<Col lg={9}>
-							<Accordion className="shadow-lg border-0 rounded-4">
+							<Accordion className="shadow-lg rounded-4">
 								{faq.map((item, i) => (
 									<Accordion.Item eventKey={String(i)} key={i}>
 										<Accordion.Header>
 											<AutoTranslate>{item.q}</AutoTranslate>
 										</Accordion.Header>
-										<Accordion.Body>
-											<AutoTranslate>{item.a}</AutoTranslate>
-										</Accordion.Body>
+										<Accordion.Body
+											className="text-body"
+											dangerouslySetInnerHTML={{ __html: item.a }}
+										/>
 									</Accordion.Item>
 								))}
 							</Accordion>
 						</Col>
 					</Row>
 
-					{/* ✅ CTA domykający lejek */}
+					{/* CTA Abschluss */}
 					<Row className="justify-content-center text-center mt-5">
 						<Col lg={8}>
 							<h3 className="fw-bold">
 								<AutoTranslate>
-									Klingt gut? Dann lassen Sie uns über Ihr Projekt sprechen!
+									Bereit für mehr Kunden & Anfragen?
 								</AutoTranslate>
 							</h3>
-							<p>
+							<p className="">
 								<AutoTranslate>
-									Wir freuen uns darauf, Ihre Marke online sichtbar &
-									erfolgreich zu machen.
+									Pixel Genie – Webdesign, SEO & Social Media Marketing in NRW.
 								</AutoTranslate>
 							</p>
-							<Button href="#contact" className="btn-nav mt-3">
-								<span className="text-white">
-									<AutoTranslate>
-										Kostenloses Erstgespräch sichern
-									</AutoTranslate>
-								</span>
+							<Button href="#contact" className="btn-nav btn-lg mt-3">
+								<AutoTranslate>Kostenloses Erstgespräch sichern</AutoTranslate>
 							</Button>
 						</Col>
 					</Row>

@@ -30,7 +30,7 @@ export default function Document() {
 			<link rel="alternate" href="https://pixel-genie.de/nl" hreflang="nl" />
 			<body>
 				<Main />
-				<NextScript />a
+				<NextScript />
 			</body>
 		</Html>
 	);

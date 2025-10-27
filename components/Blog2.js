@@ -9,9 +9,8 @@ import {
 	Col,
 	Card,
 	Button,
-	Accordion,
-	ProgressBar,
-} from "react-bootstrap";
+	ProgressBar, // ✅ zostaje
+} from "react-bootstrap"; // ❌ usuwamy Accordion z importów
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { FaCircleNotch } from "react-icons/fa6";
@@ -35,6 +34,23 @@ const toDeDate = (iso) =>
 		day: "2-digit",
 	});
 
+// ✅ helper do teasera
+const getTeaser = (article, maxLen = 450) => {
+	if (!article) return "";
+	// bierzemy pierwszy akapit details (jeśli jest), inaczej description
+	const base =
+		(Array.isArray(article.details) && article.details[0]) ||
+		article.description ||
+		"";
+	// usunięcie prostych znaczników HTML, gdyby były
+	const stripped = String(base)
+		.replace(/<[^>]+>/g, "")
+		.replace(/\s+/g, " ")
+		.trim();
+	if (stripped.length <= maxLen) return stripped;
+	return stripped.slice(0, maxLen).trimEnd() + "...";
+};
+
 function Blog2({ pageUrl = PAGE_URL }) {
 	const [articles, setArticles] = useState([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -43,7 +59,8 @@ function Blog2({ pageUrl = PAGE_URL }) {
 		if (hasCookie("marketingConsent")) {
 			gaEvent("cta_click", {
 				location,
-				page: window.location.pathname,
+				page:
+					typeof window !== "undefined" ? window.location.pathname : PAGE_PATH,
 			});
 		}
 		window.open(
@@ -234,13 +251,13 @@ function Blog2({ pageUrl = PAGE_URL }) {
 												{Array.isArray(article.keypoints) &&
 													article.keypoints.length > 0 && (
 														<div className="text-start bg-body-secondary p-3 rounded mb-3">
-															<h5 className="fw-bold mb-2">
+															<h5 className="fw-bold mb-2 text-black">
 																<FaCircleNotch className="text-success me-2" />
 																Key Takeaways
 															</h5>
 															<ul className="m-0">
 																{article.keypoints.map((p, i) => (
-																	<li key={i} className="text-body mb-1">
+																	<li key={i} className="text-black mb-1">
 																		{p}
 																	</li>
 																))}
@@ -248,66 +265,33 @@ function Blog2({ pageUrl = PAGE_URL }) {
 														</div>
 													)}
 
-												{/* DETAILS */}
+												{/* ✅ TEASER (zamiast całego artykułu/Accordion) */}
 												{Array.isArray(article.details) &&
 													article.details.length > 0 && (
-														<div className="mt-3">
-															{/* Desktop Accordion */}
-															<div className="d-none d-md-block">
-																<Accordion alwaysOpen>
-																	<Accordion.Item eventKey="0">
-																		<Accordion.Header>
-																			Mehr lesen
-																		</Accordion.Header>
-																		<Accordion.Body
-																			className="text-start"
-																			style={{
-																				color: "var(--text-color)",
-																				background: "var(--bg-color)",
-																				borderRadius: "12px",
-																			}}
-																		>
-																			{article.details.map((d, i) => (
-																				<p
-																					key={i}
-																					className="mb-2"
-																					style={{ color: "var(--text-color)" }}
-																					dangerouslySetInnerHTML={{
-																						__html: d.replace(/\n/g, "<br>"),
-																					}}
-																				/>
-																			))}
+														<div className="text-start mt-3">
+															<p
+																className="mb-3"
+																style={{ color: "var(--text-color)" }}
+															>
+																{getTeaser(article, 450)}
+															</p>
 
-																			<div className="mt-4 d-flex flex-wrap justify-content-center gap-3">
-																				<Link
-																					href={`/tips/${article.slug}`}
-																					className="btn-nav fw-semibold text-white px-4 py-2"
-																				>
-																					Weiterlesen →
-																				</Link>
-
-																				<button
-																					className="btn-premium-footer fw-bold text-white px-4 py-2"
-																					onClick={() =>
-																						sendEmailCTA("blog_slider_cta")
-																					}
-																				>
-																					Kontakt aufnehmen
-																				</button>
-																			</div>
-																		</Accordion.Body>
-																	</Accordion.Item>
-																</Accordion>
-															</div>
-
-															{/* Mobile Button */}
-															<div className="d-block d-md-none">
+															<div className="mt-3 d-flex flex-wrap justify-content-center gap-3">
 																<Link
 																	href={`/tips/${article.slug}`}
-																	className="btn btn-nav w-100 mt-2 text-white"
+																	className="btn-nav fw-semibold text-white px-4 py-2"
 																>
-																	Mehr lesen →
+																	Weiterlesen →
 																</Link>
+
+																<button
+																	className="btn-premium-footer fw-bold text-white px-4 py-2"
+																	onClick={() =>
+																		sendEmailCTA("blog_slider_cta")
+																	}
+																>
+																	Kontakt aufnehmen
+																</button>
 															</div>
 														</div>
 													)}

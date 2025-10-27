@@ -3,250 +3,175 @@ import React, { useEffect } from "react";
 import { Container, Row, Col, Accordion } from "react-bootstrap";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
-import AutoTranslateArticle from "@/components/AutoTranslateArticle";
+import Head from "next/head";
+import Image from "next/image";
 
-function MediaFAQ() {
-	const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: false });
+// ✅ SEO-optimized FAQ data
+const WEB_FAQ = [
+	{
+		q: "Was kostet professionelles Webdesign in Nettetal?",
+		a: `
+Professionelles Webdesign hängt vom Umfang ab, aber bei Pixel Genie ist alles klar strukturiert:<br/><br/>
+💶 Preise:<br/>
+• Simple Business Website: <strong>ab 399 €</strong><br/>
+• Webauftritte mit SEO & CMS: <strong>799–1500 €</strong><br/>
+• Shops & Premiumprojekte: individuell<br/><br/>
+✅ Immer inklusive: Beratung, Performance, SEO-Basis, Sicherheit & UX-Design.
+`,
+	},
+	{
+		q: "Wie lange dauert die Erstellung einer Website?",
+		a: `
+⏱️ Effizienz trifft Qualität:<br/>
+• Kleine Websites in <strong>7–10 Tagen</strong><br/>
+• Shops oder komplexe Systeme <strong>3–5 Wochen</strong><br/><br/>
+Wir nutzen moderne Technologien wie <strong>Next.js</strong> & <strong>React</strong> für extreme Geschwindigkeit ⚡
+`,
+	},
+	{
+		q: "Was ist der Unterschied zwischen Webdesign und Webentwicklung?",
+		a: `
+🎨 Webdesign = Look & Benutzererlebnis<br/>
+🧩 Webentwicklung = Technik & Funktion<br/><br/>
+Pixel Genie vereint beides → Design, das <strong>nicht nur schön aussieht</strong>, sondern <strong>verkauft</strong>.
+`,
+	},
+	{
+		q: "Bieten Sie auch Suchmaschinenoptimierung (SEO) an?",
+		a: `
+🔥 Ja — SEO ist bei uns Standard.<br/><br/>
+Wir steigern Ihre Google-Sichtbarkeit über:<br/>
+• OnPage SEO (Core Web Vitals, Struktur)<br/>
+• Keyword & Content Strategie<br/>
+• Lokale SEO für NRW<br/><br/>
+SEO sorgt dafür, dass Kunden <strong>SIE finden</strong>.
+`,
+	},
+	{
+		q: "Erstellen Sie auch Websites für andere Städte oder Branchen?",
+		a: `
+Ja! Digital kennt keine Grenzen.<br/><br/>
+📍 Fokus: NRW & Grenzregion NL<br/>
+➡ Nettetal, Krefeld, Düsseldorf, Mönchengladbach, Venlo<br/><br/>
+🎯 Für Unternehmen aus Handwerk, Dienstleistung, Gastronomie & E-Commerce.
+`,
+	},
+	{
+		q: "Wie läuft die Zusammenarbeit genau ab?",
+		a: `
+Unser 4-Phasen-Prozess:<br/>
+1️⃣ Analyse & Ziele<br/>
+2️⃣ Design & Inhalte<br/>
+3️⃣ Technik & SEO<br/>
+4️⃣ Launch & Betreuung<br/><br/>
+✅ Persönlich, transparent & ohne Agentur-Chaos.
+`,
+	},
+	{
+		q: "Welche Vorteile bietet Pixel Genie gegenüber anderen Agenturen?",
+		a: `
+🚀 Was Sie bei uns bekommen:<br/>
+• Full-Service: Design + Technik + SEO<br/>
+• Ultra-schnelle Ladezeiten (Performance > 90)<br/>
+• Lokale Marktkenntnis (NRW + NL)<br/>
+• Direkte Kommunikation — keine Hotlines<br/><br/>
+Kurz gesagt: <strong>Agenturleistung ohne Agenturfrust</strong>.
+`,
+	},
+	{
+		q: "Was macht eine Website erfolgreich?",
+		a: `
+💡 Erfolgreiche Websites verbinden:<br/>
+• klare Struktur<br/>
+• überzeugenden Inhalt<br/>
+• SEO-Power<br/>
+• Performance & Tracking<br/><br/>
+➡ Ziel: <strong>mehr Leads, weniger Absprünge</strong>.
+`,
+	},
+];
+
+export default function MediaFAQ() {
+	const siteUrl = "https://pixel-genie.de/webdesign";
+
+	const faqSchema = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: WEB_FAQ.map((f) => ({
+			"@type": "Question",
+			name: f.q,
+			acceptedAnswer: { "@type": "Answer", text: f.a },
+		})),
+	};
+
+	const [ref, inView] = useInView({ threshold: 0.2 });
 	const controls = useAnimation();
 
 	useEffect(() => {
 		controls.start({
 			opacity: inView ? 1 : 0,
-			transition: { duration: 1, ease: "easeInOut" },
+			transition: { duration: 0.8, ease: "easeInOut" },
 		});
 	}, [inView, controls]);
 
 	return (
-		<motion.div
-			ref={ref}
-			animate={controls}
-			initial={{ opacity: 0 }}
-			id="design-nettetal-fragen"
-			className="my-5 py-5 text-body"
-		>
-			<Container>
-				<Row className="justify-content-center text-center mb-4">
-					<Col lg={8}>
-						<h2 className="fw-bold mb-3">
-							Häufige Fragen zu Webdesign, SEO <br /> & Online Marketing
-						</h2>
+		<>
+			<Head>
+				<title>Webdesign NRW FAQ | Pixel Genie – häufige Fragen</title>
+				<meta
+					name="description"
+					content="Professionelles Webdesign FAQ für NRW: Kosten, Dauer, SEO, Design, Technik & Zusammenarbeit – klare Antworten von Pixel Genie aus Nettetal."
+				/>
+				<link rel="canonical" href={siteUrl} />
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+				/>
+			</Head>
 
-						<div style={{ color: "var(--text-color)" }}>
-							<AutoTranslateArticle
-								slug="faq-intro"
-								html={`
-In diesem FAQ beantwortet <a href="/webdesign/" class="text-decoration-none">Pixel Genie</a> die häufigsten Fragen rund um modernes <strong>Webdesign in Nettetal</strong>, <a href="/suchmaschinenoptimierung/" class="text-decoration-none">Suchmaschinenoptimierung (SEO)</a>, Performance, Ladezeiten und Marketing-Strategien. Die Inhalte basieren auf unseren Blogartikeln, wie <a href="/tips/moderne-webseite-gruende-fuer-unternehmen/" class="text-decoration-none">„Warum eine moderne Website entscheidend ist“</a> und <a href="/tips/conversion-rate-steigern-3-unsichtbare-website-fehler/" class="text-decoration-none">„Conversion-Rate steigern – 3 unsichtbare Website-Fehler“</a>.
-								`}
+			<motion.div
+				ref={ref}
+				animate={controls}
+				initial={{ opacity: 0 }}
+				id="design-nettetal-fragen"
+				className="my-5 py-5 text-body"
+			>
+				<Container>
+					{/* ✅ TITLE & HERO */}
+					<Row className="text-center mb-5 justify-content-center">
+						<Col lg={7}>
+							<Image
+								src="/assets/pixel-genie-webseiten-seo-nettetal-logo.png"
+								width={240}
+								height={240}
+								alt="Pixel-Genie Webdesign Agentur Nettetal NRW – moderne Websites, die Kunden bringen"
+								priority
 							/>
-						</div>
-					</Col>
-				</Row>
+							<h2 className="fw-bold mt-3">Webdesign NRW – Häufige Fragen</h2>
+							<p className="">
+								Antworten aus echten Kundenprojekten in Nettetal, Viersen &
+								Umgebung – klar, verständlich & nützlich.
+							</p>
+						</Col>
+					</Row>
 
-				<Row className="justify-content-center">
-					<Col lg={10}>
-						<Accordion defaultActiveKey="0" alwaysOpen className="text-body">
-							{/* 1 */}
-							<Accordion.Item eventKey="0">
-								<Accordion.Header>
-									Was kostet professionelles Webdesign in Nettetal?
-								</Accordion.Header>
-								<Accordion.Body className="text-body text-start">
-									<AutoTranslateArticle
-										slug="faq-1"
-										html={`
-Die Preise hängen vom gewünschten Funktionsumfang ab. Eine schlichte Business-Website startet bei <strong>ab 399 €</strong>, während umfangreiche Lösungen mit Online-Shop, individuellen Animationen oder Mehrsprachigkeit zwischen <strong>799 € – 1500 €</strong> liegen. Bei <a href="/webdesign/" class="text-decoration-none">Pixel Genie</a> erhalten Sie nicht nur eine Website, sondern ein SEO-optimiertes System mit messbarem Ranking-Potenzial. Mehr dazu in unserem Blogartikel <a href="/tips/warum-website-wichtig-7-argumente/" class="text-decoration-none">„7 Argumente, warum eine gute Website wichtig ist“</a> oder direkt auf der Seite <a href="#design-nettetal-preis" class="text-decoration-none">Webdesign-Pakete</a>.
-											`}
-									/>
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 2 */}
-							<Accordion.Item eventKey="1">
-								<Accordion.Header>
-									Wie lange dauert die Erstellung einer Website?
-								</Accordion.Header>
-								<Accordion.Body className="text-body text-start">
-									<AutoTranslateArticle
-										slug="faq-2"
-										html={`
-Eine kleine Website (bis 5 Seiten) ist meist in <strong>7 bis 10 Tagen</strong> online. Bei umfangreichen E-Commerce-Projekten planen wir etwa <strong>3 bis 5 Wochen</strong>.
-Wir setzen auf moderne Frameworks wie <strong>Next.js</strong> und <strong>React</strong> für maximale Ladegeschwindigkeit und technische Zukunftssicherheit.
-Dank unseres agilen Workflows sind auch kurzfristige Launches möglich – mehr zu unseren Prozessen unter <a href="/webdesign-agentur/nettetal/" class="text-decoration-none">Webdesign Agentur Nettetal</a>.
-										`}
-									/>
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 3 */}
-							<Accordion.Item eventKey="2">
-								<Accordion.Header>
-									Was ist der Unterschied zwischen Webdesign und Webentwicklung?
-								</Accordion.Header>
-								<Accordion.Body className="text-body text-start">
-									<AutoTranslateArticle
-										slug="faq-3"
-										html={`
-Beim <strong>Webdesign</strong> geht es um die visuelle Gestaltung, UX-Design, Farben, Schriften und Nutzerführung.
-Die <strong>Webentwicklung</strong> hingegen befasst sich mit der technischen Umsetzung – Programmierung, Hosting, Datenbanklogik und SEO-Struktur.
-<a href="/webentwicklung/nettetal/" class="text-decoration-none">Pixel Genie Nettetal</a> kombiniert beides – Design, Performance und Suchmaschinenoptimierung – damit Ihre Website nicht nur schön, sondern auch effektiv ist.
-										`}
-									/>
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 4 */}
-							<Accordion.Item eventKey="3">
-								<Accordion.Header>
-									Bieten Sie auch Suchmaschinenoptimierung (SEO) an?
-								</Accordion.Header>
-								<Accordion.Body className="text-body text-start">
-									<AutoTranslateArticle
-										slug="faq-4"
-										html={`
-Ja – SEO ist das Herzstück unserer Arbeit. Wir bieten sowohl technische als auch Content-Optimierung, um Ihre Sichtbarkeit bei Google zu steigern.
-<ul>
-<li>On-Page-Optimierung (Core Web Vitals, Ladezeit, Struktur)</li>
-<li>Keyword-Analyse und Content-Strategie</li>
-<li>Lokale SEO für Regionen wie <a href="/seo/viersen/" class="text-decoration-none">Viersen</a>, <a href="/seo/krefeld/" class="text-decoration-none">Krefeld</a>, <a href="/seo/venlo/" class="text-decoration-none">Venlo</a> und NRW</li>
-<li>Backlink-Aufbau und Analyse</li>
-</ul>
-Lesen Sie auch unseren Ratgeber <a href="/tips/sichtbarkeit-im-internet-erhoehen-10-tipps/" class="text-decoration-none">„10 Tipps, um die Sichtbarkeit im Internet zu erhöhen“</a>.
-										`}
-									/>
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 5 */}
-							<Accordion.Item eventKey="4">
-								<Accordion.Header>
-									Erstellen Sie Websites auch für andere Städte oder Branchen?
-								</Accordion.Header>
-								<Accordion.Body className="text-body text-start">
-									<AutoTranslateArticle
-										slug="faq-5"
-										html={`
-Absolut – wir arbeiten deutschlandweit und auch mit Kunden aus den Niederlanden.
-Zu unseren häufigsten Standorten gehören <a href="/webdesign-agentur/venlo/" class="text-decoration-none">Venlo</a>, <a href="/webdesign-agentur/moenchengladbach/" class="text-decoration-none">Mönchengladbach</a>, <a href="/webdesign-agentur/duesseldorf/" class="text-decoration-none">Düsseldorf</a> und <a href="/webdesign-agentur/kempen/" class="text-decoration-none">Kempen</a>.
-Unsere Websites sind lokal optimiert, sodass Sie bei Google Maps und lokalen Suchergebnissen (Local SEO) besser platziert werden.
-Mehr Informationen finden Sie unter <a href="/standorte/" class="text-decoration-none">Pixel Genie Standorte</a>.
-										`}
-									/>
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 6 */}
-							<Accordion.Item eventKey="5">
-								<Accordion.Header>
-									Wie läuft die Zusammenarbeit mit Pixel Genie ab?
-								</Accordion.Header>
-								<Accordion.Body className="text-body text-start">
-									<AutoTranslateArticle
-										slug="faq-6"
-										html={`
-Der Ablauf ist klar strukturiert:
-<ol>
-<li>Kostenlose Erstberatung & Analyse Ihrer Ziele</li>
-<li>Individuelles Angebot + Zeitplan</li>
-<li>Design & Entwicklung (UX/UI, SEO, Performance)</li>
-<li>Launch & Betreuung</li>
-</ol>
-Nach dem Launch bieten wir Support, Sicherheits-Updates und auf Wunsch Social-Media-Kampagnen.
-Jetzt direkt <a href="/kontakt/" class="text-decoration-none">Kontakt aufnehmen</a> und Ihr Projekt starten!
-										`}
-									/>
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 7 */}
-							<Accordion.Item eventKey="6">
-								<Accordion.Header>
-									Welche Vorteile bietet Pixel Genie gegenüber anderen
-									Agenturen?
-								</Accordion.Header>
-								<Accordion.Body className="text-body text-start">
-									<AutoTranslateArticle
-										slug="faq-7"
-										html={`
-Wir sind nicht nur eine klassische Agentur, sondern ein Technologie-Partner.
-Unsere Stärken:
-<ul>
-<li>Full-Service Agentur – Design + Entwicklung + SEO</li>
-<li>Modernste Technologien (React / Next.js)</li>
-<li>Lokale SEO-Spezialisierung für NRW und Grenzregion NL</li>
-<li>Persönlicher Support statt Callcenter</li>
-</ul>
-Mit Niederlassungen in <a href="/webdesign-agentur/nettetal/" class="text-decoration-none">Nettetal</a> und <a href="/seo/venlo/" class="text-decoration-none">Venlo</a> bieten wir echten regionalen Bezug, schnelle Kommunikation und nachhaltige Ergebnisse.
-Lesen Sie mehr über unsere Philosophie in <a href="/pixelgeniehistory/" class="text-decoration-none">Pixel Genie History</a>.
-										`}
-									/>
-								</Accordion.Body>
-							</Accordion.Item>
-
-							{/* 8 */}
-							<Accordion.Item eventKey="7">
-								<Accordion.Header>
-									Was macht eine Website erfolgreich?
-								</Accordion.Header>
-								<Accordion.Body className="text-body text-start">
-									<AutoTranslateArticle
-										slug="faq-8"
-										html={`
-Eine erfolgreiche Website ist die Kombination aus Design, Inhalt und Strategie.
-Bei <a href="/webdesign/" class="text-decoration-none">Pixel Genie</a> setzen wir auf:
-<ul>
-<li>Klare Struktur und UX-Optimierung</li>
-<li>Schnelle Ladezeiten (unter 1 Sekunde LCP)</li>
-<li>SEO-Texte mit Conversion-Fokus</li>
-<li>Regelmäßige Analysen & Content-Updates</li>
-</ul>
-Mehr dazu in unserem Artikel <a href="/tips/conversion-rate-steigern-3-unsichtbare-website-fehler/" class="text-decoration-none">„Conversion-Rate steigern“</a>.
-										`}
-									/>
-								</Accordion.Body>
-							</Accordion.Item>
-						</Accordion>
-					</Col>
-				</Row>
-			</Container>
-
-			{/* ✅ Structured FAQ for SEO — unchanged */}
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify({
-						"@context": "https://schema.org",
-						"@type": "FAQPage",
-						mainEntity: [
-							{
-								"@type": "Question",
-								name: "Was kostet professionelles Webdesign in Nettetal?",
-								acceptedAnswer: {
-									"@type": "Answer",
-									text: "Professionelles Webdesign bei Pixel Genie Nettetal beginnt ab 399 €. Individuelle Lösungen mit SEO und E-Commerce liegen zwischen 799 € und 1500 €.",
-								},
-							},
-							{
-								"@type": "Question",
-								name: "Wie lange dauert die Erstellung einer Website?",
-								acceptedAnswer: {
-									"@type": "Answer",
-									text: "Je nach Projektgröße dauert die Umsetzung zwischen 7 Tagen und 5 Wochen. Wir arbeiten mit modernen Frameworks wie Next.js und React.",
-								},
-							},
-							{
-								"@type": "Question",
-								name: "Bieten Sie Suchmaschinenoptimierung (SEO) an?",
-								acceptedAnswer: {
-									"@type": "Answer",
-									text: "Ja, Pixel Genie bietet umfassende SEO-Optimierung – technisch, inhaltlich und lokal für Regionen wie Nettetal, Viersen, Venlo und ganz NRW.",
-								},
-							},
-						],
-					}),
-				}}
-			/>
-		</motion.div>
+					{/* ✅ FAQ ACCORDION */}
+					<Row className="justify-content-center">
+						<Col lg={10}>
+							<Accordion className="shadow-lg">
+								{WEB_FAQ.map((item, idx) => (
+									<Accordion.Item eventKey={idx.toString()} key={idx}>
+										<Accordion.Header>{item.q}</Accordion.Header>
+										<Accordion.Body
+											dangerouslySetInnerHTML={{ __html: item.a }}
+										/>
+									</Accordion.Item>
+								))}
+							</Accordion>
+						</Col>
+					</Row>
+				</Container>
+			</motion.div>
+		</>
 	);
 }
-
-export default MediaFAQ;
