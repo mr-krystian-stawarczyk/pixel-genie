@@ -8,7 +8,7 @@
 const RAW_POSTS = [
 	{
 		slug: "webdesign-vs-webentwicklung-unterschiede-fuer-unternehmen",
-		imgSrc: "/assets/webdesign-vs-webentwicklung.png",
+		imgSrc: "/assets/webdesign-vs-web.png",
 		title:
 			"🎨 Webdesign vs. 🧑‍💻 Webentwicklung – Was ist der Unterschied? (und was ist für Ihr Unternehmen wirklich wichtig?)",
 		date: "2025-10-29",
