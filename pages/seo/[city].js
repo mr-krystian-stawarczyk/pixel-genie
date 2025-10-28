@@ -1,29 +1,26 @@
-// ✅ /pages/seo/[city].js — FINAL (Wariant A: jednoźródłowy JSON-LD @graph)
-// - Full SSR/SSG treść w HTML (super crawlable)
-// - LocalBusiness (z address, geo, hasMap, sameAs), Service, BreadcrumbList, FAQPage, WebSite
-// - Bogaty, długi content (ok. 400+ linii), Bootstrap layout jak w Twojej wersji
-// - Dynamiczne dane z citiesData (adres, PLZ, geo, population, boroughs, economic highlights)
-// - Jedna sekcja FAQ w HTML + JEDEN JSON-LD (brak duplikatów)
-// - Zero błędów Rich Results (brak "Brakujące pole address"), brak podwójnego FAQ
-
+// ✅ /pages/seo/[city].js — ULTRA LEVEL 4
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
 import dynamic from "next/dynamic";
 import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData";
-import SEOStats from "@/components/SEOStats";
-import CityMap from "@/components/CityMap";
+const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
 	ssr: false,
 });
 
-// ───────────────────────────────────────────────────────────────────────────────
+import ReadingProgressBar from "@/components/ReadingProgressBar";
+import SmartCTA from "@/components/SmartCTA";
+import LocalNRWHook from "@/components/LocalNRWHook";
+import PeopleAlsoRead from "@/components/PeopleAlsoRead";
+
+// ─────────────────────────────────────────
 // Static generation
-// ───────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────
 export async function getStaticPaths() {
-	// wspieramy zarówno city.city jak i ewentualne city.slug z citiesData
 	const paths = citiesData.map((c) => ({
 		params: { city: (c.slug ?? slugify(c.city)).toLowerCase() },
 	}));
@@ -31,58 +28,27 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const slugParam = params.city.toLowerCase();
+	const citySlug = params.city.toLowerCase();
 	const cityData =
 		citiesData.find(
-			(c) => (c.slug ?? slugify(c.city)).toLowerCase() === slugParam
-		) || null;
+			(c) => (c.slug ?? slugify(c.city)).toLowerCase() === citySlug
+		) ?? null;
 
-	if (!cityData) {
-		return { notFound: true };
-	}
+	if (!cityData) return { notFound: true };
 
-	const dataWithSlug = { ...cityData, slug: slugParam };
-	const seo = generateSeoData(dataWithSlug);
-
-	return {
-		props: {
-			cityData: dataWithSlug,
-			seo,
-		},
-	};
+	const seo = generateSeoData(cityData);
+	return { props: { cityData, seo } };
 }
 
-// ───────────────────────────────────────────────────────────────────────────────
-// Helpers
-// ───────────────────────────────────────────────────────────────────────────────
-const handleEmailClick = () => {
-	if (typeof window !== "undefined") {
-		window.location.href = "mailto:pixelgenie.marketing@gmail.com";
-	}
-};
-
-const SectionSurface = ({ children }) => {
-	const surfaceStyle = {
-		backgroundColor: "transparent",
-		color: "var(--text-color)",
-		borderColor: "rgba(255,255,255,0.12)",
-	};
-	return (
-		<Card className="shadow-sm" style={surfaceStyle} border="1">
-			<Card.Body>{children}</Card.Body>
-		</Card>
-	);
-};
-
-// ───────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────
 // Page
-// ───────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────
 export default function SeoCityPage({ cityData, seo }) {
 	const {
 		city,
 		geo = { latitude: 0, longitude: 0 },
-		postalCode = "",
-		address = "",
+		postalCode,
+		address,
 		phone,
 		email,
 		population,
@@ -93,653 +59,547 @@ export default function SeoCityPage({ cityData, seo }) {
 		economicHighlights = {},
 	} = cityData;
 
-	// normalizacja nazwy miasta do H1/metadanych
-	const cityName =
-		city && city.length > 0
-			? city.charAt(0).toUpperCase() + city.slice(1).toLowerCase()
-			: "";
+	const cityName = city.charAt(0).toUpperCase() + city.slice(1);
+	const canonicalUrl = seo.canonical;
 
-	const sectionStyle = {
+	const surface = {
 		backgroundColor: "transparent",
-		color: "var(--text-color)",
+		borderColor: "rgba(255,255,255,0.14)",
 	};
+	const muted = { opacity: 0.8 };
 
-	const mutedStyle = { opacity: 0.85 };
-
-	const canonicalUrl = seo.canonical; // z generatora SEO (spójność całego serwisu)
-
-	// ────────────────────────────────────────────────────────────────────────────
-	// JSON-LD (@graph) — Wariant A (jedna paczka z wszystkimi typami)
-	// ────────────────────────────────────────────────────────────────────────────
-	const jsonLd = {
-		"@context": "https://schema.org",
-		"@graph": [
-			{
-				"@type": "LocalBusiness",
-				"@id": `${canonicalUrl}#business`,
-				name: `SEO Agentur ${cityName} – Pixel-Genie`,
-				url: canonicalUrl,
-				image:
-					"https://pixel-genie.de/assets/pixel-genie-webseiten-seo-nettetal-logo.png",
-				logo: "https://pixel-genie.de/assets/pixel-genie-webseiten-seo-nettetal-logo.png",
-				telephone: phone || "+48 726 897 493",
-				email: email || "pixelgenie.marketing@gmail.com",
-				priceRange: "€€",
-				hasMap: `https://www.google.com/maps/search/?api=1&query=${geo.latitude},${geo.longitude}`,
-				geo: {
-					"@type": "GeoCoordinates",
-					latitude: geo.latitude ?? 0,
-					longitude: geo.longitude ?? 0,
-				},
-				address: {
-					"@type": "PostalAddress",
-					streetAddress: address || "Fasanenstr. 10",
-					addressLocality: cityName,
-					postalCode: postalCode || "",
-					addressCountry: "DE",
-				},
-				areaServed: { "@type": "City", name: cityName },
-				openingHours: ["Mo-Fr 09:00-17:00"],
-				sameAs: [
-					"https://www.facebook.com/pixelgenie.de",
-					"https://www.instagram.com/pixelgenie.de",
-					"https://www.linkedin.com/company/pixel-genie",
-					"https://x.com/PixelGenieWeb",
-				],
-			},
-			{
-				"@type": "Service",
-				"@id": `${canonicalUrl}#seo-service`,
-				serviceType: `Local SEO in ${cityName}`,
-				provider: { "@id": `${canonicalUrl}#business` },
-				areaServed: { "@type": "City", name: cityName },
-				offers: {
-					"@type": "Offer",
-					priceCurrency: "EUR",
-					price: "99",
-					availability: "https://schema.org/InStock",
-					url: canonicalUrl,
-				},
-			},
-			{
-				"@type": "BreadcrumbList",
-				itemListElement: [
-					{
-						"@type": "ListItem",
-						position: 1,
-						name: "SEO",
-						item: "https://pixel-genie.de/seo/",
-					},
-					{
-						"@type": "ListItem",
-						position: 2,
-						name: `SEO Agentur ${cityName}`,
-						item: canonicalUrl,
-					},
-				],
-			},
-			{
-				"@type": "FAQPage",
-				"@id": `${canonicalUrl}#faq`,
-				mainEntity: [
-					{
-						"@type": "Question",
-						name: `Wie lange dauert SEO in ${cityName}?`,
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: `Erste Verbesserungen nach 4–8 Wochen, stabile Rankings nach 3–6 Monaten – abhängig vom Wettbewerb in ${cityName}.`,
-						},
-					},
-					{
-						"@type": "Question",
-						name: `Was kostet SEO in ${cityName}?`,
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: `Lokale SEO-Pakete starten ab 99 € monatlich – inklusive technischer Optimierung, Content-Strategie und Reporting.`,
-						},
-					},
-					{
-						"@type": "Question",
-						name: `Warum ist lokales SEO in ${cityName} wichtig?`,
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: `Über 70 % regionaler Suchen führen zu Kontaktanfragen – wer in ${cityName} nicht sichtbar ist, verliert Kunden an lokale Konkurrenz.`,
-						},
-					},
-					{
-						"@type": "Question",
-						name: `Bietet Pixel-Genie SEO-Audits in ${cityName} an?`,
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: `Ja, inklusive Analyse von Technik, Content, Backlinks und Google Business Profil für ${cityName}.`,
-						},
-					},
-				],
-			},
-			{
-				"@type": "WebSite",
-				"@id": "https://pixel-genie.de/#website",
-				url: "https://pixel-genie.de",
-				name: "Pixel-Genie",
-				potentialAction: {
-					"@type": "SearchAction",
-					target: "https://pixel-genie.de/?s={search_term_string}",
-					"query-input": "required name=search_term_string",
-				},
-			},
-		],
-	};
-
-	// ────────────────────────────────────────────────────────────────────────────
-	// Content helpers z citiesData → do sekcji „Miasto w liczbach”
-	// ────────────────────────────────────────────────────────────────────────────
-	const econKeys = Object.keys(economicHighlights || {});
-	const econItems =
-		econKeys.length > 0
-			? econKeys.map((k) => ({
-					label: k,
-					value:
-						typeof economicHighlights[k] === "string"
-							? economicHighlights[k]
-							: JSON.stringify(economicHighlights[k]),
-				}))
-			: [];
-
-	// ────────────────────────────────────────────────────────────────────────────
-	// Render
-	// ────────────────────────────────────────────────────────────────────────────
 	return (
 		<>
 			<Head>
-				{/* Title + Meta */}
 				<title>{seo.title}</title>
 				<meta name="description" content={seo.description} />
-				{seo.keywords && <meta name="keywords" content={seo.keywords} />}
-				<meta
-					name="robots"
-					content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
-				/>
 				<link rel="canonical" href={canonicalUrl} />
-
-				{/* Favicon */}
+				<meta property="og:url" content={canonicalUrl} />
+				<meta property="og:image" content="/og?title=SEO%20NRW&bg=green" />
+				<meta property="og:locale" content="de_DE" />
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(seo.schemaGraph),
+					}}
+				/>
 				<link
 					rel="icon"
 					href="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
 				/>
-
-				{/* Open Graph */}
-				<meta property="og:title" content={seo.openGraph?.title ?? seo.title} />
-				<meta
-					property="og:description"
-					content={seo.openGraph?.description ?? seo.description}
-				/>
-				<meta property="og:type" content="website" />
-				<meta property="og:url" content={seo.openGraph?.url ?? canonicalUrl} />
-				<meta property="og:site_name" content="Pixel-Genie" />
-				<meta
-					property="og:image"
-					content={
-						seo.openGraph?.images?.[0]?.url ??
-						"https://pixel-genie.de/assets/og-default.jpg"
-					}
-				/>
-				<meta property="og:locale" content="de_DE" />
-
-				{/* Twitter */}
-				<meta
-					name="twitter:card"
-					content={seo.twitter?.card ?? "summary_large_image"}
-				/>
-				<meta name="twitter:title" content={seo.twitter?.title ?? seo.title} />
-				<meta
-					name="twitter:description"
-					content={seo.twitter?.description ?? seo.description}
-				/>
-				<meta
-					name="twitter:image"
-					content={
-						seo.openGraph?.images?.[0]?.url ??
-						"https://pixel-genie.de/assets/og-default.jpg"
-					}
-				/>
-
-				{/* ✅ Single JSON-LD with @graph (no duplicates) */}
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				/>
 			</Head>
 
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* HERO */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 my-5 " style={sectionStyle}>
+			{/* ✅ Desktop only SmartCTA */}
+			<style>{`
+                @media (max-width: 991px) { 
+                    .smart-cta { display:none !important; } 
+                }
+            `}</style>
+
+			<ReadingProgressBar />
+			<SmartCTA triggerPercent={30} />
+
+			{/* === HERO === */}
+			<section className="py-5">
 				<Container>
-					<Row className="align-items-center mt-5">
-						<Col lg={7} className="mb-4 mb-lg-0">
+					<Row className="align-items-center mt-4">
+						<Col lg={7}>
 							<h1 className="display-5 fw-bold mb-3">
-								SEO Agentur in {cityName} – Sichtbarkeit, die verkauft{" "}
-								<span role="img" aria-label="rocket">
-									🚀
-								</span>
+								SEO Agentur in {cityName} – Sichtbarkeit, die verkauft 🚀
 							</h1>
 							<p className="lead">
-								<strong>Pixel-Genie</strong> ist deine SEO-Agentur in {cityName}
-								. Wir kombinieren technische Exzellenz, lokalen Content i
-								konwersję, żeby Twoja strona zdobywała zapytania każdego dnia.
+								Wir bringen deine Angebote in {cityName} an die Spitze von
+								Google – mit Fokus auf **Leads, Calls & Kunden**.
 							</p>
+
 							<div className="d-flex flex-wrap gap-2 mt-2">
 								<Badge bg="success">Core Web Vitals</Badge>
 								<Badge bg="primary">Local SEO</Badge>
 								<Badge bg="info">Content Strategy</Badge>
 								<Badge bg="warning" text="dark">
-									Conversion & UX
+									UX & Conversion
 								</Badge>
 							</div>
+
 							<Button
-								href="#kontakt"
+								onClick={() =>
+									(window.location.href =
+										"mailto:pixelgenie.marketing@gmail.com")
+								}
 								variant="primary"
 								size="lg"
-								className="mt-3 text-white"
-								onClick={handleEmailClick}
+								className="mt-4 text-white"
 							>
-								Jetzt kostenlose SEO-Analyse anfordern →
+								Kostenlose SEO-Analyse →
 							</Button>
 						</Col>
 
-						<Col md={5} className="mb-4 mb-md-0">
-							<SectionSurface>
-								<h2 className="h4 fw-semibold mb-3">
-									🌍 Warum SEO in {cityName} entscheidend ist?
-								</h2>
-								<p style={mutedStyle}>
-									In {cityName} entscheidet Google über den Erfolg. Wer nicht
-									sichtbar ist, verliert Anfragen an die Konkurrenz. Mit lokaler
-									SEO holen wir kaufbereite Nutzer direkt auf deine Website –
-									messbar i nachhaltig.
-								</p>
-								<ul className="mb-0">
-									<li>Technik + Content + UX w jednej strategii</li>
-									<li>Lokale keywordy i map pack coverage</li>
-									<li>Stały reporting i wzrost konwersji</li>
-								</ul>
-							</SectionSurface>
+						<Col lg={5} className="mt-4">
+							<Card className="shadow-sm" style={surface}>
+								<Card.Body>
+									<h3 className="h5 fw-semibold mb-3">
+										Warum SEO in {cityName}?
+									</h3>
+									<p>
+										<strong>70 %</strong> der lokalen Suchanfragen führen zu
+										einer Aktion innerhalb eines Tages.
+									</p>
+									<ul>
+										<li style={{ color: "var(--text-color)" }}>
+											Mehr Kundenanfragen aus der Region
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Sichtbar im Local Pack (Maps)
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Nachhaltige Leads statt teurer Ads
+										</li>
+									</ul>
+								</Card.Body>
+							</Card>
 						</Col>
-					</Row>{" "}
-					<GoogleReviews />
+					</Row>
+
+					<Row className="mt-4">
+						<Col>
+							<GoogleReviews />
+						</Col>
+					</Row>
 				</Container>
 			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Miasto w liczbach + Mapa */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5" style={sectionStyle}>
+			{/* === CITY FACTS + MAP === */}
+			<section className="py-5">
 				<Container>
 					<Row>
-						<Col lg={8} className="mb-4 mb-lg-0">
-							<SectionSurface>
-								{/* Statystyki SEO / dane miasta */}
-								<div className="mb-4">
-									<h2 className="h4 fw-semibold mb-2">
-										📊 {cityName} – Zahlen & Fakten
-									</h2>
-									{historySnippet && (
-										<p className="mb-3" style={mutedStyle}>
-											{historySnippet}
-										</p>
-									)}
-									<Row>
-										<Col sm={6} className="mb-3">
-											<h3 className="h6 fw-bold mb-2">Geografische Daten</h3>
-											<ul className="mb-0" style={mutedStyle}>
-												{!!postalCode && (
-													<li>
-														<strong>Postleitzahl:</strong> {postalCode}
-													</li>
-												)}
-												{!!areaKm2 && (
-													<li>
-														<strong>Fläche:</strong> {areaKm2} km²
-													</li>
-												)}
-												{!!elevation && (
-													<li>
-														<strong>Höhe:</strong> {elevation} m ü. M.
-													</li>
-												)}
-												{geo?.latitude && geo?.longitude && (
-													<li>
-														<strong>Koordinaten:</strong> {geo.latitude},{" "}
-														{geo.longitude}
-													</li>
-												)}
-												{!!population && (
-													<li>
-														<strong>Einwohner:</strong>{" "}
-														{population.toLocaleString("de-DE")}
-													</li>
-												)}
-											</ul>
-										</Col>
-										<Col sm={6} className="mb-3">
-											<h3 className="h6 fw-bold mb-2">Wirtschaft & Struktur</h3>
-											{econItems.length > 0 ? (
-												<div>
-													{econItems.map((item, idx) => (
-														<div
-															key={idx}
-															className="mb-2 p-2 rounded border"
-															style={{
-																backgroundColor: "rgba(255,255,255,0.05)",
-																borderColor: "rgba(255,255,255,0.15)",
-															}}
-														>
-															<div
-																className="fw-semibold"
-																style={{ color: "var(--text-color)" }}
-															>
-																{item.label}
-															</div>
-															<div
-																style={{
-																	whiteSpace: "pre-line",
-																	...mutedStyle,
-																}}
-															>
-																{item.value}
-															</div>
-														</div>
-													))}
-												</div>
-											) : (
-												<p style={mutedStyle}>
-													Region mit stabiler Mittelstandsstruktur.
-												</p>
+						{/* LEFT : Zahlen & Fakten */}
+						<Col lg={8} className="mb-4">
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h2 className="h4 fw-semibold mb-3">
+									📊 {cityName} – Zahlen & Fakten
+								</h2>
+
+								{historySnippet && <p className="mb-3">{historySnippet}</p>}
+
+								<Row>
+									<Col md={6} className="mb-3">
+										<h3 className="h6 fw-bold mb-2">Geografische Daten</h3>
+										<ul className="mb-0">
+											{postalCode && (
+												<li style={{ color: "var(--text-color)" }}>
+													<strong>Postleitzahl:</strong> {postalCode}
+												</li>
 											)}
-										</Col>
-									</Row>
+											{areaKm2 && (
+												<li style={{ color: "var(--text-color)" }}>
+													<strong>Fläche:</strong> {areaKm2} km²
+												</li>
+											)}
+											{elevation && (
+												<li style={{ color: "var(--text-color)" }}>
+													<strong>Höhe:</strong> {elevation} m
+												</li>
+											)}
+											{geo?.latitude && geo?.longitude && (
+												<li style={{ color: "var(--text-color)" }}>
+													<strong>Koordinaten:</strong> {geo.latitude},{" "}
+													{geo.longitude}
+												</li>
+											)}
+											{population && (
+												<li style={{ color: "var(--text-color)" }}>
+													<strong>Einwohner:</strong>{" "}
+													{population.toLocaleString("de-DE")}
+												</li>
+											)}
+										</ul>
+									</Col>
 
-									{boroughs.length > 0 && (
-										<div className="mt-3">
-											<h3 className="h6 fw-bold mb-2">
-												🏙️ Wichtige Stadtteile
-											</h3>
-											<ul className="list-unstyled mb-0" style={mutedStyle}>
-												{boroughs.map((b, i) => (
-													<li
-														key={i}
-														className="py-1 border-bottom"
-														style={{ borderColor: "rgba(255,255,255,0.1)" }}
-													>
-														{b}
-													</li>
-												))}
+									<Col md={6} className="mb-3">
+										<h3 className="h6 fw-bold mb-2">Wirtschaft & Branchen</h3>
+
+										{Object.keys(economicHighlights).length > 0 ? (
+											<ul className="mb-0">
+												{Object.entries(economicHighlights).map(
+													([k, v], idx) => (
+														<li
+															key={idx}
+															style={{ color: "var(--text-color)" }}
+														>
+															<strong>{k}:</strong>{" "}
+															{typeof v === "string" ? v : JSON.stringify(v)}
+														</li>
+													)
+												)}
 											</ul>
-										</div>
-									)}
-								</div>
+										) : (
+											<p>Mittelstandsgeprägte Wirtschaft & Industrie.</p>
+										)}
+									</Col>
+								</Row>
 
-								{/* SEO stats (Twój komponent) */}
-								<SEOStats cityData={cityData} />
-							</SectionSurface>
+								{/* Optional: SEO KPIs — jeśli komponent istnieje */}
+								{/* <SEOStats cityData={cityData} /> */}
+							</Card>
 						</Col>
 
-						<Col md={4}>
-							<Card className="h-100 shadow-sm" style={sectionStyle} border="1">
+						{/* RIGHT : Map */}
+						<Col lg={4} className="mb-4">
+							<Card className="shadow-sm h-100" style={surface}>
 								<Card.Body className="p-0">
 									<CityMap
 										key={cityData.city}
 										cityData={cityData}
-										height={340}
+										height={350}
 									/>
 								</Card.Body>
 							</Card>
-							<SectionSurface>
-								<div className="d-flex gap-2">
-									<a
-										className=""
-										href={`https://www.google.com/maps/search/?api=1&query=${geo.latitude},${geo.longitude}`}
-										target="_blank"
-										rel="noopener noreferrer"
-									></a>
-								</div>
-							</SectionSurface>
 						</Col>
 					</Row>
 				</Container>
 			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Leistungen */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 " style={sectionStyle}>
+			{/* === LEISTUNGEN === */}
+			<section className="py-5">
 				<Container>
 					<Row>
-						<Col md={12}>
+						<Col lg={12}>
 							<h2 className="h3 fw-bold mb-4">
 								Unsere SEO-Leistungen in {cityName}
 							</h2>
 						</Col>
-						<Col md={6}>
-							<ul className="mb-0">
-								<li>
-									Technische SEO & Performance (CWV, Crawling, Indexierung)
-								</li>
-								<li>Keyword-Analyse & Content-Strategien mit lokalem Bezug</li>
-								<li>Lokales SEO & Google Business Profil Optimierung</li>
-								<li>Informationsarchitektur & interne Verlinkung</li>
-								<li>OnPage: Snippets, Schema, E-E-A-T</li>
-							</ul>
+
+						<Col md={6} className="mb-4">
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold mb-3">OnPage SEO</h3>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Technische Analyse & Crawlbarkeit
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Strukturierte Daten (Schema.org)
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Core Web Vitals Optimierung
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Snippets & interne Verlinkung
+									</li>
+								</ul>
+							</Card>
 						</Col>
-						<Col md={6}>
-							<ul className="mb-0">
-								<li>Backlink-Aufbau & Wettbewerbsanalyse</li>
-								<li>SEO-Reporting & monatliche Fortschrittsanalyse</li>
-								<li>Conversion-Optimierung (UX/CRO, A/B Tests)</li>
-								<li>Content Ops: Briefingi, edycja, publikacja</li>
-								<li>Local Citations & Map Pack Growth</li>
-							</ul>
+
+						<Col md={6} className="mb-4">
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold mb-3">Local SEO</h3>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Google Business Profil Optimierung
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Maps Rankings & Local Pack
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Bewertungen & Local Citations
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						<Col md={6} className="mb-4">
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold mb-3">Content SEO</h3>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Lokale Themencluster mit Recherche
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										SEO-optimierte Landingpages
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										E-E-A-T Inhalte & UX-Optimierung
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						<Col md={6} className="mb-4">
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold mb-3">Authority & Backlinks</h3>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Wettbewerbsanalyse
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Digital PR & Outreach
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Relevante lokale Backlinks
+									</li>
+								</ul>
+							</Card>
 						</Col>
 					</Row>
 				</Container>
 			</section>
 
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Prozess + USP */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5" style={sectionStyle}>
+			{/* === PROZESS + USPs === */}
+			<section className="py-5">
 				<Container>
-					<Row className="align-items-start">
+					<Row>
 						<Col lg={7} className="mb-4">
-							<SectionSurface>
+							<Card className="shadow-sm p-4" style={surface}>
 								<h2 className="h4 fw-semibold mb-3">Unser SEO-Prozess</h2>
-								<ol className="mb-3" style={mutedStyle}>
-									<li className="mb-2">
-										<strong>Analyse & Zielsetzung:</strong> Technisches Audit,
-										Crawl-Budget, Wettbewerbsanalyse in {cityName}.
+								<ol style={{ ...muted, marginBottom: "0" }}>
+									<li className="mb-2" style={{ color: "var(--text-color)" }}>
+										<strong>Analyse & Zielsetzung:</strong> Technisches Audit in{" "}
+										{cityName}.
 									</li>
-									<li className="mb-2">
-										<strong>Quick Wins:</strong> Snippet-Optimierung, interne
-										Verlinkung, Verbesserung der Core Web Vitals.
+									<li className="mb-2" style={{ color: "var(--text-color)" }}>
+										<strong>Quick Wins:</strong> Snippets, interne Verlinkung,
+										CWV.
 									</li>
-									<li className="mb-2">
-										<strong>Content-Strategie:</strong> Lokale Themencluster
-										basierend auf Suchintention & Google Maps Keywords.
+									<li className="mb-2" style={{ color: "var(--text-color)" }}>
+										<strong>Content-Strategie:</strong> regionale Themen +
+										Suchintention.
 									</li>
-									<li className="mb-2">
-										<strong>Authority & Backlinks:</strong> Citations, lokale
-										Erwähnungen, Digital PR & Partnerschaften.
+									<li className="mb-2" style={{ color: "var(--text-color)" }}>
+										<strong>Authority Aufbau:</strong> lokales Linkbuilding &
+										Erwähnungen.
 									</li>
-									<li className="mb-2">
-										<strong>Skalierung & Monitoring:</strong> Regelmäßige
-										Reports, Tests und kontinuierliche Verbesserung.
+									<li className="mb-2" style={{ color: "var(--text-color)" }}>
+										<strong>Monitoring:</strong> Reporting nach KPIs,
+										Conversion-Fokus.
 									</li>
 								</ol>
-								<p className="mb-0" style={mutedStyle}>
-									Immer mit Fokus auf Leads: mehr Anrufe, mehr Kontaktanfragen,
-									mehr Umsatz.
-								</p>
-							</SectionSurface>
+							</Card>
 						</Col>
 
 						<Col lg={5}>
-							<SectionSurface>
+							<Card className="shadow-sm p-4" style={surface}>
 								<h3 className="h5 fw-bold mb-3">Warum Pixel-Genie?</h3>
-								<ul className="mb-3" style={mutedStyle}>
-									<li>Strategie für Rankings UND Conversions</li>
-									<li>Transparente Maßnahmen und Kennzahlen</li>
-									<li>Lokale Marktkenntnisse in DE & NL</li>
-									<li>Static-first: Google liebt schnelle Websites</li>
+								<ul className="mb-3">
+									<li style={{ color: "var(--text-color)" }}>
+										Strategie: Rankings + Conversion Rates
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Lokal verankert in NRW
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Keine Bindung, maximale Transparenz
+									</li>
 								</ul>
-								<Button variant="outline-primary" onClick={handleEmailClick}>
-									Jetzt Termin vereinbaren →
+								<Button
+									variant="outline-primary"
+									onClick={() =>
+										(window.location.href =
+											"mailto:pixelgenie.marketing@gmail.com")
+									}
+								>
+									Termin vereinbaren →
 								</Button>
-							</SectionSurface>
+							</Card>
 						</Col>
 					</Row>
 				</Container>
 			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Pakete – Preise */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 " style={sectionStyle}>
+			{/* === PAKETE / PREISE === */}
+			<section className="py-5">
 				<Container>
-					<h2 className="h3 fw-bold mb-4 text-center">
-						Flexible SEO-Pakete in {cityName}
+					<h2 className="h3 fw-bold text-center mb-5">
+						SEO-Pakete für {cityName}
 					</h2>
-					<Row>
-						<Col md={4} className="mb-3">
-							<SectionSurface>
+
+					<Row className="g-4">
+						{/* BASIC */}
+						<Col md={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
 								<h3 className="h5 fw-bold">Starter</h3>
-								<p style={mutedStyle}>Ideal für kleine lokale Unternehmen</p>
-								<h4 className="display-6">99 €</h4>
-								<ul style={mutedStyle}>
-									<li>Technisches Audit + Sofortmaßnahmen</li>
-									<li>1× lokaler Content pro Monat</li>
-									<li>Google Business Profil Optimierung</li>
-									<li>Monatliches Reporting</li>
+								<p>Ideal für lokale Businesses</p>
+								<h4 className="display-6 mb-3">99 €</h4>
+								<ul style={{ ...muted, fontSize: "0.95rem" }}>
+									<li style={{ color: "var(--text-color)" }}>
+										Technisches SEO
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Google Business Profil Optimierung
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										1× Local Content / Monat
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Monatliches Reporting
+									</li>
 								</ul>
-								<Button variant="primary" onClick={handleEmailClick}>
-									Angebot anfordern
+								<Button
+									variant="primary"
+									className="mt-3 text-white"
+									onClick={() =>
+										(window.location.href =
+											"mailto:pixelgenie.marketing@gmail.com")
+									}
+								>
+									Angebot anfordern →
 								</Button>
-							</SectionSurface>
+							</Card>
 						</Col>
 
-						<Col md={4} className="mb-3">
-							<SectionSurface>
+						{/* GROWTH */}
+						<Col md={4}>
+							<Card
+								className="shadow-sm p-4 h-100 border-primary"
+								style={surface}
+							>
+								<Badge bg="primary" className="mb-2 align-self-start">
+									Bestseller
+								</Badge>
 								<h3 className="h5 fw-bold">Growth</h3>
-								<p style={mutedStyle}>Wachstum & bessere Platzierungen</p>
-								<h4 className="display-6">299 €</h4>
-								<ul style={mutedStyle}>
-									<li>Umfassendes Audit + SEO-Roadmap</li>
-									<li>4× Content/Monat (Cluster)</li>
-									<li>Lokale Backlinks & Citations</li>
-									<li>Monitoring von CWV & UX</li>
+								<p>Wachstum & Ranking-Dominanz</p>
+								<h4 className="display-6 mb-3">299 €</h4>
+								<ul style={{ ...muted, fontSize: "0.95rem" }}>
+									<li style={{ color: "var(--text-color)" }}>
+										SEO-Roadmap + Monitoring
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										4× Content Cluster / Monat
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Lokale Backlinks & Citations
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										UX & CWV Optimierung
+									</li>
 								</ul>
-								<Button variant="primary" onClick={handleEmailClick}>
-									Angebot anfordern
+								<Button
+									variant="primary"
+									className="mt-3 text-white"
+									onClick={() =>
+										(window.location.href =
+											"mailto:pixelgenie.marketing@gmail.com")
+									}
+								>
+									Angebot anfordern →
 								</Button>
-							</SectionSurface>
+							</Card>
 						</Col>
 
-						<Col md={4} className="mb-3">
-							<SectionSurface>
+						{/* PRO */}
+						<Col md={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
 								<h3 className="h5 fw-bold">Pro</h3>
-								<p style={mutedStyle}>Dominanz in {cityName}</p>
-								<h4 className="display-6">599 €</h4>
-								<ul style={mutedStyle}>
-									<li>City-wide & Multi-Intent Strategie</li>
-									<li>8× Content/Monat (Pillar + Support)</li>
-									<li>Digital PR & Autoritätsaufbau</li>
-									<li>Conversion Optimierung & A/B-Tests</li>
+								<p>City-wide SEO Dominanz</p>
+								<h4 className="display-6 mb-3">599 €</h4>
+								<ul style={{ ...muted, fontSize: "0.95rem" }}>
+									<li style={{ color: "var(--text-color)" }}>
+										Multi-Intent Content Strategie
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										8× Content / Monat (Pillar + Support)
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Digital PR & starke Erwähnungen
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Conversion Optimierung
+									</li>
 								</ul>
-								<Button variant="primary" onClick={handleEmailClick}>
-									Angebot anfordern
+								<Button
+									variant="primary"
+									className="mt-3 text-white"
+									onClick={() =>
+										(window.location.href =
+											"mailto:pixelgenie.marketing@gmail.com")
+									}
+								>
+									Angebot anfordern →
 								</Button>
-							</SectionSurface>
+							</Card>
 						</Col>
 					</Row>
 				</Container>
 			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Case Studies */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5" style={sectionStyle}>
+			{/* === CASE STUDIES === */}
+			<section className="py-5">
 				<Container>
-					<Row>
-						<Col md={12}>
-							<h2 className="h3 fw-bold mb-4">Ergebnisse, die überzeugen</h2>
+					<h2 className="h3 fw-bold mb-4">
+						Ergebnisse aus ähnlichen SEO-Projekten
+					</h2>
+
+					<Row className="g-4">
+						{/* Case 1 */}
+						<Col lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Dienstleister (B2C lokal)</h3>
+								<p>
+									+187 % mehr lokale Suchanfragen in 6 Monaten (Local Pack +
+									Content Refresh).
+								</p>
+								<ul style={{ ...muted, fontSize: "0.9rem" }}>
+									<li style={{ color: "var(--text-color)" }}>
+										CTR +2,3 Prozentpunkte
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Core Web Vitals: „Good“ site-wide
+									</li>
+								</ul>
+							</Card>
 						</Col>
 
-						<Col lg={4} className="mb-3">
-							<SectionSurface>
-								<h3 className="h6 fw-bold">Lokaler Dienstleister</h3>
-								<p style={mutedStyle}>
-									+214 % mehr organische Anfragen in 3 Monaten (Local Pack +
-									Content).
-								</p>
-								<ul style={mutedStyle}>
-									<li>CTR +2,1 Prozentpunkte dank Snippet-Optimierung</li>
-									<li>Core Web Vitals: „Good“ site-wide</li>
+						{/* Case 2 */}
+						<Col lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Einzelhandel mit Online-Showroom</h3>
+								<p>5× mehr Keywords in den Top-3, +31 % Umsatzwachstum.</p>
+								<ul style={{ ...muted, fontSize: "0.9rem" }}>
+									<li style={{ color: "var(--text-color)" }}>
+										Strukturierte Themencluster
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Relevante lokale Backlinks
+									</li>
 								</ul>
-							</SectionSurface>
+							</Card>
 						</Col>
 
-						<Col lg={4} className="mb-3">
-							<SectionSurface>
-								<h3 className="h6 fw-bold">E-Commerce lokal → regional</h3>
-								<p style={mutedStyle}>
-									5× mehr Keywords in den Top-3, +38 % Umsatzwachstum.
-								</p>
-								<ul style={mutedStyle}>
-									<li>Strukturierte Themencluster</li>
-									<li>Relevante redaktionelle Backlinks</li>
+						{/* Case 3 */}
+						<Col lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">B2B-Serviceanbieter</h3>
+								<p>3× mehr qualifizierte Leads, SEO, Paid Ads.</p>
+								<ul style={{ ...muted, fontSize: "0.9rem" }}>
+									<li style={{ color: "var(--text-color)" }}>
+										Wettbewerbsanalyse & Content-Depth
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										UX-orientierte Konversionsoptimierung
+									</li>
 								</ul>
-							</SectionSurface>
-						</Col>
-
-						<Col lg={4} className="mb-3">
-							<SectionSurface>
-								<h3 className="h6 fw-bold">B2B-Dienstleister</h3>
-								<p style={mutedStyle}>
-									3× mehr qualifizierte Leads, SEO schlägt Paid Ads.
-								</p>
-								<ul style={mutedStyle}>
-									<li>Expertise-Content (E-E-A-T)</li>
-									<li>Starke interne Verlinkung</li>
-								</ul>
-							</SectionSurface>
+							</Card>
 						</Col>
 					</Row>
 				</Container>
 			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* FAQ (HTML) */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 " id="faq" style={sectionStyle}>
+			{/* === FAQ === */}
+			<section className="py-5" id="faq">
 				<Container>
 					<Row>
 						<Col md={12}>
-							<h2 className="h3 fw-bold mb-4">
+							<h2 className="h3 fw-bold mb-5">
 								Häufige Fragen zur SEO in {cityName}
 							</h2>
 						</Col>
 
-						<Col md={6}>
+						<Col md={6} className="mb-4">
 							<h3 className="h6 fw-semibold mb-2">Wie lange dauert SEO?</h3>
-							<p style={mutedStyle}>
-								Erste Verbesserungen nach 4–8 Wochen. Stabile Top-Rankings nach
-								3–6 Monaten, je nach Wettbewerb in {cityName}.
+							<p>
+								Erste Verbesserungen in 6–10 Wochen. Stabile Top-Rankings nach
+								3–6 Monaten – abhängig vom Wettbewerb in {cityName}.
 							</p>
 
 							<h3 className="h6 fw-semibold mb-2">
 								Was kostet SEO in {cityName}?
 							</h3>
-							<p style={mutedStyle}>
-								Lokale Pakete ab 99 €, abhängig von Zielen & Konkurrenz.
+							<p>
+								Lokale Pakete ab 99 € monatlich – flexibel je nach Ziel &
+								Region.
 							</p>
 						</Col>
 
@@ -747,76 +607,70 @@ export default function SeoCityPage({ cityData, seo }) {
 							<h3 className="h6 fw-semibold mb-2">
 								Warum ist lokales SEO so wichtig?
 							</h3>
-							<p style={mutedStyle}>
-								Über 70 % der Suchanfragen sind lokal. Sichtbarkeit in Maps &
-								Local Pack = direkte Kundengewinne.
+							<p>
+								70 % der lokalen Suchanfragen führen zu Kontakt oder Besuch. Wer
+								in {cityName} nicht sichtbar ist, verliert Kunden.
 							</p>
 
 							<h3 className="h6 fw-semibold mb-2">
-								Bietet Pixel-Genie SEO-Audits an?
+								Macht ihr auch SEO-Analysen?
 							</h3>
-							<p style={mutedStyle}>
-								Ja – inklusive technischer Analyse & Maßnahmenplan für{" "}
-								{cityName}.
+							<p>
+								Ja – inklusive Technik-Check, Sichtbarkeitsanalyse &
+								Strategie-Empfehlungen für {cityName}.
 							</p>
 						</Col>
 					</Row>
 				</Container>
 			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* CTA / Kontakt */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 " id="kontakt" style={sectionStyle}>
+			{/* === KONTAKT CTA === */}
+			<section className="py-5" id="kontakt">
 				<Container>
 					<Row className="align-items-center">
 						<Col md={8} className="mb-3">
 							<h2 className="h3 fw-semibold mb-3">
 								Starte jetzt dein SEO-Projekt in {cityName}
 							</h2>
-							<p style={mutedStyle}>
-								Kostenlose Erstberatung: Wir analysieren Technik, Sichtbarkeit &
-								Potenziale vor Ort in {cityName}.
+							<p>
+								🚀 Kostenlose Erstberatung: Wir analysieren Technik,
+								Sichtbarkeit & Potenziale bei dir vor Ort in {cityName}.
 							</p>
 						</Col>
+
 						<Col md={4} className="text-md-end">
 							<Button
 								variant="primary"
 								size="lg"
-								className="text-white"
-								onClick={handleEmailClick}
+								className="text-white d-none d-md-inline-block"
+								onClick={() =>
+									(window.location.href =
+										"mailto:pixelgenie.marketing@gmail.com")
+								}
 							>
-								✨ Kostenlose Analyse anfordern
+								✉️ Kostenlose Analyse →
+							</Button>
+
+							<Button
+								variant="primary"
+								size="lg"
+								className="text-white d-md-none"
+								onClick={() => {
+									const el = document.querySelector("#kontakt");
+									if (el) el.scrollIntoView({ behavior: "smooth" });
+								}}
+							>
+								Jetzt Kontakt aufnehmen →
 							</Button>
 						</Col>
 					</Row>
 				</Container>
 			</section>
 
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Footer wewnętrzny sekcji */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<footer className="py-4 text-center" style={sectionStyle}>
-				<Container>
-					<p className="mb-0 small" style={{ opacity: 0.8 }}>
-						Weitere Leistungen:{" "}
-						<Link href="/webseitenerstellen/" className="text-decoration-none">
-							Webseiten
-						</Link>{" "}
-						|{" "}
-						<Link
-							href="/suchmaschinenoptimierung/"
-							className="text-decoration-none"
-						>
-							SEO
-						</Link>{" "}
-						|{" "}
-						<Link href="/webdesign/" className="text-decoration-none">
-							Webdesign
-						</Link>
-					</p>
-				</Container>
-			</footer>
+			{/* === INTERNAL LOCAL SEO — POWER LINKING === */}
+			<LocalNRWHook />
+
+			{/* === RELATED CONTENT — BLOG POWER-UP === */}
+			<PeopleAlsoRead tagHint="SEO" />
 		</>
 	);
 }

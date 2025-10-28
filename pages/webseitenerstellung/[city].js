@@ -1,890 +1,654 @@
-// /pages/webseitenerstellung/[city].js
+// ✅ /pages/webseitenerstellung/[city].js — ULTRA LEVEL 4
 import Head from "next/head";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
+import generateSeoData from "@/lib/generateSeoData";
+import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
 
+const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
+	ssr: false,
+});
 const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 
-/* ──────────────────────────────────────────────────────────────
-   Stałe i pomocniki
-   ────────────────────────────────────────────────────────────── */
-const ORIGIN = "https://pixel-genie.de";
-const BRAND = "Pixel-Genie";
-const BRAND_LONG = "Pixel-Genie Webagentur";
-const CONTACT_PHONE = "+48 726 897 493";
-const CONTACT_EMAIL = "pixelgenie.marketing@gmail.com";
-const OFFICE_STREET = "Fasanenstr. 10";
-const OPENING_HOURS = ["Mo-Fr 09:00-17:00"];
+import ReadingProgressBar from "@/components/ReadingProgressBar";
+import SmartCTA from "@/components/SmartCTA";
+import LocalNRWHook from "@/components/LocalNRWHook";
+import PeopleAlsoRead from "@/components/PeopleAlsoRead";
 
-/** kapitalizacja City do H1/metadanych */
-function toCityLabel(city) {
-	if (!city) return "";
-	return city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
-}
-
-/** generowanie SEO meta na podstawie miasta */
-function buildSeo(cityObj, slug) {
-	const cityName = toCityLabel(cityObj.city);
-	const canonical = `${ORIGIN}/webseitenerstellung/${slug}`;
-
-	const title = `Webseite erstellen lassen in ${cityName} – ${BRAND_LONG}`;
-	const description = `Professionelle Webseitenerstellung in ${cityName}: schnelles, responsives Webdesign, SEO, Core Web Vitals, Conversion & Wartung. Jetzt ${BRAND} kontaktieren und online wachsen.`;
-	const keywords = [
-		`Webseite erstellen ${cityName}`,
-		`Webseitenerstellung ${cityName}`,
-		`Website erstellen lassen ${cityName}`,
-		`Webdesign ${cityName}`,
-		`WordPress ${cityName}`,
-		`Next.js ${cityName}`,
-		`${BRAND}`,
-	].join(", ");
-
-	const openGraph = {
-		title,
-		description,
-		url: canonical,
-		image: `${ORIGIN}/assets/og-default.jpg`,
-		site_name: BRAND,
-		type: "website",
-		locale: "de_DE",
-	};
-
-	const twitter = {
-		card: "summary_large_image",
-		title,
-		description,
-		image: `${ORIGIN}/assets/og-default.jpg`,
-	};
-
-	return {
-		title,
-		description,
-		keywords,
-		canonical,
-		openGraph,
-		twitter,
-		cityName,
-	};
-}
-
-/** przycisk email */
-const handleEmailClick = () => {
-	if (typeof window !== "undefined") {
-		window.location.href = `mailto:${CONTACT_EMAIL}`;
-	}
-};
-
-/* ──────────────────────────────────────────────────────────────
-   SSG: Ścieżki
-   ────────────────────────────────────────────────────────────── */
 export async function getStaticPaths() {
-	const paths = citiesData.map((c) => ({
-		params: { city: (c.slug ?? slugify(c.city)).toLowerCase() },
-	}));
-	return { paths, fallback: false };
+	return {
+		paths: citiesData.map((c) => ({
+			params: { city: (c.slug ?? slugify(c.city)).toLowerCase() },
+		})),
+		fallback: false,
+	};
 }
 
-/* ──────────────────────────────────────────────────────────────
-   SSG: Props
-   ────────────────────────────────────────────────────────────── */
 export async function getStaticProps({ params }) {
-	const slugParam = params.city.toLowerCase();
-	const cityData =
-		citiesData.find(
-			(c) => (c.slug ?? slugify(c.city)).toLowerCase() === slugParam
-		) || null;
+	const slug = params.city.toLowerCase();
+	const cityData = citiesData.find(
+		(c) => (c.slug ?? slugify(c.city)).toLowerCase() === slug
+	);
 
 	if (!cityData) return { notFound: true };
 
-	const dataWithSlug = { ...cityData, slug: slugParam };
+	const seo = generateSeoData({
+		...cityData,
+		titleOverride: `Website erstellen lassen in ${cityData.city} – professionell & schnell`,
+		descriptionOverride: `Webseiten, die Vertrauen schaffen & messbar anfragen generieren – Website erstellen in ${cityData.city} mit Pixel-Genie.`,
+		ogTitleOverride: `Webseitenerstellung in ${cityData.city}`,
+		serviceType: "Webseitenerstellung",
+	});
 
-	const seo = buildSeo(dataWithSlug, slugParam);
-
-	// JSON-LD (LocalBusiness + Service + BreadcrumbList + FAQPage)
-	const jsonLd = {
-		"@context": "https://schema.org",
-		"@graph": [
-			{
-				"@type": "LocalBusiness",
-				"@id": `${seo.canonical}#business`,
-				name: `${BRAND} – Webseitenerstellung`,
-				url: seo.canonical,
-				image: `${ORIGIN}/assets/webseiten-seo-webdesign-logo.png`,
-				logo: `${ORIGIN}/assets/webseiten-seo-webdesign-logo.png`,
-				description: seo.description,
-				priceRange: "€€",
-				telephone: CONTACT_PHONE,
-				email: CONTACT_EMAIL,
-				address: {
-					"@type": "PostalAddress",
-					streetAddress: OFFICE_STREET,
-					addressLocality: seo.cityName,
-					postalCode: cityData.postalCode || "",
-					addressCountry: "DE",
-				},
-				geo: {
-					"@type": "GeoCoordinates",
-					latitude: cityData?.geo?.latitude ?? 0,
-					longitude: cityData?.geo?.longitude ?? 0,
-				},
-				areaServed: { "@type": "City", name: seo.cityName },
-				sameAs: [
-					"https://www.facebook.com/pixelgenie.de",
-					"https://www.instagram.com/pixelgenie.de",
-					"https://www.linkedin.com/company/pixel-genie",
-				],
-				openingHours: OPENING_HOURS,
-			},
-			{
-				"@type": "Service",
-				"@id": `${seo.canonical}#service`,
-				name: `Webseitenerstellung in ${seo.cityName}`,
-				serviceType: `Webseite erstellen lassen in ${seo.cityName}`,
-				provider: { "@id": `${seo.canonical}#business` },
-				areaServed: { "@type": "City", name: seo.cityName },
-				offers: {
-					"@type": "Offer",
-					priceCurrency: "EUR",
-					price: "499",
-					availability: "https://schema.org/InStock",
-					url: seo.canonical,
-				},
-			},
-			{
-				"@type": "BreadcrumbList",
-				itemListElement: [
-					{
-						"@type": "ListItem",
-						position: 1,
-						name: "Webseitenerstellung",
-						item: `${ORIGIN}/webseitenerstellung`,
-					},
-					{
-						"@type": "ListItem",
-						position: 2,
-						name: `Webseite erstellen lassen in ${seo.cityName}`,
-						item: seo.canonical,
-					},
-				],
-			},
-			{
-				"@type": "FAQPage",
-				"@id": `${seo.canonical}#faq`,
-				mainEntity: [
-					{
-						"@type": "Question",
-						name: `Wie viel kostet eine Webseite in ${seo.cityName}?`,
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: `Eine einfache Unternehmensseite in ${seo.cityName} beginnt ab 499 €. Der finale Preis hängt von Funktionsumfang, CMS, Design und SEO-Anforderungen ab.`,
-						},
-					},
-					{
-						"@type": "Question",
-						name: "Wie lange dauert die Erstellung einer Webseite?",
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: "Im Durchschnitt 2–4 Wochen. Größere Projekte mit Shop, Schnittstellen oder Mehrsprachigkeit dauern entsprechend länger.",
-						},
-					},
-					{
-						"@type": "Question",
-						name: "Sind die Webseiten mobil optimiert?",
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: "Ja. Jede Seite ist vollständig responsiv, Core Web Vitals-optimiert und schnell.",
-						},
-					},
-					{
-						"@type": "Question",
-						name: `Bieten Sie auch SEO für ${seo.cityName} an?`,
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: `Ja. SEO ist Bestandteil der Entwicklung: Informationsarchitektur, Meta-Daten, strukturierte Daten, Pagespeed und lokales SEO für ${seo.cityName}.`,
-						},
-					},
-				],
-			},
-		],
-	};
-
-	return {
-		props: {
-			cityData: dataWithSlug,
-			seo,
-			jsonLd,
-		},
-	};
+	return { props: { cityData, seo } };
 }
 
-/* ──────────────────────────────────────────────────────────────
-   Komponent sekcji "surface"
-   ────────────────────────────────────────────────────────────── */
-function SectionSurface({ children, className, style }) {
-	return (
-		<Card
-			className={`shadow-sm ${className ?? ""}`}
-			style={{
-				backgroundColor: "transparent",
-				color: "var(--text-color)",
-				borderColor: "rgba(255,255,255,0.12)",
-				...style,
-			}}
-			border="1"
-		>
-			<Card.Body>{children}</Card.Body>
-		</Card>
-	);
-}
+export default function WebseitenerstellungCity({ cityData, seo }) {
+	const cityName =
+		cityData.city.charAt(0).toUpperCase() + cityData.city.slice(1);
+	const canonicalUrl = seo.canonical;
 
-/* ──────────────────────────────────────────────────────────────
-   Strona
-   ────────────────────────────────────────────────────────────── */
-export default function WebseiteErstellungCityPage({ cityData, seo, jsonLd }) {
-	const {
-		city,
-		postalCode,
-		population,
-		geo,
-		address,
-		historySnippet,
-		elevation,
-		areaKm2,
-		economicHighlights,
-		boroughs = [],
-	} = cityData;
-
-	const cityName = seo.cityName;
-
-	const sectionStyle = {
+	const surface = {
 		backgroundColor: "transparent",
-		color: "var(--text-color)",
+		border: "1px solid rgba(255,255,255,0.12)",
 	};
-	const mutedStyle = { opacity: 0.85 };
-
-	/* Blok listy “USP” do użycia w kilku miejscach */
-	const uspList = [
-		"SEO-optimierte Informationsarchitektur (IA)",
-		"Sauberer Code (Next.js/React), schnelle Ladezeiten",
-		"Core Web Vitals (LCP/CLS/INP) im grünen Bereich",
-		"100% responsiv & barrierearm (WCAG-Basics)",
-		"Skalierbar: CMS, Shop, Sprachen, Integrationen",
-		"Transparente Roadmap, klare KPIs & Reporting",
-	];
 
 	return (
 		<>
 			<Head>
 				<title>{seo.title}</title>
 				<meta name="description" content={seo.description} />
-				<meta name="keywords" content={seo.keywords} />
+				<link rel="canonical" href={canonicalUrl} />
 				<meta
-					name="robots"
-					content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+					property="og:image"
+					content={`/og?title=Webseite%20${cityName}&bg=teal`}
 				/>
-				<link rel="canonical" href={seo.canonical} />
-
-				{/* OG / Twitter */}
-				<meta property="og:title" content={seo.openGraph.title} />
-				<meta property="og:description" content={seo.openGraph.description} />
-				<meta property="og:type" content={seo.openGraph.type} />
-				<meta property="og:url" content={seo.openGraph.url} />
-				<meta property="og:image" content={seo.openGraph.image} />
-				<meta property="og:site_name" content={seo.openGraph.site_name} />
-				<meta property="og:locale" content={seo.openGraph.locale} />
-
-				<meta name="twitter:card" content={seo.twitter.card} />
-				<meta name="twitter:title" content={seo.twitter.title} />
-				<meta name="twitter:description" content={seo.twitter.description} />
-				<meta name="twitter:image" content={seo.twitter.image} />
-
-				{/* JSON-LD */}
 				<script
 					type="application/ld+json"
-					// eslint-disable-next-line react/no-danger
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(seo.schemaGraph),
+					}}
 				/>
 			</Head>
 
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* HERO */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 mt-5 " style={sectionStyle}>
+			<style>{`@media (max-width: 991px) { .smart-cta { display:none!important; } }`}</style>
+
+			<ReadingProgressBar />
+			<SmartCTA triggerPercent={30} />
+
+			{/* ===== HERO ===== */}
+			<section className="py-5">
 				<Container>
-					<Row className="align-items-center mt-5">
-						<Col lg={7} className="mb-4">
+					<Row className="align-items-center g-4 mt-4">
+						<Col lg={7}>
 							<h1 className="display-5 fw-bold mb-3">
-								Webseite erstellen lassen in {cityName} – sichtbar, schnell &
-								überzeugend
+								Website erstellen lassen in {cityName} – modern. schnell.
+								überzeugend.
 							</h1>
-							<p className="lead" style={mutedStyle}>
-								<strong>{BRAND}</strong> entwickelt performante Websites in{" "}
-								{cityName}, die <em>gefunden</em> werden und <em>verkaufen</em>.
-								Von Konzept & UX über Entwicklung (Next.js/WordPress) bis SEO,
-								Analytics und Wartung.
+							<p className="lead">
+								Wir entwickeln deine Website so, dass sie **sichtbar wird**,
+								**überzeugt** und **Anfragen generiert**. Mit klarem Design,
+								SEO-Grundlage & messbaren Ergebnissen.
 							</p>
-							<div className="d-flex gap-2 flex-wrap">
-								<Button
-									variant="primary"
-									size="lg"
-									className="text-white"
-									onClick={handleEmailClick}
-								>
-									✉️ Kostenlose Erstberatung anfordern
-								</Button>
+							<div className="d-flex flex-wrap gap-2 mt-3">
+								<Badge bg="primary">SEO-optimiert</Badge>
+								<Badge bg="success">Core Web Vitals</Badge>
+								<Badge bg="info">Conversion-Fokus</Badge>
+								<Badge bg="warning" text="dark">
+									Responsive
+								</Badge>
 							</div>
-						</Col>
-						<Col lg={5} className="mb-4">
-							<SectionSurface>
-								<h2 className="h4 fw-semibold mb-3">
-									Warum jetzt eine bessere Website?
-								</h2>
-								<ul className="mb-3" style={mutedStyle}>
-									<li>Mehr Sichtbarkeit in lokalen SERP & Maps ({cityName})</li>
-									<li>Mehr Anfragen dank klaren CTAs & UX-Flow</li>
-									<li>Weniger Absprünge durch Pagespeed + Mobile UX</li>
-								</ul>
-								<p className="mb-0" style={mutedStyle}>
-									Ergebnis: <strong>Planbare Leads</strong> und{" "}
-									<strong>Wachstum</strong> – ohne Werbebudget zu verbrennen.
-								</p>
-							</SectionSurface>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Leistungen + Vorteile */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 " style={sectionStyle}>
-				<Container>
-					<Row>
-						<Col md={12}>
-							<h2 className="h3 fw-bold mb-4 text-center">
-								Webseitenerstellung in {cityName} – Leistungen & Vorteile
-							</h2>
-						</Col>
-					</Row>
-
-					<Row className="g-3">
-						<Col md={6}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold mb-3">Unsere Leistungen</h3>
-								<ul className="mb-0" style={mutedStyle}>
-									<li>UX/UI-Konzept, Wireframes, Designsystem</li>
-									<li>Responsives Frontend (Next.js/React) & WordPress</li>
-									<li>SEO-Setup: IA, Meta, strukturierte Daten, Sitemap</li>
-									<li>Performance-Optimierung (Core Web Vitals)</li>
-									<li>Tracking & Analytics (Consent, Events, Funnels)</li>
-									<li>Wartung, Security, Backups, Updates</li>
-								</ul>
-							</SectionSurface>
-						</Col>
-
-						<Col md={6}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold mb-3">Ihre Vorteile mit {BRAND}</h3>
-								<ul className="mb-0" style={mutedStyle}>
-									{uspList.map((u, i) => (
-										<li key={i}>{u}</li>
-									))}
-								</ul>
-							</SectionSurface>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Lokale Infos + Karte */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5" style={sectionStyle}>
-				<Container>
-					<Row>
-						<Col lg={8} className="mb-3">
-							<SectionSurface>
-								<h2 className="h4 fw-semibold mb-3">Über {cityName}</h2>
-								{historySnippet && <p style={mutedStyle}>{historySnippet}</p>}
-								<div className="row">
-									<div className="col-sm-6">
-										<ul className="list-unstyled mb-0" style={mutedStyle}>
-											<li>
-												<strong>Postleitzahl:</strong> {postalCode || "—"}
-											</li>
-											<li>
-												<strong>Fläche:</strong>{" "}
-												{areaKm2 ? `${areaKm2} km²` : "—"}
-											</li>
-											<li>
-												<strong>Einwohner:</strong>{" "}
-												{population ? population.toLocaleString("de-DE") : "—"}
-											</li>
-											<li>
-												<strong>Höhe:</strong>{" "}
-												{elevation ? `${elevation} m ü. NHN` : "—"}
-											</li>
-										</ul>
-									</div>
-									<div className="col-sm-6">
-										<h3 className="h6 fw-bold mb-2">Wirtschaft & Struktur</h3>
-										<ul className="mb-0" style={mutedStyle}>
-											{economicHighlights &&
-												Object.entries(economicHighlights).map(([k, v]) => (
-													<li key={k}>
-														<strong>{k}:</strong> {v}
-													</li>
-												))}
-										</ul>
-									</div>
-								</div>
-
-								{boroughs?.length > 0 && (
-									<div className="mt-3">
-										<h3 className="h6 fw-bold mb-2">Wichtige Stadtteile</h3>
-										<ul className="list-unstyled mb-0" style={mutedStyle}>
-											{boroughs.map((b) => (
-												<li
-													className="py-1 border-bottom"
-													style={{ borderColor: "rgba(255,255,255,0.1)" }}
-													key={b}
-												>
-													{b}
-												</li>
-											))}
-										</ul>
-									</div>
-								)}
-							</SectionSurface>
-						</Col>
-
-						<Col lg={4} className="mb-3">
-							<SectionSurface className="h-100 p-0">
-								<div className="p-0">
-									<CityMap
-										key={cityData.city}
-										cityData={cityData}
-										height={320}
-									/>
-								</div>
-							</SectionSurface>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Prozess */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 " style={sectionStyle}>
-				<Container>
-					<Row>
-						<Col md={12}>
-							<h2 className="h3 fw-bold mb-4 text-center">
-								Unser Prozess der Webseitenerstellung in {cityName}
-							</h2>
-						</Col>
-					</Row>
-
-					<Row className="g-3">
-						<Col lg={6}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold mb-3">Ablauf & Meilensteine</h3>
-								<ol style={mutedStyle} className="mb-3">
-									<li className="mb-1">
-										<strong>Briefing & Ziele:</strong> Zielgruppen, Angebote,
-										Conversion-Ziele.
-									</li>
-									<li className="mb-1">
-										<strong>IA & UX:</strong> Seitenstruktur, Wireframes,
-										Content-Plan.
-									</li>
-									<li className="mb-1">
-										<strong>Design & Prototyping:</strong> CI-konform,
-										barrierearm, mobil zuerst.
-									</li>
-									<li className="mb-1">
-										<strong>Entwicklung:</strong> Next.js/React oder WordPress,
-										saubere Komponenten.
-									</li>
-									<li className="mb-1">
-										<strong>SEO & Performance:</strong> Meta, JSON-LD, Sitemaps,
-										CWV-Tuning.
-									</li>
-									<li className="mb-1">
-										<strong>Testing & Launch:</strong> QA, Tracking, Redirects,
-										Livegang.
-									</li>
-									<li className="mb-1">
-										<strong>Wartung:</strong> Updates, Backups, Security,
-										Iteration.
-									</li>
-								</ol>
-								<p style={mutedStyle} className="mb-0">
-									Ergebnis: <strong>klare Rankings</strong>,{" "}
-									<strong>stabile Leistung</strong> und
-									<strong> messbare Conversions</strong>.
-								</p>
-							</SectionSurface>
-						</Col>
-
-						<Col lg={6}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold mb-3">Technologie & Qualität</h3>
-								<ul style={mutedStyle} className="mb-3">
-									<li>Next.js (SSG/ISR), React 18, Bootstrap/SCSS</li>
-									<li>WordPress + schlanke Page-Builder, saubere Templates</li>
-									<li>Bildoptimierung, Font-Loading, Lazy-Loading</li>
-									<li>
-										JSON-LD (LocalBusiness, Service, FAQ), saubere Canonicals
-									</li>
-									<li>Consent-konformes Analytics & Event-Tracking</li>
-									<li>Security-Header, HTTPS, HSTS, regelmäßige Updates</li>
-								</ul>
-								<Button variant="outline-primary" onClick={handleEmailClick}>
-									Kostenlose Beratung →
-								</Button>
-							</SectionSurface>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Pakete (Beispiele) */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5" style={sectionStyle}>
-				<Container>
-					<h2 className="h3 fw-bold mb-4 text-center">
-						Flexible Pakete für {cityName}
-					</h2>
-					<Row className="g-3">
-						<Col md={4}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold">Starter</h3>
-								<p style={mutedStyle}>Für kleine lokale Unternehmen</p>
-								<h4 className="display-6">ab 499 €</h4>
-								<ul style={mutedStyle}>
-									<li>1–3 Seiten, responsives Design</li>
-									<li>Basis-SEO & Tracking</li>
-									<li>Launch + kurze Einweisung</li>
-								</ul>
-								<Button variant="primary" onClick={handleEmailClick}>
-									Angebot anfordern
-								</Button>
-							</SectionSurface>
-						</Col>
-						<Col md={4}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold">Growth</h3>
-								<p style={mutedStyle}>Sichtbarkeit + Conversion</p>
-								<h4 className="display-6">ab 1.299 €</h4>
-								<ul style={mutedStyle}>
-									<li>Bis 10 Seiten, Blog/News</li>
-									<li>Erweitertes SEO + JSON-LD</li>
-									<li>Performance-Tuning (CWV)</li>
-								</ul>
-								<Button variant="primary" onClick={handleEmailClick}>
-									Angebot anfordern
-								</Button>
-							</SectionSurface>
-						</Col>
-						<Col md={4}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold">Pro</h3>
-								<p style={mutedStyle}>Skalierbar & datengetrieben</p>
-								<h4 className="display-6">ab 2.500 €</h4>
-								<ul style={mutedStyle}>
-									<li>Mehrsprachig / Shop / Integrationen</li>
-									<li>Advanced SEO + Content-Plan</li>
-									<li>A/B-Tests, Funnels, Dashboards</li>
-								</ul>
-								<Button variant="primary" onClick={handleEmailClick}>
-									Angebot anfordern
-								</Button>
-							</SectionSurface>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Migration / Relaunch / Wartung */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 " style={sectionStyle}>
-				<Container>
-					<Row className="g-3">
-						<Col lg={4}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold mb-2">
-									Relaunch ohne Ranking-Verlust
-								</h3>
-								<p style={mutedStyle}>
-									Wir mappen alte URLs, setzen korrekte 301-Redirects, migrieren
-									Meta-Daten und halten die Informationsarchitektur konsistent –
-									so bleiben Rankings stabil.
-								</p>
-							</SectionSurface>
-						</Col>
-						<Col lg={4}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold mb-2">Sicherheit & DSGVO</h3>
-								<p style={mutedStyle}>
-									HTTPS, Security-Header, Updates, Cookie-Consent,
-									Datensparsamkeit – alles sauber und prüfbar. Optional: AVV,
-									TOMs, Backup-Strategie.
-								</p>
-							</SectionSurface>
-						</Col>
-						<Col lg={4}>
-							<SectionSurface>
-								<h3 className="h5 fw-bold mb-2">Wartung & Support</h3>
-								<p style={mutedStyle}>
-									Monatliche Updates, Monitoring, Bugfixes, kleine
-									Content-Anpassungen. Reaktionszeit SLA – wir halten Ihre Seite
-									verlässlich am Laufen.
-								</p>
-							</SectionSurface>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Mini Case-Studies */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5" style={sectionStyle}>
-				<Container>
-					<Row>
-						<Col md={12}>
-							<h2 className="h3 fw-bold mb-4">Ergebnisse, die zählen</h2>
-						</Col>
-					</Row>
-					<Row className="g-3">
-						<Col lg={4}>
-							<SectionSurface>
-								<h3 className="h6 fw-bold">Lokaler Dienstleister</h3>
-								<p style={mutedStyle}>
-									+186% organische Anfragen in 8 Wochen (Local SEO + schnellere
-									Ladezeiten).
-								</p>
-								<ul style={mutedStyle}>
-									<li>CTR +1,8 pp durch Snippets</li>
-									<li>Core Web Vitals: „gut“</li>
-								</ul>
-							</SectionSurface>
-						</Col>
-						<Col lg={4}>
-							<SectionSurface>
-								<h3 className="h6 fw-bold">B2B Mittelstand</h3>
-								<p style={mutedStyle}>
-									+3,2x Demo-Requests (UX-Flow + Content-Hubs + interne
-									Verlinkung).
-								</p>
-								<ul style={mutedStyle}>
-									<li>IA-Refactor, klare CTAs</li>
-									<li>Technischer SEO-Fix</li>
-								</ul>
-							</SectionSurface>
-						</Col>
-						<Col lg={4}>
-							<SectionSurface>
-								<h3 className="h6 fw-bold">E-Commerce</h3>
-								<p style={mutedStyle}>
-									+41% Umsatz (SEO + CRO + Pagespeed-Optimierungen,
-									Bildkomprimierung).
-								</p>
-								<ul style={mutedStyle}>
-									<li>Produkt-Schema, Reviews</li>
-									<li>Checkout-Friction reduziert</li>
-								</ul>
-							</SectionSurface>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* FAQ (HTML) – spójne z JSON-LD */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section
-				className="py-5 border-top border-bottom"
-				id="faq"
-				style={sectionStyle}
-			>
-				<Container>
-					<Row>
-						<Col md={12}>
-							<h2 className="h3 fw-bold mb-4">Häufig gestellte Fragen (FAQ)</h2>
-						</Col>
-					</Row>
-					<Row className="g-3">
-						<Col md={6}>
-							<SectionSurface>
-								<h3 className="h6 fw-semibold mb-2">
-									Wie viel kostet eine Webseite in {cityName}?
-								</h3>
-								<p style={mutedStyle}>
-									Eine einfache Website startet ab <strong>499 €</strong>.
-									Komplexere Projekte mit CMS, Shop, Integrationen oder
-									Mehrsprachigkeit kosten entsprechend mehr.
-								</p>
-
-								<h3 className="h6 fw-semibold mb-2">
-									Wie lange dauert die Erstellung?
-								</h3>
-								<p style={mutedStyle}>
-									Im Schnitt <strong>2–4 Wochen</strong>, abhängig von Umfang
-									und Feedbackzyklen.
-								</p>
-							</SectionSurface>
-						</Col>
-
-						<Col md={6}>
-							<SectionSurface>
-								<h3 className="h6 fw-semibold mb-2">
-									Ist die Seite mobil optimiert?
-								</h3>
-								<p style={mutedStyle}>
-									Ja. Wir entwickeln „mobile-first“ und optimieren konsequent
-									für CWV.
-								</p>
-
-								<h3 className="h6 fw-semibold mb-2">
-									Bieten Sie SEO und Wartung in {cityName} an?
-								</h3>
-								<p style={mutedStyle}>
-									Ja. Technisches SEO ist inklusive, plus optionale monatliche
-									Betreuung.
-								</p>
-							</SectionSurface>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Linkowanie wewnętrzne: więcej lokalizacji */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5" style={sectionStyle}>
-				<Container>
-					<Row className="my-4">
-						<Col>
-							<h3 className="text-center fw-semibold mb-4">
-								Weitere Städte für Webseitenerstellung in der Nähe von{" "}
-								{cityName}
-							</h3>
-							<Row className="justify-content-center">
-								{citiesData
-									.filter(
-										(c) =>
-											(c.slug ?? slugify(c.city)).toLowerCase() !==
-											(cityData.slug ?? slugify(city)).toLowerCase()
-									)
-									.slice(0, 24)
-									.map((c, i) => {
-										const label = toCityLabel(c.city);
-										const citySlug = (c.slug ?? slugify(c.city)).toLowerCase();
-										return (
-											<Col
-												key={i}
-												xs={12}
-												sm={6}
-												md={4}
-												lg={3}
-												className="mb-3 d-flex justify-content-center"
-											>
-												<Link
-													href={`/webseitenerstellung/${citySlug}`}
-													className="d-flex align-items-center justify-content-center text-decoration-none fw-medium text-center rounded-3 hover"
-													style={{
-														color: "var(--text-color)",
-														backgroundColor: "rgba(255,255,255,0.05)",
-														border: "1px solid rgba(255,255,255,0.1)",
-														minHeight: "56px",
-														maxWidth: "240px",
-														width: "100%",
-														padding: "0.5rem 0.75rem",
-														lineHeight: "1.2",
-														textAlign: "center",
-														whiteSpace: "normal",
-														wordBreak: "break-word",
-														transition: "all 0.3s ease",
-													}}
-												>
-													<span className="d-block">
-														Webseite erstellen lassen <br />
-														{label}
-													</span>
-												</Link>
-											</Col>
-										);
-									})}
-							</Row>
-							<div className="text-center mt-4">
-								<Link href="/webseitenerstellung/" className="fw-bold">
-									← Alle Standorte anzeigen
-								</Link>
-							</div>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* CTA / Kontakt final */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<section className="py-5 border-top" id="kontakt" style={sectionStyle}>
-				<Container>
-					<Row className="align-items-center">
-						<Col md={8} className="mb-3">
-							<h2 className="h3 fw-semibold mb-3">
-								Starte dein Webprojekt in {cityName}
-							</h2>
-							<p style={mutedStyle}>
-								Erhalte eine kostenlose Ersteinschätzung: Wir prüfen Technik,
-								Design, Inhalte und SEO-Potenzial – inklusive einer konkreten
-								Prioritätenliste für die nächsten Schritte.
-							</p>
-						</Col>
-						<Col md={4} className="text-md-end">
 							<Button
 								variant="primary"
 								size="lg"
-								className="text-white"
-								onClick={handleEmailClick}
+								className="mt-4 text-white"
+								onClick={() =>
+									(window.location.href =
+										"mailto:pixelgenie.marketing@gmail.com")
+								}
 							>
-								✨ Kostenlose Analyse anfordern
+								Jetzt kostenlos beraten lassen →
+							</Button>
+						</Col>
+
+						<Col lg={5}>
+							<Card className="shadow-sm p-4" style={surface}>
+								<h2 className="h5 fw-bold mb-3">Warum eine neue Website?</h2>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Moderner Webauftritt
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Mehr Vertrauen & lokale Auffindbarkeit
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Messbare Leads statt „Visitenkarte online“
+									</li>
+								</ul>
+							</Card>
+						</Col>
+					</Row>
+
+					<div className="mt-4">
+						<GoogleReviews />
+					</div>
+				</Container>
+			</section>
+			{/* === LEISTUNGEN — WEBSITE ERSTELLEN LASSEN === */}
+			<section className="py-5">
+				<Container>
+					<h2 className="h3 fw-bold text-center mb-5">
+						Unsere Leistungen im Webseitenerstellen in {cityName}
+					</h2>
+
+					<Row className="g-4">
+						{/* INDIVIDUELLE WEBDESIGNS */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Individuelles Webdesign</h3>
+								<p className="mb-1">
+									Keine Templates, 100% auf deine Marke abgestimmt.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Modernes Layout
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Wiedererkennbares Branding
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Fokus auf Vertrauen & Klarheit
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* SPEED + MOBILE FIRST */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Mobile & Speed Optimierung</h3>
+								<p className="mb-1">
+									Core Web Vitals für Top-Platzierungen & schnelle UX.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Schnelle Ladezeiten
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Mobil zuerst gedacht
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Stabile Layouts ohne CLS
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* CONTENT + REDAKTIONSFÄHIG */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Inhalte & Redaktion</h3>
+								<p className="mb-1">
+									Klar strukturierte Inhalte für Google & Nutzer.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Keyword-geführte Texte
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Visuelle Klarheit
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Conversion Calls an den richtigen Stellen
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* CMS */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">CMS nach Wahl</h3>
+								<p className="mb-1">
+									Du steuerst deine Website einfach selbst.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Sanity / Strapi / WordPress
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Eigene Blog-Struktur möglich
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Ohne technische Hürden
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* LEAD-MASCHINE */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Lead-Generierung</h3>
+								<p className="mb-1">
+									Webseiten, die Anfragen erzeugen — nicht nur hübsch aussehen.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Kontaktformulare & Chat
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Tracking ohne Cookies möglich
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Conversion-Optimierung inklusive
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* BETREUUNG */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Wartung & Sicherheit</h3>
+								<p className="mb-1">
+									Updates, Security & Check-ups — entspannt für dich.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Schnelle Unterstützung
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Regelmäßige technische Checks
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Backup-Strategien optional
+									</li>
+								</ul>
+							</Card>
+						</Col>
+					</Row>
+
+					<div className="text-center mt-5">
+						<Button
+							href="/webseitenerstellung"
+							variant="primary"
+							className="text-white"
+						>
+							Mehr zur Webseitenerstellung →
+						</Button>
+					</div>
+				</Container>
+			</section>
+			{/* === LEISTUNGEN — WEBSITE ERSTELLEN LASSEN === */}
+			<section className="py-5">
+				<Container>
+					<h2 className="h3 fw-bold text-center mb-5">
+						Unsere Leistungen im Webseitenerstellen in {cityName}
+					</h2>
+
+					<Row className="g-4">
+						{/* INDIVIDUELLE WEBDESIGNS */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Individuelles Webdesign</h3>
+								<p className="mb-1">
+									Keine Templates, 100% auf deine Marke abgestimmt.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Modernes Layout
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Wiedererkennbares Branding
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Fokus auf Vertrauen & Klarheit
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* SPEED + MOBILE FIRST */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Mobile & Speed Optimierung</h3>
+								<p className="mb-1">
+									Core Web Vitals für Top-Platzierungen & schnelle UX.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Schnelle Ladezeiten
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Mobil zuerst gedacht
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Stabile Layouts ohne CLS
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* CONTENT + REDAKTIONSFÄHIG */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Inhalte & Redaktion</h3>
+								<p className="mb-1">
+									Klar strukturierte Inhalte für Google & Nutzer.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Keyword-geführte Texte
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Visuelle Klarheit
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Conversion Calls an den richtigen Stellen
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* CMS */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">CMS nach Wahl</h3>
+								<p className="mb-1">
+									Du steuerst deine Website einfach selbst.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Sanity / Strapi / WordPress
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Eigene Blog-Struktur möglich
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Ohne technische Hürden
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* LEAD-MASCHINE */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Lead-Generierung</h3>
+								<p className="mb-1">
+									Webseiten, die Anfragen erzeugen — nicht nur hübsch aussehen.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Kontaktformulare & Chat
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Tracking ohne Cookies möglich
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Conversion-Optimierung inklusive
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* BETREUUNG */}
+						<Col md={6} lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold">Wartung & Sicherheit</h3>
+								<p className="mb-1">
+									Updates, Security & Check-ups — entspannt für dich.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Schnelle Unterstützung
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Regelmäßige technische Checks
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Backup-Strategien optional
+									</li>
+								</ul>
+							</Card>
+						</Col>
+					</Row>
+
+					<div className="text-center mt-5">
+						<Button
+							href="/webseitenerstellung"
+							variant="primary"
+							className="text-white"
+						>
+							Mehr zur Webseitenerstellung →
+						</Button>
+					</div>
+				</Container>
+			</section>
+			{/* === CITY-FAKTS — LOKALE SICHTBARKEIT === */}
+			<section className="py-5">
+				<Container>
+					<h2 className="h4 fw-bold mb-4">{cityName} auf einen Blick 🌍</h2>
+
+					<Row className="g-4">
+						{/* Kennzahlen */}
+						<Col lg={7}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<p className="mb-3">
+									Unternehmen in {cityName} profitieren von einer starken
+									digitalen Präsenz — denn Kunden suchen heute zuerst online.
+									Eine professionelle Website ist daher entscheidend für
+									Wettbewerbsfähigkeit.
+								</p>
+
+								<ul className="mb-0">
+									{cityData.population && (
+										<li style={{ color: "var(--text-color)" }}>
+											<strong>Einwohner:</strong>{" "}
+											{cityData.population.toLocaleString("de-DE")}
+										</li>
+									)}
+									{cityData.areaKm2 && (
+										<li style={{ color: "var(--text-color)" }}>
+											<strong>Fläche:</strong> {cityData.areaKm2} km²
+										</li>
+									)}
+									{cityData.elevation && (
+										<li style={{ color: "var(--text-color)" }}>
+											<strong>Höhe:</strong> {cityData.elevation} m
+										</li>
+									)}
+								</ul>
+							</Card>
+						</Col>
+
+						{/* Map */}
+						<Col lg={5}>
+							<Card className="shadow-sm h-100" style={surface}>
+								<Card.Body className="p-0">
+									<CityMap cityData={cityData} height={260} />
+								</Card.Body>
+							</Card>
+						</Col>
+					</Row>
+				</Container>
+			</section>
+			{/* === CASE STUDIES – WEBSITE RELAUNCH & NEUBAUPROJEKTE === */}
+			<section className="py-5 bg-dark bg-opacity-10">
+				<Container>
+					<h2 className="h3 fw-bold mb-5 text-center">
+						Erfolgreiche Webprojekte — vor & nach dem Launch
+					</h2>
+
+					<Row className="g-4">
+						{/* Case 1 */}
+						<Col lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold mb-2">
+									Website für lokalen Dienstleister
+								</h3>
+								<p className="mb-3">
+									+138% Kontaktanfragen in den ersten 8 Wochen nach Launch.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Schnelle mobile Ladezeit
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Klare Service-Darstellung
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Lead-Optimiertes Formular
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* Case 2 */}
+						<Col lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold mb-2">
+									Relaunch für Unternehmensseite
+								</h3>
+								<p className="mb-3">
+									42% längere Besuchszeit & deutlicher Traffic-Anstieg.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										UX-Verbesserungen & Strukturierung
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Conversion gesteigerte Buttons
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										SEO-Basis neu aufgebaut
+									</li>
+								</ul>
+							</Card>
+						</Col>
+
+						{/* Case 3 */}
+						<Col lg={4}>
+							<Card className="shadow-sm p-4 h-100" style={surface}>
+								<h3 className="h6 fw-bold mb-2">E-Commerce Mini-Shop</h3>
+								<p className="mb-3">
+									+22% abgeschlossene Warenkörbe in 3 Monaten.
+								</p>
+								<ul className="mb-0">
+									<li style={{ color: "var(--text-color)" }}>
+										Produktfilter optimiert
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Checkout kürzer gemacht
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Schnellere Bilder & Caching
+									</li>
+								</ul>
+							</Card>
+						</Col>
+					</Row>
+				</Container>
+			</section>
+
+			{/* === FAQ – Website erstellen in {cityName} === */}
+			<section className="py-5">
+				<Container>
+					<h2 className="h3 fw-bold mb-5">
+						Häufige Fragen zum Website erstellen lassen in {cityName}
+					</h2>
+
+					<Row>
+						<Col md={6}>
+							<h3 className="h6 fw-bold">Was kostet eine Website?</h3>
+							<p>
+								Websites starten ab 499 € — je nach Seitenanzahl, Funktionen &
+								Designaufwand.
+							</p>
+
+							<h3 className="h6 fw-bold">Wie lange dauert die Umsetzung?</h3>
+							<p>Zwischen 3–6 Wochen — je nach Freigaben & Material.</p>
+						</Col>
+
+						<Col md={6}>
+							<h3 className="h6 fw-bold">Ist die Website SEO-bereit?</h3>
+							<p>
+								Ja — Suchmaschinenfreundliche Technik & Struktur sind von Anfang
+								an integriert ✅
+							</p>
+
+							<h3 className="h6 fw-bold">
+								Wird die Seite responsive entwickelt?
+							</h3>
+							<p>
+								100% mobile first: jedes Gerät bekommt ein perfektes Erlebnis
+								📱✨
+							</p>
+						</Col>
+					</Row>
+				</Container>
+			</section>
+			{/* === CTA – LET’S BUILD YOUR WEBSITE === */}
+			<section className="py-5 border-top" id="kontakt">
+				<Container>
+					<Row className="align-items-center g-3">
+						<Col md={8}>
+							<h2 className="h3 fw-bold mb-3">
+								Starte dein Website-Projekt in {cityName} ✨
+							</h2>
+							<ul className="mb-3">
+								<li style={{ color: "var(--text-color)" }}>
+									🚀 Mehr Sichtbarkeit & Vertrauen
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									🎯 Messbare Anfragen durch UX & SEO
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✅ Klare Handlungsempfehlungen – kostenlos
+								</li>
+							</ul>
+						</Col>
+
+						<Col md={4} className="text-md-end">
+							{/* Desktop CTA */}
+							<Button
+								variant="primary"
+								size="lg"
+								className="text-white d-none d-md-inline-block"
+								onClick={() =>
+									(window.location.href =
+										"mailto:pixelgenie.marketing@gmail.com")
+								}
+							>
+								✉️ Beratung anfordern →
+							</Button>
+
+							{/* Mobile CTA */}
+							<Button
+								variant="primary"
+								size="lg"
+								className="text-white d-md-none"
+								onClick={() =>
+									document
+										.querySelector("#kontakt")
+										?.scrollIntoView({ behavior: "smooth" })
+								}
+							>
+								Kontakt aufnehmen →
 							</Button>
 						</Col>
 					</Row>
 				</Container>
 			</section>
 
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			{/* Footer-links usługowe (wewnętrzne) */}
-			{/* ─────────────────────────────────────────────────────────────────────── */}
-			<footer className="py-4 text-center" style={sectionStyle}>
-				<Container>
-					<p className="mb-0 small" style={mutedStyle}>
-						Weitere Leistungen:{" "}
-						<Link href="/webseitenerstellen/" className="text-decoration-none">
-							Webseiten
-						</Link>{" "}
-						|{" "}
-						<Link href="/seo/" className="text-decoration-none">
-							SEO-Agentur
-						</Link>{" "}
-						|{" "}
-						<Link href="/webdesign-agentur/" className="text-decoration-none">
-							Webdesign Agentur
-						</Link>
-					</p>
-				</Container>
-			</footer>
+			{/* === INTERNAL LOCAL SEO — MULTI-CITY BOOST === */}
+			<LocalNRWHook />
+
+			{/* === TOPICAL INTERNAL LINKS === */}
+			<PeopleAlsoRead tagHint="Webdesign" />
 		</>
 	);
 }
