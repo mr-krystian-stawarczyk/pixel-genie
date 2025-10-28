@@ -65,7 +65,7 @@ export default function CookieConsent() {
 					<br />
 					Weitere Details findest du in unserer{" "}
 					<a
-						href="/impressium"
+						href="/impressum"
 						className="text-warning fw-bold ms-1"
 						target="_blank"
 						rel="noopener noreferrer"

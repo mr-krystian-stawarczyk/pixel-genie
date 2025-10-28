@@ -1,8 +1,8 @@
-// /pages/impressium.js
+// /pages/impressum.js
 import Head from "next/head";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
-export default function Impressium() {
+export default function Impressum() {
 	return (
 		<Container className="my-5 py-5">
 			<Head>
@@ -14,7 +14,7 @@ export default function Impressium() {
 					content="Impressum und Datenschutzerklärung der Pixel-Genie Webagentur in Nettetal – rechtssicher, transparent und DSGVO-konform."
 				/>
 				<meta name="robots" content="index, follow" />
-				<link rel="canonical" href="https://pixel-genie.de/impressium" />
+				<link rel="canonical" href="https://pixel-genie.de/impressum" />
 			</Head>
 
 			{/* --- IMPRESSUM --- */}
@@ -59,15 +59,41 @@ export default function Impressium() {
 					<Card className="bg-transparent border-0">
 						<Card.Body>
 							<Card.Title className="text-white bg-dark rounded p-1">
-								Verantwortlich für den Inhalt
+								Verantwortlich nach § 18 Abs. 2 MStV
 							</Card.Title>
-							<p>gemäß § 55 Abs. 2 RStV</p>
+							<p>Krystian Stawarczyk, Anschrift wie oben</p>
 							<p>
 								Krystian Stawarczyk
 								<br />
 								Fasanenstraße 10
 								<br />
 								41334 Nettetal
+							</p>
+						</Card.Body>
+					</Card>
+				</Col>
+			</Row>
+
+			<Row className="justify-content-center">
+				<Col lg={6} className="mb-3">
+					<Card className="bg-transparent border-0">
+						<Card.Body>
+							<Card.Title className="text-white bg-dark rounded p-1">
+								EU-Streitschlichtung
+							</Card.Title>
+							<p>
+								Die Europäische Kommission stellt eine Plattform zur
+								Online-Streitbeilegung (OS) bereit:
+								<a
+									href="https://ec.europa.eu/consumers/odr/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									https://ec.europa.eu/consumers/odr/
+								</a>
+								Wir sind nicht bereit und nicht verpflichtet, an einem
+								Streitbeilegungsverfahren vor einer
+								Verbraucherschlichtungsstelle teilzunehmen.
 							</p>
 						</Card.Body>
 					</Card>
@@ -218,6 +244,12 @@ export default function Impressium() {
 						an geänderte rechtliche Anforderungen oder bei Änderungen unserer
 						Leistungen anzupassen. Die jeweils aktuelle Version finden Sie auf
 						dieser Seite.
+					</p>
+					<h4>11. Links zu Social Media (Instagram, LinkedIn etc.)</h4>
+					<p>
+						Können zur Verarbeitung personenbezogener Daten durch den jeweiligen
+						Anbieter führen. Details entnehmen Sie bitte den
+						Datenschutzhinweisen der jeweiligen Plattform.
 					</p>
 				</Col>
 			</Row>

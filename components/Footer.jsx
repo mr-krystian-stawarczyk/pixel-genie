@@ -132,17 +132,17 @@ function Footer() {
 											<AutoTranslate>Tipps</AutoTranslate>
 										</Card.Text>
 									</Link>
-									<Link href="/impressium" className="footer-links">
+									<Link href="/impressum" className="footer-links">
 										<Card.Text className="hover py-2">
 											<AutoTranslate>Cookies</AutoTranslate>
 										</Card.Text>
 									</Link>
-									<Link href="/impressium" className="footer-links">
+									<Link href="/impressum" className="footer-links">
 										<Card.Text className="hover py-2">
 											<AutoTranslate>Impressum</AutoTranslate>
 										</Card.Text>
 									</Link>
-									<Link href="/impressium" className="footer-links">
+									<Link href="/impressum" className="footer-links">
 										<Card.Text className="hover py-2">
 											<AutoTranslate>Data Protection</AutoTranslate>
 										</Card.Text>
