@@ -12,6 +12,7 @@
 		"analyze": "cross-env ANALYZE=true next build"
 	},
 	"dependencies": {
+		"@resvg/resvg-js": "^2.6.2",
 		"@tsparticles/react": "^3.0.0",
 		"@tsparticles/slim": "^3.9.1",
 		"bootstrap": "^5.3.3",
@@ -38,6 +39,7 @@
 		"react-slick": "^0.29.0",
 		"react-spring": "^9.7.3",
 		"react-vertical-timeline-component": "^3.6.0",
+		"satori": "^0.18.3",
 		"sharp": "^0.34.4",
 		"slick-carousel": "^1.8.1",
 		"terser-webpack-plugin": "^5.3.9"

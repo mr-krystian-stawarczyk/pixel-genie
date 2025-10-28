@@ -259,7 +259,7 @@ export default function Header6() {
 								Strategie. Bei Pixel-Genie erhalten Sie ein transparentes
 								Angebot ohne versteckte Kosten – inklusive SEO-Grundoptimierung,
 								Sicherheits-Setup und DSGVO-Check.{" "}
-								<Link href="/kontakt" className="text-blue">
+								<Link href="#contact" className="text-blue">
 									<span className="text-dark">
 										Jetzt unverbindlich anfragen
 									</span>
@@ -339,7 +339,7 @@ export default function Header6() {
 							</Accordion.Header>
 							<Accordion.Body>
 								Kontaktieren Sie uns einfach über das{" "}
-								<Link href="/kontakt" className="text-blue">
+								<Link href="#contact" className="text-blue">
 									<span className="text-dark">Kontaktformular</span>
 								</Link>{" "}
 								oder telefonisch. Gemeinsam besprechen wir Ihr Projekt in den

@@ -7,17 +7,14 @@ module.exports = {
 	generateRobotsTxt: true,
 	outDir: "public",
 	autoLastmod: true,
+
+	// default settings
 	changefreq: "weekly",
 	priority: 0.8,
 
 	robotsTxtOptions: {
 		policies: SITE_URL.includes("localhost")
-			? [
-					{
-						userAgent: "*",
-						disallow: "/",
-					},
-				]
+			? [{ userAgent: "*", disallow: "/" }]
 			: [
 					{
 						userAgent: "*",
@@ -25,61 +22,59 @@ module.exports = {
 						disallow: [
 							"/_next/",
 							"/api/",
-							"/404",
-							"/500",
 							"/favicon.ico",
 							"/manifest.json",
+							"/404",
+							"/500",
 						],
 					},
-				],
+			  ],
 		host: SITE_URL,
 	},
 
-	// ✅ Dynamiczne priorytety i częstotliwości dla kluczowych sekcji
+	// ❇️ Priorytety SEO — dopalone
 	transform: async (config, url) => {
 		let priority = 0.8;
 		let changefreq = "weekly";
 
-		if (url === `${config.siteUrl}` || url === `${config.siteUrl}/`) {
+		if (url === config.siteUrl || url === `${config.siteUrl}/`) {
 			priority = 1.0;
 			changefreq = "daily";
-		} else if (url.startsWith(`${config.siteUrl}/webseitenerstellung/`)) {
+		}
+
+		if (
+			url.startsWith(`${config.siteUrl}/webdesignblog`) ||
+			url.startsWith(`${config.siteUrl}/tips/`)
+		) {
 			priority = 1.0;
-			changefreq = "daily";
-		} else if (url.startsWith(`${config.siteUrl}/webentwicklung/`)) {
-			priority = 0.9;
-			changefreq = "weekly";
-		} else if (url.startsWith(`${config.siteUrl}/seo/`)) {
-			priority = 0.9;
-			changefreq = "weekly";
-		} else if (url.startsWith(`${config.siteUrl}/webdesign-agentur/`)) {
-			priority = 0.9;
-			changefreq = "weekly";
-		} else if (
-			url.includes("/webseitenerstellen") ||
-			url.includes("/suchmaschinenoptimierung") ||
-			url.includes("/webdesign") ||
-			url.startsWith(`${config.siteUrl}/standorte`) ||
-			url.includes("/webdesignblog")
+			changefreq = "daily"; // 🔥 częste odwiedziny Google
+		}
+
+		if (
+			url.includes("/webseitenerstellung") ||
+			url.includes("/webentwicklung") ||
+			url.includes("/seo/") ||
+			url.includes("/webdesign-agentur/")
 		) {
 			priority = 0.9;
 			changefreq = "weekly";
-		} else if (url.startsWith(`${config.siteUrl}/tips/`)) {
-			priority = 0.9;
-			changefreq = "weekly";
-		} else if (
-			url.includes("/branding") ||
-			url.includes("/socialmediamarketing")
-		) {
-			priority = 0.8;
-			changefreq = "weekly";
-		} else if (
-			url.includes("/impressum") ||
-			url.includes("/kontakt") ||
-			url.includes("/pixelgeniehistory")
-		) {
+		}
+
+		if (url.includes("/kontakt") || url.includes("/impressum")) {
 			priority = 0.5;
 			changefreq = "monthly";
+		}
+		if (url.startsWith(`${config.siteUrl}/tips/tag`)) {
+			priority = 0.95;
+			changefreq = "daily";
+		}
+
+		if (
+			url === `${config.siteUrl}/webdesignblog` ||
+			url.startsWith(`${config.siteUrl}/webdesignblog/`)
+		) {
+			priority = 1.0;
+			changefreq = "daily";
 		}
 
 		return {

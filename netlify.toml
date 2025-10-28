@@ -10,22 +10,29 @@
     NEXT_TELEMETRY_DISABLED = "1"
 
 ############################
-# ✅ Functions (optimized)
+# ✅ Functions
 ############################
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
 ############################
-# ✅ Redirects (statyczne strony Next.js)
+# ✅ Redirects for static export pages
 ############################
+# blog post routing mapping for static export
 [[redirects]]
   from = "/tips/*"
   to = "/tips/:splat/index.html"
   status = 200
 
+# ✅ ensure sitemap is directly accessible for crawling
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+
 ############################
-# ✅ Security + Global cache
+# ✅ Security + Cache defaults
 ############################
 [[headers]]
   for = "/*"
@@ -37,7 +44,7 @@
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
 
 ############################
-# ✅ Static assets caching
+# ✅ Static Assets Cache
 ############################
 [[headers]]
   for = "/_next/static/*"
@@ -57,7 +64,15 @@
     Access-Control-Allow-Origin = "*"
 
 ############################
-# ✅ HTML cache
+# ✅ Sitemap Cache (Google crawls often!)
+############################
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+############################
+# ✅ HTML Cache (but refreshes frequently)
 ############################
 [[headers]]
   for = "/*.html"
@@ -65,7 +80,7 @@
     Cache-Control = "public, max-age=60, must-revalidate"
 
 ############################
-# ✅ Blog OG — no cache
+# ✅ Blog Pages - Always fresh for OG/Share
 ############################
 [[headers]]
   for = "/tips/*"
@@ -73,9 +88,34 @@
     Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
 
 ############################
-# ✅ Translation Function Cache
+# ✅ Translation function caching
 ############################
 [[headers]]
   for = "/.netlify/functions/translate"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+    
+[[headers]]
+  for = "/rss.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/sitemap-blog.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+    [[redirects]]
+  from = "/cgi/*"
+  to = "/404"
+  status = 403
+
+[[redirects]]
+  from = "/rootDesc.xml*"
+  to = "/404"
+  status = 403
+
+[[redirects]]
+  from = "/loginMsg.js"
+  to = "/404"
+  status = 403

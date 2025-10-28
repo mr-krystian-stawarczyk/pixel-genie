@@ -32,8 +32,7 @@ function Contact() {
 			</Head>
 			{/* Komponent dynamicznie importowany */}
 			<Contact1 />
-			<Contact3 />
-			<Contact2 />
+
 			<section className="mt-5 text-center">
 				<h3>📰 Pixel-Genie in den Medien</h3>
 				<p>

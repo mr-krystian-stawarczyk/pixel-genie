@@ -131,7 +131,7 @@ const Brand7 = () => {
 								</Accordion.Header>
 								<Accordion.Body>
 									Heute. Der erste Schritt:{" "}
-									<Link href="/kontakt/">
+									<Link href="#contact">
 										Kostenlose Marken-Beratung sichern
 									</Link>{" "}
 									🚀 — wir klären Positionierung, Zielgruppe und
@@ -174,7 +174,7 @@ const Brand7 = () => {
 						</p>
 						<p>
 							Starten Sie heute:{" "}
-							<Link href="/kontakt/">Branding Beratung sichern →</Link>
+							<Link href="#contact">Branding Beratung sichern →</Link>
 						</p>
 					</Col>
 				</Row>

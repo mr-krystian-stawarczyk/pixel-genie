@@ -275,6 +275,22 @@ function Footer() {
 					<Row>
 						<Col>
 							<FooterLinksSEO />
+							<div className="text-center small mt-3">
+								<a href="/rss.xml" style={{ color: "var(--text-color)" }}>
+									RSS
+								</a>{" "}
+								·{" "}
+								<a href="/sitemap.xml" style={{ color: "var(--text-color)" }}>
+									Sitemap
+								</a>{" "}
+								·{" "}
+								<a
+									href="/sitemap-blog.xml"
+									style={{ color: "var(--text-color)" }}
+								>
+									Blog-Sitemap
+								</a>
+							</div>
 						</Col>
 					</Row>
 
