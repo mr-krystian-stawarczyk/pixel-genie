@@ -1,19 +1,9 @@
-// ✅ /netlify/functions/og.js — FIX: WASM init + base64 + perf
-const satori = require("satori");
-const { Resvg } = require("resvg-wasm");
-const initWasm = require("resvg-wasm/initWASM");
-const wasmUrl = require("resvg-wasm/index_bg.wasm?url"); // ważne dla Netlify bundla
+// ✅ /netlify/functions/og.js — kompatybilna wersja dla Netlify
+import satori from "satori";
+import { Resvg } from "@resvg/resvg-js"; // <-- zamiast resvg-wasm
 
-let wasmReady = null;
-async function ensureWasm() {
-	if (!wasmReady) wasmReady = initWasm(wasmUrl);
-	return wasmReady;
-}
-
-exports.handler = async (event) => {
+export const handler = async (event) => {
 	try {
-		await ensureWasm();
-
 		const params = new URLSearchParams(event.rawQuery || "");
 		const title = (params.get("title") || "Pixel-Genie Blog").slice(0, 160);
 		const subtitle = (
@@ -82,11 +72,12 @@ exports.handler = async (event) => {
 			{ width: 1200, height: 630 }
 		);
 
-		// ✅ FIX: WASM render
-		const rendered = new Resvg(svg, {
+		// ✅ render with @resvg/resvg-js (pure JS)
+		const png = new Resvg(svg, {
 			fitTo: { mode: "width", value: 1200 },
-		}).render();
-		const png = rendered.asPng();
+		})
+			.render()
+			.asPng();
 
 		return {
 			statusCode: 200,
@@ -97,7 +88,10 @@ exports.handler = async (event) => {
 			body: Buffer.from(png).toString("base64"),
 			isBase64Encoded: true,
 		};
-	} catch (e) {
-		return { statusCode: 500, body: e?.message || "OG error" };
+	} catch (err) {
+		return {
+			statusCode: 500,
+			body: err?.message || "OG generation error",
+		};
 	}
 };
