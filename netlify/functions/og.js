@@ -1,13 +1,19 @@
-// /netlify/functions/og.js
+// ✅ /netlify/functions/og.js — FIX: WASM init + base64 + perf
 const satori = require("satori");
-const { Resvg } = require("@resvg/resvg-js");
+const { Resvg } = require("resvg-wasm");
+const initWasm = require("resvg-wasm/initWASM");
+const wasmUrl = require("resvg-wasm/index_bg.wasm?url"); // ważne dla Netlify bundla
 
-/**
- * Quick OG generator: /.netlify/functions/og?title=...&subtitle=...&bg=...
- * bg (optional): absolute URL to background image
- */
+let wasmReady = null;
+async function ensureWasm() {
+	if (!wasmReady) wasmReady = initWasm(wasmUrl);
+	return wasmReady;
+}
+
 exports.handler = async (event) => {
 	try {
+		await ensureWasm();
+
 		const params = new URLSearchParams(event.rawQuery || "");
 		const title = (params.get("title") || "Pixel-Genie Blog").slice(0, 160);
 		const subtitle = (
@@ -15,7 +21,6 @@ exports.handler = async (event) => {
 		).slice(0, 140);
 		const bg = params.get("bg");
 
-		// Simple style (no external fonts to keep function portable)
 		const svg = await satori(
 			{
 				type: "div",
@@ -74,16 +79,14 @@ exports.handler = async (event) => {
 					],
 				},
 			},
-			{
-				width: 1200,
-				height: 630,
-			}
+			{ width: 1200, height: 630 }
 		);
 
-		const png = new Resvg(svg, {
-			background: "rgba(0,0,0,0)",
+		// ✅ FIX: WASM render
+		const rendered = new Resvg(svg, {
 			fitTo: { mode: "width", value: 1200 },
 		}).render();
+		const png = rendered.asPng();
 
 		return {
 			statusCode: 200,
@@ -91,7 +94,7 @@ exports.handler = async (event) => {
 				"Content-Type": "image/png",
 				"Cache-Control": "public, max-age=604800, immutable",
 			},
-			body: png.asPng().toString("base64"),
+			body: Buffer.from(png).toString("base64"),
 			isBase64Encoded: true,
 		};
 	} catch (e) {

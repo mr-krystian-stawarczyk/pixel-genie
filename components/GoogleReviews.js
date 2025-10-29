@@ -1,15 +1,35 @@
 "use client";
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import Image from "next/image";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { FaStar } from "react-icons/fa";
 
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
-const settings = {
+const REVIEW_LINK =
+	"https://www.google.com/search?q=pixel+genie+nettetal&ludocid=13238374149558357979#lrd=0x47c74dec2e1b84e7:0xb7d4548932d3176b,1,,,";
+
+const REVIEWS = [
+	{
+		name: "Karolina C.",
+		text: "Sehr netter und professioneller Service. Bereit in der Zukunft 👍",
+	},
+	{
+		name: "Addie S.",
+		text: "Only 5 stars because I can't give 10. Fast, reliable, professional – and wallet-friendly!",
+	},
+	{
+		name: "Sven M.",
+		text: "Von Anfang bis Ende top! Klare Kommunikation und modernes Design. Unsere Website lädt jetzt doppelt so schnell.",
+	},
+	{
+		name: "Mariusz P.",
+		text: "Open minded and professional advice leading to creative and unique projects. Check it, you will not regret!",
+	},
+];
+
+const sliderSettings = {
 	dots: true,
 	infinite: true,
 	speed: 600,
@@ -17,125 +37,100 @@ const settings = {
 	slidesToShow: 3,
 	slidesToScroll: 1,
 	autoplay: true,
-	autoplaySpeed: 3500,
-	centerMode: true,
-	centerPadding: "40px",
+	autoplaySpeed: 4500,
+	centerPadding: "10px",
 	responsive: [
-		{
-			breakpoint: 992,
-			settings: { slidesToShow: 2, centerPadding: "20px" },
-		},
-		{
-			breakpoint: 768,
-			settings: { slidesToShow: 1, centerPadding: "0" },
-		},
+		{ breakpoint: 1200, settings: { slidesToShow: 2 } },
+		{ breakpoint: 768, settings: { slidesToShow: 1 } },
 	],
 };
 
-const GoogleReviews = () => {
+export default function GoogleReviews() {
+	const ref = useRef(null);
+	const [inView, setInView] = useState(false);
+
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+
+		const obs = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setInView(true);
+					obs.disconnect();
+				}
+			},
+			{ threshold: 0.25 }
+		);
+
+		obs.observe(el);
+		return () => obs.disconnect();
+	}, []);
+
 	return (
-		<Container fluid className="py-5 my-5  text-light" id="google-reviews">
-			<Row className="text-center mb-4">
-				<Col>
-					<h2 className="fw-bold display-6 mb-3 text-gradient">
-						Was unsere Kunden über Pixel Genie sagen
-					</h2>
-					<p>
-						Echte Google Bewertungen – 100% authentisch. <br></br>Zufriedene
-						Kunden, echte Ergebnisse und moderne Websites, die überzeugen.
-					</p>
-				</Col>
-			</Row>
+		<motion.section
+			id="google-reviews"
+			ref={ref}
+			initial={{ opacity: 0, y: 30 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.7, ease: "easeOut" }}
+			viewport={{ once: true }}
+			className="pb-5 pt-2"
+		>
+			<Container>
+				<Row className="text-center mb-4">
+					<Col>
+						<h2 className="fw-bold display-6 mb-2 ">Google Bewertungen</h2>
+						<p className="">Vertrauen durch echte Kundenstimmen</p>
+					</Col>
+				</Row>
 
-			<Row>
-				<Slider {...settings}>
-					{/* --- Review 1 --- */}
-					<div className="p-3">
-						<div className="review-card bg-gradient-dark p-4 rounded-4 shadow-lg h-100 mx-2">
-							<div className="d-flex align-items-center mb-3">
-								<div>
-									<h5 className="mb-0 fw-semibold">Karolina C.</h5>
-									<small>⭐⭐⭐⭐⭐ Google Review</small>
-								</div>
-							</div>
-							<p className="fst-italic">
-								" Sehr netter und professioneller Service. Bereit in der Zukunft
-								"👍
-							</p>
-							<div className="text-warning">
-								{[...Array(5)].map((_, i) => (
-									<FaStar key={i} />
-								))}
-							</div>
-						</div>
-					</div>
+				{inView && (
+					<Slider {...sliderSettings}>
+						{REVIEWS.map((r, i) => (
+							<div className="p-3" key={i}>
+								<figure className="review-tile glass-tile mx-auto">
+									{/* Google Badge */}
+									<div className="google-icon-wrapper">
+										<Image
+											src="/assets/google-icon.png"
+											width={30}
+											height={30}
+											alt="Google"
+										/>
+									</div>
 
-					{/* --- Review 2 --- */}
-					<div className="p-3">
-						<div className="review-card bg-gradient-dark p-4 rounded-4 shadow-lg h-100 mx-2">
-							<div className="d-flex align-items-center mb-3">
-								<div>
-									<h5 className="mb-0 fw-semibold">Addie S.</h5>
-									<small>⭐⭐⭐⭐⭐ Google Review</small>
-								</div>
-							</div>
-							<p className="fst-italic">
-								'Only 5 stars because I can't give 10. Fast, reliable,
-								professional - all that while being wallet-friendly!""
-							</p>
-							<div className="text-warning">
-								{[...Array(5)].map((_, i) => (
-									<FaStar key={i} />
-								))}
-							</div>
-						</div>
-					</div>
+									{/* Reviewer */}
+									<h5 className="fw-bold mt-2">{r.name}</h5>
 
-					{/* --- Review 3 --- */}
-					<div className="p-3">
-						<div className="review-card bg-gradient-dark p-4 rounded-4 shadow-lg h-100 mx-2">
-							<div className="d-flex align-items-center mb-3">
-								<div>
-									<h5 className="mb-0 fw-semibold">Sven M.</h5>
-									<small>⭐⭐⭐⭐⭐ Google Review</small>
-								</div>
-							</div>
-							<p className="fst-italic">
-								“Von Anfang bis Ende top! Klare Kommunikation und modernes
-								Design. Unsere Website lädt jetzt doppelt so schnell.”
-							</p>
-							<div className="text-warning">
-								{[...Array(5)].map((_, i) => (
-									<FaStar key={i} />
-								))}
-							</div>
-						</div>
-					</div>
+									{/* Stars */}
+									<span className="stars" aria-label="5 Sterne">
+										★★★★★
+									</span>
 
-					{/* --- Review 4 --- */}
-					<div className="p-3">
-						<div className="review-card bg-gradient-dark p-4 rounded-4 shadow-lg h-100 mx-2">
-							<div className="d-flex align-items-center mb-3">
-								<div>
-									<h5 className="mb-0 fw-semibold">Mariusz P.</h5>
-									<small>⭐⭐⭐⭐⭐ Google Review</small>
-								</div>
+									{/* Text */}
+									<blockquote className="review-text fst-italic mt-2 mb-0">
+										“{r.text}”
+									</blockquote>
+								</figure>
 							</div>
-							<p className="fst-italic">
-								"Open minded and professional advices leading to creative and
-								unique projects. Check it, you will not regret!"
-							</p>
-							<div className="text-warning">
-								{[...Array(5)].map((_, i) => (
-									<FaStar key={i} />
-								))}
-							</div>
-						</div>
-					</div>
-				</Slider>
-			</Row>
-		</Container>
+						))}
+					</Slider>
+				)}
+
+				{/* CTA */}
+				<div className="text-center mt-4">
+					<Button
+						variant="outline-primary"
+						className="text-white glass-button"
+						href={REVIEW_LINK}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Weitere Bewertungen auf Google →
+					</Button>
+				</div>
+			</Container>
+		</motion.section>
 	);
-};
-
-export default GoogleReviews;
+}

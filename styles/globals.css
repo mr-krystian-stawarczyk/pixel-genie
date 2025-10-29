@@ -1527,3 +1527,315 @@ article:hover {
 		line-height: 1.75;
 	}
 }
+.important-text,
+.important-text * {
+	color: #000 !important;
+}
+@media (min-width: 992px) {
+	.hover-scale:hover {
+		transform: translateY(-5px);
+		transition: transform 0.3s ease;
+	}
+}
+
+/* Mobile: disable heavy animations */
+@media (max-width: 991px) {
+	.hover-scale {
+		transform: none !important;
+	}
+}
+.text-gradient {
+	background: linear-gradient(90deg, #66a3ff, #e0e7ff);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.review-card {
+	will-change: transform;
+	transform: translateZ(0);
+	transition: transform 0.25s ease;
+}
+@media (hover: hover) {
+	.review-card:hover {
+		transform: translateY(-6px);
+	}
+}
+.reviews-slider-wrapper {
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	min-height: 240px;
+	position: relative;
+	overflow: visible;
+}
+
+.reviews-placeholder {
+	width: 100%;
+	height: 240px;
+	border-radius: 16px;
+	background: rgba(255, 255, 255, 0.06);
+}
+#google-reviews {
+	scroll-margin-top: 90px;
+}
+#google-reviews {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+/* ✅ Soft Dark Glass TechBar — wersja A */
+.techbar-wrapper {
+	background: linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 0.45),
+		rgba(10, 10, 10, 0.75)
+	);
+	backdrop-filter: blur(14px) saturate(160%);
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	padding-top: 14px !important;
+	padding-bottom: 14px !important;
+}
+
+.dark .techbar-wrapper {
+	background: linear-gradient(
+		90deg,
+		rgba(20, 20, 24, 0.7),
+		rgba(30, 30, 40, 0.85)
+	);
+}
+
+.techbar-item {
+	display: flex !important;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 95px;
+	text-align: center;
+	transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.techbar-item:hover {
+	transform: translateY(-4px);
+	opacity: 1;
+}
+
+.tech-icon-wrapper {
+	width: 68px;
+	height: 68px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.tech-icon-wrapper img {
+	width: 68px;
+	height: 68px;
+	object-fit: contain;
+	transition: transform 0.25s ease;
+	filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
+}
+
+.techbar-item:hover img {
+	transform: scale(1.08);
+}
+
+/* ✅ Teksty równo pod ikoną */
+.techbar-title {
+	display: block;
+	font-size: 0.86rem;
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: 0.3px;
+	white-space: nowrap;
+	color: #ffffff !important;
+	margin-top: 4px;
+}
+
+/* 🧽 Mobile — większy klik, większe ikony */
+@media (max-width: 768px) {
+	.tech-icon-wrapper img {
+		width: 58px !important;
+		height: 58px !important;
+	}
+
+	.techbar-title {
+		font-size: 0.82rem;
+	}
+}
+.review-tile {
+	background: rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(12px) saturate(160%);
+	border-radius: 18px;
+	padding: 24px;
+	min-height: 180px;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	color: var(--text-color) !important;
+}
+
+/* Dark Mode Boost */
+.dark .review-tile {
+	background: rgba(255, 255, 255, 0.08);
+	border-color: rgba(255, 255, 255, 0.2);
+}
+
+.review-tile:hover {
+	transform: translateY(-6px) scale(1.02);
+	box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
+}
+
+/* Stars */
+.review-tile .stars {
+	font-size: 14px;
+	color: #ffd600 !important;
+	letter-spacing: 2px;
+}
+
+/* Slider Layout Stability */
+#google-reviews .slick-slide {
+	display: flex !important;
+}
+#google-reviews .slick-track {
+	display: flex !important;
+	gap: 12px;
+}
+
+/* Mobile improvements */
+@media (max-width: 768px) {
+	.review-tile {
+		padding: 20px;
+		min-height: 200px;
+	}
+}
+/* === GLASSMORPHISM — PREMIUM === */
+.glass-tile {
+	position: relative;
+	padding: 24px 20px;
+	background: rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(18px) saturate(170%);
+	-webkit-backdrop-filter: blur(18px) saturate(170%);
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.16);
+	box-shadow: 0 6px 25px rgba(var(--tw-shadow-color, 0, 0, 0), 0.25);
+	text-align: center;
+	min-height: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	transition: transform 0.35s ease, box-shadow 0.35s ease;
+	isolation: isolate; /* ✅ depth */
+}
+
+/* ✨ Gloss highlight layer */
+.glass-tile::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 0.18) 0%,
+		rgba(255, 255, 255, 0.02) 100%
+	);
+	border-radius: inherit;
+	z-index: -1;
+}
+
+.glass-tile:hover {
+	transform: translateY(-6px) scale(1.03);
+	box-shadow: 0 12px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* ⭐ Stars */
+.stars {
+	font-size: 14px;
+	letter-spacing: 2px;
+	background: linear-gradient(90deg, #ffdd33, #ffaa00);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/* ⭐ Google icon */
+.google-icon-wrapper {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 6px;
+}
+
+/* Review text spacing */
+.review-text {
+	font-size: 0.95rem;
+	opacity: 0.85;
+}
+
+/* CTA button styling */
+.glass-button {
+	backdrop-filter: blur(12px);
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	padding: 10px 20px;
+	font-weight: 600;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+	.glass-tile {
+		min-height: 230px;
+		padding: 22px 18px;
+	}
+}
+/* ✅ TechBar Glass Tiles */
+.tech-tile {
+	width: 120px;
+	min-height: 120px;
+	padding: 16px 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+
+	background: rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(20px) saturate(180%);
+	-webkit-backdrop-filter: blur(20px) saturate(180%);
+	border: 1px solid rgba(255, 255, 255, 0.16);
+
+	border-radius: 18px;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	cursor: default;
+}
+
+/* Elegancki gloss layer */
+.tech-tile::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 0.25) 0%,
+		rgba(255, 255, 255, 0.04) 100%
+	);
+	pointer-events: none;
+}
+
+.tech-tile:hover {
+	transform: translateY(-5px) scale(1.04);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.techbar-section {
+	overflow: hidden;
+}
+
+/* Mobile bigger tiles */
+@media (max-width: 576px) {
+	.tech-tile {
+		width: 100px;
+		min-height: 105px;
+	}
+}

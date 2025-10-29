@@ -8,6 +8,9 @@ const Web2 = dynamic(() => import("@/components/Web2"), { ssr: false });
 const Web3 = dynamic(() => import("@/components/Web3"), { ssr: false });
 const Web4 = dynamic(() => import("@/components/Web4"), { ssr: false });
 const Web5 = dynamic(() => import("@/components/Web5"), { ssr: false });
+const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
+	ssr: false,
+});
 const WebPrices = dynamic(() => import("@/components/WebPrices"), {
 	ssr: false,
 });
@@ -21,7 +24,6 @@ const LocalBusinessJsonLd = dynamic(
 );
 
 import citiesData from "@/data/citiesData";
-import GoogleReviews from "@/components/GoogleReviews";
 
 function WebSeitenErstellen() {
 	const cityData = citiesData.find((c) => c.city === "nettetal");

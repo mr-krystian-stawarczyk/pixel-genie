@@ -202,31 +202,22 @@ export default function BlogPostPage({ article, prev, next, related }) {
 									style={{ objectFit: "cover" }}
 								/>
 							</div>
-
 							<h1 className="fw-bold mt-4 mb-3">
 								<AutoTranslate>{article.title}</AutoTranslate>
 							</h1>
-							<LocalNRWHook />
-							<PeopleAlsoRead
-								currentSlug={article.slug}
-								tagHint={article.tags?.[0]}
-							/>
 							<nav className="mb-3 small">
 								<Link href="/webdesignblog" className="text-blue">
 									Blog
 								</Link>{" "}
 								/ <span className="fw-semibold">{article.title}</span>
 							</nav>
-							<p className="text-muted mb-4">
+							<p className=" mb-4">
 								{new Date(article.date).toLocaleDateString("de-DE")} ·{" "}
 								{article.readingTime}
 							</p>
-
 							<TableOfContents html={html} />
-
 							<AutoTranslateArticle html={html} slug={article.slug} />
 							<AnchorsInjector containerSelector={`#article-${article.slug}`} />
-
 							<div className="my-5">
 								<ShareButtons
 									url={pageUrl}
@@ -236,7 +227,6 @@ export default function BlogPostPage({ article, prev, next, related }) {
 									variant="inline"
 								/>
 							</div>
-
 							{/* CTA */}
 							<section className="p-4 rounded bg-transparent shadow-sm mb-5">
 								<h3 className="fw-bold mb-2">🚀 Mehr Kunden in NRW?</h3>
@@ -248,7 +238,11 @@ export default function BlogPostPage({ article, prev, next, related }) {
 									👉 <Link href="#contact">Kostenlose Website-Analyse</Link>
 								</p>
 							</section>
-
+							<PeopleAlsoRead
+								currentSlug={article.slug}
+								tagHint={article.tags?.[0]}
+							/>{" "}
+							<LocalNRWHook />
 							{/* Prev/Next */}
 							<div className="d-flex justify-content-between mt-5">
 								{prev ? (
@@ -336,6 +330,7 @@ export default function BlogPostPage({ article, prev, next, related }) {
 								</section>
 							)}
 						</article>
+
 						<nav className="mb-3 small">
 							<Link href="/webdesignblog" className="text-blue">
 								Blog

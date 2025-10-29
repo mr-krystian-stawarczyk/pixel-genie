@@ -1,8 +1,7 @@
+"use client";
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import dynamic from "next/dynamic";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
@@ -10,134 +9,75 @@ const Slider = dynamic(() => import("react-slick"), { ssr: false });
 const settings = {
 	dots: false,
 	infinite: true,
-	speed: 500,
+	speed: 450,
 	arrows: false,
 	slidesToShow: 6,
 	slidesToScroll: 1,
 	autoplay: true,
-	autoplaySpeed: 2000,
+	autoplaySpeed: 2500,
+	pauseOnHover: false,
+	swipeToSlide: true,
 	responsive: [
-		{
-			breakpoint: 992,
-			settings: {
-				slidesToShow: 4,
-			},
-		},
-		{
-			breakpoint: 768,
-			settings: {
-				slidesToShow: 3,
-			},
-		},
-		{
-			breakpoint: 576,
-			settings: {
-				slidesToShow: 2,
-			},
-		},
+		{ breakpoint: 1200, settings: { slidesToShow: 5 } },
+		{ breakpoint: 992, settings: { slidesToShow: 4 } },
+		{ breakpoint: 768, settings: { slidesToShow: 3 } },
+		{ breakpoint: 576, settings: { slidesToShow: 2 } },
 	],
 };
 
-const TechBar = () => {
-	return (
-		<Container fluid>
-			<Row className="justify-content-center align-items-center text-center bg-blue my-3 py-3">
-				<Slider {...settings}>
-					<div className="text-center">
-						<Image
-							src="/assets/webseiten-nettetal-google-business-seo.png"
-							alt="webagentur-nettetal-bootstrap-seo"
-							width={100}
-							height={100}
-							className="img-fluid mx-auto"
-							loading="lazy"
-						/>
-						<h3 className="text-white text-semibold">
-							Google<br></br> Business
-						</h3>
-					</div>
-					<div className="text-center">
-						<Image
-							src="/assets/webseiten-nettetal-facebookads-seo-pixelgenie.png"
-							alt="webagentur-nettetal-canva-design"
-							width={100}
-							height={100}
-							className="img-fluid mx-auto"
-							loading="lazy"
-						/>
-						<h3 className="text-white text-semibold">
-							Facebook <br></br>Ads
-						</h3>
-					</div>
-					<div className="text-center">
-						<Image
-							src="/assets/pixelgenie-nettetal-webseiten-wentwicklung-seo-optimierung.png"
-							alt="webagentur-nettetal-git-webentwicklung.png"
-							width={100}
-							height={100}
-							className="img-fluid mx-auto"
-							loading="lazy"
-						/>
-						<h3 className="text-white text-semibold">
-							SEO<br></br> Optimierung
-						</h3>
-					</div>
-					<div className="text-center ">
-						<Image
-							src="/assets/webagentur-nettetal-google-analytics-seo.png"
-							alt="webagentur-nettetal-google-analytics-seo"
-							width={100}
-							height={100}
-							className="img-fluid mx-auto"
-							loading="lazy"
-						/>
-						<h3 className="text-white text-semibold">
-							Google <br></br>Analytics
-						</h3>
-					</div>
-					<div className="text-center">
-						<Image
-							src="/assets/webagentur-nettetal-webseiten-webentwicklung-design-photoshop.png"
-							alt="webagentur-nettetal-netlify-webentwicklung-seo"
-							width={100}
-							height={100}
-							className="img-fluid mx-auto"
-							loading="lazy"
-						/>
-						<h3 className="text-white text-semibold">
-							Web <br></br>Design
-						</h3>
-					</div>
-					<div className="text-center">
-						<Image
-							src="/assets/webagentur-nettetal-webseiten-webentwicklung-ecommerce.png"
-							alt="webagentur-nettetal-nextjs-webentwicklung-seo"
-							width={100}
-							height={100}
-							className="img-fluid mx-auto"
-							loading="lazy"
-						/>
-						<h3 className="text-white text-semibold">
-							Stripe <br></br> Bezahlung
-						</h3>
-					</div>
-					<div className="text-center">
-						<Image
-							src="/assets/webagentur-nettetal-webseiten-webentwicklung-seo.png"
-							alt="webagentur-nettetal-reactjs-webentwicklung-seo"
-							width={100}
-							height={100}
-							className="img-fluid mx-auto"
-							loading="lazy"
-						/>
-						<h3 className="text-white text-semibold">
-							React<br></br> Dev
-						</h3>
-					</div>
-				</Slider>
-			</Row>
-		</Container>
-	);
-};
+const DATA = [
+	{
+		icon: "/assets/webseiten-nettetal-google-business-seo.png",
+		label: "Google ",
+	},
+	{
+		icon: "/assets/webseiten-nettetal-facebookads-seo-pixelgenie.png",
+		label: "Ads",
+	},
+	{
+		icon: "/assets/pixelgenie-nettetal-webseiten-wentwicklung-seo-optimierung.png",
+		label: "SEO",
+	},
+	{
+		icon: "/assets/webagentur-nettetal-google-analytics-seo.png",
+		label: " Analytics",
+	},
+	{
+		icon: "/assets/webagentur-nettetal-webseiten-webentwicklung-design-photoshop.png",
+		label: " Design",
+	},
+	{
+		icon: "/assets/webagentur-nettetal-webseiten-webentwicklung-ecommerce.png",
+		label: "Bezahlung",
+	},
+	{
+		icon: "/assets/webagentur-nettetal-webseiten-webentwicklung-seo.png",
+		label: "React ",
+	},
+];
 
-export default TechBar;
+export default function TechBar() {
+	return (
+		<section className="py-4 techbar-section">
+			<Container className="my-5">
+				<Slider {...settings}>
+					{DATA.map((item, idx) => (
+						<div key={idx} className="px-2">
+							<div className="glass-tile tech-tile text-center mx-auto">
+								<Image
+									src={item.icon}
+									alt={item.label}
+									width={56}
+									height={56}
+									className="my-2"
+									loading="lazy"
+								/>
+								<span className="">{item.label}</span>
+							</div>
+						</div>
+					))}
+				</Slider>
+			</Container>
+		</section>
+	);
+}

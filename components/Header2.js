@@ -1,74 +1,57 @@
-import React, { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+"use client";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
-function Header2() {
-	const [ref, inView] = useInView({ threshold: 0.5 });
-	const controls = useAnimation();
-
-	useEffect(() => {
-		controls.start({ opacity: inView ? 1 : 0, transition: { duration: 1 } });
-	}, [inView, controls]);
-
+export default function Header2() {
 	return (
-		<motion.div ref={ref} animate={controls} id="header2">
+		<motion.section
+			id="header2"
+			initial={{ opacity: 0, y: 40 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, amount: 0.25 }}
+			transition={{ duration: 0.7, ease: "easeOut" }}
+		>
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center align-items-center g-5">
 					<Col lg={5} className="mx-auto text-center">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-bold mb-3">
+								<h2 className="fw-bold mb-3">
 									Wir kennen die Bedürfnisse Ihres Unternehmens
-								</h1>
+								</h2>
 								<p>
-									Wir bieten umfassende Dienstleistungen zur Erstellung moderner
-									Websites für Ihr Unternehmen.
+									Wir erstellen Websites, die nicht nur toll aussehen – sondern
+									Besucher in Kunden verwandeln ✅
 								</p>
 								<p>
-									Unsere Websites sind schnell, reaktionsschnell und funktional
-									– sie helfen, Traffic und Konversionen messbar zu steigern.
-								</p>
-								<p>
-									Wir begleiten Sie durch den gesamten Prozess der
-									Webseitenerstellung, von der Idee bis zum Launch.
+									Schnell, responsiv, modern — basierend auf Ihrem digitalen
+									Ziel!
 								</p>
 								<div className="text-center mt-4">
-									<Link href="/webseitenerstellen" className="m-1">
-										<Button className="btn-nav">WEBSEITEN ERSTELLEN</Button>
+									<Link href="/webseitenerstellen">
+										<Button className="btn-nav text-white" variant="primary">
+											WEBSEITEN ERSTELLEN →
+										</Button>
 									</Link>
 								</div>
 							</Card.Body>
 						</Card>
 					</Col>
 
-					<Col lg={5} className="mx-auto position-relative text-center">
-						<div className="image-container">
-							<Image
-								src="/assets/webentwicklung-nettetal-seo2.png"
-								width={400}
-								height={400}
-								alt="webentwicklung-nettetal-seo2"
-								className="responsive-image"
-								loading="lazy"
-							/>
-							<div className="arrow-animation2">
-								<Image
-									src="/assets/anim0.webp"
-									alt="Animated Arrow"
-									width={50}
-									height={50}
-									loading="lazy"
-								/>
-							</div>
-						</div>
+					<Col lg={5} className="mx-auto text-center position-relative">
+						<Image
+							src="/assets/webentwicklung-nettetal-seo2.png"
+							width={400}
+							height={400}
+							alt="Webentwicklung Pixel Genie"
+							loading="lazy"
+							className="responsive-image"
+						/>
 					</Col>
 				</Row>
 			</Container>
-		</motion.div>
+		</motion.section>
 	);
 }
-
-export default Header2;

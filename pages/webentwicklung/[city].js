@@ -6,10 +6,14 @@ import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData";
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
-
-const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
+import { motion } from "framer-motion";
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
 	ssr: false,
+	loading: () => null,
+});
+const CityMap = dynamic(() => import("@/components/CityMap"), {
+	ssr: false,
+	loading: () => null,
 });
 
 import ReadingProgressBar from "@/components/ReadingProgressBar";
@@ -139,144 +143,178 @@ export default function WebentwicklungCity({ cityData, seo }) {
 					</Row>
 
 					<div className="mt-4">
-						<GoogleReviews />
+						<motion.div
+							initial={{ opacity: 0 }}
+							whileInView={{ opacity: 1 }}
+							viewport={{ once: true }}
+						>
+							<GoogleReviews />
+						</motion.div>
 					</div>
 				</Container>
 			</section>
 			{/* === LEISTUNGEN — WEBENTWICKLUNG === */}
-			<section className="py-5">
+			<section className="py-5" id="webentwicklung-preise">
 				<Container>
-					<h2 className="h3 fw-bold text-center mb-5">
-						Unsere Webentwicklungs-Leistungen in {cityName}
+					<h2 className="fw-bold text-center display-6 mb-4">
+						Webentwicklung Preise in {cityName}
 					</h2>
+					<p className="text-center lead  mb-5">
+						Schnelle Ladezeiten, skalierbare Architektur und Features, die
+						wirklich etwas bringen. Wir entwickeln digitale Produkte, die
+						**Umsatz & Effizienz** steigern.
+					</p>
 
-					<Row className="g-4">
-						{/* PERFORMANCE */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Performance & Core Web Vitals</h3>
-								<p className="mb-1">Schnelle Websites für Top UX & Rankings.</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Optimierte Lighthouse Scores
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										PageSpeed Insights verbessert
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Stabiles Layout ohne CLS
-									</li>
-								</ul>
-							</Card>
+					<Row className="justify-content-center text-center g-4">
+						{/* STARTER DEV */}
+						<Col lg={4} md={6}>
+							<motion.div
+								initial={{ opacity: 0, y: 40 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, amount: 0.3 }}
+								transition={{ duration: 0.7, ease: "easeOut" }}
+							>
+								<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent hover-scale">
+									<Card.Body className="p-4">
+										<h3 className="fw-bold text-primary">Starter Web-App</h3>
+										<p
+											className="small text-start"
+											style={{ color: "var(--text-color)" }}
+										>
+											Für smarte digitale Ideen – MVP oder erste
+											Automatisierungen.
+											<br />
+											<span className="fw-bold text-success">
+												🎉 Promo: API-Analyse GRATIS!
+											</span>
+										</p>
+
+										<h2 className="fw-bold my-3 text-primary">ab 890 €</h2>
+										<hr />
+										<ul className="small text-start">
+											<li style={{ color: "var(--text-color)" }}>
+												Bis 3 Views / Module
+											</li>
+											<li style={{ color: "var(--text-color)" }}>
+												Responsive & Performance-Optimiert
+											</li>
+											<li style={{ color: "var(--text-color)" }}>
+												Formulare & kleine Automationen
+											</li>
+											<li style={{ color: "var(--text-color)" }}>
+												Sicherheit: SSL + Basic Protection
+											</li>
+										</ul>
+
+										<Button
+											className="mt-3"
+											variant="primary"
+											onClick={() => email("Starter Web-App (890 €)")}
+										>
+											Jetzt starten →
+										</Button>
+									</Card.Body>
+								</Card>
+							</motion.div>
 						</Col>
 
-						{/* APPLICATION DEVELOPMENT */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Web-Apps & Funktionen</h3>
-								<p className="mb-1">
-									Interaktive Oberflächen, Login, Dashboards.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Benutzerkonten & Rollen
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Individuelle Module & Logiken
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Formulare & Automatisierungen
-									</li>
-								</ul>
-							</Card>
+						{/* BUSINESS DEV */}
+						<Col lg={4} md={6}>
+							<motion.div
+								initial={{ opacity: 0, y: 40 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, amount: 0.3 }}
+								transition={{ duration: 0.7, ease: "easeOut" }}
+							>
+								{" "}
+								<Card className="h-100 shadow-xl rounded-4 bg-light border-success hover-scale">
+									<Card.Body className="p-4">
+										<h3 className="fw-bold text-success">Business Web-App</h3>
+										<p
+											className="small text-start important-text"
+											style={{ color: "#000" }}
+										>
+											Die richtige Lösung für Firmen, die Prozesse
+											digitalisieren wollen.
+											<br />
+											<span className="fw-bold text-success">
+												🔥 Promo: 2 Monate Wartung inkl.
+											</span>
+										</p>
+
+										<h2 className="fw-bold my-3 text-success">ab 1490 €</h2>
+										<hr />
+										<ul className="small text-start" style={{ color: "#000" }}>
+											<li>Backend-Logiken & API-Integrationen</li>
+											<li>Benutzerkonten & Rollen</li>
+											<li>Dashboard & Datenverwaltung</li>
+											<li>Analytics & Security Monitoring</li>
+										</ul>
+
+										<Button
+											className="mt-3 text-white"
+											variant="success"
+											onClick={() => email("Business Web-App (1490 €)")}
+										>
+											Bestseller →
+										</Button>
+									</Card.Body>
+								</Card>
+							</motion.div>
 						</Col>
 
-						{/* API INTEGRATIONS */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">APIs & Integrationen</h3>
-								<p className="mb-1">
-									Technik, die verbindet – ERP, Shopsysteme, Payment.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>REST / GraphQL</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Stripe, PayPal, etc.
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Daten-Sync in Echtzeit
-									</li>
-								</ul>
-							</Card>
-						</Col>
+						{/* PREMIUM DEV */}
+						<Col lg={4} md={6}>
+							<motion.div
+								initial={{ opacity: 0, y: 40 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, amount: 0.3 }}
+								transition={{ duration: 0.7, ease: "easeOut" }}
+							>
+								{" "}
+								<Card
+									className="h-100 text-light rounded-4 shadow-lg hover-scale"
+									style={{
+										background: "linear-gradient(135deg,#0b0b2e,#21216b)",
+									}}
+								>
+									<Card.Body className="p-4">
+										<h3 className="fw-bold text-warning">Premium Web-App</h3>
+										<p className="small text-start text-light">
+											Für Unternehmen, die Skalierung, Automatisierung &
+											High-Security benötigen.
+											<br />
+											<span className="fw-bold text-warning">
+												🚀 Promo: Performance-Audit GRATIS!
+											</span>
+										</p>
 
-						{/* SECURITY */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Sicherheit & Wartung</h3>
-								<p className="mb-1">
-									Schutz vor Ausfällen & Angriffen — rund um die Uhr.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Security & Monitoring
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Automatische Backups
-									</li>
-									<li style={{ color: "var(--text-color)" }}>Uptime Check</li>
-								</ul>
-							</Card>
-						</Col>
+										<h2 className="fw-bold my-3 text-warning">ab 2490 €</h2>
+										<hr className="border-light" />
+										<ul className="small text-start text-light">
+											<li>Komplexe Module & Echtzeit-Sync</li>
+											<li>Headless CMS oder Admin-Backend</li>
+											<li>Mehrsprachigkeit, 3rd-Party Systems</li>
+											<li>Core Web Vitals 95+ Garantie ✔️</li>
+										</ul>
 
-						{/* HEADLESS + CMS */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Headless & CMS</h3>
-								<p className="mb-1">
-									Inhalte selbst verwalten – flexibel & schnell.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Sanity / Strapi / WordPress
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Blog, Struktur & Tagging
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Kein technischer Aufwand für dich
-									</li>
-								</ul>
-							</Card>
-						</Col>
-
-						{/* DEPLOYMENT & INFRA */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Deploy & Hosting-Beratung</h3>
-								<p className="mb-1">Sichere Infrastruktur für Wachstum.</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Static-first Deployments
-									</li>
-									<li style={{ color: "var(--text-color)" }}>CDN weltweit</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Effiziente Skalierung
-									</li>
-								</ul>
-							</Card>
+										<Button
+											className="mt-3 fw-bold text-dark"
+											variant="warning"
+											onClick={() => email("Premium Web-App (2490 €)")}
+										>
+											Premium buchen →
+										</Button>
+									</Card.Body>
+								</Card>
+							</motion.div>
 						</Col>
 					</Row>
 
-					<div className="text-center mt-5">
-						<Button
-							href="/webentwicklung"
-							variant="primary"
-							className="text-white"
-						>
-							Mehr erfahren →
-						</Button>
-					</div>
+					<p className="text-center text-muted small mt-4">
+						Alle Preise zzgl. MwSt. – **messbare Ergebnisse**, keine versteckten
+						Kosten.
+					</p>
 				</Container>
 			</section>
 			{/* === LEISTUNGEN — WEBENTWICKLUNG === */}

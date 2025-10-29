@@ -97,7 +97,7 @@ export default function Header1() {
 							<p className="lead mb-4">
 								<AutoTranslate>
 									{
-										"Steigern Sie Ihre Online-Präsenz mit professionellen Websites, die Design, Performance und Sichtbarkeit vereinen."
+										"Steigern Sie Ihre Online Präsenz mit professionellen Websites, die Design, Performance und Sichtbarkeit vereinen."
 									}
 								</AutoTranslate>
 							</p>

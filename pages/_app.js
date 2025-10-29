@@ -6,6 +6,8 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { initGA, gaPageview, GA_ID, gaEvent } from "@/lib/analytics";
 import { getCookie } from "cookies-next";
 import { I18nextProvider } from "react-i18next";

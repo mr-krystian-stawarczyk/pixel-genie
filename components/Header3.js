@@ -1,66 +1,45 @@
-import React, { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+"use client";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
-function Header3() {
-	const [ref, inView] = useInView({ threshold: 0.5 });
-	const controls = useAnimation();
-
-	useEffect(() => {
-		controls.start({ opacity: inView ? 1 : 0, transition: { duration: 1 } });
-	}, [inView, controls]);
-
+export default function Header3() {
 	return (
-		<motion.div ref={ref} animate={controls}>
+		<motion.section
+			initial={{ opacity: 0, y: 40 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, amount: 0.25 }}
+			transition={{ duration: 0.7, ease: "easeOut" }}
+		>
 			<Container className="my-5 py-5">
 				<Row className="justify-content-center align-items-center g-5">
 					<Col lg={5} className="text-center">
-						<div className="image-container">
-							<Image
-								src="/assets/webentwicklung-nettetal-seo3.png"
-								width={400}
-								height={400}
-								alt="SEO Optimierung Nettetal"
-								className="responsive-image"
-								loading="lazy"
-							/>
-							<div className="arrow-animation3">
-								<Image
-									src="/assets/anim8.webp"
-									alt="Animated Arrow"
-									width={50}
-									height={50}
-									loading="lazy"
-								/>
-							</div>
-						</div>
+						<Image
+							src="/assets/webentwicklung-nettetal-seo3.png"
+							width={420}
+							height={420}
+							alt="SEO Optimierung Pixel Genie"
+							loading="lazy"
+							className="responsive-image"
+						/>
 					</Col>
 
 					<Col lg={5}>
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-bold mb-3">
+								<h2 className="fw-bold mb-3">
 									Steigern Sie Ihre Online Sichtbarkeit
-								</h1>
+								</h2>
 								<p>
-									Wir bieten professionelle SEO Dienstleistungen an, um Ihre
-									Website in den Google Suchergebnissen besser sichtbar zu
-									machen.
+									Wir bringen Sie auf Google nach oben – und darüber hinaus 🚀
 								</p>
-								<p>
-									Mit unserer SEO Erfahrung helfen wir Ihnen, organischen
-									Traffic zu steigern und neue Kunden zu gewinnen.
-								</p>
-								<p>
-									Unsere bewährten Strategien sorgen dafür, dass Ihre Website
-									stabil auf den ersten Seiten erscheint.
-								</p>
+								<p>Mehr Besucher → Mehr Anfragen → Mehr Umsatz 📈</p>
 								<div className="text-center mt-4">
-									<Link href="/suchmaschinenoptimierung" className="m-1">
-										<Button className="btn-nav px-4">SEO OPTIMIERUNG</Button>
+									<Link href="/seo">
+										<Button className="btn-nav text-white" variant="success">
+											SEO OPTIMIERUNG →
+										</Button>
 									</Link>
 								</div>
 							</Card.Body>
@@ -68,8 +47,6 @@ function Header3() {
 					</Col>
 				</Row>
 			</Container>
-		</motion.div>
+		</motion.section>
 	);
 }
-
-export default Header3;

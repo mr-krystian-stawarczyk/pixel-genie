@@ -7,11 +7,14 @@ import dynamic from "next/dynamic";
 import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData";
+import { useInView } from "react-intersection-observer";
+import { useAnimation, motion } from "framer-motion";
+import { useState, useEffect } from "react";
 const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
 	ssr: false,
 });
-
+import AutoTranslate from "@/components/AutoTranslate";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import SmartCTA from "@/components/SmartCTA";
 import LocalNRWHook from "@/components/LocalNRWHook";
@@ -44,6 +47,30 @@ export async function getStaticProps({ params }) {
 // Page
 // ─────────────────────────────────────────
 export default function SeoCityPage({ cityData, seo }) {
+	const [ref1, inView1] = useInView({ threshold: 0.4 });
+	const [ref2, inView2] = useInView({ threshold: 0.4 });
+	const [ref3, inView3] = useInView({ threshold: 0.4 });
+
+	const animateIn = {
+		opacity: 1,
+		y: 0,
+		transition: { duration: 0.7, ease: "easeOut" },
+	};
+
+	const controls1 = useAnimation();
+	const controls2 = useAnimation();
+	const controls3 = useAnimation();
+
+	useEffect(() => {
+		if (inView1) controls1.start(animateIn);
+	}, [inView1]);
+	useEffect(() => {
+		if (inView2) controls2.start(animateIn);
+	}, [inView2]);
+	useEffect(() => {
+		if (inView3) controls3.start(animateIn);
+	}, [inView3]);
+
 	const {
 		city,
 		geo = { latitude: 0, longitude: 0 },
@@ -66,7 +93,6 @@ export default function SeoCityPage({ cityData, seo }) {
 		backgroundColor: "transparent",
 		borderColor: "rgba(255,255,255,0.14)",
 	};
-	const muted = { opacity: 0.8 };
 
 	return (
 		<>
@@ -348,7 +374,7 @@ export default function SeoCityPage({ cityData, seo }) {
 						<Col lg={7} className="mb-4">
 							<Card className="shadow-sm p-4" style={surface}>
 								<h2 className="h4 fw-semibold mb-3">Unser SEO-Prozess</h2>
-								<ol style={{ ...muted, marginBottom: "0" }}>
+								<ol style={{ marginBottom: "0" }}>
 									<li className="mb-2" style={{ color: "var(--text-color)" }}>
 										<strong>Analyse & Zielsetzung:</strong> Technisches Audit in{" "}
 										{cityName}.
@@ -402,120 +428,163 @@ export default function SeoCityPage({ cityData, seo }) {
 				</Container>
 			</section>
 			{/* === PAKETE / PREISE === */}
-			<section className="py-5">
-				<Container>
-					<h2 className="h3 fw-bold text-center mb-5">
-						SEO-Pakete für {cityName}
-					</h2>
 
-					<Row className="g-4">
-						{/* BASIC */}
-						<Col md={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h5 fw-bold">Starter</h3>
-								<p>Ideal für lokale Businesses</p>
-								<h4 className="display-6 mb-3">99 €</h4>
-								<ul style={{ ...muted, fontSize: "0.95rem" }}>
-									<li style={{ color: "var(--text-color)" }}>
-										Technisches SEO
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Google Business Profil Optimierung
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										1× Local Content / Monat
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Monatliches Reporting
-									</li>
-								</ul>
-								<Button
-									variant="primary"
-									className="mt-3 text-white"
-									onClick={() =>
-										(window.location.href =
-											"mailto:pixelgenie.marketing@gmail.com")
-									}
-								>
-									Angebot anfordern →
-								</Button>
+			<Container id="seo-pricing" className="py-5">
+				<Row className="justify-content-center text-center mb-5">
+					<Col lg={8}>
+						<Image
+							src="/assets/webentwicklung-webagentur-nettetal-price.png"
+							width={260}
+							height={260}
+							alt="SEO Preise Pixel Genie"
+							className="my-3"
+							priority
+							fetchPriority="high"
+						/>
+						<h2 className="fw-bold display-6">
+							<AutoTranslate>SEO-Pakete für {cityName}</AutoTranslate>
+						</h2>
+						<p className="lead ">
+							<AutoTranslate>
+								Mehr Sichtbarkeit, mehr Anfragen, mehr Umsatz – unsere
+								SEO-Pakete sind individuell skalierbar und perfekt für Ihr
+								Wachstum.
+							</AutoTranslate>
+						</p>
+					</Col>
+				</Row>
+
+				<Row className="justify-content-center text-center g-4">
+					{/* BASIC */}
+					<Col lg={4} md={6}>
+						<motion.div
+							ref={ref1}
+							initial={{ opacity: 0, y: 40 }}
+							animate={controls1}
+						>
+							<Card className="h-100 shadow-lg rounded-4 border-primary bg-transparent">
+								<Card.Body className="p-4">
+									<h3 className="fw-bold text-primary">BASIC SEO</h3>
+									<p className="">
+										Ideal für lokale Unternehmen, die sicher gefunden werden
+										wollen.
+									</p>
+									<h2 className="fw-bold mb-3 text-primary">149 € / Monat</h2>
+									<hr />
+									<ul className="text-start small">
+										<li style={{ color: "var(--text-color)" }}>
+											Technische SEO-Optimierung (OnPage)
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Keyword-Recherche (lokal)
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Content-Optimierung
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Google Business Profil
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Monatlicher Report
+										</li>
+									</ul>
+									<Button
+										variant="primary"
+										className="mt-3"
+										onClick={() => handleEmail("BASIC SEO")}
+									>
+										<AutoTranslate>Jetzt starten</AutoTranslate>
+									</Button>
+								</Card.Body>
 							</Card>
-						</Col>
+						</motion.div>
+					</Col>
 
-						{/* GROWTH */}
-						<Col md={4}>
+					{/* BUSINESS */}
+					<Col lg={4} md={6}>
+						<motion.div
+							ref={ref2}
+							initial={{ opacity: 0, y: 40 }}
+							animate={controls2}
+						>
+							<Card className="h-100 shadow-lg rounded-4 border-success bg-light">
+								<Card.Body className="p-4">
+									<h3 className="fw-bold text-success">BUSINESS SEO</h3>
+									<p className="text-black">
+										Für Marken, die bei Google dominieren und wachsen wollen.
+									</p>
+									<h2 className="fw-bold mb-3 text-success">299 € / Monat</h2>
+									<hr />
+									<ul className="text-start small">
+										<li>SEO-Roadmap + Monitoring</li>
+										<li>Core Web Vitals Optimierung</li>
+										<li>Backlink-Aufbau & Citations</li>
+										<li>4× Content / Monat</li>
+										<li>1h Beratung / Monat</li>
+									</ul>
+									<Button
+										variant="success"
+										className="mt-3 text-white"
+										onClick={() => handleEmail("BUSINESS SEO")}
+									>
+										<AutoTranslate>Bestseller sichern</AutoTranslate>
+									</Button>
+								</Card.Body>
+							</Card>
+						</motion.div>
+					</Col>
+
+					{/* PREMIUM */}
+					<Col lg={4} md={6}>
+						<motion.div
+							ref={ref3}
+							initial={{ opacity: 0, y: 40 }}
+							animate={controls3}
+						>
 							<Card
-								className="shadow-sm p-4 h-100 border-primary"
-								style={surface}
+								className="h-100 rounded-4 text-light shadow-lg"
+								style={{
+									background: "linear-gradient(135deg,#0b0b2e,#21216b)",
+								}}
 							>
-								<Badge bg="primary" className="mb-2 align-self-start">
-									Bestseller
-								</Badge>
-								<h3 className="h5 fw-bold">Growth</h3>
-								<p>Wachstum & Ranking-Dominanz</p>
-								<h4 className="display-6 mb-3">299 €</h4>
-								<ul style={{ ...muted, fontSize: "0.95rem" }}>
-									<li style={{ color: "var(--text-color)" }}>
-										SEO-Roadmap + Monitoring
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										4× Content Cluster / Monat
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Lokale Backlinks & Citations
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										UX & CWV Optimierung
-									</li>
-								</ul>
-								<Button
-									variant="primary"
-									className="mt-3 text-white"
-									onClick={() =>
-										(window.location.href =
-											"mailto:pixelgenie.marketing@gmail.com")
-									}
-								>
-									Angebot anfordern →
-								</Button>
+								<Card.Body className="p-4">
+									<h3 className="fw-bold text-warning">PREMIUM SEO</h3>
+									<p className="text-light">
+										Die High-End Lösung für Marktführer und
+										Suchmaschinen-Dominanz.
+									</p>
+									<h2 className="fw-bold mb-3 text-warning">499 € / Monat</h2>
+									<hr className="border-light" />
+									<ul className="text-start small">
+										<li>Individuelle SEO-Strategie</li>
+										<li>8× Content / Monat</li>
+										<li>Digital PR & Authority Building</li>
+										<li>Conversion-Tracking & UX</li>
+										<li>Priorisierter Support</li>
+									</ul>
+									<Button
+										variant="warning"
+										className="mt-3 fw-bold text-dark"
+										onClick={() => handleEmail("PREMIUM SEO")}
+									>
+										<AutoTranslate>Premium buchen</AutoTranslate>
+									</Button>
+								</Card.Body>
 							</Card>
-						</Col>
+						</motion.div>
+					</Col>
+				</Row>
 
-						{/* PRO */}
-						<Col md={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h5 fw-bold">Pro</h3>
-								<p>City-wide SEO Dominanz</p>
-								<h4 className="display-6 mb-3">599 €</h4>
-								<ul style={{ ...muted, fontSize: "0.95rem" }}>
-									<li style={{ color: "var(--text-color)" }}>
-										Multi-Intent Content Strategie
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										8× Content / Monat (Pillar + Support)
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Digital PR & starke Erwähnungen
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Conversion Optimierung
-									</li>
-								</ul>
-								<Button
-									variant="primary"
-									className="mt-3 text-white"
-									onClick={() =>
-										(window.location.href =
-											"mailto:pixelgenie.marketing@gmail.com")
-									}
-								>
-									Angebot anfordern →
-								</Button>
-							</Card>
-						</Col>
-					</Row>
-				</Container>
-			</section>
+				<Row className="justify-content-center text-center mt-4">
+					<Col lg={8}>
+						<p className=" small">
+							Alle Preise zzgl. MwSt. – monatlich kündbar – echte Performance
+							statt Versprechen.
+						</p>
+					</Col>
+				</Row>
+			</Container>
+
 			{/* === CASE STUDIES === */}
 			<section className="py-5">
 				<Container>
@@ -532,7 +601,7 @@ export default function SeoCityPage({ cityData, seo }) {
 									+187 % mehr lokale Suchanfragen in 6 Monaten (Local Pack +
 									Content Refresh).
 								</p>
-								<ul style={{ ...muted, fontSize: "0.9rem" }}>
+								<ul style={{ fontSize: "0.9rem" }}>
 									<li style={{ color: "var(--text-color)" }}>
 										CTR +2,3 Prozentpunkte
 									</li>
@@ -548,7 +617,7 @@ export default function SeoCityPage({ cityData, seo }) {
 							<Card className="shadow-sm p-4 h-100" style={surface}>
 								<h3 className="h6 fw-bold">Einzelhandel mit Online-Showroom</h3>
 								<p>5× mehr Keywords in den Top-3, +31 % Umsatzwachstum.</p>
-								<ul style={{ ...muted, fontSize: "0.9rem" }}>
+								<ul style={{ fontSize: "0.9rem" }}>
 									<li style={{ color: "var(--text-color)" }}>
 										Strukturierte Themencluster
 									</li>
@@ -564,7 +633,7 @@ export default function SeoCityPage({ cityData, seo }) {
 							<Card className="shadow-sm p-4 h-100" style={surface}>
 								<h3 className="h6 fw-bold">B2B-Serviceanbieter</h3>
 								<p>3× mehr qualifizierte Leads, SEO, Paid Ads.</p>
-								<ul style={{ ...muted, fontSize: "0.9rem" }}>
+								<ul style={{ fontSize: "0.9rem" }}>
 									<li style={{ color: "var(--text-color)" }}>
 										Wettbewerbsanalyse & Content-Depth
 									</li>

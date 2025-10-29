@@ -6,6 +6,11 @@ import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData"; // ✅ używamy tego samego jako SEO baseline
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
+import Image from "next/image";
+import { useEffect } from "react";
+import AutoTranslateArticle from "@/components/AutoTranslateArticle";
 
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
 	ssr: false,
@@ -64,7 +69,51 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 		borderColor: "rgba(255,255,255,0.12)",
 		border: "1px solid rgba(255,255,255,0.12)",
 	};
-	const muted = { opacity: 0.8 };
+
+	const [ref1, inView1] = useInView({ threshold: 0.4 });
+	const [ref2, inView2] = useInView({ threshold: 0.4 });
+	const [ref3, inView3] = useInView({ threshold: 0.4 });
+
+	const animate = {
+		opacity: 1,
+		y: 0,
+		transition: { duration: 0.8, ease: "easeOut" },
+	};
+	const c1 = useAnimation(),
+		c2 = useAnimation(),
+		c3 = useAnimation();
+
+	useEffect(() => {
+		if (inView1) c1.start(animate);
+	}, [inView1]);
+	useEffect(() => {
+		if (inView2) c2.start(animate);
+	}, [inView2]);
+	useEffect(() => {
+		if (inView3) c3.start(animate);
+	}, [inView3]);
+
+	const starterHTML = `
+		<p>Ideal für den schnellen Start in ${city}. Modernes Design + Sichtbarkeit für lokale Kunden.</p>
+		<p class="text-success fw-bold">🎉 Promo: Google Business Setup GRATIS!</p>
+	`;
+
+	const businessHTML = `
+		<p>Unser Bestseller – Webseiten, die verkaufen. Mehr SEO, mehr Performance, mehr Umsatz.</p>
+		<p class="text-success fw-bold">🔥 Promo: 3 Monate Wartung & Updates inkl.</p>
+	`;
+
+	const premiumHTML = `
+		<p>High-End Websites für Unternehmen, die den Markt in ${city} dominieren wollen.</p>
+		<p class="text-warning fw-bold">🚀 Promo: Conversion-Tracking + Prior-Support!</p>
+	`;
+	const email = (plan) => {
+		window.location.href = `mailto:pixelgenie.marketing@gmail.com?subject=${encodeURIComponent(
+			`Webdesign Anfrage (${plan}) – in ${city}`
+		)}&body=${encodeURIComponent(
+			`Hallo Pixel Genie Team,\n\nich interessiere mich für ${plan} in ${city}.\nWebsite:\nBranche:\nStarttermin:\n\nDanke!`
+		)}`;
+	};
 
 	return (
 		<>
@@ -139,11 +188,129 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 						</Col>
 					</Row>
 
-					<div className="mt-4">
-						<GoogleReviews />
-					</div>
+					<Row className="mt-4">
+						<Col>
+							<GoogleReviews />
+						</Col>
+					</Row>
 				</Container>
 			</section>
+
+			<Row className="justify-content-center text-center g-4">
+				{/* Starter */}
+				<Col lg={4} md={6}>
+					<motion.div ref={ref1} initial={{ opacity: 0, y: 40 }} animate={c1}>
+						<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent">
+							<Card.Body className="p-4">
+								<h3 className="fw-bold text-primary">Starter Website</h3>
+
+								<div
+									className="small text-start"
+									style={{ color: "var(--text-color)" }}
+								>
+									<AutoTranslateArticle html={starterHTML} slug="ws1" />
+								</div>
+
+								<h2 className="fw-bold my-3 text-primary">ab 499 €</h2>
+								<hr />
+
+								<ul className="small text-start">
+									<li style={{ color: "var(--text-color)" }}>
+										One-Pager oder 3 Seiten
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										SEO-Basis + schnelle Ladezeiten
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Kontaktformular + Maps
+									</li>
+									<li style={{ color: "var(--text-color)" }}>
+										Rechtstexte inklusive
+									</li>
+								</ul>
+
+								<Button
+									className="mt-3"
+									variant="primary"
+									onClick={() => email("Starter (499 €)")}
+								>
+									Jetzt starten →
+								</Button>
+							</Card.Body>
+						</Card>
+					</motion.div>
+				</Col>
+
+				{/* Business */}
+				<Col lg={4} md={6}>
+					<motion.div ref={ref2} initial={{ opacity: 0, y: 40 }} animate={c2}>
+						<Card className="h-100 shadow-xl rounded-4 bg-light border-success">
+							<Card.Body className="p-4">
+								<h3 className="fw-bold text-success">Business Website</h3>
+
+								<div className="small text-start important-text">
+									<AutoTranslateArticle html={businessHTML} slug="ws2" />
+								</div>
+
+								<h2 className="fw-bold my-3 text-success">ab 899 €</h2>
+								<hr />
+
+								<ul className="small text-start" style={{ color: "#000" }}>
+									<li>Bis 10 Seiten + CMS</li>
+									<li>SEO + Content-Strategie</li>
+									<li>Blog + Conversion-Tools</li>
+									<li>Analytics & Tracking</li>
+								</ul>
+
+								<Button
+									className="mt-3 text-white"
+									variant="success"
+									onClick={() => email("Business (899 €)")}
+								>
+									Bestseller →
+								</Button>
+							</Card.Body>
+						</Card>
+					</motion.div>
+				</Col>
+
+				{/* Premium */}
+				<Col lg={4} md={6}>
+					<motion.div ref={ref3} initial={{ opacity: 0, y: 40 }} animate={c3}>
+						<Card
+							className="h-100 text-light rounded-4 shadow-lg"
+							style={{ background: "linear-gradient(135deg,#0b0b2e,#21216b)" }}
+						>
+							<Card.Body className="p-4">
+								<h3 className="fw-bold text-warning">Premium Website</h3>
+
+								<div className="small text-start text-light">
+									<AutoTranslateArticle html={premiumHTML} slug="ws3" />
+								</div>
+
+								<h2 className="fw-bold my-3 text-warning">ab 1499 €</h2>
+								<hr className="border-light" />
+
+								<ul className="small text-start text-light">
+									<li>Unbegrenzte Seiten</li>
+									<li>UX/UI nach Branding</li>
+									<li>Mehrsprachigkeit & E-Commerce</li>
+									<li>Core Web Vitals 95+ Garantie</li>
+								</ul>
+
+								<Button
+									className="mt-3 fw-bold text-dark"
+									variant="warning"
+									onClick={() => email("Premium (1499 €)")}
+								>
+									Premium buchen →
+								</Button>
+							</Card.Body>
+						</Card>
+					</motion.div>
+				</Col>
+			</Row>
+
 			{/* === LEISTUNGEN — WEB­DESIGN === */}
 			<section className="py-5">
 				<Container>
@@ -159,7 +326,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 								<p className="mb-3">
 									Klare Nutzerführung, Vertrauen, Conversion-Fokus.
 								</p>
-								<ul style={{ ...muted, fontSize: "0.95rem" }} className="mb-0">
+								<ul style={{ fontSize: "0.95rem" }} className="mb-0">
 									<li style={{ color: "var(--text-color)" }}>
 										Wireframes & Prototypen
 									</li>
@@ -180,7 +347,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 								<p className="mb-3">
 									Pixelgenau auf allen Geräten – im Look deiner Marke.
 								</p>
-								<ul style={{ ...muted, fontSize: "0.95rem" }} className="mb-0">
+								<ul style={{ fontSize: "0.95rem" }} className="mb-0">
 									<li style={{ color: "var(--text-color)" }}>
 										Mobile-first Layouts
 									</li>
@@ -201,7 +368,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 								<p className="mb-3">
 									Sauberes HTML, strukturierte Daten, sinnvolle IA.
 								</p>
-								<ul style={{ ...muted, fontSize: "0.95rem" }} className="mb-0">
+								<ul style={{ fontSize: "0.95rem" }} className="mb-0">
 									<li style={{ color: "var(--text-color)" }}>
 										Meta, OG, Sitemaps
 									</li>
@@ -220,7 +387,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 							<Card className="shadow-sm p-4 h-100" style={surface}>
 								<h3 className="h6 fw-bold mb-2">Performance / CWV</h3>
 								<p className="mb-3">Schnelle Ladezeiten & stabile Layouts.</p>
-								<ul style={{ ...muted, fontSize: "0.95rem" }} className="mb-0">
+								<ul style={{ fontSize: "0.95rem" }} className="mb-0">
 									<li style={{ color: "var(--text-color)" }}>
 										Core Web Vitals Optimierung
 									</li>
@@ -241,7 +408,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 								<p className="mb-3">
 									Einfache Pflege – Headless oder klassisch.
 								</p>
-								<ul style={{ ...muted, fontSize: "0.95rem" }} className="mb-0">
+								<ul style={{ fontSize: "0.95rem" }} className="mb-0">
 									<li style={{ color: "var(--text-color)" }}>
 										Sanity / Strapi / WordPress
 									</li>
@@ -262,7 +429,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 								<p className="mb-3">
 									Updates, Monitoring, Schutz & schnelle Hilfe.
 								</p>
-								<ul style={{ ...muted, fontSize: "0.95rem" }} className="mb-0">
+								<ul style={{ fontSize: "0.95rem" }} className="mb-0">
 									<li style={{ color: "var(--text-color)" }}>
 										Security & Backups
 									</li>
@@ -294,7 +461,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 								<h2 className="h4 fw-semibold mb-3">
 									Unser Webdesign-Prozess in {cityName}
 								</h2>
-								<ol style={{ ...muted, marginBottom: 0 }}>
+								<ol style={{ marginBottom: 0 }}>
 									<li className="mb-2" style={{ color: "var(--text-color)" }}>
 										<strong>Strategie & Zielgruppen-Analyse:</strong> Was
 										überzeugt deine Kunden in {cityName} wirklich?
@@ -323,7 +490,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 						<Col lg={5}>
 							<Card className="shadow-sm p-4 h-100" style={surface}>
 								<h3 className="h5 fw-bold mb-3">Warum Pixel-Genie 💡</h3>
-								<ul style={{ ...muted, fontSize: "0.96rem" }}>
+								<ul style={{ fontSize: "0.96rem" }}>
 									<li style={{ color: "var(--text-color)" }}>
 										Webdesign mit echter Business-Absicht
 									</li>
@@ -452,7 +619,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 									+92% Conversion Rate dank klarer Nutzerführung &
 									Trust-Elementen.
 								</p>
-								<ul style={{ ...muted, fontSize: "0.9rem" }}>
+								<ul style={{ fontSize: "0.9rem" }}>
 									<li style={{ color: "var(--text-color)" }}>
 										Pagespeed A (Mobile & Desktop)
 									</li>
@@ -469,7 +636,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 							<Card className="shadow-sm p-4 h-100" style={surface}>
 								<h3 className="h6 fw-bold">UX Upgrade für B2B-Webseite</h3>
 								<p>37% längere Verweildauer + sichtbare Ranking-Gewinne.</p>
-								<ul style={{ ...muted, fontSize: "0.9rem" }}>
+								<ul style={{ fontSize: "0.9rem" }}>
 									<li style={{ color: "var(--text-color)" }}>
 										Informationsarchitektur neu gedacht
 									</li>
@@ -488,7 +655,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 							<Card className="shadow-sm p-4 h-100" style={surface}>
 								<h3 className="h6 fw-bold">E-Commerce Design Optimierung</h3>
 								<p>+29% abgeschlossene Warenkörbe nach Redesign.</p>
-								<ul style={{ ...muted, fontSize: "0.9rem" }}>
+								<ul style={{ fontSize: "0.9rem" }}>
 									<li style={{ color: "var(--text-color)" }}>
 										Produktdarstellung optimiert
 									</li>

@@ -138,148 +138,146 @@ export default function WebseitenerstellungCity({ cityData, seo }) {
 			</section>
 			{/* === LEISTUNGEN — WEBSITE ERSTELLEN LASSEN === */}
 			<section className="py-5">
-				<Container>
-					<h2 className="h3 fw-bold text-center mb-5">
-						Unsere Leistungen im Webseitenerstellen in {cityName}
-					</h2>
+				<Container id="pricing" className="py-5">
+					<Row className="text-center mb-4">
+						<Col>
+							<h2 className="fw-bold">
+								Pakete &amp; Preise – fair &amp; transparent
+							</h2>
+							<p className="text-muted">
+								Sinnvolle Stufen für Start, Wachstum und Marke.
+							</p>
+						</Col>
+					</Row>
 
 					<Row className="g-4">
-						{/* INDIVIDUELLE WEBDESIGNS */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Individuelles Webdesign</h3>
-								<p className="mb-1">
-									Keine Templates, 100% auf deine Marke abgestimmt.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Modernes Layout
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Wiedererkennbares Branding
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Fokus auf Vertrauen & Klarheit
-									</li>
-								</ul>
+						{/* BASIC */}
+						<Col lg={4} md={6}>
+							<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent">
+								<Card.Body className="p-4">
+									<h3 className="fw-bold text-primary mb-2">BASIC WEBSITE</h3>
+									<p>
+										Ideal für den schnellen Start – Ihre erste professionelle
+										Website zum besten Preis.
+									</p>
+									<h2 className="fw-bold mb-3 text-primary">ab 499 €</h2>
+									<hr />
+									<ul className="text-start">
+										<li>One-Pager / Landingpage</li>
+										<li>Responsive (Mobile &amp; Desktop)</li>
+										<li>Basis-SEO &amp; schnelle Ladezeiten</li>
+										<li>Kontaktformular &amp; Google Maps</li>
+										<li>Impressum &amp; Datenschutz inklusive</li>
+									</ul>
+									<Button
+										variant="primary"
+										className="mt-2 px-4"
+										onClick={() => handleEmail("BASIC WEBSITE in " + city)}
+									>
+										Jetzt anfragen
+									</Button>
+								</Card.Body>
 							</Card>
 						</Col>
 
-						{/* SPEED + MOBILE FIRST */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Mobile & Speed Optimierung</h3>
-								<p className="mb-1">
-									Core Web Vitals für Top-Platzierungen & schnelle UX.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Schnelle Ladezeiten
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Mobil zuerst gedacht
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Stabile Layouts ohne CLS
-									</li>
-								</ul>
+						{/* BUSINESS */}
+						<Col lg={4} md={6}>
+							<Card className="h-100 shadow-xl rounded-4 bg-light">
+								<Card.Body className="p-4">
+									<h3 className="fw-bold text-success mb-2">
+										BUSINESS WEBSITE
+									</h3>
+									<p className="text-muted">
+										Unser Bestseller – Leistung + Design für ambitionierte
+										Unternehmen.
+									</p>
+									<h2 className="fw-bold mb-3 text-success">ab 899 €</h2>
+									<hr />
+									<ul className="text-start text-black">
+										<li>Mehrseitige Website (bis 5 Seiten)</li>
+										<li>Individuelles Design mit CMS (Headless)</li>
+										<li>SEO &amp; Performance-Optimierung (Lighthouse 90+)</li>
+										<li>Analytics &amp; Search Console</li>
+										<li>1 Jahr Hosting &amp; Wartung</li>
+									</ul>
+									<Button
+										variant="success"
+										className="mt-2 px-4 text-white"
+										onClick={() => handleEmail("BUSINESS WEBSITE in " + city)}
+									>
+										Bestseller anfragen
+									</Button>
+								</Card.Body>
 							</Card>
 						</Col>
 
-						{/* CONTENT + REDAKTIONSFÄHIG */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Inhalte & Redaktion</h3>
-								<p className="mb-1">
-									Klar strukturierte Inhalte für Google & Nutzer.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Keyword-geführte Texte
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Visuelle Klarheit
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Conversion Calls an den richtigen Stellen
-									</li>
-								</ul>
-							</Card>
-						</Col>
-
-						{/* CMS */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">CMS nach Wahl</h3>
-								<p className="mb-1">
-									Du steuerst deine Website einfach selbst.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Sanity / Strapi / WordPress
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Eigene Blog-Struktur möglich
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Ohne technische Hürden
-									</li>
-								</ul>
-							</Card>
-						</Col>
-
-						{/* LEAD-MASCHINE */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Lead-Generierung</h3>
-								<p className="mb-1">
-									Webseiten, die Anfragen erzeugen — nicht nur hübsch aussehen.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Kontaktformulare & Chat
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Tracking ohne Cookies möglich
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Conversion-Optimierung inklusive
-									</li>
-								</ul>
-							</Card>
-						</Col>
-
-						{/* BETREUUNG */}
-						<Col md={6} lg={4}>
-							<Card className="shadow-sm p-4 h-100" style={surface}>
-								<h3 className="h6 fw-bold">Wartung & Sicherheit</h3>
-								<p className="mb-1">
-									Updates, Security & Check-ups — entspannt für dich.
-								</p>
-								<ul className="mb-0">
-									<li style={{ color: "var(--text-color)" }}>
-										Schnelle Unterstützung
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Regelmäßige technische Checks
-									</li>
-									<li style={{ color: "var(--text-color)" }}>
-										Backup-Strategien optional
-									</li>
-								</ul>
+						{/* PREMIUM */}
+						<Col lg={4} md={6}>
+							<Card
+								className="h-100 rounded-4 text-light shadow-lg"
+								style={{
+									background: "linear-gradient(135deg,#0b0b2e,#21216b)",
+								}}
+							>
+								<Card.Body className="p-4">
+									<h3 className="fw-bold text-warning mb-2">PREMIUM WEBSITE</h3>
+									<p className="text-white">
+										Für Marken, die Maßstäbe setzen – High-End Performance, UX
+										und Strategie.
+									</p>
+									<h2 className="fw-bold mb-3 text-warning">ab 1499 €</h2>
+									<hr className="border-light" />
+									<ul className="text-start text-white">
+										<li>Individuelles UX/UI-Konzept</li>
+										<li>Unbegrenzte Seiten &amp; CMS</li>
+										<li>Technische SEO + Core Web Vitals 95+</li>
+										<li>Blog + Content-System</li>
+										<li>Conversion-Tracking &amp; A/B-Tests</li>
+									</ul>
+									<Button
+										variant="warning"
+										className="mt-2 fw-bold px-4 text-dark"
+										onClick={() => handleEmail("PREMIUM WEBSITE in " + city)}
+									>
+										Premium buchen
+									</Button>
+								</Card.Body>
 							</Card>
 						</Col>
 					</Row>
 
-					<div className="text-center mt-5">
-						<Button
-							href="/webseitenerstellung"
-							variant="primary"
-							className="text-white"
-						>
-							Mehr zur Webseitenerstellung →
-						</Button>
-					</div>
+					{/* ADD-ONS */}
+					<Row className="justify-content-center text-center mt-5">
+						<Col lg={8}>
+							<h3 className="fw-bold mb-3">✨ Erweiterungen &amp; Add-ons</h3>
+							<p>Individuell kombinierbar – mehr Wirkung für Ihre Website.</p>
+						</Col>
+					</Row>
+					<Row className="justify-content-center text-center g-3 mt-3">
+						{[
+							["📰 Blog Integration", "+199 €"],
+							["🛒 Online Shop", "+499 €"],
+							["🚀 SEO Boost", "+149 €"],
+							["🔧 Wartungspaket", "+29 €/Monat"],
+						].map(([label, price], i) => (
+							<Col md={3} sm={6} key={i}>
+								<Card className="border-0 shadow-sm p-3">
+									<h5 className="fw-bold text-black">{label}</h5>
+									<p className="text-muted small">
+										<b>{price}</b>
+									</p>
+								</Card>
+							</Col>
+						))}
+					</Row>
+					<Row className="justify-content-center text-center mt-4">
+						<Col lg={8}>
+							<p className="text-muted">
+								Alle Preise zzgl. MwSt. – transparent, fair &amp; top
+								Performance.
+							</p>
+						</Col>
+					</Row>
 				</Container>
 			</section>
 			{/* === LEISTUNGEN — WEBSITE ERSTELLEN LASSEN === */}

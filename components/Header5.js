@@ -1,66 +1,43 @@
-import React, { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+"use client";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
-function Header5() {
-	const [ref, inView] = useInView({ threshold: 0.5 });
-	const controls = useAnimation();
-
-	useEffect(() => {
-		controls.start({ opacity: inView ? 1 : 0, transition: { duration: 1 } });
-	}, [inView, controls]);
-
+export default function Header5() {
 	return (
-		<motion.div ref={ref} animate={controls}>
+		<motion.section
+			initial={{ opacity: 0, y: 40 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, amount: 0.25 }}
+			transition={{ duration: 0.7, ease: "easeOut" }}
+		>
 			<Container className="my-5 py-5">
 				<Row className="justify-content-center align-items-center g-5">
 					<Col lg={5} className="text-center">
-						<div className="image-container">
-							<Image
-								src="/assets/webentwicklung-nettetal-seo5.png"
-								width={400}
-								height={400}
-								alt="Webdesign Tipps Pixel-Genie"
-								className="responsive-image"
-								loading="lazy"
-							/>
-							<div className="arrow-animation5">
-								<Image
-									src="/assets/anim4.gif"
-									width={50}
-									height={50}
-									alt="Animated Arrow"
-									unoptimized
-								/>
-							</div>
-						</div>
+						<Image
+							src="/assets/webentwicklung-nettetal-seo5.png"
+							width={420}
+							height={420}
+							alt="Webdesign Tipps Pixel Genie"
+							loading="lazy"
+							className="responsive-image"
+						/>
 					</Col>
 
 					<Col lg={5}>
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h1 className="text-bold mb-3">
-									Profitieren Sie von unseren Tipps
-								</h1>
-								<p>
-									Erzielen Sie mehr Online Erfolg mit unseren Tipps für kleine
-									Unternehmen. Erfahren Sie, wie Sie Ihre Sichtbarkeit erhöhen
-									und neue Kunden gewinnen können.
-								</p>
-								<p>
-									Unsere Empfehlungen helfen Ihnen, die richtigen Tools zu
-									wählen und eine effektive Marketingstrategie aufzubauen.
-								</p>
-								<p>
-									In unserem Blog zeigen wir, wie Sie kostenlose Tools optimal
-									nutzen, um Ihre Marke im Internet bekannter zu machen.
-								</p>
+								<h2 className="fw-bold mb-3">
+									Praktische Tipps für Ihr Business
+								</h2>
+								<p>Erstklassige Webdesign- & Marketing-Hinweise für KMU ✅</p>
+								<p>Mehr Sichtbarkeit – smart, ohne hohe Kosten 💡</p>
 								<div className="text-center mt-4">
-									<Link href="/webdesignblog" className="m-1">
-										<Button className="btn-nav px-4">WEBDESIGN TIPPS</Button>
+									<Link href="/webdesignblog">
+										<Button className="btn-nav" variant="info">
+											WEBDESIGN TIPPS →
+										</Button>
 									</Link>
 								</div>
 							</Card.Body>
@@ -68,8 +45,6 @@ function Header5() {
 					</Col>
 				</Row>
 			</Container>
-		</motion.div>
+		</motion.section>
 	);
 }
-
-export default Header5;
