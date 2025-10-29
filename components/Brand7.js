@@ -170,7 +170,7 @@ const Brand7 = () => {
 						<p className="text-muted">
 							Starke Marken entstehen nicht zufällig — sie werden gemacht.
 							Pixel-Genie unterstützt Unternehmen in **Nettetal, Viersen,
-							Krefeld, Mönchengladbach & ganz NRW** beim Markenaufbau.
+							Krefeld, Mönchengladbach & ganz NRW beim Markenaufbau.
 						</p>
 						<p>
 							Starten Sie heute:{" "}
