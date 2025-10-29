@@ -15,6 +15,7 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+  external_node_modules = ["@resvg/resvg-js", "satori"]
 
 ############################
 # ✅ Redirects for static export pages
@@ -105,7 +106,7 @@
   [headers.values]
     Cache-Control = "public, max-age=86400, must-revalidate"
 
-    [[redirects]]
+[[redirects]]
   from = "/cgi/*"
   to = "/404"
   status = 403
@@ -120,6 +121,3 @@
   to = "/404"
   status = 403
 
-  [functions]
-  node_bundler = "esbuild"
-  external_node_modules = ["@resvg/resvg-js", "satori"]
