@@ -5,8 +5,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 /**
- * ✅ Funkcja pomocnicza – preload dla lokalnych fontów.
- * Tworzy <link rel="preload"> dla fontów z public/fonts/poppins.
+ * ✅ Preload lokalnych fontów (Poppins)
  */
 function addFontPreload() {
 	const fontDir = path.join(__dirname, "public/fonts/poppins");
@@ -23,23 +22,18 @@ function addFontPreload() {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withBundleAnalyzer({
-	// ✅ Stabilne podstawy
 	reactStrictMode: true,
 	compress: true,
 	swcMinify: true,
-
-	// ✅ Static export dla Netlify
 	output: "export",
 	trailingSlash: true,
 
-	// ✅ Wyłączony Next Image optimizer (Netlify go nie obsługuje)
 	images: {
 		unoptimized: true,
 		formats: ["image/avif", "image/webp"],
 		domains: ["pixel-genie.de"],
 	},
 
-	// ✅ Ścieżki & optymalizacja builda
 	outputFileTracingRoot: path.join(__dirname),
 
 	experimental: {
@@ -54,12 +48,10 @@ const nextConfig = withBundleAnalyzer({
 		scrollRestoration: true,
 	},
 
-	// ✅ Preload lokalnych fontów (automatycznie)
 	async head() {
 		return { link: addFontPreload() };
 	},
 
-	// ✅ Nagłówki cache'ujące dla zasobów statycznych
 	async headers() {
 		if (process.env.NODE_ENV === "development") return [];
 		return [
@@ -106,7 +98,6 @@ const nextConfig = withBundleAnalyzer({
 		];
 	},
 
-	// ✅ ESLint nie blokuje builda
 	eslint: {
 		ignoreDuringBuilds: true,
 	},

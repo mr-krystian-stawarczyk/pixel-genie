@@ -4,14 +4,24 @@ import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { initGA, gaPageview, GA_ID, gaEvent } from "@/lib/analytics";
 import { getCookie } from "cookies-next";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
+import localFont from "next/font/local";
+
+const poppins = localFont({
+	src: [
+		{ path: "../public/fonts/poppins/Poppins-Regular.ttf", weight: "400" },
+		{ path: "../public/fonts/poppins/Poppins-Bold.ttf", weight: "700" },
+	],
+	display: "swap",
+	variable: "--font-poppins",
+});
 
 function AppContent({ Component, pageProps }) {
 	const router = useRouter();
@@ -20,7 +30,6 @@ function AppContent({ Component, pageProps }) {
 
 	useEffect(() => setMounted(true), []);
 
-	// ✅ Consent detect + event listener
 	useEffect(() => {
 		const check = () => setHasConsent(getCookie("marketingConsent") === "true");
 		check();
@@ -29,16 +38,14 @@ function AppContent({ Component, pageProps }) {
 		return () => window.removeEventListener("cookieAccepted", onAccept);
 	}, []);
 
-	// ✅ GA init when allowed
 	useEffect(() => {
 		if (process.env.NODE_ENV !== "production") return;
 		if (!hasConsent) return;
-
 		initGA();
 		gaPageview(window.location.pathname);
+		window.gtagInitialized = true;
 	}, [hasConsent]);
 
-	// ✅ Track pageviews on navigation
 	useEffect(() => {
 		const handleRouteChange = (url) => {
 			if (window.gtagInitialized) gaPageview(url);
@@ -47,18 +54,14 @@ function AppContent({ Component, pageProps }) {
 		return () => router.events.off("routeChangeComplete", handleRouteChange);
 	}, [router.events]);
 
-	// ✅ Scroll depth tracking (NOW CORRECTLY INSIDE)
 	useEffect(() => {
-		if (!window.gtagInitialized) return;
-
+		if (!hasConsent || !window.gtagInitialized) return;
 		let lastSent = 0;
 		const thresholds = [25, 50, 75, 100];
-
 		const onScroll = () => {
 			const scrollY = window.scrollY + window.innerHeight;
-			const height = document.body.offsetHeight;
+			const height = document.body.offsetHeight || 1;
 			const percent = (scrollY / height) * 100;
-
 			for (const t of thresholds) {
 				if (percent >= t && lastSent < t) {
 					lastSent = t;
@@ -69,10 +72,10 @@ function AppContent({ Component, pageProps }) {
 				}
 			}
 		};
-
-		window.addEventListener("scroll", onScroll);
-		return () => window.removeEventListener("scroll", onScroll);
-	}, [hasConsent]); // ✅ zależy od zgody, nie odpali wcześniej
+		window.addEventListener("scroll", onScroll, { passive: true });
+		return () =>
+			window.removeEventListener("scroll", onScroll, { passive: true });
+	}, [hasConsent]);
 
 	if (!mounted) return null;
 
@@ -87,17 +90,19 @@ function AppContent({ Component, pageProps }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 			</Head>
 
-			{/* ✅ Load GA script only when allowed */}
 			{process.env.NODE_ENV === "production" && hasConsent && (
 				<>
 					<Script
 						src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
 						strategy="afterInteractive"
 					/>
-					<Script id="gtag-stub" strategy="afterInteractive">
+					<Script id="gtag-init" strategy="afterInteractive">
 						{`
 							window.dataLayer = window.dataLayer || [];
 							function gtag(){dataLayer.push(arguments);}
+							gtag('js', new Date());
+							gtag('config', '${GA_ID}', { anonymize_ip: true, page_path: window.location.pathname });
+							window.gtagInitialized = true;
 						`}
 					</Script>
 				</>
@@ -110,9 +115,11 @@ function AppContent({ Component, pageProps }) {
 				disableTransitionOnChange
 			>
 				<I18nextProvider i18n={i18n}>
-					<Layout pageProps={pageProps}>
-						<Component {...pageProps} key={router.asPath} />
-					</Layout>{" "}
+					<main className={poppins.className}>
+						<Layout pageProps={pageProps}>
+							<Component {...pageProps} key={router.asPath} />
+						</Layout>
+					</main>
 				</I18nextProvider>
 			</ThemeProvider>
 		</>

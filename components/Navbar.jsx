@@ -181,7 +181,7 @@ const NavbarComp = ({ toggleTheme }) => {
 							<Nav.Link
 								as="button"
 								onClick={handleAuditMail}
-								className="d-none d-lg-block btn-premium-footer px-4 py-1"
+								className="d-none d-lg-block btn-premium-footer bg-black text-white px-4 py-1"
 							>
 								🚀 <AutoTranslate>{"Kostenlose Analyse"}</AutoTranslate>
 							</Nav.Link>
@@ -319,7 +319,9 @@ const NavbarComp = ({ toggleTheme }) => {
 									}}
 								>
 									<div
-										className={`theme-icon-wrapper animated-theme ${isLight ? "sunrise" : "moonrise"}`}
+										className={`theme-icon-wrapper animated-theme ${
+											isLight ? "sunrise" : "moonrise"
+										}`}
 									>
 										<BsFillSunFill className="theme-sun" />
 										<BsFillMoonFill className="theme-moon" />

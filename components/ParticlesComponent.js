@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
@@ -7,12 +7,24 @@ function ParticlesComponent() {
 	const [init, setInit] = useState(false);
 
 	useEffect(() => {
+		let cancelled = false;
 		initParticlesEngine(async (engine) => {
 			await loadSlim(engine);
-		}).then(() => setInit(true));
+		}).then(() => {
+			if (!cancelled) setInit(true);
+		});
+		return () => {
+			cancelled = true;
+		};
 	}, []);
 
 	if (!init) return null;
+
+	const isMobile =
+		typeof window !== "undefined" ? window.innerWidth < 768 : false;
+	const particlesNumber = isMobile ? 18 : 30;
+	const fps = isMobile ? 29 : 30;
+	const moveSpeed = isMobile ? 0.35 : 0.5;
 
 	return (
 		<Particles
@@ -20,11 +32,11 @@ function ParticlesComponent() {
 			options={{
 				fullScreen: { enable: false },
 				background: { color: { value: "transparent" } },
-				fpsLimit: 30,
+				fpsLimit: fps,
 				interactivity: {
 					events: {
-						onClick: { enable: true, mode: "push" },
-						onHover: { enable: true, mode: "repulse" },
+						onClick: { enable: !isMobile, mode: "push" },
+						onHover: { enable: !isMobile, mode: "repulse" },
 						resize: true,
 					},
 					modes: {
@@ -34,8 +46,11 @@ function ParticlesComponent() {
 				},
 				particles: {
 					color: { value: "#003681" },
-					number: { value: 30, density: { enable: true, area: 900 } },
-					move: { enable: true, speed: 0.5 },
+					number: {
+						value: particlesNumber,
+						density: { enable: true, area: 900 },
+					},
+					move: { enable: true, speed: moveSpeed },
 					opacity: { value: 0.9, random: true },
 					shape: { type: "circle" },
 					size: { value: 6, random: true },
@@ -54,4 +69,4 @@ function ParticlesComponent() {
 	);
 }
 
-export default ParticlesComponent;
+export default memo(ParticlesComponent);

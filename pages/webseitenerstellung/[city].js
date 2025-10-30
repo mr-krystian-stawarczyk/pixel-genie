@@ -163,11 +163,21 @@ export default function WebseitenerstellungCity({ cityData, seo }) {
 									<h2 className="fw-bold mb-3 text-primary">ab 499 €</h2>
 									<hr />
 									<ul className="text-start">
-										<li>One-Pager / Landingpage</li>
-										<li>Responsive (Mobile &amp; Desktop)</li>
-										<li>Basis-SEO &amp; schnelle Ladezeiten</li>
-										<li>Kontaktformular &amp; Google Maps</li>
-										<li>Impressum &amp; Datenschutz inklusive</li>
+										<li style={{ color: "var(--text-color)" }}>
+											One-Pager / Landingpage
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Responsive (Mobile &amp; Desktop)
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Basis-SEO &amp; schnelle Ladezeiten
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Kontaktformular &amp; Google Maps
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Impressum &amp; Datenschutz inklusive
+										</li>
 									</ul>
 									<Button
 										variant="primary"

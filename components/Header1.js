@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";
 import Card from "react-bootstrap/Card";
@@ -12,6 +12,7 @@ import AutoTranslate from "./AutoTranslate";
 import { hasCookie } from "cookies-next";
 import { gaEvent } from "@/lib/analytics";
 
+// Defer heavy particles until header is in view & user doesn't prefer reduced motion
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
 	loading: () => <div style={{ position: "absolute", inset: 0 }} />,
@@ -23,16 +24,40 @@ export default function Header1() {
 	const { i18n } = useTranslation();
 	const sectionRef = useRef(null);
 
+	// Mount particles only when header enters viewport and motion is allowed
 	useEffect(() => {
-		const prefersReducedMotion = window.matchMedia(
+		if (typeof window === "undefined") return;
+		const prefersReduced = window.matchMedia(
 			"(prefers-reduced-motion: reduce)"
 		).matches;
-		if (!prefersReducedMotion && window.innerWidth > 768) {
-			setTimeout(() => setShowParticles(true), 1000);
-		}
+		if (prefersReduced) return;
+
+		const node = sectionRef.current;
+		if (!node) return;
+
+		const io = new IntersectionObserver(
+			(entries) => {
+				const [entry] = entries;
+				if (entry.isIntersecting) {
+					// Defer a little to reduce TBT; use requestIdleCallback if available
+					const lazyStart = () => setShowParticles(true);
+					if ("requestIdleCallback" in window) {
+						// @ts-ignore
+						window.requestIdleCallback(lazyStart, { timeout: 1200 });
+					} else {
+						setTimeout(lazyStart, 800);
+					}
+					io.disconnect();
+				}
+			},
+			{ rootMargin: "0px 0px -20% 0px", threshold: 0.15 }
+		);
+
+		io.observe(node);
+		return () => io.disconnect();
 	}, []);
 
-	const handleAuditClick = () => {
+	const handleAuditClick = useCallback(() => {
 		if (hasCookie("marketingConsent")) {
 			gaEvent("cta_click", {
 				location: "header_audit",
@@ -43,9 +68,9 @@ export default function Header1() {
 			"mailto:pixelgenie.marketing@gmail.com?subject=Kostenloses%20Website%20Audit%20Anfrage",
 			"_blank"
 		);
-	};
+	}, []);
 
-	const handleEmailClick = () => {
+	const handleEmailClick = useCallback(() => {
 		if (hasCookie("marketingConsent")) {
 			gaEvent("cta_click", {
 				location: "header_contact",
@@ -56,7 +81,7 @@ export default function Header1() {
 			"mailto:pixelgenie.marketing@gmail.com?subject=Allgemeine%20Anfrage%20an%20Pixel%20Genie",
 			"_blank"
 		);
-	};
+	}, []);
 
 	return (
 		<header className="header-container position-relative" ref={sectionRef}>
