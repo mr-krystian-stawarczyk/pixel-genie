@@ -7,15 +7,18 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
-import AutoTranslate from "./AutoTranslate";
 import { hasCookie } from "cookies-next";
 import { gaEvent } from "@/lib/analytics";
+import AutoTranslate from "./AutoTranslate";
 
-// Defer heavy particles until header is in view & user doesn't prefer reduced motion
+// ✅ dynamic importy z SSR wyłączonym
+const MotionDiv = dynamic(
+	() => import("framer-motion").then((mod) => mod.motion.div),
+	{ ssr: false, loading: () => <div /> }
+);
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
-	loading: () => <div style={{ position: "absolute", inset: 0 }} />,
+	loading: () => null,
 });
 
 export default function Header1() {
@@ -24,71 +27,38 @@ export default function Header1() {
 	const { i18n } = useTranslation();
 	const sectionRef = useRef(null);
 
-	// Mount particles only when header enters viewport and motion is allowed
+	// ✅ odroczone ładowanie tła i particle
 	useEffect(() => {
-		if (typeof window === "undefined") return;
-		const prefersReduced = window.matchMedia(
-			"(prefers-reduced-motion: reduce)"
-		).matches;
-		if (prefersReduced) return;
-
-		const node = sectionRef.current;
-		if (!node) return;
-
-		const io = new IntersectionObserver(
-			(entries) => {
-				const [entry] = entries;
-				if (entry.isIntersecting) {
-					// Defer a little to reduce TBT; use requestIdleCallback if available
-					const lazyStart = () => setShowParticles(true);
-					if ("requestIdleCallback" in window) {
-						// @ts-ignore
-						window.requestIdleCallback(lazyStart, { timeout: 1200 });
-					} else {
-						setTimeout(lazyStart, 800);
-					}
-					io.disconnect();
-				}
-			},
-			{ rootMargin: "0px 0px -20% 0px", threshold: 0.15 }
-		);
-
-		io.observe(node);
-		return () => io.disconnect();
+		const timer = setTimeout(() => setShowParticles(true), 800);
+		return () => clearTimeout(timer);
 	}, []);
 
-	const handleAuditClick = useCallback(() => {
+	const handleCta = useCallback((type) => {
 		if (hasCookie("marketingConsent")) {
 			gaEvent("cta_click", {
-				location: "header_audit",
+				location: `header_${type}`,
 				page: window.location.pathname,
 			});
 		}
+		const subject =
+			type === "audit"
+				? "Kostenloses%20Website%20Audit%20Anfrage"
+				: "Allgemeine%20Anfrage%20an%20Pixel%20Genie";
 		window.open(
-			"mailto:pixelgenie.marketing@gmail.com?subject=Kostenloses%20Website%20Audit%20Anfrage",
-			"_blank"
-		);
-	}, []);
-
-	const handleEmailClick = useCallback(() => {
-		if (hasCookie("marketingConsent")) {
-			gaEvent("cta_click", {
-				location: "header_contact",
-				page: window.location.pathname,
-			});
-		}
-		window.open(
-			"mailto:pixelgenie.marketing@gmail.com?subject=Allgemeine%20Anfrage%20an%20Pixel%20Genie",
+			`mailto:pixelgenie.marketing@gmail.com?subject=${subject}`,
 			"_blank"
 		);
 	}, []);
 
 	return (
-		<header className="header-container position-relative" ref={sectionRef}>
+		<header
+			className="header-container position-relative overflow-hidden"
+			ref={sectionRef}
+			style={{ minHeight: "100vh" }}
+		>
 			<div
-				className="particles-container"
+				className="particles-container position-absolute w-100 h-100"
 				style={{
-					position: "absolute",
 					inset: 0,
 					background:
 						theme === "light"
@@ -101,29 +71,27 @@ export default function Header1() {
 			</div>
 
 			<Container
-				className="header-content-container d-flex justify-content-center align-items-center text-center"
-				style={{ minHeight: "100vh", position: "relative", zIndex: 1 }}
+				className="d-flex flex-column justify-content-center align-items-center text-center position-relative z-10"
+				style={{ minHeight: "100vh" }}
 			>
-				<motion.div
+				<MotionDiv
 					initial={{ opacity: 0, y: 40 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1.2 }}
+					transition={{ duration: 0.9 }}
 				>
-					<Card className="bg-transparent border-0 blur p-md-3 p-md-5 rounded-4">
+					<Card className="bg-transparent border-0 blur p-md-4 rounded-4">
 						<Card.Body>
 							<h1 className="fw-bold mb-3 lh-base display-5 mt-5">
 								<AutoTranslate>
-									{
-										"Webseiten erstellen mit Pixel-Genie – Ihre Agentur für modernes Webdesign, SEO & Marketing in Nettetal"
-									}
+									Webseiten erstellen mit Pixel-Genie – Ihre Agentur für
+									modernes Webdesign, SEO & Marketing in Nettetal
 								</AutoTranslate>
 							</h1>
 
 							<p className="lead mb-4">
 								<AutoTranslate>
-									{
-										"Steigern Sie Ihre Online Präsenz mit professionellen Websites, die Design, Performance und Sichtbarkeit vereinen."
-									}
+									Steigern Sie Ihre Online Präsenz mit professionellen Websites,
+									die Design, Performance und Sichtbarkeit vereinen.
 								</AutoTranslate>
 							</p>
 
@@ -133,7 +101,7 @@ export default function Header1() {
 									href="/webseitenerstellen"
 									className="btn-lg btn-nav"
 								>
-									<AutoTranslate>{"Webseiten erstellen"}</AutoTranslate>
+									<AutoTranslate>Webseiten erstellen</AutoTranslate>
 								</Button>
 
 								<Button
@@ -141,7 +109,7 @@ export default function Header1() {
 									href="/suchmaschinenoptimierung"
 									className="btn-lg btn-nav"
 								>
-									<AutoTranslate>{"SEO Optimierung"}</AutoTranslate>
+									<AutoTranslate>SEO Optimierung</AutoTranslate>
 								</Button>
 
 								<Button
@@ -149,7 +117,7 @@ export default function Header1() {
 									href="/socialmediamarketing"
 									className="btn-lg btn-nav"
 								>
-									<AutoTranslate>{"Social Media Marketing"}</AutoTranslate>
+									<AutoTranslate>Social Media Marketing</AutoTranslate>
 								</Button>
 							</div>
 						</Card.Body>
@@ -158,26 +126,26 @@ export default function Header1() {
 							<div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
 								<Button
 									as="button"
-									onClick={handleAuditClick}
+									onClick={() => handleCta("audit")}
 									className="btn-premium-footer text-white fw-bold"
 								>
 									🚀{" "}
 									<AutoTranslate>
-										{"Jetzt kostenloses Audit anfordern"}
+										Jetzt kostenloses Audit anfordern
 									</AutoTranslate>
 								</Button>
 
 								<Button
 									as="button"
-									onClick={handleEmailClick}
+									onClick={() => handleCta("contact")}
 									className="btn-premium-footer text-white fw-bold"
 								>
-									<AutoTranslate>{"E-Mail Kontakt"}</AutoTranslate>
+									<AutoTranslate>E-Mail Kontakt</AutoTranslate>
 								</Button>
 							</div>
 						</Card.Body>
 					</Card>
-				</motion.div>
+				</MotionDiv>
 			</Container>
 		</header>
 	);

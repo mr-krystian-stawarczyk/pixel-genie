@@ -5,15 +5,21 @@ import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import { initGA, gaPageview, GA_ID, gaEvent } from "@/lib/analytics";
 import { getCookie } from "cookies-next";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import localFont from "next/font/local";
 
+// ✅ Bootstrap & Slick dynamicznie (ładowane tylko w przeglądarce)
+if (typeof window !== "undefined") {
+	import("bootstrap/dist/css/bootstrap.min.css");
+	import("slick-carousel/slick/slick.css");
+	import("slick-carousel/slick/slick-theme.css");
+}
+
+// ✅ Lokalny font (ładuje się automatycznie – bez @font-face)
 const poppins = localFont({
 	src: [
 		{ path: "../public/fonts/poppins/Poppins-Regular.ttf", weight: "400" },
@@ -28,8 +34,10 @@ function AppContent({ Component, pageProps }) {
 	const [mounted, setMounted] = useState(false);
 	const [hasConsent, setHasConsent] = useState(false);
 
+	// ✅ montowanie komponentu
 	useEffect(() => setMounted(true), []);
 
+	// ✅ sprawdzenie ciasteczka zgody
 	useEffect(() => {
 		const check = () => setHasConsent(getCookie("marketingConsent") === "true");
 		check();
@@ -38,6 +46,7 @@ function AppContent({ Component, pageProps }) {
 		return () => window.removeEventListener("cookieAccepted", onAccept);
 	}, []);
 
+	// ✅ inicjalizacja GA po zgodzie
 	useEffect(() => {
 		if (process.env.NODE_ENV !== "production") return;
 		if (!hasConsent) return;
@@ -46,6 +55,7 @@ function AppContent({ Component, pageProps }) {
 		window.gtagInitialized = true;
 	}, [hasConsent]);
 
+	// ✅ śledzenie zmian trasy
 	useEffect(() => {
 		const handleRouteChange = (url) => {
 			if (window.gtagInitialized) gaPageview(url);
@@ -54,6 +64,7 @@ function AppContent({ Component, pageProps }) {
 		return () => router.events.off("routeChangeComplete", handleRouteChange);
 	}, [router.events]);
 
+	// ✅ śledzenie scroll depth
 	useEffect(() => {
 		if (!hasConsent || !window.gtagInitialized) return;
 		let lastSent = 0;
@@ -73,8 +84,7 @@ function AppContent({ Component, pageProps }) {
 			}
 		};
 		window.addEventListener("scroll", onScroll, { passive: true });
-		return () =>
-			window.removeEventListener("scroll", onScroll, { passive: true });
+		return () => window.removeEventListener("scroll", onScroll);
 	}, [hasConsent]);
 
 	if (!mounted) return null;
@@ -90,6 +100,7 @@ function AppContent({ Component, pageProps }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 			</Head>
 
+			{/* ✅ GA ładowany dopiero po zgodzie */}
 			{process.env.NODE_ENV === "production" && hasConsent && (
 				<>
 					<Script
@@ -108,6 +119,7 @@ function AppContent({ Component, pageProps }) {
 				</>
 			)}
 
+			{/* ✅ Theme + i18n + global layout */}
 			<ThemeProvider
 				attribute="class"
 				defaultTheme="dark"
