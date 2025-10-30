@@ -37,36 +37,25 @@ const nextConfig = withBundleAnalyzer({
 	outputFileTracingRoot: path.join(__dirname),
 
 	experimental: {
-		legacyBrowsers: false, // usuwa stare polyfille
+		legacyBrowsers: false, // ✅ usuwa zbędne polyfille (lepszy TBT)
 		optimizeCss: true,
 		scrollRestoration: true,
 	},
 
+	/**
+	 * ✅ Bezpieczne optymalizacje kodu — bez wpływu na layout
+	 */
 	compiler: {
 		removeConsole: process.env.NODE_ENV === "production",
 		reactRemoveProperties: true,
 		modularizeImports: {
-			"react-icons": {
-				transform: "react-icons/{{member}}",
-			},
-			"framer-motion": {
-				transform: "framer-motion/{{member}}",
-			},
+			"react-icons": { transform: "react-icons/{{member}}" },
+			"framer-motion": { transform: "framer-motion/{{member}}" },
 		},
 	},
 
 	async head() {
-		return {
-			link: [
-				...addFontPreload(),
-				{
-					rel: "preload",
-					as: "image",
-					href: "/assets/webentwicklung-nettetal-seo2-310.webp",
-					fetchpriority: "high",
-				},
-			],
-		};
+		return { link: addFontPreload() };
 	},
 
 	async headers() {
