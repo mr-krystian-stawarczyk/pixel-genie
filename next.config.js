@@ -37,26 +37,36 @@ const nextConfig = withBundleAnalyzer({
 	outputFileTracingRoot: path.join(__dirname),
 
 	experimental: {
-		legacyBrowsers: false, // ✅ usuwa stare polyfille i babel transforms (~10 KB mniej JS)
+		legacyBrowsers: false, // usuwa stare polyfille
 		optimizeCss: true,
-		optimizePackageImports: [
-			"react-icons",
-			"lucide-react",
-			"react-bootstrap",
-			"react-countup",
-			"framer-motion",
-		],
 		scrollRestoration: true,
 	},
 
-	// ✅ Nowy blok compiler - optymalizacja builda i JS
 	compiler: {
-		removeConsole: process.env.NODE_ENV === "production", // usuwa console.log z prod
-		reactRemoveProperties: true, // usuwa atrybuty typu data-test itp.
+		removeConsole: process.env.NODE_ENV === "production",
+		reactRemoveProperties: true,
+		modularizeImports: {
+			"react-icons": {
+				transform: "react-icons/{{member}}",
+			},
+			"framer-motion": {
+				transform: "framer-motion/{{member}}",
+			},
+		},
 	},
 
 	async head() {
-		return { link: addFontPreload() };
+		return {
+			link: [
+				...addFontPreload(),
+				{
+					rel: "preload",
+					as: "image",
+					href: "/assets/webentwicklung-nettetal-seo2-310.webp",
+					fetchpriority: "high",
+				},
+			],
+		};
 	},
 
 	async headers() {
