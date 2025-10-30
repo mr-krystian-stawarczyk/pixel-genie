@@ -98,6 +98,7 @@ function AppContent({ Component, pageProps }) {
 					content="Pixel-Genie entwickelt moderne Webseiten, SEO-optimierte Lösungen und digitale Markenstrategien."
 				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<link rel="preconnect" href="https://www.googletagmanager.com" />
 			</Head>
 
 			{/* ✅ GA ładowany dopiero po zgodzie */}

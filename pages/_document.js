@@ -4,10 +4,44 @@ export default function Document() {
 	return (
 		<Html lang="de">
 			<Head>
+				{/* ✅ Favicon */}
 				<link
 					rel="icon"
 					href="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
+					type="image/png"
 				/>
+
+				{/* ✅ Performance hints */}
+				<link
+					rel="preconnect"
+					href="https://fonts.gstatic.com"
+					crossOrigin=""
+				/>
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				{/* ✅ Preload lokalnych fontów */}
+				<link
+					rel="preload"
+					as="font"
+					type="font/ttf"
+					href="/fonts/poppins/Poppins-Regular.ttf"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="preload"
+					as="font"
+					type="font/ttf"
+					href="/fonts/poppins/Poppins-Bold.ttf"
+					crossOrigin="anonymous"
+				/>
+
+				{/* ✅ Preload logo (LCP element) */}
+				<link
+					rel="preload"
+					as="image"
+					href="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
+				/>
+
+				{/* ✅ SEO + OG */}
 				<meta property="og:title" content="Pixel Genie Webagentur" />
 				<meta property="og:type" content="website" />
 				<meta
@@ -15,6 +49,8 @@ export default function Document() {
 					content="Webdesign, SEO, Online-Marketing, Conversion-Optimierung & Performance."
 				/>
 				<meta name="theme-color" content="#003681" />
+
+				{/* ✅ hreflang */}
 				<link rel="alternate" hrefLang="de" href="https://pixel-genie.de/" />
 				<link
 					rel="alternate"
@@ -23,6 +59,8 @@ export default function Document() {
 				/>
 				<link rel="alternate" hrefLang="pl" href="https://pixel-genie.de/pl/" />
 				<link rel="alternate" hrefLang="nl" href="https://pixel-genie.de/nl/" />
+
+				{/* ✅ Discovery */}
 				<link
 					rel="alternate"
 					type="application/rss+xml"

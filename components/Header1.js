@@ -12,10 +12,13 @@ import { gaEvent } from "@/lib/analytics";
 import AutoTranslate from "./AutoTranslate";
 
 // ✅ dynamic importy z SSR wyłączonym
-const MotionDiv = dynamic(
-	() => import("framer-motion").then((mod) => mod.motion.div),
-	{ ssr: false, loading: () => <div /> }
-);
+let MotionDiv = (props) => <div {...props} />;
+if (typeof window !== "undefined") {
+	import("framer-motion").then((mod) => {
+		MotionDiv = mod.motion.div;
+	});
+}
+
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
 	loading: () => null,
