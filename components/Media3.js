@@ -43,7 +43,6 @@ function Media3() {
 							height={400}
 							className="responsive-image"
 							alt="Professionelle Webentwicklung Nettetal"
-							priority
 						/>
 					</Col>
 

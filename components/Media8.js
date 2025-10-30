@@ -145,7 +145,7 @@ export default function MediaFAQ() {
 								width={240}
 								height={240}
 								alt="Pixel-Genie Webdesign Agentur Nettetal NRW – moderne Websites, die Kunden bringen"
-								priority
+								
 							/>
 							<h2 className="fw-bold mt-3">Webdesign NRW – Häufige Fragen</h2>
 							<p className="">

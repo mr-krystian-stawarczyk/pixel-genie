@@ -70,7 +70,6 @@ function Web4() {
 							height={400}
 							className="responsive-image"
 							alt="SEO Optimierung Webdesign Nettetal"
-							priority
 						/>
 					</Col>
 				</Row>

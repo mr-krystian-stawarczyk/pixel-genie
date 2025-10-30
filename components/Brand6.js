@@ -47,7 +47,6 @@ export default function Brand6() {
 						height={250}
 						alt="Branding Preise Pixel Genie Nettetal"
 						className="my-3"
-						priority
 					/>
 
 					<h2 className="fw-bold display-6">
@@ -134,9 +133,7 @@ export default function Brand6() {
 								<hr />
 								<p className="text-black">✔ Alles aus Starter</p>
 								<p className="text-black">✔ Brand Guide (mehrseitig)</p>
-								<p className="text-black">
-									✔ Social Media Templates (6 Stück)
-								</p>
+								<p className="text-black">✔ Social Media Templates (6 Stück)</p>
 								<p className="text-black">✔ SEO Keyword Setup + Analyse</p>
 								<p className="text-black">✔ Landingpage UX + Designvorlage</p>
 								<p className="text-black">

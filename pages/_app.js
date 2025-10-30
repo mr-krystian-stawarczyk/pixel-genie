@@ -12,21 +12,30 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import localFont from "next/font/local";
 
-// ✅ Bootstrap & Slick dynamicznie (ładowane tylko w przeglądarce)
+// ✅ Bootstrap & Slick CSS tylko w przeglądarce
 if (typeof window !== "undefined") {
 	import("bootstrap/dist/css/bootstrap.min.css");
 	import("slick-carousel/slick/slick.css");
 	import("slick-carousel/slick/slick-theme.css");
 }
 
-// ✅ Lokalny font (ładuje się automatycznie – bez @font-face)
+// ✅ JEDYNY import fontu (globalny) — next/font zadba o preload i @font-face
 const poppins = localFont({
 	src: [
-		{ path: "../public/fonts/poppins/Poppins-Regular.ttf", weight: "400" },
-		{ path: "../public/fonts/poppins/Poppins-Bold.ttf", weight: "700" },
+		{
+			path: "../public/fonts/poppins/Poppins-Regular.woff2",
+			weight: "400",
+			style: "normal",
+		},
+		{
+			path: "../public/fonts/poppins/Poppins-Bold.woff2",
+			weight: "700",
+			style: "normal",
+		},
 	],
 	display: "swap",
-	variable: "--font-poppins",
+	preload: true,
+	variable: "--font-poppins", // jeżeli chcesz używać w CSS: font-family: var(--font-poppins);
 });
 
 function AppContent({ Component, pageProps }) {
@@ -98,6 +107,7 @@ function AppContent({ Component, pageProps }) {
 					content="Pixel-Genie entwickelt moderne Webseiten, SEO-optimierte Lösungen und digitale Markenstrategien."
 				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				{/* ✅ Preconnect tylko do GTM */}
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
 			</Head>
 
@@ -110,12 +120,12 @@ function AppContent({ Component, pageProps }) {
 					/>
 					<Script id="gtag-init" strategy="afterInteractive">
 						{`
-							window.dataLayer = window.dataLayer || [];
-							function gtag(){dataLayer.push(arguments);}
-							gtag('js', new Date());
-							gtag('config', '${GA_ID}', { anonymize_ip: true, page_path: window.location.pathname });
-							window.gtagInitialized = true;
-						`}
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}', { anonymize_ip: true, page_path: window.location.pathname });
+              window.gtagInitialized = true;
+            `}
 					</Script>
 				</>
 			)}
@@ -128,6 +138,7 @@ function AppContent({ Component, pageProps }) {
 				disableTransitionOnChange
 			>
 				<I18nextProvider i18n={i18n}>
+					{/* globalnie aplikujemy klasę fontu */}
 					<main className={poppins.className}>
 						<Layout pageProps={pageProps}>
 							<Component {...pageProps} key={router.asPath} />

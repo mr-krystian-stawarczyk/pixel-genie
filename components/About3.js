@@ -151,7 +151,6 @@ Ja – inkl. Content-Plan, Posting & Community Management.<br/>
 								width={200}
 								height={200}
 								alt="Pixel Genie Webagentur Nettetal Logo"
-								priority
 							/>
 							<h1 className="fw-bold mt-4 display-5">
 								<AutoTranslate>

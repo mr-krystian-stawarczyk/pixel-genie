@@ -2,21 +2,23 @@ import { useTheme } from "next-themes";
 import Head from "next/head";
 import React from "react";
 import dynamic from "next/dynamic";
+import IdleMount from "@/components/IdleMount";
 import Header1 from "@/components/Header1";
 
-// Dynamiczny import dla Header1 do Header6
-
-const Header2 = dynamic(() => import("@/components/Header2"));
-const Header3 = dynamic(() => import("@/components/Header3"));
-const Header4 = dynamic(() => import("@/components/Header4"));
-const Header5 = dynamic(() => import("@/components/Header5"));
-const Header6 = dynamic(() => import("@/components/Header6"));
-const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"));
-// TechBar jest już dynamicznie zaimportowany
-const TechBar = dynamic(() => import("@/components/TechBar"));
+// 🔹 Dynamiczne importy sekcji pod foldem
+const Header2 = dynamic(() => import("@/components/Header2"), { ssr: false });
+const Header3 = dynamic(() => import("@/components/Header3"), { ssr: false });
+const Header4 = dynamic(() => import("@/components/Header4"), { ssr: false });
+const Header5 = dynamic(() => import("@/components/Header5"), { ssr: false });
+const Header6 = dynamic(() => import("@/components/Header6"), { ssr: false });
+const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
+	ssr: false,
+});
+const TechBar = dynamic(() => import("@/components/TechBar"), { ssr: false });
 
 export default function Home() {
 	const { theme } = useTheme();
+
 	return (
 		<>
 			<Head>
@@ -26,6 +28,8 @@ export default function Home() {
 					content="Pixel-Genie - Ihre zuverlässige Webseiten & Webdesign in Nettetal. Professionelle Dienstleistungen für Webseiten erstellen, Webentwicklung, SEO Optimierung, Social Media Marketing. Spezialisiert auf responsive Design, Online-Marketing und maßgeschneiderte E-Commerce-Lösungen. Steigern Sie Ihre Online-Präsenz mit unserer Expertise. Kontaktieren Sie uns!"
 				/>
 				<meta name="robots" content="index, follow" />
+
+				{/* ✅ Schema.org JSON-LD */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{
@@ -34,7 +38,7 @@ export default function Home() {
 							"@type": "LocalBusiness",
 							name: "Pixel-Genie Webagentur Nettetal",
 							image:
-								"https://pixel-genie.de/assets/webentwicklung-nettetal-seo2.png",
+								"https://pixel-genie.de/assets/webentwicklung-nettetal-seo2.webp",
 							description:
 								"Pixel-Genie ist Ihre Agentur für Webdesign, Webseiten erstellen, SEO Optimierung und Social Media Marketing in Nettetal. Wir kombinieren Design, Performance und Sichtbarkeit, um Ihr Online-Geschäft zu stärken.",
 							url: "https://pixel-genie.de",
@@ -104,15 +108,19 @@ export default function Home() {
 				/>
 			</Head>
 
-			{/* Dynamicznie załadowane komponenty */}
+			{/* ✅ Header1 jako główny hero (LCP element) */}
 			<Header1 />
-			<GoogleReviews />
-			<Header2 />
-			<Header3 />
-			<Header4 />
-			<Header5 />
-			<TechBar />
-			<Header6 />
+
+			{/* 🔹 Sekcje poniżej widoku ładują się dopiero, gdy przeglądarka ma czas */}
+			<IdleMount delay={400}>
+				<GoogleReviews />
+				<Header2 />
+				<Header3 />
+				<Header4 />
+				<Header5 />
+				<TechBar />
+				<Header6 />
+			</IdleMount>
 		</>
 	);
 }

@@ -49,7 +49,6 @@ const Brand7 = () => {
 							width={260}
 							height={260}
 							alt="Pixel-Genie Branding Agentur in Nettetal – Logo & Corporate Design"
-							priority
 						/>
 						<h2 className="fw-bold mt-3">
 							Branding FAQ NRW – starke Marken mit Wiedererkennung 💡

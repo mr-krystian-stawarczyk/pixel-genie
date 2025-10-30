@@ -30,7 +30,6 @@ function Seo4() {
 							height={500}
 							className="responsive-image"
 							alt="SEO-webentwicklung-nettetal-4"
-							priority
 						/>
 					</Col>
 

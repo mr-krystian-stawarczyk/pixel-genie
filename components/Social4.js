@@ -66,7 +66,7 @@ function Social4() {
 							height={400}
 							className="responsive-image"
 							alt="Social Media Reporting und Analyse Nettetal"
-							priority
+							
 						/>
 					</Col>
 				</Row>

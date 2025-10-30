@@ -38,7 +38,6 @@ function Web3() {
 							height={400}
 							className="responsive-image"
 							alt="Webdesign Trends Pixel Genie Nettetal"
-							priority
 						/>
 					</Col>
 

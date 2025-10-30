@@ -147,7 +147,6 @@ const Social7 = () => {
 							width={240}
 							height={240}
 							alt="Pixel-Genie SEO Agentur Nettetal & NRW – Sichtbarkeit steigern"
-							priority
 						/>
 
 						<h1 className="fw-bold mt-3">

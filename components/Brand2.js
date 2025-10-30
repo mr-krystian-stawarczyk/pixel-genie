@@ -33,7 +33,6 @@ function Brand2() {
 							height={400}
 							className="responsive-image"
 							alt="branding-logo-design-nettetal"
-							priority
 						/>
 					</Col>
 

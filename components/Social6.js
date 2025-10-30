@@ -47,7 +47,6 @@ export default function Social6() {
 						height={250}
 						alt="Social Media Preise Pixel Genie Nettetal"
 						className="my-3"
-						priority
 					/>
 					<h2 className="fw-bold display-6">
 						<AutoTranslate>
@@ -130,9 +129,7 @@ export default function Social6() {
 								<p className="text-black">✔ 4 Beiträge pro Woche</p>
 								<p className="text-black">✔ Proaktives Community Management</p>
 								<p className="text-black">✔ Reels / Shorts: 2 pro Monat</p>
-								<p className="text-black">
-									✔ Monatliches Reporting + Insights
-								</p>
+								<p className="text-black">✔ Monatliches Reporting + Insights</p>
 								<p className="text-black">✔ Story-Content inklusive</p>
 								<p className="text-black">
 									✔ Content Strategie + Zielgruppenanalyse
@@ -180,9 +177,7 @@ export default function Social6() {
 									✔ Wettbewerbsanalyse + Growth-Strategie
 								</p>
 								<p className="text-white">✔ Wöchentliche Reports & Insights</p>
-								<p className="text-white">
-									✔ Premium Grafikdesign + A/B Tests
-								</p>
+								<p className="text-white">✔ Premium Grafikdesign + A/B Tests</p>
 
 								<Button
 									variant="warning"

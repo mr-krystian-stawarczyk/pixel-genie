@@ -10,11 +10,13 @@ function Contact3() {
 			<Row className="justify-content-center align-items-center">
 				<Col lg={4} md={6} xs={12} className="py-5 text-center">
 					<Image
-						src="/assets/webentwicklung-nettetal-fragen1.png"
-						width={300}
-						height={300}
+						src="/assets/webentwicklung-nettetal-fragen1.webp"
+						width={320}
+						height={320}
 						alt="webentwicklung-nettetal-webseiten-fragen1"
-						priority
+						loading="lazy"
+						decoding="async"
+						sizes="(max-width: 480px) 60vw, (max-width: 768px) 40vw, 320px"
 					/>
 					<h2>{t("web117")}</h2>
 				</Col>

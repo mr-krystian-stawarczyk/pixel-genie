@@ -69,7 +69,6 @@ function Social2() {
 							height={400}
 							className="responsive-image"
 							alt="Social Media Agentur Nettetal Content Creation"
-							priority
 						/>
 					</Col>
 				</Row>

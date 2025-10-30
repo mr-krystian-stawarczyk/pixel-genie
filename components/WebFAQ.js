@@ -132,7 +132,6 @@ export default function WebFAQ() {
 							width={230}
 							height={230}
 							alt="Pixel-Genie Webagentur Nettetal Logo – Webseiten erstellen NRW"
-							priority
 						/>
 						<h2 className="fw-bold mt-3">
 							Webseiten erstellen lassen – FAQ für NRW

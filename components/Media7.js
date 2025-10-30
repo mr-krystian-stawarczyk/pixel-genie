@@ -75,7 +75,6 @@ export default function Media7() {
 						height={280}
 						alt="Webdesign Nettetal Preise"
 						className="my-3"
-						priority
 					/>
 					<h2 className="fw-bold display-6">
 						Webdesign & SEO-optimierte Websites aus Nettetal

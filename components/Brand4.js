@@ -33,7 +33,6 @@ function Brand4() {
 							height={400}
 							className="responsive-image"
 							alt="branding-kommunikationsstrategie-nettetal"
-							priority
 						/>
 					</Col>
 

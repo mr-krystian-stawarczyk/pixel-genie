@@ -59,7 +59,6 @@ function Seo3() {
 							height={400}
 							className="responsive-image"
 							alt="SEO-webentwicklung-nettetal-3"
-							priority
 						/>
 					</Col>
 				</Row>

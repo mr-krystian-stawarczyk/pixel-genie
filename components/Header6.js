@@ -10,11 +10,13 @@ export default function Header6() {
 			<Row className="justify-content-center align-items-center text-center mb-4">
 				<Col lg={7}>
 					<Image
-						src="/assets/webentwicklung-nettetal-fragen1.png"
+						src="/assets/webentwicklung-nettetal-fragen1.webp"
 						width={320}
 						height={320}
-						alt="Pixel-Genie Webentwicklung und Webdesign FAQ"
-						priority
+						alt="webentwicklung-nettetal-webseiten-fragen1"
+						loading="lazy"
+						decoding="async"
+						sizes="(max-width: 480px) 60vw, (max-width: 768px) 40vw, 320px"
 					/>
 					<h2 className="fw-bold mt-3">
 						Häufig gestellte Fragen zu Webdesign, SEO & Webseiten erstellen

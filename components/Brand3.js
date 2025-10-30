@@ -65,7 +65,6 @@ function Brand3() {
 							height={500}
 							className="responsive-image"
 							alt="branding-konsistenz-agentur-nettetal"
-							priority
 						/>
 					</Col>
 				</Row>

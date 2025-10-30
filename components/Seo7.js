@@ -139,7 +139,6 @@ export default function Seo7() {
 							width={240}
 							height={240}
 							alt="Pixel-Genie SEO Agentur Nettetal & NRW – Sichtbarkeit steigern"
-							priority
 						/>
 						<h2 className="fw-bold mt-3">SEO – Häufig gestellte Fragen</h2>
 						<p className="">

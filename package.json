@@ -45,8 +45,17 @@
 		"terser-webpack-plugin": "^5.3.9"
 	},
 	"devDependencies": {
-		"@next/bundle-analyzer": "^15.5.6",
-		"critters": "^0.0.23",
-		"cross-env": "^10.1.0"
-	}
+		"@next/bundle-analyzer": "15.5.6",
+		"critters": "0.0.23",
+		"cross-env": "10.1.0"
+	},
+	"browserslist": [
+		"defaults and not IE 11 and not op_mini all",
+		"last 2 chrome versions",
+		"last 2 firefox versions",
+		"last 2 edge versions",
+		"last 2 safari versions",
+		"last 2 ios_saf versions",
+		"not dead"
+	]
 }

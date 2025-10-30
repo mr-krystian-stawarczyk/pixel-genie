@@ -70,7 +70,6 @@ function Web2() {
 							height={400}
 							className="responsive-image"
 							alt="Webdesign SEO Nettetal responsive Websites"
-							priority
 						/>
 					</Col>
 				</Row>

@@ -12,27 +12,6 @@ export default function Document() {
 				/>
 
 				{/* ✅ Performance hints */}
-				<link
-					rel="preconnect"
-					href="https://fonts.gstatic.com"
-					crossOrigin=""
-				/>
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				{/* ✅ Preload lokalnych fontów */}
-				<link
-					rel="preload"
-					as="font"
-					type="font/ttf"
-					href="/fonts/poppins/Poppins-Regular.ttf"
-					crossOrigin="anonymous"
-				/>
-				<link
-					rel="preload"
-					as="font"
-					type="font/ttf"
-					href="/fonts/poppins/Poppins-Bold.ttf"
-					crossOrigin="anonymous"
-				/>
 
 				{/* ✅ Preload logo (LCP element) */}
 				<link

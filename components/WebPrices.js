@@ -50,7 +50,6 @@ export default function WebPrices() {
 						height={250}
 						alt="Webdesign Preise Pixel Genie Nettetal"
 						className="my-3"
-						priority
 					/>
 
 					<h2 className="fw-bold display-6">

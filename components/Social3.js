@@ -35,7 +35,6 @@ function Social3() {
 							height={400}
 							className="responsive-image"
 							alt="Social Media Ads Kampagnen Nettetal"
-							priority
 						/>
 					</Col>
 

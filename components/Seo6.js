@@ -49,7 +49,7 @@ export default function Seo6() {
 						height={280}
 						alt="SEO Preise Pixel Genie Nettetal"
 						className="my-3"
-						priority
+						
 					/>
 					<h2 className="fw-bold display-6 mb-3">
 						<AutoTranslate>
