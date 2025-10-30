@@ -5,17 +5,17 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 /**
- * ✅ Preload lokalnych fontów (Poppins)
+ * ✅ Preload lokalnych fontów (Poppins WOFF2)
  */
 function addFontPreload() {
 	const fontDir = path.join(__dirname, "public/fonts/poppins");
 	if (!fs.existsSync(fontDir)) return [];
-	const fonts = fs.readdirSync(fontDir).filter((f) => f.endsWith(".ttf"));
+	const fonts = fs.readdirSync(fontDir).filter((f) => f.endsWith(".woff2"));
 	return fonts.map((file) => ({
 		rel: "preload",
 		as: "font",
 		href: `/fonts/poppins/${file}`,
-		type: "font/ttf",
+		type: "font/woff2",
 		crossOrigin: "anonymous",
 	}));
 }
@@ -37,6 +37,7 @@ const nextConfig = withBundleAnalyzer({
 	outputFileTracingRoot: path.join(__dirname),
 
 	experimental: {
+		legacyBrowsers: false, // ✅ usuwa stare polyfille i babel transforms (~10 KB mniej JS)
 		optimizeCss: true,
 		optimizePackageImports: [
 			"react-icons",
@@ -46,6 +47,12 @@ const nextConfig = withBundleAnalyzer({
 			"framer-motion",
 		],
 		scrollRestoration: true,
+	},
+
+	// ✅ Nowy blok compiler - optymalizacja builda i JS
+	compiler: {
+		removeConsole: process.env.NODE_ENV === "production", // usuwa console.log z prod
+		reactRemoveProperties: true, // usuwa atrybuty typu data-test itp.
 	},
 
 	async head() {

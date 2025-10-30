@@ -42,7 +42,7 @@ export default function Header2() {
 
 					<Col lg={5} className="mx-auto text-center position-relative">
 						<Image
-							src="/assets/webentwicklung-nettetal-seo2.png"
+							src="/assets/webentwicklung-nettetal-seo2.webp"
 							width={400}
 							height={400}
 							alt="Webentwicklung Pixel Genie"
