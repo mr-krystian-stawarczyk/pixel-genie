@@ -11,10 +11,6 @@ import { hasCookie } from "cookies-next";
 import { gaEvent } from "@/lib/analytics";
 import AutoTranslate from "./AutoTranslate";
 
-/**
- * ✅ Framer Motion – wczytywany tylko w przeglądarce
- *    i z krótszą animacją (LCP szybciej „domknięty”)
- */
 let MotionDiv = (props) => <div {...props} />;
 if (typeof window !== "undefined") {
 	import("framer-motion").then((mod) => {
@@ -22,17 +18,10 @@ if (typeof window !== "undefined") {
 	});
 }
 
-/**
- * ✅ Particles ładujemy dopiero, gdy przeglądarka ma „luźny czas”
- *    lub tuż po zarejestrowaniu LCP — lepszy wynik Lighthouse.
- */
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
 	loading: () => null,
 });
-
-/** Ustawienie strategii ładowania particles (zachowuje Twój styl) */
-const PARTICLES_DELAY_AFTER_LCP_MS = 400; // łagodny bufor, nie widać różnicy wizualnie
 
 export default function Header1() {
 	const [showParticles, setShowParticles] = useState(false);
@@ -40,60 +29,43 @@ export default function Header1() {
 	const { i18n } = useTranslation();
 	const sectionRef = useRef(null);
 
-	/**
-	 * ✅ Ładowanie Particles „po LCP” / idle:
-	 *  - najpierw spróbuj po zarejestrowaniu LCP (PerformanceObserver),
-	 *  - jeśli nie dostępny, użyj requestIdleCallback,
-	 *  - na końcu fallback na setTimeout.
-	 */
+	// ✅ Particles start po pełnym 'load' + idle (bez wpływu na LCP)
 	useEffect(() => {
 		let done = false;
-
 		const enableParticles = () => {
 			if (done) return;
 			done = true;
 			setShowParticles(true);
 		};
 
-		// 1) Po LCP (najlepsze pod Lighthouse)
-		if (typeof window !== "undefined" && "PerformanceObserver" in window) {
-			try {
-				const po = new PerformanceObserver((list) => {
-					const entries = list.getEntries();
-					const lcpSeen = entries.some(
-						(e) => e.entryType === "largest-contentful-paint"
-					);
-					if (lcpSeen) {
-						setTimeout(enableParticles, PARTICLES_DELAY_AFTER_LCP_MS);
-						po.disconnect();
-					}
+		const onLoad = () => {
+			if ("requestIdleCallback" in window) {
+				const id = window.requestIdleCallback(() => enableParticles(), {
+					timeout: 2500,
 				});
-				po.observe({ type: "largest-contentful-paint", buffered: true });
-
-				// Bezpieczeństwo: gdyby LCP nie przyszło (np. WebView), fallback po 2s
-				const fallback = setTimeout(() => {
-					if (!done) enableParticles();
-				}, 2000);
-				return () => {
-					po.disconnect();
-					clearTimeout(fallback);
-				};
-			} catch {
-				// przechodzimy do idle
+				const t = setTimeout(() => enableParticles(), 2500);
+				window.addEventListener(
+					"beforeunload",
+					() => {
+						window.cancelIdleCallback && window.cancelIdleCallback(id);
+						clearTimeout(t);
+					},
+					{ once: true }
+				);
+			} else {
+				setTimeout(() => enableParticles(), 1600);
 			}
+		};
+
+		if (document.readyState === "complete") {
+			onLoad();
+		} else {
+			window.addEventListener("load", onLoad, { once: true });
 		}
 
-		// 2) requestIdleCallback (świetny kompromis UX + LCP)
-		if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-			const id = window.requestIdleCallback(() => enableParticles(), {
-				timeout: 2000,
-			});
-			return () => window.cancelIdleCallback && window.cancelIdleCallback(id);
-		}
-
-		// 3) Fallback – delikatne opóźnienie
-		const t = setTimeout(() => enableParticles(), 1000);
-		return () => clearTimeout(t);
+		return () => {
+			window.removeEventListener("load", onLoad);
+		};
 	}, []);
 
 	const handleCta = useCallback((type) => {
@@ -122,7 +94,6 @@ export default function Header1() {
 			style={{ minHeight: "100vh" }}
 			aria-label="Hero Header"
 		>
-			{/* 🔒 warstwa tła nie łapie kliknięć, nie zasłania UI */}
 			<div
 				className="particles-container position-absolute w-100 h-100"
 				style={{
@@ -145,7 +116,7 @@ export default function Header1() {
 				<MotionDiv
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5, ease: "easeOut" }} // ⏩ krócej = szybszy LCP
+					transition={{ duration: 0.5, ease: "easeOut" }}
 				>
 					<Card className="bg-transparent border-0 blur p-md-4 rounded-4">
 						<Card.Body>
@@ -172,7 +143,6 @@ export default function Header1() {
 									>
 										<AutoTranslate>Webseiten erstellen</AutoTranslate>
 									</Button>
-
 									<Button
 										as={Link}
 										href="/suchmaschinenoptimierung"
@@ -180,7 +150,6 @@ export default function Header1() {
 									>
 										<AutoTranslate>SEO Optimierung</AutoTranslate>
 									</Button>
-
 									<Button
 										as={Link}
 										href="/socialmediamarketing"
@@ -204,7 +173,6 @@ export default function Header1() {
 										Jetzt kostenloses Audit anfordern
 									</AutoTranslate>
 								</Button>
-
 								<Button
 									as="button"
 									onClick={() => handleCta("contact")}

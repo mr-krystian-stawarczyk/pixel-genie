@@ -5,8 +5,6 @@ import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
-
-// ✅ Importy CSS globalne (tylko raz, bez warunku window)
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { initGA, gaPageview, GA_ID, gaEvent } from "@/lib/analytics";
@@ -15,6 +13,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import localFont from "next/font/local";
 
+// ✅ preładowanie fontów
 const poppins = localFont({
 	src: [
 		{
@@ -38,8 +37,10 @@ function AppContent({ Component, pageProps }) {
 	const [mounted, setMounted] = useState(false);
 	const [hasConsent, setHasConsent] = useState(false);
 
+	// ✅ Montowanie po stronie klienta
 	useEffect(() => setMounted(true), []);
 
+	// ✅ Obsługa zgody cookies
 	useEffect(() => {
 		const checkConsent = () =>
 			setHasConsent(getCookie("marketingConsent") === "true");
@@ -49,7 +50,7 @@ function AppContent({ Component, pageProps }) {
 		return () => window.removeEventListener("cookieAccepted", onAccept);
 	}, []);
 
-	// ✅ GA po zgodzie
+	// ✅ Google Analytics (tylko po zgodzie)
 	useEffect(() => {
 		if (process.env.NODE_ENV !== "production") return;
 		if (!hasConsent) return;
@@ -58,7 +59,7 @@ function AppContent({ Component, pageProps }) {
 		window.gtagInitialized = true;
 	}, [hasConsent]);
 
-	// ✅ Śledzenie zmiany trasy
+	// ✅ Pageview przy zmianie trasy
 	useEffect(() => {
 		const handleRouteChange = (url) => {
 			if (window.gtagInitialized) gaPageview(url);
@@ -67,27 +68,56 @@ function AppContent({ Component, pageProps }) {
 		return () => router.events.off("routeChangeComplete", handleRouteChange);
 	}, [router.events]);
 
-	// ✅ Scroll depth analytics
+	// ✅ Scroll Depth – bez reflow i dopiero po 4s (TBT fix)
 	useEffect(() => {
 		if (!hasConsent || !window.gtagInitialized) return;
+
+		let ticking = false;
 		let lastSent = 0;
 		const thresholds = [25, 50, 75, 100];
-		const onScroll = () => {
-			const scrollY = window.scrollY + window.innerHeight;
-			const height = document.body.offsetHeight || 1;
-			const percent = (scrollY / height) * 100;
-			for (const t of thresholds) {
-				if (percent >= t && lastSent < t) {
-					lastSent = t;
-					gaEvent("scroll_depth", {
-						page: window.location.pathname,
-						percent: t,
-					});
-				}
-			}
+		let maxSends = 4;
+
+		let doc = document.documentElement;
+		let docHeight = Math.max(doc.scrollHeight, document.body.scrollHeight);
+
+		const onResize = () => {
+			docHeight = Math.max(doc.scrollHeight, document.body.scrollHeight);
 		};
-		window.addEventListener("scroll", onScroll, { passive: true });
-		return () => window.removeEventListener("scroll", onScroll);
+
+		const onScroll = () => {
+			if (ticking) return;
+			ticking = true;
+			requestAnimationFrame(() => {
+				const scrollY = window.scrollY + window.innerHeight;
+				const percent = Math.min(100, (scrollY / docHeight) * 100);
+				for (const t of thresholds) {
+					if (percent >= t && lastSent < t) {
+						lastSent = t;
+						if (maxSends > 0) {
+							maxSends -= 1;
+							gaEvent("scroll_depth", {
+								page: window.location.pathname,
+								percent: t,
+							});
+						}
+					}
+				}
+				ticking = false;
+			});
+		};
+
+		const boot = () => {
+			if (document.visibilityState !== "visible") return;
+			window.addEventListener("scroll", onScroll, { passive: true });
+			window.addEventListener("resize", onResize, { passive: true });
+		};
+
+		const starter = setTimeout(boot, 4000);
+		return () => {
+			clearTimeout(starter);
+			window.removeEventListener("scroll", onScroll);
+			window.removeEventListener("resize", onResize);
+		};
 	}, [hasConsent]);
 
 	if (!mounted) return null;
@@ -102,8 +132,24 @@ function AppContent({ Component, pageProps }) {
 				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
+				{/* ✅ preload fontów */}
+				<link
+					rel="preload"
+					href="/fonts/poppins/Poppins-Regular.woff2"
+					as="font"
+					type="font/woff2"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="preload"
+					href="/fonts/poppins/Poppins-Bold.woff2"
+					as="font"
+					type="font/woff2"
+					crossOrigin="anonymous"
+				/>
 			</Head>
 
+			{/* ✅ Google Analytics */}
 			{process.env.NODE_ENV === "production" && hasConsent && (
 				<>
 					<Script

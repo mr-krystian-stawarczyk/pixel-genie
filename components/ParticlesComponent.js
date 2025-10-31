@@ -9,7 +9,7 @@ function ParticlesComponent() {
 	useEffect(() => {
 		let cancelled = false;
 		initParticlesEngine(async (engine) => {
-			await loadSlim(engine); // lekki preset
+			await loadSlim(engine);
 		}).then(() => {
 			if (!cancelled) setInit(true);
 		});
@@ -20,12 +20,14 @@ function ParticlesComponent() {
 
 	if (!init) return null;
 
+	// ✅ prosty warunek na rozdzielczość
 	const isMobile =
 		typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
-	const particlesNumber = isMobile ? 14 : 28; // ✂️ delikatnie mniej = niższy koszt renderu
+	// 🔧 lekkie różnice w wydajności / liczbie cząstek
+	const particlesNumber = isMobile ? 12 : 26;
 	const fps = isMobile ? 28 : 30;
-	const moveSpeed = isMobile ? 0.35 : 0.5;
+	const moveSpeed = isMobile ? 0.3 : 0.5;
 
 	return (
 		<Particles
@@ -36,7 +38,9 @@ function ParticlesComponent() {
 				fpsLimit: fps,
 				interactivity: {
 					events: {
-						onClick: { enable: !isMobile, mode: "push" },
+						// ✅ Klik działa wszędzie
+						onClick: { enable: true, mode: "push" },
+						// ✅ Hover tylko na desktopie
 						onHover: { enable: !isMobile, mode: "repulse" },
 						resize: true,
 					},
@@ -64,7 +68,7 @@ function ParticlesComponent() {
 				width: "100%",
 				height: "100%",
 				zIndex: 0,
-				pointerEvents: "none", // 🔒 nie blokuje kliknięć
+				pointerEvents: "none", // ⚙️ nie blokuje interakcji z UI
 			}}
 		/>
 	);
