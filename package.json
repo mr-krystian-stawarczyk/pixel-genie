@@ -5,10 +5,9 @@
 	"scripts": {
 		"dev": "next dev",
 		"dev:netlify": "netlify dev",
-		"build": "next build && next export && next-sitemap",
-		"postbuild": "next-sitemap",
-		"export": "next export",
+		"build": "next build && next-sitemap",
 		"start": "next start -p 3000",
+		"postbuild": "next-sitemap",
 		"analyze": "cross-env ANALYZE=true next build"
 	},
 	"dependencies": {
