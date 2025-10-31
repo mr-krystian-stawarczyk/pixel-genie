@@ -74,7 +74,7 @@ export default function Header1() {
 			</div>
 
 			<Container
-				className="d-flex flex-column justify-content-center align-items-center text-center position-relative z-10"
+				className="d-flex flex-column justify-content-center align-items-center text-center position-relative header-content"
 				style={{ minHeight: "100vh" }}
 			>
 				<MotionDiv
