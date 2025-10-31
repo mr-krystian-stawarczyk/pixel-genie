@@ -2104,3 +2104,26 @@ article:hover {
 	visibility: visible;
 	pointer-events: auto;
 }
+/* warstwa tła (particles) nigdy nie blokuje interakcji */
+.particles-container {
+	pointer-events: none;
+	z-index: 0;
+}
+
+/* treść hero zawsze nad tłem */
+.header-content {
+	position: relative;
+	z-index: 1;
+}
+
+/* minimalne zabezpieczenie przed CLS w hero */
+.header-container .card .display-5 {
+	line-height: 1.2;
+}
+
+/* (opcjonalnie) subtelniejsza animacja focus outline na przyciskach */
+.btn-nav:focus,
+.btn-premium-footer:focus {
+	outline: none;
+	box-shadow: 0 0 0 0.2rem rgba(0, 54, 129, 0.35);
+}

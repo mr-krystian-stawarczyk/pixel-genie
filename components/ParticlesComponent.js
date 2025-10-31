@@ -9,7 +9,7 @@ function ParticlesComponent() {
 	useEffect(() => {
 		let cancelled = false;
 		initParticlesEngine(async (engine) => {
-			await loadSlim(engine);
+			await loadSlim(engine); // lekki preset
 		}).then(() => {
 			if (!cancelled) setInit(true);
 		});
@@ -22,8 +22,9 @@ function ParticlesComponent() {
 
 	const isMobile =
 		typeof window !== "undefined" ? window.innerWidth < 768 : false;
-	const particlesNumber = isMobile ? 18 : 30;
-	const fps = isMobile ? 29 : 30;
+
+	const particlesNumber = isMobile ? 14 : 28; // ✂️ delikatnie mniej = niższy koszt renderu
+	const fps = isMobile ? 28 : 30;
 	const moveSpeed = isMobile ? 0.35 : 0.5;
 
 	return (
@@ -59,11 +60,11 @@ function ParticlesComponent() {
 			}}
 			style={{
 				position: "absolute",
-				top: 0,
-				left: 0,
+				inset: 0,
 				width: "100%",
 				height: "100%",
 				zIndex: 0,
+				pointerEvents: "none", // 🔒 nie blokuje kliknięć
 			}}
 		/>
 	);
