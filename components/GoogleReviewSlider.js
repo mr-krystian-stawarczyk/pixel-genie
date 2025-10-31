@@ -1,6 +1,10 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 
+/**
+ * ✅ Statyczna lista opinii – 100% kompatybilna z SSR.
+ */
 const reviews = [
 	{
 		name: "Karolina C.",
@@ -37,26 +41,16 @@ export default function GoogleReviewSlider() {
 	const r = reviews[index];
 
 	return (
-		<div className="my-4 text-center">
+		<div className="my-5 text-center fade-review-wrapper">
 			<Card
-				className="shadow-sm p-4 mx-auto"
-				style={{
-					maxWidth: "480px",
-					backgroundColor: "rgba(255,255,255,0.06)",
-					border: "1px solid rgba(255,255,255,0.15)",
-				}}
+				key={index}
+				className="review-card mx-auto shadow-sm p-4 fade-review"
 			>
-				<div style={{ fontSize: "1.4rem", marginBottom: "0.5rem" }}>
-					{"⭐".repeat(r.stars)}
-				</div>
+				<div className="stars-wrapper mb-2">{"⭐".repeat(r.stars)}</div>
 
-				<p style={{ fontSize: "1rem", opacity: 0.95, lineHeight: 1.5 }}>
-					„{r.text}“
-				</p>
+				<p className="review-text mb-3">„{r.text}“</p>
 
-				<p className="mt-2 fw-semibold" style={{ opacity: 0.85 }}>
-					– {r.name}
-				</p>
+				<p className="fw-semibold reviewer-name">– {r.name}</p>
 			</Card>
 
 			<div className="d-flex justify-content-center mt-3 gap-2">
@@ -64,15 +58,7 @@ export default function GoogleReviewSlider() {
 					<span
 						key={i}
 						onClick={() => setIndex(i)}
-						style={{
-							width: "9px",
-							height: "9px",
-							borderRadius: "50%",
-							cursor: "pointer",
-							backgroundColor:
-								i === index ? "#00eaff" : "rgba(255,255,255,0.3)",
-							transition: "all 0.3s",
-						}}
+						className={`dot ${i === index ? "active" : ""}`}
 					/>
 				))}
 			</div>

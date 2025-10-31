@@ -1823,3 +1823,213 @@ article:hover {
 		min-height: 105px;
 	}
 }
+/* =============================
+   🧊 LIQUID GLASS STYLE (Apple/VisionOS look)
+============================= */
+:root {
+	--glass-bg: rgba(255, 255, 255, 0.08);
+	--glass-border: rgba(255, 255, 255, 0.25);
+	--glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+	--glass-blur: 22px;
+	--accent: #00f0ff;
+	--accent-glow: 0 0 16px rgba(0, 240, 255, 0.6);
+}
+
+/* Ogólny efekt szkła */
+.glass-tile,
+.review-card,
+.tech-tile {
+	position: relative;
+	background: linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.15),
+			rgba(255, 255, 255, 0.04)
+		),
+		var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	border-radius: 18px;
+	box-shadow: var(--glass-shadow);
+	backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+	color: #fff;
+	overflow: hidden;
+	transition: all 0.35s ease;
+}
+.glass-tile:hover,
+.review-card:hover,
+.tech-tile:hover {
+	transform: translateY(-5px);
+	background: rgba(255, 255, 255, 0.12);
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), var(--accent-glow);
+}
+
+/* =============================
+   🌟 GOOGLE REVIEWS – auto slider (loop)
+============================= */
+.reviews-snap {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	padding: 20px 0 40px;
+}
+.reviews-track {
+	display: flex;
+	gap: 28px;
+	animation: reviewsAutoSlide 45s linear infinite;
+	will-change: transform;
+}
+.review-card {
+	flex: 0 0 320px;
+	text-align: center;
+	padding: 2rem 1.5rem;
+	min-width: 280px;
+}
+.review-card .google-icon-wrapper img {
+	width: 36px;
+	height: 36px;
+	filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
+}
+.stars {
+	color: #ffd700;
+	font-size: 1.2rem;
+	letter-spacing: 1px;
+	margin: 0.3rem 0;
+}
+.review-text {
+	font-size: 1rem;
+	opacity: 0.95;
+	line-height: 1.6;
+	margin: 0.8rem 0 1.2rem;
+	font-weight: 300;
+}
+.reviewer-name {
+	font-weight: 600;
+	opacity: 0.85;
+}
+
+/* ✅ płynny niekończący się slide */
+@keyframes reviewsAutoSlide {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+/* zatrzymanie na hover */
+.reviews-snap:hover .reviews-track {
+	animation-play-state: paused;
+}
+
+/* =============================
+   🌟 TECHBAR – infinite auto-scroll
+============================= */
+.techbar-scroll {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	padding: 16px 0 30px;
+}
+.techbar-track {
+	display: flex;
+	gap: 24px;
+	animation: techbarAutoSlide 35s linear infinite;
+	will-change: transform;
+}
+.tech-tile {
+	flex: 0 0 auto;
+	width: 110px;
+	text-align: center;
+	padding: 16px 12px;
+}
+.tech-tile img {
+	display: block;
+	margin: 0 auto 8px;
+	width: 56px;
+	height: 56px;
+	object-fit: contain;
+	filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.35));
+}
+.tech-tile span {
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: #fff;
+}
+
+/* płynne auto przesuwanie */
+@keyframes techbarAutoSlide {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+.techbar-scroll:hover .techbar-track {
+	animation-play-state: paused;
+}
+
+/* =============================
+   🌟 ANIMACJE ŚWIATŁA (liquid reflection)
+============================= */
+.review-card::before,
+.tech-tile::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: linear-gradient(
+		120deg,
+		transparent,
+		rgba(255, 255, 255, 0.4),
+		transparent
+	);
+	background-size: 200%;
+	animation: lightSweep 6s linear infinite;
+	opacity: 0.3;
+	pointer-events: none;
+}
+@keyframes lightSweep {
+	0% {
+		background-position: -200% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+/* =============================
+   🌟 DOTS for GoogleReviewSlider
+============================= */
+.dot {
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.3);
+	transition: all 0.3s ease;
+	display: inline-block;
+}
+.dot.active {
+	background-color: var(--accent);
+	box-shadow: var(--accent-glow);
+	transform: scale(1.3);
+}
+
+/* =============================
+   🧠 Responsywność
+============================= */
+@media (min-width: 768px) {
+	.review-card {
+		flex: 0 0 340px;
+	}
+	.tech-tile {
+		width: 130px;
+	}
+}
+@media (min-width: 1200px) {
+	.review-card {
+		flex: 0 0 360px;
+	}
+}

@@ -11,13 +11,27 @@ export default function Document() {
 					type="image/png"
 				/>
 
-				{/* ✅ Performance hints */}
-
 				{/* ✅ Preload logo (LCP element) */}
 				<link
 					rel="preload"
 					as="image"
 					href="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
+				/>
+
+				{/* ✅ Fonty (tylko używane warianty) */}
+				<link
+					rel="preload"
+					as="font"
+					href="/fonts/poppins/Poppins-Regular.woff2"
+					type="font/woff2"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="preload"
+					as="font"
+					href="/fonts/poppins/Poppins-Bold.woff2"
+					type="font/woff2"
+					crossOrigin="anonymous"
 				/>
 
 				{/* ✅ SEO + OG */}

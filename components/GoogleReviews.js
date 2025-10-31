@@ -1,11 +1,8 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import Image from "next/image";
-
-const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const REVIEW_LINK =
 	"https://www.google.com/search?q=pixel+genie+nettetal&ludocid=13238374149558357979#lrd=0x47c74dec2e1b84e7:0xb7d4548932d3176b,1,,,";
@@ -28,22 +25,6 @@ const REVIEWS = [
 		text: "Open minded and professional advice leading to creative and unique projects. Check it, you will not regret!",
 	},
 ];
-
-const sliderSettings = {
-	dots: true,
-	infinite: true,
-	speed: 600,
-	arrows: false,
-	slidesToShow: 3,
-	slidesToScroll: 1,
-	autoplay: true,
-	autoplaySpeed: 4500,
-	centerPadding: "10px",
-	responsive: [
-		{ breakpoint: 1200, settings: { slidesToShow: 2 } },
-		{ breakpoint: 768, settings: { slidesToShow: 1 } },
-	],
-};
 
 export default function GoogleReviews() {
 	const ref = useRef(null);
@@ -80,42 +61,42 @@ export default function GoogleReviews() {
 			<Container>
 				<Row className="text-center mb-4">
 					<Col>
-						<h2 className="fw-bold display-6 mb-2 ">Google Bewertungen</h2>
-						<p className="">Vertrauen durch echte Kundenstimmen</p>
+						<h2 className="fw-bold display-6 mb-2">Google Bewertungen</h2>
+						<p>Vertrauen durch echte Kundenstimmen</p>
 					</Col>
 				</Row>
 
+				{/* ✅ CSS Scroll Snap – brak JS, ultra lekki */}
 				{inView && (
-					<Slider {...sliderSettings}>
-						{REVIEWS.map((r, i) => (
-							<div className="p-3" key={i}>
-								<figure className="review-tile glass-tile mx-auto">
-									{/* Google Badge */}
-									<div className="google-icon-wrapper">
+					<div className="reviews-snap">
+						<div className="reviews-track">
+							{[...REVIEWS, ...REVIEWS].map((r, i) => (
+								<Card
+									key={i}
+									className="review-card glass-tile text-center mx-auto"
+								>
+									<div className="google-icon-wrapper mx-auto mt-3">
 										<Image
 											src="/assets/google-icon.png"
 											width={30}
 											height={30}
 											alt="Google"
+											loading="lazy"
 										/>
 									</div>
-
-									{/* Reviewer */}
-									<h5 className="fw-bold mt-2">{r.name}</h5>
-
-									{/* Stars */}
-									<span className="stars" aria-label="5 Sterne">
-										★★★★★
-									</span>
-
-									{/* Text */}
-									<blockquote className="review-text fst-italic mt-2 mb-0">
-										“{r.text}”
-									</blockquote>
-								</figure>
-							</div>
-						))}
-					</Slider>
+									<Card.Body>
+										<h5 className="fw-bold mt-2 text-black">{r.name}</h5>
+										<div className="stars" aria-label="5 Sterne">
+											★★★★★
+										</div>
+										<blockquote className="review-text fst-italic mt-2 mb-0">
+											“{r.text}”
+										</blockquote>
+									</Card.Body>
+								</Card>
+							))}
+						</div>
+					</div>
 				)}
 
 				{/* CTA */}
@@ -127,10 +108,50 @@ export default function GoogleReviews() {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						Weitere Bewertungen auf Google →
+						<span style={{ color: "var(--text-color)" }}>
+							Weitere Bewertungen auf Google →
+						</span>
 					</Button>
 				</div>
 			</Container>
+
+			{/* ✅ Własny CSS wewnętrzny – możesz też przenieść do globals.css */}
+			<style jsx>{`
+				.reviews-snap {
+					display: grid;
+					grid-auto-flow: column;
+					grid-auto-columns: 85%;
+					overflow-x: auto;
+					scroll-snap-type: x mandatory;
+					gap: 16px;
+					padding: 10px 0 20px;
+				}
+				.review-card {
+					scroll-snap-align: start;
+					min-width: 280px;
+					background-color: rgba(255, 255, 255, 0.08);
+					border: 1px solid rgba(255, 255, 255, 0.15);
+					border-radius: 14px;
+					transition: transform 0.3s ease;
+				}
+				.review-card:hover {
+					transform: translateY(-3px);
+				}
+				.stars {
+					color: #ffd700;
+					font-size: 1.1rem;
+				}
+				@media (min-width: 768px) {
+					.reviews-snap {
+						grid-auto-columns: 45%;
+					}
+				}
+				@media (min-width: 1200px) {
+					.reviews-snap {
+						grid-auto-columns: 30%;
+					}
+				}
+			`}</style>
 		</motion.section>
 	);
 }

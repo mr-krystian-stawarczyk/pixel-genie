@@ -6,20 +6,15 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
 
+// ✅ Importy CSS globalne (tylko raz, bez warunku window)
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import { initGA, gaPageview, GA_ID, gaEvent } from "@/lib/analytics";
 import { getCookie } from "cookies-next";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import localFont from "next/font/local";
 
-// ✅ Bootstrap & Slick CSS tylko w przeglądarce
-if (typeof window !== "undefined") {
-	import("bootstrap/dist/css/bootstrap.min.css");
-	import("slick-carousel/slick/slick.css");
-	import("slick-carousel/slick/slick-theme.css");
-}
-
-// ✅ JEDYNY import fontu (globalny) — next/font zadba o preload i @font-face
 const poppins = localFont({
 	src: [
 		{
@@ -35,7 +30,7 @@ const poppins = localFont({
 	],
 	display: "swap",
 	preload: true,
-	variable: "--font-poppins", // jeżeli chcesz używać w CSS: font-family: var(--font-poppins);
+	variable: "--font-poppins",
 });
 
 function AppContent({ Component, pageProps }) {
@@ -43,19 +38,18 @@ function AppContent({ Component, pageProps }) {
 	const [mounted, setMounted] = useState(false);
 	const [hasConsent, setHasConsent] = useState(false);
 
-	// ✅ montowanie komponentu
 	useEffect(() => setMounted(true), []);
 
-	// ✅ sprawdzenie ciasteczka zgody
 	useEffect(() => {
-		const check = () => setHasConsent(getCookie("marketingConsent") === "true");
-		check();
+		const checkConsent = () =>
+			setHasConsent(getCookie("marketingConsent") === "true");
+		checkConsent();
 		const onAccept = () => setHasConsent(true);
 		window.addEventListener("cookieAccepted", onAccept);
 		return () => window.removeEventListener("cookieAccepted", onAccept);
 	}, []);
 
-	// ✅ inicjalizacja GA po zgodzie
+	// ✅ GA po zgodzie
 	useEffect(() => {
 		if (process.env.NODE_ENV !== "production") return;
 		if (!hasConsent) return;
@@ -64,7 +58,7 @@ function AppContent({ Component, pageProps }) {
 		window.gtagInitialized = true;
 	}, [hasConsent]);
 
-	// ✅ śledzenie zmian trasy
+	// ✅ Śledzenie zmiany trasy
 	useEffect(() => {
 		const handleRouteChange = (url) => {
 			if (window.gtagInitialized) gaPageview(url);
@@ -73,7 +67,7 @@ function AppContent({ Component, pageProps }) {
 		return () => router.events.off("routeChangeComplete", handleRouteChange);
 	}, [router.events]);
 
-	// ✅ śledzenie scroll depth
+	// ✅ Scroll depth analytics
 	useEffect(() => {
 		if (!hasConsent || !window.gtagInitialized) return;
 		let lastSent = 0;
@@ -107,11 +101,9 @@ function AppContent({ Component, pageProps }) {
 					content="Pixel-Genie entwickelt moderne Webseiten, SEO-optimierte Lösungen und digitale Markenstrategien."
 				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				{/* ✅ Preconnect tylko do GTM */}
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
 			</Head>
 
-			{/* ✅ GA ładowany dopiero po zgodzie */}
 			{process.env.NODE_ENV === "production" && hasConsent && (
 				<>
 					<Script
@@ -130,7 +122,6 @@ function AppContent({ Component, pageProps }) {
 				</>
 			)}
 
-			{/* ✅ Theme + i18n + global layout */}
 			<ThemeProvider
 				attribute="class"
 				defaultTheme="dark"
@@ -138,7 +129,6 @@ function AppContent({ Component, pageProps }) {
 				disableTransitionOnChange
 			>
 				<I18nextProvider i18n={i18n}>
-					{/* globalnie aplikujemy klasę fontu */}
 					<main className={poppins.className}>
 						<Layout pageProps={pageProps}>
 							<Component {...pageProps} key={router.asPath} />

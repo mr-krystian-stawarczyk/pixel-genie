@@ -1,3 +1,9 @@
+/**
+ * ✅ NEXT CONFIG – pełna, zoptymalizowana wersja z modularnymi importami i preloadem fontów.
+ * - Nie usuwa Bootstrapa, ale pozwala importować go głęboko (per-komponent) aby zmniejszyć JS.
+ * - Nie łamie SSR / export / Netlify setup.
+ */
+
 const path = require("path");
 const fs = require("fs");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
@@ -5,7 +11,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 /**
- * ✅ Preload lokalnych fontów (Poppins WOFF2)
+ * ✅ Automatyczny preload lokalnych fontów (Poppins WOFF2)
  */
 function addFontPreload() {
 	const fontDir = path.join(__dirname, "public/fonts/poppins");
@@ -36,28 +42,48 @@ const nextConfig = withBundleAnalyzer({
 
 	outputFileTracingRoot: path.join(__dirname),
 
+	/**
+	 * ✅ Eksperymentalne funkcje – stabilne w Next 14+
+	 */
 	experimental: {
-		legacyBrowsers: false, // ✅ usuwa zbędne polyfille (lepszy TBT)
+		legacyBrowsers: false, // usuwa zbędne polyfille (lepszy TBT)
 		optimizeCss: true,
 		scrollRestoration: true,
+		modularizeImports: {
+			// ✅ Głębokie importy – działa globalnie
+			"react-bootstrap": {
+				transform: "react-bootstrap/{{member}}",
+			},
+			"react-icons": {
+				transform: "react-icons/{{member}}",
+			},
+			"framer-motion": {
+				transform: "framer-motion/{{member}}",
+			},
+			lodash: {
+				transform: "lodash/{{member}}",
+			},
+		},
 	},
 
 	/**
-	 * ✅ Bezpieczne optymalizacje kodu — bez wpływu na layout
+	 * ✅ Bezpieczne optymalizacje kodu
 	 */
 	compiler: {
 		removeConsole: process.env.NODE_ENV === "production",
 		reactRemoveProperties: true,
-		modularizeImports: {
-			"react-icons": { transform: "react-icons/{{member}}" },
-			"framer-motion": { transform: "framer-motion/{{member}}" },
-		},
 	},
 
+	/**
+	 * ✅ Automatyczny preload fontów
+	 */
 	async head() {
 		return { link: addFontPreload() };
 	},
 
+	/**
+	 * ✅ Nagłówki HTTP – cache, CORS, bezpieczeństwo
+	 */
 	async headers() {
 		if (process.env.NODE_ENV === "development") return [];
 		return [
