@@ -1864,6 +1864,46 @@ article:hover {
 }
 
 /* =============================
+   🧊 LIQUID GLASS STYLE (Apple/VisionOS look)
+============================= */
+:root {
+	--glass-bg: rgba(255, 255, 255, 0.08);
+	--glass-border: rgba(255, 255, 255, 0.25);
+	--glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+	--glass-blur: 22px;
+	--accent: #00f0ff;
+	--accent-glow: 0 0 16px rgba(0, 240, 255, 0.6);
+}
+
+/* 🧊 Karty z efektem szkła (bez tła sekcji) */
+.glass-tile,
+.review-card,
+.tech-tile {
+	position: relative;
+	background: linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.15),
+			rgba(255, 255, 255, 0.04)
+		),
+		var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	border-radius: 18px;
+	box-shadow: var(--glass-shadow);
+	backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%);
+	color: #fff;
+	overflow: hidden;
+	transition: all 0.35s ease;
+}
+.glass-tile:hover,
+.review-card:hover,
+.tech-tile:hover {
+	transform: translateY(-5px);
+	background: rgba(255, 255, 255, 0.12);
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), var(--accent-glow);
+}
+
+/* =============================
    🌟 GOOGLE REVIEWS – auto slider (loop)
 ============================= */
 .reviews-snap {
@@ -1907,7 +1947,7 @@ article:hover {
 	opacity: 0.85;
 }
 
-/* ✅ płynny niekończący się slide */
+/* 🔁 Infinite slide */
 @keyframes reviewsAutoSlide {
 	0% {
 		transform: translateX(0);
@@ -1917,7 +1957,7 @@ article:hover {
 	}
 }
 
-/* zatrzymanie na hover */
+/* ⏸ Pause on hover */
 .reviews-snap:hover .reviews-track {
 	animation-play-state: paused;
 }
@@ -1957,7 +1997,7 @@ article:hover {
 	color: #fff;
 }
 
-/* płynne auto przesuwanie */
+/* 🔁 Infinite motion */
 @keyframes techbarAutoSlide {
 	0% {
 		transform: translateX(0);
@@ -1971,7 +2011,7 @@ article:hover {
 }
 
 /* =============================
-   🌟 ANIMACJE ŚWIATŁA (liquid reflection)
+   ✨ Odbicie światła
 ============================= */
 .review-card::before,
 .tech-tile::before {

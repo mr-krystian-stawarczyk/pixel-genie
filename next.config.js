@@ -1,7 +1,6 @@
 /**
- * ✅ NEXT CONFIG – pełna, zoptymalizowana wersja z modularnymi importami i preloadem fontów.
- * - Nie usuwa Bootstrapa, ale pozwala importować go głęboko (per-komponent) aby zmniejszyć JS.
- * - Nie łamie SSR / export / Netlify setup.
+ * ✅ NEXT CONFIG – zoptymalizowana pełna wersja
+ * Dla Next 14+ / Netlify, z preloadem fontów i nowoczesnym buildem.
  */
 
 const path = require("path");
@@ -11,7 +10,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 /**
- * ✅ Automatyczny preload lokalnych fontów (Poppins WOFF2)
+ * ✅ Automatyczny preload lokalnych fontów (np. /public/fonts/poppins/*.woff2)
  */
 function addFontPreload() {
 	const fontDir = path.join(__dirname, "public/fonts/poppins");
@@ -31,8 +30,8 @@ const nextConfig = withBundleAnalyzer({
 	reactStrictMode: true,
 	compress: true,
 	swcMinify: true,
-	output: "export",
 	trailingSlash: true,
+	output: "export",
 
 	images: {
 		unoptimized: true,
@@ -42,48 +41,33 @@ const nextConfig = withBundleAnalyzer({
 
 	outputFileTracingRoot: path.join(__dirname),
 
-	/**
-	 * ✅ Eksperymentalne funkcje – stabilne w Next 14+
-	 */
+	/** ✅ Eksperymentalne / optymalizacyjne opcje **/
 	experimental: {
-		legacyBrowsers: false, // usuwa zbędne polyfille (lepszy TBT)
+		legacyBrowsers: false, // usuwa niepotrzebne polyfille
+		esmExternals: true,
 		optimizeCss: true,
 		scrollRestoration: true,
 		modularizeImports: {
-			// ✅ Głębokie importy – działa globalnie
-			"react-bootstrap": {
-				transform: "react-bootstrap/{{member}}",
-			},
-			"react-icons": {
-				transform: "react-icons/{{member}}",
-			},
-			"framer-motion": {
-				transform: "framer-motion/{{member}}",
-			},
-			lodash: {
-				transform: "lodash/{{member}}",
-			},
+			"react-bootstrap": { transform: "react-bootstrap/{{member}}" },
+			"react-icons": { transform: "react-icons/{{member}}" },
+			"framer-motion": { transform: "framer-motion/{{member}}" },
+			lodash: { transform: "lodash/{{member}}" },
 		},
 	},
 
-	/**
-	 * ✅ Bezpieczne optymalizacje kodu
-	 */
+	/** ✅ Kompilacja SWC – czyszczenie i redukcja runtime JS **/
 	compiler: {
 		removeConsole: process.env.NODE_ENV === "production",
 		reactRemoveProperties: true,
+		transformMixedEsModules: true,
 	},
 
-	/**
-	 * ✅ Automatyczny preload fontów
-	 */
+	/** ✅ Automatyczny preload fontów **/
 	async head() {
 		return { link: addFontPreload() };
 	},
 
-	/**
-	 * ✅ Nagłówki HTTP – cache, CORS, bezpieczeństwo
-	 */
+	/** ✅ Cache i nagłówki bezpieczeństwa **/
 	async headers() {
 		if (process.env.NODE_ENV === "development") return [];
 		return [

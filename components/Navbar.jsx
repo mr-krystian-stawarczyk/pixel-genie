@@ -1,13 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import {
-	Navbar,
-	Nav,
-	Container,
-	Button,
-	Dropdown,
-	NavDropdown,
-} from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";

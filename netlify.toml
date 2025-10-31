@@ -1,5 +1,5 @@
 ############################
-# ✅ Build settings
+# ✅ BUILD SETTINGS
 ############################
 [build]
   command = "npm run build"
@@ -8,104 +8,36 @@
   [build.environment]
     NODE_VERSION = "20"
     NEXT_TELEMETRY_DISABLED = "1"
+    NPM_FLAGS = "--legacy-peer-deps"
+    TZ = "Europe/Berlin"
+    # ✅ zwiększa cache buildów Next.js
+    NETLIFY_USE_YARN_CACHE = "true"
 
 ############################
-# ✅ Functions
+# ✅ FUNCTIONS
 ############################
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
   external_node_modules = ["@resvg/resvg-js", "satori"]
+  included_files = ["public/**/*"]
 
 ############################
-# ✅ Redirects for static export pages
+# ✅ REDIRECTS (STATIC EXPORT)
 ############################
-# blog post routing mapping for static export
+# Blog posts
 [[redirects]]
   from = "/tips/*"
   to = "/tips/:splat/index.html"
   status = 200
 
-# ✅ ensure sitemap is directly accessible for crawling
+# Sitemap – directly accessible
 [[redirects]]
   from = "/sitemap.xml"
   to = "/sitemap.xml"
   status = 200
 
-############################
-# ✅ Security + Cache defaults
-############################
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-    X-Frame-Options = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
-
-############################
-# ✅ Static Assets Cache
-############################
-[[headers]]
-  for = "/_next/static/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/fonts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    Content-Type = "font/ttf"
-    Access-Control-Allow-Origin = "*"
-
-############################
-# ✅ Sitemap Cache (Google crawls often!)
-############################
-[[headers]]
-  for = "/sitemap.xml"
-  [headers.values]
-    Cache-Control = "public, max-age=86400, must-revalidate"
-
-############################
-# ✅ HTML Cache (but refreshes frequently)
-############################
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=60, must-revalidate"
-
-############################
-# ✅ Blog Pages - Always fresh for OG/Share
-############################
-[[headers]]
-  for = "/tips/*"
-  [headers.values]
-    Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
-
-############################
-# ✅ Translation function caching
-############################
-[[headers]]
-  for = "/.netlify/functions/translate"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-    
-[[headers]]
-  for = "/rss.xml"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
-
-[[headers]]
-  for = "/sitemap-blog.xml"
-  [headers.values]
-    Cache-Control = "public, max-age=86400, must-revalidate"
-
+# Prevent access to restricted paths
 [[redirects]]
   from = "/cgi/*"
   to = "/404"
@@ -121,3 +53,92 @@
   to = "/404"
   status = 403
 
+############################
+# ✅ SECURITY HEADERS
+############################
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=(), payment=(), usb=()"
+    Cross-Origin-Resource-Policy = "same-origin"
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Opener-Policy = "same-origin"
+    X-DNS-Prefetch-Control = "on"
+
+############################
+# ✅ STATIC ASSET CACHE
+############################
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+    Content-Type = "font/woff2"
+
+############################
+# ✅ XML + RSS
+############################
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+[[headers]]
+  for = "/rss.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/sitemap-blog.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+############################
+# ✅ HTML (short cache)
+############################
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=60, must-revalidate"
+
+############################
+# ✅ BLOG PAGES (no cache)
+############################
+[[headers]]
+  for = "/tips/*"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+
+############################
+# ✅ FUNCTIONS CACHE (translate API etc.)
+############################
+[[headers]]
+  for = "/.netlify/functions/translate"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+############################
+# ✅ PERFORMANCE OPTIMIZATION
+############################
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 🧠 wskazówki dla preconnect (Google Fonts, Analytics)
+    Link = "</fonts/poppins/poppins-regular.woff2>; rel=preload; as=font; type=font/woff2; crossorigin=anonymous"
+    Timing-Allow-Origin = "*"
+    # 🧩 Compression
+    Content-Encoding = "br"
