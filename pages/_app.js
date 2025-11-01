@@ -5,7 +5,9 @@ import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+if (typeof window !== "undefined") {
+	import("bootstrap/dist/css/bootstrap.min.css");
+}
 
 import { initGA, gaPageview, GA_ID, gaEvent } from "@/lib/analytics";
 import { getCookie } from "cookies-next";
@@ -50,13 +52,22 @@ function AppContent({ Component, pageProps }) {
 		return () => window.removeEventListener("cookieAccepted", onAccept);
 	}, []);
 
-	// ✅ Google Analytics (tylko po zgodzie)
+	// ✅ Google Analytics (tylko po zgodzie) – lazy init (TBT fix)
 	useEffect(() => {
 		if (process.env.NODE_ENV !== "production") return;
 		if (!hasConsent) return;
-		initGA();
-		gaPageview(window.location.pathname);
-		window.gtagInitialized = true;
+
+		const bootGA = () => {
+			initGA();
+			gaPageview(window.location.pathname);
+			window.gtagInitialized = true;
+		};
+
+		if ("requestIdleCallback" in window) {
+			requestIdleCallback(bootGA, { timeout: 2000 });
+		} else {
+			setTimeout(bootGA, 2000);
+		}
 	}, [hasConsent]);
 
 	// ✅ Pageview przy zmianie trasy

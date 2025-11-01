@@ -122,7 +122,11 @@ const NavbarComp = ({ toggleTheme }) => {
 				fixed="top"
 				style={{
 					height: "70px",
-					backgroundColor: scrolled ? navbarColor : "transparent",
+					backgroundColor: scrolled
+						? navbarColor // po scrollu — biały z lekkim cieniem
+						: currentTheme === "light"
+						? "#ffffff"
+						: "rgba(0, 0, 0, 0.85)", // ciemne przezroczyste tło w dark mode
 					backdropFilter: scrolled ? "blur(12px)" : "none",
 					transition: "background-color 0.4s ease, box-shadow 0.3s ease",
 					boxShadow: scrolled ? "0 2px 10px rgba(0,0,0,0.1)" : "none",
@@ -145,7 +149,11 @@ const NavbarComp = ({ toggleTheme }) => {
 						<span
 							className="fw-bold"
 							style={{
-								color: textColor,
+								color: scrolled
+									? "#000" // po scrollu – zawsze czarny tekst
+									: currentTheme === "light"
+									? "#000" // w light theme – czarny
+									: "#fff", // w dark theme – biały
 								fontSize: "1.2rem",
 								transition: "color 0.3s ease",
 							}}

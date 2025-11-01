@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useTheme } from "next-themes";
@@ -6,17 +5,15 @@ import { useTranslation } from "react-i18next";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import dynamic from "next/dynamic";
+import dynamic from "next/dynamic"; // ✅ tylko raz!
 import { hasCookie } from "cookies-next";
 import { gaEvent } from "@/lib/analytics";
 import AutoTranslate from "./AutoTranslate";
 
-let MotionDiv = (props) => <div {...props} />;
-if (typeof window !== "undefined") {
-	import("framer-motion").then((mod) => {
-		MotionDiv = mod.motion.div;
-	});
-}
+const MotionDiv = dynamic(
+	() => import("framer-motion").then((mod) => mod.motion.div),
+	{ ssr: false, loading: () => <div /> }
+);
 
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
@@ -115,9 +112,10 @@ export default function Header1() {
 				style={{ minHeight: "100vh" }}
 			>
 				<MotionDiv
+					className="motion-safe"
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5, ease: "easeOut" }}
+					transition={{ duration: 1, ease: "easeOut" }}
 				>
 					<Card className="bg-transparent border-0 blur p-md-4 rounded-4">
 						<Card.Body>

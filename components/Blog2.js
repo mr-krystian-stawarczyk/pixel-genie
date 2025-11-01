@@ -232,8 +232,11 @@ export default function Blog2() {
 						<p className="fs-5">
 							Webdesign, SEO & Growth – Strategien für mehr Kunden.
 						</p>
-						<Button href="#contact" className="btn-premium mt-3 ">
-							<span className="my-2">Kostenlose Analyse 🚀</span>
+						<Button
+							href="#kontakt"
+							className="btn-premium mt-3 align-items-center justify-content-center align-self-center"
+						>
+							<span className="text-white">Kostenlose Analyse 🚀</span>
 						</Button>
 					</Col>
 				</Row>

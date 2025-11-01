@@ -3,7 +3,7 @@ import Head from "next/head";
 import React from "react";
 import dynamic from "next/dynamic";
 import IdleMount from "@/components/IdleMount";
-import Header1 from "@/components/Header1";
+import Header1 from "@/components/Header1.client";
 
 // 🔹 Dynamiczne importy sekcji pod foldem
 const Header2 = dynamic(() => import("@/components/Header2"), { ssr: false });

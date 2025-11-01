@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 	blogPosts.forEach((p) => p.tags?.forEach((t) => tags.add(t.toLowerCase())));
 	return {
 		paths: Array.from(tags).map((tag) => ({ params: { tag } })),
-		fallback: false,
+		fallback: "blocking",
 	};
 }
 

@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 		paths: citiesData.map((c) => ({
 			params: { city: (c.slug ?? slugify(c.city)).toLowerCase() },
 		})),
-		fallback: false,
+		fallback: "blocking",
 	};
 }
 
