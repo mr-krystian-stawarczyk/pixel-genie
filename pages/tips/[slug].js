@@ -22,7 +22,7 @@ const SITE_ORIGIN = "https://pixel-genie.de";
 export async function getStaticPaths() {
 	return {
 		paths: blogPosts.map((p) => ({ params: { slug: p.slug } })),
-		fallback: "blocking", // static export safe
+		fallback: false, // static export safe
 	};
 }
 

@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 	const paths = citiesData.map((c) => ({
 		params: { city: (c.slug ?? slugify(c.city)).toLowerCase() },
 	}));
-	return { paths, fallback: "blocking" };
+	return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
