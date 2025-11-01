@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import {
@@ -11,15 +11,9 @@ import {
 	ProgressBar,
 } from "react-bootstrap";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import blogPosts from "@/data/blogPosts";
 import BlogIndexListPro from "./BlogIndexListPro";
 import { blogListJsonLd } from "@/lib/seoSchema";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const SITE_ORIGIN = "https://pixel-genie.de";
 const PAGE_URL = `${SITE_ORIGIN}/webdesignblog`;
@@ -36,30 +30,181 @@ const teaser = (article, len = 220) =>
 		? article.description
 		: article.description?.slice(0, len) + "…";
 
-export default function Blog2() {
-	const [i, setI] = useState(0);
+/* === 🖤 AutoSlider v4 – dark theme + interactive progress bar === */
+function AutoSlider({ posts, interval = 8000 }) {
+	const [index, setIndex] = useState(0);
+	const timeoutRef = useRef(null);
+	const length = posts.length;
 
-	const settings = useMemo(
-		() => ({
-			dots: true,
-			infinite: true,
-			speed: 600,
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			autoplay: true,
-			autoplaySpeed: 8500,
-			arrows: false,
-			pauseOnHover: true,
-			adaptiveHeight: true,
-			beforeChange: (_, next) => setI(next),
-		}),
-		[]
+	const next = () => setIndex((prev) => (prev + 1) % length);
+	const prev = () => setIndex((prev) => (prev - 1 + length) % length);
+
+	// autoplay
+	useEffect(() => {
+		timeoutRef.current = setTimeout(next, interval);
+		return () => clearTimeout(timeoutRef.current);
+	}, [index]);
+
+	// kliknięcie w progress bar
+	const handleProgressClick = (e) => {
+		const rect = e.currentTarget.getBoundingClientRect();
+		const clickX = e.clientX - rect.left;
+		const clickedIndex = Math.floor((clickX / rect.width) * length);
+		setIndex(clickedIndex);
+	};
+
+	const progress = ((index + 1) / length) * 100;
+
+	return (
+		<div className="auto-slider">
+			{posts.map((post, i) => (
+				<div key={post.slug} className={`slide ${i === index ? "active" : ""}`}>
+					<Link href={`/tips/${post.slug}`} className="text-decoration-none">
+						<div className="slide-content">
+							<div className="img-box">
+								<Image
+									src={post.imgSrc || post.cover}
+									alt={post.title}
+									fill
+									sizes="100vw"
+									priority={i === 0}
+									className="slide-img"
+								/>
+							</div>
+							<div className="text-box">
+								<h3 className="fw-bold mb-2">{post.title}</h3>
+								<p className="small mb-2 opacity-75">
+									{toDeDate(post.date)} · {post.readingTime}
+								</p>
+								<p className="teaser mb-3">{teaser(post, 200)}</p>
+								<span className="fw-bold text-info">Weiterlesen →</span>
+							</div>
+						</div>
+					</Link>
+				</div>
+			))}
+
+			{/* interactive progress bar */}
+			<div className="slide-progress" onClick={handleProgressClick}>
+				<div className="bar" style={{ width: `${progress}%` }} />
+				<div className="dot" style={{ left: `calc(${progress}% - 8px)` }} />
+			</div>
+
+			<style jsx>{`
+				.auto-slider {
+					position: relative;
+					width: 100%;
+					overflow: hidden;
+					border-radius: 18px;
+					box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+				}
+				.slide {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					opacity: 0;
+					transform: translateY(10px);
+					transition: all 0.8s ease-in-out;
+					pointer-events: none;
+				}
+				.slide.active {
+					opacity: 1;
+					transform: translateY(0);
+					pointer-events: auto;
+					position: relative;
+					z-index: 2;
+				}
+
+				.slide-content {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					align-items: center;
+					gap: 40px;
+					padding: 2.5rem;
+				}
+				.img-box {
+					position: relative;
+					width: 100%;
+					aspect-ratio: 16 / 9;
+					overflow: hidden;
+					border-radius: 14px;
+				}
+				.slide-img {
+					object-fit: cover;
+					object-position: center;
+					filter: brightness(0.75);
+					transform: scale(1.05);
+					transition: transform 6s ease, filter 0.3s ease;
+				}
+				.slide.active .slide-img {
+					transform: scale(1);
+					filter: brightness(0.9);
+				}
+				.text-box {
+					text-align: left;
+				}
+				.teaser {
+					color: rgba(255, 255, 255, 0.85);
+				}
+
+				/* progress bar (nav) */
+				.slide-progress {
+					position: relative;
+					margin: 28px auto 10px auto;
+					width: 90%;
+					height: 6px;
+					background: rgba(255, 255, 255, 0.15);
+					border-radius: 3px;
+					cursor: pointer;
+					transition: background 0.3s ease;
+				}
+				.slide-progress:hover {
+					background: rgba(255, 255, 255, 0.25);
+				}
+				.bar {
+					position: absolute;
+					top: 0;
+					left: 0;
+					height: 100%;
+					background: #0dcaf0;
+					border-radius: 3px;
+					box-shadow: 0 0 8px rgba(13, 202, 240, 0.6);
+					transition: width 0.5s ease;
+				}
+				.dot {
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+					width: 16px;
+					height: 16px;
+					background: #0dcaf0;
+					border-radius: 50%;
+					box-shadow: 0 0 12px rgba(13, 202, 240, 0.8);
+					cursor: grab;
+					transition: transform 0.2s ease;
+				}
+				.dot:hover {
+					transform: translateY(-50%) scale(1.15);
+				}
+
+				@media (max-width: 991px) {
+					.slide-content {
+						grid-template-columns: 1fr;
+						padding: 1.5rem;
+						text-align: center;
+					}
+					.text-box {
+						text-align: center;
+					}
+				}
+			`}</style>
+		</div>
 	);
+}
+/* === === === */
 
-	const progress = blogPosts.length
-		? Math.round(((i + 1) / blogPosts.length) * 100)
-		: 0;
-
+export default function Blog2() {
 	const blogLd = useMemo(
 		() => blogListJsonLd({ posts: blogPosts, pageUrl: PAGE_URL }),
 		[]
@@ -87,8 +232,8 @@ export default function Blog2() {
 						<p className="fs-5">
 							Webdesign, SEO & Growth – Strategien für mehr Kunden.
 						</p>
-						<Button href="#contact" className="btn-premium mt-3">
-							Kostenlose Analyse 🚀
+						<Button href="#contact" className="btn-premium mt-3 ">
+							<span className="my-2">Kostenlose Analyse 🚀</span>
 						</Button>
 					</Col>
 				</Row>
@@ -96,63 +241,11 @@ export default function Blog2() {
 				{/* === HERO SLIDER === */}
 				<Row className="justify-content-center text-center mb-5">
 					<Col lg={10}>
-						<Slider {...settings}>
-							{blogPosts.slice(0, 6).map((post, index) => (
-								<div key={post.slug || index} className="px-2">
-									<Link
-										href={`/tips/${
-											post.slug || encodeURIComponent(post.title)
-										}`}
-										prefetch
-										className="text-decoration-none"
-									>
-										<Card className="rounded shadow-lg border-0 overflow-hidden hover-lift bg-transparent">
-											<div
-												className="position-relative"
-												style={{ aspectRatio: "16/9" }}
-											>
-												<Image
-													src={post.imgSrc || post.cover}
-													alt={post.title}
-													fill
-													priority={index === 0}
-													loading={index > 0 ? "lazy" : undefined}
-													sizes="100vw"
-													className="w-100"
-													style={{ objectFit: "cover" }}
-												/>
-											</div>
-
-											<Card.Body className="p-4 text-start">
-												<h3 className="fw-bold">{post.title}</h3>
-												<p className="text-muted small">
-													{toDeDate(post.date)} · {post.readingTime}
-												</p>
-												<p>{teaser(post)}</p>
-												<span className="fw-bold text-black bg-white rounded">
-													Weiterlesen →
-												</span>
-											</Card.Body>
-										</Card>
-									</Link>
-								</div>
-							))}
-						</Slider>
+						<AutoSlider posts={blogPosts.slice(0, 6)} />
 					</Col>
 				</Row>
 
-				<Row className="justify-content-center mb-4">
-					<Col lg={8}>
-						<ProgressBar
-							now={progress}
-							style={{ height: 8 }}
-							striped
-							variant="info"
-						/>
-					</Col>
-				</Row>
-
-				{/* === PRO LISTA: FILTRY + INFINITE SCROLL === */}
+				{/* === PRO LISTA === */}
 				<Row className="justify-content-center">
 					<Col lg={10}>
 						<BlogIndexListPro posts={blogPosts} />

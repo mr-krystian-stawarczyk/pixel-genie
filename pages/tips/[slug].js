@@ -186,7 +186,7 @@ export default function BlogPostPage({ article, prev, next, related }) {
 			/>
 			<ReadingProgressBar />
 			<Container className="pt-5">
-				<Row className="justify-content-center">
+				<Row className="justify-content-center pt-5 rounded">
 					<Col lg={8}>
 						<article id={`article-${article.slug}`} className="blog-article">
 							<div
