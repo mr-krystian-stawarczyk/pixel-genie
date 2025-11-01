@@ -85,5 +85,15 @@ module.exports = {
 		};
 	},
 
-	exclude: ["/404", "/500", "/_app", "/_document", "/_error", "/pl/*", "/nl/*"],
+	exclude: [
+		"/404",
+		"/500",
+		"/_app",
+		"/_document",
+		"/_error",
+		"/pl/*",
+		"/nl/*",
+		"/tips/tag", // strona indeksu tagów
+		"/tips/tag/*",
+	],
 };

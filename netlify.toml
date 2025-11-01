@@ -113,3 +113,28 @@
   for = "/tips/*"
   [headers.values]
     Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+# ✅ Next statics (hashowane – bezpieczne 1 rok)
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ✅ Ogólne assety
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ✅ Obrazy w /public/images
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ✅ HTML (krótko – bo SSR/ISR)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=60, must-revalidate"
+
+# ✅ Blog – no-store (masz już): zostaw tak jak jest

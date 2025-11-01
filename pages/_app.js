@@ -132,6 +132,7 @@ function AppContent({ Component, pageProps }) {
 				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
+				<link rel="preconnect" href="https://www.google-analytics.com" />
 				{/* ✅ preload fontów */}
 				<link
 					rel="preload"

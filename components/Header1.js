@@ -94,21 +94,22 @@ export default function Header1() {
 			style={{ minHeight: "100vh" }}
 			aria-label="Hero Header"
 		>
-			<div
-				className="particles-container position-absolute w-100 h-100"
-				style={{
-					inset: 0,
-					background:
-						theme === "light"
-							? "#ffffff"
-							: "linear-gradient(180deg, #040b1a 0%, #000000 100%)",
-					transition: "background 0.4s ease-in-out",
-				}}
-				aria-hidden="true"
-			>
-				{showParticles && <ParticlesComponent />}
-			</div>
-
+			{showParticles && (
+				<div
+					className="particles-container position-absolute w-100 h-100"
+					style={{
+						inset: 0,
+						background:
+							theme === "light"
+								? "#ffffff"
+								: "linear-gradient(180deg, #040b1a 0%, #000000 100%)",
+						transition: "background 0.4s ease-in-out",
+					}}
+					aria-hidden="true"
+				>
+					<ParticlesComponent />
+				</div>
+			)}
 			<Container
 				className="d-flex flex-column justify-content-center align-items-center text-center position-relative header-content"
 				style={{ minHeight: "100vh" }}
