@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import motion from "@/components/MotionLite";
 import Link from "next/link";
 import Image from "next/image";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
@@ -36,7 +36,7 @@ export default function Header3() {
 								</p>
 								<p>Mehr Besucher → Mehr Anfragen → Mehr Umsatz 📈</p>
 								<div className="text-center mt-4">
-									<Link href="/seo">
+									<Link href="/suchmaschinenoptimierung">
 										<Button className="btn-nav text-white" variant="success">
 											SEO OPTIMIERUNG →
 										</Button>

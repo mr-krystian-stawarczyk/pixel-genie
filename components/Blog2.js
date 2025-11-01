@@ -1,4 +1,3 @@
-// /components/Blog2.js
 "use client";
 import React, { useMemo, useState } from "react";
 import Head from "next/head";
@@ -33,26 +32,29 @@ const toDeDate = (iso) =>
 	});
 
 const teaser = (article, len = 220) =>
-	article.description.length <= len
+	article.description?.length <= len
 		? article.description
-		: article.description.slice(0, len) + "…";
+		: article.description?.slice(0, len) + "…";
 
 export default function Blog2() {
 	const [i, setI] = useState(0);
 
-	const settings = {
-		dots: true,
-		infinite: true,
-		speed: 600,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		autoplay: true,
-		autoplaySpeed: 8500,
-		arrows: false,
-		pauseOnHover: true,
-		adaptiveHeight: true,
-		beforeChange: (_, next) => setI(next),
-	};
+	const settings = useMemo(
+		() => ({
+			dots: true,
+			infinite: true,
+			speed: 600,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			autoplay: true,
+			autoplaySpeed: 8500,
+			arrows: false,
+			pauseOnHover: true,
+			adaptiveHeight: true,
+			beforeChange: (_, next) => setI(next),
+		}),
+		[]
+	);
 
 	const progress = blogPosts.length
 		? Math.round(((i + 1) / blogPosts.length) * 100)
@@ -85,21 +87,22 @@ export default function Blog2() {
 						<p className="fs-5">
 							Webdesign, SEO & Growth – Strategien für mehr Kunden.
 						</p>
-
 						<Button href="#contact" className="btn-premium mt-3">
 							Kostenlose Analyse 🚀
 						</Button>
 					</Col>
 				</Row>
 
-				{/* HERO SLIDER */}
+				{/* === HERO SLIDER === */}
 				<Row className="justify-content-center text-center mb-5">
 					<Col lg={10}>
 						<Slider {...settings}>
 							{blogPosts.slice(0, 6).map((post, index) => (
-								<div key={post.slug} className="px-2">
+								<div key={post.slug || index} className="px-2">
 									<Link
-										href={`/tips/${post.slug}`}
+										href={`/tips/${
+											post.slug || encodeURIComponent(post.title)
+										}`}
 										prefetch
 										className="text-decoration-none"
 									>
@@ -109,7 +112,7 @@ export default function Blog2() {
 												style={{ aspectRatio: "16/9" }}
 											>
 												<Image
-													src={post.imgSrc}
+													src={post.imgSrc || post.cover}
 													alt={post.title}
 													fill
 													priority={index === 0}
@@ -126,7 +129,9 @@ export default function Blog2() {
 													{toDeDate(post.date)} · {post.readingTime}
 												</p>
 												<p>{teaser(post)}</p>
-												<span className="fw-bold text-blue">Weiterlesen →</span>
+												<span className="fw-bold text-black bg-white rounded">
+													Weiterlesen →
+												</span>
 											</Card.Body>
 										</Card>
 									</Link>
@@ -147,7 +152,7 @@ export default function Blog2() {
 					</Col>
 				</Row>
 
-				{/* PRO LISTA: FILTRY + INFINITE SCROLL */}
+				{/* === PRO LISTA: FILTRY + INFINITE SCROLL === */}
 				<Row className="justify-content-center">
 					<Col lg={10}>
 						<BlogIndexListPro posts={blogPosts} />

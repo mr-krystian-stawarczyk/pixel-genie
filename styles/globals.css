@@ -2127,3 +2127,149 @@ article:hover {
 	outline: none;
 	box-shadow: 0 0 0 0.2rem rgba(0, 54, 129, 0.35);
 }
+.motion-lite {
+	backface-visibility: hidden;
+}
+
+.review-card {
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	background: radial-gradient(
+			120% 120% at 0% 0%,
+			rgba(99, 102, 241, 0.08),
+			transparent 60%
+		),
+		linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.85));
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+	border-radius: 18px;
+}
+.review-card .stars {
+	display: inline-flex;
+	gap: 2px;
+	opacity: 0.9;
+}
+.review-card .stars svg {
+	width: 16px;
+	height: 16px;
+	fill: #fbbf24;
+}
+.avatar-soft {
+	width: 40px;
+	height: 40px;
+	border-radius: 999px;
+	display: grid;
+	place-items: center;
+	font-weight: 700;
+	color: #111;
+	background: #f3f4f6;
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+.btn-gradient {
+	background: linear-gradient(135deg, #6366f1, #22c55e);
+	border: none;
+	color: #fff;
+	box-shadow: 0 10px 20px rgba(34, 197, 94, 0.25);
+}
+.btn-gradient:hover {
+	filter: brightness(1.04);
+}
+
+.techbar .marquee {
+	overflow: hidden;
+	mask-image: linear-gradient(
+		90deg,
+		transparent,
+		#000 10%,
+		#000 90%,
+		transparent
+	);
+}
+.techbar .track {
+	display: flex;
+	gap: 16px;
+	padding: 8px 0;
+	animation: slide 28s linear infinite;
+	will-change: transform;
+}
+.techbar .pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 14px;
+	border-radius: 999px;
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+.techbar .pill span {
+	font-weight: 600;
+	opacity: 0.9;
+}
+@keyframes slide {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-33.333%);
+	}
+}
+
+/* Blog2 scroll snap */
+.snap-wrap {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 90%;
+	gap: 16px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	padding-bottom: 4px;
+}
+@media (min-width: 768px) {
+	.snap-wrap {
+		grid-auto-columns: 48%;
+	}
+}
+@media (min-width: 1200px) {
+	.snap-wrap {
+		grid-auto-columns: 30%;
+	}
+}
+.snap-card {
+	scroll-snap-align: start;
+}
+
+/* Reduce forced reflow hints */
+img {
+	content-visibility: auto;
+}
+/* Google Reviews fix */
+.review-card:hover {
+	background: rgba(255, 255, 255, 0.12) !important;
+	color: #fff !important;
+}
+.review-card:hover .review-text {
+	color: #fff !important;
+}
+
+/* Blog2 snap scroll */
+.snap-wrap {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 90%;
+	gap: 16px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	padding-bottom: 4px;
+}
+.snap-card {
+	scroll-snap-align: start;
+}
+@media (min-width: 768px) {
+	.snap-wrap {
+		grid-auto-columns: 48%;
+	}
+}
+@media (min-width: 1200px) {
+	.snap-wrap {
+		grid-auto-columns: 30%;
+	}
+}

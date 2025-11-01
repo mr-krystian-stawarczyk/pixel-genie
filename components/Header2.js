@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import motion from "@/components/MotionLite";
 import Link from "next/link";
 import Image from "next/image";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";

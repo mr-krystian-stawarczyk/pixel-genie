@@ -9,7 +9,7 @@ import {
 	XIcon,
 	RedditIcon,
 } from "react-share";
-import { motion } from "framer-motion";
+import motion from "@/components/MotionLite";
 
 export default function ShareButtons({
 	url,
@@ -32,17 +32,21 @@ export default function ShareButtons({
 		navigator.share
 			? shareNative()
 			: window.open(
-					`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
+					`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+						url
+					)}&text=${encodeURIComponent(text)}`,
 					"_blank"
-				);
+			  );
 
 	const openReddit = () =>
 		navigator.share
 			? shareNative()
 			: window.open(
-					`https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`,
+					`https://www.reddit.com/submit?url=${encodeURIComponent(
+						url
+					)}&title=${encodeURIComponent(text)}`,
 					"_blank"
-				);
+			  );
 
 	const brandButtons = [
 		{
@@ -94,7 +98,7 @@ export default function ShareButtons({
 						repeat: Infinity,
 						ease: "easeInOut",
 					},
-				}
+			  }
 			: {};
 
 	return (

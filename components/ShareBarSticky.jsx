@@ -1,5 +1,5 @@
 import ShareButtons from "./ShareButtons";
-import { motion } from "framer-motion";
+import motion from "@/components/MotionLite";
 
 export default function ShareBarSticky({ isMobile, url, title, description }) {
 	return (

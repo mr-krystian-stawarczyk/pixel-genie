@@ -6,7 +6,7 @@ import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData";
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
-import { motion } from "framer-motion";
+import motion from "@/components/MotionLite";
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
 	ssr: false,
 	loading: () => null,

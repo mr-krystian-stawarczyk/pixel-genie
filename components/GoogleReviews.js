@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import Image from "next/image";
+import Link from "next/link";
 
 const REVIEW_LINK =
-	"https://www.google.com/search?q=pixel+genie+nettetal&ludocid=13238374149558357979#lrd=0x47c74dec2e1b84e7:0xb7d4548932d3176b,1,,,";
+	"https://www.google.com/search?sca_esv=a844ed52de55440e&sxsrf=AE3TifN3y1fxVE_WbjmvsF7dPhrap5Ktdw:1762021565611&kgmid=/g/11kk7451mc&q=Pixel-Genie+Webagentur,+Webseiten&shndl=30&shem=lcuae,uaasie,shrtsdl&source=sh/x/loc/uni/m1/1&kgs=8927d6c794ea4c37&utm_source=lcuae,uaasie,shrtsdl,sh/x/loc/uni/m1/1&sei=yVAGaaXXB4Crxc8PvvLpyQU";
 
 const REVIEWS = [
 	{
@@ -27,37 +27,25 @@ const REVIEWS = [
 ];
 
 export default function GoogleReviews() {
-	const ref = useRef(null);
-	const [inView, setInView] = useState(false);
+	const trackRef = useRef(null);
 
 	useEffect(() => {
-		const el = ref.current;
+		const el = trackRef.current;
 		if (!el) return;
-
-		const obs = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					setInView(true);
-					obs.disconnect();
-				}
-			},
-			{ threshold: 0.25 }
-		);
-
-		obs.observe(el);
-		return () => obs.disconnect();
+		let pos = 0;
+		let raf;
+		const animate = () => {
+			pos += 0.3;
+			if (pos >= el.scrollWidth / 2) pos = 0;
+			el.scrollLeft = pos;
+			raf = requestAnimationFrame(animate);
+		};
+		animate();
+		return () => cancelAnimationFrame(raf);
 	}, []);
 
 	return (
-		<motion.section
-			id="google-reviews"
-			ref={ref}
-			initial={{ opacity: 0, y: 30 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.7, ease: "easeOut" }}
-			viewport={{ once: true }}
-			className="pb-5 pt-2"
-		>
+		<section id="google-reviews" className="py-5 position-relative">
 			<Container>
 				<Row className="text-center mb-4">
 					<Col>
@@ -66,92 +54,85 @@ export default function GoogleReviews() {
 					</Col>
 				</Row>
 
-				{/* ✅ CSS Scroll Snap – brak JS, ultra lekki */}
-				{inView && (
-					<div className="reviews-snap">
-						<div className="reviews-track">
-							{[...REVIEWS, ...REVIEWS].map((r, i) => (
-								<Card
-									key={i}
-									className="review-card glass-tile text-center mx-auto"
-								>
-									<div className="google-icon-wrapper mx-auto mt-3">
-										<Image
-											src="/assets/google-icon.png"
-											width={30}
-											height={30}
-											alt="Google"
-											loading="lazy"
-										/>
-									</div>
-									<Card.Body>
-										<h5 className="fw-bold mt-2 text-black">{r.name}</h5>
-										<div className="stars" aria-label="5 Sterne">
-											★★★★★
-										</div>
-										<blockquote className="review-text fst-italic mt-2 mb-0">
-											“{r.text}”
-										</blockquote>
-									</Card.Body>
-								</Card>
-							))}
-						</div>
-					</div>
-				)}
+				<div className="reviews-slider" ref={trackRef}>
+					{[...REVIEWS, ...REVIEWS].map((r, i) => (
+						<Card key={i} className="review-card text-center mx-3">
+							<div className="google-icon-wrapper mx-auto mt-3">
+								<Image
+									src="/assets/google-icon.png"
+									width={32}
+									height={32}
+									alt="Google"
+									loading="lazy"
+								/>
+							</div>
+							<Card.Body>
+								<h5 className="fw-bold mt-2 mb-1 text-black">{r.name}</h5>
+								<div className="stars text-warning mb-2">★★★★★</div>
+								<blockquote className="review-text fst-italic mb-0">
+									“{r.text}”
+								</blockquote>
+							</Card.Body>
+						</Card>
+					))}
+				</div>
 
-				{/* CTA */}
 				<div className="text-center mt-4">
 					<Button
-						variant="outline-primary"
-						className="text-white glass-button"
+						as={Link}
 						href={REVIEW_LINK}
 						target="_blank"
 						rel="noopener noreferrer"
+						className="btn-outline-glass text-white"
 					>
-						<span style={{ color: "var(--text-color)" }}>
-							Weitere Bewertungen auf Google →
-						</span>
+						Weitere Bewertungen auf Google →
 					</Button>
 				</div>
 			</Container>
 
-			{/* ✅ Własny CSS wewnętrzny – możesz też przenieść do globals.css */}
 			<style jsx>{`
-				.reviews-snap {
-					display: grid;
-					grid-auto-flow: column;
-					grid-auto-columns: 85%;
+				.reviews-slider {
+					display: flex;
 					overflow-x: auto;
 					scroll-snap-type: x mandatory;
-					gap: 16px;
-					padding: 10px 0 20px;
+					gap: 1rem;
+					padding: 0.5rem 0 1.5rem;
 				}
 				.review-card {
-					scroll-snap-align: start;
-					min-width: 280px;
-					background-color: rgba(255, 255, 255, 0.08);
-					border: 1px solid rgba(255, 255, 255, 0.15);
-					border-radius: 14px;
-					transition: transform 0.3s ease;
+					flex: 0 0 320px;
+					scroll-snap-align: center;
+					background: var(--card-bg);
+					color: var(--card-text);
+					border-radius: 16px;
+					border: 1px solid rgba(255, 255, 255, 0.1);
+					backdrop-filter: blur(8px);
+					transition: transform 0.4s ease, background 0.3s ease;
 				}
 				.review-card:hover {
-					transform: translateY(-3px);
+					transform: translateY(-6px);
+					background: var(--card-bg-hover);
 				}
-				.stars {
-					color: #ffd700;
-					font-size: 1.1rem;
+				.btn-outline-glass {
+					border: 1px solid rgba(255, 255, 255, 0.25);
+					background: rgba(255, 255, 255, 0.05);
+					color: var(--text-color);
+					backdrop-filter: blur(10px);
 				}
-				@media (min-width: 768px) {
-					.reviews-snap {
-						grid-auto-columns: 45%;
-					}
+
+				:global(html[data-theme="dark"]) {
+					--card-bg: rgba(30, 30, 35, 0.9);
+					--card-bg-hover: rgba(255, 255, 255, 0.1);
+					--card-text: #fff;
+					--text-color: #fff;
 				}
-				@media (min-width: 1200px) {
-					.reviews-snap {
-						grid-auto-columns: 30%;
-					}
+
+				:global(html[data-theme="light"]) {
+					--card-bg: rgba(255, 255, 255, 0.9);
+					--card-bg-hover: rgba(240, 240, 240, 0.95);
+					--card-text: #111;
+					--text-color: #111;
 				}
 			`}</style>
-		</motion.section>
+		</section>
 	);
 }
