@@ -110,6 +110,12 @@ body {
 		max-width: 250px; /* Adjust size */
 	}
 }
+
+header,
+nav,
+footer {
+	min-height: 60px;
+}
 .arrow-animation2 {
 	position: absolute;
 	left: 25%;

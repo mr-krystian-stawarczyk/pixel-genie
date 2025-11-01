@@ -42,6 +42,7 @@ const nextConfig = withBundleAnalyzer({
 		esmExternals: true,
 		optimizeCss: true,
 		scrollRestoration: true,
+		optimizePackageImports: ["react-bootstrap", "framer-motion", "react-icons"],
 		modularizeImports: {
 			"react-bootstrap": { transform: "react-bootstrap/{{member}}" },
 			"react-icons": { transform: "react-icons/{{member}}" },

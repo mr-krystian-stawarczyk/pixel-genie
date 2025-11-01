@@ -89,7 +89,7 @@ function AppContent({ Component, pageProps }) {
 			ticking = true;
 			requestAnimationFrame(() => {
 				const scrollY = window.scrollY + window.innerHeight;
-				const percent = Math.min(100, (scrollY / docHeight) * 100);
+				const percent = Math.round((scrollY / docHeight) * 100);
 				for (const t of thresholds) {
 					if (percent >= t && lastSent < t) {
 						lastSent = t;

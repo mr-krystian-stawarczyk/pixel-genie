@@ -3,8 +3,14 @@ import Head from "next/head";
 import Link from "next/link";
 import { Container } from "react-bootstrap";
 import blogPosts from "@/data/blogPosts";
-import BlogIndexListPro from "@/components/BlogIndexListPro";
-
+import dynamic from "next/dynamic";
+const BlogIndexListPro = dynamic(
+	() => import("@/components/BlogIndexListPro"),
+	{
+		loading: () => <p>Lade Artikel...</p>,
+		ssr: false,
+	}
+);
 export async function getStaticPaths() {
 	const tags = new Set();
 	blogPosts.forEach((p) => p.tags?.forEach((t) => tags.add(t.toLowerCase())));
