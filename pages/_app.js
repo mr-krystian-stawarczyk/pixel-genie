@@ -19,7 +19,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import localFont from "next/font/local";
 
-// ✅ preładowanie fontów (tylko localFont - nie potrzebujesz <link rel="preload">)
+// ✅ preładowanie fontów (localFont sam dodaje preload)
 const poppins = localFont({
 	src: [
 		{
@@ -149,12 +149,12 @@ function AppContent({ Component, pageProps }) {
 				<link
 					rel="preconnect"
 					href="https://www.googletagmanager.com"
-					crossOrigin
+					crossOrigin="anonymous"
 				/>
 				<link
 					rel="preconnect"
 					href="https://www.google-analytics.com"
-					crossOrigin
+					crossOrigin="anonymous"
 				/>
 			</Head>
 
@@ -172,17 +172,11 @@ function AppContent({ Component, pageProps }) {
 							}
 							window.gtag = gtag;
 							gtag("js", new Date());
-							gtag("config", "${GA_ID}", { anonymize_ip: true });
+							gtag("config", GA_ID, { anonymize_ip: true }); // ✅ poprawione
 							window.gtagInitialized = true;
 							console.log("🔥 GA READY — tracking active");
 						}}
 					/>
-					<Script id="gtag-init" strategy="afterInteractive">{`
-						window.dataLayer = window.dataLayer || [];
-						function gtag(){dataLayer.push(arguments);}
-						gtag('js', new Date());
-						gtag('config', '${GA_ID}', { anonymize_ip: true });
-					`}</Script>
 				</>
 			)}
 

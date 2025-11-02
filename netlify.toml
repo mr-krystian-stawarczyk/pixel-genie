@@ -138,3 +138,15 @@
     Cache-Control = "public, max-age=60, must-revalidate"
 
 # ✅ Blog – no-store (masz już): zostaw tak jak jest
+
+############################
+# ✅ FIX: Google Analytics & Cross-Origin
+############################
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # pozwól ładowanie zewnętrznych skryptów (gtag.js, collect)
+    Cross-Origin-Embedder-Policy = "unsafe-none"
+    Cross-Origin-Opener-Policy = "unsafe-none"
+    Access-Control-Allow-Origin = "*"
+    Permissions-Policy = "interest-cohort=()"
