@@ -141,21 +141,28 @@ export default function GoogleReviews() {
 					width: 100vw;
 					max-width: 100vw;
 					box-sizing: border-box;
-					mask-image: linear-gradient(
-						to right,
-						transparent,
-						black 10%,
-						black 90%,
-						transparent
-					);
-					-webkit-mask-image: linear-gradient(
-						to right,
-						transparent,
-						black 10%,
-						black 90%,
-						transparent
-					);
 				}
+
+				/* ✅ maska tylko na desktop */
+				@media (min-width: 768px) {
+					.reviews-wrapper {
+						mask-image: linear-gradient(
+							to right,
+							transparent,
+							black 10%,
+							black 90%,
+							transparent
+						);
+						-webkit-mask-image: linear-gradient(
+							to right,
+							transparent,
+							black 10%,
+							black 90%,
+							transparent
+						);
+					}
+				}
+
 				.reviews-wrapper {
 					position: relative;
 					overflow: visible;
