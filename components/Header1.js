@@ -166,13 +166,6 @@ export default function Header1() {
 										Jetzt kostenloses Audit anfordern
 									</AutoTranslate>
 								</ContactButton>
-								<Button
-									as="button"
-									onClick={() => handleCta("contact")}
-									className="btn-premium-footer text-white fw-bold"
-								>
-									<AutoTranslate>E-Mail Kontakt</AutoTranslate>
-								</Button>
 							</div>
 						</Card.Body>
 					</Card>

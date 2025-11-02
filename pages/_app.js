@@ -162,26 +162,21 @@ function AppContent({ Component, pageProps }) {
 			</Head>
 
 			{/* ✅ Google Analytics */}
-			{process.env.NODE_ENV === "production" && hasConsent && (
+			{hasConsent && GA_ID && (
 				<>
 					<Script
 						src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
 						strategy="afterInteractive"
 						onLoad={() => {
-							setGAReady(); // ✅ dopiero teraz GA aktywne
+							setGAReady();
 						}}
 					/>
-					<Script id="gtag-init" strategy="afterInteractive">
-						{`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${GA_ID}', {
-          anonymize_ip: true,
-          page_path: window.location.pathname
-        });
-      `}
-					</Script>
+					<Script id="gtag-init" strategy="afterInteractive">{`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${GA_ID}', { anonymize_ip: true });
+    `}</Script>
 				</>
 			)}
 
