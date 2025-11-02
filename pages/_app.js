@@ -6,20 +6,12 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import {
-	GA_ID,
-	initGA,
-	setGAReady,
-	gaPageview,
-	gaEvent,
-} from "@/lib/analytics";
+import { GA_ID, initGA, gaPageview, gaEvent } from "@/lib/analytics";
 import { getCookie } from "cookies-next";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import localFont from "next/font/local";
 
-// ✅ preładowanie fontów (localFont sam dodaje preload)
 const poppins = localFont({
 	src: [
 		{
@@ -43,10 +35,8 @@ function AppContent({ Component, pageProps }) {
 	const [mounted, setMounted] = useState(false);
 	const [hasConsent, setHasConsent] = useState(false);
 
-	// ✅ Montowanie po stronie klienta
 	useEffect(() => setMounted(true), []);
 
-	// ✅ Obsługa zgody cookies
 	useEffect(() => {
 		const checkConsent = () =>
 			setHasConsent(getCookie("marketingConsent") === "true");
@@ -56,83 +46,50 @@ function AppContent({ Component, pageProps }) {
 		return () => window.removeEventListener("cookieAccepted", onAccept);
 	}, []);
 
-	// ✅ Google Analytics (tylko po zgodzie, lazy init – TBT fix)
+	// ✅ GA init po akceptacji cookies
 	useEffect(() => {
-		if (process.env.NODE_ENV !== "production") return;
-		if (!hasConsent) return;
+		if (!hasConsent || !GA_ID) return;
 
 		const bootGA = () => {
 			initGA();
 			gaPageview(window.location.pathname);
-			setGAReady();
 		};
 
 		if ("requestIdleCallback" in window) {
-			requestIdleCallback(bootGA, { timeout: 2000 });
+			requestIdleCallback(bootGA, { timeout: 1500 });
 		} else {
-			setTimeout(bootGA, 2000);
+			setTimeout(bootGA, 1500);
 		}
 	}, [hasConsent]);
 
-	// ✅ Pageview przy zmianie trasy
+	// ✅ Pageview na zmianę trasy
 	useEffect(() => {
 		const handleRouteChange = (url) => {
-			if (window.gtagInitialized) gaPageview(url);
+			gaPageview(url);
 		};
 		router.events.on("routeChangeComplete", handleRouteChange);
 		return () => router.events.off("routeChangeComplete", handleRouteChange);
 	}, [router.events]);
 
-	// ✅ Scroll Depth tracking (lazy + lightweight)
+	// ✅ Scroll depth – optymalny
 	useEffect(() => {
 		if (!hasConsent || !window.gtagInitialized) return;
-
-		let ticking = false;
 		let lastSent = 0;
 		const thresholds = [25, 50, 75, 100];
-		let maxSends = 4;
-
-		let doc = document.documentElement;
-		let docHeight = Math.max(doc.scrollHeight, document.body.scrollHeight);
-
-		const onResize = () => {
-			docHeight = Math.max(doc.scrollHeight, document.body.scrollHeight);
-		};
-
-		const onScroll = () => {
-			if (ticking) return;
-			ticking = true;
-			requestAnimationFrame(() => {
-				const scrollY = window.scrollY + window.innerHeight;
-				const percent = Math.round((scrollY / docHeight) * 100);
-				for (const t of thresholds) {
-					if (percent >= t && lastSent < t) {
-						lastSent = t;
-						if (maxSends > 0) {
-							maxSends -= 1;
-							gaEvent("scroll_depth", {
-								page: window.location.pathname,
-								percent: t,
-							});
-						}
-					}
+		const handler = () => {
+			const percent = Math.round(
+				((window.scrollY + window.innerHeight) / document.body.scrollHeight) *
+					100
+			);
+			for (const t of thresholds) {
+				if (percent >= t && lastSent < t) {
+					lastSent = t;
+					gaEvent("scroll_depth", { percent: t });
 				}
-				ticking = false;
-			});
+			}
 		};
-
-		const boot = () => {
-			if (document.visibilityState !== "visible") return;
-			window.addEventListener("scroll", onScroll, { passive: true });
-			window.addEventListener("resize", onResize, { passive: true });
-		};
-
-		const starter = setTimeout(boot, 4000);
-		return () => {
-			clearTimeout(starter);
-			window.removeEventListener("scroll", onScroll);
-			window.removeEventListener("resize", onResize);
-		};
+		window.addEventListener("scroll", handler, { passive: true });
+		return () => window.removeEventListener("scroll", handler);
 	}, [hasConsent]);
 
 	if (!mounted) return null;
@@ -158,26 +115,16 @@ function AppContent({ Component, pageProps }) {
 				/>
 			</Head>
 
-			{/* ✅ Google Analytics – ładowany po akceptacji cookies */}
+			{/* ✅ Ładowanie GA4 po akceptacji cookies */}
 			{hasConsent && GA_ID && (
-				<>
-					<Script
-						src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-						strategy="afterInteractive"
-						onLoad={() => {
-							console.log("📡 GA script loaded");
-							window.dataLayer = window.dataLayer || [];
-							function gtag() {
-								dataLayer.push(arguments);
-							}
-							window.gtag = gtag;
-							gtag("js", new Date());
-							gtag("config", GA_ID, { anonymize_ip: true }); // ✅ poprawione
-							window.gtagInitialized = true;
-							console.log("🔥 GA READY — tracking active");
-						}}
-					/>
-				</>
+				<Script
+					src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+					strategy="afterInteractive"
+					onLoad={() => {
+						console.log("📡 GA script loaded:", GA_ID);
+						initGA();
+					}}
+				/>
 			)}
 
 			<ThemeProvider

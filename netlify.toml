@@ -140,12 +140,11 @@
 # ✅ Blog – no-store (masz już): zostaw tak jak jest
 
 ############################
-# ✅ FIX: Google Analytics & Cross-Origin
+# ✅ FIX: GA4 / Cross-Origin Support
 ############################
 [[headers]]
   for = "/*"
   [headers.values]
-    # pozwól ładowanie zewnętrznych skryptów (gtag.js, collect)
     Cross-Origin-Embedder-Policy = "unsafe-none"
     Cross-Origin-Opener-Policy = "unsafe-none"
     Access-Control-Allow-Origin = "*"
