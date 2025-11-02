@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import dynamic from "next/dynamic";
 const ContactModal = dynamic(() => import("@/components/ContactModal"), {
