@@ -146,8 +146,16 @@ function AppContent({ Component, pageProps }) {
 					content="Pixel-Genie entwickelt moderne Webseiten, SEO-optimierte Lösungen und digitale Markenstrategien."
 				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="preconnect" href="https://www.googletagmanager.com" />
-				<link rel="preconnect" href="https://www.google-analytics.com" />
+				<link
+					rel="preconnect"
+					href="https://www.googletagmanager.com"
+					crossOrigin
+				/>
+				<link
+					rel="preconnect"
+					href="https://www.google-analytics.com"
+					crossOrigin
+				/>
 			</Head>
 
 			{/* ✅ Google Analytics – ładowany po akceptacji cookies */}
@@ -156,7 +164,18 @@ function AppContent({ Component, pageProps }) {
 					<Script
 						src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
 						strategy="afterInteractive"
-						onLoad={() => setGAReady()}
+						onLoad={() => {
+							console.log("📡 GA script loaded");
+							window.dataLayer = window.dataLayer || [];
+							function gtag() {
+								dataLayer.push(arguments);
+							}
+							window.gtag = gtag;
+							gtag("js", new Date());
+							gtag("config", "${GA_ID}", { anonymize_ip: true });
+							window.gtagInitialized = true;
+							console.log("🔥 GA READY — tracking active");
+						}}
 					/>
 					<Script id="gtag-init" strategy="afterInteractive">{`
 						window.dataLayer = window.dataLayer || [];
