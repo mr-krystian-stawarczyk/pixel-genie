@@ -3,8 +3,10 @@ import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
 import AutoTranslate from "@/components/AutoTranslate";
-import MotionFadeIn from "@/components/MotionFadeIn";
-
+import dynamic from "next/dynamic";
+const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
+	ssr: false,
+});
 export default function Social2() {
 	return (
 		<MotionFadeIn

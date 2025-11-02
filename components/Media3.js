@@ -3,8 +3,10 @@ import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
-import MotionFadeIn from "@/components/MotionFadeIn";
-
+import dynamic from "next/dynamic";
+const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
+	ssr: false,
+});
 function Media3() {
 	const text = `
 <div>

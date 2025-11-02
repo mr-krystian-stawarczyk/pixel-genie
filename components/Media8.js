@@ -3,8 +3,10 @@ import React from "react";
 import { Container, Row, Col, Accordion } from "react-bootstrap";
 import Head from "next/head";
 import Image from "next/image";
-import MotionFadeIn from "@/components/MotionFadeIn";
-
+import dynamic from "next/dynamic";
+const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
+	ssr: false,
+});
 // ✅ SEO-optimized FAQ data
 const WEB_FAQ = [
 	{

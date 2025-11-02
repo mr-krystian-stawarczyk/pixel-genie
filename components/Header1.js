@@ -10,7 +10,7 @@ import { hasCookie } from "cookies-next";
 import { gaEvent } from "@/lib/analytics";
 import AutoTranslate from "./AutoTranslate";
 import motion from "./MotionLite"; // ✅ używamy lekkiej wersji
-
+const ContactButton = dynamic(() => import("./ContactButton"), { ssr: false });
 const MotionDiv = motion.div; // ✅ zamiast framer-motion
 
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
@@ -157,16 +157,15 @@ export default function Header1() {
 
 						<Card.Body className="mt-4">
 							<div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-								<Button
-									as="button"
-									onClick={() => handleCta("audit")}
+								<ContactButton
+									topic="Kostenlose Website Analyse"
 									className="btn-premium-footer text-white fw-bold"
 								>
 									🚀{" "}
 									<AutoTranslate>
 										Jetzt kostenloses Audit anfordern
 									</AutoTranslate>
-								</Button>
+								</ContactButton>
 								<Button
 									as="button"
 									onClick={() => handleCta("contact")}

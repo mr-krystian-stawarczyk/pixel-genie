@@ -4,7 +4,10 @@ import React from "react";
 import { Container, Accordion, Row, Col, Button } from "react-bootstrap";
 import AutoTranslate from "@/components/AutoTranslate";
 import Head from "next/head";
-import MotionFadeIn from "@/components/MotionFadeIn";
+import dynamic from "next/dynamic";
+const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
+	ssr: false,
+});
 
 const SITE_ORIGIN = "https://pixel-genie.de";
 

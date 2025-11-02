@@ -4,8 +4,10 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import Image from "next/image";
 import MailButtonPremium from "./MailButtonPremium";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
-import MotionFadeIn from "@/components/MotionFadeIn";
-
+import dynamic from "next/dynamic";
+const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
+	ssr: false,
+});
 function Media1() {
 	const paragraph1 = `
 		<strong>Pixel Genie</strong> in Nettetal entwickelt Websites,

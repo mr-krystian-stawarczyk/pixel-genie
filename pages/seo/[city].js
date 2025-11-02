@@ -3,11 +3,13 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
-import dynamic from "next/dynamic";
 import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData";
-import MotionFadeIn from "@/components/MotionFadeIn";
+import dynamic from "next/dynamic";
+const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
+	ssr: false,
+});
 const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
 	ssr: false,

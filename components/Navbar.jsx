@@ -13,6 +13,8 @@ import { IoHomeOutline } from "react-icons/io5";
 import { BsFillSunFill, BsFillMoonFill, BsX } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import AutoTranslate from "@/components/AutoTranslate"; // dopasuj ścieżkę
+import ContactButton from "@/components/ContactButton";
+
 const NavbarComp = ({ toggleTheme }) => {
 	const { t, i18n } = useTranslation();
 	const [scrolled, setScrolled] = useState(false);

@@ -3,8 +3,10 @@ import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import Link from "next/link";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
-import MotionFadeIn from "@/components/MotionFadeIn";
-
+import dynamic from "next/dynamic";
+const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
+	ssr: false,
+});
 function Media5() {
 	// tłumaczone sekcje kroków
 	const step1 = `

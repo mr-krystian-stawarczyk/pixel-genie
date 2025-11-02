@@ -1,106 +1,71 @@
-"use client";
-import { useEffect, useMemo, useState, useRef } from "react";
-import { useTranslation } from "react-i18next";
+// netlify/functions/translate.js
 
-const noTranslate = [
-	"Pixel Genie",
-	"Pixel",
-	"SEO",
-	"Webdesign",
-	"Branding",
-	"Social Media Marketing",
-];
+// Prosty cache in-memory (Netlify utrzymuje krótko)
+const memCache = new Map();
 
-const memCache = new Map(); // RAM cache
+// Dummy tłumaczenie — możesz tu później podpiąć DeepL, OpenAI, itp.
+async function fakeTranslate(text, lang) {
+	// symulacja lekkiego tłumaczenia — w realnym projekcie API call
+	if (lang === "de") return text; // oryginalny niemiecki → brak zmiany
+	if (lang === "en") return `[EN] ${text}`;
+	if (lang === "pl") return `[PL] ${text}`;
+	return text;
+}
 
-export default function AutoTranslate({ children }) {
-	const { i18n } = useTranslation();
+export async function handler(event) {
+	try {
+		// 🔹 Obsługa GET i POST
+		let text, lang;
 
-	const pure =
-		typeof children === "string" ? children.trim() : String(children);
-
-	const key = useMemo(() => `${i18n.language}::${pure}`, [i18n.language, pure]);
-	const [out, setOut] = useState(pure);
-	const spanRef = useRef(null);
-
-	useEffect(() => {
-		if (i18n.language === "de" || noTranslate.includes(pure)) {
-			setOut(pure);
-			return;
+		if (event.httpMethod === "GET") {
+			text = event.queryStringParameters.text || "";
+			lang = event.queryStringParameters.lang || "en";
+		} else if (event.httpMethod === "POST") {
+			const body = JSON.parse(event.body || "{}");
+			text = body.text || "";
+			lang = body.lang || "en";
+		} else {
+			return { statusCode: 405, body: "Method Not Allowed" };
 		}
 
-		// ✅ Nie tłumacz jeśli niewidoczny
-		if (spanRef.current && !spanRef.current.offsetParent) return;
-
-		// ✅ 1️⃣ RAM cache
-		const cachedRAM = memCache.get(key);
-		if (cachedRAM) {
-			setOut(cachedRAM);
-			return;
+		const key = `${lang}::${text}`;
+		if (memCache.has(key)) {
+			return {
+				statusCode: 200,
+				body: JSON.stringify({ translation: memCache.get(key) }),
+			};
 		}
 
-		// ✅ 2️⃣ localStorage = persistent cache
-		const cachedLocal = localStorage.getItem(key);
-		if (cachedLocal) {
-			memCache.set(key, cachedLocal);
-			setOut(cachedLocal);
-			return;
+		// Walidacja inputu
+		if (!text.trim()) {
+			return {
+				statusCode: 400,
+				body: JSON.stringify({ error: "Missing text to translate" }),
+			};
 		}
 
-		// ✅ 3️⃣ fetch tłumaczenia tylko jeśli brak cache
-		let cancelled = false;
-		fetch(
-			`/.netlify/functions/translate?text=${encodeURIComponent(pure)}&lang=${
-				i18n.language
-			}`
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				let t = data?.translation ?? pure;
-				t = String(t)
-					.replace(/^\[|\]$/g, "")
-					.trim();
-				if (!cancelled) {
-					setOut(t);
-					memCache.set(key, t);
-					localStorage.setItem(key, t);
-				}
-			})
-			.catch(() => {
-				if (!cancelled) setOut(pure);
-			});
+		// 🔹 Wykonaj tłumaczenie
+		const translation = await fakeTranslate(text, lang);
 
-		// 🚀 Prefetch dla przewidywanego następnego języka (np. en/de)
-		const likelyNextLang = i18n.language === "de" ? "en" : "de";
-		const prefetchKey = `${likelyNextLang}::${pure}`;
-		if (!memCache.has(prefetchKey) && !localStorage.getItem(prefetchKey)) {
-			fetch(
-				`/.netlify/functions/translate?text=${encodeURIComponent(
-					pure
-				)}&lang=${likelyNextLang}`
-			)
-				.then((res) => res.json())
-				.then((d) => {
-					const tr = d?.translation?.trim();
-					if (tr && tr !== pure) {
-						memCache.set(prefetchKey, tr);
-						localStorage.setItem(prefetchKey, tr);
-					}
-				})
-				.catch(() => {});
-		}
+		// 🔹 Zapisz w cache
+		memCache.set(key, translation);
 
-		return () => (cancelled = true);
-	}, [key, pure, i18n.language]);
-
-	return (
-		<span
-			ref={spanRef}
-			style={{
-				transition: "0.3s ease",
-			}}
-		>
-			{out}
-		</span>
-	);
+		return {
+			statusCode: 200,
+			headers: {
+				"Content-Type": "application/json",
+				"Cache-Control": "public, max-age=86400", // 1 dzień
+			},
+			body: JSON.stringify({ translation }),
+		};
+	} catch (err) {
+		console.error("translate.js error:", err);
+		return {
+			statusCode: 500,
+			body: JSON.stringify({
+				error: "Translation failed",
+				translation: "",
+			}),
+		};
+	}
 }

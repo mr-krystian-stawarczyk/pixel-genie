@@ -1,8 +1,10 @@
 import Link from "next/link";
 import React, { useRef, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import MotionFadeIn from "@/components/MotionFadeIn";
-
+import dynamic from "next/dynamic";
+const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
+	ssr: false,
+});
 import { useTranslation } from "react-i18next";
 import { useTheme } from "next-themes";
 import Image from "next/image";
