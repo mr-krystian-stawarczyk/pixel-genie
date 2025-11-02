@@ -1,36 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
 
 export default function Seo6() {
-	const [ref1, inView1] = useInView({ threshold: 0.4, triggerOnce: false });
-	const [ref2, inView2] = useInView({ threshold: 0.4, triggerOnce: false });
-	const [ref3, inView3] = useInView({ threshold: 0.4, triggerOnce: false });
-
-	const animateIn = {
-		opacity: 1,
-		transform: "translateY(0)",
-		transition: { duration: 0.8, ease: "easeOut" },
-	};
-
-	const controls1 = useAnimation();
-	const controls2 = useAnimation();
-	const controls3 = useAnimation();
-
-	useEffect(() => {
-		if (inView1) controls1.start(animateIn);
-	}, [inView1]);
-	useEffect(() => {
-		if (inView2) controls2.start(animateIn);
-	}, [inView2]);
-	useEffect(() => {
-		if (inView3) controls3.start(animateIn);
-	}, [inView3]);
-
 	const handleEmail = (plan) => {
 		const subject = encodeURIComponent(`Anfrage zu SEO-Plan: ${plan}`);
 		const body = encodeURIComponent(
@@ -41,6 +15,7 @@ export default function Seo6() {
 
 	return (
 		<Container id="seoprices" className="py-5 transition-colors duration-500">
+			{/* HEADER */}
 			<Row className="justify-content-center text-center mb-5">
 				<Col lg={8}>
 					<Image
@@ -49,7 +24,7 @@ export default function Seo6() {
 						height={280}
 						alt="SEO Preise Pixel Genie Nettetal"
 						className="my-3"
-						
+						priority
 					/>
 					<h2 className="fw-bold display-6 mb-3">
 						<AutoTranslate>
@@ -67,229 +42,140 @@ export default function Seo6() {
 				</Col>
 			</Row>
 
-			<Row className="justify-content-center text-center">
-				{/* BASIC */}
-				<Col lg={4} md={6} className="mb-4">
-					<motion.div
-						ref={ref1}
-						initial={{ opacity: 0, transform: "translateY(40px)" }}
-						animate={controls1}
-					>
-						<Card className="h-100 border-primary shadow-lg bg-transparent rounded-4">
-							<Card.Body className="p-4">
-								<h3 className="fw-bold text-primary">
-									<AutoTranslate>BASIC PLAN</AutoTranslate>
-								</h3>
+			{/* SEO PLANS */}
+			<Row className="justify-content-center text-center g-4">
+				{/* KARTA 1 — BASIC PLAN */}
+				<Col lg={4} md={6}>
+					<div className="pricing-card basic-card h-100 shadow-lg rounded-4 border-0">
+						<div className="card-inner p-4">
+							<h3 className="card-title fw-bold mb-2 text-primary">
+								BASIC PLAN
+							</h3>
+							<p className="card-desc mb-3">
+								<AutoTranslate>
+									Ihr Einstieg in die Welt der SEO-Optimierung – ideal für
+									kleine Unternehmen, die lokal gefunden werden wollen.
+								</AutoTranslate>
+							</p>
+							<h2 className="card-price fw-bold mb-3 text-primary">
+								99 € / Monat
+							</h2>
 
-								<p>
-									<AutoTranslate>
-										Ihr Einstieg in die Welt der SEO-Optimierung – ideal für
-										kleine Unternehmen, die lokal gefunden werden wollen.
-									</AutoTranslate>
-								</p>
+							<hr className="card-divider" />
 
-								<h2 className="fw-bold mb-3">99 € / Monat</h2>
+							<ul className="card-features list-unstyled text-start">
+								<li>✔ Technisches Website-Audit & Fehleranalyse</li>
+								<li>✔ Keyword-Recherche für lokale Zielgruppen</li>
+								<li>✔ OnPage-Optimierung (Meta, Titel, Struktur)</li>
+								<li>✔ Content-Optimierung & SEO-Texte</li>
+								<li>✔ Monatlicher Ranking-Report</li>
+								<li>✔ Google Search Console Einrichtung</li>
+							</ul>
 
-								<hr />
-
-								<ul className="list-unstyled text-start">
-									<p>
-										<AutoTranslate>
-											✔ Technisches Website-Audit & Fehleranalyse
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Keyword-Recherche für lokale Zielgruppen
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ OnPage-Optimierung (Meta, Titel, Struktur)
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Content-Optimierung & SEO-Texte
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>✔ Monatlicher Ranking-Report</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Google Search Console Einrichtung
-										</AutoTranslate>
-									</p>
-								</ul>
-
-								<Button
-									variant="primary"
-									className="mt-3"
-									onClick={() => handleEmail("BASIC PLAN (99 €/Monat)")}
+							<div className="card-footer mt-4">
+								<button
+									className="btn btn-primary text-white fw-bold px-4 py-2"
+									onClick={() => handleEmail("Basic Plan (99 € / Monat)")}
 								>
-									<AutoTranslate>Jetzt starten</AutoTranslate>
-								</Button>
-							</Card.Body>
-						</Card>
-					</motion.div>
+									Jetzt starten
+								</button>
+							</div>
+						</div>
+					</div>
 				</Col>
 
-				{/* BUSINESS */}
-				<Col lg={4} md={6} className="mb-4">
-					<motion.div
-						ref={ref2}
-						initial={{ opacity: 0, transform: "translateY(40px)" }}
-						animate={controls2}
-					>
-						<Card className="h-100 border-success shadow-lg rounded-4 bg-transparent position-relative">
-							<Card.Body className="p-4">
-								<h3 className="fw-bold text-success">
-									<AutoTranslate>BUSINESS PLAN</AutoTranslate>
-								</h3>
+				{/* KARTA 2 — BUSINESS PLAN */}
+				<Col lg={4} md={6}>
+					<div className="pricing-card business-card h-100 shadow-lg rounded-4 border-0 position-relative">
+						<span className="pricing-badge bg-warning text-dark fw-bold px-3 py-1">
+							Bestseller
+						</span>
 
-								<p>
-									<AutoTranslate>
-										Der Bestseller für wachsende Marken – inklusive technischer
-										Optimierung, Content-Marketing und Performance-Boost.
-									</AutoTranslate>
-								</p>
+						<div className="card-inner p-4">
+							<h3 className="card-title fw-bold mb-2 text-success">
+								BUSINESS PLAN
+							</h3>
+							<p className="card-desc mb-3">
+								<AutoTranslate>
+									Der Bestseller für wachsende Marken – inklusive technischer
+									Optimierung, Content-Marketing und Performance-Boost.
+								</AutoTranslate>
+							</p>
+							<h2 className="card-price fw-bold mb-3 text-success">
+								149 € / Monat
+							</h2>
 
-								<h2 className="fw-bold mb-3">149 € / Monat</h2>
+							<hr className="card-divider" />
 
-								<hr />
+							<ul className="card-features list-unstyled text-start">
+								<li>✔ Detailliertes SEO-Audit & Ladezeiten-Analyse</li>
+								<li>✔ Umfassende Keyword-Strategie (lokal & regional)</li>
+								<li>✔ Optimierung für Core Web Vitals</li>
+								<li>✔ Technische SEO (Schema, strukturierte Daten)</li>
+								<li>✔ Backlink-Aufbau & Linkmonitoring</li>
+								<li>✔ Monatlicher Performance-Report</li>
+								<li>✔ 1 Stunde SEO-Beratung im Monat inklusive</li>
+							</ul>
 
-								<ul className="list-unstyled text-start">
-									<p>
-										<AutoTranslate>
-											✔ Detailliertes SEO-Audit & Ladezeiten-Analyse
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Umfassende Keyword-Strategie (lokal & regional)
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Optimierung für Core Web Vitals
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Technische SEO (Schema, strukturierte Daten)
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Backlink-Aufbau & Linkmonitoring
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Monatlicher Performance-Report
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ 1 Stunde SEO-Beratung im Monat inklusive
-										</AutoTranslate>
-									</p>
-								</ul>
-
-								<Button
-									variant="success"
-									className="mt-3 text-white"
-									onClick={() => handleEmail("BUSINESS PLAN (149 €/Monat)")}
+							<div className="card-footer mt-4">
+								<button
+									className="btn btn-success text-white fw-bold px-4 py-2"
+									onClick={() => handleEmail("Business Plan (149 € / Monat)")}
 								>
-									<AutoTranslate>Bestseller sichern</AutoTranslate>
-								</Button>
-							</Card.Body>
-						</Card>
-					</motion.div>
+									Bestseller sichern
+								</button>
+							</div>
+						</div>
+					</div>
 				</Col>
 
-				{/* PREMIUM */}
-				<Col lg={4} md={6} className="mb-4">
-					<motion.div
-						ref={ref3}
-						initial={{ opacity: 0, transform: "translateY(40px)" }}
-						animate={controls3}
+				{/* KARTA 3 — PREMIUM PLAN */}
+				<Col lg={4} md={6}>
+					<div
+						className="pricing-card premium-card h-100 shadow-lg rounded-4 border-0 text-light"
+						style={{ background: "linear-gradient(135deg, #0b0b2e, #21216b)" }}
 					>
-						<Card
-							className="h-100 border-warning shadow-lg rounded-4 bg-gradient text-light"
-							style={{
-								background: "linear-gradient(135deg,#0b0b2e 0%,#21216b 100%)",
-							}}
-						>
-							<Card.Body className="p-4">
-								<h3 className="fw-bold text-warning">
-									<AutoTranslate>PREMIUM PLAN</AutoTranslate>
-								</h3>
+						<div className="card-inner p-4">
+							<h3 className="card-title fw-bold mb-2 text-warning">
+								PREMIUM PLAN
+							</h3>
+							<p className="card-desc text-white mb-3">
+								<AutoTranslate>
+									Das Rundum-sorglos-Paket für Unternehmen, die das Maximum aus
+									ihrer Online-Präsenz herausholen wollen – inkl. SEO, Content,
+									UX & Ads.
+								</AutoTranslate>
+							</p>
+							<h2 className="card-price fw-bold mb-3 text-warning">
+								299 € / Monat
+							</h2>
 
-								<p style={{ color: "var(--text-color)" }}>
-									<AutoTranslate>
-										Das Rundum-sorglos-Paket für Unternehmen, die das Maximum
-										aus ihrer Online-Präsenz herausholen wollen – inkl. SEO,
-										Content, UX & Ads.
-									</AutoTranslate>
-								</p>
+							<hr className="card-divider border-light" />
 
-								<h2 className="fw-bold mb-3 text-warning">299 € / Monat</h2>
+							<ul className="card-features list-unstyled text-start text-white">
+								<li>✔ Individuelle SEO-Strategie & Wettbewerbsanalyse</li>
+								<li>✔ Vollständige technische Optimierung (Next.js/React)</li>
+								<li>✔ Hochwertige Backlinks & Outreach-Kampagnen</li>
+								<li>✔ Conversion-Tracking & Heatmap-Analysen</li>
+								<li>✔ Content-Erstellung inkl. Blog & Landingpages</li>
+								<li>✔ Monatliche Strategie-Calls & Reporting</li>
+								<li>✔ Priorisierter Support & persönliche Betreuung</li>
+							</ul>
 
-								<hr className="border-light" />
-
-								<ul className="list-unstyled text-start">
-									<p>
-										<AutoTranslate>
-											✔ Individuelle SEO-Strategie & Wettbewerbsanalyse
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Vollständige technische Optimierung (Next.js/React)
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Hochwertige Backlinks & Outreach-Kampagnen
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Conversion-Tracking & Heatmap-Analysen
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Content-Erstellung inkl. Blog & Landingpages
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Monatliche Strategie-Calls & Reporting
-										</AutoTranslate>
-									</p>
-									<p>
-										<AutoTranslate>
-											✔ Priorisierter Support & persönliche Betreuung
-										</AutoTranslate>
-									</p>
-								</ul>
-
-								<Button
-									variant="warning"
-									className="mt-3 fw-bold"
-									onClick={() => handleEmail("PREMIUM PLAN (299 €/Monat)")}
+							<div className="card-footer mt-4">
+								<button
+									className="btn btn-warning text-dark fw-bold px-4 py-2"
+									onClick={() => handleEmail("Premium Plan (299 € / Monat)")}
 								>
-									<AutoTranslate>Premium buchen</AutoTranslate>
-								</Button>
-							</Card.Body>
-						</Card>
-					</motion.div>
+									Premium buchen
+								</button>
+							</div>
+						</div>
+					</div>
 				</Col>
 			</Row>
 
+			{/* FOOTER */}
 			<Row className="justify-content-center text-center mt-5">
 				<Col lg={8}>
 					<p className="text-muted">

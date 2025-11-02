@@ -1,48 +1,15 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
-function Social5() {
-	const controls = [
-		useAnimation(),
-		useAnimation(),
-		useAnimation(),
-		useAnimation(),
-	];
-	const refs = [];
-	const inViews = [];
-
-	for (let i = 0; i < 4; i++) {
-		const [ref, inView] = useInView({
-			threshold: 0.3,
-			triggerOnce: true,
-		});
-		refs.push(ref);
-		inViews.push(inView);
-	}
-
-	useEffect(() => {
-		inViews.forEach((view, i) => {
-			if (view) {
-				setTimeout(() => {
-					controls[i].start({
-						opacity: 1,
-						y: 0,
-						transition: { duration: 1, ease: "easeOut" },
-					});
-				}, i * 250);
-			}
-		});
-	}, [...inViews, controls]);
-
+export default function Social5() {
 	const steps = [
 		{
 			num: 1,
 			title: "Analyse & Strategieentwicklung",
-			text: `
-				Wir prüfen Ihre aktuelle Sichtbarkeit, analysieren Zielgruppe, 
+			text: `Wir prüfen Ihre aktuelle Sichtbarkeit, analysieren Zielgruppe, 
 				Mitbewerber & Content-Potenziale. Danach entwickeln wir eine 
 				smarte Social Media Strategie, die perfekt auf Ihre Marke und 
 				Kunden in Nettetal zugeschnitten ist.`,
@@ -50,24 +17,21 @@ function Social5() {
 		{
 			num: 2,
 			title: "Content Design & Redaktionsplan",
-			text: `
-				Wir erstellen kreative Posts, Videos und Stories, die Ihre Marke 
+			text: `Wir erstellen kreative Posts, Videos und Stories, die Ihre Marke 
 				visuell stark präsentieren. Alles in einem strukturierten Postingplan,
 				damit Ihre Community regelmäßig mit Ihnen interagiert.`,
 		},
 		{
 			num: 3,
 			title: "Werbeanzeigen & Lead Generierung",
-			text: `
-				Mit gezielten Social Ads erreichen wir neue Zielgruppen, steigern 
+			text: `Mit gezielten Social Ads erreichen wir neue Zielgruppen, steigern 
 				Reichweite & Conversions. Jede Kampagne wird datenbasiert optimiert — 
 				damit kein Budget verschwendet wird.`,
 		},
 		{
 			num: 4,
 			title: "Reporting, Analyse & Optimierung",
-			text: `
-				Wir liefern klare, verständliche KPIs, Insights und 
+			text: `Wir liefern klare, verständliche KPIs, Insights und 
 				konkrete Handlungsempfehlungen. So entwickeln wir Ihre Social Media 
 				Präsenz Monat für Monat weiter – nachhaltig und profitabel.`,
 		},
@@ -78,10 +42,15 @@ function Social5() {
 			<Row className="justify-content-center text-center align-items-start">
 				{steps.map((item, i) => (
 					<Col lg={3} className="mx-auto my-3" key={i}>
-						<motion.div
-							ref={refs[i]}
-							animate={controls[i]}
+						<MotionFadeIn
+							threshold={0.3}
 							initial={{ opacity: 0, y: 50 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{
+								duration: 1,
+								ease: "easeOut",
+								delay: i * 0.25,
+							}}
 						>
 							<Card className="border-0 bg-transparent shadow-lg p-4 h-100">
 								<h1 className="mb-3">{item.num}</h1>
@@ -92,12 +61,10 @@ function Social5() {
 									<AutoTranslate>{item.text}</AutoTranslate>
 								</Card.Text>
 							</Card>
-						</motion.div>
+						</MotionFadeIn>
 					</Col>
 				))}
 			</Row>
 		</Container>
 	);
 }
-
-export default Social5;

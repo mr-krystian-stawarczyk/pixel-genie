@@ -7,9 +7,7 @@ import dynamic from "next/dynamic";
 import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import MotionFadeIn from "@/components/MotionFadeIn";
 const CityMap = dynamic(() => import("@/components/CityMap"), { ssr: false });
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
 	ssr: false,
@@ -47,30 +45,6 @@ export async function getStaticProps({ params }) {
 // Page
 // ─────────────────────────────────────────
 export default function SeoCityPage({ cityData, seo }) {
-	const [ref1, inView1] = useInView({ threshold: 0.4 });
-	const [ref2, inView2] = useInView({ threshold: 0.4 });
-	const [ref3, inView3] = useInView({ threshold: 0.4 });
-
-	const animateIn = {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.7, ease: "easeOut" },
-	};
-
-	const controls1 = useAnimation();
-	const controls2 = useAnimation();
-	const controls3 = useAnimation();
-
-	useEffect(() => {
-		if (inView1) controls1.start(animateIn);
-	}, [inView1]);
-	useEffect(() => {
-		if (inView2) controls2.start(animateIn);
-	}, [inView2]);
-	useEffect(() => {
-		if (inView3) controls3.start(animateIn);
-	}, [inView3]);
-
 	const {
 		city,
 		geo = { latitude: 0, longitude: 0 },
@@ -457,10 +431,11 @@ export default function SeoCityPage({ cityData, seo }) {
 				<Row className="justify-content-center text-center g-4">
 					{/* BASIC */}
 					<Col lg={4} md={6}>
-						<motion.div
-							ref={ref1}
+						<MotionFadeIn
+							threshold={0.4}
 							initial={{ opacity: 0, y: 40 }}
-							animate={controls1}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, ease: "easeOut", delay: 0 }}
 						>
 							<Card className="h-100 shadow-lg rounded-4 border-primary bg-transparent">
 								<Card.Body className="p-4">
@@ -497,15 +472,16 @@ export default function SeoCityPage({ cityData, seo }) {
 									</Button>
 								</Card.Body>
 							</Card>
-						</motion.div>
+						</MotionFadeIn>
 					</Col>
 
 					{/* BUSINESS */}
 					<Col lg={4} md={6}>
-						<motion.div
-							ref={ref2}
+						<MotionFadeIn
+							threshold={0.4}
 							initial={{ opacity: 0, y: 40 }}
-							animate={controls2}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
 						>
 							<Card className="h-100 shadow-lg rounded-4 border-success bg-light">
 								<Card.Body className="p-4">
@@ -531,15 +507,16 @@ export default function SeoCityPage({ cityData, seo }) {
 									</Button>
 								</Card.Body>
 							</Card>
-						</motion.div>
+						</MotionFadeIn>
 					</Col>
 
 					{/* PREMIUM */}
 					<Col lg={4} md={6}>
-						<motion.div
-							ref={ref3}
+						<MotionFadeIn
+							threshold={0.4}
 							initial={{ opacity: 0, y: 40 }}
-							animate={controls3}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
 						>
 							<Card
 								className="h-100 rounded-4 text-light shadow-lg"
@@ -571,7 +548,7 @@ export default function SeoCityPage({ cityData, seo }) {
 									</Button>
 								</Card.Body>
 							</Card>
-						</motion.div>
+						</MotionFadeIn>
 					</Col>
 				</Row>
 

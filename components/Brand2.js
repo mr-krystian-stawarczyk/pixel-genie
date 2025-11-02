@@ -1,31 +1,21 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
 function Brand2() {
-	const [ref, inView] = useInView({
-		threshold: 0.3,
-		triggerOnce: true,
-	});
-
-	const controls = useAnimation();
-
-	useEffect(() => {
-		if (inView) {
-			controls.start({
-				opacity: 1,
-				transition: { duration: 1, ease: "easeInOut" },
-			});
-		}
-	}, [inView, controls]);
-
 	return (
-		<motion.div ref={ref} animate={controls} initial={{ opacity: 0 }}>
+		<MotionFadeIn
+			initial={{ opacity: 0 }}
+			whileInView={{ opacity: 1 }}
+			transition={{ duration: 1, easing: "ease-in-out" }}
+			threshold={0.3}
+		>
 			<Container className="mt-5 pt-5">
 				<Row className="justify-content-center text-center align-items-center">
+					{/* IMAGE */}
 					<Col lg={5} className="mx-auto my-2">
 						<Image
 							src="/assets/webagentur-nettetal-branding-seo2.png"
@@ -33,11 +23,13 @@ function Brand2() {
 							height={400}
 							className="responsive-image"
 							alt="branding-logo-design-nettetal"
+							priority
 						/>
 					</Col>
 
+					{/* TEXT */}
 					<Col lg={5} className="mx-auto my-2">
-						<Card className="border-0 bg-transparent ">
+						<Card className="border-0 bg-transparent">
 							<Card.Body>
 								<h1 className="text-start">
 									<AutoTranslate>
@@ -68,7 +60,7 @@ function Brand2() {
 					</Col>
 				</Row>
 			</Container>
-		</motion.div>
+		</MotionFadeIn>
 	);
 }
 

@@ -1,29 +1,22 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
-function Seo1() {
-	const [ref, inView] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const controls = useAnimation();
-
-	useEffect(() => {
-		controls.start({
-			opacity: inView ? 1 : 0,
-			transition: { duration: 1, ease: "easeInOut" },
-		});
-	}, [inView, controls]);
-
+export default function Seo1() {
 	return (
-		<motion.div ref={ref} animate={controls}>
-			<Container className="mt-5 pt-5">
+		<MotionFadeIn
+			threshold={0.5}
+			initial={{ opacity: 0 }}
+			whileInView={{ opacity: 1 }}
+			transition={{ duration: 1, ease: "easeInOut" }}
+			className="mt-5 pt-5"
+		>
+			<Container>
 				<Row className="justify-content-center text-center align-items-center">
+					{/* Tekst */}
 					<Col lg={5} className="mx-auto my-2">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
@@ -33,6 +26,7 @@ function Seo1() {
 										Suchergebnissen
 									</AutoTranslate>
 								</h1>
+
 								<Card.Text className="text-start">
 									<AutoTranslate>
 										Das Pixel Genie Team aus Nettetal bietet umfassende SEO
@@ -53,6 +47,7 @@ function Seo1() {
 						</Card>
 					</Col>
 
+					{/* Obrazek */}
 					<Col lg={5} className="mx-auto my-2">
 						<Image
 							src="/assets/webentwicklung-nettetal-seo3.png"
@@ -65,8 +60,6 @@ function Seo1() {
 					</Col>
 				</Row>
 			</Container>
-		</motion.div>
+		</MotionFadeIn>
 	);
 }
-
-export default Seo1;

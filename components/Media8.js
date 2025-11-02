@@ -1,10 +1,9 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Row, Col, Accordion } from "react-bootstrap";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
 // ✅ SEO-optimized FAQ data
 const WEB_FAQ = [
@@ -104,16 +103,6 @@ export default function MediaFAQ() {
 		})),
 	};
 
-	const [ref, inView] = useInView({ threshold: 0.2 });
-	const controls = useAnimation();
-
-	useEffect(() => {
-		controls.start({
-			opacity: inView ? 1 : 0,
-			transition: { duration: 0.8, ease: "easeInOut" },
-		});
-	}, [inView, controls]);
-
 	return (
 		<>
 			<Head>
@@ -129,12 +118,13 @@ export default function MediaFAQ() {
 				/>
 			</Head>
 
-			<motion.div
-				ref={ref}
-				animate={controls}
-				initial={{ opacity: 0 }}
+			<MotionFadeIn
 				id="design-nettetal-fragen"
 				className="my-5 py-5 text-body"
+				initial={{ opacity: 0 }}
+				whileInView={{ opacity: 1 }}
+				transition={{ duration: 0.8, ease: "ease-in-out" }}
+				threshold={0.2}
 			>
 				<Container>
 					{/* ✅ TITLE & HERO */}
@@ -145,10 +135,10 @@ export default function MediaFAQ() {
 								width={240}
 								height={240}
 								alt="Pixel-Genie Webdesign Agentur Nettetal NRW – moderne Websites, die Kunden bringen"
-								
+								priority
 							/>
 							<h2 className="fw-bold mt-3">Webdesign NRW – Häufige Fragen</h2>
-							<p className="">
+							<p>
 								Antworten aus echten Kundenprojekten in Nettetal, Viersen &
 								Umgebung – klar, verständlich & nützlich.
 							</p>
@@ -171,7 +161,7 @@ export default function MediaFAQ() {
 						</Col>
 					</Row>
 				</Container>
-			</motion.div>
+			</MotionFadeIn>
 		</>
 	);
 }

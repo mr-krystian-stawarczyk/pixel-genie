@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React, { useRef, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import MotionFadeIn from "@/components/MotionFadeIn";
+
 import { useTranslation } from "react-i18next";
 import { useTheme } from "next-themes";
 import Image from "next/image";
@@ -21,16 +21,6 @@ function Footer() {
 	const { t } = useTranslation();
 	const sectionRef = useRef(null);
 	const { theme } = useTheme();
-	const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
-	const controls = useAnimation();
-	const animateIn = {
-		opacity: 1,
-		transition: { duration: 1, ease: "easeInOut" },
-	};
-
-	useEffect(() => {
-		if (inView) controls.start(animateIn);
-	}, [inView, controls]);
 
 	// ✅ Tracking CTA
 	const handleFooterEmail = () => {
@@ -67,7 +57,12 @@ function Footer() {
 				minHeight: "250px",
 			}}
 		>
-			<motion.div ref={ref} animate={controls}>
+			<MotionFadeIn
+				threshold={0.3}
+				initial={{ opacity: 0, y: 20 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{ duration: 1, easing: "ease-out" }}
+			>
 				<Container fluid id="contact">
 					<Row className="justify-content-center align-items-top text-center border-bottom">
 						{/* Kolumna 1 */}
@@ -305,7 +300,7 @@ function Footer() {
 						</Col>
 					</Row>
 				</Container>
-			</motion.div>
+			</MotionFadeIn>
 		</footer>
 	);
 }

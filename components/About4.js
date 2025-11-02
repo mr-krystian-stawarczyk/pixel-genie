@@ -1,37 +1,10 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
 function About4() {
-	const controls = [useAnimation(), useAnimation(), useAnimation()];
-	const refs = [];
-	const inViews = [];
-
-	for (let i = 0; i < 3; i++) {
-		const [ref, inView] = useInView({
-			threshold: 0.3,
-			triggerOnce: true,
-		});
-		refs.push(ref);
-		inViews.push(inView);
-	}
-
-	useEffect(() => {
-		inViews.forEach((view, i) => {
-			if (view) {
-				setTimeout(() => {
-					controls[i].start({
-						opacity: 1,
-						y: 0,
-						transition: { duration: 1, ease: "easeOut" },
-					});
-				}, i * 250);
-			}
-		});
-	}, [...inViews, controls]);
-
 	const uspItems = [
 		{
 			num: 1,
@@ -62,7 +35,7 @@ function About4() {
 				<h2 className="fw-bold display-6">
 					<AutoTranslate>Warum Pixel Genie?</AutoTranslate>
 				</h2>
-				<p className=" mt-3">
+				<p className="mt-3">
 					<AutoTranslate>
 						Wir vereinen Kreativität, Technik & Bauchgefühl — für Websites, die
 						Menschen überzeugen & bei Google vorne stehen.
@@ -73,10 +46,15 @@ function About4() {
 			<Row className="justify-content-center text-center align-items-start">
 				{uspItems.map((item, i) => (
 					<Col lg={3} className="mx-auto my-3" key={i}>
-						<motion.div
-							ref={refs[i]}
-							animate={controls[i]}
+						<MotionFadeIn
 							initial={{ opacity: 0, y: 50 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{
+								duration: 0.9,
+								easing: "ease-out",
+								delay: i * 0.25, // sekwencyjnie
+							}}
+							threshold={0.3}
 						>
 							<Card className="border-0 bg-transparent shadow-lg p-4 h-100">
 								<h1 className="mb-3">{item.num}</h1>
@@ -87,7 +65,7 @@ function About4() {
 									<AutoTranslate>{item.text}</AutoTranslate>
 								</Card.Text>
 							</Card>
-						</motion.div>
+						</MotionFadeIn>
 					</Col>
 				))}
 			</Row>

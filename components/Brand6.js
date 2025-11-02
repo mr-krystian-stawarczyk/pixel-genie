@@ -1,34 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
 
 export default function Brand6() {
-	const animateIn = {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.8, ease: "easeOut" },
-	};
-
-	const controls = [useAnimation(), useAnimation(), useAnimation()];
-	const refs = [];
-	const inViews = [];
-
-	for (let i = 0; i < 3; i++) {
-		const [ref, inView] = useInView({ threshold: 0.4 });
-		refs.push(ref);
-		inViews.push(inView);
-	}
-
-	useEffect(() => {
-		inViews.forEach((view, i) => {
-			if (view) controls[i].start(animateIn);
-		});
-	}, [...inViews]);
-
 	const handleEmail = (plan) => {
 		const subject = encodeURIComponent(`Branding Anfrage: ${plan}`);
 		const body = encodeURIComponent(
@@ -38,7 +14,8 @@ export default function Brand6() {
 	};
 
 	return (
-		<Container id="branding-nettetal-preis" className="my-5 py-5 text-dark">
+		<Container id="branding-nettetal-preis" className="my-5 py-5">
+			{/* HEADER */}
 			<Row className="justify-content-center text-center mb-5">
 				<Col lg={8}>
 					<Image
@@ -48,14 +25,12 @@ export default function Brand6() {
 						alt="Branding Preise Pixel Genie Nettetal"
 						className="my-3"
 					/>
-
 					<h2 className="fw-bold display-6">
 						<AutoTranslate>
 							Branding-Pakete – starke Marken entstehen durch Strategie & Design
 						</AutoTranslate>
 					</h2>
-
-					<p className="lead ">
+					<p className="lead" style={{ color: "var(--text-color)" }}>
 						<AutoTranslate>
 							Sichtbar werden. Vertrauen gewinnen. Konkurrenz überholen.
 						</AutoTranslate>
@@ -63,135 +38,121 @@ export default function Brand6() {
 				</Col>
 			</Row>
 
+			{/* BRANDING PAKETE */}
 			<Row className="justify-content-center text-center g-4">
-				{/* STARTER */}
+				{/* KARTA 1 — STARTER BRANDING */}
 				<Col lg={4} md={6}>
-					<motion.div
-						ref={refs[0]}
-						initial={{ opacity: 0, y: 40 }}
-						animate={controls[0]}
-					>
-						<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent">
-							<Card.Body className="p-4">
-								<h3 className="fw-bold text-primary mb-2">Starter Branding</h3>
-								<p>
-									<AutoTranslate>
-										Perfekt für Start-ups & lokale Unternehmen – schnell, modern
-										& professionell.
-									</AutoTranslate>
-								</p>
-								<h2 className="fw-bold mb-3 text-primary">249 €</h2>
-								<hr />
-								<p>✔ Logo Design – 3 Designvorschläge</p>
-								<p>✔ Farb- & Typografie-Konzept</p>
-								<p>✔ Mini Brand Guidelines (1 Seite PDF)</p>
-								<p>✔ Social Profile Kit (Facebook/Instagram)</p>
-								<p>✔ Favicons + Dateiübergabe inkl. Nutzungsrechte</p>
-
-								<Button
-									variant="primary"
-									className="mt-3 px-4"
+					<div className="pricing-card basic-card h-100 shadow-lg rounded-4 border-0">
+						<div className="card-inner p-4">
+							<h3 className="card-title fw-bold mb-2 text-primary">
+								Starter Branding
+							</h3>
+							<p className="card-desc mb-3">
+								<AutoTranslate>
+									Perfekt für Start-ups & lokale Unternehmen – schnell, modern &
+									professionell.
+								</AutoTranslate>
+							</p>
+							<h2 className="card-price fw-bold mb-3 text-primary">249 €</h2>
+							<hr className="card-divider" />
+							<ul
+								className="card-features list-unstyled text-start"
+								style={{ color: "var(--text-color)" }}
+							>
+								<li>✔ Logo Design – 3 Designvorschläge</li>
+								<li>✔ Farb- & Typografie-Konzept</li>
+								<li>✔ Mini Brand Guidelines (1 Seite PDF)</li>
+								<li>✔ Social Profile Kit (Facebook/Instagram)</li>
+								<li>✔ Favicons + Dateiübergabe inkl. Nutzungsrechte</li>
+							</ul>
+							<div className="card-footer mt-4">
+								<button
+									className="btn btn-primary text-white fw-bold px-4 py-2"
 									onClick={() => handleEmail("Starter Branding")}
 								>
-									<AutoTranslate>Jetzt anfragen</AutoTranslate>
-								</Button>
-							</Card.Body>
-						</Card>
-					</motion.div>
+									Jetzt anfragen
+								</button>
+							</div>
+						</div>
+					</div>
 				</Col>
 
-				{/* PROFESSIONAL */}
+				{/* KARTA 2 — PROFESSIONAL BRANDING */}
 				<Col lg={4} md={6}>
-					<motion.div
-						ref={refs[1]}
-						initial={{ opacity: 0, y: 40 }}
-						animate={controls[1]}
-					>
-						<Card className="h-100 shadow-xl rounded-4 bg-light position-relative">
-							<div
-								className="bg-warning text-dark px-3 py-1 position-absolute"
-								style={{
-									top: 10,
-									right: 10,
-									borderRadius: "8px",
-									fontWeight: "700",
-								}}
+					<div className="pricing-card business-card h-100 shadow-lg rounded-4 border-0  position-relative">
+						<span className="pricing-badge bg-warning text-dark fw-bold px-3 py-1">
+							Bestseller
+						</span>
+						<div className="card-inner p-4">
+							<h3 className="card-title fw-bold mb-2 text-success">
+								Professional Branding
+							</h3>
+							<p className="card-desc mb-3 ">
+								<AutoTranslate>
+									Sichtbarkeit + Performance – die perfekte Mischung.
+								</AutoTranslate>
+							</p>
+							<h2 className="card-price fw-bold mb-3 text-success">599 €</h2>
+							<hr className="card-divider" />
+							<ul
+								className="card-features list-unstyled text-start"
+								style={{ color: "var(--text-color)" }}
 							>
-								<AutoTranslate>Bestseller</AutoTranslate>
-							</div>
-
-							<Card.Body className="p-4">
-								<h3 className="fw-bold text-success mb-2">
-									Professional Branding
-								</h3>
-								<p className="text-black">
-									<AutoTranslate>
-										Sichtbarkeit + Performance – die perfekte Mischung
-									</AutoTranslate>
-								</p>
-								<h2 className="fw-bold mb-3 text-success">599 €</h2>
-								<hr />
-								<p className="text-black">✔ Alles aus Starter</p>
-								<p className="text-black">✔ Brand Guide (mehrseitig)</p>
-								<p className="text-black">✔ Social Media Templates (6 Stück)</p>
-								<p className="text-black">✔ SEO Keyword Setup + Analyse</p>
-								<p className="text-black">✔ Landingpage UX + Designvorlage</p>
-								<p className="text-black">
-									✔ 3 Headline Copywriting Vorschläge
-								</p>
-
-								<Button
-									variant="success"
-									className="mt-3 px-4 text-white"
+								<li>✔ Alles aus Starter</li>
+								<li>✔ Brand Guide (mehrseitig)</li>
+								<li>✔ Social Media Templates (6 Stück)</li>
+								<li>✔ SEO Keyword Setup + Analyse</li>
+								<li>✔ Landingpage UX + Designvorlage</li>
+								<li>✔ 3 Headline Copywriting Vorschläge</li>
+							</ul>
+							<div className="card-footer mt-4">
+								<button
+									className="btn btn-success text-white fw-bold px-4 py-2"
 									onClick={() => handleEmail("Professional Branding")}
 								>
-									<AutoTranslate>Bestseller anfragen</AutoTranslate>
-								</Button>
-							</Card.Body>
-						</Card>
-					</motion.div>
+									Bestseller anfragen
+								</button>
+							</div>
+						</div>
+					</div>
 				</Col>
 
-				{/* PREMIUM */}
+				{/* KARTA 3 — PREMIUM DOMINANZ */}
 				<Col lg={4} md={6}>
-					<motion.div
-						ref={refs[2]}
-						initial={{ opacity: 0, y: 40 }}
-						animate={controls[2]}
+					<div
+						className="pricing-card premium-card h-100 shadow-lg rounded-4 border-0 text-light"
+						style={{ background: "linear-gradient(135deg, #0b0b2e, #21216b)" }}
 					>
-						<Card
-							className="h-100 rounded-4 text-light shadow-lg"
-							style={{ background: "linear-gradient(135deg,#0b0b2e,#21216b)" }}
-						>
-							<Card.Body className="p-4">
-								<h3 className="fw-bold text-warning mb-2">
-									Premium – Dominanz
-								</h3>
-								<p className="text-white">
-									<AutoTranslate>
-										Die komplette Markenstrategie – Design, Content & Wachstum.
-									</AutoTranslate>
-								</p>
-								<h2 className="fw-bold mb-3 text-warning">1299 €</h2>
-								<hr className="border-light" />
-								<p>✔ Alles aus Professional</p>
-								<p>✔ Corporate Website Design (bis 5 Seiten)</p>
-								<p>✔ Brand Strategy Session (2 Stunden)</p>
-								<p>✔ Social Media Kampagne + Betreuung Start</p>
-								<p>✔ Google Business Profil Setup</p>
-								<p>✔ Bewertungsmanagement & Reputation Start</p>
-								<p>✔ SEO Monitoring 90 Tage</p>
-
-								<Button
-									variant="warning"
-									className="mt-3 fw-bold px-4 text-dark"
-									onClick={() => handleEmail("Premium Branding")}
+						<div className="card-inner p-4">
+							<h3 className="card-title fw-bold mb-2 text-warning">
+								Premium – Dominanz
+							</h3>
+							<p className="card-desc text-white mb-3">
+								<AutoTranslate>
+									Die komplette Markenstrategie – Design, Content & Wachstum.
+								</AutoTranslate>
+							</p>
+							<h2 className="card-price fw-bold mb-3 text-warning">1299 €</h2>
+							<hr className="card-divider border-light" />
+							<ul className="card-features list-unstyled text-start text-white">
+								<li>✔ Alles aus Professional</li>
+								<li>✔ Corporate Website Design (bis 5 Seiten)</li>
+								<li>✔ Brand Strategy Session (2 Stunden)</li>
+								<li>✔ Social Media Kampagne + Betreuung Start</li>
+								<li>✔ Google Business Profil Setup</li>
+								<li>✔ Bewertungsmanagement & Reputation Start</li>
+								<li>✔ SEO Monitoring 90 Tage</li>
+							</ul>
+							<div className="card-footer mt-4">
+								<button
+									className="btn btn-warning text-dark fw-bold px-4 py-2"
+									onClick={() => handleEmail("Premium – Dominanz")}
 								>
-									<AutoTranslate>Premium buchen</AutoTranslate>
-								</Button>
-							</Card.Body>
-						</Card>
-					</motion.div>
+									Premium buchen
+								</button>
+							</div>
+						</div>
+					</div>
 				</Col>
 			</Row>
 
@@ -201,8 +162,7 @@ export default function Brand6() {
 					<h3 className="fw-bold mb-3 mt-5">
 						<AutoTranslate>✨ Erweiterungen & Add-ons</AutoTranslate>
 					</h3>
-
-					<p className="">
+					<p style={{ color: "var(--text-color)" }}>
 						<AutoTranslate>
 							Flexibel kombinierbar – mehr Branding-Power für Ihre Marke
 						</AutoTranslate>
@@ -211,30 +171,79 @@ export default function Brand6() {
 			</Row>
 
 			<Row className="justify-content-center text-center g-3 mt-3">
-				{[
-					["✍️ Copywriting PRO (1000 Wörter)", "+149 €"],
-					["📦 Visitenkarten + Briefpapier", "+199 €"],
-					["📸 Fotoshooting / Bildbearbeitung", "ab 249 €"],
-					["🎬 Intro-Reel / Logo Animation", "+149 €"],
-					["🌐 Domain + Hosting (1 Jahr)", "+79 €"],
-					["📊 SEO Monitoring", "+39 €/Monat"],
-				].map(([label, price], i) => (
-					<Col md={3} sm={6} key={i}>
-						<Card className="border-0 shadow-sm p-3">
-							<h5 className="fw-bold text-black">{label}</h5>
-							<p className="text-black small">
-								<b>{price}</b>
-							</p>
-						</Card>
-					</Col>
-				))}
+				<Col md={3} sm={6}>
+					<div className="addon-card shadow-sm rounded-4 p-3 h-100 bg-white">
+						<h5 className="fw-bold text-dark">
+							✍️ Copywriting PRO <br></br>(1000 Wörter)
+						</h5>
+						<p className="small mb-0">
+							<b className="text-black">+149 €</b>
+						</p>
+					</div>
+				</Col>
+
+				<Col md={3} sm={6}>
+					<div className="addon-card shadow-sm rounded-4 p-3 h-100 bg-white">
+						<h5 className="fw-bold text-dark">
+							📦 Visitenkarten + Briefpapier
+						</h5>
+						<p className="small mb-0">
+							<b className="text-black">+199 €</b>
+						</p>
+					</div>
+				</Col>
+
+				<Col md={3} sm={6}>
+					<div className="addon-card shadow-sm rounded-4 p-3 h-100 bg-white">
+						<h5 className="fw-bold text-dark">
+							📸 Fotoshooting / <br></br> Bildbearbeitung
+						</h5>
+						<p className="small mb-0">
+							<b className="text-black">ab 249 €</b>
+						</p>
+					</div>
+				</Col>
+
+				<Col md={3} sm={6}>
+					<div className="addon-card shadow-sm rounded-4 p-3 h-100 bg-white">
+						<h5 className="fw-bold text-dark">
+							🎬 Intro-Reel /<br></br> Logo Animation
+						</h5>
+						<p className="small mb-0">
+							<b className="text-black">+149 €</b>
+						</p>
+					</div>
+				</Col>
+
+				<Col md={3} sm={6}>
+					<div className="addon-card shadow-sm rounded-4 p-3 h-100 bg-white">
+						<h5 className="fw-bold text-dark">
+							🌐 Domain +<br></br> Hosting (1 Jahr)
+						</h5>
+						<p className="small mb-0">
+							<b className="text-black">+79 €</b>
+						</p>
+					</div>
+				</Col>
+
+				<Col md={3} sm={6}>
+					<div className="addon-card shadow-sm rounded-4 p-3 h-100 bg-white">
+						<h5 className="fw-bold text-dark">
+							📊 SEO <br></br>Monitoring
+						</h5>
+						<p className="small mb-0">
+							<b className="text-black">+39 €/Monat</b>
+						</p>
+					</div>
+				</Col>
 			</Row>
 
+			{/* FOOTER */}
 			<Row className="justify-content-center text-center mt-5">
 				<Col lg={8}>
-					<p className="">
+					<p className="text-body">
 						<AutoTranslate>
-							Alle Preise zzgl. MwSt. – fair, transparent & mit starker Wirkung
+							Alle Preise zzgl. MwSt. – fair, transparent & mit starker Wirkung.
 						</AutoTranslate>
 					</p>
 				</Col>

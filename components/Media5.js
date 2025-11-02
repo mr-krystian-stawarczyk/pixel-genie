@@ -1,57 +1,12 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import Link from "next/link";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
 function Media5() {
-	const [ref1, inView1] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref2, inView2] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref3, inView3] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref4, inView4] = useInView({ threshold: 0.5, triggerOnce: false });
-
-	const animateIn = {
-		opacity: 1,
-		transition: { duration: 1, ease: "easeInOut" },
-	};
-	const animateOut = {
-		opacity: 0,
-		transition: { duration: 1, ease: "easeInOut" },
-	};
-
-	const controls1 = useAnimation();
-	const controls2 = useAnimation();
-	const controls3 = useAnimation();
-	const controls4 = useAnimation();
-
-	useEffect(() => {
-		if (inView1) controls1.start(animateIn);
-		else controls1.start(animateOut);
-	}, [inView1]);
-
-	useEffect(() => {
-		let timeout;
-		if (inView2) timeout = setTimeout(() => controls2.start(animateIn), 500);
-		else controls2.start(animateOut);
-		return () => clearTimeout(timeout);
-	}, [inView2]);
-
-	useEffect(() => {
-		let timeout;
-		if (inView3) timeout = setTimeout(() => controls3.start(animateIn), 700);
-		else controls3.start(animateOut);
-		return () => clearTimeout(timeout);
-	}, [inView3]);
-
-	useEffect(() => {
-		let timeout;
-		if (inView4) timeout = setTimeout(() => controls4.start(animateIn), 1000);
-		else controls4.start(animateOut);
-		return () => clearTimeout(timeout);
-	}, [inView4]);
-
-	// ✅ teksty tłumaczone — opakowane w <div><p>
+	// tłumaczone sekcje kroków
 	const step1 = `
 <div>
 <p>Wir starten mit einem kostenlosen Beratungsgespräch, in dem wir Ihre Ziele, Zielgruppen und das gewünschte Design analysieren.</p>
@@ -99,9 +54,14 @@ function Media5() {
 			</Row>
 
 			<Row className="justify-content-center text-center align-items-start">
-				{/* ✅ Step 1 */}
+				{/* Step 1 */}
 				<Col lg={3} className="mx-auto">
-					<motion.div ref={ref1} animate={controls1} initial={{ opacity: 0 }}>
+					<MotionFadeIn
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.8, delay: 0.1, ease: "ease-in-out" }}
+						threshold={0.5}
+					>
 						<h1 className="shadow-lg rounded text-primary">1</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
@@ -114,12 +74,17 @@ function Media5() {
 								</div>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionFadeIn>
 				</Col>
 
-				{/* ✅ Step 2 */}
+				{/* Step 2 */}
 				<Col lg={3} className="mx-auto">
-					<motion.div ref={ref2} animate={controls2} initial={{ opacity: 0 }}>
+					<MotionFadeIn
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.8, delay: 0.3, ease: "ease-in-out" }}
+						threshold={0.5}
+					>
 						<h1 className="shadow-lg rounded text-success">2</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
@@ -132,12 +97,17 @@ function Media5() {
 								</div>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionFadeIn>
 				</Col>
 
-				{/* ✅ Step 3 */}
+				{/* Step 3 */}
 				<Col lg={3} className="mx-auto">
-					<motion.div ref={ref3} animate={controls3} initial={{ opacity: 0 }}>
+					<MotionFadeIn
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.8, delay: 0.5, ease: "ease-in-out" }}
+						threshold={0.5}
+					>
 						<h1 className="shadow-lg rounded text-warning">3</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
@@ -150,12 +120,17 @@ function Media5() {
 								</div>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionFadeIn>
 				</Col>
 
-				{/* ✅ Step 4 */}
+				{/* Step 4 */}
 				<Col lg={3} className="mx-auto">
-					<motion.div ref={ref4} animate={controls4} initial={{ opacity: 0 }}>
+					<MotionFadeIn
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.8, delay: 0.7, ease: "ease-in-out" }}
+						threshold={0.5}
+					>
 						<h1 className="shadow-lg rounded text-danger">4</h1>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
@@ -168,7 +143,7 @@ function Media5() {
 								</div>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionFadeIn>
 				</Col>
 			</Row>
 		</Container>

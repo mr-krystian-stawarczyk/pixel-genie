@@ -1,47 +1,75 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
 export default function WebPrices() {
-	const [ref1, inView1] = useInView({ threshold: 0.4, triggerOnce: false });
-	const [ref2, inView2] = useInView({ threshold: 0.4, triggerOnce: false });
-	const [ref3, inView3] = useInView({ threshold: 0.4, triggerOnce: false });
-
-	const animateIn = {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.8, ease: "easeOut" },
-	};
-
-	const controls1 = useAnimation();
-	const controls2 = useAnimation();
-	const controls3 = useAnimation();
-
-	useEffect(() => {
-		if (inView1) controls1.start(animateIn);
-	}, [inView1]);
-	useEffect(() => {
-		if (inView2) controls2.start(animateIn);
-	}, [inView2]);
-	useEffect(() => {
-		if (inView3) controls3.start(animateIn);
-	}, [inView3]);
-
-	// 📧 Mail CTA
 	const handleEmail = (plan) => {
 		const subject = encodeURIComponent(`Website Anfrage: ${plan}`);
 		const body = encodeURIComponent(
-			`Hallo Pixel Genie Team,%0A%0Aich interessiere mich für ${plan}.`
+			`Hallo Pixel Genie Team,\n\nich interessiere mich für ${plan}.`
 		);
 		window.location.href = `mailto:pixelgenie.marketing@gmail.com?subject=${subject}&body=${body}`;
 	};
 
+	const plans = [
+		{
+			title: "BASIC WEBSITE",
+			price: "ab 499 €",
+			color: "primary",
+			desc: "Ideal für den schnellen Start – Ihre erste professionelle Website zum besten Preis.",
+			features: [
+				"One-Page oder Landingpage",
+				"Responsive Design (Mobile & Desktop)",
+				"Basis SEO & schnelle Ladezeiten",
+				"Kontaktformular & Google Maps",
+				"Impressum & Datenschutz inklusive",
+			],
+			button: "Jetzt anfragen",
+		},
+		{
+			title: "BUSINESS WEBSITE",
+			price: "ab 899 €",
+			color: "success",
+			desc: "Unser Bestseller – ideal für Unternehmen, die Leistung und Design verbinden wollen.",
+			features: [
+				"Mehrseitige Website (bis 5 Seiten)",
+				"Individuelles Design mit CMS (Sanity/Headless)",
+				"SEO & Performance Optimierung (Lighthouse 90+)",
+				"Analytics & Search Console Integration",
+				"1 Jahr Hosting & Wartung",
+			],
+			button: "Bestseller anfragen",
+			badge: "Bestseller",
+		},
+		{
+			title: "PREMIUM WEBSITE",
+			price: "ab 1499 €",
+			color: "warning",
+			desc: "Für Marken, die Maßstäbe setzen wollen – High-End Performance, UX und Strategie.",
+			features: [
+				"Individuelles UX/UI Konzept",
+				"Unbegrenzte Seiten & CMS",
+				"Technische SEO + Core Web Vitals 95+",
+				"Blog + Content-System inklusive",
+				"Conversion-Tracking & A/B Tests",
+			],
+			button: "Premium buchen",
+		},
+	];
+
+	const addons = [
+		["📰 Blog Integration", "+199 €"],
+		["🛒 Online Shop", "+499 €"],
+		["🚀 SEO Boost", "+149 €"],
+		["🔧 Wartungspaket", "+29 €/Monat"],
+	];
+
 	return (
 		<Container id="web-design-pricing" className="my-5 py-5 text-dark">
+			{/* Header */}
 			<Row className="justify-content-center text-center mb-5">
 				<Col lg={8}>
 					<Image
@@ -51,13 +79,11 @@ export default function WebPrices() {
 						alt="Webdesign Preise Pixel Genie Nettetal"
 						className="my-3"
 					/>
-
 					<h2 className="fw-bold display-6">
 						<AutoTranslate>
 							Webseiten-Pakete, die überzeugen – modern, schnell & fair
 						</AutoTranslate>
 					</h2>
-
 					<p className="lead ">
 						<AutoTranslate>
 							Ob Start-up, Handwerksbetrieb oder Marke – wir erstellen Websites,
@@ -67,145 +93,140 @@ export default function WebPrices() {
 				</Col>
 			</Row>
 
+			{/* Plans */}
 			<Row className="justify-content-center text-center g-4">
-				{/* BASIC */}
+				{/* KARTA 1 — BASIC WEBSITE */}
 				<Col lg={4} md={6}>
-					<motion.div
-						ref={ref1}
-						initial={{ opacity: 0, y: 40 }}
-						animate={controls1}
-					>
-						<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent hover">
-							<Card.Body className="p-4">
-								<h3 className="fw-bold text-primary mb-2">BASIC WEBSITE</h3>
+					<div className="pricing-card basic-card h-100 shadow-lg rounded-4 border-0">
+						<div className="card-inner p-4">
+							<h3 className="card-title fw-bold mb-2 text-primary">
+								BASIC WEBSITE
+							</h3>
+							<p className="card-desc  mb-3">
+								Ideal für den schnellen Start – Ihre erste professionelle
+								Website zum besten Preis.
+							</p>
+							<h2 className="card-price fw-bold mb-3 text-primary">ab 499 €</h2>
 
-								<p>
-									<AutoTranslate>
-										Ideal für den schnellen Start – Ihre erste professionelle
-										Website zum besten Preis.
-									</AutoTranslate>
-								</p>
+							<hr className="card-divider" />
 
-								<h2 className="fw-bold mb-3 text-primary">ab 499 €</h2>
-								<hr />
+							<ul className="card-features list-unstyled text-start">
+								<li style={{ color: "var(--text-color)" }}>
+									✔ One-Page oder Landingpage
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Responsive Design (Mobile & Desktop)
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Basis SEO & schnelle Ladezeiten
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Kontaktformular & Google Maps
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Impressum & Datenschutz inklusive
+								</li>
+							</ul>
 
-								<p>✔ One-Page oder Landingpage</p>
-								<p>✔ Responsive Design (Mobile & Desktop)</p>
-								<p>✔ Basis SEO & schnelle Ladezeiten</p>
-								<p>✔ Kontaktformular & Google Maps</p>
-								<p>✔ Impressum & Datenschutz inklusive</p>
-
-								<Button
-									variant="primary"
-									className="mt-3 px-4"
-									onClick={() => handleEmail("BASIC WEBSITE")}
-								>
-									<AutoTranslate>Jetzt anfragen</AutoTranslate>
-								</Button>
-							</Card.Body>
-						</Card>
-					</motion.div>
+							<div className="card-footer mt-4">
+								<button className="btn btn-primary text-white fw-bold px-4 py-2">
+									Jetzt anfragen
+								</button>
+							</div>
+						</div>
+					</div>
 				</Col>
 
-				{/* BUSINESS */}
+				{/* KARTA 2 — BUSINESS WEBSITE */}
 				<Col lg={4} md={6}>
-					<motion.div
-						ref={ref2}
-						initial={{ opacity: 0, y: 40 }}
-						animate={controls2}
-					>
-						<Card className="h-100 shadow-xl rounded-4 bg-light hover">
-							<Card.Body className="p-4">
-								<h3 className="fw-bold text-success mb-2">BUSINESS WEBSITE</h3>
+					<div className="pricing-card business-card h-100 shadow-lg rounded-4 border-0 position-relative">
+						<span className="pricing-badge bg-warning text-dark fw-bold px-3 py-1">
+							Bestseller
+						</span>
 
-								<p className="text-muted">
-									<AutoTranslate>
-										Unser Bestseller – ideal für Unternehmen, die Leistung und
-										Design verbinden wollen.
-									</AutoTranslate>
-								</p>
+						<div className="card-inner p-4">
+							<h3 className="card-title fw-bold mb-2 text-success">
+								BUSINESS WEBSITE
+							</h3>
+							<p className="card-desc mb-3">
+								Unser Bestseller – ideal für Unternehmen, die Leistung und
+								Design verbinden wollen.
+							</p>
+							<h2 className="card-price fw-bold mb-3 text-success">ab 899 €</h2>
 
-								<h2 className="fw-bold mb-3 text-success">ab 899 €</h2>
-								<hr />
+							<hr className="card-divider" />
 
-								<p className="text-black">
+							<ul className="card-features list-unstyled text-start">
+								<li style={{ color: "var(--text-color)" }}>
 									✔ Mehrseitige Website (bis 5 Seiten)
-								</p>
-								<p className="text-black">
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
 									✔ Individuelles Design mit CMS (Sanity/Headless)
-								</p>
-								<p className="text-black">
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
 									✔ SEO & Performance Optimierung (Lighthouse 90+)
-								</p>
-								<p className="text-black">
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
 									✔ Analytics & Search Console Integration
-								</p>
-								<p className="text-black">✔ 1 Jahr Hosting & Wartung</p>
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ 1 Jahr Hosting & Wartung
+								</li>
+							</ul>
 
-								<Button
-									variant="success"
-									className="mt-3 px-4 text-white"
-									onClick={() => handleEmail("BUSINESS WEBSITE")}
-								>
-									<AutoTranslate>Bestseller anfragen</AutoTranslate>
-								</Button>
-							</Card.Body>
-						</Card>
-					</motion.div>
+							<div className="card-footer mt-4">
+								<button className="btn btn-success text-white fw-bold px-4 py-2">
+									Bestseller anfragen
+								</button>
+							</div>
+						</div>
+					</div>
 				</Col>
 
-				{/* PREMIUM */}
+				{/* KARTA 3 — PREMIUM WEBSITE */}
 				<Col lg={4} md={6}>
-					<motion.div
-						ref={ref3}
-						initial={{ opacity: 0, y: 40 }}
-						animate={controls3}
+					<div
+						className="pricing-card premium-card h-100 shadow-lg rounded-4 border-0 text-light"
+						style={{ background: "linear-gradient(135deg, #0b0b2e, #21216b)" }}
 					>
-						<Card
-							className="h-100 rounded-4 text-light shadow-lg hover"
-							style={{ background: "linear-gradient(135deg,#0b0b2e,#21216b)" }}
-						>
-							<Card.Body className="p-4">
-								<h3 className="fw-bold text-warning mb-2">PREMIUM WEBSITE</h3>
+						<div className="card-inner p-4">
+							<h3 className="card-title fw-bold mb-2 text-warning">
+								PREMIUM WEBSITE
+							</h3>
+							<p className="card-desc text-white mb-3">
+								Für Marken, die Maßstäbe setzen wollen – High-End Performance,
+								UX und Strategie.
+							</p>
+							<h2 className="card-price fw-bold mb-3 text-warning">
+								ab 1499 €
+							</h2>
 
-								<p className="text-white">
-									<AutoTranslate>
-										Für Marken, die Maßstäbe setzen wollen – High-End
-										Performance, UX und Strategie.
-									</AutoTranslate>
-								</p>
+							<hr className="card-divider border-light" />
 
-								<h2 className="fw-bold mb-3 text-warning">ab 1499 €</h2>
-								<hr className="border-light" />
+							<ul className="card-features list-unstyled text-start text-white">
+								<li>✔ Individuelles UX/UI Konzept</li>
+								<li>✔ Unbegrenzte Seiten & CMS</li>
+								<li>✔ Technische SEO + Core Web Vitals 95+</li>
+								<li>✔ Blog + Content-System inklusive</li>
+								<li>✔ Conversion-Tracking & A/B Tests</li>
+							</ul>
 
-								<p className="text-white">✔ Individuelles UX/UI Konzept</p>
-								<p className="text-white">✔ Unbegrenzte Seiten & CMS</p>
-								<p className="text-white">
-									✔ Technische SEO + Core Web Vitals 95+
-								</p>
-								<p className="text-white">✔ Blog + Content-System inklusive</p>
-								<p className="text-white">✔ Conversion-Tracking & A/B Tests</p>
-
-								<Button
-									variant="warning"
-									className="mt-3 fw-bold px-4 text-dark"
-									onClick={() => handleEmail("PREMIUM WEBSITE")}
-								>
-									<AutoTranslate>Premium buchen</AutoTranslate>
-								</Button>
-							</Card.Body>
-						</Card>
-					</motion.div>
+							<div className="card-footer mt-4">
+								<button className="btn btn-warning text-dark fw-bold px-4 py-2">
+									Premium buchen
+								</button>
+							</div>
+						</div>
+					</div>
 				</Col>
 			</Row>
 
-			{/* ADD-ONS */}
+			{/* Add-ons */}
 			<Row className="justify-content-center text-center mt-5">
 				<Col lg={8}>
 					<h3 className="fw-bold mb-3 mt-5">
 						<AutoTranslate>✨ Erweiterungen & Add-ons</AutoTranslate>
 					</h3>
-
 					<p>
 						<AutoTranslate>
 							Individuell anpassbar für jedes Paket – steigern Sie die Wirkung
@@ -216,26 +237,22 @@ export default function WebPrices() {
 			</Row>
 
 			<Row className="justify-content-center text-center g-3 mt-3">
-				{[
-					["📰 Blog Integration", "+199 €"],
-					["🛒 Online Shop", "+499 €"],
-					["🚀 SEO Boost", "+149 €"],
-					["🔧 Wartungspaket", "+29 €/Monat"],
-				].map(([label, price], i) => (
+				{addons.map(([label, price], i) => (
 					<Col md={3} sm={6} key={i}>
 						<Card className="border-0 shadow-sm p-3">
 							<h5 className="fw-bold text-black">{label}</h5>
-							<p className="text-muted small">
-								<b>{price}</b>
+							<p className=" small">
+								<b className="text-black">{price}</b>
 							</p>
 						</Card>
 					</Col>
 				))}
 			</Row>
 
+			{/* Footer */}
 			<Row className="justify-content-center text-center mt-5">
 				<Col lg={8}>
-					<p className="text-muted">
+					<p className="">
 						<AutoTranslate>
 							Alle Preise zzgl. MwSt. – transparent, fair & top Performance
 						</AutoTranslate>

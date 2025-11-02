@@ -1,31 +1,20 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
-function Social3() {
-	const [ref, inView] = useInView({
-		threshold: 0.3,
-		triggerOnce: true,
-	});
-
-	const controls = useAnimation();
-
-	useEffect(() => {
-		if (inView) {
-			controls.start({
-				opacity: 1,
-				y: 0,
-				transition: { duration: 1, ease: "easeOut" },
-			});
-		}
-	}, [inView, controls]);
-
+export default function Social3() {
 	return (
-		<motion.div ref={ref} animate={controls} initial={{ opacity: 0, y: 60 }}>
-			<Container className="mt-5 pt-5">
+		<MotionFadeIn
+			threshold={0.3}
+			initial={{ opacity: 0, y: 60 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			transition={{ duration: 1, ease: "easeOut" }}
+			className="mt-5 pt-5"
+		>
+			<Container>
 				<Row className="justify-content-center text-center align-items-center">
 					{/* LEFT IMAGE */}
 					<Col lg={5} className="mx-auto my-2">
@@ -55,7 +44,7 @@ function Social3() {
 										Instagram, LinkedIn oder TikTok erreichen Sie genau die
 										Menschen, die sich für Ihre Produkte interessieren. Wir
 										testen, analysieren und optimieren stetig — für planbare
-										Ergebnisse und echte Geschäftswachstum.
+										Ergebnisse und echtes Wachstum.
 									</AutoTranslate>
 								</Card.Text>
 
@@ -72,8 +61,6 @@ function Social3() {
 					</Col>
 				</Row>
 			</Container>
-		</motion.div>
+		</MotionFadeIn>
 	);
 }
-
-export default Social3;

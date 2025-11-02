@@ -1,28 +1,14 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Accordion, Row, Col, Button } from "react-bootstrap";
 import AutoTranslate from "@/components/AutoTranslate";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import Head from "next/head";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
 const SITE_ORIGIN = "https://pixel-genie.de";
 
 function About3() {
-	const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
-	const controls = useAnimation();
-
-	useEffect(() => {
-		if (inView) {
-			controls.start({
-				opacity: 1,
-				y: 0,
-				transition: { duration: 1, ease: "easeOut" },
-			});
-		}
-	}, [inView, controls]);
-
 	const faq = [
 		{
 			q: "Was macht Pixel Genie als Agentur besonders?",
@@ -46,46 +32,6 @@ Keine Spielerei – <strong>mehr Anfragen, mehr Umsatz, mehr Bekanntheit</strong
 2️⃣ Design & Entwicklung: mobil-schnell & SEO-stark<br/>
 3️⃣ Inhalte & Conversion-Optimierung<br/>
 4️⃣ Launch & Tracking – messbare Ergebnisse ab Tag 1
-      `,
-		},
-		{
-			q: "Welche Technologien verwendet ihr?",
-			a: `
-Wir setzen auf <strong>Next.js, React, Headless CMS, DSGVO-Technik</strong> und Performance-Optimierung 
-(Core Web Vitals > 90). 
-➡ Keine Baukästen, keine veralteten Systeme.
-      `,
-		},
-		{
-			q: "Warum helfen wir besonders regionalen Unternehmen?",
-			a: `
-Weil <strong>Local SEO</strong> heute entscheidet, wer angerufen wird.
-Wir setzen auf regionale Sichtbarkeit:<br/>
-• Webdesign Nettetal<br/>
-• SEO für Viersen & Krefeld<br/>
-• Performance in ganz NRW
-      `,
-		},
-		{
-			q: "Wie wird Erfolg gemessen?",
-			a: `
-Mit klaren Business-KPIs:<br/>
-<strong>Anfragen, Leads & Verkäufe</strong> – nicht Likes.<br/>
-➡ Websites müssen <strong>profitabel</strong> sein.
-      `,
-		},
-		{
-			q: "Kann ich Inhalte später selbst pflegen?",
-			a: `
-Ja! Sie erhalten eine intuitive CMS-Lösung.<br/>
-Auf Wunsch übernehmen wir Updates, Content & SEO – <strong>nur wenn SIE es wollen</strong>.
-      `,
-		},
-		{
-			q: "Wird Social Media auch unterstützt?",
-			a: `
-Ja – inkl. Content-Plan, Posting & Community Management.<br/>
-➡ Verstärkt Website-Leads & Google-Traffic.
       `,
 		},
 	];
@@ -141,9 +87,13 @@ Ja – inkl. Content-Plan, Posting & Community Management.<br/>
 				/>
 			</Head>
 
-			<motion.div ref={ref} animate={controls} initial={{ opacity: 0, y: 60 }}>
+			<MotionFadeIn
+				initial={{ opacity: 0, y: 60 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{ duration: 1, easing: "ease-out" }}
+				threshold={0.2}
+			>
 				<Container className="py-5">
-					{/* HERO */}
 					<Row className="justify-content-center text-center mb-5">
 						<Col lg={7}>
 							<Image
@@ -157,7 +107,7 @@ Ja – inkl. Content-Plan, Posting & Community Management.<br/>
 									Pixel Genie – Ihre Webagentur für Nettetal & NRW
 								</AutoTranslate>
 							</h1>
-							<p className="lead  mt-2">
+							<p className="lead mt-2">
 								<AutoTranslate>
 									Wir entwickeln Websites, die verkaufen – lokal stark &
 									technisch perfekt.
@@ -166,7 +116,6 @@ Ja – inkl. Content-Plan, Posting & Community Management.<br/>
 						</Col>
 					</Row>
 
-					{/* FAQ */}
 					<Row className="justify-content-center">
 						<Col lg={9}>
 							<Accordion className="shadow-lg rounded-4">
@@ -185,7 +134,6 @@ Ja – inkl. Content-Plan, Posting & Community Management.<br/>
 						</Col>
 					</Row>
 
-					{/* CTA Abschluss */}
 					<Row className="justify-content-center text-center mt-5">
 						<Col lg={8}>
 							<h3 className="fw-bold">
@@ -193,7 +141,7 @@ Ja – inkl. Content-Plan, Posting & Community Management.<br/>
 									Bereit für mehr Kunden & Anfragen?
 								</AutoTranslate>
 							</h3>
-							<p className="">
+							<p>
 								<AutoTranslate>
 									Pixel Genie – Webdesign, SEO & Social Media Marketing in NRW.
 								</AutoTranslate>
@@ -204,7 +152,7 @@ Ja – inkl. Content-Plan, Posting & Community Management.<br/>
 						</Col>
 					</Row>
 				</Container>
-			</motion.div>
+			</MotionFadeIn>
 		</>
 	);
 }

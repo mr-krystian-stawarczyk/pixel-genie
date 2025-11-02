@@ -1,22 +1,12 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import MailButtonPremium from "./MailButtonPremium";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
 function Media1() {
-	const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
-
-	const controls = useAnimation();
-	useEffect(() => {
-		controls.start({
-			opacity: inView ? 1 : 0,
-			transition: { duration: 1, ease: "easeInOut" },
-		});
-	}, [inView, controls]);
-
 	const paragraph1 = `
 		<strong>Pixel Genie</strong> in Nettetal entwickelt Websites,
 		die nicht nur optisch begeistern, sondern echte Ergebnisse liefern.
@@ -46,9 +36,14 @@ function Media1() {
 	`;
 
 	return (
-		<motion.div ref={ref} animate={controls}>
+		<MotionFadeIn
+			initial={{ opacity: 0 }}
+			whileInView={{ opacity: 1 }}
+			transition={{ duration: 1, easing: "ease-in-out" }}
+			threshold={0.5}
+		>
 			<Container>
-				<Row className="justify-content-center text-center align-items-center ">
+				<Row className="justify-content-center text-center align-items-center">
 					<Col>
 						<Image
 							src="/assets/webdesign-header-welcome.gif"
@@ -61,7 +56,7 @@ function Media1() {
 					</Col>
 				</Row>
 
-				<Row className="justify-content-center text-center align-items-center">
+				<Row className="justify-content-center text-center align-items-center mt-4">
 					<Col lg={10}>
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
@@ -69,7 +64,6 @@ function Media1() {
 									Modernes Webdesign & SEO, das Kunden überzeugt
 								</h1>
 
-								{/* ✅ tłumaczenie wstawione tam gdzie tekst był */}
 								<Card.Text className="text-start">
 									<AutoTranslateArticle html={paragraph1} slug="media1" />
 								</Card.Text>
@@ -84,7 +78,7 @@ function Media1() {
 					</Col>
 				</Row>
 			</Container>
-		</motion.div>
+		</MotionFadeIn>
 	);
 }
 

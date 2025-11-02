@@ -1,30 +1,18 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
 function About1() {
-	const [ref, inView] = useInView({
-		threshold: 0.3,
-		triggerOnce: true,
-	});
-
-	const controls = useAnimation();
-
-	useEffect(() => {
-		if (inView) {
-			controls.start({
-				opacity: 1,
-				y: 0,
-				transition: { duration: 1, ease: "easeInOut" },
-			});
-		}
-	}, [inView, controls]);
-
 	return (
-		<motion.div ref={ref} animate={controls} initial={{ opacity: 0, y: 60 }}>
+		<MotionFadeIn
+			initial={{ opacity: 0, y: 60 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			transition={{ duration: 1, easing: "ease-in-out" }}
+			threshold={0.3}
+		>
 			<Container className="py-5">
 				<Row className="justify-content-center align-items-center">
 					{/* TEXT */}
@@ -101,7 +89,7 @@ function About1() {
 					</Col>
 				</Row>
 			</Container>
-		</motion.div>
+		</MotionFadeIn>
 	);
 }
 

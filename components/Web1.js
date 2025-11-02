@@ -1,34 +1,20 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
-function Web1() {
-	const [ref, inView] = useInView({
-		threshold: 0.5,
-		triggerOnce: false,
-	});
-
-	const animateIn = {
-		opacity: 1,
-		transition: { duration: 1, ease: "easeInOut" },
-	};
-	const animateOut = {
-		opacity: 0,
-		transition: { duration: 1, ease: "easeInOut" },
-	};
-
-	const controls = useAnimation();
-
-	useEffect(() => {
-		controls.start(inView ? animateIn : animateOut);
-	}, [inView, controls]);
-
+export default function Web1() {
 	return (
-		<motion.div ref={ref} animate={controls}>
-			<Container className="mt-5 py-5">
+		<MotionFadeIn
+			threshold={0.5}
+			initial={{ opacity: 0 }}
+			whileInView={{ opacity: 1 }}
+			transition={{ duration: 1, ease: "easeInOut" }}
+			className="mt-5 py-5"
+		>
+			<Container>
 				<Row className="justify-content-center text-center align-items-center">
 					<Col lg={5} className="mx-auto">
 						<Image
@@ -70,8 +56,6 @@ function Web1() {
 					</Col>
 				</Row>
 			</Container>
-		</motion.div>
+		</MotionFadeIn>
 	);
 }
-
-export default Web1;

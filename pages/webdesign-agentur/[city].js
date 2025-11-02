@@ -6,8 +6,8 @@ import citiesData from "@/data/citiesData";
 import slugify from "@/lib/slugify";
 import generateSeoData from "@/lib/generateSeoData"; // ✅ używamy tego samego jako SEO baseline
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
-import { useInView } from "react-intersection-observer";
-import { motion, useAnimation } from "framer-motion";
+import motion from "@/components/MotionLite";
+
 import Image from "next/image";
 import { useEffect } from "react";
 import AutoTranslateArticle from "@/components/AutoTranslateArticle";
@@ -70,28 +70,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 		border: "1px solid rgba(255,255,255,0.12)",
 	};
 
-	const [ref1, inView1] = useInView({ threshold: 0.4 });
-	const [ref2, inView2] = useInView({ threshold: 0.4 });
-	const [ref3, inView3] = useInView({ threshold: 0.4 });
-
-	const animate = {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.8, ease: "easeOut" },
-	};
-	const c1 = useAnimation(),
-		c2 = useAnimation(),
-		c3 = useAnimation();
-
-	useEffect(() => {
-		if (inView1) c1.start(animate);
-	}, [inView1]);
-	useEffect(() => {
-		if (inView2) c2.start(animate);
-	}, [inView2]);
-	useEffect(() => {
-		if (inView3) c3.start(animate);
-	}, [inView3]);
+	const MotionDiv = motion.div;
 
 	const starterHTML = `
 		<p>Ideal für den schnellen Start in ${city}. Modernes Design + Sichtbarkeit für lokale Kunden.</p>
@@ -199,7 +178,12 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 			<Row className="justify-content-center text-center g-4">
 				{/* Starter */}
 				<Col lg={4} md={6}>
-					<motion.div ref={ref1} initial={{ opacity: 0, y: 40 }} animate={c1}>
+					<MotionDiv
+						initial={{ opacity: 0, y: 40 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.8, ease: "easeOut" }}
+						viewport={{ once: true, amount: 0.2 }}
+					>
 						<Card className="h-100 shadow-lg border-0 rounded-4 bg-transparent">
 							<Card.Body className="p-4">
 								<h3 className="fw-bold text-primary">Starter Website</h3>
@@ -238,12 +222,17 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 								</Button>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionDiv>
 				</Col>
 
 				{/* Business */}
 				<Col lg={4} md={6}>
-					<motion.div ref={ref2} initial={{ opacity: 0, y: 40 }} animate={c2}>
+					<MotionDiv
+						initial={{ opacity: 0, y: 40 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.8, ease: "easeOut" }}
+						viewport={{ once: true, amount: 0.2 }}
+					>
 						<Card className="h-100 shadow-xl rounded-4 bg-light border-success">
 							<Card.Body className="p-4">
 								<h3 className="fw-bold text-success">Business Website</h3>
@@ -271,12 +260,17 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 								</Button>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionDiv>
 				</Col>
 
 				{/* Premium */}
 				<Col lg={4} md={6}>
-					<motion.div ref={ref3} initial={{ opacity: 0, y: 40 }} animate={c3}>
+					<MotionDiv
+						initial={{ opacity: 0, y: 40 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.8, ease: "easeOut" }}
+						viewport={{ once: true, amount: 0.2 }}
+					>
 						<Card
 							className="h-100 text-light rounded-4 shadow-lg"
 							style={{ background: "linear-gradient(135deg,#0b0b2e,#21216b)" }}
@@ -307,7 +301,7 @@ export default function WebdesignAgenturCity({ cityData, seo }) {
 								</Button>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionDiv>
 				</Col>
 			</Row>
 

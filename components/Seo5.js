@@ -1,59 +1,21 @@
-import React, { useEffect } from "react";
+"use client";
+import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { useInView } from "react-intersection-observer";
-import { useAnimation, motion } from "framer-motion";
 import AutoTranslate from "@/components/AutoTranslate";
+import MotionFadeIn from "@/components/MotionFadeIn";
 
-function Seo5() {
-	const [ref1, inView1] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref2, inView2] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref3, inView3] = useInView({ threshold: 0.5, triggerOnce: false });
-	const [ref4, inView4] = useInView({ threshold: 0.5, triggerOnce: false });
-
-	const controls1 = useAnimation();
-	const controls2 = useAnimation();
-	const controls3 = useAnimation();
-	const controls4 = useAnimation();
-
-	const animateIn = {
-		opacity: 1,
-		transition: { duration: 1, ease: "easeInOut" },
-	};
-
-	useEffect(() => {
-		inView1 ? controls1.start(animateIn) : controls1.start({ opacity: 0 });
-	}, [inView1, controls1]);
-
-	useEffect(() => {
-		if (inView2) {
-			setTimeout(() => controls2.start(animateIn), 500);
-		} else {
-			controls2.start({ opacity: 0 });
-		}
-	}, [inView2, controls2]);
-
-	useEffect(() => {
-		if (inView3) {
-			setTimeout(() => controls3.start(animateIn), 700);
-		} else {
-			controls3.start({ opacity: 0 });
-		}
-	}, [inView3, controls3]);
-
-	useEffect(() => {
-		if (inView4) {
-			setTimeout(() => controls4.start(animateIn), 1000);
-		} else {
-			controls4.start({ opacity: 0 });
-		}
-	}, [inView4, controls4]);
-
+export default function Seo5() {
 	return (
 		<Container className="my-5 py-5" id="process">
 			<Row className="justify-content-center text-center align-items-center">
 				{/* 1 */}
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div ref={ref1} animate={controls1} initial={{ opacity: 0 }}>
+					<MotionFadeIn
+						threshold={0.4}
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.8, ease: "easeInOut" }}
+					>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "28rem" }}
@@ -76,12 +38,17 @@ function Seo5() {
 								</Card.Text>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionFadeIn>
 				</Col>
 
 				{/* 2 */}
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div ref={ref2} animate={controls2} initial={{ opacity: 0 }}>
+					<MotionFadeIn
+						threshold={0.4}
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.8, ease: "easeInOut", delay: 0.3 }}
+					>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "28rem" }}
@@ -101,12 +68,17 @@ function Seo5() {
 								</Card.Text>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionFadeIn>
 				</Col>
 
 				{/* 3 */}
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div ref={ref3} animate={controls3} initial={{ opacity: 0 }}>
+					<MotionFadeIn
+						threshold={0.4}
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.8, ease: "easeInOut", delay: 0.6 }}
+					>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "28rem" }}
@@ -127,12 +99,17 @@ function Seo5() {
 								</Card.Text>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionFadeIn>
 				</Col>
 
 				{/* 4 */}
 				<Col lg={3} className="mx-auto my-2">
-					<motion.div ref={ref4} animate={controls4} initial={{ opacity: 0 }}>
+					<MotionFadeIn
+						threshold={0.4}
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.8, ease: "easeInOut", delay: 0.9 }}
+					>
 						<Card
 							className="border-0 bg-transparent shadow-lg"
 							style={{ height: "28rem" }}
@@ -153,11 +130,9 @@ function Seo5() {
 								</Card.Text>
 							</Card.Body>
 						</Card>
-					</motion.div>
+					</MotionFadeIn>
 				</Col>
 			</Row>
 		</Container>
 	);
 }
-
-export default Seo5;

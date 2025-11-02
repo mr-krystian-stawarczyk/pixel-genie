@@ -1,64 +1,59 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, forwardRef } from "react";
 
 /**
- * MotionLite – zero-dependency replacement for framer-motion
- * Optimized for Next.js + Lighthouse TBT + IdleMount (lazy load fix)
+ * MotionLite – ultralekki zamiennik framer-motion (bez zależności)
+ * Optymalizowany pod Next.js 15 i Cloudflare Pages
  */
 export const motion = new Proxy(
 	{},
 	{
 		get: (_, tag) => {
-			const Component = React.forwardRef(
+			const Component = forwardRef(
 				(
 					{
 						initial = {},
 						whileInView = {},
 						transition = {},
 						viewport = {},
-						style,
-						className,
+						style = {},
+						className = "",
 						children,
 						...rest
 					},
 					ref
 				) => {
-					const localRef = useRef(null);
-					const targetRef = ref || localRef;
+					const innerRef = useRef(null);
+					const targetRef = ref || innerRef;
 					const [visible, setVisible] = useState(false);
 
 					useEffect(() => {
 						const el = targetRef.current;
 						if (!el) return;
 
-						let obs;
-						const initObserver = () => {
-							if (obs) obs.disconnect();
-							obs = new IntersectionObserver(
+						let observer;
+						const startObserver = () => {
+							if (observer) observer.disconnect();
+							observer = new IntersectionObserver(
 								([entry]) => {
 									if (entry.isIntersecting) {
 										setVisible(true);
-										if (viewport.once ?? true) obs.disconnect();
+										if (viewport.once ?? true) observer.disconnect();
 									}
 								},
-								{
-									threshold: viewport.amount ?? 0.15,
-								}
+								{ threshold: viewport.amount ?? 0.15 }
 							);
-							obs.observe(el);
+							observer.observe(el);
 						};
 
-						// 🔹 Delay for dynamic/lazy loaded components (IdleMount fix)
-						const timer = setTimeout(initObserver, 50);
-
+						const timer = setTimeout(startObserver, 50);
 						return () => {
 							clearTimeout(timer);
-							if (obs) obs.disconnect();
+							observer?.disconnect();
 						};
-					}, []);
+					}, [viewport.amount, viewport.once]);
 
-					// ✅ TBT optimization — shorter, smoother animation
-					const dur = `${transition.duration ?? 0.45}s`;
+					const dur = `${transition.duration ?? 0.5}s`;
 					const easing = transition.ease ?? "cubic-bezier(.25,.6,.3,1)";
 
 					const from = {
@@ -70,21 +65,23 @@ export const motion = new Proxy(
 						transform: `translateY(${whileInView.y ?? 0}px)`,
 					};
 
-					return React.createElement(
-						tag,
-						{
-							ref: targetRef,
-							className,
-							style: {
+					const Tag = tag;
+
+					return (
+						<Tag
+							ref={targetRef}
+							className={className}
+							style={{
 								...style,
 								opacity: visible ? to.opacity : from.opacity,
 								transform: visible ? to.transform : from.transform,
 								transition: `opacity ${dur} ${easing}, transform ${dur} ${easing}`,
 								willChange: "opacity, transform",
-							},
-							...rest,
-						},
-						children
+							}}
+							{...rest}
+						>
+							{children}
+						</Tag>
 					);
 				}
 			);

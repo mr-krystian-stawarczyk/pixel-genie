@@ -8,7 +8,7 @@
 const RAW_POSTS = [
 	{
 		slug: "lokales-seo-2025-kleine-unternehmen-grosse-marken",
-		imgSrc: "/assets/local-seo-2025.png",
+		imgSrc: "/assets/local-seo-hilfe-2025.png",
 		title:
 			"📍 Lokales SEO 2025: Wie kleine Unternehmen mit smarten Websites große Marken überholen",
 		date: "2025-11-02",

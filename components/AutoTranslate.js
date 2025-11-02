@@ -11,14 +11,12 @@ const noTranslate = [
 	"Social Media Marketing",
 ];
 
-const memCache = new Map(); // RAM cache
+const memCache = new Map();
 
 export default function AutoTranslate({ children }) {
 	const { i18n } = useTranslation();
-
 	const pure =
 		typeof children === "string" ? children.trim() : String(children);
-
 	const key = useMemo(() => `${i18n.language}::${pure}`, [i18n.language, pure]);
 	const [out, setOut] = useState(pure);
 	const spanRef = useRef(null);
@@ -29,17 +27,12 @@ export default function AutoTranslate({ children }) {
 			return;
 		}
 
-		// ✅ Nie tłumacz jeśli niewidoczny
-		if (spanRef.current && !spanRef.current.offsetParent) return;
-
-		// ✅ 1️⃣ RAM cache
+		// 🧠 Cache priorytetowo
 		const cachedRAM = memCache.get(key);
 		if (cachedRAM) {
 			setOut(cachedRAM);
 			return;
 		}
-
-		// ✅ 2️⃣ localStorage = persistent cache
 		const cachedLocal = localStorage.getItem(key);
 		if (cachedLocal) {
 			memCache.set(key, cachedLocal);
@@ -47,48 +40,24 @@ export default function AutoTranslate({ children }) {
 			return;
 		}
 
-		// ✅ 3️⃣ fetch tłumaczenia tylko jeśli brak cache
 		let cancelled = false;
-		fetch(
-			`/.netlify/functions/translate?text=${encodeURIComponent(pure)}&lang=${
-				i18n.language
-			}`
-		)
+		fetch("/.netlify/functions/translate", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ text: pure.slice(0, 480), lang: i18n.language }),
+		})
 			.then((res) => res.json())
 			.then((data) => {
+				if (cancelled) return;
 				let t = data?.translation ?? pure;
 				t = String(t)
 					.replace(/^\[|\]$/g, "")
 					.trim();
-				if (!cancelled) {
-					setOut(t);
-					memCache.set(key, t);
-					localStorage.setItem(key, t);
-				}
+				setOut(t);
+				memCache.set(key, t);
+				localStorage.setItem(key, t);
 			})
-			.catch(() => {
-				if (!cancelled) setOut(pure);
-			});
-
-		// 🚀 Prefetch dla przewidywanego następnego języka (np. en/de)
-		const likelyNextLang = i18n.language === "de" ? "en" : "de";
-		const prefetchKey = `${likelyNextLang}::${pure}`;
-		if (!memCache.has(prefetchKey) && !localStorage.getItem(prefetchKey)) {
-			fetch(
-				`/.netlify/functions/translate?text=${encodeURIComponent(
-					pure
-				)}&lang=${likelyNextLang}`
-			)
-				.then((res) => res.json())
-				.then((d) => {
-					const tr = d?.translation?.trim();
-					if (tr && tr !== pure) {
-						memCache.set(prefetchKey, tr);
-						localStorage.setItem(prefetchKey, tr);
-					}
-				})
-				.catch(() => {});
-		}
+			.catch(() => !cancelled && setOut(pure));
 
 		return () => (cancelled = true);
 	}, [key, pure, i18n.language]);
@@ -97,8 +66,8 @@ export default function AutoTranslate({ children }) {
 		<span
 			ref={spanRef}
 			style={{
-				transition: "opacity 0.3s ease",
-				opacity: out === pure ? 0.7 : 1,
+				transition: " 0.3s ease",
+				opacity: 1, // nie przyciemnia tekstu
 			}}
 		>
 			{out}
