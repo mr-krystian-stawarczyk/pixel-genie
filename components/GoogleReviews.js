@@ -112,6 +112,13 @@ export default function GoogleReviews() {
 							</Card>
 						))}
 					</div>
+
+					{/* 👇 Swipe hint only on mobile */}
+					{isMobile && (
+						<div className="swipe-hint text-center">
+							<span className="swipe-icon">⟷</span>
+						</div>
+					)}
 				</div>
 
 				<div className="text-center mt-5">
@@ -133,12 +140,11 @@ export default function GoogleReviews() {
 					position: relative;
 					overflow: visible;
 					padding: 0 6vw;
-					width: 100%;
+					width: 100vw;
 					left: 50%;
 					right: 50%;
 					margin-left: -50vw;
 					margin-right: -50vw;
-					width: 100vw;
 					max-width: 100vw;
 					box-sizing: border-box;
 				}
@@ -163,60 +169,14 @@ export default function GoogleReviews() {
 					}
 				}
 
-				.reviews-wrapper {
-					position: relative;
-					overflow: visible;
-					padding: 0 6vw;
-					width: 100%;
-					left: 50%;
-					right: 50%;
-					margin-left: -50vw;
-					margin-right: -50vw;
-					width: 100vw;
-					max-width: 100vw;
-					box-sizing: border-box;
-					mask-image: linear-gradient(
-						to right,
-						transparent,
-						black 10%,
-						black 90%,
-						transparent
-					);
-					-webkit-mask-image: linear-gradient(
-						to right,
-						transparent,
-						black 10%,
-						black 90%,
-						transparent
-					);
+				/* 🚫 brak maski na mobile */
+				@media (max-width: 767px) {
+					.reviews-wrapper {
+						mask-image: none !important;
+						-webkit-mask-image: none !important;
+					}
 				}
-				.reviews-wrapper {
-					position: relative;
-					overflow: visible;
-					padding: 0 6vw;
-					width: 100%;
-					left: 50%;
-					right: 50%;
-					margin-left: -50vw;
-					margin-right: -50vw;
-					width: 100vw;
-					max-width: 100vw;
-					box-sizing: border-box;
-					mask-image: linear-gradient(
-						to right,
-						transparent,
-						black 10%,
-						black 100%,
-						transparent
-					);
-					-webkit-mask-image: linear-gradient(
-						to right,
-						transparent,
-						black 10%,
-						black 90%,
-						transparent
-					);
-				}
+
 				/* === Track === */
 				.reviews-track {
 					display: flex;
@@ -229,13 +189,55 @@ export default function GoogleReviews() {
 
 				/* === Mobile scroll version === */
 				.mobile-mode .reviews-track {
+					display: flex;
 					overflow-x: auto;
 					scroll-snap-type: x mandatory;
 					transform: none !important;
 					-webkit-overflow-scrolling: touch;
+					scrollbar-width: none;
+				}
+				.mobile-mode .reviews-track::-webkit-scrollbar {
+					display: none;
 				}
 				.mobile-mode .review-card {
 					scroll-snap-align: center;
+				}
+
+				/* === Swipe hint (only mobile) === */
+				.swipe-hint {
+					text-align: center;
+					margin-top: 1rem;
+					font-size: 0.9rem;
+					color: var(--text-color);
+					opacity: 0.8;
+					animation: fadeIn 1s ease forwards;
+				}
+
+				.swipe-icon {
+					display: block;
+					font-size: 1.8rem;
+					animation: swipeAnim 2s ease-in-out infinite;
+				}
+
+				@keyframes swipeAnim {
+					0% {
+						transform: translateX(0);
+					}
+					50% {
+						transform: translateX(12px);
+					}
+					100% {
+						transform: translateX(0);
+					}
+				}
+
+				@keyframes fadeIn {
+					from {
+						opacity: 0;
+					}
+					to {
+						opacity: 0.8;
+					}
 				}
 
 				/* === Karta === */
