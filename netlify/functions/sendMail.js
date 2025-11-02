@@ -1,33 +1,22 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-// Prosty limiter (RAM-based, resetuje się automatycznie po ~60 sek.)
-const rateLimit = new Map();
-const MAX_REQUESTS = 3;
-const WINDOW_MS = 60 * 1000; // 1 minuta
+// 💡 Rate-limit (3 requests / minute / IP)
+const bucket = new Map();
+const MAX = 3;
+const WINDOW = 60 * 1000;
 
-function checkRateLimit(ip) {
+function allow(ip) {
 	const now = Date.now();
-	const entry = rateLimit.get(ip) || { count: 0, start: now };
-
-	if (now - entry.start > WINDOW_MS) {
-		// reset
-		rateLimit.set(ip, { count: 1, start: now });
+	const hit = bucket.get(ip) || { n: 0, t: now };
+	if (now - hit.t > WINDOW) {
+		bucket.set(ip, { n: 1, t: now });
 		return true;
 	}
-
-	if (entry.count >= MAX_REQUESTS) {
-		return false;
-	}
-
-	entry.count += 1;
-	rateLimit.set(ip, entry);
+	if (hit.n >= MAX) return false;
+	hit.n += 1;
+	bucket.set(ip, hit);
 	return true;
 }
-console.log(
-	"🔑 RESEND_API_KEY:",
-	process.env.RESEND_API_KEY ? "Loaded" : "Missing"
-);
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function handler(event) {
 	if (event.httpMethod !== "POST") {
@@ -35,11 +24,11 @@ export async function handler(event) {
 	}
 
 	const ip =
-		event.headers["x-forwarded-for"]?.split(",")[0] ||
+		event.headers["x-forwarded-for"]?.split(",")[0]?.trim() ||
 		event.headers["client-ip"] ||
 		"unknown";
 
-	if (!checkRateLimit(ip)) {
+	if (!allow(ip)) {
 		return {
 			statusCode: 429,
 			body: JSON.stringify({
@@ -48,37 +37,56 @@ export async function handler(event) {
 		};
 	}
 
+	let data;
 	try {
-		const data = JSON.parse(event.body);
+		data = JSON.parse(event.body || "{}");
+	} catch {
+		return { statusCode: 400, body: JSON.stringify({ error: "Bad JSON" }) };
+	}
 
-		if (!data.email || !data.message) {
-			return {
-				statusCode: 400,
-				body: JSON.stringify({ error: "Missing required fields" }),
-			};
-		}
+	const { topic, name, email, phone, message, budget } = data || {};
+	if (!email || !message) {
+		return {
+			statusCode: 400,
+			body: JSON.stringify({ error: "Missing required fields" }),
+		};
+	}
 
-		await resend.emails.send({
-			from: "Pixel Genie <noreply@pixelgenie.dev>",
-			to: "pixelgenie.marketing@gmail.com",
-			subject: `Neue Anfrage: ${data.topic || "Kontaktformular"}`,
-			reply_to: data.email,
-			text: `
-Thema: ${data.topic}
-Name: ${data.name}
-E-Mail: ${data.email}
-Telefon: ${data.phone}
+	const transporter = nodemailer.createTransport({
+		host: "smtp.resend.com",
+		port: 465,
+		secure: true,
+		auth: {
+			user: "resend",
+			pass: process.env.RESEND_API_KEY,
+		},
+		tls: {
+			rejectUnauthorized: false, // ⚠️ lokalny test: akceptuj self-signed certs
+		},
+	});
+
+	const text = `
+Thema: ${topic || "Kontaktformular"}
+Name: ${name || "-"}
+E-Mail: ${email}
+Telefon: ${phone || "-"}
+Budget: ${budget || "-"}
 Nachricht:
-${data.message}
-      `,
+${message}
+	`.trim();
+
+	try {
+		await transporter.sendMail({
+			from: "Pixel Genie <onboarding@resend.dev>",
+			to: "pixelgenie.marketing@gmail.com",
+			subject: `Neue Anfrage: ${topic || "Kontaktformular"}`,
+			replyTo: email,
+			text,
 		});
 
-		return {
-			statusCode: 200,
-			body: JSON.stringify({ ok: true }),
-		};
+		return { statusCode: 200, body: JSON.stringify({ ok: true }) };
 	} catch (err) {
-		console.error("❌ Mail send error:", err);
+		console.error("❌ SMTP send error:", err);
 		return {
 			statusCode: 500,
 			body: JSON.stringify({ error: "Mail send failed" }),

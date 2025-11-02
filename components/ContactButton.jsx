@@ -11,11 +11,10 @@ export default function ContactButton({ topic, children, className }) {
 		<>
 			<button
 				onClick={() => setShow(true)}
-				className={className || "btn btn-dark px-4 py-2"}
+				className={className || "btn btn-dark px-4 py-2 fw-semibold"}
 			>
-				{children || "Kontakt"}
+				{children || "Kontakt aufnehmen"}
 			</button>
-
 			<ContactModal show={show} onHide={() => setShow(false)} topic={topic} />
 		</>
 	);
