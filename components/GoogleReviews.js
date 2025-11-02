@@ -30,7 +30,6 @@ export default function GoogleReviews() {
 	const [paused, setPaused] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
 
-	// Detect mobile viewport
 	useEffect(() => {
 		const check = () => setIsMobile(window.innerWidth < 768);
 		check();
@@ -38,10 +37,9 @@ export default function GoogleReviews() {
 		return () => window.removeEventListener("resize", check);
 	}, []);
 
-	// Infinite scroll only on desktop
+	// desktop animation only
 	useEffect(() => {
 		if (isMobile) return;
-
 		const el = trackRef.current;
 		if (!el) return;
 
@@ -53,7 +51,6 @@ export default function GoogleReviews() {
 			if (!paused) {
 				pos -= speed;
 				el.style.transform = `translateX(${pos}px)`;
-
 				const first = el.children[0];
 				const firstWidth = first.offsetWidth + 24;
 				if (Math.abs(pos) >= firstWidth) {
@@ -63,7 +60,6 @@ export default function GoogleReviews() {
 			}
 			raf = requestAnimationFrame(loop);
 		};
-
 		loop();
 		return () => cancelAnimationFrame(raf);
 	}, [paused, isMobile]);
@@ -71,7 +67,7 @@ export default function GoogleReviews() {
 	return (
 		<section
 			id="google-reviews"
-			className="py-5 position-relative"
+			className="google-reviews-section py-5 position-relative"
 			onMouseEnter={() => !isMobile && setPaused(true)}
 			onMouseLeave={() => !isMobile && setPaused(false)}
 		>
@@ -84,13 +80,13 @@ export default function GoogleReviews() {
 				</Row>
 
 				<div
-					className={`reviews-wrapper my-5 ${
+					className={`google-reviews-wrapper my-5 ${
 						isMobile ? "mobile-mode" : "desktop-mode"
 					}`}
 				>
-					<div className="reviews-track py-2" ref={trackRef}>
+					<div className="google-reviews-track py-2" ref={trackRef}>
 						{[...REVIEWS, ...REVIEWS, ...REVIEWS].map((r, i) => (
-							<Card key={i} className="review-card text-center mx-3">
+							<Card key={i} className="google-review-card text-center mx-3">
 								<div className="google-icon-wrapper mx-auto mt-3">
 									<Image
 										src="/assets/google-icon.png"
@@ -116,7 +112,7 @@ export default function GoogleReviews() {
 					{/* 👇 Swipe hint only on mobile */}
 					{isMobile && (
 						<div className="swipe-hint text-center">
-							<span className="swipe-icon">⟷</span>
+							<span className="swipe-icon">↔</span>
 						</div>
 					)}
 				</div>
@@ -135,21 +131,16 @@ export default function GoogleReviews() {
 			</Container>
 
 			<style jsx>{`
-				.reviews-wrapper {
+				.google-reviews-wrapper {
 					position: relative;
 					overflow: visible;
 					padding: 0 6vw;
-					width: 100vw;
-					left: 50%;
-					right: 50%;
-					margin-left: -50vw;
-					margin-right: -50vw;
+					width: 100%;
 					max-width: 100vw;
 					box-sizing: border-box;
 				}
 
-				/* === Track === */
-				.reviews-track {
+				.google-reviews-track {
 					display: flex;
 					gap: 1.5rem;
 					align-items: stretch;
@@ -158,23 +149,27 @@ export default function GoogleReviews() {
 					transition: transform 0.1s linear;
 				}
 
-				/* === Mobile scroll version === */
-				.mobile-mode .reviews-track {
+				/* Mobile version — no animation, pure scroll */
+				.mobile-mode .google-reviews-track {
 					display: flex;
-					overflow-x: auto;
+					overflow-x: auto !important;
+					overflow-y: hidden;
 					scroll-snap-type: x mandatory;
 					transform: none !important;
+					animation: none !important;
 					-webkit-overflow-scrolling: touch;
 					scrollbar-width: none;
 				}
-				.mobile-mode .reviews-track::-webkit-scrollbar {
+
+				.mobile-mode .google-reviews-track::-webkit-scrollbar {
 					display: none;
 				}
-				.mobile-mode .review-card {
+
+				.mobile-mode .google-review-card {
 					scroll-snap-align: center;
+					flex: 0 0 260px !important;
 				}
 
-				/* === Swipe hint (only mobile) === */
 				.swipe-hint {
 					text-align: center;
 					margin-top: 1rem;
@@ -211,8 +206,7 @@ export default function GoogleReviews() {
 					}
 				}
 
-				/* === Karta === */
-				.review-card {
+				.google-review-card {
 					flex: 0 0 320px;
 					background: transparent;
 					border-radius: 18px;
@@ -220,36 +214,11 @@ export default function GoogleReviews() {
 					backdrop-filter: blur(4px);
 					transition: transform 0.4s ease, box-shadow 0.3s ease;
 					box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-					transform-origin: center center;
-					z-index: 1;
 				}
 
-				.review-card:hover {
+				.google-review-card:hover {
 					transform: scale(1.06);
 					box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-					z-index: 3;
-				}
-
-				.review-text {
-					line-height: 1.5;
-					font-size: 0.95rem;
-					color: var(--card-text);
-				}
-
-				.reviewer-name {
-					color: var(--text-color);
-				}
-
-				.btn-outline-glass {
-					border: 1px solid rgba(255, 255, 255, 0.25);
-					background: rgba(255, 255, 255, 0.05);
-					backdrop-filter: blur(6px);
-					color: var(--text-color);
-					transition: all 0.3s ease;
-				}
-
-				.btn-outline-glass:hover {
-					background: rgba(255, 255, 255, 0.15);
 				}
 
 				:global(html[data-theme="dark"]) {
@@ -263,19 +232,19 @@ export default function GoogleReviews() {
 				}
 
 				@media (max-width: 991px) {
-					.reviews-wrapper {
+					.google-reviews-wrapper {
 						padding: 0 3vw;
 					}
-					.review-card {
+					.google-review-card {
 						flex: 0 0 260px;
 					}
 				}
 
 				@media (max-width: 600px) {
-					.reviews-wrapper {
+					.google-reviews-wrapper {
 						padding: 0 2vw;
 					}
-					.review-card {
+					.google-review-card {
 						flex: 0 0 240px;
 					}
 				}
