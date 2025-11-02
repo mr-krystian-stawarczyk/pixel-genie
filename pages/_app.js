@@ -5,17 +5,21 @@ import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
-if (typeof window !== "undefined") {
-	import("bootstrap/dist/css/bootstrap.min.css");
-}
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import { initGA, gaPageview, GA_ID, gaEvent } from "@/lib/analytics";
+import {
+	GA_ID,
+	initGA,
+	setGAReady,
+	gaPageview,
+	gaEvent,
+} from "@/lib/analytics";
 import { getCookie } from "cookies-next";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import localFont from "next/font/local";
 
-// ✅ preładowanie fontów
+// ✅ preładowanie fontów (tylko localFont - nie potrzebujesz <link rel="preload">)
 const poppins = localFont({
 	src: [
 		{
@@ -52,7 +56,7 @@ function AppContent({ Component, pageProps }) {
 		return () => window.removeEventListener("cookieAccepted", onAccept);
 	}, []);
 
-	// ✅ Google Analytics (tylko po zgodzie) – lazy init (TBT fix)
+	// ✅ Google Analytics (tylko po zgodzie, lazy init – TBT fix)
 	useEffect(() => {
 		if (process.env.NODE_ENV !== "production") return;
 		if (!hasConsent) return;
@@ -60,7 +64,7 @@ function AppContent({ Component, pageProps }) {
 		const bootGA = () => {
 			initGA();
 			gaPageview(window.location.pathname);
-			window.gtagInitialized = true;
+			setGAReady();
 		};
 
 		if ("requestIdleCallback" in window) {
@@ -79,7 +83,7 @@ function AppContent({ Component, pageProps }) {
 		return () => router.events.off("routeChangeComplete", handleRouteChange);
 	}, [router.events]);
 
-	// ✅ Scroll Depth – bez reflow i dopiero po 4s (TBT fix)
+	// ✅ Scroll Depth tracking (lazy + lightweight)
 	useEffect(() => {
 		if (!hasConsent || !window.gtagInitialized) return;
 
@@ -144,39 +148,22 @@ function AppContent({ Component, pageProps }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="preconnect" href="https://www.googletagmanager.com" />
 				<link rel="preconnect" href="https://www.google-analytics.com" />
-				{/* ✅ preload fontów */}
-				<link
-					rel="preload"
-					href="/fonts/poppins/Poppins-Regular.woff2"
-					as="font"
-					type="font/woff2"
-					crossOrigin="anonymous"
-				/>
-				<link
-					rel="preload"
-					href="/fonts/poppins/Poppins-Bold.woff2"
-					as="font"
-					type="font/woff2"
-					crossOrigin="anonymous"
-				/>
 			</Head>
 
-			{/* ✅ Google Analytics */}
+			{/* ✅ Google Analytics – ładowany po akceptacji cookies */}
 			{hasConsent && GA_ID && (
 				<>
 					<Script
 						src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
 						strategy="afterInteractive"
-						onLoad={() => {
-							setGAReady();
-						}}
+						onLoad={() => setGAReady()}
 					/>
 					<Script id="gtag-init" strategy="afterInteractive">{`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${GA_ID}', { anonymize_ip: true });
-    `}</Script>
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+						gtag('config', '${GA_ID}', { anonymize_ip: true });
+					`}</Script>
 				</>
 			)}
 
