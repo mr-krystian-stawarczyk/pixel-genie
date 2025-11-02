@@ -160,14 +160,17 @@ export default function ContactModal({ show, onHide, topic }) {
 						className="rounded-4 shadow-lg"
 						style={{
 							position: "relative",
-							width: "min(95%, 640px)",
-							margin: "6vh auto",
+							width: "min(92%, 620px)",
+							margin: "5vh auto",
 							background: modalBg,
 							color: textColor,
-							padding: "28px 24px",
+							padding: "22px 20px",
+							maxHeight: "90vh", // ✅ nie wychodzi poza ekran
+							overflowY: "auto", // ✅ przewijany wewnętrznie
+							backdropFilter: "blur(8px)", // ✅ lekki blur wokół
 							boxShadow: isDark
-								? "0 8px 40px rgba(15,23,42,0.9)"
-								: "0 8px 32px rgba(0,0,0,0.2)",
+								? "0 10px 40px rgba(15,23,42,0.8)"
+								: "0 10px 36px rgba(0,0,0,0.25)",
 							border: isDark ? "1px solid #334155" : "1px solid #e5e7eb",
 						}}
 					>
@@ -405,6 +408,16 @@ export default function ContactModal({ show, onHide, topic }) {
 							}
 							100% {
 								transform: rotate(360deg);
+							}
+						}
+						@media (max-width: 768px) {
+							.rounded-4.shadow-lg {
+								padding: 16px !important;
+								margin: 4vh auto !important;
+								max-height: 85vh !important;
+							}
+							.rounded-4.shadow-lg h5 {
+								font-size: 1.05rem !important;
 							}
 						}
 					`}</style>

@@ -133,6 +133,14 @@ export default function GoogleReviews() {
 					position: relative;
 					overflow: visible;
 					padding: 0 6vw;
+					width: 100%;
+					left: 50%;
+					right: 50%;
+					margin-left: -50vw;
+					margin-right: -50vw;
+					width: 100vw;
+					max-width: 100vw;
+					box-sizing: border-box;
 					mask-image: linear-gradient(
 						to right,
 						transparent,
@@ -148,7 +156,60 @@ export default function GoogleReviews() {
 						transparent
 					);
 				}
-
+				.reviews-wrapper {
+					position: relative;
+					overflow: visible;
+					padding: 0 6vw;
+					width: 100%;
+					left: 50%;
+					right: 50%;
+					margin-left: -50vw;
+					margin-right: -50vw;
+					width: 100vw;
+					max-width: 100vw;
+					box-sizing: border-box;
+					mask-image: linear-gradient(
+						to right,
+						transparent,
+						black 10%,
+						black 90%,
+						transparent
+					);
+					-webkit-mask-image: linear-gradient(
+						to right,
+						transparent,
+						black 10%,
+						black 90%,
+						transparent
+					);
+				}
+				.reviews-wrapper {
+					position: relative;
+					overflow: visible;
+					padding: 0 6vw;
+					width: 100%;
+					left: 50%;
+					right: 50%;
+					margin-left: -50vw;
+					margin-right: -50vw;
+					width: 100vw;
+					max-width: 100vw;
+					box-sizing: border-box;
+					mask-image: linear-gradient(
+						to right,
+						transparent,
+						black 10%,
+						black 100%,
+						transparent
+					);
+					-webkit-mask-image: linear-gradient(
+						to right,
+						transparent,
+						black 10%,
+						black 90%,
+						transparent
+					);
+				}
 				/* === Track === */
 				.reviews-track {
 					display: flex;
