@@ -135,7 +135,6 @@ export default function GoogleReviews() {
 			</Container>
 
 			<style jsx>{`
-				/* === Wrapper === */
 				.reviews-wrapper {
 					position: relative;
 					overflow: visible;
@@ -147,34 +146,6 @@ export default function GoogleReviews() {
 					margin-right: -50vw;
 					max-width: 100vw;
 					box-sizing: border-box;
-				}
-
-				/* ✅ maska tylko na desktop */
-				@media (min-width: 768px) {
-					.reviews-wrapper {
-						mask-image: linear-gradient(
-							to right,
-							transparent,
-							black 10%,
-							black 90%,
-							transparent
-						);
-						-webkit-mask-image: linear-gradient(
-							to right,
-							transparent,
-							black 10%,
-							black 90%,
-							transparent
-						);
-					}
-				}
-
-				/* 🚫 brak maski na mobile */
-				@media (max-width: 767px) {
-					.reviews-wrapper {
-						mask-image: none !important;
-						-webkit-mask-image: none !important;
-					}
 				}
 
 				/* === Track === */
@@ -207,15 +178,15 @@ export default function GoogleReviews() {
 				.swipe-hint {
 					text-align: center;
 					margin-top: 1rem;
-					font-size: 0.9rem;
+					font-size: 1rem;
 					color: var(--text-color);
 					opacity: 0.8;
 					animation: fadeIn 1s ease forwards;
 				}
 
 				.swipe-icon {
-					display: block;
-					font-size: 1.8rem;
+					display: inline-block;
+					font-size: 1.6rem;
 					animation: swipeAnim 2s ease-in-out infinite;
 				}
 
@@ -224,7 +195,7 @@ export default function GoogleReviews() {
 						transform: translateX(0);
 					}
 					50% {
-						transform: translateX(12px);
+						transform: translateX(10px);
 					}
 					100% {
 						transform: translateX(0);
@@ -259,7 +230,6 @@ export default function GoogleReviews() {
 					z-index: 3;
 				}
 
-				/* === Teksty === */
 				.review-text {
 					line-height: 1.5;
 					font-size: 0.95rem;
@@ -270,7 +240,6 @@ export default function GoogleReviews() {
 					color: var(--text-color);
 				}
 
-				/* === Przycisk === */
 				.btn-outline-glass {
 					border: 1px solid rgba(255, 255, 255, 0.25);
 					background: rgba(255, 255, 255, 0.05);
@@ -283,7 +252,6 @@ export default function GoogleReviews() {
 					background: rgba(255, 255, 255, 0.15);
 				}
 
-				/* === Theme colors === */
 				:global(html[data-theme="dark"]) {
 					--text-color: #fff;
 					--card-text: #eee;
@@ -294,7 +262,6 @@ export default function GoogleReviews() {
 					--card-text: #111;
 				}
 
-				/* === Responsywność === */
 				@media (max-width: 991px) {
 					.reviews-wrapper {
 						padding: 0 3vw;

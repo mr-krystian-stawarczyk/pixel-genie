@@ -2285,3 +2285,30 @@ img {
 .motion-safe {
 	will-change: opacity, transform;
 }
+@media (min-width: 768px) {
+	#google-reviews .reviews-wrapper {
+		-webkit-mask-image: linear-gradient(
+			to right,
+			transparent,
+			black 10%,
+			black 90%,
+			transparent
+		);
+		mask-image: linear-gradient(
+			to right,
+			transparent,
+			black 10%,
+			black 90%,
+			transparent
+		);
+	}
+}
+
+/* === Usuń maskę na mobile === */
+@media (max-width: 767px) {
+	#google-reviews .reviews-wrapper {
+		-webkit-mask-image: none !important;
+		mask-image: none !important;
+		background: transparent !important;
+	}
+}
