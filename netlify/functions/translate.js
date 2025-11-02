@@ -18,6 +18,7 @@ export async function handler(event) {
 			};
 		}
 
+		// ✅ API z prostym cachingiem CDN
 		const res = await fetch(
 			`https://api.mymemory.translated.net/get?q=${encodeURIComponent(
 				text
@@ -33,7 +34,8 @@ export async function handler(event) {
 			statusCode: 200,
 			headers: {
 				"Content-Type": "application/json",
-				"Cache-Control": "public, max-age=86400",
+				// ✅ Cache 7 dni w CDN (Netlify Edge)
+				"Cache-Control": "public, max-age=604800, s-maxage=604800, immutable",
 			},
 			body: JSON.stringify({ translation: translated }),
 		};

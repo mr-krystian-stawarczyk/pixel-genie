@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 /**
  * MotionLite – zero-dependency replacement for framer-motion
- * Safe for Next.js SSR
+ * Optimized for Next.js + Lighthouse TBT + IdleMount (lazy load fix)
  */
 export const motion = new Proxy(
 	{},
@@ -30,20 +30,36 @@ export const motion = new Proxy(
 					useEffect(() => {
 						const el = targetRef.current;
 						if (!el) return;
-						const obs = new IntersectionObserver(
-							([entry]) => {
-								if (entry.isIntersecting) {
-									setVisible(true);
-									if (viewport.once ?? true) obs.disconnect();
+
+						let obs;
+						const initObserver = () => {
+							if (obs) obs.disconnect();
+							obs = new IntersectionObserver(
+								([entry]) => {
+									if (entry.isIntersecting) {
+										setVisible(true);
+										if (viewport.once ?? true) obs.disconnect();
+									}
+								},
+								{
+									threshold: viewport.amount ?? 0.15,
 								}
-							},
-							{ threshold: 0.15 }
-						);
-						obs.observe(el);
-						return () => obs.disconnect();
+							);
+							obs.observe(el);
+						};
+
+						// 🔹 Delay for dynamic/lazy loaded components (IdleMount fix)
+						const timer = setTimeout(initObserver, 50);
+
+						return () => {
+							clearTimeout(timer);
+							if (obs) obs.disconnect();
+						};
 					}, []);
 
-					const dur = transition.duration ? `${transition.duration}s` : "0.6s";
+					// ✅ TBT optimization — shorter, smoother animation
+					const dur = `${transition.duration ?? 0.45}s`;
+					const easing = transition.ease ?? "cubic-bezier(.25,.6,.3,1)";
 
 					const from = {
 						opacity: initial.opacity ?? 0,
@@ -63,7 +79,7 @@ export const motion = new Proxy(
 								...style,
 								opacity: visible ? to.opacity : from.opacity,
 								transform: visible ? to.transform : from.transform,
-								transition: `all ${dur} ease-out`,
+								transition: `opacity ${dur} ${easing}, transform ${dur} ${easing}`,
 								willChange: "opacity, transform",
 							},
 							...rest,

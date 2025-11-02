@@ -20,7 +20,6 @@ export default function AutoTranslate({ children }) {
 		typeof children === "string" ? children.trim() : String(children);
 
 	const key = useMemo(() => `${i18n.language}::${pure}`, [i18n.language, pure]);
-
 	const [out, setOut] = useState(pure);
 	const spanRef = useRef(null);
 
@@ -33,7 +32,7 @@ export default function AutoTranslate({ children }) {
 		// ✅ Nie tłumacz jeśli niewidoczny
 		if (spanRef.current && !spanRef.current.offsetParent) return;
 
-		// ✅ 1️⃣ najpierw RAM cache
+		// ✅ 1️⃣ RAM cache
 		const cachedRAM = memCache.get(key);
 		if (cachedRAM) {
 			setOut(cachedRAM);
@@ -48,12 +47,12 @@ export default function AutoTranslate({ children }) {
 			return;
 		}
 
-		// ✅ fetch tłumaczenia tylko jeśli brak cache
+		// ✅ 3️⃣ fetch tłumaczenia tylko jeśli brak cache
 		let cancelled = false;
 		fetch(
-			`/.netlify/functions/translate?text=${encodeURIComponent(
-				pure
-			)}&lang=${i18n.language}`
+			`/.netlify/functions/translate?text=${encodeURIComponent(pure)}&lang=${
+				i18n.language
+			}`
 		)
 			.then((res) => res.json())
 			.then((data) => {
@@ -64,15 +63,45 @@ export default function AutoTranslate({ children }) {
 				if (!cancelled) {
 					setOut(t);
 					memCache.set(key, t);
-					localStorage.setItem(key, t); // ✅ zapis do pamięci trwałej
+					localStorage.setItem(key, t);
 				}
 			})
 			.catch(() => {
 				if (!cancelled) setOut(pure);
 			});
 
+		// 🚀 Prefetch dla przewidywanego następnego języka (np. en/de)
+		const likelyNextLang = i18n.language === "de" ? "en" : "de";
+		const prefetchKey = `${likelyNextLang}::${pure}`;
+		if (!memCache.has(prefetchKey) && !localStorage.getItem(prefetchKey)) {
+			fetch(
+				`/.netlify/functions/translate?text=${encodeURIComponent(
+					pure
+				)}&lang=${likelyNextLang}`
+			)
+				.then((res) => res.json())
+				.then((d) => {
+					const tr = d?.translation?.trim();
+					if (tr && tr !== pure) {
+						memCache.set(prefetchKey, tr);
+						localStorage.setItem(prefetchKey, tr);
+					}
+				})
+				.catch(() => {});
+		}
+
 		return () => (cancelled = true);
 	}, [key, pure, i18n.language]);
 
-	return <span ref={spanRef}>{out}</span>;
+	return (
+		<span
+			ref={spanRef}
+			style={{
+				transition: "opacity 0.3s ease",
+				opacity: out === pure ? 0.7 : 1,
+			}}
+		>
+			{out}
+		</span>
+	);
 }

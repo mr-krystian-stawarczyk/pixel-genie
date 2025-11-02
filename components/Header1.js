@@ -5,15 +5,13 @@ import { useTranslation } from "react-i18next";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import dynamic from "next/dynamic"; // ✅ tylko raz!
+import dynamic from "next/dynamic";
 import { hasCookie } from "cookies-next";
 import { gaEvent } from "@/lib/analytics";
 import AutoTranslate from "./AutoTranslate";
+import motion from "./MotionLite"; // ✅ używamy lekkiej wersji
 
-const MotionDiv = dynamic(
-	() => import("framer-motion").then((mod) => mod.motion.div),
-	{ ssr: false, loading: () => <div /> }
-);
+const MotionDiv = motion.div; // ✅ zamiast framer-motion
 
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
@@ -26,7 +24,6 @@ export default function Header1() {
 	const { i18n } = useTranslation();
 	const sectionRef = useRef(null);
 
-	// ✅ Particles start po pełnym 'load' + idle (bez wpływu na LCP)
 	useEffect(() => {
 		let done = false;
 		const enableParticles = () => {
@@ -54,15 +51,10 @@ export default function Header1() {
 			}
 		};
 
-		if (document.readyState === "complete") {
-			onLoad();
-		} else {
-			window.addEventListener("load", onLoad, { once: true });
-		}
+		if (document.readyState === "complete") onLoad();
+		else window.addEventListener("load", onLoad, { once: true });
 
-		return () => {
-			window.removeEventListener("load", onLoad);
-		};
+		return () => window.removeEventListener("load", onLoad);
 	}, []);
 
 	const handleCta = useCallback((type) => {
@@ -72,6 +64,7 @@ export default function Header1() {
 				page: typeof window !== "undefined" ? window.location.pathname : "/",
 			});
 		}
+
 		const subject =
 			type === "audit"
 				? "Kostenloses%20Website%20Audit%20Anfrage"
@@ -107,6 +100,7 @@ export default function Header1() {
 					<ParticlesComponent />
 				</div>
 			)}
+
 			<Container
 				className="d-flex flex-column justify-content-center align-items-center text-center position-relative header-content"
 				style={{ minHeight: "100vh" }}
@@ -114,8 +108,9 @@ export default function Header1() {
 				<MotionDiv
 					className="motion-safe"
 					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
+					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1, ease: "easeOut" }}
+					viewport={{ once: true, amount: 0.2 }}
 				>
 					<Card className="bg-transparent border-0 blur p-md-4 rounded-4">
 						<Card.Body>
