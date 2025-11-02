@@ -13,8 +13,11 @@ import { IoHomeOutline } from "react-icons/io5";
 import { BsFillSunFill, BsFillMoonFill, BsX } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import AutoTranslate from "@/components/AutoTranslate"; // dopasuj ścieżkę
-import ContactButton from "@/components/ContactButton";
+import dynamic from "next/dynamic";
 
+const ContactModal = dynamic(() => import("@/components/ContactModal"), {
+	ssr: false,
+});
 const NavbarComp = ({ toggleTheme }) => {
 	const { t, i18n } = useTranslation();
 	const [scrolled, setScrolled] = useState(false);
@@ -106,13 +109,7 @@ const NavbarComp = ({ toggleTheme }) => {
 		document.body.style.overflow = !menuOpen ? "hidden" : "auto";
 	};
 
-	// ✉️ Mail – Kostenloses Audit
-	const handleAuditMail = () => {
-		window.open(
-			"mailto:pixelgenie.marketing@gmail.com?subject=Kostenloses%20Website%20Audit%20Anfrage&body=Hallo%20Pixel%20Genie%2C%0A%0AIch%20möchte%20ein%20kostenloses%20Website-Audit%20anfordern.%0A%0ABitte%20überprüfen%20Sie%20meine%20Website%20und%20geben%20Sie%20mir%20ein%20Feedback%20zu%20Design%2C%20SEO%20und%20Performance.%0A%0AHier%20sind%20meine%20Details%3A%0A%0AName%3A%0AFirma%3A%0AWebsite%3A%0ATelefon%3A%0A%0AVielen%20Dank!",
-			"_blank"
-		);
-	};
+	const [showContact, setShowContact] = useState(false);
 
 	const textColor =
 		scrolled || currentTheme === "light" ? "#000" : "var(--text-color)";
@@ -188,11 +185,17 @@ const NavbarComp = ({ toggleTheme }) => {
 						<Nav className="ms-auto align-items-center gap-2">
 							<Nav.Link
 								as="button"
-								onClick={handleAuditMail}
+								onClick={() => setShowContact(true)}
 								className="d-none d-lg-block btn-premium-footer bg-black text-white px-4 py-1"
 							>
 								🚀 <AutoTranslate>{"Kostenlose Analyse"}</AutoTranslate>
 							</Nav.Link>
+
+							<ContactModal
+								show={showContact}
+								onHide={() => setShowContact(false)}
+								topic="Navbar Audit"
+							/>
 
 							<Nav.Link as={Link} href="/" className="m-1">
 								<Button className="btn-nav border-0">
@@ -362,10 +365,11 @@ const NavbarComp = ({ toggleTheme }) => {
 						</Button>
 					))}
 					<Button
-						as={Link}
-						href="#kontakt"
 						className="btn-premium-footer w-75"
-						onClick={closeMobileMenu} // ✅ zamyka po kliknięciu
+						onClick={() => {
+							closeMobileMenu();
+							setShowContact(true);
+						}}
 					>
 						🚀 <AutoTranslate>Kostenlose Analyse</AutoTranslate>
 					</Button>

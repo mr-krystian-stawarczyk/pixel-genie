@@ -2,6 +2,9 @@ import Link from "next/link";
 import React, { useRef, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import dynamic from "next/dynamic";
+const ContactModal = dynamic(() => import("@/components/ContactModal"), {
+	ssr: false,
+});
 const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
 	ssr: false,
 });
@@ -23,6 +26,7 @@ function Footer() {
 	const { t } = useTranslation();
 	const sectionRef = useRef(null);
 	const { theme } = useTheme();
+	const [showContact, setShowContact] = useState(false);
 
 	// ✅ Tracking CTA
 	const handleFooterEmail = () => {
@@ -178,11 +182,17 @@ function Footer() {
 								</p>
 
 								<button
-									onClick={handleFooterEmail}
+									onClick={() => setShowContact(true)}
 									className="btn-premium-footer hover mx-auto d-block"
 								>
-									<AutoTranslate>✨ Jetzt E-Mail senden</AutoTranslate>
+									<AutoTranslate>✨ Jetzt Kontakt aufnehmen</AutoTranslate>
 								</button>
+
+								<ContactModal
+									show={showContact}
+									onHide={() => setShowContact(false)}
+									topic="Footer Kontakt"
+								/>
 
 								<p
 									className="mt-3"
