@@ -19,8 +19,8 @@ import {
 } from "react-icons/ai";
 import AutoTranslate from "@/components/AutoTranslate";
 import { FaXTwitter } from "react-icons/fa6";
-import { hasCookie } from "cookies-next"; // ✅ tracking only after consent
-import { gaEvent } from "@/lib/analytics"; // ✅ GA4 tracking
+import { hasCookie } from "cookies-next";
+import { gaEvent } from "@/lib/analytics";
 
 function Footer() {
 	const { t } = useTranslation();
@@ -28,7 +28,6 @@ function Footer() {
 	const { theme } = useTheme();
 	const [showContact, setShowContact] = useState(false);
 
-	// ✅ Tracking CTA
 	const handleFooterEmail = () => {
 		if (hasCookie("marketingConsent")) {
 			gaEvent("cta_click", {
@@ -43,7 +42,6 @@ function Footer() {
 		);
 	};
 
-	// ✅ Helper social tracking
 	const handleSocialClick = (platform) => {
 		if (hasCookie("marketingConsent")) {
 			gaEvent("social_click", {
@@ -221,45 +219,49 @@ function Footer() {
 									</Card.Title>
 
 									<div className="d-flex justify-content-center gap-4 flex-wrap">
-										<Link
+										<a
 											href="https://www.facebook.com/profile.php?id=100090817536941"
 											target="_blank"
+											rel="noopener noreferrer"
 											aria-label="Facebook"
 											onClick={() => handleSocialClick("facebook")}
 											className="social-icon-wrapper"
 										>
 											<AiOutlineFacebook className="social-icon-premium fb" />
-										</Link>
+										</a>
 
-										<Link
+										<a
 											href="https://www.linkedin.com/in/pixel-genie-nettetal/"
 											target="_blank"
+											rel="noopener noreferrer"
 											aria-label="LinkedIn"
 											onClick={() => handleSocialClick("linkedin")}
 											className="social-icon-wrapper"
 										>
 											<AiFillLinkedin className="social-icon-premium li" />
-										</Link>
+										</a>
 
-										<Link
+										<a
 											href="https://x.com/PixelGenieWeb"
 											target="_blank"
+											rel="noopener noreferrer"
 											aria-label="X / Twitter"
 											onClick={() => handleSocialClick("twitter")}
 											className="social-icon-wrapper"
 										>
 											<FaXTwitter className="social-icon-premium x" />
-										</Link>
+										</a>
 
-										<Link
+										<a
 											href="https://www.reddit.com/user/PixelGenieNettetal/"
 											target="_blank"
+											rel="noopener noreferrer"
 											aria-label="Reddit"
 											onClick={() => handleSocialClick("reddit")}
 											className="social-icon-wrapper"
 										>
 											<AiOutlineReddit className="social-icon-premium reddit" />
-										</Link>
+										</a>
 									</div>
 
 									<p

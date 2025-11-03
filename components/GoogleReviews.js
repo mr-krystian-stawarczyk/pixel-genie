@@ -1,8 +1,10 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { Container, Row, Col, Button, Card } from "react-bootstrap";
+
+import React, { useRef, useEffect, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import MotionFadeIn from "@/components/MotionFadeIn";
 import Image from "next/image";
-import Link from "next/link";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 const REVIEW_LINK = "https://share.google/H99Pkw7ISptviG5BL";
 
@@ -10,299 +12,275 @@ const REVIEWS = [
 	{
 		name: "Karolina C.",
 		text: "Sehr netter und professioneller Service. Bereit in der Zukunft 👍",
+		stars: 5,
 	},
 	{
 		name: "Addie S.",
 		text: "Only 5 stars because I can't give 10. Fast, reliable, professional – and wallet-friendly!",
+		stars: 5,
 	},
 	{
 		name: "Sven M.",
 		text: "Von Anfang bis Ende top! Klare Kommunikation und modernes Design. Unsere Website lädt jetzt doppelt so schnell.",
+		stars: 5,
 	},
 	{
 		name: "Mariusz P.",
 		text: "Open minded and professional advice leading to creative and unique projects. Check it, you will not regret!",
+		stars: 5,
 	},
 ];
 
 export default function GoogleReviews() {
-	const trackRef = useRef(null);
-	const [paused, setPaused] = useState(false);
+	const scrollRef = useRef(null);
 	const [isMobile, setIsMobile] = useState(false);
 
-	// Detect mobile viewport
 	useEffect(() => {
-		const check = () => setIsMobile(window.innerWidth < 768);
-		check();
-		window.addEventListener("resize", check);
-		return () => window.removeEventListener("resize", check);
+		const handleResize = () => setIsMobile(window.innerWidth < 992);
+		handleResize();
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
-	// Auto-scroll only on desktop
+	// ✅ Auto-scroll desktop
 	useEffect(() => {
-		if (isMobile) return; // 🔹 na mobile nie robimy animacji
+		if (isMobile) return;
+		const track = scrollRef.current;
+		if (!track) return;
 
-		const el = trackRef.current;
-		if (!el) return;
-
-		let pos = 0;
 		let raf;
-		const speed = 0.3;
+		let scrollPos = 0;
+		const speed = 1.3; // 🔹 prędkość płynnego ruchu
 
-		const loop = () => {
-			if (!paused) {
-				pos -= speed;
-				el.style.transform = `translateX(${pos}px)`;
-				const first = el.children[0];
-				const firstWidth = first.offsetWidth + 24;
-				if (Math.abs(pos) >= firstWidth) {
-					el.appendChild(first);
-					pos += firstWidth;
-				}
-			}
-			raf = requestAnimationFrame(loop);
+		const animate = () => {
+			scrollPos += speed;
+			if (scrollPos >= track.scrollWidth / 2) scrollPos = 0;
+			track.scrollLeft = scrollPos;
+			raf = requestAnimationFrame(animate);
 		};
-		loop();
+		raf = requestAnimationFrame(animate);
+
 		return () => cancelAnimationFrame(raf);
-	}, [paused, isMobile]);
+	}, [isMobile]);
+
+	const scrollNext = () => {
+		const container = scrollRef.current;
+		if (container) container.scrollBy({ left: 280, behavior: "smooth" });
+	};
 
 	return (
-		<section
-			id="google-reviews"
-			className="py-5 position-relative"
-			onMouseEnter={() => !isMobile && setPaused(true)}
-			onMouseLeave={() => !isMobile && setPaused(false)}
-		>
-			<Container fluid className="px-0">
-				<Row className="text-center mb-4 justify-content-center">
-					<Col lg={8}>
-						<h2 className="fw-bold display-6 mb-2">Google Bewertungen</h2>
-						<p>Vertrauen durch echte Kundenstimmen</p>
-					</Col>
-				</Row>
+		<section className="review-section techbar">
+			<MotionFadeIn threshold={0.2}>
+				<Container fluid className="my-3 ">
+					<Row className="justify-content-center text-center mb-4">
+						<Col lg={12}>
+							<h2 className="section-title">⭐ Google Bewertungen</h2>
+							<p className="section-subtitle">
+								Vertrauen durch echte Kundenstimmen
+							</p>
+						</Col>
+					</Row>
 
-				<div
-					className={`reviews-wrapper my-5 ${
-						isMobile ? "mobile-mode" : "desktop-mode"
-					}`}
-				>
-					<div className="reviews-track py-2" ref={trackRef}>
-						{[...REVIEWS, ...REVIEWS, ...REVIEWS].map((r, i) => (
-							<Card key={i} className="review-card text-center mx-3">
-								<div className="google-icon-wrapper mx-auto mt-3">
-									<Image
-										src="/assets/google-icon.png"
-										width={32}
-										height={32}
-										alt="Google"
-										loading="lazy"
-									/>
-								</div>
-								<Card.Body>
-									<h5 className="fw-bold mt-2 mb-1 reviewer-name text-black ">
-										{r.name}
-									</h5>
-									<div className="stars text-warning mb-2">★★★★★</div>
-									<blockquote className="review-text text-black fst-italic mb-0">
-										“{r.text}”
-									</blockquote>
-								</Card.Body>
-							</Card>
-						))}
-					</div>
-
-					{/* 👇 Ikonka swipe tylko na mobile */}
-					{isMobile && (
-						<div className="swipe-hint text-center">
-							<span className="swipe-icon">↔</span>
+					<div className="review-wrapper ">
+						<div className="review-track " ref={scrollRef}>
+							{[...REVIEWS, ...REVIEWS].map((r, i) => (
+								<a
+									key={i}
+									href={REVIEW_LINK}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="review-card social-card shadow-md"
+									aria-label={`Google review by ${r.name}`}
+								>
+									<div className="review-icon ">
+										<Image
+											src="/assets/google-icon.png"
+											alt="Google"
+											width={36}
+											height={36}
+										/>
+									</div>
+									<div className="review-info">
+										<h5>{r.name}</h5>
+										<div className="stars">
+											{"★".repeat(r.stars)}
+											{"☆".repeat(5 - r.stars)}
+										</div>
+										<p>{r.text}</p>
+									</div>
+								</a>
+							))}
 						</div>
-					)}
-				</div>
 
-				<div className="text-center mt-5">
-					<Button
-						as={Link}
-						href={REVIEW_LINK}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="btn-outline-glass text-white"
-					>
-						Weitere Bewertungen auf Google →
-					</Button>
-				</div>
-			</Container>
+						{/* ▶️ Strzałka przewijania – tylko mobile */}
+						{isMobile && (
+							<button
+								className="scroll-arrow"
+								onClick={scrollNext}
+								aria-label="Mehr anzeigen"
+							>
+								<AiOutlineArrowRight />
+							</button>
+						)}
+					</div>
+				</Container>
+			</MotionFadeIn>
 
 			<style jsx>{`
-				/* === Wrapper === */
-				.reviews-wrapper {
-					position: relative;
+				.techbar {
+					background: var(--section-bg);
+					color: var(--text-color);
+					padding: 3.5rem 0;
+					border-top: 1px solid rgba(255, 255, 255, 0.05);
+					border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 					overflow: hidden;
-					padding: 0 6vw;
-					width: 100vw;
-					left: 50%;
-					right: 50%;
-					margin-left: -50vw;
-					margin-right: -50vw;
-					max-width: 100vw;
-					box-sizing: border-box;
+					position: relative;
 				}
 
-				/* ✅ Maska tylko na desktop */
-				@media (min-width: 768px) {
-					.reviews-wrapper {
-						mask-image: linear-gradient(
-							to right,
-							transparent,
-							black 10%,
-							black 90%,
-							transparent
-						);
-						-webkit-mask-image: linear-gradient(
-							to right,
-							transparent,
-							black 10%,
-							black 90%,
-							transparent
-						);
-					}
+				.section-title {
+					font-weight: 700;
+					font-size: 1.6rem;
+					text-transform: uppercase;
+					letter-spacing: 0.03em;
+					margin-bottom: 0.5rem;
+					color: var(--text-color);
 				}
 
-				/* === Track (desktop) === */
-				.reviews-track {
+				.section-subtitle {
+					font-size: 1rem;
+					opacity: 0.85;
+					margin-bottom: 2rem;
+				}
+
+				.review-wrapper {
+					position: relative;
+				}
+
+				.review-track {
 					display: flex;
-					gap: 1.5rem;
-					align-items: stretch;
-					will-change: transform;
-					transform: translateX(0);
-					transition: transform 0.1s linear;
-				}
-
-				/* === Mobile scroll (bez slide!) === */
-				.mobile-mode .reviews-track {
-					transform: none !important;
-					animation: none !important;
+					gap: 1.8rem;
+					align-items: center;
 					overflow-x: auto;
-					overflow-y: hidden;
-					-webkit-overflow-scrolling: touch;
+					scroll-behavior: smooth;
 					scroll-snap-type: x mandatory;
-					gap: 1.2rem;
-					will-change: auto;
+					-webkit-overflow-scrolling: touch;
 					scrollbar-width: none;
+					padding: 1rem 0 2rem;
 				}
-
-				.mobile-mode .reviews-track::-webkit-scrollbar {
+				.review-track::-webkit-scrollbar {
 					display: none;
 				}
 
-				.mobile-mode .review-card {
-					flex: 0 0 260px;
+				.review-card.social-card {
 					scroll-snap-align: center;
-				}
-
-				/* === Swipe hint === */
-				.swipe-hint {
-					text-align: center;
-					margin-top: 1rem;
-					font-size: 1rem;
-					color: var(--text-color);
-					opacity: 0.8;
-					animation: fadeIn 1s ease forwards;
-				}
-
-				.swipe-icon {
-					display: inline-block;
-					font-size: 1.6rem;
-					animation: swipeAnim 2s ease-in-out infinite;
-				}
-
-				@keyframes swipeAnim {
-					0% {
-						transform: translateX(0);
-					}
-					50% {
-						transform: translateX(10px);
-					}
-					100% {
-						transform: translateX(0);
-					}
-				}
-
-				@keyframes fadeIn {
-					from {
-						opacity: 0;
-					}
-					to {
-						opacity: 0.8;
-					}
-				}
-
-				/* === Karta === */
-				.review-card {
-					flex: 0 0 320px;
-					background: transparent;
-					border-radius: 18px;
+					min-width: 300px;
+					height: 180px;
+					background: var(--card-bg);
+					border-radius: 22px;
+					box-shadow: var(--card-shadow);
+					backdrop-filter: blur(10px);
 					border: 1px solid rgba(255, 255, 255, 0.08);
-					backdrop-filter: blur(4px);
-					transition: transform 0.4s ease, box-shadow 0.3s ease;
-					box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-					transform-origin: center center;
-					z-index: 1;
-				}
-
-				.review-card:hover {
-					transform: scale(1.06);
-					box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-					z-index: 3;
-				}
-
-				/* === Teksty i kolory === */
-				.review-text {
-					line-height: 1.5;
-					font-size: 0.95rem;
-					color: var(--card-text);
-				}
-
-				.reviewer-name {
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+					text-decoration: none;
 					color: var(--text-color);
+					padding: 1rem 1.6rem;
+					gap: 1.5rem;
+					transition: all 0.35s ease;
+					flex-shrink: 0;
+					cursor: grab;
+				}
+				.review-card.social-card:hover {
+					transform: translateY(-4px) scale(1.03);
+					box-shadow: var(--card-shadow-hover);
 				}
 
-				.btn-outline-glass {
-					border: 1px solid rgba(255, 255, 255, 0.25);
-					background: rgba(255, 255, 255, 0.05);
+				.review-icon {
+					width: 60px;
+					height: 60px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					background: rgba(255, 255, 255, 0.1);
+					border-radius: 50%;
+					box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+					flex-shrink: 0;
+				}
+
+				.review-info {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					justify-content: center;
+					gap: 0.3rem;
+				}
+				.review-info h5 {
+					margin: 0;
+					font-size: 1.15rem;
+					font-weight: 600;
+				}
+				.review-info p {
+					margin: 0;
+					font-size: 0.9rem;
+					line-height: 1.4;
+					opacity: 0.85;
+					font-style: italic;
+				}
+				.stars {
+					color: #fbbc05;
+					font-size: 1rem;
+					letter-spacing: 1px;
+				}
+
+				.scroll-arrow {
+					position: absolute;
+					right: 0.6rem;
+					top: 45%;
+					transform: translateY(-50%);
+					width: 44px;
+					height: 44px;
+					border-radius: 50%;
+					border: none;
+					background: rgba(255, 255, 255, 0.12);
 					backdrop-filter: blur(6px);
+					display: flex;
+					align-items: center;
+					justify-content: center;
 					color: var(--text-color);
+					font-size: 1.8rem;
+					cursor: pointer;
 					transition: all 0.3s ease;
+					z-index: 10;
+				}
+				.scroll-arrow:hover {
+					background: rgba(255, 255, 255, 0.2);
+					transform: translateY(-50%) scale(1.08);
 				}
 
-				.btn-outline-glass:hover {
-					background: rgba(255, 255, 255, 0.15);
-				}
-
-				:global(html[data-theme="dark"]) {
-					--text-color: #fff;
-					--card-text: #eee;
-				}
-
-				:global(html[data-theme="light"]) {
-					--text-color: #111;
-					--card-text: #111;
-				}
-
-				@media (max-width: 991px) {
-					.reviews-wrapper {
-						padding: 0 3vw;
+				@media (max-width: 768px) {
+					.review-card.social-card {
+						min-width: 250px;
+						height: 160px;
+						padding: 0.8rem 1.2rem;
+						gap: 1rem;
 					}
-					.review-card {
-						flex: 0 0 260px;
+					.review-icon {
+						width: 54px;
+						height: 54px;
 					}
-				}
-
-				@media (max-width: 600px) {
-					.reviews-wrapper {
-						padding: 0 2vw;
+					.section-title {
+						font-size: 1.3rem;
 					}
-					.review-card {
-						flex: 0 0 240px;
+					.section-subtitle {
+						font-size: 0.9rem;
+						margin-bottom: 1rem;
+					}
+					.review-info h5 {
+						font-size: 1rem;
+					}
+					.review-info p {
+						font-size: 0.8rem;
 					}
 				}
 			`}</style>
