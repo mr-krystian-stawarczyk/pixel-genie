@@ -104,11 +104,15 @@ export default function WebPrices() {
 							<h3 className="card-title fw-bold mb-2 text-primary">
 								BASIC WEBSITE
 							</h3>
-							<p className="card-desc  mb-3">
+							<p className="card-desc mb-3">
 								Ideal für den schnellen Start – Ihre erste professionelle
-								Website zum besten Preis.
+								Website mit modernem Design, schnellen Ladezeiten und solider
+								SEO-Basis.
 							</p>
-							<h2 className="card-price fw-bold mb-3 text-primary">ab 499 €</h2>
+							<h2 className="card-price fw-bold mb-3 text-primary">
+								ab 499 €{" "}
+								<span className="fs-6 text-muted">(Endpreis §19 UStG)</span>
+							</h2>
 
 							<hr className="card-divider" />
 
@@ -117,24 +121,37 @@ export default function WebPrices() {
 									✔ One-Page oder Landingpage
 								</li>
 								<li style={{ color: "var(--text-color)" }}>
-									✔ Responsive Design (Mobile & Desktop)
+									✔ Responsive Design (Mobile &amp; Desktop)
 								</li>
 								<li style={{ color: "var(--text-color)" }}>
-									✔ Basis SEO & schnelle Ladezeiten
+									✔ Basis-SEO &amp; schnelle Ladezeiten
 								</li>
 								<li style={{ color: "var(--text-color)" }}>
-									✔ Kontaktformular & Google Maps
+									✔ Kontaktformular &amp; Google Maps
 								</li>
 								<li style={{ color: "var(--text-color)" }}>
-									✔ Impressum & Datenschutz inklusive
+									✔ Impressum &amp; Datenschutz inklusive
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Domain-Anbindung &amp; SSL-Zertifikat
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Optimiert mit React &amp; Next.js Technologie
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Google Business Profil Integration
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Performance Optimierung (Lighthouse 85+)
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Kostenlose Beratung vor Projektstart
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									🎉 <strong>–10 % Rabatt</strong> für Kunden aus{" "}
+									<strong>NRW</strong>
 								</li>
 							</ul>
-
-							<div className="card-footer mt-4">
-								<button className="btn btn-primary text-white fw-bold px-4 py-2">
-									Jetzt anfragen
-								</button>
-							</div>
 						</div>
 					</div>
 				</Col>
@@ -151,36 +168,55 @@ export default function WebPrices() {
 								BUSINESS WEBSITE
 							</h3>
 							<p className="card-desc mb-3">
-								Unser Bestseller – ideal für Unternehmen, die Leistung und
-								Design verbinden wollen.
+								Unser Bestseller – maßgeschneiderte Website für Unternehmen, die
+								Design, Performance und Sichtbarkeit verbinden möchten.
 							</p>
-							<h2 className="card-price fw-bold mb-3 text-success">ab 899 €</h2>
+							<h2 className="card-price fw-bold mb-3 text-success">
+								ab 899 €{" "}
+								<span className="fs-6 text-muted">(Endpreis §19 UStG)</span>
+							</h2>
 
 							<hr className="card-divider" />
 
 							<ul className="card-features list-unstyled text-start">
 								<li style={{ color: "var(--text-color)" }}>
-									✔ Mehrseitige Website (bis 5 Seiten)
+									✔ Mehrseitige Website (bis 6 Seiten)
 								</li>
 								<li style={{ color: "var(--text-color)" }}>
-									✔ Individuelles Design mit CMS (Sanity/Headless)
+									✔ Individuelles Design &amp; Branding
 								</li>
 								<li style={{ color: "var(--text-color)" }}>
-									✔ SEO & Performance Optimierung (Lighthouse 90+)
+									✔ Headless CMS Integration (Inhalte selbst pflegen)
 								</li>
 								<li style={{ color: "var(--text-color)" }}>
-									✔ Analytics & Search Console Integration
+									✔ SEO &amp; Performance Optimierung (Lighthouse 90+)
 								</li>
 								<li style={{ color: "var(--text-color)" }}>
-									✔ 1 Jahr Hosting & Wartung
+									✔ Analytics &amp; Search Console Einrichtung
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Google My Business &amp; Local SEO Optimierung
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ 1 Jahr Hosting &amp; technische Wartung inklusive
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ DSGVO-konformes Cookie &amp; Consent Management
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Blog oder Portfolio integriert
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ E-Mail mit Domain (z. B. info@firma.de)
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									✔ Sicherheitsupdates &amp; Backups
+								</li>
+								<li style={{ color: "var(--text-color)" }}>
+									🎉 <strong>–10 % Rabatt</strong> für Firmen aus{" "}
+									<strong>NRW</strong>
 								</li>
 							</ul>
-
-							<div className="card-footer mt-4">
-								<button className="btn btn-success text-white fw-bold px-4 py-2">
-									Bestseller anfragen
-								</button>
-							</div>
 						</div>
 					</div>
 				</Col>
@@ -189,39 +225,60 @@ export default function WebPrices() {
 				<Col lg={4} md={6}>
 					<div
 						className="pricing-card premium-card h-100 shadow-lg rounded-4 border-0 text-light"
-						style={{ background: "linear-gradient(135deg, #0b0b2e, #21216b)" }}
+						style={{ background: "linear-gradient(135deg,#0b0b2e,#21216b)" }}
 					>
 						<div className="card-inner p-4">
 							<h3 className="card-title fw-bold mb-2 text-warning">
 								PREMIUM WEBSITE
 							</h3>
 							<p className="card-desc text-white mb-3">
-								Für Marken, die Maßstäbe setzen wollen – High-End Performance,
-								UX und Strategie.
+								Für Marken, die online dominieren wollen – High-End Design,
+								maximale Geschwindigkeit &amp; eine ganzheitliche digitale
+								Strategie.
 							</p>
 							<h2 className="card-price fw-bold mb-3 text-warning">
-								ab 1499 €
+								ab 1499 €{" "}
+								<span className="fs-6 text-light-50">(Endpreis §19 UStG)</span>
 							</h2>
 
 							<hr className="card-divider border-light" />
 
 							<ul className="card-features list-unstyled text-start text-white">
-								<li>✔ Individuelles UX/UI Konzept</li>
-								<li>✔ Unbegrenzte Seiten & CMS</li>
+								<li>✔ Maßgeschneidertes UX/UI Konzept + Markenstrategie</li>
+								<li>✔ Unbegrenzte Seiten &amp; CMS Integration</li>
 								<li>✔ Technische SEO + Core Web Vitals 95+</li>
-								<li>✔ Blog + Content-System inklusive</li>
-								<li>✔ Conversion-Tracking & A/B Tests</li>
+								<li>✔ Content-System + automatisiertes Blog Setup</li>
+								<li>✔ Conversion Tracking, A/B Tests &amp; Heatmaps</li>
+								<li>✔ Mehrsprachigkeit (DE / EN / NL)</li>
+								<li>✔ Google Ads &amp; Meta Ads Setup inklusive</li>
+								<li>✔ Premium Hosting (Cloudflare CDN + Next.js SSR)</li>
+								<li>✔ Launch-Kampagne &amp; digitale Markenberatung</li>
+								<li>
+									✔ Persönliche Projektbetreuung (1:1 mit Designer &amp;
+									Entwickler)
+								</li>
+								<li>✔ 24/7 Support in den ersten 3 Monaten</li>
+								<li>
+									🎉 <strong>–10 % Rabatt</strong> für Unternehmen aus{" "}
+									<strong>NRW</strong>
+								</li>
 							</ul>
-
-							<div className="card-footer mt-4">
-								<button className="btn btn-warning text-dark fw-bold px-4 py-2">
-									Premium buchen
-								</button>
-							</div>
 						</div>
 					</div>
 				</Col>
 			</Row>
+
+			{/* Rechtlicher Hinweis */}
+			<p className="text-center  mt-3" style={{ fontSize: "0.9rem" }}>
+				Alle Preise sind Endpreise gemäß §19 UStG (Kleinunternehmerregelung,
+				keine MwSt-Ausweisung).
+			</p>
+
+			{/* Technischer Hinweis */}
+			<p className="text-center " style={{ fontSize: "0.85rem" }}>
+				Alle Websites werden mit modernster React &amp; Next.js Technologie
+				entwickelt – blitzschnell, SEO-optimiert und 100 % DSGVO-konform.
+			</p>
 
 			{/* Add-ons */}
 			<Row className="justify-content-center text-center mt-5">

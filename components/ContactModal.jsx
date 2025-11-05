@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Form, Button, Spinner } from "react-bootstrap";
 import { useTheme } from "next-themes";
 import MotionFadeIn from "@/components/MotionFadeIn";
@@ -28,7 +29,7 @@ function Toast({ type, message, onClose }) {
 				borderRadius: 10,
 				boxShadow: "0 6px 24px rgba(0,0,0,0.25)",
 				background: bg,
-				zIndex: 9999,
+				zIndex: 99999,
 				maxWidth: 400,
 			}}
 		>
@@ -42,6 +43,7 @@ function Toast({ type, message, onClose }) {
 
 export default function ContactModal({ show, onHide, topic }) {
 	const { theme } = useTheme();
+	const [mounted, setMounted] = useState(false);
 	const [form, setForm] = useState({
 		topic: topic || "",
 		name: "",
@@ -53,13 +55,15 @@ export default function ContactModal({ show, onHide, topic }) {
 	});
 	const [status, setStatus] = useState("idle");
 	const [toast, setToast] = useState({ type: "", message: "" });
-	const mounted = useRef(true);
 
+	useEffect(() => setMounted(true), []);
+
+	// Blokada scrolla w tle
 	useEffect(() => {
-		return () => {
-			mounted.current = false;
-		};
-	}, []);
+		if (show) document.body.style.overflow = "hidden";
+		else document.body.style.overflow = "";
+		return () => (document.body.style.overflow = "");
+	}, [show]);
 
 	const handleChange = (e) => {
 		const { name, value, type, checked } = e.target;
@@ -89,20 +93,15 @@ export default function ContactModal({ show, onHide, topic }) {
 				setStatus("idle");
 				return;
 			}
-
 			if (!res.ok) throw new Error("Send failed");
 
-			// ✅ sukces
 			setToast({
 				type: "success",
 				message: "Vielen Dank! Ihre Anfrage wurde gesendet.",
 			});
 			setStatus("success");
-
-			// ⏳ pokaż komunikat 2 sekundy i zamknij modal
 			setTimeout(() => {
-				if (!mounted.current) return;
-				onHide?.(); // zamyka modal
+				onHide?.();
 				setStatus("idle");
 				setForm({
 					topic: topic || "",
@@ -113,10 +112,8 @@ export default function ContactModal({ show, onHide, topic }) {
 					budget: "",
 					accepted: false,
 				});
-				setToast({ type: "", message: "" }); // reset toast
 			}, 2000);
 		} catch (err) {
-			console.error("❌ Send error:", err);
 			setToast({
 				type: "error",
 				message: "Fehler beim Senden. Bitte versuchen Sie es erneut.",
@@ -124,7 +121,8 @@ export default function ContactModal({ show, onHide, topic }) {
 			setStatus("error");
 		}
 	};
-	if (!show) return null;
+
+	if (!show || !mounted) return null;
 
 	const isDark = theme === "dark";
 	const modalBg = isDark
@@ -133,7 +131,8 @@ export default function ContactModal({ show, onHide, topic }) {
 	const textColor = isDark ? "#e2e8f0" : "#111827";
 	const subText = isDark ? "#94a3b8" : "#6b7280";
 
-	return (
+	// 🔥 RENDERUJEMY MODAL POZA LAYOUTEM (PORTAL)
+	return createPortal(
 		<>
 			<Toast
 				type={toast.type}
@@ -142,36 +141,42 @@ export default function ContactModal({ show, onHide, topic }) {
 			/>
 
 			<div
-				className="position-fixed top-0 start-0 w-100 h-100"
+				className="contact-modal-overlay"
+				onClick={onHide}
 				style={{
-					zIndex: 2000,
-					backdropFilter: "blur(5px)",
-					background: isDark ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.55)",
-					transition: "background 0.3s ease",
+					position: "fixed",
+					inset: 0,
+					zIndex: 99998,
+					background: isDark ? "rgba(0,0,0,0.7)" : "rgba(255,255,255,0.4)",
+					backdropFilter: "blur(10px)",
+					WebkitBackdropFilter: "blur(10px)",
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					overflowY: "auto",
+					padding: "2rem 1rem",
 				}}
 			>
-				<div
-					onClick={onHide}
-					className="position-absolute w-100 h-100"
-					style={{ inset: 0 }}
-				/>
 				<MotionFadeIn>
 					<div
 						className="rounded-4 shadow-lg"
+						onClick={(e) => e.stopPropagation()}
 						style={{
 							position: "relative",
 							width: "min(92%, 620px)",
-							margin: "5vh auto",
 							background: modalBg,
 							color: textColor,
 							padding: "22px 20px",
-							maxHeight: "90vh", // ✅ nie wychodzi poza ekran
-							overflowY: "auto", // ✅ przewijany wewnętrznie
-							backdropFilter: "blur(8px)", // ✅ lekki blur wokół
+							maxHeight: "90vh",
+							overflowY: "auto",
+							backdropFilter: "blur(8px)",
+							WebkitBackdropFilter: "blur(8px)",
 							boxShadow: isDark
 								? "0 10px 40px rgba(15,23,42,0.8)"
 								: "0 10px 36px rgba(0,0,0,0.25)",
 							border: isDark ? "1px solid #334155" : "1px solid #e5e7eb",
+							borderRadius: "1rem",
+							animation: "fadeInCenter 0.35s ease",
 						}}
 					>
 						{/* HEADER */}
@@ -200,7 +205,7 @@ export default function ContactModal({ show, onHide, topic }) {
 							Wir melden uns innerhalb von 24–48 h.
 						</small>
 
-						{/* FORM */}
+						{/* FORMULARZ */}
 						<Form onSubmit={handleSubmit} className="mt-3">
 							<Form.Group className="mb-3">
 								<Form.Label>Thema der Anfrage</Form.Label>
@@ -362,67 +367,20 @@ export default function ContactModal({ show, onHide, topic }) {
 						</Form>
 					</div>
 				</MotionFadeIn>
+				<style jsx>{`
+					@keyframes fadeInCenter {
+						from {
+							opacity: 0;
+							transform: scale(0.94) translateY(12px);
+						}
+						to {
+							opacity: 1;
+							transform: scale(1) translateY(0);
+						}
+					}
+				`}</style>
 			</div>
-
-			{/* ✅ LOADING OVERLAY (Apple style) */}
-			{status === "loading" && (
-				<div
-					className="position-fixed top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center"
-					style={{
-						zIndex: 3000,
-						backdropFilter: "blur(8px)",
-						background: isDark ? "rgba(0,0,0,0.65)" : "rgba(255,255,255,0.55)",
-						transition: "all 0.3s ease",
-					}}
-				>
-					<div
-						className="d-flex flex-column justify-content-center align-items-center"
-						style={{ transform: "scale(1.1)" }}
-					>
-						<img
-							src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
-							alt="Pixel Genie Logo"
-							style={{
-								width: 68,
-								height: 68,
-								marginBottom: 16,
-								filter: isDark ? "invert(1)" : "none",
-								animation: "spin 3s linear infinite",
-							}}
-						/>
-						<span
-							style={{
-								color: isDark ? "#f1f5f9" : "#0f172a",
-								fontWeight: 500,
-								fontSize: "1rem",
-							}}
-						>
-							Sende Anfrage...
-						</span>
-					</div>
-
-					<style jsx>{`
-						@keyframes spin {
-							0% {
-								transform: rotate(0deg);
-							}
-							100% {
-								transform: rotate(360deg);
-							}
-						}
-						@media (max-width: 768px) {
-							.rounded-4.shadow-lg {
-								padding: 16px !important;
-								margin: 4vh auto !important;
-								max-height: 85vh !important;
-							}
-							.rounded-4.shadow-lg h5 {
-								font-size: 1.05rem !important;
-							}
-						}
-					`}</style>
-				</div>
-			)}
-		</>
+		</>,
+		document.body
 	);
 }

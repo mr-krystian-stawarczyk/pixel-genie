@@ -52,13 +52,13 @@ export default function Seo6() {
 								BASIC PLAN
 							</h3>
 							<p className="card-desc mb-3">
-								<AutoTranslate>
-									Ihr Einstieg in die Welt der SEO-Optimierung – ideal für
-									kleine Unternehmen, die lokal gefunden werden wollen.
-								</AutoTranslate>
+								Ihr Einstieg in die Welt der SEO-Optimierung – ideal für kleine
+								Unternehmen, Selbstständige und lokale Dienstleister, die in
+								ihrer Region sichtbar werden wollen.
 							</p>
 							<h2 className="card-price fw-bold mb-3 text-primary">
-								99 € / Monat
+								99 € / Monat <br></br>
+								<span className="fs-6 text-muted">(Endpreis §19 UStG)</span>
 							</h2>
 
 							<hr className="card-divider" />
@@ -68,18 +68,16 @@ export default function Seo6() {
 								<li>✔ Keyword-Recherche für lokale Zielgruppen</li>
 								<li>✔ OnPage-Optimierung (Meta, Titel, Struktur)</li>
 								<li>✔ Content-Optimierung & SEO-Texte</li>
-								<li>✔ Monatlicher Ranking-Report</li>
-								<li>✔ Google Search Console Einrichtung</li>
+								<li>✔ Google Search Console & Index-Überwachung</li>
+								<li>✔ Monatlicher Ranking- & Traffic-Report</li>
+								<li>✔ Basis-Performance-Tuning (Core Web Vitals 85+)</li>
+								<li>✔ Einrichtung Google My Business (lokales SEO)</li>
+								<li>✔ Konkurrenzvergleich & Handlungsempfehlungen</li>
+								<li>
+									🎉 <strong>–10 % Rabatt</strong> für Kunden aus{" "}
+									<strong>NRW</strong>
+								</li>
 							</ul>
-
-							<div className="card-footer mt-4">
-								<button
-									className="btn btn-primary text-white fw-bold px-4 py-2"
-									onClick={() => handleEmail("Basic Plan (99 € / Monat)")}
-								>
-									Jetzt starten
-								</button>
-							</div>
 						</div>
 					</div>
 				</Col>
@@ -96,35 +94,33 @@ export default function Seo6() {
 								BUSINESS PLAN
 							</h3>
 							<p className="card-desc mb-3">
-								<AutoTranslate>
-									Der Bestseller für wachsende Marken – inklusive technischer
-									Optimierung, Content-Marketing und Performance-Boost.
-								</AutoTranslate>
+								Der Bestseller für wachsende Marken – nachhaltiges SEO mit Fokus
+								auf Technik, Content-Marketing und messbare
+								Performance-Steigerung.
 							</p>
 							<h2 className="card-price fw-bold mb-3 text-success">
-								149 € / Monat
+								149 € / Monat <br></br>
+								<span className="fs-6 text-muted">(Endpreis §19 UStG)</span>
 							</h2>
 
 							<hr className="card-divider" />
 
 							<ul className="card-features list-unstyled text-start">
-								<li>✔ Detailliertes SEO-Audit & Ladezeiten-Analyse</li>
-								<li>✔ Umfassende Keyword-Strategie (lokal & regional)</li>
-								<li>✔ Optimierung für Core Web Vitals</li>
+								<li>✔ Umfassendes SEO-Audit & Ladezeitenanalyse</li>
+								<li>✔ Detaillierte Keyword-Strategie (lokal + regional)</li>
+								<li>✔ Optimierung für Core Web Vitals 90+</li>
 								<li>✔ Technische SEO (Schema, strukturierte Daten)</li>
-								<li>✔ Backlink-Aufbau & Linkmonitoring</li>
-								<li>✔ Monatlicher Performance-Report</li>
-								<li>✔ 1 Stunde SEO-Beratung im Monat inklusive</li>
+								<li>✔ Content-Strategie inkl. Blog & Landingpages</li>
+								<li>✔ Backlink-Aufbau & Link-Monitoring</li>
+								<li>✔ Monatlicher Performance- & Sichtbarkeitsreport</li>
+								<li>✔ Konkurrenzanalyse & Marktbeobachtung</li>
+								<li>✔ Conversion-Optimierung (UX / Layout / Copy)</li>
+								<li>✔ 1 Stunde SEO-Beratung monatlich inklusive</li>
+								<li>
+									🎉 <strong>–10 % Rabatt</strong> für Firmen aus{" "}
+									<strong>NRW</strong>
+								</li>
 							</ul>
-
-							<div className="card-footer mt-4">
-								<button
-									className="btn btn-success text-white fw-bold px-4 py-2"
-									onClick={() => handleEmail("Business Plan (149 € / Monat)")}
-								>
-									Bestseller sichern
-								</button>
-							</div>
 						</div>
 					</div>
 				</Col>
@@ -133,59 +129,62 @@ export default function Seo6() {
 				<Col lg={4} md={6}>
 					<div
 						className="pricing-card premium-card h-100 shadow-lg rounded-4 border-0 text-light"
-						style={{ background: "linear-gradient(135deg, #0b0b2e, #21216b)" }}
+						style={{ background: "linear-gradient(135deg,#0b0b2e,#21216b)" }}
 					>
 						<div className="card-inner p-4">
 							<h3 className="card-title fw-bold mb-2 text-warning">
 								PREMIUM PLAN
 							</h3>
 							<p className="card-desc text-white mb-3">
-								<AutoTranslate>
-									Das Rundum-sorglos-Paket für Unternehmen, die das Maximum aus
-									ihrer Online-Präsenz herausholen wollen – inkl. SEO, Content,
-									UX & Ads.
-								</AutoTranslate>
+								Das Rundum-sorglos-Paket für ambitionierte Unternehmen –
+								High-End SEO, Content-Marketing, UX-Optimierung & Performance
+								auf Enterprise-Niveau.
 							</p>
 							<h2 className="card-price fw-bold mb-3 text-warning">
-								299 € / Monat
+								299 € / Monat <br></br>
+								<span className="fs-6 text-muted">(Endpreis §19 UStG)</span>
 							</h2>
 
 							<hr className="card-divider border-light" />
 
 							<ul className="card-features list-unstyled text-start text-white">
-								<li>✔ Individuelle SEO-Strategie & Wettbewerbsanalyse</li>
-								<li>✔ Vollständige technische Optimierung (Next.js/React)</li>
-								<li>✔ Hochwertige Backlinks & Outreach-Kampagnen</li>
-								<li>✔ Conversion-Tracking & Heatmap-Analysen</li>
-								<li>✔ Content-Erstellung inkl. Blog & Landingpages</li>
-								<li>✔ Monatliche Strategie-Calls & Reporting</li>
+								<li>✔ Individuelle SEO-Strategie + Wettbewerbsanalyse</li>
+								<li>✔ Vollständige technische Optimierung (Next.js / React)</li>
+								<li>✔ Hochwertige Backlinks + Outreach-Kampagnen</li>
+								<li>✔ Conversion-Tracking + Heatmap-Analysen</li>
+								<li>✔ Content-Erstellung (Blog, Landingpages, Snippets)</li>
+								<li>✔ Local + International SEO (DE, EN, NL)</li>
+								<li>✔ Integration von Google Ads / Meta Ads Tracking</li>
+								<li>✔ Monatliche Strategie-Calls + KPI-Reporting</li>
+								<li>✔ UX-Optimierung für bessere Conversion-Rates</li>
 								<li>✔ Priorisierter Support & persönliche Betreuung</li>
+								<li>
+									🎉 <strong>–10 % Rabatt</strong> für Unternehmen aus{" "}
+									<strong>NRW</strong>
+								</li>
 							</ul>
-
-							<div className="card-footer mt-4">
-								<button
-									className="btn btn-warning text-dark fw-bold px-4 py-2"
-									onClick={() => handleEmail("Premium Plan (299 € / Monat)")}
-								>
-									Premium buchen
-								</button>
-							</div>
 						</div>
 					</div>
 				</Col>
 			</Row>
 
+			{/* Rechtlicher Hinweis */}
+
 			{/* FOOTER */}
 			<Row className="justify-content-center text-center mt-5">
 				<Col lg={8}>
-					<p className="text-muted">
-						<AutoTranslate>
-							Alle Preise verstehen sich zzgl. MwSt. – keine versteckten
-							Gebühren. Jedes Paket kann monatlich gekündigt oder individuell
-							erweitert werden. Pixel Genie steht für transparente
-							SEO-Leistungen, messbare Ergebnisse und persönliche Betreuung. Ihr
-							Erfolg ist unser Ziel.
-						</AutoTranslate>
+					<p className="">
+						<p className="text-center  mt-3" style={{ fontSize: "0.9rem" }}>
+							Alle Preise sind Endpreise gemäß §19 UStG
+							(Kleinunternehmerregelung, keine MwSt-Ausweisung).
+						</p>
+
+						{/* Technischer Hinweis */}
+						<p className="text-center " style={{ fontSize: "0.85rem" }}>
+							Alle SEO-Maßnahmen werden technisch mit React &amp; Next.js
+							abgestimmt – schnelle Ladezeiten, stabile Rankings &amp; messbare
+							Ergebnisse für Ihr Unternehmen in NRW.
+						</p>
 					</p>
 				</Col>
 			</Row>

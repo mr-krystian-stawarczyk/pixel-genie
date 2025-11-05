@@ -144,12 +144,11 @@ export default function WebseitenerstellungCity({ cityData, seo }) {
 							<h2 className="fw-bold">
 								Pakete &amp; Preise – fair &amp; transparent
 							</h2>
-							<p className="text-muted">
+							<p className="">
 								Sinnvolle Stufen für Start, Wachstum und Marke.
 							</p>
 						</Col>
 					</Row>
-
 					<Row className="g-4">
 						{/* BASIC */}
 						<Col lg={4} md={6}>
@@ -158,16 +157,20 @@ export default function WebseitenerstellungCity({ cityData, seo }) {
 									<h3 className="fw-bold text-primary mb-2">BASIC WEBSITE</h3>
 									<p>
 										Ideal für den schnellen Start – Ihre erste professionelle
-										Website zum besten Preis.
+										Website mit modernem Design, hoher Geschwindigkeit und
+										stabiler SEO-Basis.
 									</p>
-									<h2 className="fw-bold mb-3 text-primary">ab 499 €</h2>
+									<h2 className="fw-bold mb-3 text-primary">
+										ab 499 €{" "}
+										<span className="fs-6 text-muted">(Endpreis §19 UStG)</span>
+									</h2>
 									<hr />
 									<ul className="text-start">
 										<li style={{ color: "var(--text-color)" }}>
 											One-Pager / Landingpage
 										</li>
 										<li style={{ color: "var(--text-color)" }}>
-											Responsive (Mobile &amp; Desktop)
+											Responsive für Mobile &amp; Desktop
 										</li>
 										<li style={{ color: "var(--text-color)" }}>
 											Basis-SEO &amp; schnelle Ladezeiten
@@ -178,14 +181,26 @@ export default function WebseitenerstellungCity({ cityData, seo }) {
 										<li style={{ color: "var(--text-color)" }}>
 											Impressum &amp; Datenschutz inklusive
 										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Domain-Anbindung &amp; SSL-Zertifikat
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Optimiert mit React &amp; Next.js Technologie
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Google Business Profil Integration
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Performance-Optimierung (Lighthouse 85+)
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											Kostenlose Beratung vor Projektstart
+										</li>
+										<li style={{ color: "var(--text-color)" }}>
+											<strong>-10% Rabatt</strong> für Kunden aus{" "}
+											<strong>NRW</strong>
+										</li>
 									</ul>
-									<Button
-										variant="primary"
-										className="mt-2 px-4"
-										onClick={() => handleEmail("BASIC WEBSITE in " + city)}
-									>
-										Jetzt anfragen
-									</Button>
 								</Card.Body>
 							</Card>
 						</Col>
@@ -197,26 +212,33 @@ export default function WebseitenerstellungCity({ cityData, seo }) {
 									<h3 className="fw-bold text-success mb-2">
 										BUSINESS WEBSITE
 									</h3>
-									<p className="text-muted">
-										Unser Bestseller – Leistung + Design für ambitionierte
-										Unternehmen.
+									<p className="text-black">
+										Unser Bestseller – maßgeschneiderte Website mit Fokus auf
+										Design, Performance und Sichtbarkeit. Perfekt für
+										Unternehmen, die wachsen wollen.
 									</p>
-									<h2 className="fw-bold mb-3 text-success">ab 899 €</h2>
+									<h2 className="fw-bold mb-3 text-success">
+										ab 899 €{" "}
+										<span className="fs-6 text-muted">(Endpreis §19 UStG)</span>
+									</h2>
 									<hr />
 									<ul className="text-start text-black">
-										<li>Mehrseitige Website (bis 5 Seiten)</li>
-										<li>Individuelles Design mit CMS (Headless)</li>
+										<li>Mehrseitige Website (bis 6 Seiten)</li>
+										<li>Individuelles Design &amp; Branding</li>
+										<li>Headless CMS Integration (Inhalte selbst verwalten)</li>
 										<li>SEO &amp; Performance-Optimierung (Lighthouse 90+)</li>
-										<li>Analytics &amp; Search Console</li>
-										<li>1 Jahr Hosting &amp; Wartung</li>
+										<li>Analytics &amp; Search Console Einrichtung</li>
+										<li>Google My Business &amp; Local SEO Optimierung</li>
+										<li>1 Jahr Hosting &amp; technische Wartung inklusive</li>
+										<li>Rechtssichere Cookie & Consent Verwaltung (DSGVO)</li>
+										<li>Blog, Portfolio oder Produktseiten inklusive</li>
+										<li>E-Mail Adresse mit Domain (z. B. info@firma.de)</li>
+										<li>Sicherheitsupdates & automatische Backups</li>
+										<li>
+											<strong>-10% Rabatt</strong> für Firmen aus{" "}
+											<strong>NRW</strong>
+										</li>
 									</ul>
-									<Button
-										variant="success"
-										className="mt-2 px-4 text-white"
-										onClick={() => handleEmail("BUSINESS WEBSITE in " + city)}
-									>
-										Bestseller anfragen
-									</Button>
 								</Card.Body>
 							</Card>
 						</Col>
@@ -232,29 +254,52 @@ export default function WebseitenerstellungCity({ cityData, seo }) {
 								<Card.Body className="p-4">
 									<h3 className="fw-bold text-warning mb-2">PREMIUM WEBSITE</h3>
 									<p className="text-white">
-										Für Marken, die Maßstäbe setzen – High-End Performance, UX
-										und Strategie.
+										Für Marken, die online dominieren wollen – High-End Design,
+										maximale Geschwindigkeit und vollständige digitale Strategie
+										aus einer Hand.
 									</p>
-									<h2 className="fw-bold mb-3 text-warning">ab 1499 €</h2>
+									<h2 className="fw-bold mb-3 text-warning">
+										ab 1499 €{" "}
+										<span className="fs-6 text-light-50">
+											(Endpreis §19 UStG)
+										</span>
+									</h2>
 									<hr className="border-light" />
 									<ul className="text-start text-white">
-										<li>Individuelles UX/UI-Konzept</li>
-										<li>Unbegrenzte Seiten &amp; CMS</li>
+										<li>Komplettes UX/UI Konzept + Markenstrategie</li>
+										<li>Unbegrenzte Seiten & CMS-Integration</li>
 										<li>Technische SEO + Core Web Vitals 95+</li>
-										<li>Blog + Content-System</li>
-										<li>Conversion-Tracking &amp; A/B-Tests</li>
+										<li>Content-System + Automatisiertes Blog-Setup</li>
+										<li>Conversion-Tracking, A/B-Tests & Heatmaps</li>
+										<li>
+											Mehrsprachigkeit (Deutsch / Englisch / Niederländisch)
+										</li>
+										<li>Inklusive Google Ads & Meta Ads Setup</li>
+										<li>Premium Hosting (Cloudflare CDN, Next.js SSR)</li>
+										<li>Launch-Kampagne & digitale Markenberatung</li>
+										<li>
+											Persönliche Projektbetreuung (1:1 mit Designer &
+											Entwickler)
+										</li>
+										<li>24/7 Support in den ersten 3 Monaten</li>
+										<li>
+											<strong>-10% Rabatt</strong> für Unternehmen aus{" "}
+											<strong>NRW</strong>
+										</li>
 									</ul>
-									<Button
-										variant="warning"
-										className="mt-2 fw-bold px-4 text-dark"
-										onClick={() => handleEmail("PREMIUM WEBSITE in " + city)}
-									>
-										Premium buchen
-									</Button>
 								</Card.Body>
 							</Card>
 						</Col>
 					</Row>
+
+					{/* Rechtlicher Hinweis */}
+					<p
+						className="text-center text-muted mt-3"
+						style={{ fontSize: "0.9rem" }}
+					>
+						Alle Preise sind Endpreise gemäß §19 UStG (Kleinunternehmerregelung,
+						keine MwSt-Ausweisung).
+					</p>
 
 					{/* ADD-ONS */}
 					<Row className="justify-content-center text-center mt-5">
