@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useTheme } from "next-themes";
@@ -9,10 +10,10 @@ import dynamic from "next/dynamic";
 import { hasCookie } from "cookies-next";
 import { gaEvent } from "@/lib/analytics";
 import AutoTranslate from "./AutoTranslate";
-import motion from "./MotionLite"; // ✅ używamy lekkiej wersji
-const ContactButton = dynamic(() => import("./ContactButton"), { ssr: false });
-const MotionDiv = motion.div; // ✅ zamiast framer-motion
+import motion from "./MotionLite";
 
+const ContactButton = dynamic(() => import("./ContactButton"), { ssr: false });
+const MotionDiv = motion.div;
 const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 	ssr: false,
 	loading: () => null,
@@ -26,8 +27,16 @@ export default function Header1() {
 
 	useEffect(() => {
 		let done = false;
+		const isMobile =
+			typeof window !== "undefined" ? window.innerWidth < 1024 : false;
+
 		const enableParticles = () => {
-			if (done) return;
+			if (done || isMobile) {
+				console.log(
+					"💡 Particles disabled on mobile — using gradient background"
+				);
+				return;
+			}
 			done = true;
 			setShowParticles(true);
 		};
@@ -84,26 +93,33 @@ export default function Header1() {
 			style={{ minHeight: "100vh" }}
 			aria-label="Hero Header"
 		>
-			{showParticles && (
-				<div
-					className="particles-container position-absolute w-100 h-100"
-					style={{
-						inset: 0,
-						background:
-							theme === "light"
-								? "#ffffff"
-								: "linear-gradient(180deg, #040b1a 0%, #000000 100%)",
-						transition: "background 0.4s ease-in-out",
-					}}
-					aria-hidden="true"
-				>
-					<ParticlesComponent />
-				</div>
-			)}
+			{/* ✅ Warstwa tła */}
+			<div
+				className="position-absolute w-100 h-100"
+				style={{
+					inset: 0,
+					zIndex: 0,
+					transition: "background 0.4s ease-in-out",
+					background:
+						showParticles && theme === "dark"
+							? "linear-gradient(180deg, #040b1a 0%, #000000 100%)"
+							: showParticles && theme === "light"
+							? "#ffffff"
+							: theme === "dark"
+							? "radial-gradient(circle at 50% 40%, rgba(0, 64, 128, 0.35) 0%, rgba(0, 0, 32, 0.9) 80%)"
+							: "linear-gradient(135deg, rgba(190,220,255,0.9) 0%, rgba(100,150,255,0.85) 60%, rgba(50,80,200,0.8) 100%)",
+					boxShadow: "inset 0 0 80px rgba(0, 90, 200, 0.25)",
+					backdropFilter: "blur(6px) saturate(130%)",
+				}}
+			>
+				{/* Renderuj cząstki tylko na desktop */}
+				{showParticles && <ParticlesComponent />}
+			</div>
 
+			{/* ✅ Główna zawartość */}
 			<Container
 				className="d-flex flex-column justify-content-center align-items-center text-center position-relative header-content"
-				style={{ minHeight: "100vh" }}
+				style={{ minHeight: "100vh", zIndex: 2 }}
 			>
 				<MotionDiv
 					className="motion-safe"
