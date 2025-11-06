@@ -10,6 +10,9 @@ import {
 	ContactCTA,
 	BreadcrumbsJsonLd,
 } from "@/components/service-page";
+
+import ServicePageHead from "@/components/service-page/ServicePageHead";
+
 // ✅ Lazy-load interaktywne komponenty po stronie klienta
 const ReadingProgressBar = dynamic(
 	() => import("@/components/ReadingProgressBar"),
@@ -212,15 +215,74 @@ export default function WebdesignAgenturCityPage({ cityData }) {
 		{ name: cityName, url: canonical },
 	];
 
+	// ✅ OfferSchema mit Rabatt & lokalem SEO
+	const offerSchema = {
+		"@context": "https://schema.org",
+		"@type": "WebDesignService",
+		name: `Webdesign Agentur ${cityName}`,
+		description: `Professionelles Webdesign in ${cityName} – SEO-stark, performant und auf Markenauftritt fokussiert.`,
+		provider: {
+			"@type": "Organization",
+			name: "Pixel-Genie",
+			url: "https://www.pixel-genie.de",
+			logo: "https://www.pixel-genie.de/logo.png",
+			telephone: cityData?.phone || "+48 726 897 493",
+			email: cityData?.email || "pixelgenie.marketing@gmail.com",
+			address: {
+				"@type": "PostalAddress",
+				streetAddress: cityData?.address || "Fasanenstr. 10",
+				postalCode: cityData?.postalCode || "41334",
+				addressLocality:
+					(cityData?.city || "").charAt(0).toUpperCase() +
+					(cityData?.city || "").slice(1),
+				addressRegion: "Nordrhein-Westfalen",
+				addressCountry: "DE",
+			},
+			geo: cityData?.geo
+				? {
+						"@type": "GeoCoordinates",
+						latitude: cityData.geo.latitude,
+						longitude: cityData.geo.longitude,
+				  }
+				: undefined,
+		},
+		areaServed: `${
+			(cityData?.city || "").charAt(0).toUpperCase() +
+			(cityData?.city || "").slice(1)
+		}, Nordrhein-Westfalen, Deutschland`,
+		serviceType: "Webdesign & Conversion Optimierung",
+		offers: plans.map((p) => {
+			const offer = {
+				"@type": "Offer",
+				name: p.name,
+				description: p.desc,
+				price: p.price.replace("ab ", "").replace("€", "").trim(),
+				priceCurrency: "EUR",
+				availability: "https://schema.org/InStock",
+				url: `https://www.pixel-genie.de/webdesign-agentur/${citySlug}`,
+			};
+
+			// 🔹 Automatische Rabatt-Erkennung
+			const rabattFeature = p.features?.find((f) =>
+				f.toLowerCase().includes("rabatt")
+			);
+			if (rabattFeature) {
+				offer.priceValidUntil = `${new Date().getFullYear()}-12-31`;
+				offer.discount = rabattFeature;
+			}
+
+			return offer;
+		}),
+	};
+
 	return (
 		<>
-			<Head>
-				<title>{title}</title>
-				<meta name="description" content={description} />
-				<link rel="canonical" href={canonical} />
-				<meta property="og:title" content={title} />
-				<meta property="og:description" content={description} />
-			</Head>
+			<ServicePageHead
+				title={title}
+				description={description}
+				canonical={canonical}
+				offerSchema={offerSchema}
+			/>
 			<BreadcrumbsJsonLd items={crumbs} canonical={canonical} />
 			<ReadingProgressBar />
 			<SmartCTA triggerPercent={35} />
