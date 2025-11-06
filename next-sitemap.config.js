@@ -1,5 +1,4 @@
 /** @type {import('next-sitemap').IConfig} */
-
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de";
 
 module.exports = {
@@ -8,7 +7,6 @@ module.exports = {
 	outDir: "public",
 	autoLastmod: true,
 
-	// default settings
 	changefreq: "weekly",
 	priority: 0.8,
 
@@ -32,7 +30,6 @@ module.exports = {
 		host: SITE_URL,
 	},
 
-	// ❇️ Priorytety SEO — dopalone
 	transform: async (config, url) => {
 		let priority = 0.8;
 		let changefreq = "weekly";
@@ -47,7 +44,7 @@ module.exports = {
 			url.startsWith(`${config.siteUrl}/tips/`)
 		) {
 			priority = 1.0;
-			changefreq = "daily"; // 🔥 częste odwiedziny Google
+			changefreq = "daily";
 		}
 
 		if (
@@ -64,6 +61,7 @@ module.exports = {
 			priority = 0.5;
 			changefreq = "monthly";
 		}
+
 		if (url.startsWith(`${config.siteUrl}/tips/tag`)) {
 			priority = 0.95;
 			changefreq = "daily";
@@ -85,6 +83,31 @@ module.exports = {
 		};
 	},
 
+	// 👇 TU DODANY NOWY BLOK
+	additionalPaths: async (config) => {
+		try {
+			const { default: cities } = await import("./data/citiesData.js");
+			const makePath = (loc) => ({
+				loc,
+				changefreq: "weekly",
+				priority: 0.9,
+				lastmod: new Date().toISOString(),
+			});
+			const paths = [];
+			for (const c of cities) {
+				const slug = (c.slug || c.city || "").toLowerCase().trim();
+				if (!slug) continue;
+				paths.push(makePath(`/webentwicklung/${slug}`));
+				paths.push(makePath(`/webseitenerstellung/${slug}`));
+				paths.push(makePath(`/webdesign-agentur/${slug}`));
+			}
+			return paths;
+		} catch (err) {
+			console.error("❌ Błąd additionalPaths:", err);
+			return [];
+		}
+	},
+
 	exclude: [
 		"/404",
 		"/500",
@@ -93,7 +116,7 @@ module.exports = {
 		"/_error",
 		"/pl/*",
 		"/nl/*",
-		"/tips/tag", // strona indeksu tagów
+		"/tips/tag",
 		"/tips/tag/*",
 	],
 };

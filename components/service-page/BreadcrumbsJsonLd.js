@@ -15,7 +15,6 @@ export default function BreadcrumbsJsonLd({ items = [], canonical }) {
 
 	return (
 		<Head>
-			<link rel="canonical" href={canonical} />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
