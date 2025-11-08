@@ -7,6 +7,8 @@ Disallow: /favicon.ico
 Disallow: /manifest.json
 Disallow: /404
 Disallow: /500
+Disallow: /tips/tag
+Disallow: /tips/tag/*
 
 # Host
 Host: https://pixel-genie.de

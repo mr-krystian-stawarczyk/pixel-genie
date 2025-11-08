@@ -4,7 +4,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de";
 module.exports = {
 	siteUrl: SITE_URL,
 	generateRobotsTxt: true,
-	outDir: "out",
+	outDir: "public",
 	autoLastmod: true,
 	changefreq: "weekly",
 	priority: 0.8,
@@ -118,7 +118,6 @@ module.exports = {
 		"/_error",
 		"/pl/*",
 		"/nl/*",
-		"/tips", // katalog indexu nie istnieje, więc wykluczony
 		"/tips/tag",
 		"/tips/tag/*",
 	],
