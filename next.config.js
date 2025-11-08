@@ -1,7 +1,3 @@
-/**
- * ✅ NEXT CONFIG – zoptymalizowana pełna wersja
- */
-
 const path = require("path");
 const fs = require("fs");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
@@ -21,20 +17,17 @@ function addFontPreload() {
 	}));
 }
 
-/** @type {import('next').NextConfig} */
 const nextConfig = withBundleAnalyzer({
 	reactStrictMode: true,
 	compress: true,
 	swcMinify: true,
 	trailingSlash: true,
-	output: "export",
-
+	output: "export", // ✅ kluczowy zapis
 	images: {
 		unoptimized: true,
 		formats: ["image/avif", "image/webp"],
 		domains: ["pixel-genie.de"],
 	},
-
 	outputFileTracingRoot: path.join(__dirname),
 
 	experimental: {
@@ -59,46 +52,6 @@ const nextConfig = withBundleAnalyzer({
 
 	async head() {
 		return { link: addFontPreload() };
-	},
-
-	async headers() {
-		if (process.env.NODE_ENV === "development") return [];
-		return [
-			{
-				source: "/_next/static/:path*",
-				headers: [
-					{
-						key: "Cache-Control",
-						value: "public, max-age=31536000, immutable",
-					},
-				],
-			},
-			{
-				source: "/assets/:path*",
-				headers: [
-					{
-						key: "Cache-Control",
-						value: "public, max-age=31536000, immutable",
-					},
-				],
-			},
-			{
-				source: "/fonts/:path*",
-				headers: [
-					{
-						key: "Cache-Control",
-						value: "public, max-age=31536000, immutable",
-					},
-					{ key: "Access-Control-Allow-Origin", value: "*" },
-				],
-			},
-			{
-				source: "/:path*",
-				headers: [
-					{ key: "Cache-Control", value: "max-age=0, must-revalidate" },
-				],
-			},
-		];
 	},
 
 	eslint: { ignoreDuringBuilds: true },

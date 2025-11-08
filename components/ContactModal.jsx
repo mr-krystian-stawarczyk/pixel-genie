@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { Form, Button, Spinner } from "react-bootstrap";
 import { useTheme } from "next-themes";
 import MotionFadeIn from "@/components/MotionFadeIn";
+import Image from "next/image";
 
 function Toast({ type, message, onClose }) {
 	useEffect(() => {
@@ -182,7 +183,7 @@ export default function ContactModal({ show, onHide, topic }) {
 						{/* HEADER */}
 						<div className="d-flex justify-content-between align-items-center mb-3">
 							<div className="d-flex align-items-center gap-2">
-								<img
+								<Image
 									src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
 									alt="Pixel Genie Logo"
 									style={{

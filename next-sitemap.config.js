@@ -4,7 +4,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de";
 module.exports = {
 	siteUrl: SITE_URL,
 	generateRobotsTxt: true,
-	outDir: "public",
+	outDir: "out",
 	autoLastmod: true,
 
 	changefreq: "weekly",
@@ -24,6 +24,8 @@ module.exports = {
 							"/manifest.json",
 							"/404",
 							"/500",
+							"/tips/tag", // 🚫 wyłączone z crawlowania
+							"/tips/tag/*",
 						],
 					},
 			  ],
@@ -40,8 +42,8 @@ module.exports = {
 		}
 
 		if (
-			url.startsWith(`${config.siteUrl}/webdesignblog`) ||
-			url.startsWith(`${config.siteUrl}/tips/`)
+			url.startsWith(`${config.siteUrl}/tips/`) ||
+			url.startsWith(`${config.siteUrl}/webdesignblog`)
 		) {
 			priority = 1.0;
 			changefreq = "daily";
@@ -62,19 +64,6 @@ module.exports = {
 			changefreq = "monthly";
 		}
 
-		if (url.startsWith(`${config.siteUrl}/tips/tag`)) {
-			priority = 0.95;
-			changefreq = "daily";
-		}
-
-		if (
-			url === `${config.siteUrl}/webdesignblog` ||
-			url.startsWith(`${config.siteUrl}/webdesignblog/`)
-		) {
-			priority = 1.0;
-			changefreq = "daily";
-		}
-
 		return {
 			loc: url,
 			changefreq,
@@ -83,24 +72,40 @@ module.exports = {
 		};
 	},
 
-	// 👇 TU DODANY NOWY BLOK
 	additionalPaths: async (config) => {
 		try {
 			const { default: cities } = await import("./data/citiesData.js");
-			const makePath = (loc) => ({
+			const makePath = (loc, changefreq = "weekly", priority = 0.9) => ({
 				loc,
-				changefreq: "weekly",
-				priority: 0.9,
+				changefreq,
+				priority,
 				lastmod: new Date().toISOString(),
 			});
+
 			const paths = [];
+			const basePages = [
+				"/seo",
+				"/webdesign-agentur",
+				"/webseitenerstellung",
+				"/webentwicklung",
+				"/tips",
+			];
+
+			// 🔹 główne strony kategorii
+			for (const base of basePages) {
+				paths.push(makePath(base, "daily", 1.0));
+			}
+
+			// 🔹 miasta (service landing pages)
 			for (const c of cities) {
 				const slug = (c.slug || c.city || "").toLowerCase().trim();
 				if (!slug) continue;
+				paths.push(makePath(`/seo/${slug}`));
 				paths.push(makePath(`/webentwicklung/${slug}`));
 				paths.push(makePath(`/webseitenerstellung/${slug}`));
 				paths.push(makePath(`/webdesign-agentur/${slug}`));
 			}
+
 			return paths;
 		} catch (err) {
 			console.error("❌ Błąd additionalPaths:", err);
@@ -117,6 +122,6 @@ module.exports = {
 		"/pl/*",
 		"/nl/*",
 		"/tips/tag",
-		"/tips/tag/*",
+		"/tips/tag/*", // 🚫 wyłączone z sitemap
 	],
 };

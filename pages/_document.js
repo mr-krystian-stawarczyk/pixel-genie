@@ -50,9 +50,6 @@ export default function Document() {
 					hrefLang="x-default"
 					href="https://pixel-genie.de/"
 				/>
-				<link rel="alternate" hrefLang="pl" href="https://pixel-genie.de/pl/" />
-				<link rel="alternate" hrefLang="nl" href="https://pixel-genie.de/nl/" />
-
 				{/* ✅ Discovery */}
 				<link
 					rel="alternate"

@@ -1,5 +1,6 @@
 // /components/seo-city/Pricing.js
 import { Container, Row, Col, Card } from "react-bootstrap";
+import Image from "next/image";
 
 export default function Pricing({ cityName, MotionFadeIn, AutoTranslate }) {
 	const PriceCard = ({ tone, title, price, items, className }) => (
@@ -34,13 +35,14 @@ export default function Pricing({ cityName, MotionFadeIn, AutoTranslate }) {
 			<Container className="text-center">
 				<Row className="justify-content-center text-center mb-5">
 					<Col lg={8}>
-						<img
+						<Image
 							src="/assets/webentwicklung-webagentur-nettetal-price.png"
+							alt="SEO Preise Pixel Genie"
 							width={260}
 							height={260}
-							alt="SEO Preise Pixel Genie"
+							priority
 							className="my-3"
-							loading="eager"
+							sizes="(max-width: 768px) 80vw, 260px"
 						/>
 						<h2 className="fw-bold display-6">
 							{AutoTranslate ? (
