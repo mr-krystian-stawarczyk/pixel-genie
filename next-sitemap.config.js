@@ -23,9 +23,8 @@ module.exports = {
 							"/manifest.json",
 							"/404",
 							"/500",
-							"/tips", // 🚫 wyłączony index katalogu
-							"/tips/tag", // 🚫 wyłączony tag
-							"/tips/tag/*", // 🚫 wyłączony tag
+							"/tips/tag",
+							"/tips/tag/*",
 						],
 					},
 			  ],
@@ -119,7 +118,7 @@ module.exports = {
 		"/_error",
 		"/pl/*",
 		"/nl/*",
-		"/tips", // 🚫 exclude tylko index katalogu
+		"/tips", // katalog indexu nie istnieje, więc wykluczony
 		"/tips/tag",
 		"/tips/tag/*",
 	],
