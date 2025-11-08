@@ -6,7 +6,6 @@ module.exports = {
 	generateRobotsTxt: true,
 	outDir: "out",
 	autoLastmod: true,
-
 	changefreq: "weekly",
 	priority: 0.8,
 
@@ -24,8 +23,9 @@ module.exports = {
 							"/manifest.json",
 							"/404",
 							"/500",
-							"/tips/tag", // 🚫 wyłączone z crawlowania
-							"/tips/tag/*",
+							"/tips", // 🚫 wyłączony index
+							"/tips/tag", // 🚫 wyłączony tag
+							"/tips/tag/*", // 🚫 wyłączony tag
 						],
 					},
 			  ],
@@ -42,8 +42,8 @@ module.exports = {
 		}
 
 		if (
-			url.startsWith(`${config.siteUrl}/tips/`) ||
-			url.startsWith(`${config.siteUrl}/webdesignblog`)
+			url.startsWith(`${config.siteUrl}/webdesignblog`) ||
+			url.startsWith(`${config.siteUrl}/tips/`)
 		) {
 			priority = 1.0;
 			changefreq = "daily";
@@ -88,15 +88,15 @@ module.exports = {
 				"/webdesign-agentur",
 				"/webseitenerstellung",
 				"/webentwicklung",
-				"/tips",
+				"/webdesignblog",
 			];
 
-			// 🔹 główne strony kategorii
+			// Landing pages
 			for (const base of basePages) {
 				paths.push(makePath(base, "daily", 1.0));
 			}
 
-			// 🔹 miasta (service landing pages)
+			// Miasta (service pages)
 			for (const c of cities) {
 				const slug = (c.slug || c.city || "").toLowerCase().trim();
 				if (!slug) continue;
@@ -121,7 +121,8 @@ module.exports = {
 		"/_error",
 		"/pl/*",
 		"/nl/*",
-		"/tips/tag",
-		"/tips/tag/*", // 🚫 wyłączone z sitemap
+		"/tips", // 🚫 exclude tips index
+		"/tips/tag", // 🚫 exclude tag
+		"/tips/tag/*", // 🚫 exclude tag
 	],
 };

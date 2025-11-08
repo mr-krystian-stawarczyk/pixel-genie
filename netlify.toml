@@ -47,6 +47,11 @@
   to = "/404"
   status = 403
 
+[[redirects]]
+  from = "/tips"
+  to = "/webdesignblog"
+  status = 301
+
 ############################
 # ✅ SECURITY HEADERS (bez COEP/COOP/CORP na razie)
 ############################
