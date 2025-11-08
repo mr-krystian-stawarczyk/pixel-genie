@@ -1,10 +1,13 @@
 /** @type {import('next-sitemap').IConfig} */
+import fs from "fs";
+import path from "path";
+
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de";
 
-module.exports = {
+export default {
 	siteUrl: SITE_URL,
-	generateRobotsTxt: true,
 	outDir: "out",
+	generateRobotsTxt: true,
 	autoLastmod: true,
 	changefreq: "weekly",
 	priority: 0.8,
@@ -23,9 +26,9 @@ module.exports = {
 							"/manifest.json",
 							"/404",
 							"/500",
-							"/tips", // 🚫 wyłączony index
-							"/tips/tag", // 🚫 wyłączony tag
-							"/tips/tag/*", // 🚫 wyłączony tag
+							"/tips", // 🚫 noindex tips index
+							"/tips/tag",
+							"/tips/tag/*",
 						],
 					},
 			  ],
@@ -74,7 +77,14 @@ module.exports = {
 
 	additionalPaths: async (config) => {
 		try {
-			const { default: cities } = await import("./data/citiesData.js");
+			// --- citiesData parser ---
+			const citiesPath = path.join(process.cwd(), "data", "citiesData.js");
+			const fileContent = fs.readFileSync(citiesPath, "utf-8");
+			const match = fileContent.match(/\[([^\]]+)\]/);
+			const cities = match
+				? match[1].split(",").map((s) => s.replace(/['"\s]/g, ""))
+				: [];
+
 			const makePath = (loc, changefreq = "weekly", priority = 0.9) => ({
 				loc,
 				changefreq,
@@ -91,19 +101,27 @@ module.exports = {
 				"/webdesignblog",
 			];
 
-			// Landing pages
+			// --- Landing pages ---
 			for (const base of basePages) {
 				paths.push(makePath(base, "daily", 1.0));
 			}
 
-			// Miasta (service pages)
+			// --- City-based pages ---
 			for (const c of cities) {
-				const slug = (c.slug || c.city || "").toLowerCase().trim();
+				const slug = (c || "").toLowerCase().trim();
 				if (!slug) continue;
 				paths.push(makePath(`/seo/${slug}`));
 				paths.push(makePath(`/webentwicklung/${slug}`));
 				paths.push(makePath(`/webseitenerstellung/${slug}`));
 				paths.push(makePath(`/webdesign-agentur/${slug}`));
+			}
+
+			// --- Blog posts ---
+			const blogData = await import("./data/blogPosts.js");
+			const blogPosts = blogData.default || [];
+			for (const post of blogPosts) {
+				if (!post.slug) continue;
+				paths.push(makePath(`/tips/${post.slug}`, "daily", 1.0));
 			}
 
 			return paths;
