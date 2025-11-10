@@ -53,7 +53,7 @@ export default function Home() {
 							},
 							sameAs: [
 								"https://www.facebook.com/pixel.genie.de",
-								"https://www.linkedin.com/company/pixelgenie",
+								"https://www.linkedin.com/company/pixel-genie-de/?viewAsMember=true",
 								"https://www.instagram.com/pixel.genie.de",
 							],
 							geo: {

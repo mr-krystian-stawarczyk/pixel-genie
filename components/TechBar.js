@@ -52,12 +52,12 @@ export default function TechBar() {
 		{
 			name: "LinkedIn",
 			icon: <AiFillLinkedin style={{ color: "#0077b5" }} />,
-			url: "https://www.linkedin.com/in/pixel-genie-nettetal/",
+			url: "https://www.linkedin.com/company/pixel-genie-de/?viewAsMember=true",
 		},
 		{
 			name: "Reddit",
 			icon: <AiOutlineReddit style={{ color: "#ff4500" }} />,
-			url: "https://www.reddit.com/user/PixelGenieNettetal/",
+			url: "https://www.reddit.com",
 		},
 		{
 			name: "X (Twitter)",

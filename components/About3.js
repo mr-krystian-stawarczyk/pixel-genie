@@ -62,10 +62,10 @@ Keine Spielerei – <strong>mehr Anfragen, mehr Umsatz, mehr Bekanntheit</strong
 		},
 		image: `${SITE_ORIGIN}/assets/pixel-genie-webseiten-seo-nettetal-logo.png`,
 		sameAs: [
-			"https://linkedin.com/company/pixel-genie-519216390",
+			"https://www.linkedin.com/company/pixel-genie-de/?viewAsMember=true",
 			"https://facebook.com/100090817536941",
 			"https://x.com/PixelGenieWeb",
-			"https://reddit.com/u/PixelGenieNettetal",
+			"https://reddit.com",
 			"https://medium.com/@pixelgenie.marketing",
 		],
 	};

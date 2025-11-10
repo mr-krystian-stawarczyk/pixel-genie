@@ -27,7 +27,7 @@ export default function SeoHeadUniversal({
 		sameAs: [
 			"https://www.facebook.com/profile.php?id=100090817536941",
 			"https://www.instagram.com/pixel.genie",
-			"https://www.linkedin.com/company/pixel-genie",
+			"https://www.linkedin.com/company/pixel-genie-de/?viewAsMember=true",
 		],
 	};
 

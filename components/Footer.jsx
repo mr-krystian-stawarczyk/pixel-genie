@@ -231,7 +231,7 @@ function Footer() {
 										</a>
 
 										<a
-											href="https://www.linkedin.com/in/pixel-genie-nettetal/"
+											href="https://www.linkedin.com/company/pixel-genie-de/?viewAsMember=true"
 											target="_blank"
 											rel="noopener noreferrer"
 											aria-label="LinkedIn"
@@ -253,7 +253,7 @@ function Footer() {
 										</a>
 
 										<a
-											href="https://www.reddit.com/user/PixelGenieNettetal/"
+											href="https://www.reddit.com"
 											target="_blank"
 											rel="noopener noreferrer"
 											aria-label="Reddit"
