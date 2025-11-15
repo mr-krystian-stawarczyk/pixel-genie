@@ -15,6 +15,7 @@ export default function WebentwicklungLanding() {
 				title="Webentwicklung – Pixel-Genie | Next.js & API"
 				description="Moderne Webanwendungen, Integrationen, Optimierung der Core Web Vitals."
 				canonical={CANONICAL}
+				noIndex={true}
 				offerSchema={{
 					"@context": "https://schema.org",
 					"@type": "ProfessionalService",

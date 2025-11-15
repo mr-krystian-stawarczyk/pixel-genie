@@ -15,6 +15,7 @@ export default function WebseitenerstellungLanding() {
 				title="Webseitenerstellung – Pixel-Genie | Vollständig"
 				description="Design, Entwicklung, Implementierung, technische Suchmaschinenoptimierung – Komplettservice."
 				canonical={CANONICAL}
+				noIndex={true}
 				offerSchema={{
 					"@context": "https://schema.org",
 					"@type": "ProfessionalService",

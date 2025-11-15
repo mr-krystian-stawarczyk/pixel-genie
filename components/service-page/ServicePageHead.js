@@ -5,6 +5,7 @@ import Head from "next/head";
  * - Webseitenerstellung
  * - Webentwicklung
  * - Webdesign Agentur
+ * - SEO
  */
 export default function ServicePageHead({
 	title,
@@ -12,15 +13,19 @@ export default function ServicePageHead({
 	canonical,
 	offerSchema,
 	image = "/assets/pixel-genie-webseiten-seo-nettetal-logo.png",
+	noIndex = false, // ← nowa opcja
 }) {
 	return (
 		<Head>
-			{/* ✅ Podstawowe meta */}
+			{/* ⭐ Robots dla stron kategorii */}
+			{noIndex && <meta name="robots" content="noindex,follow" />}
+
+			{/* ⭐ Podstawowe meta */}
 			<title>{title}</title>
 			<meta name="description" content={description} />
 			<link rel="canonical" href={canonical} />
 
-			{/* ✅ Open Graph */}
+			{/* ⭐ Open Graph */}
 			<meta property="og:type" content="website" />
 			<meta property="og:title" content={title} />
 			<meta property="og:description" content={description} />
@@ -30,7 +35,7 @@ export default function ServicePageHead({
 				content={`https://www.pixel-genie.de${image}`}
 			/>
 
-			{/* ✅ Twitter Cards */}
+			{/* ⭐ Twitter Cards */}
 			<meta name="twitter:card" content="summary_large_image" />
 			<meta name="twitter:title" content={title} />
 			<meta name="twitter:description" content={description} />
@@ -39,10 +44,10 @@ export default function ServicePageHead({
 				content={`https://www.pixel-genie.de${image}`}
 			/>
 
-			{/* ✅ Favicon */}
+			{/* ⭐ Favicon */}
 			<link rel="icon" type="image/png" href={image} />
 
-			{/* ✅ Structured Data */}
+			{/* ⭐ Structured Data */}
 			{offerSchema && (
 				<script
 					type="application/ld+json"

@@ -18,6 +18,7 @@ export default function SeoLanding() {
 				title="SEO Agentur – Pixel-Genie | Sichtbarkeit & Wachstum"
 				description="SEO, das Leads generiert: Technik, Content, Lokales."
 				canonical={CANONICAL}
+				noIndex={true}
 				offerSchema={{
 					"@context": "https://schema.org",
 					"@type": "ProfessionalService",

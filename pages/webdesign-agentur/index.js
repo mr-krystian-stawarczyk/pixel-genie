@@ -15,6 +15,7 @@ export default function WebdesignAgenturLanding() {
 				title="Webdesign Agentur – Pixel-Genie | Performance & UX"
 				description="Seiten, die schnell laden und sich gut verkaufen. Next.js, Lighthouse 85+."
 				canonical={CANONICAL}
+				noIndex={true}
 				offerSchema={{
 					"@context": "https://schema.org",
 					"@type": "ProfessionalService",
