@@ -73,7 +73,7 @@ module.exports = {
 
 	additionalPaths: async (config) => {
 		try {
-			const { default: cities } = await import("./data/citiesData.js");
+			const cities = require("./data/citiesData.js");
 			const makePath = (loc, changefreq = "weekly", priority = 0.9) => ({
 				loc,
 				changefreq,

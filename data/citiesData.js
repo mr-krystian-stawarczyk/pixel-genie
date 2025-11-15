@@ -827,4 +827,4 @@ const citiesData = [
 	},
 ];
 
-export default citiesData;
+module.exports = citiesData;
