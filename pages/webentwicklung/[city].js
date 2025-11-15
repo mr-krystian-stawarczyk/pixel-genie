@@ -50,7 +50,7 @@ export default function WebentwicklungCityPage({ cityData }) {
 	const cityName =
 		(cityData.city || "").charAt(0).toUpperCase() +
 		(cityData.city || "").slice(1);
-	const canonical = `https://www.pixel-genie.de/webentwicklung/${citySlug}`;
+	const canonical = `https://pixel-genie.de/webentwicklung/${citySlug}`;
 
 	const title = `Webentwicklung ${cityName} – Schnelle, skalierbare Websites & Web-Apps`;
 	const description = `Individuelle Webentwicklung in ${cityName} mit Fokus auf Performance, SEO und Integration moderner Tools. Wir bauen Websites, die Ergebnisse liefern.`;
@@ -178,10 +178,10 @@ export default function WebentwicklungCityPage({ cityData }) {
 	];
 
 	const crumbs = [
-		{ name: "Startseite", url: "https://www.pixel-genie.de/" },
+		{ name: "Startseite", url: "https://pixel-genie.de/" },
 		{
 			name: "Webentwicklung",
-			url: "https://www.pixel-genie.de/webentwicklung",
+			url: "https://pixel-genie.de/webentwicklung",
 		},
 		{ name: cityName, url: canonical },
 	];
@@ -195,8 +195,8 @@ export default function WebentwicklungCityPage({ cityData }) {
 		provider: {
 			"@type": "Organization",
 			name: "Pixel-Genie",
-			url: "https://www.pixel-genie.de",
-			logo: "https://www.pixel-genie.de/logo.png",
+			url: "https://pixel-genie.de",
+			logo: "https://pixel-genie.de/logo.png",
 			telephone: cityData?.phone || "+48 726 897 493",
 			email: cityData?.email || "pixelgenie.marketing@gmail.com",
 			address: {
@@ -230,7 +230,7 @@ export default function WebentwicklungCityPage({ cityData }) {
 				price: p.price.replace("ab ", "").replace("€", "").trim(),
 				priceCurrency: "EUR",
 				availability: "https://schema.org/InStock",
-				url: `https://www.pixel-genie.de/webentwicklung/${citySlug}`,
+				url: `https://pixel-genie.de/webentwicklung/${citySlug}`,
 			};
 
 			// 🔹 Automatische Rabatt-Erkennung (Rabatt + Gültigkeit)

@@ -57,7 +57,7 @@ export default function WebdesignAgenturCityPage({ cityData }) {
 	const cityName =
 		(cityData.city || "").charAt(0).toUpperCase() +
 		(cityData.city || "").slice(1);
-	const canonical = `https://www.pixel-genie.de/webdesign-agentur/${citySlug}`;
+	const canonical = `https://pixel-genie.de/webdesign-agentur/${citySlug}`;
 
 	// 🔹 Meta & SEO
 	const title = `Webdesign Agentur ${cityName} – Websites, die überzeugen und verkaufen`;
@@ -207,10 +207,10 @@ export default function WebdesignAgenturCityPage({ cityData }) {
 	];
 
 	const crumbs = [
-		{ name: "Startseite", url: "https://www.pixel-genie.de/" },
+		{ name: "Startseite", url: "https://pixel-genie.de/" },
 		{
 			name: "Webdesign Agentur",
-			url: "https://www.pixel-genie.de/webdesign-agentur",
+			url: "https://pixel-genie.de/webdesign-agentur",
 		},
 		{ name: cityName, url: canonical },
 	];
@@ -224,8 +224,8 @@ export default function WebdesignAgenturCityPage({ cityData }) {
 		provider: {
 			"@type": "Organization",
 			name: "Pixel-Genie",
-			url: "https://www.pixel-genie.de",
-			logo: "https://www.pixel-genie.de/logo.png",
+			url: "https://pixel-genie.de",
+			logo: "https://pixel-genie.de/logo.png",
 			telephone: cityData?.phone || "+48 726 897 493",
 			email: cityData?.email || "pixelgenie.marketing@gmail.com",
 			address: {
@@ -259,7 +259,7 @@ export default function WebdesignAgenturCityPage({ cityData }) {
 				price: p.price.replace("ab ", "").replace("€", "").trim(),
 				priceCurrency: "EUR",
 				availability: "https://schema.org/InStock",
-				url: `https://www.pixel-genie.de/webdesign-agentur/${citySlug}`,
+				url: `https://pixel-genie.de/webdesign-agentur/${citySlug}`,
 			};
 
 			// 🔹 Automatische Rabatt-Erkennung

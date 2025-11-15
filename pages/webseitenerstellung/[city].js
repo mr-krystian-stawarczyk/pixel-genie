@@ -50,7 +50,7 @@ export default function WebseitenerstellungCityPage({ cityData }) {
 	const cityName =
 		(cityData.city || "").charAt(0).toUpperCase() +
 		(cityData.city || "").slice(1);
-	const canonical = `https://www.pixel-genie.de/webseitenerstellung/${citySlug}`;
+	const canonical = `https://pixel-genie.de/webseitenerstellung/${citySlug}`;
 
 	const title = `Webseitenerstellung ${cityName} – Modern, SEO-stark & konvertierend`;
 	const description = `Webseitenerstellung in ${cityName} mit Fokus auf Design, SEO und Benutzerfreundlichkeit. Wir erstellen Websites, die Vertrauen schaffen und Leads generieren.`;
@@ -179,10 +179,10 @@ export default function WebseitenerstellungCityPage({ cityData }) {
 	];
 
 	const crumbs = [
-		{ name: "Startseite", url: "https://www.pixel-genie.de/" },
+		{ name: "Startseite", url: "https://pixel-genie.de/" },
 		{
 			name: "Webseitenerstellung",
-			url: "https://www.pixel-genie.de/webseitenerstellung",
+			url: "https://pixel-genie.de/webseitenerstellung",
 		},
 		{ name: cityName, url: canonical },
 	];
@@ -195,8 +195,8 @@ export default function WebseitenerstellungCityPage({ cityData }) {
 		provider: {
 			"@type": "Organization",
 			name: "Pixel-Genie",
-			url: "https://www.pixel-genie.de",
-			logo: "https://www.pixel-genie.de/logo.png",
+			url: "https://pixel-genie.de",
+			logo: "https://pixel-genie.de/logo.png",
 			telephone: cityData?.phone || "+48 726 897 493",
 			email: cityData?.email || "pixelgenie.marketing@gmail.com",
 			address: {

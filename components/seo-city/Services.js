@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 export default function SeoHead({ seo }) {
 	const router = useRouter();
 	const canonicalUrl =
-		seo?.canonical || `https://www.pixel-genie.de${router.asPath}`;
+		seo?.canonical || `https://pixel-genie.de${router.asPath}`;
 	const title = seo?.title || "SEO Agentur NRW – Pixel-Genie";
 	const description =
 		seo?.description ||
@@ -18,13 +18,13 @@ export default function SeoHead({ seo }) {
 			"@type": "ListItem",
 			position: 1,
 			name: "Home",
-			item: "https://www.pixel-genie.de/",
+			item: "https://pixel-genie.de/",
 		},
 		{
 			"@type": "ListItem",
 			position: 2,
 			name: "SEO",
-			item: "https://www.pixel-genie.de/seo",
+			item: "https://pixel-genie.de/seo",
 		},
 		city && {
 			"@type": "ListItem",

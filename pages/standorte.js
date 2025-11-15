@@ -33,7 +33,7 @@ export default function Standorte() {
 
 				<Row className="justify-content-center">
 					{citiesData.map((c, i) => {
-						const city = c.city.toLowerCase();
+						const slug = (c.slug || c.city).toLowerCase();
 						const cityName = c.city.charAt(0).toUpperCase() + c.city.slice(1);
 						return (
 							<Col
@@ -57,7 +57,7 @@ export default function Standorte() {
 									{services.map((s) => (
 										<Link
 											key={s.slug}
-											href={`/${s.slug}/${city}`}
+											href={`/${s.slug}/${slug}`}
 											className="text-decoration-none fw-medium rounded-3"
 											style={{
 												color: "var(--text-color)",
