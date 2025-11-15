@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"dev:netlify": "netlify dev",
-		"build": "next build && next-sitemap && next export",
+		"build": "next build && next-sitemap",
 		"start": "next start -p 3000",
 		"postbuild": "",
 		"analyze": "cross-env ANALYZE=true next build"
