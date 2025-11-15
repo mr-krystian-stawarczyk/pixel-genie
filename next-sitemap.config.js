@@ -4,7 +4,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pixel-genie.de";
 module.exports = {
 	siteUrl: SITE_URL,
 	generateRobotsTxt: true,
-	outDir: "public",
+	outDir: "./out",
 	autoLastmod: true,
 	changefreq: "weekly",
 	priority: 0.8,
