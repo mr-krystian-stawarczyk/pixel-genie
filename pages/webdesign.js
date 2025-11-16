@@ -2,12 +2,11 @@ import React from "react";
 import Head from "next/head";
 import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
 import citiesData from "@/data/citiesData";
-
+import Media1 from "@/components/Media1";
 // Dynamiczny import komponentów
 import dynamic from "next/dynamic";
 
 // Dynamiczny import dla komponentów Media
-const Media1 = dynamic(() => import("@/components/Media1"), { ssr: false });
 const Media2 = dynamic(() => import("@/components/Media2"), { ssr: false });
 const Media3 = dynamic(() => import("@/components/Media3"), { ssr: false });
 const Media4 = dynamic(() => import("@/components/Media4"), { ssr: false });

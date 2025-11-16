@@ -1,9 +1,8 @@
 import Head from "next/head";
 import React from "react";
 import dynamic from "next/dynamic";
-
+import Web1 from "@/components/Web1";
 // Dynamiczny import dla komponentów
-const Web1 = dynamic(() => import("@/components/Web1"), { ssr: false });
 const Web2 = dynamic(() => import("@/components/Web2"), { ssr: false });
 const Web3 = dynamic(() => import("@/components/Web3"), { ssr: false });
 const Web4 = dynamic(() => import("@/components/Web4"), { ssr: false });
@@ -41,7 +40,7 @@ function WebSeitenErstellen() {
 				{/* Link Canonical */}
 				<link
 					rel="canonical"
-					href="https://pixel-genie.de/webseiten-erstellen"
+					href="https://pixel-genie.de/webseitenerstellen"
 				/>
 
 				{/* Meta Open Graph */}

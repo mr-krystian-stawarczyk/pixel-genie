@@ -2285,3 +2285,23 @@ img {
 .motion-safe {
 	will-change: opacity, transform;
 }
+
+.mobile-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999; /* musi być najwyżej */
+}
+
+.mobile-close {
+	position: absolute;
+	top: 18px;
+	right: 22px;
+	z-index: 10000;
+	cursor: pointer;
+	padding: 6px;
+	border-radius: 50%;
+	transition: all 0.25s ease;
+}

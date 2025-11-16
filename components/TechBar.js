@@ -6,10 +6,9 @@ import MotionFadeIn from "@/components/MotionFadeIn";
 import {
 	AiOutlineFacebook,
 	AiFillLinkedin,
-	AiOutlineReddit,
 	AiOutlineArrowRight,
 } from "react-icons/ai";
-import { FaTwitter, FaMedium, FaStackOverflow } from "react-icons/fa";
+import { FaTwitter, FaMedium } from "react-icons/fa";
 
 export default function TechBar() {
 	const scrollRef = useRef(null);
@@ -18,11 +17,12 @@ export default function TechBar() {
 	useEffect(() => {
 		const handleResize = () => setIsMobile(window.innerWidth < 992);
 		handleResize();
+
 		window.addEventListener("resize", handleResize);
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
-	// ✅ Auto-scroll desktop: płynny, nieskończony loop
+	// Auto-scroll desktop
 	useEffect(() => {
 		if (isMobile) return;
 		const track = scrollRef.current;
@@ -30,7 +30,7 @@ export default function TechBar() {
 
 		let raf;
 		let scrollPos = 0;
-		const speed = 2.0; // kontrola prędkości (większa liczba = szybciej)
+		const speed = 2.0;
 
 		const animate = () => {
 			scrollPos += speed;
@@ -55,11 +55,6 @@ export default function TechBar() {
 			url: "https://www.linkedin.com/company/pixel-genie-de/?viewAsMember=true",
 		},
 		{
-			name: "Reddit",
-			icon: <AiOutlineReddit style={{ color: "#ff4500" }} />,
-			url: "https://www.reddit.com",
-		},
-		{
 			name: "X (Twitter)",
 			icon: <FaTwitter style={{ color: "#000000" }} />,
 			url: "https://x.com/PixelGenieWeb",
@@ -69,16 +64,16 @@ export default function TechBar() {
 			icon: <FaMedium style={{ color: "#00ab6c" }} />,
 			url: "https://medium.com/@pixelgenie.marketing",
 		},
-		{
-			name: "Substack",
-			icon: <FaStackOverflow style={{ color: "#ff6719" }} />, // placeholder Substack orange
-			url: "https://substack.com/@pixelgeniede",
-		},
 	];
 
 	const scrollNext = () => {
 		const container = scrollRef.current;
 		if (container) container.scrollBy({ left: 250, behavior: "smooth" });
+	};
+
+	const scrollPrev = () => {
+		const container = scrollRef.current;
+		if (container) container.scrollBy({ left: -250, behavior: "smooth" });
 	};
 
 	return (
@@ -111,15 +106,18 @@ export default function TechBar() {
 							))}
 						</div>
 
-						{/* ▶️ Strzałka przewijania – tylko mobile */}
+						{/* Mobile arrows */}
 						{isMobile && (
-							<button
-								className="scroll-arrow"
-								onClick={scrollNext}
-								aria-label="Mehr anzeigen"
-							>
-								<AiOutlineArrowRight />
-							</button>
+							<div className="mobile-arrows">
+								<button className="scroll-arrow" onClick={scrollPrev}>
+									<AiOutlineArrowRight
+										style={{ transform: "rotate(180deg)" }}
+									/>
+								</button>
+								<button className="scroll-arrow" onClick={scrollNext}>
+									<AiOutlineArrowRight />
+								</button>
+							</div>
 						)}
 					</div>
 				</Container>
@@ -217,52 +215,42 @@ export default function TechBar() {
 					opacity: 0.8;
 				}
 
-				.scroll-arrow {
-					position: absolute;
-					right: 0.6rem;
-					top: 45%;
-					transform: translateY(-50%);
-					width: 44px;
-					height: 44px;
-					border-radius: 50%;
-					border: none;
-					background: rgba(255, 255, 255, 0.12);
-					backdrop-filter: blur(6px);
+				/* Mobile arrows */
+				.mobile-arrows {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					margin-top: 0.2rem;
+					gap: 1rem;
+				}
+
+				.mobile-arrows .scroll-arrow {
+					width: 42px;
+					height: 42px;
+					border-radius: 14px;
+					border: 1px solid rgba(255, 255, 255, 0.25);
+					background: rgba(255, 255, 255, 0.15);
+					backdrop-filter: blur(8px);
 					display: flex;
 					align-items: center;
 					justify-content: center;
+					font-size: 1.6rem;
 					color: var(--text-color);
-					font-size: 1.8rem;
 					cursor: pointer;
-					transition: all 0.3s ease;
-					z-index: 10;
-				}
-				.scroll-arrow:hover {
-					background: rgba(255, 255, 255, 0.2);
-					transform: translateY(-50%) scale(1.08);
+					transition: all 0.25s ease;
 				}
 
-				@media (max-width: 768px) {
+				.mobile-arrows .scroll-arrow:hover {
+					background: rgba(255, 255, 255, 0.25);
+					transform: scale(1.12);
+				}
+
+				@media (min-width: 992px) {
+					.review-track {
+						overflow-x: hidden;
+					}
 					.review-card.social-card {
-						min-width: 230px;
-						height: 115px;
-						padding: 0 1.3rem;
-						gap: 1rem;
-					}
-					.social-icon {
-						width: 58px;
-						height: 58px;
-						font-size: 2.4rem;
-					}
-					.section-title {
-						font-size: 1.3rem;
-						margin-bottom: 1rem;
-					}
-					.social-info h5 {
-						font-size: 1rem;
-					}
-					.social-info p {
-						font-size: 0.8rem;
+						min-width: 31.5vw;
 					}
 				}
 			`}</style>

@@ -345,6 +345,9 @@ const NavbarComp = ({ toggleTheme }) => {
 			</Navbar>
 
 			<div className={`mobile-overlay ${menuOpen ? "show" : ""}`}>
+				<div className="mobile-close" onClick={closeMobileMenu}>
+					<BsX size={40} color="white" />
+				</div>
 				<Nav className="d-flex flex-column align-items-center gap-3">
 					{[
 						["/", "Startseite"],

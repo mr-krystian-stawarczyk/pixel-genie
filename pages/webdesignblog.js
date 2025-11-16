@@ -5,9 +5,8 @@ import dynamic from "next/dynamic";
 import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
 import citiesData from "@/data/citiesData";
 import blogPosts from "@/data/blogPosts";
-
+import Blog1 from "@/components/Blog1";
 // 🔹 Komponenty dynamiczne (bez SSR dla szybkości)
-const Blog1 = dynamic(() => import("@/components/Blog1"), { ssr: false });
 const Blog2 = dynamic(() => import("@/components/Blog2"), { ssr: false });
 const BlogFAQ = dynamic(() => import("@/components/BlogFAQ"), { ssr: false });
 

@@ -2,12 +2,11 @@ import React from "react";
 import Head from "next/head";
 import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
 import citiesData from "@/data/citiesData";
-
+import Social1 from "@/components/Social1";
 // Importowanie komponentów dynamicznie
 import dynamic from "next/dynamic";
 
 // Dynamiczny import komponentów
-const Social1 = dynamic(() => import("@/components/Social1"), { ssr: false });
 const Social2 = dynamic(() => import("@/components/Social2"), { ssr: false });
 const Social3 = dynamic(() => import("@/components/Social3"), { ssr: false });
 const Social4 = dynamic(() => import("@/components/Social4"), { ssr: false });

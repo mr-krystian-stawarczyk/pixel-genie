@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
 import {
 	Container,
 	Row,
@@ -15,6 +17,9 @@ import blogPosts from "@/data/blogPosts";
 import BlogIndexListPro from "./BlogIndexListPro";
 import { blogListJsonLd } from "@/lib/seoSchema";
 
+const ContactModal = dynamic(() => import("@/components/ContactModal"), {
+	ssr: false,
+});
 const SITE_ORIGIN = "https://pixel-genie.de";
 const PAGE_URL = `${SITE_ORIGIN}/webdesignblog`;
 
@@ -205,6 +210,8 @@ function AutoSlider({ posts, interval = 8000 }) {
 /* === === === */
 
 export default function Blog2() {
+	const [showContact, setShowContact] = useState(false);
+
 	const blogLd = useMemo(
 		() => blogListJsonLd({ posts: blogPosts, pageUrl: PAGE_URL }),
 		[]
@@ -225,7 +232,7 @@ export default function Blog2() {
 				/>
 			</Head>
 
-			<Container fluid className="py-5">
+			<Container fluid className="py-5" id="tips">
 				<Row className="justify-content-center text-center mb-4">
 					<Col lg={8}>
 						<h1 className="fw-bold display-5">Pixel-Genie Blog</h1>
@@ -233,7 +240,7 @@ export default function Blog2() {
 							Webdesign, SEO & Growth – Strategien für mehr Kunden.
 						</p>
 						<Button
-							href="#kontakt"
+							onClick={() => setShowContact(true)}
 							className="btn-premium mt-3 align-items-center justify-content-center align-self-center"
 						>
 							<span className="text-white">Kostenlose Analyse 🚀</span>
@@ -255,6 +262,11 @@ export default function Blog2() {
 					</Col>
 				</Row>
 			</Container>
+			<ContactModal
+				show={showContact}
+				onHide={() => setShowContact(false)}
+				topic="Blog Anfrage"
+			/>
 		</>
 	);
 }

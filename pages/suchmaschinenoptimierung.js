@@ -2,12 +2,11 @@ import React from "react";
 import Head from "next/head";
 import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
 import citiesData from "@/data/citiesData";
-
+import Seo1 from "@/components/Seo1";
 // Dynamiczny import komponentów
 import dynamic from "next/dynamic";
 
 // Dynamiczny import dla komponentów SEO
-const Seo1 = dynamic(() => import("@/components/Seo1"), { ssr: false });
 const Seo2 = dynamic(() => import("@/components/Seo2"), { ssr: false });
 const Seo3 = dynamic(() => import("@/components/Seo3"), { ssr: false });
 const Seo4 = dynamic(() => import("@/components/Seo4"), { ssr: false });

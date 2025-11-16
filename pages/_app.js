@@ -11,6 +11,7 @@ import { getCookie } from "cookies-next";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import localFont from "next/font/local";
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
 
 const poppins = localFont({
 	src: [
@@ -135,6 +136,7 @@ function AppContent({ Component, pageProps }) {
 			>
 				<I18nextProvider i18n={i18n}>
 					<main className={poppins.className}>
+						<LocalBusinessJsonLd />
 						<Layout pageProps={pageProps}>
 							<Component {...pageProps} key={router.asPath} />
 						</Layout>

@@ -1,17 +1,16 @@
 import Head from "next/head";
 import React from "react";
 import dynamic from "next/dynamic";
-
+import Brand1 from "@/components/Brand1";
 // Dynamiczny import komponentów
-const Brand1 = dynamic(() => import("@/components/Brand1"));
 const Brand2 = dynamic(() => import("@/components/Brand2"));
 const Brand3 = dynamic(() => import("@/components/Brand3"));
 const Brand5 = dynamic(() => import("@/components/Brand5"));
 const Brand6 = dynamic(() => import("@/components/Brand6"));
 const Brand7 = dynamic(() => import("@/components/Brand7"));
 
-const LocalBusinessJsonLd = dynamic(
-	() => import("@/components/LocalBusinessJsonLd")
+const LocalBusinessJsonLd = dynamic(() =>
+	import("@/components/LocalBusinessJsonLd")
 );
 import citiesData from "@/data/citiesData";
 

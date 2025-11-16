@@ -15,7 +15,10 @@ export default function PeopleAlsoRead({ currentSlug, tagHint }) {
 
 	return (
 		<section className="mt-5">
-			<h3 className="fw-bold mb-3">Leser schauen sich auch an</h3>
+			<Row className="text-center my-5">
+				<h3 className="fw-bold mb-3">Leser schauen sich auch an</h3>
+			</Row>
+
 			<Row>
 				{picks.map((p) => (
 					<Col md={4} key={p.slug} className="mb-3">

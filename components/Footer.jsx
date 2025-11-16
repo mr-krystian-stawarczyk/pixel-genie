@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import FooterLinksSEO from "./FooterLinksSEO";
+import { FaMediumM } from "react-icons/fa";
 import {
 	AiOutlineFacebook,
 	AiFillLinkedin,
@@ -253,14 +254,14 @@ function Footer() {
 										</a>
 
 										<a
-											href="https://www.reddit.com"
+											href="https://medium.com/@pixelgenie.marketing"
 											target="_blank"
 											rel="noopener noreferrer"
-											aria-label="Reddit"
-											onClick={() => handleSocialClick("reddit")}
+											aria-label="Medium"
+											onClick={() => handleSocialClick("medium")}
 											className="social-icon-wrapper"
 										>
-											<AiOutlineReddit className="social-icon-premium reddit" />
+											<FaMediumM className="social-icon-premium medium" />
 										</a>
 									</div>
 

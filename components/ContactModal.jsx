@@ -187,10 +187,10 @@ export default function ContactModal({ show, onHide, topic }) {
 									src="/assets/pixel-genie-nettetal-webentwicklung-logo.png"
 									alt="Pixel Genie Logo"
 									style={{
-										width: 48,
-										height: "auto",
 										objectFit: "contain",
 									}}
+									width={50}
+									height={50}
 								/>
 								<h5 className="fw-bold mb-0">Anfrage senden 🚀</h5>
 							</div>
