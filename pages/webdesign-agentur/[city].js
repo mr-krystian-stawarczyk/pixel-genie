@@ -186,23 +186,35 @@ export default function WebdesignAgenturCityPage({ cityData }) {
 	const faq = [
 		{
 			q: `Wie lange dauert ein Webdesign-Projekt in ${cityName}?`,
-			a: "Je nach Umfang 2–6 Wochen. Express-Option verfügbar.",
+			a: "Je nach Umfang dauert ein Webdesign-Projekt in der Regel 2–6 Wochen. Kleine Projekte können schneller umgesetzt werden, größere benötigen etwas mehr Zeit.",
 		},
 		{
-			q: "Können Sie auch Inhalte liefern?",
-			a: "Ja – wir übernehmen Texterstellung, Grafikdesign und SEO-Optimierung, wenn gewünscht.",
+			q: "Was umfasst professionelles Webdesign?",
+			a: "Modernes Webdesign umfasst Struktur, Branding, User Experience, mobile Optimierung, klare Inhalte und eine Conversion-orientierte Gestaltung.",
 		},
 		{
-			q: "Ist die Seite SEO-optimiert?",
-			a: "Ja, jede Website ist suchmaschinenfreundlich aufgebaut – inklusive strukturierter Daten und schneller Ladezeiten.",
+			q: "Können Sie auch Inhalte erstellen?",
+			a: "Ja – wir übernehmen Texterstellung, Bildkonzepte, Grafiken, Icons und komplette Markenkommunikation, wenn gewünscht.",
 		},
 		{
-			q: "Bieten Sie Wartung & Support?",
-			a: "Natürlich. Auf Wunsch übernehmen wir Updates, Backups und technische Betreuung.",
+			q: "Ist die Website SEO-optimiert?",
+			a: "Ja – jede Website wird suchmaschinenfreundlich aufgebaut, technisch optimiert und mit klarer Struktur, schneller Performance und sauberem Code ausgeliefert.",
 		},
 		{
-			q: "Kann ich später Inhalte selbst pflegen?",
-			a: "Ja, über Headless CMS wie Sanity oder Strapi – einfach und sicher.",
+			q: "Kann ich Inhalte später selbst pflegen?",
+			a: "Ja – über moderne Headless CMS oder modulare Editoren können Sie Texte und Bilder jederzeit sicher anpassen.",
+		},
+		{
+			q: "Bieten Sie Wartung und Support an?",
+			a: "Natürlich – auf Wunsch übernehmen wir Updates, Backups, Monitoring, Sicherheit und technische Betreuung.",
+		},
+		{
+			q: "Übernehmen Sie auch Relaunches bestehender Websites?",
+			a: "Ja – wir modernisieren ältere Websites, verbessern Design, UX, Performance und SEO und migrieren Inhalte sauber ins neue System.",
+		},
+		{
+			q: "Arbeiten Sie nur regional oder deutschlandweit?",
+			a: "Schwerpunkt NRW, aber wir arbeiten auch deutschlandweit und remote – flexibel und effizient.",
 		},
 	];
 

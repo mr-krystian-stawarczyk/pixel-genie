@@ -11,6 +11,8 @@ import {
 	BreadcrumbsJsonLd,
 } from "@/components/service-page";
 import ServicePageHead from "@/components/service-page/ServicePageHead";
+import CityFacts from "@/components/seo-city/CityFacts";
+import CityMap from "@/components/CityMap"; // już masz w SEO
 
 const ReadingProgressBar = dynamic(
 	() => import("@/components/ReadingProgressBar"),
@@ -165,15 +167,35 @@ export default function WebentwicklungCityPage({ cityData }) {
 	const faq = [
 		{
 			q: `Wie läuft ein Webentwicklungsprojekt in ${cityName} ab?`,
-			a: "Nach Kickoff und Zieldefinition folgt die Entwicklung – in 3–6 Wochen ist Ihr Projekt live.",
+			a: "Kickoff, Zieldefinition, Architektur, Entwicklung, Testing und Launch. Je nach Umfang dauert ein Projekt 3–6 Wochen.",
 		},
 		{
 			q: "Sind Ihre Projekte SEO-optimiert?",
-			a: "Ja, alle Projekte sind technisch SEO-ready mit strukturierten Daten und Core Web Vitals über 90.",
+			a: "Ja – wir entwickeln strikt nach Google Core Web Vitals, technischer SEO, strukturierter Daten und modernen Performance-Standards.",
+		},
+		{
+			q: "Welche Technologien verwenden Sie?",
+			a: "Next.js, React, moderne APIs, Server Actions, Tailwind, Tracking-Integrationen, Automatisierungen und skalierbare Architekturen.",
 		},
 		{
 			q: "Bieten Sie Support nach dem Launch?",
-			a: "Ja, optional mit Monitoring, Wartung und monatlicher Optimierung.",
+			a: "Optional mit Monitoring, Sicherheitsupdates, API-Pflege, Optimierung, Backups und technischer Betreuung.",
+		},
+		{
+			q: "Können bestehende Websites verbessert oder erweitert werden?",
+			a: "Wir analysieren bestehenden Code, beheben Schwachstellen, modernisieren UX und steigern Performance und SEO.",
+		},
+		{
+			q: "Entwickeln Sie individuelle Funktionen?",
+			a: "Ja – Buchungssysteme, Formulare, Dashboards, Schnittstellen, Automatisierungen, Admin-Bereiche und vieles mehr.",
+		},
+		{
+			q: "Wie sicher sind Ihre Projekte?",
+			a: "Wir setzen auf moderne Sicherheitsstandards wie HTTPS, API-Token, Server Actions, Rate Limiting, Monitoring und regelmäßige Updates.",
+		},
+		{
+			q: "Kann ich Funktionen oder Inhalte selbst verwalten?",
+			a: "Wir integrieren bei Bedarf Headless CMS oder modulare Editoren, mit denen Inhalte einfach gepflegt werden können.",
 		},
 	];
 
@@ -264,6 +286,7 @@ export default function WebentwicklungCityPage({ cityData }) {
 				badges={badges}
 				ctaTopic={`Webentwicklung Beratung ${cityName}`}
 			/>
+			<CityFacts cityData={cityData} CityMap={CityMap} />
 			<GoogleReviews />
 			<USPs title="Warum Pixel-Genie?" items={usps} />
 			<Process

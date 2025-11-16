@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 import { Container, Accordion, Row, Col, Button } from "react-bootstrap";
 import AutoTranslate from "@/components/AutoTranslate";
 import Head from "next/head";
 import dynamic from "next/dynamic";
+
 const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
 	ssr: false,
 });
@@ -16,25 +18,85 @@ function About3() {
 		{
 			q: "Was macht Pixel Genie als Agentur besonders?",
 			a: `
-Wir vereinen <strong>Webdesign, Entwicklung, SEO & Social Media</strong> unter einem Dach. 
-Damit liefern wir <strong>sichtbare Ergebnisse</strong> statt Versprechen – schnell, persönlich und datenbasiert.
-Besonders stark für Unternehmen aus <strong>Nettetal, Krefeld, Viersen & Umgebung</strong>.
+Pixel Genie verbindet <strong><a href="/webseitenerstellung" class="text-primary">Webdesign</a>, 
+<a href="/webentwicklung" class="text-primary">Webentwicklung</a>, 
+<a href="/seo" class="text-primary">SEO</a> & Social Media</strong> unter einem Dach. 
+Statt bunter Versprechen liefern wir <strong>messbare Ergebnisse</strong>: mehr Sichtbarkeit, mehr Anfragen, mehr Kunden.
+Wir arbeiten schnell, präzise und persönlich – ohne Agentur-Blabla.
       `,
 		},
 		{
-			q: "Wofür steht Pixel Genie in Nettetal?",
+			q: "Für wen ist Pixel Genie der richtige Partner?",
 			a: `
-Wir helfen regionalen Betrieben, <strong>online mehr Kunden zu gewinnen</strong>.
-Keine Spielerei – <strong>mehr Anfragen, mehr Umsatz, mehr Bekanntheit</strong> in NRW & Grenzregion NL.
+Wir arbeiten vor allem mit <strong>KMU, Dienstleistern & lokalen Marken</strong> aus 
+<a href="/seo/nettetal" class="text-primary">Nettetal</a>, 
+<a href="/seo/viersen" class="text-primary">Viersen</a>, 
+<a href="/seo/krefeld" class="text-primary">Krefeld</a>, 
+<a href="/seo/moenchengladbach" class="text-primary">Mönchengladbach</a> 
+& Umgebung – sowie der Grenzregion NL.<br/><br/>
+Ideal für Unternehmen, die <strong>professionell auftreten</strong> und über 
+<a href="/seo" class="text-primary">SEO</a> und 
+<a href="/webseitenerstellung" class="text-primary">moderne Websites</a> mehr Kunden gewinnen wollen.
       `,
 		},
 		{
 			q: "Wie läuft ein Projekt bei Pixel Genie ab?",
 			a: `
-1️⃣ Analyse: Ziele, Zielgruppe, Keywords<br/>
-2️⃣ Design & Entwicklung: mobil-schnell & SEO-stark<br/>
-3️⃣ Inhalte & Conversion-Optimierung<br/>
-4️⃣ Launch & Tracking – messbare Ergebnisse ab Tag 1
+<strong>1️⃣ Analyse & Strategie:</strong> Ziele, Zielgruppen, Keywords.<br/>
+<strong>2️⃣ Struktur, Design & Inhalte:</strong> UX, Content & Conversion.<br/>
+<strong>3️⃣ Entwicklung:</strong> Umsetzung mit 
+<a href="/webentwicklung" class="text-primary">Next.js & React</a>, Performance, Tracking.<br/>
+<strong>4️⃣ Launch & Optimierung:</strong> Monitoring, Feintuning, SEO-Push.
+      `,
+		},
+		{
+			q: "Welche Leistungen bietet Pixel Genie konkret an?",
+			a: `
+• <strong><a href="/webseitenerstellung" class="text-primary">Webseitenerstellung & Relaunch</a></strong><br/>
+• <strong><a href="/webentwicklung" class="text-primary">Webentwicklung & Integrationen</a></strong><br/>
+• <strong><a href="/seo" class="text-primary">SEO & Local SEO</a></strong><br/>
+• Branding, Content, Social Media – alles in einem sauberen Workflow.
+      `,
+		},
+		{
+			q: "Wie lange dauert die Erstellung einer Website?",
+			a: `
+• <strong>Landingpage:</strong> 2–4 Wochen<br/>
+• <strong>Unternehmenswebsite:</strong> 4–6 Wochen<br/>
+• <strong>größere Projekte:</strong> mehrere Wochen<br/><br/>
+Mit klaren To-Dos & direkter Kommunikation liefern wir <strong>ohne Verzögerungen</strong>.
+      `,
+		},
+		{
+			q: "Was kostet eine Website oder SEO?",
+			a: `
+Wir arbeiten mit <strong>transparenten Preisen</strong> & klaren Paketen – keine versteckten Kosten.<br/>
+SEO beinhaltet immer: Technik-Setup, Struktur, Performance & Tracking.<br/><br/>
+Ein konkretes Angebot erhalten Sie nach einem kostenlosen Erstgespräch.
+      `,
+		},
+		{
+			q: "Arbeitet ihr nur in Nettetal?",
+			a: `
+Unsere Basis ist <a href="/seo/nettetal" class="text-primary">Nettetal</a>, 
+aber wir betreuen Kundinnen und Kunden in ganz NRW & der Grenzregion NL.<br/>
+Remote oder vor Ort – flexibel & unkompliziert.
+      `,
+		},
+		{
+			q: "Welche Technologien nutzt Pixel Genie?",
+			a: `
+Wir setzen auf <strong>Next.js, React, APIs, Tracking, Performance-Optimierung, Core Web Vitals</strong> 
+und moderne Tools für schnelle Websites, die verkaufen.<br/><br/>
+Ideal für Skalierung & langlebige Projekte.
+      `,
+		},
+		{
+			q: "Übernehmt ihr auch Relaunch, Wartung & Support?",
+			a: `
+Ja – wir analysieren bestehende Websites, identifizieren <strong>Design-, UX- & SEO-Schwachstellen</strong> 
+und führen Komplett-Relaunches durch.<br/><br/>
+Nach dem Launch bieten wir optional <strong>Wartung, Backups, Sicherheit, Updates & SEO-Betreuung</strong>.
       `,
 		},
 	];
@@ -52,10 +114,13 @@ Keine Spielerei – <strong>mehr Anfragen, mehr Umsatz, mehr Bekanntheit</strong
 	const orgSchema = {
 		"@context": "https://schema.org",
 		"@type": "LocalBusiness",
+		"@id": `${SITE_ORIGIN}#company`,
 		name: "Pixel-Genie Webagentur Nettetal",
 		url: SITE_ORIGIN,
 		address: {
 			"@type": "PostalAddress",
+			streetAddress: "Fasanenstr. 10",
+			postalCode: "41334",
 			addressLocality: "Nettetal",
 			addressRegion: "NRW",
 			addressCountry: "DE",
@@ -74,11 +139,12 @@ Keine Spielerei – <strong>mehr Anfragen, mehr Umsatz, mehr Bekanntheit</strong
 		<>
 			<Head>
 				<title>
-					Über Pixel Genie – Webdesign & SEO Agentur in Nettetal NRW
+					Über Pixel Genie – Webdesign, Webentwicklung & SEO Agentur in Nettetal
+					NRW
 				</title>
 				<meta
 					name="description"
-					content="Pixel Genie ist die moderne Webdesign & SEO Agentur in Nettetal, spezialisiert auf Performance, Local SEO & Kundengewinnung für KMU in NRW & Grenzregion NL."
+					content="Pixel Genie – Webagentur für Webdesign, Webentwicklung & SEO in Nettetal & NRW. Moderne Websites, Local SEO & messbare Ergebnisse für KMU."
 				/>
 				<script
 					type="application/ld+json"
@@ -107,13 +173,13 @@ Keine Spielerei – <strong>mehr Anfragen, mehr Umsatz, mehr Bekanntheit</strong
 							/>
 							<h1 className="fw-bold mt-4 display-5">
 								<AutoTranslate>
-									Pixel Genie – Ihre Webagentur für Nettetal & NRW
+									Pixel Genie – Ihre Webagentur für Nettetal, NRW & NL
 								</AutoTranslate>
 							</h1>
 							<p className="lead mt-2">
 								<AutoTranslate>
-									Wir entwickeln Websites, die verkaufen – lokal stark &
-									technisch perfekt.
+									Wir entwickeln Websites & SEO-Strategien, die sichtbar machen
+									und Kunden bringen.
 								</AutoTranslate>
 							</p>
 						</Col>
@@ -141,17 +207,15 @@ Keine Spielerei – <strong>mehr Anfragen, mehr Umsatz, mehr Bekanntheit</strong
 						<Col lg={8}>
 							<h3 className="fw-bold">
 								<AutoTranslate>
-									Bereit für mehr Kunden & Anfragen?
+									Bereit für mehr Sichtbarkeit & Kunden?
 								</AutoTranslate>
 							</h3>
 							<p>
 								<AutoTranslate>
-									Pixel Genie – Webdesign, SEO & Social Media Marketing in NRW.
+									Pixel Genie – Webdesign, Webentwicklung & SEO für NRW,
+									Unternehmen und Solo-Selbstständige.
 								</AutoTranslate>
 							</p>
-							<Button href="#contact" className="btn-nav btn-lg mt-3">
-								<AutoTranslate>Kostenloses Erstgespräch sichern</AutoTranslate>
-							</Button>
 						</Col>
 					</Row>
 				</Container>

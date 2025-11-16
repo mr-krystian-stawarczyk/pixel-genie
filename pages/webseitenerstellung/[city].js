@@ -11,7 +11,8 @@ import {
 	BreadcrumbsJsonLd,
 } from "@/components/service-page";
 import ServicePageHead from "@/components/service-page/ServicePageHead";
-
+import CityFacts from "@/components/seo-city/CityFacts";
+import CityMap from "@/components/CityMap";
 const ReadingProgressBar = dynamic(
 	() => import("@/components/ReadingProgressBar"),
 	{ ssr: false }
@@ -166,15 +167,35 @@ export default function WebseitenerstellungCityPage({ cityData }) {
 	const faq = [
 		{
 			q: `Wie lange dauert die Webseitenerstellung in ${cityName}?`,
-			a: "In der Regel 10–20 Werktage, abhängig vom Umfang und Content-Bereitstellung.",
+			a: "In der Regel 10–20 Werktage – abhängig von Umfang, Funktionen und wie schnell Inhalte bereitgestellt werden.",
 		},
 		{
-			q: "Bieten Sie Hosting & Wartung an?",
-			a: "Ja, wir übernehmen Hosting, Updates, Backups & technische Pflege.",
+			q: "Was kostet eine professionelle Website?",
+			a: "Landingpages starten ab 499 €, Unternehmenswebsites ab 2.500 €. Nach einem kurzen Gespräch erhalten Sie ein verbindliches, transparentes Angebot.",
+		},
+		{
+			q: "Bieten Sie Hosting und Wartung an?",
+			a: "Ja – wir übernehmen Hosting, Updates, Backups, Monitoring und technische Pflege optional als Wartungspaket.",
 		},
 		{
 			q: "Kann ich Inhalte selbst bearbeiten?",
-			a: "Ja – dank CMS kannst du Texte & Bilder jederzeit selbst anpassen.",
+			a: "Dank moderner CMS-Lösungen lassen sich Texte, Bilder und Seitenbereiche jederzeit einfach anpassen.",
+		},
+		{
+			q: "Sind Ihre Websites SEO-optimiert?",
+			a: "Jede Website wird mit sauberer Struktur, schnellen Ladezeiten, Core Web Vitals Optimierung und lokalem SEO ausgeliefert.",
+		},
+		{
+			q: "Wie läuft ein typisches Website-Projekt ab?",
+			a: "Analyse, Strukturierung, Design, Entwicklung, Testing, Launch und auf Wunsch fortlaufende Optimierung.",
+		},
+		{
+			q: "Übernehmen Sie auch Relaunch oder Website-Überarbeitung?",
+			a: "Ja – wir modernisieren bestehende Websites, verbessern SEO, Performance und Design und migrieren Inhalte sauber ins neue System.",
+		},
+		{
+			q: "Arbeiten Sie nur in NRW?",
+			a: "Schwerpunkt NRW, aber wir betreuen Kundinnen und Kunden aus ganz Deutschland und der Grenzregion Niederlande – komplett flexibel.",
 		},
 	];
 
@@ -252,7 +273,6 @@ export default function WebseitenerstellungCityPage({ cityData }) {
 				canonical={canonical}
 				offerSchema={offerSchema}
 			/>
-
 			<BreadcrumbsJsonLd items={crumbs} canonical={canonical} />
 			<ReadingProgressBar />
 			<SmartCTA triggerPercent={35} />
@@ -262,6 +282,7 @@ export default function WebseitenerstellungCityPage({ cityData }) {
 				badges={badges}
 				ctaTopic={`Webseitenerstellung Beratung ${cityName}`}
 			/>
+			<CityFacts cityData={cityData} CityMap={CityMap} />
 			<GoogleReviews />
 			<USPs title="Warum Pixel-Genie?" items={usps} />
 			<Process

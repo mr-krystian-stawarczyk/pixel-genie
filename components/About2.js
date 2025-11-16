@@ -37,6 +37,10 @@ function About2() {
 			year: "2024",
 			text: "Pixel Genie Launch in Nettetal – Webdesign & SEO mit persönlicher Betreuung.",
 		},
+		{
+			year: "2025",
+			text: "Erstellung von Expertenartikeln in Sozialen Medien.",
+		},
 	];
 
 	return (
