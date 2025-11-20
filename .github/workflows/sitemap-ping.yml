@@ -1,8 +1,8 @@
-name: Ping sitemap (A + B Full Boost)
+name: Ping sitemap (A + B Balanced Boost)
 
 on:
   schedule:
-    - cron: "0 * * * *"   # co godzinę
+    - cron: "*/30 * * * *"   # co 30 minut
   workflow_dispatch:
 
 jobs:
