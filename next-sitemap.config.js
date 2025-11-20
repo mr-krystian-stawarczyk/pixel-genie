@@ -9,6 +9,9 @@ module.exports = {
 	changefreq: "weekly",
 	priority: 0.8,
 
+	// 🔥 Dodane tylko to — nic więcej
+	sitemapBaseFileName: "sitemap",
+
 	robotsTxtOptions: {
 		policies: SITE_URL.includes("localhost")
 			? [{ userAgent: "*", disallow: "/" }]
@@ -105,7 +108,7 @@ module.exports = {
 
 			return paths;
 		} catch (err) {
-			console.error("❌ Błąd additionalPaths:", err);
+			console.error("❌ Error additionalPaths:", err);
 			return [];
 		}
 	},

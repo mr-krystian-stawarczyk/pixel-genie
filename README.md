@@ -1,38 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Live: https://pixel-genie.de
 
-## Getting Started
+Pixel Genie Nettetal:
 
-First, run the development server:
+Webentwicklung, SEO Optimierung & modernes Webdesign in Nettetal
+Bei Pixel Genie kombinieren wir modernes Webdesign, technische Webentwicklung und SEO Optimierung, um Unternehmen in Nettetal und ganz Deutschland online sichtbar zu machen. Unsere Websites werden so entwickelt, dass sie nicht nur visuell überzeugen, sondern auch durch Performance, Conversion und Benutzerfreundlichkeit glänzen.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Als Webdesign Agentur aus Nettetal legen wir besonderen Wert auf Responsive Design, schnelle Ladezeiten, OnPage SEO und strukturierte Inhalte. So erreichen Sie mehr Sichtbarkeit bei Google, bessere Nutzererfahrungen und messbare Resultate – von lokalen Betrieben bis zu mittelständischen Unternehmen.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Webseiten erstellen mit Pixel-Genie – Ihre Agentur für modernes Webdesign, SEO & Marketing in Nettetal
+Steigern Sie Ihre Online Präsenz mit professionellen Websites, die Design, Performance und Sichtbarkeit vereinen.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+🚀 Jetzt kostenloses Audit anfordern
