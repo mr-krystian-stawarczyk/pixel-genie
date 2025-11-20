@@ -1,0 +1,14 @@
+name: Ping sitemap (Netlify Hook)
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # odpala co godzinę
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify Build Hook
+        run: |
+          curl -X POST "https://api.netlify.com/build_hooks/691f759c9620b56f40618640"
