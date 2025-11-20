@@ -2,7 +2,7 @@ name: Ping sitemap (Netlify Hook)
 
 on:
   schedule:
-    - cron: "0 * * * *"  # odpala co godzinę
+    - cron: "0 * * * *"  # odpala co godzinee
   workflow_dispatch:
 
 jobs:
