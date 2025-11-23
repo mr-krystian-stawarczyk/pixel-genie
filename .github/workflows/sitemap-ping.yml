@@ -1,0 +1,19 @@
+name: Ping sitemap (A + B Balanced Boost)
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # co 30 minut
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Netlify Build Hook (A)
+        run: |
+          curl -X POST "https://api.netlify.com/build_hooks/691f759c9620b56f40618640"
+
+      - name: Call Netlify Function for Google + Bing Ping (B)
+        run: |
+          curl -X GET "https://pixel-genie.de/.netlify/functions/ping_sitemaps"
