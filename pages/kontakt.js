@@ -14,7 +14,7 @@ function Contact() {
 				<title>Kontakt – Nettetal Webdesign und Webentwicklung</title>
 				<meta
 					name="description"
-					content="Pixel-Genie: Kontaktieren Sie uns für professionelles Webdesign und Online-Marketing-Dienstleistungen in Nettetal. Schreiben Sie uns per Kontaktformular oder E-Mail – ganz ohne Telefonat."
+					content="Webdesign in Nettetal anfragen: Pixel-Genie erstellt Websites ab 499 €. Schreiben Sie uns online per Formular oder E-Mail. Persönliche Termine beim Kunden nach Vereinbarung."
 				/>
 				<meta name="robots" content="index, follow" />
 
