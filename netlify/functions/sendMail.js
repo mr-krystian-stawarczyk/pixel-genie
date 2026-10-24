@@ -45,7 +45,11 @@ export async function handler(event) {
 	}
 
 	const { topic, name, email, phone, message, budget } = data || {};
-	if (!email || !message) {
+	if (data?.website) return { statusCode: 200, body: JSON.stringify({ ok: true }) }; // honeypot
+	const validEmail = typeof email === "string" && email.length <= 254 && /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+	const validMessage = typeof message === "string" && message.trim().length >= 3 && message.length <= 5000;
+	const validFields = [topic, name, phone, budget].every((x) => x == null || (typeof x === "string" && x.length <= 200));
+	if (!validEmail || !validMessage || !validFields) {
 		return {
 			statusCode: 400,
 			body: JSON.stringify({ error: "Missing required fields" }),
@@ -59,9 +63,6 @@ export async function handler(event) {
 		auth: {
 			user: "resend",
 			pass: process.env.RESEND_API_KEY,
-		},
-		tls: {
-			rejectUnauthorized: false, // ⚠️ lokalny test: akceptuj self-signed certs
 		},
 	});
 
