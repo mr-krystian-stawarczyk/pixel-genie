@@ -173,7 +173,7 @@ export default function FooterLinksSEO() {
 				</Link>
 			</div>
 			<p className="mt-2 small" style={{ opacity: 0.65 }}>
-				© 2025 Pixel-Genie – Webentwicklung, Webdesign & SEO in Deutschland
+				© 2026 Pixel-Genie – Webentwicklung, Webdesign & SEO in Deutschland
 			</p>
 		</div>
 	);
