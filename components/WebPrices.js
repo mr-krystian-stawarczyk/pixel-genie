@@ -1,323 +1,36 @@
 "use client";
 import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import Image from "next/image";
-import AutoTranslate from "@/components/AutoTranslate";
-import dynamic from "next/dynamic";
-const MotionFadeIn = dynamic(() => import("@/components/MotionFadeIn"), {
-	ssr: false,
-});
+import { Container, Row, Col } from "react-bootstrap";
+import ContactButton from "./ContactButton";
+
+const packages = [
+  { name: "STARTER", price: "499 €", subtitle: "Ein klarer Start für Selbstständige", items: ["One-Page-Website mit bis zu 5 Abschnitten", "Mobilfreundliches, modernes Layout", "Kontaktmöglichkeit und grundlegende SEO-Einstellungen", "Eine Korrekturrunde"], topic: "Anfrage STARTER Website 499 €" },
+  { name: "BUSINESS", price: "899 €", subtitle: "Für Firmen mit mehreren Leistungen", items: ["Unternehmenswebsite mit bis zu 5 Inhaltsseiten", "Individuelle Gestaltung und mobilfreundliche Umsetzung", "Kontaktformular und technische SEO-Grundlagen", "Zwei Korrekturrunden"], topic: "Anfrage BUSINESS Website 899 €" },
+  { name: "INDIVIDUELL", price: "auf Anfrage", subtitle: "Wenn Ihr Projekt mehr benötigt", items: ["Größere Websites, CMS oder besondere Funktionen", "Mehrsprachigkeit und Schnittstellen nach Bedarf", "Umfang und Zeitplan vorab schriftlich festgelegt", "Transparentes individuelles Angebot"], topic: "Anfrage individuelle Website" }
+];
+
 export default function WebPrices() {
-	const handleEmail = (plan) => {
-		const subject = encodeURIComponent(`Website Anfrage: ${plan}`);
-		const body = encodeURIComponent(
-			`Hallo Pixel Genie Team,\n\nich interessiere mich für ${plan}.`
-		);
-		window.location.href = `mailto:pixelgenie.marketing@gmail.com?subject=${subject}&body=${body}`;
-	};
-
-	const plans = [
-		{
-			title: "BASIC WEBSITE",
-			price: "ab 499 €",
-			color: "primary",
-			desc: "Ideal für den schnellen Start – Ihre erste professionelle Website zum besten Preis.",
-			features: [
-				"One-Page oder Landingpage",
-				"Responsive Design (Mobile & Desktop)",
-				"Basis SEO & schnelle Ladezeiten",
-				"Kontaktformular & Google Maps",
-				"Impressum & Datenschutz inklusive",
-			],
-			button: "Jetzt anfragen",
-		},
-		{
-			title: "BUSINESS WEBSITE",
-			price: "ab 899 €",
-			color: "success",
-			desc: "Unser Bestseller – ideal für Unternehmen, die Leistung und Design verbinden wollen.",
-			features: [
-				"Mehrseitige Website (bis 5 Seiten)",
-				"Individuelles Design mit CMS (Sanity/Headless)",
-				"SEO & Performance Optimierung (Lighthouse 90+)",
-				"Analytics & Search Console Integration",
-				"1 Jahr Hosting & Wartung",
-			],
-			button: "Bestseller anfragen",
-			badge: "Bestseller",
-		},
-		{
-			title: "PREMIUM WEBSITE",
-			price: "ab 1499 €",
-			color: "warning",
-			desc: "Für Marken, die Maßstäbe setzen wollen – High-End Performance, UX und Strategie.",
-			features: [
-				"Individuelles UX/UI Konzept",
-				"Unbegrenzte Seiten & CMS",
-				"Technische SEO + Core Web Vitals 95+",
-				"Blog + Content-System inklusive",
-				"Conversion-Tracking & A/B Tests",
-			],
-			button: "Premium buchen",
-		},
-	];
-
-	const addons = [
-		["📰 Blog Integration", "+199 €"],
-		["🛒 Online Shop", "+499 €"],
-		["🚀 SEO Boost", "+149 €"],
-		["🔧 Wartungspaket", "+29 €/Monat"],
-	];
-
-	return (
-		<Container id="web-design-pricing" className="my-5 py-5 text-dark">
-			{/* Header */}
-			<Row className="justify-content-center text-center mb-5">
-				<Col lg={8}>
-					<Image
-						src="/assets/webentwicklung-webagentur-nettetal-price.png"
-						width={250}
-						height={250}
-						alt="Webdesign Preise Pixel Genie Nettetal"
-						className="my-3"
-					/>
-					<h2 className="fw-bold display-6">
-						<AutoTranslate>
-							Webseiten-Pakete, die überzeugen – modern, schnell & fair
-						</AutoTranslate>
-					</h2>
-					<p className="lead ">
-						<AutoTranslate>
-							Ob Start-up, Handwerksbetrieb oder Marke – wir erstellen Websites,
-							die Besucher begeistern und bei Google performen.
-						</AutoTranslate>
-					</p>
-				</Col>
-			</Row>
-
-			{/* Plans */}
-			<Row className="justify-content-center text-center g-4">
-				{/* KARTA 1 — BASIC WEBSITE */}
-				<Col lg={4} md={6}>
-					<div className="pricing-card basic-card h-100 shadow-lg rounded-4 border-0">
-						<div className="card-inner p-4">
-							<h3 className="card-title fw-bold mb-2 text-primary">
-								BASIC WEBSITE
-							</h3>
-							<p className="card-desc mb-3">
-								Ideal für den schnellen Start – Ihre erste professionelle
-								Website mit modernem Design, schnellen Ladezeiten und solider
-								SEO-Basis.
-							</p>
-							<h2 className="card-price fw-bold mb-3 text-primary">
-								ab 499 €{" "}
-								<span className="fs-6 text-muted">(Endpreis §19 UStG)</span>
-							</h2>
-
-							<hr className="card-divider" />
-
-							<ul className="card-features list-unstyled text-start">
-								<li style={{ color: "var(--text-color)" }}>
-									✔ One-Page oder Landingpage
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Responsive Design (Mobile &amp; Desktop)
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Basis-SEO &amp; schnelle Ladezeiten
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Kontaktformular &amp; Google Maps
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Impressum &amp; Datenschutz inklusive
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Domain-Anbindung &amp; SSL-Zertifikat
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Optimiert mit React &amp; Next.js Technologie
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Google Business Profil Integration
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Performance Optimierung (Lighthouse 85+)
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Kostenlose Beratung vor Projektstart
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									🎉 <strong>–10 % Rabatt</strong> für Kunden aus{" "}
-									<strong>NRW</strong>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</Col>
-
-				{/* KARTA 2 — BUSINESS WEBSITE */}
-				<Col lg={4} md={6}>
-					<div className="pricing-card business-card h-100 shadow-lg rounded-4 border-0 position-relative">
-						<span className="pricing-badge bg-warning text-dark fw-bold px-3 py-1">
-							Bestseller
-						</span>
-
-						<div className="card-inner p-4">
-							<h3 className="card-title fw-bold mb-2 text-success">
-								BUSINESS WEBSITE
-							</h3>
-							<p className="card-desc mb-3">
-								Unser Bestseller – maßgeschneiderte Website für Unternehmen, die
-								Design, Performance und Sichtbarkeit verbinden möchten.
-							</p>
-							<h2 className="card-price fw-bold mb-3 text-success">
-								ab 899 €{" "}
-								<span className="fs-6 text-muted">(Endpreis §19 UStG)</span>
-							</h2>
-
-							<hr className="card-divider" />
-
-							<ul className="card-features list-unstyled text-start">
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Mehrseitige Website (bis 6 Seiten)
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Individuelles Design &amp; Branding
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Headless CMS Integration (Inhalte selbst pflegen)
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ SEO &amp; Performance Optimierung (Lighthouse 90+)
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Analytics &amp; Search Console Einrichtung
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Google My Business &amp; Local SEO Optimierung
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ 1 Jahr Hosting &amp; technische Wartung inklusive
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ DSGVO-konformes Cookie &amp; Consent Management
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Blog oder Portfolio integriert
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ E-Mail mit Domain (z. B. info@firma.de)
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									✔ Sicherheitsupdates &amp; Backups
-								</li>
-								<li style={{ color: "var(--text-color)" }}>
-									🎉 <strong>–10 % Rabatt</strong> für Firmen aus{" "}
-									<strong>NRW</strong>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</Col>
-
-				{/* KARTA 3 — PREMIUM WEBSITE */}
-				<Col lg={4} md={6}>
-					<div
-						className="pricing-card premium-card h-100 shadow-lg rounded-4 border-0 text-light"
-						style={{ background: "linear-gradient(135deg,#0b0b2e,#21216b)" }}
-					>
-						<div className="card-inner p-4">
-							<h3 className="card-title fw-bold mb-2 text-warning">
-								PREMIUM WEBSITE
-							</h3>
-							<p className="card-desc text-white mb-3">
-								Für Marken, die online dominieren wollen – High-End Design,
-								maximale Geschwindigkeit &amp; eine ganzheitliche digitale
-								Strategie.
-							</p>
-							<h2 className="card-price fw-bold mb-3 text-warning">
-								ab 1499 €{" "}
-								<span className="fs-6 text-light-50">(Endpreis §19 UStG)</span>
-							</h2>
-
-							<hr className="card-divider border-light" />
-
-							<ul className="card-features list-unstyled text-start text-white">
-								<li>✔ Maßgeschneidertes UX/UI Konzept + Markenstrategie</li>
-								<li>✔ Unbegrenzte Seiten &amp; CMS Integration</li>
-								<li>✔ Technische SEO + Core Web Vitals 95+</li>
-								<li>✔ Content-System + automatisiertes Blog Setup</li>
-								<li>✔ Conversion Tracking, A/B Tests &amp; Heatmaps</li>
-								<li>✔ Mehrsprachigkeit (DE / EN / NL)</li>
-								<li>✔ Google Ads &amp; Meta Ads Setup inklusive</li>
-								<li>✔ Premium Hosting (Cloudflare CDN + Next.js SSR)</li>
-								<li>✔ Launch-Kampagne &amp; digitale Markenberatung</li>
-								<li>
-									✔ Persönliche Projektbetreuung (1:1 mit Designer &amp;
-									Entwickler)
-								</li>
-								<li>✔ 24/7 Support in den ersten 3 Monaten</li>
-								<li>
-									🎉 <strong>–10 % Rabatt</strong> für Unternehmen aus{" "}
-									<strong>NRW</strong>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</Col>
-			</Row>
-
-			{/* Rechtlicher Hinweis */}
-			<p className="text-center  mt-3" style={{ fontSize: "0.9rem" }}>
-				Alle Preise sind Endpreise gemäß §19 UStG (Kleinunternehmerregelung,
-				keine MwSt-Ausweisung).
-			</p>
-
-			{/* Technischer Hinweis */}
-			<p className="text-center " style={{ fontSize: "0.85rem" }}>
-				Alle Websites werden mit modernster React &amp; Next.js Technologie
-				entwickelt – blitzschnell, SEO-optimiert und 100 % DSGVO-konform.
-			</p>
-
-			{/* Add-ons */}
-			<Row className="justify-content-center text-center mt-5">
-				<Col lg={8}>
-					<h3 className="fw-bold mb-3 mt-5">
-						<AutoTranslate>✨ Erweiterungen & Add-ons</AutoTranslate>
-					</h3>
-					<p>
-						<AutoTranslate>
-							Individuell anpassbar für jedes Paket – steigern Sie die Wirkung
-							Ihrer Website mit unseren Extras
-						</AutoTranslate>
-					</p>
-				</Col>
-			</Row>
-
-			<Row className="justify-content-center text-center g-3 mt-3">
-				{addons.map(([label, price], i) => (
-					<Col md={3} sm={6} key={i}>
-						<Card className="border-0 shadow-sm p-3">
-							<h5 className="fw-bold text-black">{label}</h5>
-							<p className=" small">
-								<b className="text-black">{price}</b>
-							</p>
-						</Card>
-					</Col>
-				))}
-			</Row>
-
-			{/* Footer */}
-			<Row className="justify-content-center text-center mt-5">
-				<Col lg={8}>
-					<p className="">
-						<AutoTranslate>
-							Alle Preise zzgl. MwSt. – transparent, fair & top Performance
-						</AutoTranslate>
-					</p>
-				</Col>
-			</Row>
-		</Container>
-	);
+  return (
+    <Container id="web-design-pricing" className="my-5 py-5">
+      <div className="text-center mx-auto mb-4" style={{maxWidth: 730}}>
+        <h2 className="fw-bold">Websites mit klarem Umfang und fairen Preisen</h2>
+        <p>Sie beschreiben kurz Ihr Vorhaben – Sie erhalten ein unverbindliches Angebot per E-Mail. Kein Verkaufsgespräch am Telefon nötig.</p>
+      </div>
+      <Row className="g-3 justify-content-center">
+        {packages.map((plan)=>(
+          <Col key={plan.name} xs={12} md={6} lg={4}>
+            <div className="h-100 rounded-4 border p-4" style={{background:"var(--bg-color)",color:"var(--text-color)",borderColor:"rgba(120,140,165,.35)"}}>
+              <h3 className="fw-bold h4">{plan.name}</h3>
+              <p className="small">{plan.subtitle}</p>
+              <p className="display-6 fw-bold">{plan.price}</p>
+              <ul className="ps-3 text-start">{plan.items.map(item=><li key={item} className="mb-2">{item}</li>)}</ul>
+              <ContactButton topic={plan.topic} className="btn btn-primary w-100 fw-semibold py-3">Unverbindlich anfragen</ContactButton>
+            </div>
+          </Col>
+        ))}
+      </Row>
+      <p className="text-center small mt-4 mb-1">Die genannten Preise gelten für den beschriebenen Leistungsumfang. Domain, Hosting, laufende Pflege und zusätzliche Funktionen werden bei Bedarf separat vereinbart.</p>
+      <p className="text-center small mb-0">Gemäß § 19 UStG wird keine Umsatzsteuer ausgewiesen.</p>
+    </Container>
+  );
 }
