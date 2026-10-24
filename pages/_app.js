@@ -11,6 +11,7 @@ import { getCookie } from "cookies-next";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
 import localFont from "next/font/local";
+import { captureAttribution } from "@/lib/attribution";
 import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
 
 const poppins = localFont({
@@ -40,7 +41,8 @@ function AppContent({ Component, pageProps }) {
 		const checkConsent = () =>
 			setHasConsent(getCookie("marketingConsent") === "true");
 		checkConsent();
-		const onAccept = () => setHasConsent(true);
+		captureAttribution();
+		const onAccept = () => { setHasConsent(true); captureAttribution(); };
 		window.addEventListener("cookieAccepted", onAccept);
 		return () => window.removeEventListener("cookieAccepted", onAccept);
 	}, []);
