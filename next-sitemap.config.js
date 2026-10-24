@@ -5,7 +5,7 @@ module.exports = {
 	siteUrl: SITE_URL,
 	generateRobotsTxt: true,
 	outDir: "./out",
-	autoLastmod: false,
+	autoLastmod: true,
 	changefreq: "weekly",
 	priority: 0.8,
 
@@ -120,5 +120,9 @@ module.exports = {
 		"/nl/*",
 		"/tips/tag",
 		"/tips/tag/*",
+		"/seo",
+		"/webdesign-agentur",
+		"/webseitenerstellung",
+		"/webentwicklung",
 	],
 };
