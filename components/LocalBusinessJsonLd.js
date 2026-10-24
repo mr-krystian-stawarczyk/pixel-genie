@@ -34,25 +34,20 @@ const LocalBusinessJsonLd = ({ cityData }) => {
 
 	const jsonLd = {
 		"@context": "https://schema.org",
-		"@type": "LocalBusiness",
+		"@type": "ProfessionalService",
 		name: "Pixel Genie",
-		image: "https://pixel-genie.de/logo.png",
+		image: "https://pixel-genie.de/assets/pixel-genie-nettetal-webentwicklung-logo.png",
 		telephone: cityData.phone,
 		email: cityData.email,
 		address: {
 			"@type": "PostalAddress",
-			streetAddress: cityData.address,
-			addressLocality: cityData.city,
-			postalCode: cityData.postalCode,
+			streetAddress: "Lambertimarkt 2",
+			addressLocality: "Nettetal",
+			postalCode: "41334",
 			addressCountry: "DE",
 		},
-		geo: {
-			"@type": "GeoCoordinates",
-			latitude: cityData.geo.latitude,
-			longitude: cityData.geo.longitude,
-		},
 		areaServed,
-		url: `https://pixel-genie.de/webentwicklung/${cityData.city.toLowerCase()}`,
+		url: "https://pixel-genie.de",
 		sameAs: ["https://www.facebook.com/pixel.genie.de"],
 	};
 
