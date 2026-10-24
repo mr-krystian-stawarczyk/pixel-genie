@@ -53,6 +53,7 @@ export default function ContactModal({ show, onHide, topic }) {
 		message: "",
 		budget: "",
 		accepted: false,
+		website: "",
 	});
 	const [status, setStatus] = useState("idle");
 	const [toast, setToast] = useState({ type: "", message: "" });
@@ -117,7 +118,7 @@ export default function ContactModal({ show, onHide, topic }) {
 		} catch (err) {
 			setToast({
 				type: "error",
-				message: "Fehler beim Senden. Bitte versuchen Sie es erneut.",
+				message: "Fehler beim Senden. Schreiben Sie bitte direkt an pixelgenie.marketing@gmail.com.",
 			});
 			setStatus("error");
 		}
@@ -203,11 +204,14 @@ export default function ContactModal({ show, onHide, topic }) {
 							</button>
 						</div>
 						<small style={{ color: subText }}>
-							Wir melden uns innerhalb von 24–48 h.
+							Antwort per E-Mail innerhalb von zwei Werktagen.
 						</small>
 
+						<p className="small mb-2">Alternativ direkt per E-Mail: <a href="mailto:pixelgenie.marketing@gmail.com">pixelgenie.marketing@gmail.com</a></p>
 						{/* FORMULARZ */}
 						<Form onSubmit={handleSubmit} className="mt-3">
+							{/* Spam trap: keep invisible to real users */}
+							<div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={handleChange}/></div>
 							<Form.Group className="mb-3">
 								<Form.Label>Thema der Anfrage</Form.Label>
 								<Form.Select
@@ -222,6 +226,7 @@ export default function ContactModal({ show, onHide, topic }) {
 									}}
 								>
 									<option value="">Bitte wählen</option>
+									{form.topic && !["Webdesign", "Branding", "Social Media", "SEO", "Kostenlose Hilfe", "Sonstiges"].includes(form.topic) && <option value={form.topic}>{form.topic}</option>}
 									<option>Webdesign</option>
 									<option>Branding</option>
 									<option>Social Media</option>
@@ -311,6 +316,7 @@ export default function ContactModal({ show, onHide, topic }) {
 										<option value="">Keine Angabe</option>
 										<option value="<1000">Unter €1.000</option>
 										<option value="1000-1500">€1.000–€1.500</option>
+										<option value="1500-2000">€1.500–€2.000</option>
 										<option value="2000+">Über €2.000</option>
 									</Form.Select>
 								</div>
