@@ -81,7 +81,7 @@ export default function FooterLinksSEO() {
 						</h4>
 
 						{group.data.map((c, i) => {
-							const city = c.city.toLowerCase();
+							const city = (c.slug || c.city).toLowerCase();
 							const cityName = c.city.charAt(0).toUpperCase() + c.city.slice(1);
 							return (
 								<Link
@@ -129,7 +129,7 @@ export default function FooterLinksSEO() {
 				{webentwicklungCities.slice(0, 2).map((c, i) => (
 					<Link
 						key={`cross-seo-${i}`}
-						href={`/seo/${c.city.toLowerCase()}`}
+						href={`/seo/${(c.slug || c.city).toLowerCase()}`}
 						className="footer-links text-decoration-none"
 					>
 						SEO Agentur {c.city}
@@ -138,7 +138,7 @@ export default function FooterLinksSEO() {
 				{seoCities.slice(0, 2).map((c, i) => (
 					<Link
 						key={`cross-web-${i}`}
-						href={`/webentwicklung/${c.city.toLowerCase()}`}
+						href={`/webentwicklung/${(c.slug || c.city).toLowerCase()}`}
 						className="footer-links text-decoration-none"
 					>
 						Webentwicklung {c.city}
@@ -147,7 +147,7 @@ export default function FooterLinksSEO() {
 				{webdesignCities.slice(0, 2).map((c, i) => (
 					<Link
 						key={`cross-webseitenerstellung-${i}`}
-						href={`/webseitenerstellung/${c.city.toLowerCase()}`}
+						href={`/webseitenerstellung/${(c.slug || c.city).toLowerCase()}`}
 						className="footer-links text-decoration-none"
 					>
 						Webseitenerstellung {c.city}
@@ -156,7 +156,7 @@ export default function FooterLinksSEO() {
 				{webseitenCities.slice(0, 2).map((c, i) => (
 					<Link
 						key={`cross-webdesign-${i}`}
-						href={`/webdesign-agentur/${c.city.toLowerCase()}`}
+						href={`/webdesign-agentur/${(c.slug || c.city).toLowerCase()}`}
 						className="footer-links text-decoration-none"
 					>
 						Webdesign Agentur {c.city}
