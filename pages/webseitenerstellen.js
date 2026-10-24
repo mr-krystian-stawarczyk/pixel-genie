@@ -15,10 +15,7 @@ const WebFAQ = dynamic(() => import("@/components/WebFAQ"), { ssr: false });
 const HeaderCounted = dynamic(() => import("@/components/HeaderCounted"), {
 	ssr: false,
 });
-const LocalBusinessJsonLd = dynamic(
-	() => import("@/components/LocalBusinessJsonLd"),
-	{ ssr: false }
-);
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
 
 import citiesData from "@/data/citiesData";
 
@@ -28,10 +25,10 @@ function WebSeitenErstellen() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Webseiten Erstellen Webdesign Webagentur Pixel Nettetal</title>
+				<title>Website erstellen lassen ab 499 € | Pixel-Genie</title>
 				<meta
 					name="description"
-					content="Professionelle Webseiten erstellen, Webentwicklung in Nettetal. Maßgeschneiderte Lösungen für Ihre Online-Präsenz. Von Webdesign über Webentwicklung bis hin zu SEO. Stärken Sie Ihre Marke mit unseren Experten. Kontaktieren Sie uns!"
+					content="Professionelle Website erstellen lassen: Starter ab 499 €, Business ab 899 €. Für Selbstständige und kleine Unternehmen in Nettetal und Umgebung. Schriftlich anfragen."
 				/>
 				<meta name="robots" content="index, follow" />
 
@@ -42,10 +39,10 @@ function WebSeitenErstellen() {
 				/>
 
 				{/* Meta Open Graph */}
-				<meta property="og:title" content="Webseiten Erstellen – Pixel-Genie" />
+				<meta property="og:title" content="Website erstellen lassen ab 499 € | Pixel-Genie" />
 				<meta
 					property="og:description"
-					content="Professionelles Webdesign und Webentwicklung in Nettetal."
+					content="Firmenwebsites ab 499 € mit klarem Leistungsumfang. Website-Angebot einfach schriftlich anfragen."
 				/>
 				<meta property="og:image" content="/assets/og-default.jpg" />
 				<meta property="og:type" content="website" />

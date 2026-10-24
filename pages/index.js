@@ -22,12 +22,15 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Webseiten Erstellen, Webdesign, SEO - Pixel-Genie</title>
+				<title>Webdesign Nettetal | Firmenwebsites ab 499 € | Pixel-Genie</title>
 				<meta
 					name="description"
-					content="Professionelle Websites für Unternehmen aus Nettetal und NRW – ab 499 €. Mobilfreundliches Webdesign, klare Preise und unkomplizierte Anfrage per E-Mail."
+					content="Webdesign aus Nettetal: Pixel-Genie erstellt moderne Firmenwebsites ab 499 €. Für Selbstständige und kleine Unternehmen. Angebot bequem schriftlich anfragen."
 				/>
 				<meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Webdesign Nettetal | Firmenwebsites ab 499 € | Pixel-Genie" />
+        <meta property="og:description" content="Professionelle Firmenwebsites ab 499 € aus Nettetal. Klare Leistungen, direkte Zusammenarbeit und schriftliche Projektanfrage." />
+        <meta property="og:url" content="https://pixel-genie.de/" />
 				<link rel="canonical" href="https://pixel-genie.de/" />
 
 				{/* ✅ Schema.org JSON-LD */}
