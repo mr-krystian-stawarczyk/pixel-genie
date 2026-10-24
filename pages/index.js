@@ -37,25 +37,18 @@ export default function Home() {
 						__html: JSON.stringify({
 							"@context": "https://schema.org",
 							"@type": "ProfessionalService",
-							name: "Pixel-Genie Webagentur Nettetal",
+							name: "Pixel-Genie",
 							image:
 								"https://pixel-genie.de/assets/webentwicklung-nettetal-seo2.webp",
 							description:
-								"Pixel-Genie ist Ihre Agentur für Webdesign, Webseiten erstellen, SEO Optimierung und Social Media Marketing in Nettetal. Wir kombinieren Design, Performance und Sichtbarkeit, um Ihr Online-Geschäft zu stärken.",
+								"Pixel-Genie erstellt professionelle Websites und Webdesign für Unternehmen aus Nettetal und Umgebung. Schriftliche Zusammenarbeit online, Kundentermine vor Ort nach Absprache.",
 							url: "https://pixel-genie.de",
 							telephone: "+48 726 897 493",
 							email: "pixelgenie.marketing@gmail.com",
-							address: {
-								"@type": "PostalAddress",
-								streetAddress: "Lambertimarkt 2",
-								addressLocality: "Nettetal",
-								postalCode: "41334",
-								addressCountry: "DE",
-							},
 							sameAs: [
-								"https://www.facebook.com/pixel.genie.de",
-								"https://www.linkedin.com/company/pixel-genie-de/?viewAsMember=true",
-								"https://www.instagram.com/pixel.genie.de",
+								"https://www.facebook.com/profile.php?id=100090817536941",
+								"https://www.linkedin.com/company/pixel-genie-de",
+								"https://x.com/PixelGenieWeb",
 							],
 							areaServed: [
 								"Nettetal",
