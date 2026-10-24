@@ -144,15 +144,15 @@ export default function Header1() {
 							</p>
 
 							<nav aria-label="Hauptaktionen">
-								<div className="d-flex flex-column flex-sm-row justify-content-center gap-3">
+								<div className="pg-hero-actions">
 									<ContactButton topic="Webdesign" className="btn-premium-footer text-white fw-bold px-4 py-3">
-										Website unverbindlich anfragen
+										<AutoTranslate>Website unverbindlich anfragen</AutoTranslate>
 									</ContactButton>
-									<Button as={Link} href="/webseitenerstellen#web-design-pricing" className="btn-lg btn-nav">
-										Pakete & Preise ansehen
+									<Button as={Link} href="/webseitenerstellen#web-design-pricing" className="pg-hero-secondary">
+										<AutoTranslate>Pakete & Preise ansehen</AutoTranslate>
 									</Button>
 								</div>
-								<p className="small mt-3 mb-0" style={{ opacity: 0.9 }}>Kontakt per E-Mail · Kein Telefonat nötig</p>
+								<p className="small mt-3 mb-0" style={{ opacity: 0.9 }}><AutoTranslate>Kontakt per E-Mail · Kein Telefonat nötig</AutoTranslate></p>
 							</nav>
 						</Card.Body>
 

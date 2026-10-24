@@ -40,11 +40,7 @@ export default function Web1() {
 
 								<p>
 									<AutoTranslate>
-										Das Pixel Genie Team aus Nettetal bietet professionelle
-										Webdesign Services, die individuell auf Ihre Bedürfnisse
-										zugeschnitten sind. Vertrauen Sie uns, um eine einzigartige
-										Website zu erstellen, die die Aufmerksamkeit Ihres Publikums
-										auf sich zieht und Sie am Markt hervorhebt.
+										Ich gestalte Ihre Website passend zu Ihren Leistungen und Kunden. Klare Inhalte, unkomplizierte Abstimmung und eine gute Darstellung auf Smartphones stehen dabei im Mittelpunkt.
 									</AutoTranslate>
 								</p>
 

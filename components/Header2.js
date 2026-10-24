@@ -1,6 +1,7 @@
 "use client";
 import motion from "@/components/MotionLite";
 import Link from "next/link";
+import AutoTranslate from "./AutoTranslate";
 import Image from "next/image";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
@@ -18,19 +19,19 @@ export default function Header2() {
 					<Col lg={5} className="mx-auto text-center">
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
-								<h2 className="fw-bold mb-3">
+								<h2 className="fw-bold mb-3"><AutoTranslate>
 									Eine Website, die zu Ihrem Betrieb passt
-								</h2>
-								<p>
+								</AutoTranslate></h2>
+								<p><AutoTranslate>
 									Ich entwickle übersichtliche Websites, auf denen Besucher Ihre Leistungen und Kontaktmöglichkeiten schnell finden.
-								</p>
+								</AutoTranslate></p>
 								<p>
 									Mobilfreundlich, klar aufgebaut und auf Ihr Unternehmen zugeschnitten.
 								</p>
 								<div className="text-center mt-4">
 									<Link href="/webseitenerstellen">
 										<Button className="btn-nav text-white" variant="primary">
-											WEBSEITEN ERSTELLEN →
+											<AutoTranslate>WEBSEITEN ERSTELLEN →</AutoTranslate>
 										</Button>
 									</Link>
 								</div>

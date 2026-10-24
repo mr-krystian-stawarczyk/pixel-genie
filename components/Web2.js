@@ -31,12 +31,7 @@ export default function Web2() {
 
 								<p>
 									<AutoTranslate>
-										Pixel Genie Nettetal hat sich auf die Erstellung responsiver
-										Websites spezialisiert, die auf verschiedenen Geräten
-										hervorragend aussehen. Unsere Lösungen sind für SEO
-										optimiert, was Ihrer Website eine bessere Online
-										Sichtbarkeit verschafft und eine größere Anzahl potenzieller
-										Kunden anzieht.
+										Ihre Website soll auf dem Handy genauso gut funktionieren wie am Computer. Ich achte auf lesbare Inhalte, kurze Wege zum Kontakt und eine saubere technische SEO-Basis.
 									</AutoTranslate>
 								</p>
 
