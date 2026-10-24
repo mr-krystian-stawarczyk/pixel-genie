@@ -27,7 +27,7 @@ export default function Impressum() {
 					<Card className="bg-transparent border-0">
 						<Card.Body>
 							<Card.Title className="text-white bg-dark rounded p-1">
-								Angaben gemäß § 5 TMG
+								Angaben gemäß § 5 DDG
 							</Card.Title>
 							<p>
 								<strong>Pixel-Genie</strong>
@@ -35,7 +35,7 @@ export default function Impressum() {
 								Inhaber: Krystian Stawarczyk
 							</p>
 							<p>
-								Fasanenstraße 10
+								Lambertimarkt 2
 								<br />
 								41334 Nettetal
 								<br />
@@ -65,7 +65,7 @@ export default function Impressum() {
 							<p>
 								Krystian Stawarczyk
 								<br />
-								Fasanenstraße 10
+								Lambertimarkt 2
 								<br />
 								41334 Nettetal
 							</p>
@@ -82,15 +82,7 @@ export default function Impressum() {
 								EU-Streitschlichtung
 							</Card.Title>
 							<p>
-								Die Europäische Kommission stellt eine Plattform zur
-								Online-Streitbeilegung (OS) bereit:
-								<a
-									href="https://ec.europa.eu/consumers/odr/"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									https://ec.europa.eu/consumers/odr/
-								</a>
+								Die frühere EU-Plattform zur Online-Streitbeilegung wurde am 20. Juli 2025 eingestellt.
 								Wir sind nicht bereit und nicht verpflichtet, an einem
 								Streitbeilegungsverfahren vor einer
 								Verbraucherschlichtungsstelle teilzunehmen.
@@ -140,7 +132,7 @@ export default function Impressum() {
 						<br />
 						<strong>Krystian Stawarczyk – Pixel-Genie Webagentur</strong>
 						<br />
-						Fasanenstraße 10, 41334 Nettetal, Deutschland
+						Lambertimarkt 2, 41334 Nettetal, Deutschland
 						<br />
 						E-Mail: pixelgenie.marketing@gmail.com
 					</p>
