@@ -20,7 +20,6 @@ module.exports = {
 						userAgent: "*",
 						allow: "/",
 						disallow: [
-							"/_next/",
 							"/api/",
 							"/favicon.ico",
 							"/manifest.json",
