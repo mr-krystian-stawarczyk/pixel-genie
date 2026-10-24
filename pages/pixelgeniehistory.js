@@ -20,21 +20,21 @@ function PixelgenieHistory() {
 	return (
 		<div className="mt-5 pt-5">
 			<Head>
-				<title>Über Uns Webdesign und Webseiten Pixel Genie Nettetal</title>
+				<title>Über Pixel-Genie | Webdesign aus Nettetal</title>
 				<meta
 					name="description"
-					content="Pixel-Genie: Erfahren Sie mehr über unser Team und unsere Erfahrung in Webdesign und Online Marketing in Nettetal. Erfahren Sie mehr über unsere Philosophie und unsere Arbeitsweise."
+					content="Pixel-Genie: Lernen Sie Krystian Stawarczyk kennen – den Ansprechpartner hinter Pixel-Genie in Nettetal. Persönlicher Kontakt und transparente Webdesign-Projekte."
 				/>
 				<meta name="robots" content="index, follow" />
 
 				{/* Link Canonical */}
-				<link rel="canonical" href="https://pixel-genie.de/ueber-uns" />
+				<link rel="canonical" href="https://pixel-genie.de/pixelgeniehistory" />
 
 				{/* Meta Open Graph */}
 				<meta property="og:title" content="Über Uns – Pixel-Genie" />
 				<meta
 					property="og:description"
-					content="Erfahren Sie mehr über Pixel-Genie, unsere Philosophie und unser Team von Experten für Webdesign und Online-Marketing."
+					content="Erfahren Sie mehr über Pixel-Genie, unsere Philosophie und die Arbeit von Krystian Stawarczyk für Webdesign und Online-Marketing."
 				/>
 				<meta property="og:image" content="/assets/og-default.jpg" />
 				<meta property="og:type" content="website" />
