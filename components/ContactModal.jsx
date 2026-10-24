@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import MotionFadeIn from "@/components/MotionFadeIn";
 import Image from "next/image";
 import { gaEvent } from "@/lib/analytics";
+import { getLeadAttribution } from "@/lib/attribution";
 import { getCookie } from "cookies-next";
 
 function Toast({ type, message, onClose }) {
@@ -91,7 +92,9 @@ export default function ContactModal({ show, onHide, topic }) {
 		const leadReference = typeof crypto !== "undefined" && crypto.randomUUID
 			? crypto.randomUUID()
 			: `${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
+		const attribution = getLeadAttribution();
 		const submission = {
+			...attribution,
 			"form-name": "pixel-genie-contact",
 			lead_reference: leadReference,
 			source: typeof window !== "undefined" ? window.location.pathname : "/",
@@ -114,7 +117,7 @@ export default function ContactModal({ show, onHide, topic }) {
 			setStatus("success");
 			setToast({ type: "success", message: "Vielen Dank! Ihre Anfrage wurde erfasst." });
 			if (getCookie("marketingConsent") === "true") {
-				gaEvent("generate_lead", { lead_source: "website_contact_form", form_type: "pixel_genie_contact" });
+				gaEvent("generate_lead", { lead_source: attribution.traffic_source, lead_medium: attribution.traffic_medium, form_type: "pixel_genie_contact" });
 			}
 			// Best-effort email alert. A spam-filtered email must never lose the stored lead.
 			fetch("/.netlify/functions/sendMail", {
