@@ -21,7 +21,7 @@ function About3() {
 Pixel Genie verbindet <strong><a href="/webseitenerstellung" class="text-primary">Webdesign</a>, 
 <a href="/webentwicklung" class="text-primary">Webentwicklung</a>, 
 <a href="/seo" class="text-primary">SEO</a> & Social Media</strong> unter einem Dach. 
-Statt bunter Versprechen liefern wir <strong>messbare Ergebnisse</strong>: mehr Sichtbarkeit, mehr Anfragen, mehr Kunden.
+Statt bunter Versprechen liefern wir <strong>messbare Ergebnisse</strong>: verständliche Websites, klare Angebote und gut erreichbare Kontaktwege.
 Wir arbeiten schnell, präzise und persönlich – ohne Agentur-Blabla.
       `,
 		},
@@ -119,7 +119,7 @@ Nach dem Launch bieten wir optional <strong>Wartung, Backups, Sicherheit, Update
 		url: SITE_ORIGIN,
 		address: {
 			"@type": "PostalAddress",
-			streetAddress: "Fasanenstr. 10",
+			streetAddress: "Lambertimarkt 2",
 			postalCode: "41334",
 			addressLocality: "Nettetal",
 			addressRegion: "NRW",
