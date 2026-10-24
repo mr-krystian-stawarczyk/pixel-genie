@@ -52,6 +52,17 @@
   to = "/webdesignblog"
   status = 301
 
+# Legacy misspelled city slugs identified in Google Search Console
+[[redirects]]
+  from = "/webdesign-agentur/dusseldorf"
+  to = "/webdesign-agentur/duesseldorf/"
+  status = 301
+
+[[redirects]]
+  from = "/webdesign-agentur/dusseldorf/"
+  to = "/webdesign-agentur/duesseldorf/"
+  status = 301
+
 ############################
 # ✅ SECURITY HEADERS (bez COEP/COOP/CORP na razie)
 ############################
