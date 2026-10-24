@@ -19,15 +19,13 @@ export default function Header2() {
 						<Card className="border-0 bg-transparent">
 							<Card.Body>
 								<h2 className="fw-bold mb-3">
-									Wir kennen die Bedürfnisse Ihres Unternehmens
+									Eine Website, die zu Ihrem Betrieb passt
 								</h2>
 								<p>
-									Wir erstellen Websites, die nicht nur toll aussehen – sondern
-									Besucher in Kunden verwandeln ✅
+									Ich entwickle übersichtliche Websites, auf denen Besucher Ihre Leistungen und Kontaktmöglichkeiten schnell finden.
 								</p>
 								<p>
-									Schnell, responsiv, modern — basierend auf Ihrem digitalen
-									Ziel!
+									Mobilfreundlich, klar aufgebaut und auf Ihr Unternehmen zugeschnitten.
 								</p>
 								<div className="text-center mt-4">
 									<Link href="/webseitenerstellen">
