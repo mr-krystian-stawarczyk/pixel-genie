@@ -195,11 +195,25 @@ export default function Impressum() {
 
 					<h4>7. Hosting</h4>
 					<p>
-						Unsere Website wird über Cloudflare gehostet. Der Anbieter
+						Unsere Website wird über Netlify (Netlify, Inc.) bereitgestellt. Der Anbieter
 						verarbeitet technische Daten (z. B. IP-Adressen) zur
 						Performance-Optimierung und Sicherheitszwecken. Die Verarbeitung
 						erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO im berechtigten Interesse
 						eines sicheren und effizienten Betriebs.
+					</p>
+
+					<h4>Kontaktformular und Anfragen</h4>
+					<p>
+						Wenn Sie uns über das Kontaktformular schreiben, verarbeiten wir
+						Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht sowie freiwillige
+						Angaben zu Telefon, Budget und Projekt, um Ihre Anfrage zu beantworten.
+						Die Eingaben werden über Netlify Forms entgegengenommen, dort als
+						Formulareinsendung gespeichert und für die Bearbeitung Ihrer Anfrage
+						verwendet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei
+						vertragsbezogenen Anfragen, sonst Art. 6 Abs. 1 lit. f DSGVO.
+						Wir löschen nicht mehr benötigte Anfragen unter Berücksichtigung
+						gesetzlicher Aufbewahrungspflichten. Alternativ können Sie uns
+						jederzeit direkt per E-Mail kontaktieren.
 					</p>
 
 					<h4>8. Ihre Rechte</h4>
