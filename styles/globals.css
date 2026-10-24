@@ -1,8 +1,18 @@
 :root {
-	--bg-color: #fff;
-	--text-color: #111;
-	--dot-color: #111;
-	--dot-color-active: #003681;
+	/* Dark first paint: matches the default theme while Next.js hydrates. */
+	color-scheme: dark;
+	--bg-color: #111;
+	--text-color: #eee;
+	--dot-color: #eee;
+	--dot-color-active: #fff;
+}
+
+:root.light {
+	color-scheme: light;
+}
+
+:root.dark {
+	color-scheme: dark;
 }
 
 .light {
