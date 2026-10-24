@@ -18,7 +18,7 @@ import dynamic from "next/dynamic";
 const ContactModal = dynamic(() => import("@/components/ContactModal"), {
 	ssr: false,
 });
-const NavbarComp = ({ toggleTheme }) => {
+const NavbarComp = () => {
 	const { t, i18n } = useTranslation();
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
@@ -28,8 +28,8 @@ const NavbarComp = ({ toggleTheme }) => {
 		"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
 	);
 	const { theme, setTheme } = useTheme();
-	const [currentTheme, setCurrentTheme] = useState("dark");
-	const [isLight, setIsLight] = useState(theme === "light");
+	const currentTheme = theme === "light" ? "light" : "dark";
+	const isLight = currentTheme === "light";
 	const closeMobileMenu = () => {
 		setMenuOpen(false);
 		document.body.style.overflow = "auto";
@@ -44,14 +44,6 @@ const NavbarComp = ({ toggleTheme }) => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	useEffect(() => {
-		const prefersDark = window.matchMedia(
-			"(prefers-color-scheme: dark)"
-		).matches;
-		setTheme(prefersDark ? "dark" : "light");
-		setCurrentTheme(prefersDark ? "dark" : "light");
-		setIsLight(!prefersDark);
-	}, []);
 	const handleDropdownSelect = async (eventKey) => {
 		setDropdownOpen(false);
 		switch (eventKey) {
@@ -91,9 +83,6 @@ const NavbarComp = ({ toggleTheme }) => {
 
 		// Zmień motyw
 		setTheme(next);
-		setCurrentTheme(next);
-		setIsLight(next === "light");
-		toggleTheme();
 
 		// 🔚 usuń po zakończeniu animacji
 		setTimeout(() => {
