@@ -22,6 +22,7 @@ const ParticlesComponent = dynamic(() => import("./ParticlesComponent"), {
 export default function Header1() {
 	const [showParticles, setShowParticles] = useState(false);
 	const { theme } = useTheme();
+	const activeTheme = theme === "light" ? "light" : "dark";
 	const { i18n } = useTranslation();
 	const sectionRef = useRef(null);
 
@@ -101,9 +102,9 @@ export default function Header1() {
 					zIndex: 0,
 					transition: "background 0.4s ease-in-out",
 					background:
-						showParticles && theme === "dark"
+						showParticles && activeTheme === "dark"
 							? "linear-gradient(180deg, #040b1a 0%, #000000 100%)"
-							: showParticles && theme === "light"
+							: showParticles && activeTheme === "light"
 							? "#ffffff"
 							: theme === "dark"
 							? "radial-gradient(circle at 50% 40%, rgba(0, 64, 128, 0.35) 0%, rgba(0, 0, 32, 0.9) 80%)"
