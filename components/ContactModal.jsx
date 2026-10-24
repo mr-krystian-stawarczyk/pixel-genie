@@ -5,6 +5,8 @@ import { Form, Button, Spinner } from "react-bootstrap";
 import { useTheme } from "next-themes";
 import MotionFadeIn from "@/components/MotionFadeIn";
 import Image from "next/image";
+import { gaEvent } from "@/lib/analytics";
+import { getCookie } from "cookies-next";
 
 function Toast({ type, message, onClose }) {
 	useEffect(() => {
@@ -56,6 +58,7 @@ export default function ContactModal({ show, onHide, topic }) {
 		website: "",
 	});
 	const [status, setStatus] = useState("idle");
+	const submitting = useRef(false);
 	const [toast, setToast] = useState({ type: "", message: "" });
 
 	useEffect(() => setMounted(true), []);
@@ -77,53 +80,61 @@ export default function ContactModal({ show, onHide, topic }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (status === "loading") return;
+		if (submitting.current || status === "loading" || status === "success") return;
+		if (!form.accepted || !form.email.trim() || !form.name.trim() || form.message.trim().length < 3) {
+			setToast({ type: "error", message: "Bitte füllen Sie alle Pflichtfelder aus." });
+			return;
+		}
+		if (form.website) return; // bot honeypot
+		submitting.current = true;
 		setStatus("loading");
-
+		const leadReference = typeof crypto !== "undefined" && crypto.randomUUID
+			? crypto.randomUUID()
+			: `${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
+		const submission = {
+			"form-name": "pixel-genie-contact",
+			lead_reference: leadReference,
+			source: typeof window !== "undefined" ? window.location.pathname : "/",
+			topic: form.topic || "Allgemeine Anfrage",
+			name: form.name.trim(),
+			email: form.email.trim(),
+			phone: form.phone.trim(),
+			message: form.message.trim(),
+			budget: form.budget,
+			accepted: "yes",
+			website: form.website
+		};
 		try {
-			const res = await fetch("/.netlify/functions/sendMail", {
+			const res = await fetch("/__forms.html", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: new URLSearchParams(submission).toString(),
+			});
+			if (!res.ok) throw new Error(`Form storage failed (${res.status})`);
+			setStatus("success");
+			setToast({ type: "success", message: "Vielen Dank! Ihre Anfrage wurde erfasst." });
+			if (getCookie("marketingConsent") === "true") {
+				gaEvent("generate_lead", { lead_source: "website_contact_form", form_type: "pixel_genie_contact" });
+			}
+			// Best-effort email alert. A spam-filtered email must never lose the stored lead.
+			fetch("/.netlify/functions/sendMail", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(form),
-			});
-
-			if (res.status === 429) {
-				setToast({
-					type: "error",
-					message: "Zu viele Anfragen. Bitte warte eine Minute.",
-				});
-				setStatus("idle");
-				return;
-			}
-			if (!res.ok) throw new Error("Send failed");
-
-			setToast({
-				type: "success",
-				message: "Vielen Dank! Ihre Anfrage wurde gesendet.",
-			});
-			setStatus("success");
+				body: JSON.stringify({ ...form, leadReference }),
+			}).catch(() => {});
 			setTimeout(() => {
 				onHide?.();
 				setStatus("idle");
-				setForm({
-					topic: topic || "",
-					name: "",
-					email: "",
-					phone: "",
-					message: "",
-					budget: "",
-					accepted: false,
-				});
-			}, 2000);
+				setForm({ topic: topic || "", name: "", email: "", phone: "", message: "", budget: "", accepted: false, website: "" });
+			}, 1800);
 		} catch (err) {
-			setToast({
-				type: "error",
-				message: "Fehler beim Senden. Schreiben Sie bitte direkt an pixelgenie.marketing@gmail.com.",
-			});
+			console.error("Contact form could not be saved", err);
 			setStatus("error");
+			setToast({ type: "error", message: "Ihre Anfrage konnte nicht gespeichert werden. Schreiben Sie bitte direkt an pixelgenie.marketing@gmail.com." });
+		} finally {
+			submitting.current = false;
 		}
 	};
-
 	if (!show || !mounted) return null;
 
 	const isDark = theme === "dark";
@@ -209,7 +220,8 @@ export default function ContactModal({ show, onHide, topic }) {
 
 						<p className="small mb-2">Alternativ direkt per E-Mail: <a href="mailto:pixelgenie.marketing@gmail.com">pixelgenie.marketing@gmail.com</a></p>
 						{/* FORMULARZ */}
-						<Form onSubmit={handleSubmit} className="mt-3">
+						<Form name="pixel-genie-contact" method="post" data-netlify="true" netlify-honeypot="website" onSubmit={handleSubmit} className="mt-3">
+							<input type="hidden" name="form-name" value="pixel-genie-contact" />
 							{/* Spam trap: keep invisible to real users */}
 							<div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={handleChange}/></div>
 							<Form.Group className="mb-3">
@@ -352,7 +364,7 @@ export default function ContactModal({ show, onHide, topic }) {
 								<Button
 									type="submit"
 									className="btn px-4 fw-semibold"
-									disabled={status === "loading"}
+									disabled={status === "loading" || status === "success"}
 									style={{
 										background: isDark
 											? "linear-gradient(135deg,#2563eb,#1d4ed8)"
