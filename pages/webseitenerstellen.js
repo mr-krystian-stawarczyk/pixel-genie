@@ -10,9 +10,7 @@ const Web5 = dynamic(() => import("@/components/Web5"), { ssr: false });
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"), {
 	ssr: false,
 });
-const WebPrices = dynamic(() => import("@/components/WebPrices"), {
-	ssr: false,
-});
+import WebPrices from "@/components/WebPrices";
 const WebFAQ = dynamic(() => import("@/components/WebFAQ"), { ssr: false });
 const HeaderCounted = dynamic(() => import("@/components/HeaderCounted"), {
 	ssr: false,

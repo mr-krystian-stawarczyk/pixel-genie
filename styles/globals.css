@@ -1,8 +1,18 @@
 :root {
-	--bg-color: #fff;
-	--text-color: #111;
-	--dot-color: #111;
-	--dot-color-active: #003681;
+	/* Dark first paint: matches the default theme while Next.js hydrates. */
+	color-scheme: dark;
+	--bg-color: #111;
+	--text-color: #eee;
+	--dot-color: #eee;
+	--dot-color-active: #fff;
+}
+
+:root.light {
+	color-scheme: light;
+}
+
+:root.dark {
+	color-scheme: dark;
 }
 
 .light {
@@ -2304,4 +2314,55 @@ img {
 	padding: 6px;
 	border-radius: 50%;
 	transition: all 0.25s ease;
+}
+
+/* Mobile conversion and contrast adjustments – October 2026 */
+@media (max-width: 767.98px) {
+  /* Make the enquiry action accessible inside the fullscreen menu. */
+  .mobile-overlay .btn-premium-footer {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: min(90%, 420px);
+    min-height: 48px;
+  }
+  .mobile-overlay.show {
+    height: 100dvh;
+    max-height: 100dvh;
+    justify-content: flex-start;
+    padding-top: calc(88px + env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)) !important;
+    overscroll-behavior: contain;
+  }
+  .dark .header-content .blur {
+    background-color: rgba(5, 14, 31, 0.74) !important;
+  }
+  .light .header-content .blur {
+    background-color: rgba(255, 255, 255, 0.84) !important;
+  }
+  .header-content {
+    padding: 84px 12px 86px;
+  }
+  .header-content h1 {
+    font-size: clamp(1.6rem, 6.5vw, 2.2rem) !important;
+    line-height: 1.25 !important;
+  }
+  .header-content .lead {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .header-content .btn-premium-footer,
+  .header-content .btn-nav {
+    min-height: 48px;
+    width: 100%;
+  }
+  .mobile-floating-cta {
+    padding: 0.65rem 0.8rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-floating-cta button {
+    min-height: 48px;
+  }
+  .main-container {
+    padding-bottom: 72px;
+  }
 }

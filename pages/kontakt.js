@@ -14,7 +14,7 @@ function Contact() {
 				<title>Kontakt – Nettetal Webdesign und Webentwicklung</title>
 				<meta
 					name="description"
-					content="Pixel-Genie: Kontaktieren Sie uns für professionelles Webdesign und Online-Marketing-Dienstleistungen in Nettetal. Füllen Sie unser Kontaktformular aus oder rufen Sie uns an, um mehr zu erfahren."
+					content="Pixel-Genie: Kontaktieren Sie uns für professionelles Webdesign und Online-Marketing-Dienstleistungen in Nettetal. Schreiben Sie uns per Kontaktformular oder E-Mail – ganz ohne Telefonat."
 				/>
 				<meta name="robots" content="index, follow" />
 

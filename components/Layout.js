@@ -21,7 +21,7 @@ const Layout = ({ children, pageProps }) => {
 	return (
 		<div
 			suppressHydrationWarning
-			className={theme === "dark" ? "dark" : "light"}
+			className={theme === "light" ? "light" : "dark"}
 		>
 			<header>
 				<Navbar {...pageProps} toggleTheme={toggleTheme} />

@@ -41,7 +41,7 @@ export default function WebDesignBlog({ posts }) {
 			image: [`https://pixel-genie.de${p.imgSrc}`],
 			url: `https://pixel-genie.de/tips/${p.slug}/`,
 			datePublished: p.date,
-			dateModified: p.date,
+			dateModified: p.updatedAt || p.date,
 			author: {
 				"@type": "Organization",
 				name: "Pixel-Genie Webdesign Nettetal",

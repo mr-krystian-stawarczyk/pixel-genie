@@ -5,7 +5,7 @@ module.exports = {
 	siteUrl: SITE_URL,
 	generateRobotsTxt: true,
 	outDir: "./out",
-	autoLastmod: true,
+	autoLastmod: false,
 	changefreq: "weekly",
 	priority: 0.8,
 
@@ -20,7 +20,6 @@ module.exports = {
 						userAgent: "*",
 						allow: "/",
 						disallow: [
-							"/_next/",
 							"/api/",
 							"/favicon.ico",
 							"/manifest.json",
@@ -70,7 +69,6 @@ module.exports = {
 			loc: url,
 			changefreq,
 			priority,
-			lastmod: new Date().toISOString(),
 		};
 	},
 
@@ -81,7 +79,6 @@ module.exports = {
 				loc,
 				changefreq,
 				priority,
-				lastmod: new Date().toISOString(),
 			});
 
 			const paths = [];

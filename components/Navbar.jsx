@@ -18,18 +18,29 @@ import dynamic from "next/dynamic";
 const ContactModal = dynamic(() => import("@/components/ContactModal"), {
 	ssr: false,
 });
-const NavbarComp = ({ toggleTheme }) => {
-	const { t, i18n } = useTranslation();
+const NavbarComp = () => {
+	const { t } = useTranslation();
 	const [scrolled, setScrolled] = useState(false);
 	const [navbarColor, setNavbarColor] = useState("transparent");
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
-	const [selectedFlag, setSelectedFlag] = useState(
-		"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
-	);
+	const { i18n } = useTranslation();
+	const flagByLanguage = {
+		de: "/assets/webagentur-webentwicklung-nettetal-seo-flagde.png",
+		en: "/assets/webagentur-webentwicklung-nettetal-seo-flageng.png",
+		pl: "/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png",
+		nl: "/assets/webagentur-webentwicklung-nettetal-seo-flagnl.png",
+	};
+	const selectedFlag = flagByLanguage[i18n.language] || flagByLanguage.de;
 	const { theme, setTheme } = useTheme();
-	const [currentTheme, setCurrentTheme] = useState("dark");
-	const [isLight, setIsLight] = useState(theme === "light");
+	const currentTheme = theme === "light" ? "light" : "dark";
+	useEffect(() => {
+		try {
+			const saved = window.sessionStorage.getItem("pixel-genie-language");
+			if (["de", "en", "pl", "nl"].includes(saved)) i18n.changeLanguage(saved);
+		} catch {}
+	}, [i18n]);
+	const isLight = currentTheme === "light";
 	const closeMobileMenu = () => {
 		setMenuOpen(false);
 		document.body.style.overflow = "auto";
@@ -44,44 +55,12 @@ const NavbarComp = ({ toggleTheme }) => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	useEffect(() => {
-		const prefersDark = window.matchMedia(
-			"(prefers-color-scheme: dark)"
-		).matches;
-		setTheme(prefersDark ? "dark" : "light");
-		setCurrentTheme(prefersDark ? "dark" : "light");
-		setIsLight(!prefersDark);
-	}, []);
-	const handleDropdownSelect = async (eventKey) => {
+	const handleDropdownSelect = (eventKey) => {
+		const lang = {flag1:"de", flag2:"en", flag3:"pl", flag4:"nl"}[eventKey];
+		if (!lang) return;
+		i18n.changeLanguage(lang);
+		try { window.sessionStorage.setItem("pixel-genie-language", lang); } catch {}
 		setDropdownOpen(false);
-		switch (eventKey) {
-			case "flag1":
-				setSelectedFlag(
-					"/assets/webagentur-webentwicklung-nettetal-seo-flagde.png"
-				);
-				i18n.changeLanguage("de");
-				break;
-			case "flag2":
-				setSelectedFlag(
-					"/assets/webagentur-webentwicklung-nettetal-seo-flageng.png"
-				);
-				i18n.changeLanguage("en");
-				break;
-			case "flag3":
-				setSelectedFlag(
-					"/assets/webagentur-webentwicklung-nettetal-seo-flagpl.png"
-				);
-				i18n.changeLanguage("pl");
-				break;
-			case "flag4": // 🇳🇱
-				setSelectedFlag(
-					"/assets/webagentur-webentwicklung-nettetal-seo-flagnl.png"
-				);
-				i18n.changeLanguage("nl");
-				break;
-			default:
-				break;
-		}
 	};
 	const toggleThemeMode = () => {
 		const next = currentTheme === "light" ? "dark" : "light";
@@ -91,9 +70,6 @@ const NavbarComp = ({ toggleTheme }) => {
 
 		// Zmień motyw
 		setTheme(next);
-		setCurrentTheme(next);
-		setIsLight(next === "light");
-		toggleTheme();
 
 		// 🔚 usuń po zakończeniu animacji
 		setTimeout(() => {

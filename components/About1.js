@@ -28,37 +28,25 @@ function About1() {
 							<Card.Body>
 								<h1 className="text-bold">
 									<AutoTranslate>
-										Unser Geschäft basiert auf Beziehungen
+										Webdesign mit einem festen Ansprechpartner
 									</AutoTranslate>
 								</h1>
 
 								<Card.Text>
 									<AutoTranslate>
-										Wir sind eine bodenständige, neugierige Crew aus Nettetal,
-										die Webdesign & SEO nicht nur macht – sondern lebt. Wir
-										hören zu, stellen die richtigen Fragen und liefern Lösungen,
-										die sich auf Ihr Geschäft auswirken: mehr Sichtbarkeit,
-										bessere Leads, spürbares Wachstum.
+										Ich bin Krystian Stawarczyk und entwickle Websites für Unternehmen aus Nettetal und Umgebung. Sie sprechen direkt mit mir – vom ersten Angebot bis zur Veröffentlichung.
 									</AutoTranslate>
 								</Card.Text>
 
 								<Card.Text>
 									<AutoTranslate>
-										Technisch arbeiten wir mit Next.js & React, optimieren für
-										Core Web Vitals, PageSpeed und Conversion. Strategisch
-										verbinden wir Branding, Content und Suchmaschinenoptimierung
-										– damit Ihre Website nicht nur gut aussieht, sondern messbar
-										performt.
+										Je nach Projekt setze ich auf moderne Webtechnologien und achte auf klare Inhalte, mobile Bedienbarkeit und einen einfachen Kontaktweg.
 									</AutoTranslate>
 								</Card.Text>
 
 								<Card.Text>
 									<AutoTranslate>
-										Ob Relaunch, Logo, Landingpages oder komplettes SEO: Wir
-										entwickeln schlanke, schnelle Websites, die Vertrauen
-										aufbauen und Ergebnisse liefern. Persönlich, transparent und
-										auf Augenhöhe – von Nettetal aus für Kundinnen und Kunden in
-										der Region und darüber hinaus.
+										Ob eine einfache Unternehmenswebsite oder ein individueller Ausbau: Sie erhalten vorab einen verständlichen Leistungsumfang und einen schriftlichen Preis.
 									</AutoTranslate>
 								</Card.Text>
 							</Card.Body>
@@ -77,7 +65,7 @@ function About1() {
 								width={380}
 								height={400}
 								className="foreground-image responsive-image rounded"
-								alt="Webagentur Nettetal – Pixel Genie Team & Webentwicklung"
+								alt="Pixel-Genie Webdesign aus Nettetal"
 								priority
 							/>
 							<Image

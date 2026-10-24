@@ -202,7 +202,7 @@ function Footer() {
 									}}
 								>
 									<AutoTranslate>
-										Antwort garantiert innerhalb von 24 Stunden.
+										In der Regel erhalten Sie innerhalb von zwei Werktagen eine Antwort.
 									</AutoTranslate>
 								</p>
 							</Card>
@@ -274,7 +274,7 @@ function Footer() {
 										}}
 									>
 										<AutoTranslate>
-											Folge uns auf Social Media für Insights & Trends
+											Weitere Einblicke und Projekte auf unseren Profilen
 										</AutoTranslate>
 									</p>
 								</Card.Body>
@@ -310,7 +310,7 @@ function Footer() {
 								className="text-bold"
 								style={{ color: "var(--text-color)", fontSize: "1.1rem" }}
 							>
-								© 2025 Pixel Genie – Alle Rechte vorbehalten
+								© 2026 Pixel Genie – Alle Rechte vorbehalten
 							</p>
 						</Col>
 					</Row>

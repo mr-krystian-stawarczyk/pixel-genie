@@ -242,21 +242,13 @@ export default function WebdesignAgenturCityPage({ cityData }) {
 			email: cityData?.email || "pixelgenie.marketing@gmail.com",
 			address: {
 				"@type": "PostalAddress",
-				streetAddress: cityData?.address || "Fasanenstr. 10",
-				postalCode: cityData?.postalCode || "41334",
-				addressLocality:
-					(cityData?.city || "").charAt(0).toUpperCase() +
-					(cityData?.city || "").slice(1),
+				streetAddress: "Lambertimarkt 2",
+				postalCode: "41334",
+				addressLocality: "Nettetal",
 				addressRegion: "Nordrhein-Westfalen",
 				addressCountry: "DE",
 			},
-			geo: cityData?.geo
-				? {
-						"@type": "GeoCoordinates",
-						latitude: cityData.geo.latitude,
-						longitude: cityData.geo.longitude,
-				  }
-				: undefined,
+			
 		},
 		areaServed: `${
 			(cityData?.city || "").charAt(0).toUpperCase() +
