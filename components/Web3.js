@@ -39,11 +39,7 @@ export default function Web3() {
 
 								<p>
 									<AutoTranslate>
-										Sie möchten eine moderne Website, die den neuesten Trends
-										entspricht? Das Pixel Genie Team aus Nettetal hat die Lösung
-										für Sie! Wir gestalten einzigartige Websites, die nicht nur
-										durch ihr Aussehen beeindrucken, sondern auch funktional und
-										auf Ihre Geschäftsziele zugeschnitten sind.
+										Modernes Webdesign muss vor allem einfach zu bedienen sein. Deshalb stehen die wichtigsten Informationen und eine klare Anfrage-Möglichkeit im Vordergrund.
 									</AutoTranslate>
 								</p>
 
