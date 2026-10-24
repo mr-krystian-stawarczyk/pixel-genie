@@ -33,10 +33,8 @@ const poppins = localFont({
 
 function AppContent({ Component, pageProps }) {
 	const router = useRouter();
-	const [mounted, setMounted] = useState(false);
 	const [hasConsent, setHasConsent] = useState(false);
 
-	useEffect(() => setMounted(true), []);
 
 	useEffect(() => {
 		const checkConsent = () =>
@@ -93,7 +91,6 @@ function AppContent({ Component, pageProps }) {
 		return () => window.removeEventListener("scroll", handler);
 	}, [hasConsent]);
 
-	if (!mounted) return null;
 
 	return (
 		<>
