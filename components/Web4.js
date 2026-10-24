@@ -31,12 +31,7 @@ export default function Web4() {
 
 								<p>
 									<AutoTranslate>
-										Bei Pixel Genie Nettetal wissen wir, wie wichtig es ist,
-										dass Ihre Website in den Suchergebnissen gut sichtbar ist.
-										Daher bieten wir SEO Optimierungsdienste an, die die
-										Sichtbarkeit Ihrer Website in Suchmaschinen erhöhen.
-										Vertrauen Sie auf unsere Erfahrung und erzielen Sie bessere
-										Online Ergebnisse.
+										Eine gute Website braucht verständliche Seiteninhalte und eine solide technische Grundlage. Ich berücksichtige Suchmaschinenoptimierung von Anfang an, ohne unrealistische Ranking-Versprechen.
 									</AutoTranslate>
 								</p>
 
