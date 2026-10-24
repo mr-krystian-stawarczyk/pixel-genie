@@ -128,7 +128,7 @@ function AppContent({ Component, pageProps }) {
 			<ThemeProvider
 				attribute="class"
 				defaultTheme="dark"
-				enableSystem
+				enableSystem={false}
 				disableTransitionOnChange
 			>
 				<I18nextProvider i18n={i18n}>
