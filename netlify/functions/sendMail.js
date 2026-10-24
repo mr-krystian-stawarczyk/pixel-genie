@@ -46,7 +46,7 @@ export async function handler(event) {
 
 	const { topic, name, email, phone, message, budget } = data || {};
 	if (data?.website) return { statusCode: 200, body: JSON.stringify({ ok: true }) }; // honeypot
-	const validEmail = typeof email === "string" && email.length <= 254 && /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+	const validEmail = typeof email === "string" && email.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 	const validMessage = typeof message === "string" && message.trim().length >= 3 && message.length <= 5000;
 	const validFields = [topic, name, phone, budget].every((x) => x == null || (typeof x === "string" && x.length <= 200));
 	if (!validEmail || !validMessage || !validFields) {
