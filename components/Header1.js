@@ -106,7 +106,7 @@ export default function Header1() {
 							? "linear-gradient(180deg, #040b1a 0%, #000000 100%)"
 							: showParticles && activeTheme === "light"
 							? "#ffffff"
-							: theme === "dark"
+							: activeTheme === "dark"
 							? "radial-gradient(circle at 50% 40%, rgba(0, 64, 128, 0.35) 0%, rgba(0, 0, 32, 0.9) 80%)"
 							: "linear-gradient(135deg, rgba(190,220,255,0.9) 0%, rgba(100,150,255,0.85) 60%, rgba(50,80,200,0.8) 100%)",
 					boxShadow: "inset 0 0 80px rgba(0, 90, 200, 0.25)",
@@ -133,58 +133,30 @@ export default function Header1() {
 						<Card.Body>
 							<h1 className="fw-bold mb-3 lh-base display-5 mt-5">
 								<AutoTranslate>
-									Webseiten erstellen mit Pixel-Genie – Ihre Agentur für
-									modernes Webdesign, SEO & Marketing in Nettetal
+									Professionelle Website für Ihr Unternehmen – ab 499 €
 								</AutoTranslate>
 							</h1>
 
 							<p className="lead mb-4">
 								<AutoTranslate>
-									Steigern Sie Ihre Online Präsenz mit professionellen Websites,
-									die Design, Performance und Sichtbarkeit vereinen.
+									Webdesign aus Nettetal: mobilfreundlich, schnell und zum klar vereinbarten Preis. Fragen Sie Ihr Angebot einfach schriftlich an.
 								</AutoTranslate>
 							</p>
 
 							<nav aria-label="Hauptaktionen">
-								<div className="d-flex flex-column flex-md-row justify-content-center gap-3">
-									<Button
-										as={Link}
-										href="/webseitenerstellen"
-										className="btn-lg btn-nav"
-									>
-										<AutoTranslate>Webseiten erstellen</AutoTranslate>
-									</Button>
-									<Button
-										as={Link}
-										href="/suchmaschinenoptimierung"
-										className="btn-lg btn-nav"
-									>
-										<AutoTranslate>SEO Optimierung</AutoTranslate>
-									</Button>
-									<Button
-										as={Link}
-										href="/socialmediamarketing"
-										className="btn-lg btn-nav"
-									>
-										<AutoTranslate>Social Media Marketing</AutoTranslate>
+								<div className="d-flex flex-column flex-sm-row justify-content-center gap-3">
+									<ContactButton topic="Webdesign" className="btn-premium-footer text-white fw-bold px-4 py-3">
+										Website unverbindlich anfragen
+									</ContactButton>
+									<Button as={Link} href="/webseitenerstellen#web-design-pricing" className="btn-lg btn-nav">
+										Pakete & Preise ansehen
 									</Button>
 								</div>
+								<p className="small mt-3 mb-0" style={{ opacity: 0.9 }}>Kontakt per E-Mail · Kein Telefonat nötig</p>
 							</nav>
 						</Card.Body>
 
-						<Card.Body className="mt-4">
-							<div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-								<ContactButton
-									topic="Kostenlose Website Analyse"
-									className="btn-premium-footer text-white fw-bold"
-								>
-									🚀{" "}
-									<AutoTranslate>
-										Jetzt kostenloses Audit anfordern
-									</AutoTranslate>
-								</ContactButton>
-							</div>
-						</Card.Body>
+						
 					</Card>
 				</MotionDiv>
 			</Container>
