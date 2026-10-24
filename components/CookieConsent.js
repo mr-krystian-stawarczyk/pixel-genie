@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { hasCookie, setCookie, deleteCookie } from "cookies-next";
+import { captureAttribution } from "@/lib/attribution";
 
 export default function CookieConsent() {
 	const [showBanner, setShowBanner] = useState(false);
@@ -23,6 +24,7 @@ export default function CookieConsent() {
 			sameSite: "Lax",
 		});
 		setShowBanner(false);
+		captureAttribution();
 		window.dispatchEvent(new Event("cookieAccepted")); // CTA + GA (jak w ZIP)
 	};
 
@@ -34,6 +36,7 @@ export default function CookieConsent() {
 			sameSite: "Lax",
 		});
 		deleteCookie("marketingConsent", { path: "/" });
+		try { sessionStorage.removeItem("pixel-genie-traffic-v1"); } catch {}
 		setShowBanner(false);
 		window.dispatchEvent(new Event("cookieEssential")); // CTA bez GA (jak w ZIP)
 	};
