@@ -30,18 +30,21 @@ const de = {
   project: {
     new: ["Eine neue Website", "Mein Unternehmen soll online sichtbar werden."],
     relaunch: ["Vorhandene Website verbessern", "Meine Seite ist veraltet oder soll neu gestaltet werden."],
-    seo: ["Bei Google besser gefunden werden", "Ich möchte mehr passende Besucher und Anfragen."],
-    shop: ["Online verkaufen", "Ich möchte Produkte über meine Website anbieten."],
+    seo: ["Mehr Anfragen über Google erhalten", "Damit Kunden Ihren Betrieb leichter in der Google-Suche finden."],
+    shop: ["Produkte online verkaufen", "Mit Warenkorb und Bezahlung direkt auf meiner Website."],
   },
   second: "Wie groß ist Ihr Vorhaben?", secondHelp: "Eine grobe Einschätzung reicht völlig. Sie können „Ich weiß es nicht“ auswählen.",
   scope: {
     new: { one:["Eine übersichtliche Seite","Alle wichtigen Infos untereinander, wie eine digitale Visitenkarte."],few:["Mehrere Unterseiten","Zum Beispiel Startseite, Leistungen, Über uns und Kontakt."],large:["Etwas Umfangreicheres","Viele Unterseiten oder besondere Funktionen."],unsure:["Ich weiß es noch nicht","Wir helfen Ihnen bei der Auswahl."] },
     relaunch: { one:["Kleinere Überarbeitung","Design oder Inhalte einer einzelnen Seite verbessern."],few:["Mehrere Seiten erneuern","Design und Struktur eines Firmenauftritts aktualisieren."],large:["Kompletter Relaunch","Größeres Projekt mit neuen Funktionen."],unsure:["Ich weiß es noch nicht","Wir schauen uns Ihre bestehende Website an."] },
-    seo: { maps:["Google Unternehmensprofil","Firmeneintrag bei Google / Google Maps verbessern."],search:["Website & Google-Suche","Bestehende Website für Suchmaschinen optimieren."],both:["Beides","Website und Google-Unternehmensprofil."],unsure:["Ich weiß es noch nicht","Wir schlagen passende erste Maßnahmen vor."] },
+    seo: { maps:["Mein Unternehmen auf Google Maps", "Den Firmeneintrag mit Öffnungszeiten und Bewertungen verbessern."],search:["Meine Website leichter finden", "Wenn Kunden nach Ihrer Leistung suchen, sollen sie Ihre Seite schneller entdecken."],both:["Website und Google Maps", "Beide Bereiche gemeinsam verbessern."],unsure:["Ich weiß es noch nicht", "Wir schlagen passende erste Maßnahmen vor."] },
     shop: { small:["Wenige Produkte","Kleines Sortiment, zum Beispiel unter 20 Artikel."],medium:["Mittleres Sortiment","Etwa 20 bis 100 Artikel."],large:["Großes Sortiment","Mehr als 100 Artikel oder besondere Anforderungen."],unsure:["Ich weiß es noch nicht","Wir klären den Umfang gemeinsam schriftlich."] },
   },
   third: "Was ist Ihnen außerdem wichtig?", thirdHelp: "Alles optional – lassen Sie weg, was Sie noch nicht wissen.",
-  extras: { seo:["Bei Google gefunden werden","Zusätzliche Sichtbarkeit über die Grundoptimierung hinaus."],languages:["Mehrere Sprachen","Zum Beispiel Deutsch und Niederländisch."],content:["Hilfe mit Texten oder Bildern","Noch kein fertiger Inhalt? Kein Problem."],hosting:["Domain, Hosting oder Pflege","Hilfe beim Start und bei der laufenden Betreuung."] },
+  extras: { seo:["Mehr Kunden über Google finden (SEO-Betreuung)", "Auf Wunsch verbessern und prüfen wir Ihre Sichtbarkeit regelmäßig. Kein Pflicht-Abonnement."],languages:["Website in mehreren Sprachen", "Zum Beispiel Deutsch und Niederländisch, damit mehr Kunden Ihre Angebote verstehen."],content:["Hilfe mit Texten oder Bildern", "Wir helfen Ihnen beim Schreiben verständlicher Texte und bei passenden Bildern."],hosting:["Webadresse, Hosting und Pflege", "Hilfe mit Ihrer Domain (z. B. firma.de), dem Betrieb der Website und späteren Änderungen."] },
+  extraPrices: {seo:"ab 99 € / Monat · optional",languages:"Preis nach Umfang",content:"Preis nach Umfang",hosting:"Preis nach Umfang"},
+  includedSEO: "Die grundlegenden Google-Einstellungen Ihrer neuen Website sind bereits im Website-Paket enthalten. Eine monatliche SEO-Betreuung ist nicht notwendig, um die Website zu bestellen.",
+  extraPriceNote: "Sie wählen hier nur Ihre Wünsche. Eine zusätzliche Leistung wird erst nach einem schriftlich bestätigten Angebot beauftragt.",
   when: "Wann soll es losgehen?", timeline: {soon:"Möglichst bald",month:"In den nächsten Wochen",flexible:"Ich bin flexibel"},
   budgetLabel: "Welcher Kostenrahmen passt ungefähr?", budget: {unknown:"Ich kenne mein Budget noch nicht",under500:"Unter 500 €", "500to1000":"500–1.000 €", "1000to2000":"1.000–2.000 €",over2000:"Über 2.000 €"},
   optional: "Optional", back:"Zurück", next:"Weiter", finish:"Unverbindliche Anfrage senden",
@@ -62,11 +65,14 @@ const copies = {
   pl: {
     ...de, title:"Skonfiguruj swoją stronę w kilku krokach",intro:"Bez wiedzy technicznej. Wybierz odpowiedzi, a przygotujemy niezobowiązującą ofertę e-mailem.",
     step:"Krok",of:"z", first:"Czego potrzebujesz?",firstHelp:"Wybierz to, co najlepiej pasuje. Nie musisz znać technologii.",
-    project:{new:["Nowa strona internetowa","Chcę pokazać moją firmę w internecie."],relaunch:["Modernizacja istniejącej strony","Moja strona wymaga zmian."],seo:["Lepsza widoczność w Google","Potrzebuję więcej zapytań."],shop:["Sprzedaż internetowa","Chcę sprzedawać produkty online."]},
+    project:{new:["Nowa strona internetowa","Chcę pokazać moją firmę w internecie."],relaunch:["Modernizacja istniejącej strony","Moja strona wymaga zmian."],seo:["Więcej zapytań dzięki Google","Chcę, żeby klienci łatwiej znajdowali moją firmę."],shop:["Sklep internetowy","Chcę sprzedawać produkty online z koszykiem i płatnościami."]},
     second:"Jak duży to projekt?",secondHelp:"Wystarczy orientacyjnie. Możesz wybrać „Nie wiem”.",
-    scope:{new:{one:["Jedna strona","Wszystkie informacje na jednej stronie."],few:["Kilka podstron","Na przykład oferta, o nas i kontakt."],large:["Większa witryna","Dużo podstron lub dodatkowe funkcje."],unsure:["Jeszcze nie wiem","Pomożemy wybrać."]},relaunch:{one:["Drobne zmiany","Wygląd lub zawartość jednej strony."],few:["Odnowienie kilku podstron","Wygląd i układ strony firmowej."],large:["Pełna przebudowa","Większy projekt i nowe funkcje."],unsure:["Jeszcze nie wiem","Przyjrzymy się obecnej stronie."]},seo:{maps:["Profil firmy w Google","Wizytówka Google i mapy."],search:["Pozycjonowanie strony","Poprawa widoczności strony w wyszukiwarce."],both:["Obie usługi","Strona i profil firmy."],unsure:["Jeszcze nie wiem","Zaproponujemy pierwszy krok."]},shop:{small:["Kilka produktów","Mniej niż 20 produktów."],medium:["Średnia oferta","20–100 produktów."],large:["Duży sklep","Ponad 100 produktów lub nietypowe funkcje."],unsure:["Jeszcze nie wiem","Ustalimy zakres pisemnie."]}},
+    scope:{new:{one:["Jedna strona","Wszystkie informacje na jednej stronie."],few:["Kilka podstron","Na przykład oferta, o nas i kontakt."],large:["Większa witryna","Dużo podstron lub dodatkowe funkcje."],unsure:["Jeszcze nie wiem","Pomożemy wybrać."]},relaunch:{one:["Drobne zmiany","Wygląd lub zawartość jednej strony."],few:["Odnowienie kilku podstron","Wygląd i układ strony firmowej."],large:["Pełna przebudowa","Większy projekt i nowe funkcje."],unsure:["Jeszcze nie wiem","Przyjrzymy się obecnej stronie."]},seo:{maps:["Firma w Mapach Google","Ulepszenie wizytówki firmy, godzin i opinii."],search:["Łatwiejsze znalezienie strony","Aby klienci trafiali do mnie, szukając usługi w Google."],both:["Strona i Mapy Google","Poprawa obu obszarów."],unsure:["Jeszcze nie wiem","Zaproponujemy pierwszy krok."]},shop:{small:["Kilka produktów","Mniej niż 20 produktów."],medium:["Średnia oferta","20–100 produktów."],large:["Duży sklep","Ponad 100 produktów lub nietypowe funkcje."],unsure:["Jeszcze nie wiem","Ustalimy zakres pisemnie."]}},
     third:"Co jeszcze będzie przydatne?",thirdHelp:"Wszystko jest opcjonalne – nie musisz zgadywać.",
-    extras:{seo:["Dodatkowe SEO","Większa widoczność w Google."],languages:["Wiele języków","Na przykład niemiecki i niderlandzki."],content:["Pomoc z tekstami lub zdjęciami","Nie mam jeszcze materiałów."],hosting:["Domena, hosting i opieka","Pomoc techniczna po publikacji."]},
+    extras:{seo:["Więcej klientów z Google (opieka SEO)","Opcjonalne regularne działania poprawiające widoczność strony w Google."],languages:["Strona w kilku językach","Np. niemiecki i niderlandzki, by klienci rozumieli ofertę."],content:["Pomoc z tekstami lub zdjęciami","Pomożemy przygotować proste teksty i dobrać zdjęcia."],hosting:["Adres strony, hosting i opieka","Pomoc z domeną (np. firma.de), utrzymaniem strony i późniejszymi zmianami."]},
+    extraPrices:{seo:"od 99 € / mies. · opcjonalnie",languages:"Cena zależy od zakresu",content:"Cena zależy od zakresu",hosting:"Cena zależy od zakresu"},
+    includedSEO:"Podstawowe ustawienia strony pod Google są już w cenie pakietu. Miesięczna opieka SEO nie jest wymagana.",
+    extraPriceNote:"Wybierasz tylko potrzeby. Dodatkowe usługi zamówisz dopiero po zaakceptowaniu ceny na piśmie.",,
     when:"Kiedy chcesz zacząć?",timeline:{soon:"Jak najszybciej",month:"W najbliższych tygodniach",flexible:"Nie mam terminu"},
     budgetLabel:"Jaki budżet bierzesz pod uwagę?",budget:{unknown:"Jeszcze nie wiem",under500:"Poniżej 500 €","500to1000":"500–1000 €","1000to2000":"1000–2000 €",over2000:"Powyżej 2000 €"},
     optional:"Opcjonalnie",back:"Wstecz",next:"Dalej",finish:"Wyślij niezobowiązujące zapytanie",
@@ -82,11 +88,14 @@ const copies = {
   en: {
     ...de,title:"Plan your website in a few steps",intro:"No technical knowledge needed. Choose what fits; receive a no-obligation quote by email.",
     step:"Step",of:"of",first:"What do you need?",firstHelp:"Choose the closest match – no technical choices required.",
-    project:{new:["A new website","Put my business online."],relaunch:["Improve my existing website","Refresh an outdated website."],seo:["More visibility on Google","Attract more relevant enquiries."],shop:["Sell online","Sell products through a website."]},
+    project:{new:["A new website","Put my business online."],relaunch:["Improve my existing website","Refresh an outdated website."],seo:["Get more enquiries from Google","Make my business easier to find in Google Search."],shop:["Sell products online","A website with a shopping cart and checkout."]},
     second:"How big is the project?",secondHelp:"An estimate is enough. You can choose “Not sure”.",
-    scope:{new:{one:["One-page website","All key information on one page."],few:["Several pages","Services, about, contact, etc."],large:["Larger project","Many pages or special features."],unsure:["Not sure yet","We'll help you decide."]},relaunch:{one:["Small update","Refresh one page."],few:["Several pages","Improve the design and structure."],large:["Full relaunch","New features and a bigger change."],unsure:["Not sure yet","We'll review your current site."]},seo:{maps:["Google Business Profile","Business listing and maps."],search:["Website SEO","Improve organic search visibility."],both:["Both","Website and business listing."],unsure:["Not sure yet","We'll suggest the next step."]},shop:{small:["A few products","Under 20 products."],medium:["Medium range","20–100 products."],large:["Large catalogue","Over 100 products or special features."],unsure:["Not sure yet","We'll discuss the scope by email."]}},
+    scope:{new:{one:["One-page website","All key information on one page."],few:["Several pages","Services, about, contact, etc."],large:["Larger project","Many pages or special features."],unsure:["Not sure yet","We'll help you decide."]},relaunch:{one:["Small update","Refresh one page."],few:["Several pages","Improve the design and structure."],large:["Full relaunch","New features and a bigger change."],unsure:["Not sure yet","We'll review your current site."]},seo:{maps:["My business on Google Maps","Improve my business listing, hours and reviews."],search:["Help customers find my website","Show up more easily when people search for my services."],both:["Website and Google Maps","Improve both."],unsure:["Not sure yet","We'll suggest the next step."]},shop:{small:["A few products","Under 20 products."],medium:["Medium range","20–100 products."],large:["Large catalogue","Over 100 products or special features."],unsure:["Not sure yet","We'll discuss the scope by email."]}},
     third:"What else would help?",thirdHelp:"Everything here is optional.",
-    extras:{seo:["Extra SEO","More visibility in Google."],languages:["Multiple languages","For example German and Dutch."],content:["Help with copy or photos","I don't have the materials yet."],hosting:["Domain, hosting or support","Assistance after launch."]},
+    extras:{seo:["Help customers find you on Google (ongoing SEO)","Optional regular work on your visibility. No subscription required to order a website."],languages:["Website in multiple languages","For example German and Dutch, so customers understand your offer."],content:["Help with text or photos","We help write clear text and select suitable images."],hosting:["Web address, hosting and updates","Help with your domain (e.g. company.de), hosting and future changes."]},
+    extraPrices:{seo:"from €99 / month · optional",languages:"Quote based on scope",content:"Quote based on scope",hosting:"Quote based on scope"},
+    includedSEO:"Basic Google setup is already included in your website package. Monthly SEO support is not required.",
+    extraPriceNote:"You are only selecting your preferences. Extras are ordered only after you accept a written quote.",,
     when:"When would you like to begin?",timeline:{soon:"As soon as possible",month:"In the next few weeks",flexible:"I'm flexible"},
     budgetLabel:"What's your approximate budget?",budget:{unknown:"I'm not sure",under500:"Under €500","500to1000":"€500–1,000","1000to2000":"€1,000–2,000",over2000:"Above €2,000"},
     optional:"Optional",back:"Back",next:"Continue",finish:"Send my no-obligation enquiry",
@@ -101,11 +110,14 @@ const copies = {
   nl: {
     ...de,title:"Stel uw website samen in enkele stappen",intro:"Geen technische kennis nodig. Kies wat bij u past en ontvang vrijblijvend een offerte per e-mail.",
     step:"Stap",of:"van",first:"Wat heeft u nodig?",firstHelp:"Kies wat het beste past. Technische kennis is niet nodig.",
-    project:{new:["Een nieuwe website","Mijn bedrijf online presenteren."],relaunch:["Bestaande website vernieuwen","Mijn website kan een update gebruiken."],seo:["Beter vindbaar in Google","Meer relevante aanvragen krijgen."],shop:["Online verkopen","Producten aanbieden via een webshop."]},
+    project:{new:["Een nieuwe website","Mijn bedrijf online presenteren."],relaunch:["Bestaande website vernieuwen","Mijn website kan een update gebruiken."],seo:["Meer aanvragen via Google","Klanten moeten mijn bedrijf gemakkelijker kunnen vinden."],shop:["Online producten verkopen","Met winkelwagen en online betalen."]},
     second:"Hoe groot is uw project?",secondHelp:"Een schatting is prima. U kunt ook “Weet ik nog niet” kiezen.",
-    scope:{new:{one:["Eén webpagina","Alle belangrijke informatie op één pagina."],few:["Meerdere pagina's","Diensten, over ons, contact enzovoort."],large:["Grotere website","Veel pagina's of speciale functies."],unsure:["Weet ik nog niet","Wij helpen u kiezen."]},relaunch:{one:["Kleine verbetering","Eén pagina aanpassen."],few:["Meerdere pagina's","Vormgeving en structuur verbeteren."],large:["Volledige vernieuwing","Een groter project met nieuwe functies."],unsure:["Weet ik nog niet","We bekijken uw huidige website."]},seo:{maps:["Google Bedrijfsprofiel","Uw bedrijf op Google en Maps."],search:["SEO voor de website","Beter vindbaar in de zoekresultaten."],both:["Allebei","Website en bedrijfsprofiel."],unsure:["Weet ik nog niet","We adviseren over de eerste stap."]},shop:{small:["Enkele producten","Minder dan 20 producten."],medium:["Middelgroot aanbod","20–100 producten."],large:["Groot assortiment","Meer dan 100 producten of extra functies."],unsure:["Weet ik nog niet","We bespreken de omvang per e-mail."]}},
+    scope:{new:{one:["Eén webpagina","Alle belangrijke informatie op één pagina."],few:["Meerdere pagina's","Diensten, over ons, contact enzovoort."],large:["Grotere website","Veel pagina's of speciale functies."],unsure:["Weet ik nog niet","Wij helpen u kiezen."]},relaunch:{one:["Kleine verbetering","Eén pagina aanpassen."],few:["Meerdere pagina's","Vormgeving en structuur verbeteren."],large:["Volledige vernieuwing","Een groter project met nieuwe functies."],unsure:["Weet ik nog niet","We bekijken uw huidige website."]},seo:{maps:["Mijn bedrijf op Google Maps","Bedrijfsvermelding, openingstijden en reviews verbeteren."],search:["Mijn website makkelijker laten vinden","Bij zoekopdrachten naar mijn diensten gevonden worden."],both:["Website en Google Maps","Beide verbeteren."],unsure:["Weet ik nog niet","We adviseren over de eerste stap."]},shop:{small:["Enkele producten","Minder dan 20 producten."],medium:["Middelgroot aanbod","20–100 producten."],large:["Groot assortiment","Meer dan 100 producten of extra functies."],unsure:["Weet ik nog niet","We bespreken de omvang per e-mail."]}},
     third:"Wat zou nog handig zijn?",thirdHelp:"Deze opties zijn niet verplicht.",
-    extras:{seo:["Extra SEO","Beter gevonden worden in Google."],languages:["Meerdere talen","Bijvoorbeeld Duits en Nederlands."],content:["Hulp met teksten of foto's","Ik heb nog geen materiaal."],hosting:["Domein, hosting of onderhoud","Hulp na de oplevering."]},
+    extras:{seo:["Meer klanten via Google (doorlopende SEO)","Optionele regelmatige hulp bij vindbaarheid. Geen verplicht abonnement."],languages:["Website in meerdere talen","Bijvoorbeeld Duits en Nederlands, zodat klanten uw aanbod begrijpen."],content:["Hulp met teksten of foto's","We helpen met heldere teksten en geschikte foto's."],hosting:["Webadres, hosting en onderhoud","Hulp met uw domein (bijv. bedrijf.de), websitehosting en aanpassingen."]},
+    extraPrices:{seo:"vanaf €99 / maand · optioneel",languages:"Prijs volgens omvang",content:"Prijs volgens omvang",hosting:"Prijs volgens omvang"},
+    includedSEO:"De basisinstellingen voor Google zijn bij uw nieuwe website inbegrepen. Maandelijkse SEO is niet verplicht.",
+    extraPriceNote:"U kiest alleen uw wensen. Extra's bestelt u pas na een schriftelijk geaccepteerde offerte.",,
     when:"Wanneer wilt u beginnen?",timeline:{soon:"Zo snel mogelijk",month:"Binnen enkele weken",flexible:"Ik ben flexibel"},
     budgetLabel:"Wat is ongeveer uw budget?",budget:{unknown:"Dat weet ik nog niet",under500:"Onder €500","500to1000":"€500–1.000","1000to2000":"€1.000–2.000",over2000:"Meer dan €2.000"},
     optional:"Optioneel",back:"Vorige",next:"Volgende",finish:"Vrijblijvende aanvraag verzenden",
@@ -125,12 +137,12 @@ const initial = {
   name: "", email: "", phone: "", company: "", current_site: "", note: "", accepted: false, website: ""
 };
 
-function Option({ active, title, description, onClick, multiple }) {
+function Option({ active, title, description, price, onClick, multiple }) {
   return (
     <button type="button" aria-pressed={active} onClick={onClick}
       className={styles.option + (active ? " " + styles.chosen : "")}>
       <span className={styles.optionMark} aria-hidden="true">{active ? "✓" : multiple ? "+" : "○"}</span>
-      <span className={styles.optionText}><strong>{title}</strong>{description && <small>{description}</small>}</span>
+      <span className={styles.optionText}><strong>{title}</strong>{description && <small>{description}</small>}{price && <span className={styles.optionPrice}>{price}</span>}</span>
     </button>
   );
 }
@@ -169,7 +181,7 @@ export default function ProjektStarten() {
     : data.project_type === "new" && data.project_scope === "few"
       ? { title: t.business, price: "899 €" }
       : { title: t.custom, price: null };
-  const extraNames = data.extras.map((key) => t.extras[key][0]);
+  const extraNames = data.extras.map((key) => t.extras[key][0] + " (" + t.extraPrices[key] + ")");
   const submit = async (event) => {
     event.preventDefault();
     if (sending.current || status === "success" || !data.accepted || !data.name.trim() || !data.email.trim()) return;
@@ -180,7 +192,7 @@ export default function ProjektStarten() {
     const summary = [
       "Projekt: " + data.project_type,
       "Umfang: " + data.project_scope,
-      "Extras: " + (data.extras.join(", ") || "keine"),
+      "Extras: " + (data.extras.map((key) => de.extras[key][0] + " (" + de.extraPrices[key] + ")").join(", ") || "keine"),
       "Zeitplan: " + data.timeline,
       "Budget: " + data.budget,
       "Empfehlung: " + recommendation.title + (recommendation.price ? " / " + recommendation.price : ""),
@@ -261,10 +273,12 @@ export default function ProjektStarten() {
                   <>
                     <div className={styles.grid}>
                       {choices.extras.filter((key) => !(key === "seo" && data.project_type === "seo")).map((key) =>
-                        <Option key={key} active={data.extras.includes(key)} title={t.extras[key][0]} description={t.extras[key][1]}
+                        <Option key={key} active={data.extras.includes(key)} title={t.extras[key][0]} description={t.extras[key][1]} price={t.extraPrices[key]}
                           multiple onClick={() => toggleExtra(key)} />
                       )}
                     </div>
+                    {(data.project_type === "new" || data.project_type === "relaunch") && <p className={styles.includedNote}>{t.includedSEO}</p>}
+                    <p className={styles.extraNote}>{t.extraPriceNote}</p>
                     <div className={styles.twoCols}>
                       <label className={styles.field}>{t.when}<select value={data.timeline} onChange={(e) => patch("timeline",e.target.value)}>
                         {choices.timeline.map((key) => <option key={key} value={key}>{t.timeline[key]}</option>)}
