@@ -51,7 +51,7 @@ export default function MobileFloatingCTA() {
     window.addEventListener("resize", onScroll);
     const observer = typeof MutationObserver !== "undefined"
       ? new MutationObserver(onScroll) : null;
-    if (observer) observer.observe(document.body, { childList: true, subtree: false });
+    if (observer) observer.observe(document.querySelector(".pg-navbar") || document.body, { childList: true, subtree: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
