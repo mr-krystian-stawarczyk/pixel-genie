@@ -2436,3 +2436,15 @@ img {
 .pg-pricing-card{padding:25px 21px}
 }
 @media(prefers-reduced-motion:reduce){.pg-nav-link,.pg-nav-control,.pg-nav-cta,.pg-hero-secondary{transition:none!important}}
+
+/* Configurator CTA: preserve white text in all site themes and states. */
+.pg-hero-actions .pg-configurator-cta,
+.pg-hero-actions .pg-configurator-cta span,
+.pg-hero-actions .pg-configurator-cta:hover,
+.pg-hero-actions .pg-configurator-cta:focus-visible,
+.mobile-floating-cta .pg-configurator-cta,
+.mobile-floating-cta .pg-configurator-cta span,
+.mobile-floating-cta .pg-configurator-cta:hover,
+.mobile-floating-cta .pg-configurator-cta:focus-visible {
+  color: #fff !important;
+}
