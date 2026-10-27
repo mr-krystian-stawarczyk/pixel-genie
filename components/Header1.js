@@ -145,7 +145,7 @@ export default function Header1() {
 
 							<nav aria-label="Hauptaktionen">
 								<div className="pg-hero-actions">
-									<Button as={Link} href="/projekt-starten" className="btn-premium-footer text-white fw-bold px-4 py-3"><AutoTranslate>Website in 2 Minuten planen</AutoTranslate></Button>
+									<Button as={Link} href="/projekt-starten" id="pg-hero-configurator-cta" className="btn-premium-footer pg-configurator-cta text-white fw-bold px-4 py-3"><AutoTranslate>Website in 2 Minuten planen</AutoTranslate></Button>
 									<ContactButton topic="Allgemeine Frage" className="pg-hero-secondary"><AutoTranslate>Eine Frage stellen</AutoTranslate></ContactButton>
 								</div>
 								<p className="small mt-3 mb-0" style={{ opacity: 0.9 }}><AutoTranslate>Kostenlos · Unverbindlich · Kein Telefonat nötig</AutoTranslate></p>
