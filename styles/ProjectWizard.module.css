@@ -66,3 +66,9 @@
 .under {font-size:11px;}
 }
 @media(prefers-reduced-motion:reduce){.track span,.option{transition:none;}}
+
+/* Optional add-on labels; separate recurring fees from one-time website costs. */
+.optionPrice {display:inline-block;align-self:flex-start;margin-top:3px;padding:4px 9px;background:rgba(59,130,246,.14);border-radius:7px;color:#93c5fd;font-size:12px;font-weight:700;line-height:1.4;}
+.wrapper[data-mode="light"] .optionPrice {color:#174da5;background:#e5efff;}
+.includedNote,.extraNote {font-size:12px;line-height:1.65;color:var(--pg-muted);margin:13px 2px 0;}
+.includedNote {border-left:3px solid #3b82f6;padding:9px 11px;background:rgba(59,130,246,.07);border-radius:0 8px 8px 0;}
