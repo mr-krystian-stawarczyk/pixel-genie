@@ -145,14 +145,11 @@ export default function Header1() {
 
 							<nav aria-label="Hauptaktionen">
 								<div className="pg-hero-actions">
-									<ContactButton topic="Webdesign" className="btn-premium-footer text-white fw-bold px-4 py-3">
-										<AutoTranslate>Website unverbindlich anfragen</AutoTranslate>
-									</ContactButton>
-									<Button as={Link} href="/webseitenerstellen#web-design-pricing" className="pg-hero-secondary">
-										<AutoTranslate>Pakete & Preise ansehen</AutoTranslate>
-									</Button>
+									<Button as={Link} href="/projekt-starten" className="btn-premium-footer text-white fw-bold px-4 py-3"><AutoTranslate>Website in 2 Minuten planen</AutoTranslate></Button>
+									<ContactButton topic="Allgemeine Frage" className="pg-hero-secondary"><AutoTranslate>Eine Frage stellen</AutoTranslate></ContactButton>
 								</div>
-								<p className="small mt-3 mb-0" style={{ opacity: 0.9 }}><AutoTranslate>Kontakt per E-Mail · Kein Telefonat nötig</AutoTranslate></p>
+								<p className="small mt-3 mb-0" style={{ opacity: 0.9 }}><AutoTranslate>Kostenlos · Unverbindlich · Kein Telefonat nötig</AutoTranslate></p>
+							<p className="small mt-2 mb-0"><Link href="/webseitenerstellen#web-design-pricing" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 4 }}><AutoTranslate>Pakete & Preise ansehen</AutoTranslate></Link></p>
 							</nav>
 						</Card.Body>
 
