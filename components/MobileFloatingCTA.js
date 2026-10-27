@@ -1,15 +1,15 @@
 "use client";
-import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { hasCookie } from "cookies-next";
 import { gaEvent } from "@/lib/analytics";
 import AutoTranslate from "./AutoTranslate";
 
-const ContactModal = dynamic(() => import("./ContactModal"), { ssr: false });
 
 export default function MobileFloatingCTA() {
 	const [visible, setVisible] = useState(false);
-	const [showModal, setShowModal] = useState(false);
+	const router = useRouter();
 
 	useEffect(() => {
 		const showCta = () => {
@@ -27,7 +27,7 @@ export default function MobileFloatingCTA() {
 		};
 	}, []);
 
-	if (!visible) return null;
+	if (!visible || router.pathname === "/projekt-starten") return null;
 
 	const handleClick = () => {
 		if (hasCookie("marketingConsent")) {
@@ -36,7 +36,7 @@ export default function MobileFloatingCTA() {
 				page: window.location.pathname,
 			});
 		}
-		setShowModal(true);
+		router.push("/projekt-starten");
 	};
 
 	return (
@@ -47,15 +47,11 @@ export default function MobileFloatingCTA() {
 					className="btn-premium-footer text-white fw-bold w-100"
 					style={{ border: "none" }}
 				>
-					🚀 <AutoTranslate>Jetzt starten</AutoTranslate>
+					🚀 <AutoTranslate>Website in 2 Minuten planen</AutoTranslate>
 				</button>
 			</div>
 
-			<ContactModal
-				show={showModal}
-				onHide={() => setShowModal(false)}
-				topic="Mobile CTA"
-			/>
+
 		</>
 	);
 }
